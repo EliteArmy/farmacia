@@ -1,249 +1,269 @@
-CREATE TABLE categoria_por_producto
-(
-    id_categoria INTEGER NOT NULL,
-    id_producto INTEGER NOT NULL,
-    CONSTRAINT categoria_por_producto_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES categoria_producto (id_categoria),
-    CONSTRAINT categoria_por_producto_id_producto_fkey FOREIGN KEY (id_producto) REFERENCES producto (id_producto)
+create table departamento(
+  id_departamento varchar(2) not null primary key,
+  departamento varchar(100) not null
 );
-CREATE TABLE categoria_producto
-(
-    id_categoria INTEGER DEFAULT nextval('categoria_producto_id_categoria_seq'::regclass) PRIMARY KEY NOT NULL,
-    categoria VARCHAR(45) DEFAULT NULL::character varying
+
+create table municipio(
+  id_municipio varchar(4) not null primary key,
+  municipio varchar(100),
+  id_departamento varchar(2),
+  FOREIGN KEY (id_departamento) REFERENCES departamento(id_departamento)
 );
-CREATE TABLE ciudad
+
+create table ciudad
 (
-    id_ciudad INTEGER DEFAULT nextval('ciudad_id_ciudad_seq'::regclass) PRIMARY KEY NOT NULL,
-    ciudad VARCHAR(100),
-    id_municipio VARCHAR(4),
-    CONSTRAINT ciudad_id_municipio_fkey FOREIGN KEY (id_municipio) REFERENCES municipio (id_municipio)
+  id_ciudad integer not null AUTO_INCREMENT PRIMARY KEY,
+  ciudad varchar(100),
+  id_municipio varchar(4),
+  FOREIGN KEY (id_municipio) REFERENCES municipio(id_municipio)
 );
-CREATE TABLE cliente
-(
-    id_cliente INTEGER DEFAULT nextval('cliente_id_cliente_seq'::regclass) PRIMARY KEY NOT NULL,
-    fecha_registro DATE NOT NULL,
-    id_persona INTEGER NOT NULL,
-    CONSTRAINT fk_cliente_persona1 FOREIGN KEY (id_persona) REFERENCES persona (id_persona)
+
+create table telefono(
+  id_telefono integer not null AUTO_INCREMENT PRIMARY KEY,
+  telefono varchar(50) not null
 );
-CREATE UNIQUE INDEX persona_uq ON cliente (id_persona);
-CREATE TABLE contador
-(
-    "?column?" INTEGER
+
+create table persona(
+  id_persona integer not null AUTO_INCREMENT PRIMARY KEY,
+  primer_nombre varchar(50) not null,
+  segundo_nombre varchar(50),
+  primer_apellido varchar(50) not null,
+  segundo_apellido varchar(50),
+  sexo varchar(1) not null,
+    -- constraint persona_genero_check check ((sexo)::text = ANY ((ARRAY['M'::character varying, 'F'::character varying])::text[])),
+  direccion varchar(300),
+  correo_electronico varchar(100),
+    -- constraint chk_email check ((correo_electronico)::text ~ '^[a-zA-Z0-9\._-]+@([_a-zA-Z0-9])+(\.[a-zA-Z]+)+$'::text),
+  numero_identidad varchar(13) not null,
+  -- constraint identidad_uq unique
+  -- constraint chk_identidad check ((numero_identidad)::text ~ '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$'::text),
+  fecha_nacimiento date
+    -- constraint chk_fechanac check (fecha_nacimiento < CURRENT_DATE)
 );
-CREATE TABLE departamento
-(
-    id_departamento VARCHAR(2) PRIMARY KEY NOT NULL,
-    departamento VARCHAR(100) NOT NULL
+
+create table empleado (
+  id_empleado integer not null AUTO_INCREMENT PRIMARY KEY ,
+  fecha_ingreso date not null,
+    -- constraint chk_empleado_ingreso check (fecha_ingreso <= CURRENT_DATE),
+  id_persona integer,
+  FOREIGN KEY (id_persona) REFERENCES persona(id_persona),
+    -- constraint empleado_id_persona_key unique
+  usuario varchar(50) not null,
+    -- constraint usuario_uq unique,
+  contrasena varchar(128) not null,
+  foto_url varchar(100),
+  estado varchar(1)
+    -- constraint chk_estado_empleado check ((estado)::text = ANY ((ARRAY['A'::character varying, 'I'::character varying])::text[]))
 );
-CREATE TABLE descuento
-(
-    id_descuento INTEGER DEFAULT nextval('descuento_id_descuento_seq'::regclass) PRIMARY KEY NOT NULL,
-    descripcion VARCHAR(45) NOT NULL,
-    porcentaje INTEGER NOT NULL,
-    estado VARCHAR(1) NOT NULL
+
+create table farmacia (
+  id_farmacia integer not null AUTO_INCREMENT PRIMARY KEY,
+  farmacia varchar(100) not null,
+  propietario varchar(100) not null,
+  rtn varchar(14) not null,
+    -- constraint chk_rtn check ((rtn)::text ~ '^[0-9]{14}$'::text),
+  fundada date not null,
+  id_ciudad integer not null,
+  FOREIGN KEY (id_ciudad) REFERENCES ciudad(id_ciudad)
 );
-CREATE TABLE descuento_factura
-(
-    id_descuento INTEGER NOT NULL,
-    id_factura INTEGER NOT NULL,
-    CONSTRAINT descuento_factura_id_descuento_fkey FOREIGN KEY (id_descuento) REFERENCES descuento (id_descuento),
-    CONSTRAINT descuento_factura_id_factura_fkey FOREIGN KEY (id_factura) REFERENCES factura (id_factura)
+
+create table categoria (
+  id_categoria integer not null AUTO_INCREMENT PRIMARY KEY,
+  categoria varchar(45) default NULL
 );
-CREATE TABLE detalle_factura
-(
-    id_factura INTEGER DEFAULT nextval('detalle_factura_id_factura_seq'::regclass) NOT NULL,
-    cantidad INTEGER NOT NULL,
-    id_lote INTEGER NOT NULL,
-    CONSTRAINT detalle_factura_id_factura_fkey FOREIGN KEY (id_factura) REFERENCES factura (id_factura),
-    CONSTRAINT detalle_factura_id_lote_fkey FOREIGN KEY (id_lote) REFERENCES lote (id_lote)
+
+create table forma_pago (
+  id_forma_pago integer not null AUTO_INCREMENT PRIMARY KEY,
+  descripcion varchar(45) not null,
+  estado varchar(1) not null
+    -- constraint chk_estado check ((estado)::text = ANY ((ARRAY['A'::character varying, 'I'::character varying])::text[]))
 );
-CREATE TABLE detalle_movimiento
-(
-    id_movimiento INTEGER DEFAULT nextval('detalle_movimiento_id_movimiento_seq'::regclass) PRIMARY KEY NOT NULL,
-    cantidad INTEGER NOT NULL,
-    id_lote INTEGER NOT NULL,
-    CONSTRAINT detalle_movimiento_id_movimiento_fkey FOREIGN KEY (id_movimiento) REFERENCES movimiento_producto (id_movimiento),
-    CONSTRAINT detalle_movimiento_id_lote_fkey FOREIGN KEY (id_lote) REFERENCES lote (id_lote)
+
+create table cliente (
+  id_cliente integer not null AUTO_INCREMENT PRIMARY KEY ,
+  fecha_registro date not null,
+    -- constraint chk_registro_fecha check (fecha_registro <= CURRENT_DATE),
+  id_persona integer not null,
+  FOREIGN KEY (id_cliente) REFERENCES persona(id_persona)
+    -- constraint persona_uq unique
 );
-CREATE TABLE empleado
-(
-    id_empleado INTEGER DEFAULT nextval('empleado_id_empleado_seq'::regclass) PRIMARY KEY NOT NULL,
-    fecha_ingreso DATE NOT NULL,
-    id_persona INTEGER,
-    usuario VARCHAR(50) NOT NULL,
-    contrasena VARCHAR(128) NOT NULL,
-    foto_url VARCHAR(100),
-    estado VARCHAR(1),
-    CONSTRAINT empleado_id_persona_fkey FOREIGN KEY (id_persona) REFERENCES persona (id_persona)
+
+create table descuento(
+  id_descuento integer not null AUTO_INCREMENT PRIMARY KEY ,
+  descripcion varchar(45) not null,
+  porcentaje integer not null,
+    -- constraint chk_descuento_max check (porcentaje <= 100)
+    -- constraint chk_porcentaje check (porcentaje > 0),
+  estado varchar(1) not null,
+    -- constraint chk_estado check ((estado)::text = ANY ((ARRAY['A'::character varying, 'I'::character varying])::text[])),
+  fecha_inicio date not null,
+    -- constraint chk_fecha_inicio check (fecha_inicio >= CURRENT_DATE),
+  fecha_fin date not null
+  -- constraint chk_fecha_fin check (fecha_fin > fecha_inicio)
 );
-CREATE UNIQUE INDEX empleado_id_persona_key ON empleado (id_persona);
-CREATE UNIQUE INDEX usuario_uq ON empleado (usuario);
-CREATE TABLE estante
+
+create table factura
 (
-    id_estante INTEGER DEFAULT nextval('estante_id_estante_seq'::regclass) PRIMARY KEY NOT NULL,
-    nombre VARCHAR(4) NOT NULL,
-    tipo_estante VARCHAR(1) NOT NULL
+  id_factura integer not null AUTO_INCREMENT PRIMARY KEY,
+  fecha_hora timestamp default CURRENT_TIMESTAMP() not null,
+  coste_total double precision not null,
+    -- constraint chk_coste check (coste_total >= (0)::double precision),
+  observacion varchar(250) default NULL,
+  id_empleado integer not null,
+  FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado),
+  id_cliente integer not null,
+  FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+  id_forma_pago integer not null,
+  FOREIGN KEY (id_forma_pago) REFERENCES forma_pago(id_forma_pago),
+  id_farmacia integer not null,
+  FOREIGN KEY (id_farmacia) REFERENCES farmacia(id_farmacia)
 );
-CREATE UNIQUE INDEX estante_nombre_uq ON estante (nombre);
-CREATE TABLE factura
-(
-    id_factura INTEGER DEFAULT nextval('factura_id_factura_seq'::regclass) PRIMARY KEY NOT NULL,
-    fecha DATE NOT NULL,
-    coste_total DOUBLE PRECISION NOT NULL,
-    observacion VARCHAR(250) DEFAULT NULL::character varying,
-    id_empleado INTEGER NOT NULL,
-    id_cliente INTEGER NOT NULL,
-    id_forma_pago INTEGER NOT NULL,
-    id_farmacia INTEGER NOT NULL,
-    CONSTRAINT factura_id_empleado_fkey FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado),
-    CONSTRAINT factura_id_cliente_fkey FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
-    CONSTRAINT factura_id_forma_pago_fkey FOREIGN KEY (id_forma_pago) REFERENCES forma_pago (id_forma_pago),
-    CONSTRAINT factura_id_farmacia_fkey FOREIGN KEY (id_farmacia) REFERENCES farmacia (id_farmacia)
+
+create table impuesto (
+  id_impuesto integer not null AUTO_INCREMENT PRIMARY KEY,
+  impuesto varchar(45) not null,
+  valor integer not null,
+    -- constraint impuesto_chk_minmax check ((valor >= 0) AND (valor <= 100)),
+  estado varchar(1) not null,
+    -- constraint chk_estado check ((estado)::text = ANY ((ARRAY['A'::character varying, 'I'::character varying])::text[])),
+  fecha_inicio date not null
 );
-CREATE TABLE farmacia
+
+create table presentacion
 (
-    id_farmacia INTEGER DEFAULT nextval('farmacia_id_farmacia_seq'::regclass) PRIMARY KEY NOT NULL,
-    farmacia VARCHAR(100) NOT NULL,
-    propietario VARCHAR(100) NOT NULL,
-    rtn VARCHAR(14) NOT NULL,
-    fundada DATE NOT NULL,
-    licencia VARCHAR(200) NOT NULL,
-    id_ciudad INTEGER,
-    CONSTRAINT idciudadfarmacia FOREIGN KEY (id_ciudad) REFERENCES ciudad (id_ciudad)
+  id_presentacion integer not null AUTO_INCREMENT PRIMARY KEY,
+  presentacion varchar(50) not null
 );
-CREATE TABLE forma_pago
+
+create table producto
 (
-    id_forma_pago INTEGER DEFAULT nextval('forma_pago_id_forma_pago_seq'::regclass) PRIMARY KEY NOT NULL,
-    descripcion VARCHAR(45) NOT NULL,
-    estado VARCHAR(1) NOT NULL
+  id_producto integer not null AUTO_INCREMENT PRIMARY KEY ,
+  id_presentacion integer not null,
+  FOREIGN KEY (id_presentacion) REFERENCES presentacion(id_presentacion),
+  nombre varchar(100) not null,
+  codigo_barra varchar(45) not null,
+    -- constraint chk_codigo unique
+    -- constraint chk_codigo_formato check ((codigo_barra)::text ~ '^[0-9]+$'::text),
+  url_foto varchar(500)
 );
-CREATE TABLE impuesto
+
+create table lote
 (
-    id_impuesto INTEGER DEFAULT nextval('impuesto_id_impuesto_seq'::regclass) PRIMARY KEY NOT NULL,
-    impuesto VARCHAR(45) NOT NULL,
-    valor INTEGER NOT NULL,
-    estado VARCHAR(1) NOT NULL,
-    fecha_inicio DATE NOT NULL
+  id_lote integer not null AUTO_INCREMENT PRIMARY KEY,
+  id_producto integer not null,
+  FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
+  lote varchar(100) not null,
+  precio_costo double precision not null,
+    -- constraint chk_precio_costo check (precio_costo > (0)::double precision),
+  precio_venta double precision not null,
+  fecha_elaboracion date not null,
+    -- constraint chk_fecha_elaboracion check (fecha_elaboracion <= CURRENT_DATE),
+  fecha_vecimiento date not null
+  -- constraint chk_precio_venta check (precio_venta > precio_costo),
+  -- constraint chk_fecha_vencimiento check (fecha_vecimiento > fecha_elaboracion)
 );
-CREATE TABLE laboratorio
+
+create table detalle_factura
 (
-    id_laboratorio INTEGER DEFAULT nextval('laboratorio_id_laboratorio_seq'::regclass) PRIMARY KEY NOT NULL,
-    nombre_laboratorio VARCHAR(45) NOT NULL
+  id_factura integer not null,
+  FOREIGN KEY (id_factura) REFERENCES factura(id_factura),
+  cantidad integer not null,
+    -- constraint chk_cantidad check (cantidad > 0),
+  id_lote integer not null,
+  FOREIGN KEY (id_lote) REFERENCES lote(id_lote)
 );
-CREATE TABLE lote
+
+create table laboratorio
 (
-    id_lote INTEGER DEFAULT nextval('lote_id_lote_seq'::regclass) PRIMARY KEY NOT NULL,
-    id_producto INTEGER NOT NULL,
-    lote VARCHAR(100) NOT NULL,
-    precio_costo DOUBLE PRECISION NOT NULL,
-    precio_venta DOUBLE PRECISION NOT NULL,
-    fecha_elaboracion DATE NOT NULL,
-    fecha_vecimiento DATE NOT NULL,
-    CONSTRAINT lote_id_producto_fkey FOREIGN KEY (id_producto) REFERENCES producto (id_producto)
+  id_laboratorio integer not null AUTO_INCREMENT PRIMARY KEY ,
+  nombre_laboratorio varchar(45) not null
 );
-CREATE TABLE lote_estante
+
+create table medicamentos
 (
-    id_estante INTEGER DEFAULT nextval('lote_estante_id_estante_seq'::regclass) NOT NULL,
-    id_lote INTEGER NOT NULL,
-    cantidad INTEGER NOT NULL,
-    CONSTRAINT lote_estante_pkey PRIMARY KEY (id_estante, id_lote),
-    CONSTRAINT lote_estante_id_estante_fkey FOREIGN KEY (id_estante) REFERENCES estante (id_estante),
-    CONSTRAINT lote_estante_id_lote_fkey FOREIGN KEY (id_lote) REFERENCES lote (id_lote)
+  id_medicamento integer not null AUTO_INCREMENT PRIMARY KEY ,
+  id_laboratorio integer not null,
+  FOREIGN KEY (id_laboratorio) REFERENCES laboratorio(id_laboratorio),
+  id_producto integer not null,
+    -- constraint producto_uq unique
+  FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
 );
-CREATE TABLE medicamentos
+
+create table movimiento_producto
 (
-    id_medicamento INTEGER DEFAULT nextval('medicamentos_id_medicamento_seq'::regclass) PRIMARY KEY NOT NULL,
-    id_laboratorio INTEGER NOT NULL,
-    id_producto INTEGER NOT NULL,
-    CONSTRAINT medicamentos_id_laboratorio_fkey FOREIGN KEY (id_laboratorio) REFERENCES laboratorio (id_laboratorio),
-    CONSTRAINT medicamentos_id_producto_fkey FOREIGN KEY (id_producto) REFERENCES producto (id_producto)
+  id_movimiento integer not null AUTO_INCREMENT PRIMARY KEY,
+  fecha date not null,
+  id_empleado integer not null,
+  FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado),
+  tipo_movimiento varchar(1) default 'A'
+    -- constraint chk_tipo_movimiento check ((tipo_movimiento)::text = ANY ((ARRAY['A'::character varying, 'R'::character varying])::text[]))
 );
-CREATE UNIQUE INDEX producto_uq ON medicamentos (id_producto);
-CREATE TABLE movimiento_producto
-(
-    id_movimiento INTEGER DEFAULT nextval('movimiento_producto_id_movimiento_seq'::regclass) PRIMARY KEY NOT NULL,
-    fecha DATE NOT NULL,
-    id_empleado INTEGER NOT NULL,
-    id_estante_origen INTEGER NOT NULL,
-    id_estante_destino INTEGER NOT NULL,
-    tipo_movimiento VARCHAR(1) DEFAULT 'A'::character varying NOT NULL,
-    CONSTRAINT movimiento_producto_id_empleado_fkey FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado),
-    CONSTRAINT movimiento_producto_id_estante_origen_fkey FOREIGN KEY (id_estante_origen) REFERENCES estante (id_estante),
-    CONSTRAINT movimiento_producto_id_estante_destino_fkey FOREIGN KEY (id_estante_destino) REFERENCES estante (id_estante)
+
+create table telefono_persona (
+  id_persona integer not null,
+  FOREIGN KEY (id_persona) REFERENCES persona(id_persona),
+  id_telefono integer not null,
+  FOREIGN KEY (id_telefono) REFERENCES telefono(id_telefono)
 );
-CREATE TABLE municipio
+
+create table detalle_movimiento
 (
-    id_municipio VARCHAR(4) PRIMARY KEY NOT NULL,
-    municipio VARCHAR(100),
-    id_departamento VARCHAR(2),
-    CONSTRAINT municipio_id_departamento_fkey FOREIGN KEY (id_departamento) REFERENCES departamento (id_departamento)
+  id_movimiento integer not null,
+  FOREIGN KEY (id_movimiento) REFERENCES movimiento_producto(id_movimiento),
+  cantidad integer not null,
+    -- constraint chk_cantidad_mov check (cantidad > 0),
+  id_lote integer not null,
+  FOREIGN KEY (id_lote) REFERENCES lote(id_lote)
 );
-CREATE TABLE pantalla
+
+create table tipo_usuario
 (
-    id_pantalla INTEGER DEFAULT nextval('pantalla_id_pantalla_seq'::regclass) PRIMARY KEY NOT NULL,
-    pantalla VARCHAR(45) NOT NULL
+  id_tipo_usuario integer not null AUTO_INCREMENT PRIMARY KEY ,
+  tipo_usuario varchar(45) not null
 );
-CREATE TABLE pantalla_por_tipo_usuario
+
+create table tipo_usuario_empleado
 (
-    id_pantalla INTEGER DEFAULT nextval('pantalla_por_tipo_usuario_id_pantalla_seq'::regclass) NOT NULL,
-    id_tipo_usuario INTEGER NOT NULL,
-    CONSTRAINT pantalla_por_tipo_usuario_pkey PRIMARY KEY (id_pantalla, id_tipo_usuario),
-    CONSTRAINT pantalla_por_tipo_usuario_id_pantalla_fkey FOREIGN KEY (id_pantalla) REFERENCES pantalla (id_pantalla),
-    CONSTRAINT pantalla_por_tipo_usuario_id_tipo_usuario_fkey FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario (id_tipo_usuario)
+  id_tipo_usuario integer not null,
+  FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario(id_tipo_usuario),
+  id_empleado integer not null,
+  FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
 );
-CREATE TABLE persona
+
+create table pantalla
 (
-    id_persona INTEGER DEFAULT nextval('persona_id_persona_seq'::regclass) PRIMARY KEY NOT NULL,
-    primer_nombre VARCHAR(50) NOT NULL,
-    segundo_nombre VARCHAR(50),
-    primer_apellido VARCHAR(50) NOT NULL,
-    segundo_apellido VARCHAR(50),
-    genero VARCHAR(1) NOT NULL,
-    direccion VARCHAR(300),
-    correo_electronico VARCHAR(100),
-    numero_identidad VARCHAR(13) NOT NULL,
-    fecha_nacimiento DATE
+  id_pantalla integer not null AUTO_INCREMENT PRIMARY KEY ,
+  pantalla varchar(45) not null
 );
-CREATE UNIQUE INDEX identidad_uq ON persona (numero_identidad);
-CREATE TABLE presentacion
+
+create table pantalla_tipo_usuario
 (
-    id_presentacion INTEGER DEFAULT nextval('presentacion_id_presentacion_seq'::regclass) PRIMARY KEY NOT NULL,
-    presentacion VARCHAR(50) NOT NULL
+  id_pantalla integer not null,
+  FOREIGN KEY (id_pantalla) REFERENCES pantalla(id_pantalla),
+  id_tipo_usuario integer not null,
+  FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario(id_tipo_usuario)
 );
-CREATE TABLE producto
+
+create table categoria_producto
 (
-    id_producto INTEGER DEFAULT nextval('producto_id_producto_seq'::regclass) PRIMARY KEY NOT NULL,
-    id_presentacion INTEGER NOT NULL,
-    id_impuesto INTEGER NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
-    codigo_barra VARCHAR(45) NOT NULL,
-    url_foto VARCHAR(500),
-    CONSTRAINT producto_id_presentacion_fkey FOREIGN KEY (id_presentacion) REFERENCES presentacion (id_presentacion),
-    CONSTRAINT producto_id_impuesto_fkey FOREIGN KEY (id_impuesto) REFERENCES impuesto (id_impuesto)
+  id_categoria integer not null,
+  FOREIGN KEY (id_categoria) REFERENCES categoria (id_categoria),
+  id_producto integer not null,
+  FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
 );
-CREATE UNIQUE INDEX chk_codigo ON producto (codigo_barra);
-CREATE TABLE telefono
+
+create table descuento_lote
 (
-    id_telefono INTEGER DEFAULT nextval('telefono_id_telefono_seq'::regclass) PRIMARY KEY NOT NULL,
-    telefono VARCHAR(50) NOT NULL
+  id_lote integer not null,
+  FOREIGN KEY (id_lote) REFERENCES lote(id_lote),
+  id_descuento integer not null,
+  FOREIGN KEY (id_descuento) REFERENCES descuento(id_descuento)
 );
-CREATE TABLE telefono_persona
+
+create table impuesto_producto
 (
-    id_persona INTEGER DEFAULT nextval('telefono_persona_id_persona_seq'::regclass) NOT NULL,
-    id_telefono INTEGER NOT NULL,
-    CONSTRAINT telefono_persona_pkey PRIMARY KEY (id_persona, id_telefono),
-    CONSTRAINT telefono_persona_id_persona_fkey FOREIGN KEY (id_persona) REFERENCES persona (id_persona),
-    CONSTRAINT telefono_persona_id_telefono_fkey FOREIGN KEY (id_telefono) REFERENCES telefono (id_telefono)
-);
-CREATE TABLE tipo_usuario
-(
-    id_tipo_usuario INTEGER DEFAULT nextval('tipo_usuario_id_tipo_usuario_seq'::regclass) PRIMARY KEY NOT NULL,
-    tipo_usuario VARCHAR(45) NOT NULL
-);
-CREATE TABLE tipo_usuario_por_empleado
-(
-    id_tipo_usuario INTEGER DEFAULT nextval('tipo_usuario_por_empleado_id_tipo_usuario_seq'::regclass) NOT NULL,
-    id_empleado INTEGER NOT NULL,
-    CONSTRAINT tipo_usuario_por_empleado_pkey PRIMARY KEY (id_tipo_usuario, id_empleado),
-    CONSTRAINT tipo_usuario_por_empleado_id_tipo_usuario_fkey FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario (id_tipo_usuario),
-    CONSTRAINT tipo_usuario_por_empleado_id_empleado_fkey FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
+  id_impuesto integer not null,
+  FOREIGN KEY (id_impuesto) REFERENCES impuesto (id_impuesto),
+  id_producto integer not null,
+  FOREIGN KEY (id_producto) REFERENCES producto (id_producto)
 );

@@ -5,15 +5,13 @@ INSERT INTO farmacia (
   ,propietario
   ,rtn
   ,fundada
-  ,licencia
   ,id_ciudad)
 VALUES (
   1
-  ,'Farmacia Barralaga'
-  ,'Yildys Barralaga'
+  ,'Farmacia'
+  ,'John DOe'
   ,'08011970123456'
   ,'2018-09-18'
-  ,'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDA0OTQzMjl9.9RKc84clBAt-vGuH-fjZ5GT_1RjIsCp3NdW0inwzle8'
   ,null
 );
 
