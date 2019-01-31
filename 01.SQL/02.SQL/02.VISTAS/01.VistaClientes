@@ -1,0 +1,22 @@
+DROP VIEW VistaClientes;
+CREATE OR REPLACE VIEW VistaClientes AS
+SELECT
+  id_cliente
+  ,numero_identidad
+  ,primer_nombre || (CASE WHEN segundo_nombre is NULL THEN '' ELSE ' '||segundo_nombre END) as nombres
+  ,primer_apellido || (CASE WHEN segundo_apellido IS NULL THEN '' ELSE ' '|| segundo_apellido END) as apellidos
+  ,primer_nombre || (CASE WHEN segundo_nombre is NULL THEN '' ELSE ' '||segundo_nombre END) ||' '|| primer_apellido || (CASE WHEN segundo_apellido IS NULL THEN '' ELSE ' '|| segundo_apellido END) as nombre_completo
+  ,sexo
+  ,fecha_nacimiento
+  ,fecha_registro
+  ,cli.id_persona
+  ,CASE WHEN direccion IS NULL THEN '' ELSE direccion END as direccion
+  ,(SELECT telefonos FROM VistaTelefonoClienteAgrupado WHERE id_cliente = cli.id_cliente) as telefonos
+FROM cliente cli
+INNER JOIN persona per
+  ON cli.id_persona = per.id_persona
+ORDER BY id_cliente
+;
+
+
+SELECT * FROM VistaClientes

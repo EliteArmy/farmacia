@@ -1,0 +1,6 @@
+*.exe
+*.otf
+*.ttf
+*.ipynb
+03.App/css/.sass-cache/
+01.SQL/02.SQL/04.TestData/.ipynb_checkpoints/*
