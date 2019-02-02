@@ -17,9 +17,9 @@ ORDER BY id_cliente ASC
 CREATE OR REPLACE VIEW VistaTelefonoClienteAgrupado AS
 SELECT
        id_cliente,
-       CASE COUNT(*)
+       CASE COUNT(0)
          WHEN 1 THEN telefono
-         ELSE GROUP_CONCAT(telefono, ' / ')
+         ELSE GROUP_CONCAT(telefono, ' ' separator '/ ')
        END as telefonos
 FROM VistaTelefonoCliente
 GROUP BY
