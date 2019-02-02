@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "Avenir";
+  src: url("../fonts/Avenir.ttf") format("truetype"); }
+body {
+  padding-top: 70px;
+  background-color: #EFEFEF;
+  font-family: Avenir !important;
+  h4-font-weight: 700;
+  h4-font-family: Avenir;
+  h4-font-size: 16px; }
+  body .navbar li.active, body .navbar-default li.active {
+    color: #3E3E3E; }
+    body .navbar li.active > a, body .navbar-default li.active > a {
+      background-color: #fae774 !important; }
+  body .navbar-brand, body .logo {
+    height: 40px;
+    padding: 5px;
+    line-height: 40px; }
+  body .user-img {
+    line-height: 20px;
+    height: 35px;
+    width: 35px;
+    float: right;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-top: -7px; }
+
+.container .titulo, .container-fluid .titulo {
+  text-align: center;
+  color: #1675CF;
+  font-weight: 700; }
+.container .card h4, .container-fluid .card h4 {
+  color: #1675CF; }
+.container .btn-success, .container .btn-success:hover, .container-fluid .btn-success, .container-fluid .btn-success:hover {
+  background-color: #1FC969;
+  border-color: #1FC969; }
+.container .btn-success:active, .container-fluid .btn-success:active {
+  background-color: #3ae183;
+  border-color: #3ae183; }
+.container .btn-primary, .container .btn-primary:hover, .container-fluid .btn-primary, .container-fluid .btn-primary:hover {
+  border-color: #f5b726;
+  background-color: #f5b726; }
+.container .btn-primary:active, .container-fluid .btn-primary:active {
+  border-color: #f7c757;
+  background-color: #f7c757; }
+
+table .btns {
+  float: right; }
+
+.row {
+  margin-left: 5px;
+  color: #000; }
+
+.card {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 1px 2px rgba(25, 25, 34, 0.15);
+    box-shadow--webkit-box-shadow: 0 1px 2px rgba(25, 25, 34, 0.15);
+  border-radius: 10px;
+  padding: 15px 15px 50px 15px; }
+
+.table td {
+  border-top: none !important; }
+
+.etiqueta {
+  font-weight: 700;
+  line-height: 1em; }
+
+.cabecera-factura {
+  margin-bottom: 10px; }
+  .cabecera-factura h4 {
+    font-size: 12pt;
+    text-align: center; }
+
+tfoot {
+  border-top: 2px solid #ddd; }
+
+.td-descuento {
+  color: red; }
+
+.total {
+  text-align: right;
+  padding-right: 50px !important;
+  font-weight: 900; }
+
+.td-descripcion {
+  width: 200px !important; }
+
+.cantidad {
+  width: 80px !important; }
+
+label {
+  font-weight: 500; }
+
+.fab {
+  text-align: right;
+  right: 40px;
+  position: fixed;
+  bottom: 40px; }
+
+/*# sourceMappingURL=style.css.map */

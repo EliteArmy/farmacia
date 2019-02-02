@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Registrar Productos</title>
+  <link rel="icon" href="./img/icon.png">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/jquery-confirm.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="root">
+    <!-- ************************************************ BARRA NAVEGACION -->
+    <nav class="navbar navbar-default navbar-fixed-top" id="nav"></nav>
+
+  <!-- *************************************  CONTENIDO  ******************************-->
+
+  <div class="container" id="app">
+    <h3 class="titulo">Registrar Nuevo Producto</h3>
+    <div class="col-md-7">
+      <div class="row">
+        <div class="well card">
+          <h4>Datos del Producto</h4>
+          <table class="table">
+            <tr>
+              <td>Nombre</td>
+              <td><input type="text" class="form-control" v-model = "producto.nombre" placeholder="Nombre del Producto"></td>
+            </tr>
+            <tr>
+              <td>Presentación</td>
+              <td><input list="txt-presentacion" class="form-control" v-model="producto.presentacion" placeholder="Presentación"></td>
+            </tr>
+            <tr>
+              <td>Código de Barra</td>
+              <td><input type="text" class="form-control" v-model="producto.codigo_barra"  placeholder="Código de Barra"></td>
+            </tr>
+            <tr>
+              <td>Impuesto</td>
+              <td>
+                <select class="form-control" v-model="producto.id_impuesto">
+                  <option value="0" hidden="hidden">Seleccionar</option>
+                  <option  v-for ="item in impuesto" v-bind:value="item.id_impuesto">{{item.impuesto}}</option>
+                  option
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class></td>
+              <td class="btns">
+                <button class="btn btn-success" id = "btn-guardar" type="button">Guardar</button>
+                <button class="btn btn-default" type="button">Cancelar</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="card">
+          <h4>Fotografía</h4>
+          <label class="btn btn-default"> <input type="file" name="file" id="file-foto-album" hidden ="hidden"></label>
+        </div>
+      </div>
+    </div>
+    
+    <datalist id="txt-presentacion">
+      <option  v-for ="item in presentacion" v-bind:value="item.presentacion">{{item.presentacion}}</option>
+    </datalist>
+  </div>
+
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery-confirm.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/vue.min.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/nav.js"></script>
+<script src="./js/controller/producto.js"></script>
+<script>
+  
+</script>
+</html>
+
