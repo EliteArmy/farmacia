@@ -27,7 +27,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Zelda</a>
+          <a class="nav-link" href="#">Link</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -54,123 +54,126 @@
   </nav>
   <!-- FIN Barra de Navegación -->
 
-  <!-- Contenido -->
-  <div class="text-center">
-    <h2>Farmacia Esperanza</h2>
-    <h2>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h2>
-    <h2>RTN: 08011980123456</h2>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        Cliente:
-        <br>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nombre del Cliente" aria-label="Recipient's username" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Buscar</button>
+  <!-- Contenido --> 
+  <div class="container-fluid">
+    <div class="row justify-content-md-center">
+      <div class="col-xs-12 col-md-11">
+        <div class="text-center">
+          <h2>Farmacia Esperanza</h2>
+          <h2>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h2>
+          <h2>RTN: 08011980123456</h2>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            Cliente:
+            <br>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Nombre del Cliente" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Buscar</button>
+              </div>
+            </div>
+            Vendedor:
+          <br>
+          Forma Pago:
+          </div>
+          
+          <div class="col">
+            Telefono:
+            <br>
+            Fecha:
+          </div>
+          
+          <div class="col">
+            RTN:
+            <br>
+            HORA:
           </div>
         </div>
-      </div>
-      Vendedor:
-      <br>
-      Forma Pago:
-      
-      <div class="col-sm">
-        Telefono:
-        <br>
-        Fecha:
-      </div>
-      
-      <div class="col-sm">
-        RTN:
-        <br>
-        HORA:
+        
+        <div class="text-center">
+          <h3>Detalle</h3>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Cant.</th>
+              <th>Descripción</th>
+              <th>Precio Unitario</th>
+              <th>Impuesto (ISV)</th>
+              <th>Sub Total</th>
+              <th>Descuento (%)</th>
+              <th>Precio Total</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
+          Agregar Producto
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- FIN Modal -->
       </div>
     </div>
   </div>
-
-  <div class="text-center">
-    <h3>Detalle</h3>
-  </div>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Cant.</th>
-        <th>Descripción</th>
-        <th>Precio Unitario</th>
-        <th>Impuesto (ISV)</th>
-        <th>Sub Total</th>
-        <th>Descuento (%)</th>
-        <th>Precio Total</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-        <td>Lorem</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
-    Agregar Producto
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar Cambios</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN Modal -->
-
   <!-- FIN Contenido -->
 
   <script src="./js/jquery.min.js"></script>
