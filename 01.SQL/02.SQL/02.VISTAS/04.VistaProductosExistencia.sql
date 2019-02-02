@@ -1,6 +1,7 @@
-DROP VIEW LoteExistencia;
-CREATE OR REPLACE VIEW LoteExistencia AS
-WITH IngresoLote AS (
+--- ######################################### BUG #########################################
+--- EXISTENCIA CON NUMEROS NEGATIVOS
+
+CREATE OR REPLACE VIEW IngresoLote AS (
   SELECT
     id_lote
     ,sum(cantidad) as total_ingresado
@@ -9,13 +10,20 @@ WITH IngresoLote AS (
     ON dm.id_movimiento = mp.id_movimiento
   WHERE mp.tipo_movimiento = 'A'
   GROUP BY id_lote
-), VentaLote AS (
+);
+
+
+
+CREATE OR REPLACE VIEW VentaLote AS (
   SELECT
     id_lote
     ,sum(cantidad) as total_vendido
   FROM detalle_factura
   GROUP BY id_lote
-)
+);
+
+-- DROP VIEW LoteExistencia;
+CREATE OR REPLACE VIEW LoteExistencia AS
 SELECT
   ilote.id_lote
   ,total_ingresado - COALESCE((
@@ -45,6 +53,7 @@ WHERE fecha_vecimiento > CURRENT_DATE
 ORDER BY producto, presentacion,fecha_vecimiento ASC;
 
 
+SELECT * FROM LoteExistencia;
 
 -- DROP VIEW VistaProductosVencidos;
 CREATE OR REPLACE VIEW VistaProductosVencidos AS

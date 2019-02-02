@@ -1,3 +1,6 @@
+--- ######################################### TRANSLATE #########################################
+-- POSTGRESQL -> MYSQL
+
 CREATE OR REPLACE FUNCTION FN_registrar(
    par_primer_nombre IN VARCHAR
   ,par_segundo_nombre IN VARCHAR

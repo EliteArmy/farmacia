@@ -1,4 +1,4 @@
-DROP VIEW VistaClientes;
+-- DROP VIEW VistaClientes;
 CREATE OR REPLACE VIEW VistaClientes AS
 SELECT
   id_cliente

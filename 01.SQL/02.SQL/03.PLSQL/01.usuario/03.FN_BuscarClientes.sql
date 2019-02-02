@@ -1,3 +1,6 @@
+--- ######################################### TRANSLATE #########################################
+-- POSTGRESQL -> MYSQL
+
 SELECT * FROM FN_BuscarClientes(1,1,'O','18','G', 4);
 DROP FUNCTION FN_BuscarClientes;
 CREATE OR REPLACE FUNCTION FN_BuscarClientes(

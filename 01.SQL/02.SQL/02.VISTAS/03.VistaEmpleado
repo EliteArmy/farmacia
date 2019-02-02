@@ -3,9 +3,13 @@ CREATE OR REPLACE VIEW VistaEmpleado AS
 SELECT
   p.id_persona
   ,e.id_empleado
-  ,primer_nombre || (CASE WHEN segundo_nombre is NULL THEN '' ELSE ' '||segundo_nombre END) as nombres
-  ,primer_apellido || (CASE WHEN segundo_apellido IS NULL THEN '' ELSE ' '|| segundo_apellido END) as apellidos
-  ,primer_nombre || (CASE WHEN segundo_nombre is NULL THEN '' ELSE ' '||segundo_nombre END) ||' '|| primer_apellido || (CASE WHEN segundo_apellido IS NULL THEN '' ELSE ' '|| segundo_apellido END) as nombre_completo
+  ,CONCAT(primer_nombre , (CASE WHEN segundo_nombre is NULL THEN '' ELSE CONCAT(' ', segundo_nombre) END)) as nombres
+  ,CONCAT(primer_apellido , (CASE WHEN segundo_apellido IS NULL THEN '' ELSE CONCAT(' ' , segundo_apellido) END)) as apellidos
+  ,CONCAT (
+    CONCAT(primer_nombre , (CASE WHEN segundo_nombre is NULL THEN '' ELSE CONCAT(' ', segundo_nombre) END)),
+    ' ',
+    CONCAT(primer_apellido , (CASE WHEN segundo_apellido IS NULL THEN '' ELSE CONCAT(' ' , segundo_apellido) END))
+  ) as nombre_completo
 FROM persona p
 INNER JOIN empleado e
   on p.id_persona = e.id_persona;

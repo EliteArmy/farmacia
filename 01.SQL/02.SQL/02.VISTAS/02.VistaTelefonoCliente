@@ -1,4 +1,4 @@
-DROP VIEW VistaTelefonoCliente;
+-- DROP VIEW VistaTelefonoCliente;
 CREATE OR REPLACE VIEW VistaTelefonoCliente AS
 SELECT
   c.id_cliente
@@ -17,9 +17,15 @@ ORDER BY id_cliente ASC
 CREATE OR REPLACE VIEW VistaTelefonoClienteAgrupado AS
 SELECT
        id_cliente,
-       string_agg(telefono, ' / ') as telefonos
+       CASE COUNT(*)
+         WHEN 1 THEN telefono
+         ELSE GROUP_CONCAT(telefono, ' / ')
+       END as telefonos
 FROM VistaTelefonoCliente
 GROUP BY
   id_cliente;
 
 
+-- SELECT * FROM VistaTelefonoCliente;
+
+SELECT * FROM VistaTelefonoClienteAgrupado;

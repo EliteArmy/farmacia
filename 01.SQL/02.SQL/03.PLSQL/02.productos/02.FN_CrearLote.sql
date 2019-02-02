@@ -1,3 +1,7 @@
+--- ######################################### TRANSLATE #########################################
+-- POSTGRESQL -> MYSQL
+
+
 -- CREATE TYPE tipo AS (
 --  id_producto INT
 --  ,lote VARCHAR

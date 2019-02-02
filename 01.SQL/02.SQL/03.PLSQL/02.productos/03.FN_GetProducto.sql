@@ -1,3 +1,6 @@
+--- ######################################### TRANSLATE #########################################
+-- POSTGRESQL -> MYSQL
+
 -- CREATE TYPE tipo AS (
 --  codigo_barra VARCHAR
 --);

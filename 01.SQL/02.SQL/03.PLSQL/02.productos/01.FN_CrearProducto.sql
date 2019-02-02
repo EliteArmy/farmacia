@@ -1,3 +1,7 @@
+--- ######################################### TRANSLATE #########################################
+-- POSTGRESQL -> MYSQL
+
+
 -- CREATE TYPE tipo_producto AS (
 --  nombre_producto VARCHAR
 --  ,codigo_barra VARCHAR
