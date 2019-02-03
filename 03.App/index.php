@@ -59,44 +59,76 @@
     <div class="row justify-content-md-center">
       <div class="col-xs-12 col-md-11">
         <div class="text-center">
-          <h2>Farmacia Esperanza</h2>
-          <h2>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h2>
-          <h2>RTN: 08011980123456</h2>
+          <h4>Farmacia Esperanza</h4>
+          <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
+          <h4>RTN: 08011980123456</h4>
         </div>
         
         <div class="row">
-          <div class="col">
-            Cliente:
-            <br>
+          <div class="col-xs-12 col-md-4">
+
+            <label for="nombre-cliente">Cliente:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Nombre del Cliente" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <input type="text" class="form-control" id="nombre-cliente" placeholder="Nombre del Cliente" aria-describedby="basic-addon3">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Buscar</button>
+                <button class="btn btn-primary" type="button">Buscar</button>
               </div>
             </div>
-            Vendedor:
-          <br>
-          Forma Pago:
+
+            <label for="nombre-vendedor">Vendedor:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="nombre-vendedor" placeholder="Nombre del Vendedor" aria-describedby="basic-addon3">
+            </div>
           </div>
           
-          <div class="col">
-            Telefono:
-            <br>
-            Fecha:
+          <div class="col-xs-12 col-md-4">
+
+            <label for="teléfono">Teléfono:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="teléfono" placeholder="Teléfono" aria-describedby="basic-addon3">
+            </div>
+            
+            <label for="fecha">Fecha:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="fecha" placeholder="Fecha" aria-describedby="basic-addon3">
+            </div>
+
           </div>
           
-          <div class="col">
-            RTN:
-            <br>
-            HORA:
+          <div class="col-xs-12 col-md-4">
+          
+            <label for="RTN">RTN:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="RTN" placeholder="RTN" aria-describedby="basic-addon3">
+            </div>
+
+            <!--
+            <label for="hora">Hora:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="hora" placeholder="Hora" aria-describedby="basic-addon3">
+            </div>
+            -->
+
+            <label for="dropdownFormaPago">Forma de Pago:</label>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle btn-primary" type="button" id="dropdownFormaPago" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Forma de Pago
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownFormaPago">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+            
           </div>
         </div>
         
         <div class="text-center">
-          <h3>Detalle</h3>
+          <h3>Detalles de la Factura</h3>
         </div>
 
-        <table class="table">
+        <table class="table table-striped table-bordered">
           <thead>
             <tr>
               <th>Código</th>
@@ -121,6 +153,7 @@
               <td>Lorem</td>
               <td>Lorem</td>
               <td>Lorem</td>
+              <td>Icon</td>
             </tr>
             <tr>
               <th scope="row">2</th>
@@ -131,6 +164,7 @@
               <td>Lorem</td>
               <td>Lorem</td>
               <td>Lorem</td>
+              <td>Icon</td>
             </tr>
             <tr>
               <th scope="row">3</th>
@@ -141,6 +175,7 @@
               <td>Lorem</td>
               <td>Lorem</td>
               <td>Lorem</td>
+              <td>Icon</td>
             </tr>
           </tbody>
         </table>
@@ -177,9 +212,8 @@
   <!-- FIN Contenido -->
 
   <script src="./js/jquery.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
   <script src="./js/popper.min.js"></script>
-
+  <script src="./js/bootstrap.min.js"></script>
   <!-- Custom Javascript -->
   <!--<script src="./js/placeholder.js"></script> -->
 </body>
