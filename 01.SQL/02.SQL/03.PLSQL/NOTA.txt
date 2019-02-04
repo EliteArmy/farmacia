@@ -1,0 +1,2 @@
+Los procedimientos deben traducirse de
+PostgreSQL a MySQL

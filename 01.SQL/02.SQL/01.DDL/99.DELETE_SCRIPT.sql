@@ -1,0 +1,23 @@
+DELETE FROM impuesto_producto;
+DELETE FROM descuento_lote;
+DELETE FROM categoria_producto;
+DELETE FROM tipo_usuario_empleado;
+DELETE FROM detalle_movimiento;
+DELETE FROM telefono_persona ;
+DELETE FROM movimiento_producto;
+DELETE FROM medicamentos;
+DELETE FROM laboratorio;
+DELETE FROM detalle_factura;
+DELETE FROM lote;
+DELETE FROM producto;
+DELETE FROM presentacion;
+DELETE FROM factura;
+DELETE FROM descuento;
+DELETE FROM cliente ;
+DELETE FROM categoria ;
+DELETE FROM empleado ;
+DELETE FROM persona;
+DELETE FROM telefono;
+
+-- DELETE FROM pantalla_tipo_usuario;
+-- DELETE FROM pantalla;

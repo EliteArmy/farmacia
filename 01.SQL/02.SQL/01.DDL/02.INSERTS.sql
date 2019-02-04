@@ -9,7 +9,7 @@ INSERT INTO farmacia (
 VALUES (
   1
   ,'Farmacia'
-  ,'John DOe'
+  ,'John Doe'
   ,'08011970123456'
   ,'2018-09-18'
   ,null
