@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 04-02-2019 a las 01:28:48
+-- Tiempo de generación: 04-02-2019 a las 02:48:47
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.14
 
@@ -6750,6 +6750,26 @@ CREATE TABLE IF NOT EXISTS `pantalla_tipo_usuario` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `partido`
+--
+
+DROP TABLE IF EXISTS `partido`;
+CREATE TABLE IF NOT EXISTS `partido` (
+  `id_partido` int(11) NOT NULL AUTO_INCREMENT,
+  `partido` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id_partido`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `partido`
+--
+
+INSERT INTO `partido` (`id_partido`, `partido`) VALUES
+(1, 'Kaboom');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `persona`
 --
 
@@ -7276,6 +7296,20 @@ INSERT INTO `persona` (`id_persona`, `primer_nombre`, `segundo_nombre`, `primer_
 (499, 'Odella', 'Isabel', 'Helliar', 'Parlor', 'F', NULL, 'odella.helliar4@gmail.com', '0926198949907', '1989-06-08'),
 (500, 'Alisun', 'Maud', 'Muckle', 'Jesse', 'F', '8 Waxwing Way', 'alisun_muckle22@unah.hn', '1026195147611', '1951-02-14');
 
+--
+-- Disparadores `persona`
+--
+DROP TRIGGER IF EXISTS `chk_persona_genero`;
+DELIMITER $$
+CREATE TRIGGER `chk_persona_genero` BEFORE INSERT ON `persona` FOR EACH ROW BEGIN
+IF ( new.sexo NOT IN ('F', 'M', 'O')) = 0 THEN
+    SIGNAL SQLSTATE '12345'
+      SET MESSAGE_TEXT = 'Error: constraint chk_persona_genero CHECK';
+  END IF;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -7424,7 +7458,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   PRIMARY KEY (`id_producto`),
   UNIQUE KEY `chk_codigo` (`codigo_barra`),
   KEY `id_presentacion` (`id_presentacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `producto`

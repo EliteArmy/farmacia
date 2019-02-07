@@ -15,11 +15,14 @@ ALTER TABLE persona
 ADD CONSTRAINT chk_fecha_nac CHECK(fecha_nacimiento < CURRENT_DATE);
 
 -- EMPLEADO
- ALTER TABLE empleado
- ADD CONSTRAINT chk_empleado_ingreso CHECK ( fecha_ingreso <= CURRENT_DATE),
- ADD CONSTRAINT empleado_persona_uq UNIQUE (id_persona),
- ADD CONSTRAINT usuario_uq UNIQUE (usuario),
- ADD CONSTRAINT chk_estado CHECK ( estado IN ('I','A'))
+ALTER TABLE empleado
+ADD CONSTRAINT chk_empleado_ingreso CHECK ( fecha_ingreso <= CURRENT_DATE);
+ALTER TABLE empleado
+ADD CONSTRAINT empleado_persona_uq UNIQUE (id_persona);
+ALTER TABLE empleado
+ADD CONSTRAINT usuario_uq UNIQUE (usuario);
+ALTER TABLE empleado
+ADD CONSTRAINT chk_estado CHECK ( estado IN ('I','A'))
 ;
 
 -- FARMACIA
@@ -57,7 +60,8 @@ ADD CONSTRAINT chk_estado CHECK ( estado IN ('A','I') );
 
 -- PRODUCTO
 ALTER TABLE producto
-ADD CONSTRAINT chk_codigo UNIQUE (codigo_barra),
+ADD CONSTRAINT chk_codigo UNIQUE (codigo_barra);
+ALTER TABLE producto
 ADD CONSTRAINT chk_codigo_formato CHECK ( codigo_barra REGEXP  '^[0-9]+$');
 
 
