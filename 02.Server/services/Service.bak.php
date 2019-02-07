@@ -1,6 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-include_once('../class/Utils.php');
+include_once('../class/Utils.php'); # ValidarPOST
 include_once('../class/Conexion.php');
 // Clases Usadas
 // include_once('../clases/);
@@ -9,13 +9,14 @@ if(isset($_POST['accion'])){
   switch ($_POST['accion']) {
 
     case 'buscarPorApellido':
-      $sApellido= validarPOST('sApellido');
-      $pApellido= validarPOST('pApellido');
+      $sApellido = validarPOST('sApellido');
+      $pApellido = validarPOST('pApellido');
 
-      $paciente=new Paciente();
-      $paciente->setSApellido($sApellido);
-      $paciente->setPApellido($pApellido);
-      echo $paciente->buscarPorApellido($conexion);
+      $persona=new Persona();
+      $persona->setSApellido($sApellido);
+      $persona->setPApellido($pApellido);
+      $res['rows'] = $persona->buscarPorApellido($conexion);
+      $res['resultado'] = true;
     break;
 
     // DEFAULT
