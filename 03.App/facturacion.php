@@ -8,9 +8,9 @@
   
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <!--<link rel="stylesheet" href="./css/style.css">-->
+  <link rel="stylesheet" href="./css/style2.css">
 </head>
-<!-- <body class="root"> -->
+
 <body>
   
   <!-- Barra de Navegación -->
@@ -56,16 +56,16 @@
 
   <!-- Contenido --> 
   <div class="container-fluid">
-    <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-11">
+    <div class="row justify-content-center contenedor">
+      <div class="col-12 col-md-11">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
         </div>
         
-        <div class="row">
-          <div class="col-xs-12 col-md-4">
+        <div class="row justify-content-center">
+          <div class="col-11 col-sm-6 col-lg-4 texto">
 
             <label for="nombre-cliente">Cliente:</label>
             <div class="input-group mb-3">
@@ -81,7 +81,7 @@
             </div>
           </div>
           
-          <div class="col-xs-12 col-md-4">
+          <div class="col-11 col-sm-6 col-lg-4 texto">
             <label for="teléfono">Teléfono:</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="teléfono" placeholder="Teléfono" aria-describedby="basic-addon3">
@@ -93,7 +93,7 @@
             </div>
           </div>
           
-          <div class="col-xs-12 col-md-4">
+          <div class="col-11 col-sm-6 col-lg-4 texto">
             <label for="RTN">RTN:</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="RTN" placeholder="RTN" aria-describedby="basic-addon3">
@@ -116,6 +116,9 @@
                 <a class="dropdown-item" href="#">Tarjeta</a>
               </div>
             </div> 
+          </div>
+          <div class="col-11 col-sm-6 col-lg-4 texto">
+            <!-- Solo es para que se vea bien el RTN con respecto a los demas -->
           </div>
         </div>
         
