@@ -16,24 +16,22 @@ if(isset($_POST['accion'])){
       $empleado= new Empleado();
       $empleado -> setUsuario($usuario);
       $empleado -> setContrasena($contrasena);
-      $res['rows'] = $empleado->login($conexion);
-      $res['mensaje']='Consulta exitosa';
-      $res['resultado'] = true;
+      $res['data'] = $empleado->login($conexion);
       echo json_encode($res);
     break;
 
     // DEFAULT
     default:
-      $res['mensaje']='Accion no reconocida';
-      $res['resultado']=false;
+      $res["data"]['mensaje']='Accion no reconocida';
+      $res["data"]['resultado']=false;
       echo json_encode($res);
     break;
   }
   $conexion->cerrar();
   $conexion = null;
 } else {
-  $res['mensaje']='Accion no especificada';
-  $res['resultado']=false;
+  $res["data"]['mensaje']='Accion no especificada';
+  $res["data"]['resultado']=false;
   echo json_encode($res);
 }
 ?>

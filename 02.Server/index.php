@@ -13,4 +13,9 @@
 
   $a = ["A","B","Cc"];
   echo in_array("CD", $a);
+
+  session_start();
+  // $_SESSION["Perro"] = "LOL";
+  var_dump($_SESSION);
+  session_destroy();
 ?>

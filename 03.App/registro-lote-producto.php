@@ -1,6 +1,6 @@
 <?php
-  $idPagina = "nueva-factura";
-  include("autenticacion.php");
+  $idPagina = "registro-lote-producto";
+  include("./autenticacion.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,11 +12,14 @@
 
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <!--<link rel="stylesheet" href="./css/style.css">-->
 </head>
+<!-- <body class="root"> -->
 <body>
 
-  <?php include("./navbar.php"); ?>
+  <?php
+    include("./navbar.php");
+  ?>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -27,6 +30,27 @@
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
         </div>
+
+        <div class="row text-center">
+          <div class="col-xs-12 col-md-4">
+            Fotografia
+          </div>
+
+          <div class="col-xs-12 col-md-8">
+            Datos del Producto
+            <div class="row">
+              Codigo
+              Lote
+              Nombre
+              Descripción
+              Fabricante
+              Categoria
+              Imagen
+              Precio Unitario
+              Costo
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -35,5 +59,8 @@
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
+
+  <!-- Custom Javascript -->
+  <!--<script src="./js/placeholder.js"></script> -->
 </body>
 </html>

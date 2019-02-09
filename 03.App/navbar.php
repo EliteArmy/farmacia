@@ -98,7 +98,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Información</p>
             <a class="dropdown-item" href="#">Perfil</a>
-            <a class="dropdown-item text-danger" href="#">Cerrar sesion</a>
+            <a class="dropdown-item text-danger" href="cerrar_session.php">Cerrar sesion</a>
             <p class="dropdown-header">Ayuda</p>
             <a class="dropdown-item" href="#">Manual de Usuario</a>
             <a class="dropdown-item" href="#">Acerca de</a>

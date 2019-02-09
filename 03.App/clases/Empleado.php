@@ -110,7 +110,7 @@ class Empleado extends Persona{
 			$_SESSION["nombre_completo"] = $rows[0]["nombre_completo"];
 			$_SESSION["permisos"] = $rows[0]["permisos"];
 		}
-		return $rows;
+		return $rows[0];
 	}
 
 }
