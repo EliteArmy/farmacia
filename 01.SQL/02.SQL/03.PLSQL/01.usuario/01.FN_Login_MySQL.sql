@@ -1,8 +1,8 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Login$$
 CREATE PROCEDURE SP_Login(
-  par_usuario VARCHAR(100)
-  ,par_contrasena VARCHAR(100)
+  par_usuario VARCHAR(50)
+  ,par_contrasena VARCHAR(128)
 )
 Login:BEGIN
 -- Declaraciones
