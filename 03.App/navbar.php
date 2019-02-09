@@ -11,82 +11,134 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+
         <!--Item Facturas-->
+        <?php if(show_menu_if(["buscar-factura","nueva-factura"])): ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Facturas
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Buscar Factura</a>
-            <a class="dropdown-item" href="#">Nueva Factura</a>
+            <?php if(show_item_if("buscar-factura")):?>
+            <a class="dropdown-item" href="buscar-factura.php">Buscar Factura</a>
+            <?php endif;?>
+            <?php if(show_item_if("nueva-factura")):?>
+            <a class="dropdown-item" href="nueva-factura.php">Nueva Factura</a>
+            <?php endif;?>
           </div>
         </li>
+        <?php endif;?>
 
         <!--Item Inventarios-->
+        <?php if(show_menu_if(["catalogo-inventario","ver-inventario"])):?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Inventarios
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Inventario</p>
-            <a class="dropdown-item" href="#">Catálogo de Productos</a>
-            <a class="dropdown-item" href="#">Ver Inventario</a>
+            <?php if(show_item_if("catalogo-inventario")):?>
+            <a class="dropdown-item" href="catalogo-inventario">Catálogo de Productos</a>
+            <?php endif;?>
+            <?php if(show_item_if("ver-inventario")):?>
+            <a class="dropdown-item" href="ver-inventario.php">Ver Inventario</a>
+            <?php endif;?>
           </div>
         </li>
+        <?php endif;?>
+
 
         <!--Item Productos-->
+        <?php if(show_menu_if(["nuevo-medicamento","nuevo-producto","registro-lote-producto","registro-lote-medicamento","descartar-productos","gestionar-laboratorios"])):?>
         <li class="nav-item dropdown active">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Productos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <?php if(show_menu_if(["nuevo-medicamento","nuevo-producto","registro-lote-producto","registro-lote-medicamento"])):?>
             <p class="dropdown-header">Producto</p>
-            <a class="dropdown-item" href="#">Nuevo Medicamento</a>
-            <a class="dropdown-item" href="#">Nuevo producto</a>
+            <?php if(show_item_if("nuevo-medicamento")):?>
+            <a class="dropdown-item" href="nuevo-medicamento.php">Nuevo Medicamento</a>
+            <?php endif;?>
+            <?php if(show_item_if("nuevo-producto")):?>
+            <a class="dropdown-item" href="nuevo-producto.php">Nuevo producto</a>
+            <?php endif;?>
+            <?php if(show_item_if("registro-lote-producto")):?>
             <a class="dropdown-item" href="registro-lote-producto.php">Registrar Lote de Producto</a>
-            <a class="dropdown-item" href="#">Registrar Lote de Medicamento</a>
+            <?php endif;?>
+            <?php if(show_item_if("registro-lote-medicamento")):?>
+            <a class="dropdown-item" href="registro-lote-medicamento.php">Registrar Lote de Medicamento</a>
+            <?php endif;?>
+            <?php endif;?>
+            <?php if(show_menu_if(["descartar-productos","gestionar-laboratorios"])):?>
             <p class="dropdown-header">Gestiones</p>
-            <a class="dropdown-item" href="#">Descartar Productos</a>
+            <?php if(show_item_if("descartar-productos")):?>
+            <a class="dropdown-item" href="descartar-productos.php">Descartar Productos</a>
+            <?php endif;?>
+            <?php endif;?>
+            <?php if(show_menu_if(["gestionar-laboratorios"])):?>
             <p class="dropdown-header">Laboratorios</p>
-            <a class="dropdown-item" href="#">Gestionar Laboratorios</a>
+            <?php if(show_item_if("gestionar-laboratorios")):?>
+            <a class="dropdown-item" href="gestionar-laboratorios.php">Gestionar Laboratorios</a>
+            <?php endif;?>
+            <?php endif;?>
           </div>
         </li>
+        <?php endif;?>
 
         <!--Item Clientes-->
+        <?php if(show_menu_if(["registrar-cliente","listado-cliente"])):?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Clientes
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Clientes</p>
-            <a class="dropdown-item" href="#">Registrar Cliente</a>
-            <a class="dropdown-item" href="#">Listado de Clientes</a>
+            <?php if(show_item_if("registrar-cliente")):?>
+            <a class="dropdown-item" href="registrar-cliente.php">Registrar Cliente</a>
+            <?php endif;?>
+            <?php if(show_item_if("listado-cliente")):?>
+            <a class="dropdown-item" href="listado-cliente.php">Listado de Clientes</a>
+            <?php endif;?>
           </div>
         </li>
+        <?php endif;?>
 
         <!--Item Empleados-->
+        <?php if(show_menu_if(["registrar-empleado","listado-empleado"])):?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Empleados
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Empleados</p>
-            <a class="dropdown-item" href="#">Registrar Empleado</a>
-            <a class="dropdown-item" href="#">Listado de Empleado</a>
+            <?php if(show_item_if("registrar-empleado")):?>
+            <a class="dropdown-item" href="registrar-empleado.php">Registrar Empleado</a>
+            <?php endif;?>
+            <?php if(show_item_if("listado-empleado")):?>
+            <a class="dropdown-item" href="listado-empleado.php">Listado de Empleado</a>
+            <?php endif;?>
           </div>
         </li>
+        <?php endif;?>
 
         <!--Item Reportes-->
+        <?php if(show_menu_if(["reporte-producto","reporte-empleado"])):?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Reportes
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Reportes</p>
-            <a class="dropdown-item" href="#">Reporte de Ventas por Producto</a>
-            <a class="dropdown-item" href="#">Reporte de Ventas por Empleado</a>
+            <?php if(show_item_if("reporte-producto")):?>
+            <a class="dropdown-item" href="reporte-producto.php">Reporte de Ventas por Producto</a>
+            <?php endif;?>
+            <?php if(show_item_if("reporte-empleado")):?>
+            <a class="dropdown-item" href="reporte-empleado.php">Reporte de Ventas por Empleado</a>
+            <?php endif;?>
           </div>
         </li>
+        <?php endif;?>
       </ul>
 
       <ul class="navbar-nav ml-auto">
@@ -101,7 +153,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Información</p>
-            <a class="dropdown-item" href="#">Perfil</a>
+            <a class="dropdown-item" href="ver-perfil.php">Perfil</a>
             <a class="dropdown-item text-danger" href="cerrar_session.php">Cerrar sesion</a>
             <p class="dropdown-header">Ayuda</p>
             <a class="dropdown-item" href="#">Manual de Usuario</a>
@@ -113,3 +165,19 @@
     </div>
   </div>
 </nav>
+
+
+<?php
+function show_item_if($item) {
+  return in_array($item, $_SESSION["permisos"]);
+}
+
+function show_menu_if($items){
+  $a = false;
+  for ($i=0; $i < count($items); $i++) {
+    $a = $a || in_array($items[$i], $_SESSION["permisos"]);
+    if($a) break;
+  }
+  return $a;
+}
+?>

@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+
   <title>Facturación</title>
-  
+
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-  
+
  <!-- NavBar para sólo editar una vez ;-) -->
  <?php include("./navbar.php"); ?>
 
 
-  <!-- Contenido --> 
+  <!-- Contenido -->
   <div class="container">
     <div class="row justify-content-center well card">
       <div class="col-12 col-md-11">
@@ -26,7 +26,7 @@
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
         </div>
-        
+
         <div class="row justify-content-center">
           <div class="col-11 col-sm-6 col-lg-4 texto">
 
@@ -43,19 +43,19 @@
               <input type="text" class="form-control" id="nombre-vendedor" placeholder="Nombre del Vendedor" aria-describedby="basic-addon3">
             </div>
           </div>
-          
+
           <div class="col-11 col-sm-6 col-lg-4 texto">
             <label for="teléfono">Teléfono:</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="teléfono" placeholder="Teléfono" aria-describedby="basic-addon3">
             </div>
-            
+
             <label for="fecha">Fecha:</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="fecha" placeholder="Fecha" aria-describedby="basic-addon3">
             </div>
           </div>
-          
+
           <div class="col-11 col-sm-6 col-lg-4 texto">
             <label for="RTN">RTN:</label>
             <div class="input-group mb-3">
@@ -78,13 +78,13 @@
                 <a class="dropdown-item" href="#">Efectivo</a>
                 <a class="dropdown-item" href="#">Tarjeta</a>
               </div>
-            </div> 
+            </div>
           </div>
           <div class="col-11 col-sm-6 col-lg-4 texto">
             <!-- Solo es para que se vea bien el RTN con respecto a los demas -->
           </div>
         </div>
-        
+
         <div class="text-center">
           <h3>Detalles de la Factura</h3>
         </div>
@@ -127,7 +127,7 @@
               <td>Lorem</td>
               <td>Icon</td>
             </tr>
-            
+
             <tr>
               <th scope="row">3</th>
               <td>Lorem</td>
@@ -175,7 +175,7 @@
   <!-- FIN Contenido -->
 
   <footer>
-    
+
   </footer>
 
   <script src="./js/jquery.min.js"></script>
