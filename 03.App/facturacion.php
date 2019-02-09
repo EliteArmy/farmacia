@@ -8,7 +8,7 @@
   
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style2.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -116,7 +116,11 @@
               <td>Lorem</td>
               <td>Icon</td>
             </tr>
-
+            <tr>
+              <td>
+                <button type="button" class="btn btn-primary">Hola</button>
+              </td>
+            </tr>
             <tr>
               <th scope="row">2</th>
               <td>Lorem</td>

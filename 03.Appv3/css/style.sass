@@ -1,111 +1,15 @@
 @import 'font'
 @import 'color'
 @import 'mixins'
-// *
-//   font-family: mikadoregular
 
-body
-  padding-top: 70px
-  background-color: $bg
-  font-family: Avenir! important
-  h4:
-    font-weight: 700
-    font-family: Avenir
-    font-size: 16px
-  .navbar, .navbar-default
-    li.active 
-      color: $text
-      &>a
-        background-color: lighten($active, 10) !important
-  .navbar-brand, .logo
-    height: 40px
-    padding: 5px
-    line-height: 40px
-  .user-img
-    line-height: 20px
-    height: 35px
-    width: 35px
-    float: right 
-    border: 1px solid black
-    margin-left: 10px
-    margin-top: -7px
-
-.container, .container-fluid
-  .titulo
-    text-align: center
-    color: $blue
-    font-weight: 700
-
-  .card h4
-    color: $blue
-  
-  .btn-success, .btn-success:hover
-    background-color: $green
-    border-color: $green
-
-  .btn-success:active
-    background-color: lighten($green, 10)
-    border-color: lighten($green, 10)
-  
-  .btn-primary, .btn-primary:hover
-    border-color: adjust_hue($red, 45deg)
-    background-color: adjust_hue($red, 45deg)
-
-  .btn-primary:active
-    border-color: lighten(adjust_hue($red, 45deg), 10)
-    background-color: lighten(adjust_hue($red, 45deg), 10)
-
-table .btns
-  float: right
-
-
-.row
-  margin-left: 5px
-  color: #000
 
 .card
-  background-color: #fff
+  background-color: $pink
   color: #000
   box-shadow: 0 1px 2px rgba(25,25,34,.15)
     -webkit-box-shadow: 0 1px 2px rgba(25,25,34,.15)
-  border-radius: 10px
+  border-radius: 100px
   padding: 15px 15px 50px 15px
 
-.table td
-    border-top: none !important
-
-.etiqueta
-  font-weight: 700
-  line-height: 1em
-
-.cabecera-factura
-  margin-bottom: 10px
-  h4
-    font-size: 12pt
-    text-align: center
-
-tfoot
-  border-top: 2px solid #ddd
-  
-.td-descuento
-  color: red
-
-.total
-  text-align: right
-  padding-right: 50px !important
-  font-weight: 900
-    
-.td-descripcion
-  width: 200px !important
-
-.cantidad
-  width: 80px !important
-
-label
-  font-weight: 500
-
-.fab
-  text-align: right
-  right: 40px
-  position: fixed
-  bottom: 40px
+body
+  font: Arial

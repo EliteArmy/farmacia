@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["font.sass","style.sass"],"names":[],"mappings":"AAAA;EACE;EACA;;ACEF;EACE;;AAEA;EACE;EACA;EACA;EACE;EACF;EACA;;AAEF;EACE","file":"style.css"}
+{
+"version": 3,
+"mappings": ";EACE,WAAW,EAAE,QAAQ;EACrB,GAAG,EAAE,6CAA6C;ACEpD,KAAK;EACH,gBAAgB,EAAE,KAAK;EACvB,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,gCAA4B;IACtC,6BAAkB,EAAE,gCAA4B;EAClD,aAAa,EAAE,IAAI;EACnB,OAAO,EAAE,mBAAmB;;AAE9B,MAAM;EACJ,WAAW,EAAE,IAAI;;AAEnB,IAAI;EACF,gBAAgB,EAAE,OAAO;EACzB,GAAG,EAAE,IAAI;EACT,YAAY,EAAE,GAAG;EACjB,UAAU,EAAE,IAAI;EAChB,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,GAAG;;AAIhB,2BAAgB;EACd,gBAAgB,ECzBd,OAAO;AD2BT,kCAAgB;EACd,gBAAgB,ECxBf,OAAO",
+"sources": ["font.sass","style.sass","color.sass"],
+"names": [],
+"file": "style.css"
+}
