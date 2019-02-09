@@ -15,20 +15,34 @@
 </head>
 
 <body>
-  
+  <section class="login">
+    
+  </section>
   <!-- Contenido -->
   <div class="container-fluid">
-    <div class="row justify-content-center ">
-      <div class="col-10 col-md-6 contenedor">
-        
+    <div class="row justify-content-center">
+      <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4 contenedor">
+
         <div class="row justify-content-center">
-          <div class="col-10 col-sm-8 col-lg-8 texto">
+          <div class="col-11 col-sm-10 col-md-10 col-lg-10 col-xl-10 texto">
             <h4>
               Inicia Sesion con tu usuario
             </h4>
-            <form method="POST" action="">
+
+            <form method="POST" action="#">
+              <div class="form-group">
+                <label for="user">Usuario</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" required autofocus>
+              </div>
               
+              <div class="form-group">
+                <label for="pass">Contraseña</label>
+                <input type="password" class="form-control" name="password" id="password"  placeholder="Contraseña" required>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Ingresar</button>
             </form>
+
           </div>
         </div>
       
@@ -37,6 +51,18 @@
   </div>
   <!-- FIN Contenido -->
 
+  <footer>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4">
+          <h4>
+            Pie de Página
+          </h4>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>

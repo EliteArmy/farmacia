@@ -3,16 +3,20 @@ body {
 }
 
 .contenedor {
-
   background-color:white;
   border-radius: 5px;
+  box-shadow:rgba(41, 51, 57, 0.5) 0px 1px 4px 0px;
   margin-left:0px;
   margin-right: 0px;
   margin-top: 15px;
-  padding-bottom: 1000px;
+  padding-bottom: 15px;
   padding-top: 5px;
 }
 
 .texto{
   font-weight: bold;
+}
+
+.login {
+  margin-top: 75px;
 }
