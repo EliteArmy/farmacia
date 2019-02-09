@@ -6,3 +6,30 @@
 
 =padding($a)
   padding: $a
+
+=ripple($color)                                                                                                      
+  background-position: center                                                                                        
+  background: $color                                                                                                 
+  border-color:  $color                                                                                              
+  transition: background 0.4s                                                                                        
+  transition: box-shadow 0.8s                                                                                        
+                                                                                                                     
+=ripple-hover($color)                                                                                                
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12)   
+  border-color:  $color                                                                                              
+  background: lighten($color, 3) radial-gradient(circle, transparent 1%, lighten($color, 3) 1%) center/15000%        
+  transition: background 0.5s                                                                                        
+  background-position: center                                                                                        
+                                                                                                                     
+=ripple-active($color)                                                                                               
+  background-color: lighten($color, 15)                                                                              
+  border-color:  $color                                                                                              
+  background-size: 100%                                                                                              
+  transition: background 0s                                                                                          
+                                                                                                                     
+=material-button($color)                                                                                             
+  +ripple($color)                                                                                                    
+  &:hover                                                                                                            
+    +ripple-hover($color)                                                                                            
+  &:active                                                                                                           
+    +ripple-active($color)                                                                                           

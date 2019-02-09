@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-include_once('../class/Utils.php'); # ValidarPOST
-include_once('../class/Conexion.php');
+include_once('../clases/Utils.php'); # ValidarPOST
+include_once('../database/Conexion.php');
 // Clases Usadas
 // include_once('../clases/);
 if(isset($_POST['accion'])){
@@ -16,7 +16,9 @@ if(isset($_POST['accion'])){
       $persona->setSApellido($sApellido);
       $persona->setPApellido($pApellido);
       $res['rows'] = $persona->buscarPorApellido($conexion);
+      $res['mensaje']='Consulta exitosa';
       $res['resultado'] = true;
+      echo json_encode($res);
     break;
 
     // DEFAULT
@@ -26,8 +28,8 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
   }
-  $conexion->close();
-  $conexion->null;
+  $conexion->cerrar();
+  $conexion = null;
 } else {
   $res['mensaje']='Accion no especificada';
   $res['resultado']=false;

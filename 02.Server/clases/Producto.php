@@ -88,21 +88,21 @@ class Producto{
 		$this->idImpuesto = $idImpuesto;
 	}
 
-	public function crear(/*Parametros*/){
+	public function crear($conexion){
 	}
-	public function leer(/*Parametros*/){
+	public function leer($conexion){
 	}
-	public function actualizar(/*Parametros*/){
+	public function actualizar($conexion){
 	}
-	public function borrar(/*Parametros*/){
+	public function borrar($conexion){
 	}
-	public function crearPresentacion(/*Parametros*/){
+	public function crearPresentacion($conexion){
 	}
-	public function borrarPresentacion(/*Parametros*/){
+	public function borrarPresentacion($conexion){
 	}
-	public function actualizarPresentacion(/*Parametros*/){
+	public function actualizarPresentacion($conexion){
 	}
-	public function leerPresentacion(/*Parametros*/){
+	public function leerPresentacion($conexion){
 	}
 
 }

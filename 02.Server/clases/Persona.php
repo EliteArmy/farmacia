@@ -132,19 +132,19 @@ class Persona{
 		$this->fechaNacimiento = $fechaNacimiento;
 	}
 
-	public function crear(/*Parametros*/){
+	public function crear($conexion){
 	}
-	public function borrar(/*Parametros*/){
+	public function borrar($conexion){
 	}
-	public function leer(/*Parametros*/){
+	public function leer($conexion){
 	}
-	public function actualizar(/*Parametros*/){
+	public function actualizar($conexion){
 	}
-	public function buscarPorIdentidad(/*Parametros*/){
+	public function buscarPorIdentidad($conexion){
 	}
-	public function buscarPorNombre(/*Parametros*/){
+	public function buscarPorNombre($conexion){
 	}
-	public function buscarPorApellido(/*Parametros*/){
+	public function buscarPorApellido($conexion){
 	}
 
 }

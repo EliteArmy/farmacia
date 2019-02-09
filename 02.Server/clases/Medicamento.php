@@ -33,21 +33,21 @@ class Medicamento{
 		$this->laboratorio = $laboratorio;
 	}
 
-	public function crear(/*Parametros*/){
+	public function crear($conexion){
 	}
-	public function leer(/*Parametros*/){
+	public function leer($conexion){
 	}
-	public function borrar(/*Parametros*/){
+	public function borrar($conexion){
 	}
-	public function actualizar(/*Parametros*/){
+	public function actualizar($conexion){
 	}
-	public function crearLaboratorio(/*Parametros*/){
+	public function crearLaboratorio($conexion){
 	}
-	public function actualizarLaboratorio(/*Parametros*/){
+	public function actualizarLaboratorio($conexion){
 	}
-	public function leerLaboratorio(/*Parametros*/){
+	public function leerLaboratorio($conexion){
 	}
-	public function borrarLaboratorio(/*Parametros*/){
+	public function borrarLaboratorio($conexion){
 	}
 
 }

@@ -77,13 +77,13 @@ class Lote{
 		$this->fechaVencimiento = $fechaVencimiento;
 	}
 
-	public function crear(/*Parametros*/){
+	public function crear($conexion){
 	}
-	public function leer(/*Parametros*/){
+	public function leer($conexion){
 	}
-	public function actualizar(/*Parametros*/){
+	public function actualizar($conexion){
 	}
-	public function borrar(/*Parametros*/){
+	public function borrar($conexion){
 	}
 
 }

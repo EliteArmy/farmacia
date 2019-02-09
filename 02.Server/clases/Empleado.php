@@ -88,15 +88,15 @@ class Empleado extends Persona{
 		$this->estado = $estado;
 	}
 
-	public function crear(/*Parametros*/){
+	public function crear($conexion){
 	}
-	public function borrar(/*Parametros*/){
+	public function borrar($conexion){
 	}
-	public function leer(/*Parametros*/){
+	public function leer($conexion){
 	}
-	public function actualizar(/*Parametros*/){
+	public function actualizar($conexion){
 	}
-	public function loggear(/*Parametros*/){
+	public function loggear($conexion){
 	}
 
 }
