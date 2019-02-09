@@ -9,10 +9,10 @@ class Conexion{
   private $esConectado=false;
 
   public function __construct(
-    $host = "localhost",
-    $database = "farmacia",
-    $usuario = "root",
-    $pass = "farmacia",
+    $host =  "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    $database =  "jbvcseil3rcl1oy7",
+    $usuario =  "tgyqnadefylm8xww",
+    $pass =  "t00zh12kfhdgpej6",
     $port = 3306,
     $link = null
   ){
