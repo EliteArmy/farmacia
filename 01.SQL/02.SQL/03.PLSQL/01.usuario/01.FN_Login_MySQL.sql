@@ -32,10 +32,10 @@ Login:BEGIN
   AND contrasena = par_contrasena;
 
   IF contador = 1 THEN
-    SET mensaje = 'Autenticado exitósamente';
+    SET mensaje = 'Autenticado exitosamente';
     SET resultado = TRUE;
     SELECT
-      usuario, e.id_empleado, foto_url, ve.nombre_completo, mensaje, resultado
+      usuario, e.id_empleado, ve.tipo_usuario,foto_url, ve.nombre_completo, ve.permisos,   mensaje, resultado
     FROM empleado e
     INNER JOIN VistaEmpleado ve
     ON e.id_empleado = ve.id_empleado
@@ -51,5 +51,5 @@ Login:BEGIN
 
 END $$
 
-DELIMITER ;
-CALL SP_Login('mmarousek0', '0b0XAGLn');
+# DELIMITER ;
+# CALL SP_Login('mmarousek0', SHA2('1234', '512'));

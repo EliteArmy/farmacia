@@ -15,18 +15,23 @@
 
 body 
   background-color: #E4E4E4
-  top: 80px
-  margin-right: 0px
-  margin-top: 15px
-  padding-bottom: 1000px
-  padding-top: 5px
+  padding-top: 90px
   
+  .navbar
+    .dropdown-header
+      font-weight: bold
+      font-size: 12px
+    li.active 
+      color: $text
+      &>a
+        background-color: lighten($yellow, 15) !important
+        +border-radius(5px)
 
-.container
-  .btn.btn-primary
-    background-color: $red
-  .table
-    .btn.btn-primary
-      background-color: $blue
+// .container
+//   .btn.btn-primary
+//     background-color: $red
+//   .table
+//     .btn.btn-primary
+//       background-color: $blue
     
       

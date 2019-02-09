@@ -96,7 +96,21 @@ class Empleado extends Persona{
 	}
 	public function actualizar($conexion){
 	}
-	public function loggear($conexion){
+	public function login($conexion){
+		$sql = "CALL SP_LOGIN('%s','%s')";
+		$this->contrasena = hash('sha512',$this->contrasena);
+		$valores = [$this->usuario, $this->contrasena];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows) == 1 && isset($rows[0]["id_empleado"])){
+			$rows[0]["permisos"] = explode(",",$rows[0]["permisos"]);
+			session_start();
+			$_SESSION["usuario"] = $rows[0]["usuario"];
+			$_SESSION["foto_url"] = $rows[0]["foto_url"];
+			$_SESSION["id_empleado"] = $rows[0]["id_empleado"];
+			$_SESSION["nombre_completo"] = $rows[0]["nombre_completo"];
+			$_SESSION["permisos"] = $rows[0]["permisos"];
+		}
+		return $rows;
 	}
 
 }

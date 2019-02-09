@@ -14,15 +14,17 @@
 
 body {
   background-color: #E4E4E4;
-  top: 80px;
-  margin-right: 0px;
-  margin-top: 15px;
-  padding-bottom: 1000px;
-  padding-top: 5px; }
-
-.container .btn.btn-primary {
-  background-color: #F52630; }
-.container .table .btn.btn-primary {
-  background-color: #1675CF; }
+  padding-top: 90px; }
+  body .navbar .dropdown-header {
+    font-weight: bold;
+    font-size: 12px; }
+  body .navbar li.active {
+    color: #3E3E3E; }
+    body .navbar li.active > a {
+      background-color: #fbeb8d !important;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -117,11 +117,6 @@
               <td>Icon</td>
             </tr>
             <tr>
-              <td>
-                <button type="button" class="btn btn-primary">Hola</button>
-              </td>
-            </tr>
-            <tr>
               <th scope="row">2</th>
               <td>Lorem</td>
               <td>Lorem</td>

@@ -9,9 +9,22 @@ SELECT
     CONCAT(primer_nombre , (CASE WHEN segundo_nombre is NULL THEN '' ELSE CONCAT(' ', segundo_nombre) END)),
     ' ',
     CONCAT(primer_apellido , (CASE WHEN segundo_apellido IS NULL THEN '' ELSE CONCAT(' ' , segundo_apellido) END))
-  ) as nombre_completo
+  ) as nombre_completo,
+  (
+    SELECT
+      GROUP_CONCAT(p.pantalla)
+    FROM pantalla_tipo_usuario ptu
+    INNER JOIN pantalla p
+      ON ptu.id_pantalla = p.id_pantalla
+    WHERE id_tipo_usuario = tue.id_tipo_usuario
+  ) as permisos,
+  (SELECT tipo_usuario FROM tipo_usuario WHERE id_tipo_usuario = tue.id_tipo_usuario) as tipo_usuario
 FROM persona p
 INNER JOIN empleado e
-  on p.id_persona = e.id_persona;
+  on p.id_persona = e.id_persona
+INNER JOIN tipo_usuario_empleado tue
+ON e.id_empleado = tue.id_empleado
+;
 
 SELECT * FROM VistaEmpleado;
+
