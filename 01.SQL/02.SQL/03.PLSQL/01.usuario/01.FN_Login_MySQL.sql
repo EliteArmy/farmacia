@@ -1,0 +1,55 @@
+DELIMITER $$
+DROP PROCEDURE IF EXISTS SP_Login$$
+CREATE PROCEDURE SP_Login(
+  par_usuario VARCHAR(100)
+  ,par_contrasena VARCHAR(100)
+)
+Login:BEGIN
+-- Declaraciones
+  DECLARE mensaje VARCHAR(255);
+  DECLARE contador INT;
+  DECLARE resultado BOOLEAN;
+
+-- Inicializaciones
+  SET mensaje='';
+  SET resultado = FALSE;
+  SET contador=0;
+
+  IF par_usuario = '' OR par_usuario IS NULL THEN
+    SET mensaje = CONCAT('[usuario]',mensaje);
+  END IF;
+  IF par_contrasena = '' OR par_contrasena IS NULL THEN
+    SET mensaje = CONCAT('[contrasena]',mensaje);
+  END IF;
+  IF mensaje != '' THEN
+    SET mensaje = CONCAT('Se necesitan los siguientes campos: ', mensaje);
+    SELECT mensaje, resultado;
+    LEAVE Login;
+  END IF;
+
+  SELECT count(*) into contador FROM empleado
+  WHERE usuario = par_usuario
+  AND contrasena = par_contrasena;
+
+  IF contador = 1 THEN
+    SET mensaje = 'Autenticado exitósamente';
+    SET resultado = TRUE;
+    SELECT
+      usuario, e.id_empleado, foto_url, ve.nombre_completo, mensaje, resultado
+    FROM empleado e
+    INNER JOIN VistaEmpleado ve
+    ON e.id_empleado = ve.id_empleado
+    WHERE usuario = par_usuario
+    AND contrasena = par_contrasena;
+    LEAVE Login;
+  ELSE
+    SET mensaje = 'Contraseña o usuario incorrecto';
+    SET resultado = TRUE;
+    SELECT mensaje, resultado;
+    LEAVE Login;
+  end if;
+
+END $$
+
+DELIMITER ;
+CALL SP_Login('mmarousek0', '0b0XAGLn');
