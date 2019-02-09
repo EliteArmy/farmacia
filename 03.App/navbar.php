@@ -43,7 +43,7 @@
             <p class="dropdown-header">Producto</p>
             <a class="dropdown-item" href="#">Nuevo Medicamento</a>
             <a class="dropdown-item" href="#">Nuevo producto</a>
-            <a class="dropdown-item" href="#">Registrar Lote de Producto</a>
+            <a class="dropdown-item" href="registro-lote-producto.php">Registrar Lote de Producto</a>
             <a class="dropdown-item" href="#">Registrar Lote de Medicamento</a>
             <p class="dropdown-header">Gestiones</p>
             <a class="dropdown-item" href="#">Descartar Productos</a>
@@ -51,7 +51,7 @@
             <a class="dropdown-item" href="#">Gestionar Laboratorios</a>
           </div>
         </li>
-        
+
         <!--Item Clientes-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -93,7 +93,11 @@
         <!--Item Administración-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php echo "Nombre (TipoUsuario)" ?>
+            <?php
+            echo $_SESSION["nombre_completo"];
+            echo " ";
+            echo "(".$_SESSION["tipo_usuario"] . ")";
+            ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Información</p>

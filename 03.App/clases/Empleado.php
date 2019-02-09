@@ -107,6 +107,7 @@ class Empleado extends Persona{
 			$_SESSION["usuario"] = $rows[0]["usuario"];
 			$_SESSION["foto_url"] = $rows[0]["foto_url"];
 			$_SESSION["id_empleado"] = $rows[0]["id_empleado"];
+			$_SESSION["tipo_usuario"] = $rows[0]["tipo_usuario"];
 			$_SESSION["nombre_completo"] = $rows[0]["nombre_completo"];
 			$_SESSION["permisos"] = $rows[0]["permisos"];
 		}

@@ -8,11 +8,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Plantilla</title>
+  <title>Registro Lote</title>
 
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <!--<link rel="stylesheet" href="./css/style.css">-->
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <!-- <body class="root"> -->
 <body>
