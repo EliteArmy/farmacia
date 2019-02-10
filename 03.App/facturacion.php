@@ -14,12 +14,12 @@
 <body>
 
  <!-- NavBar para sólo editar una vez ;-) -->
- <?php include("./navbar.php"); ?>
+ <!--<?php #include("./navbar.php"); ?>-->
 
 
   <!-- Contenido -->
-  <div class="container">
-    <div class="row justify-content-center well card">
+  <div class="container well card" >
+    <div class="row justify-content-center ">
       <div class="col-12 col-md-11">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
@@ -62,13 +62,6 @@
               <input type="text" class="form-control" id="RTN" placeholder="RTN" aria-describedby="basic-addon3">
             </div>
 
-            <!-- No creo que sea necesaria la hora ya que la da la base
-            <label for="hora">Hora:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="hora" placeholder="Hora" aria-describedby="basic-addon3">
-            </div>
-            -->
-
             <label for="dropdownFormaPago">Forma de Pago:</label>
             <div class="dropdown">
               <button class="btn dropdown-toggle btn-primary" type="button" id="dropdownFormaPago" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,6 +73,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-11 col-sm-6 col-lg-4 texto">
             <!-- Solo es para que se vea bien el RTN con respecto a los demas -->
           </div>
