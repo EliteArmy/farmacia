@@ -1,6 +1,6 @@
 <?php
-  $idPagina = "registro-lote-producto";
-  include("./autenticacion.php");
+  $idPagina = "registro-lote-medicamento";
+  include("autenticacion.php");
 ?>
 <!DOCTYPE html>
 <html>

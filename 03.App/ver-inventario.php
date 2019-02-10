@@ -1,5 +1,5 @@
 <?php
-  $idPagina = "nueva-factura";
+  $idPagina = "ver-inventario";
   include("autenticacion.php");
 ?>
 <!DOCTYPE html>

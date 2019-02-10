@@ -6,6 +6,7 @@
   }
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +29,10 @@
   <!-- Contenido -->
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4 contenedor">
+      <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4 well card">
 
         <div class="row justify-content-center">
-          <div class="col-11 col-sm-10 col-md-10 col-lg-10 col-xl-10 well card texto">
+          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 texto">
             <h4>
               Iniciar Sesión
             </h4>
