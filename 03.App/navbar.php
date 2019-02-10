@@ -47,7 +47,6 @@
         </li>
         <?php endif;?>
 
-
         <!--Item Productos-->
         <?php if(show_menu_if(["nuevo-medicamento","nuevo-producto","registro-lote-producto","registro-lote-medicamento","descartar-productos","gestionar-laboratorios"])):?>
         <li class="nav-item dropdown active">
@@ -154,10 +153,10 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Información</p>
             <a class="dropdown-item" href="ver-perfil.php">Perfil</a>
-            <a class="dropdown-item text-danger" href="cerrar_session.php">Cerrar sesion</a>
             <p class="dropdown-header">Ayuda</p>
             <a class="dropdown-item" href="#">Manual de Usuario</a>
             <a class="dropdown-item" href="#">Acerca de</a>
+            <a class="dropdown-item text-danger" href="cerrar_session.php">Cerrar sesion</a>
           </div>
         </li>
       </ul>
@@ -165,7 +164,6 @@
     </div>
   </div>
 </nav>
-
 
 <?php
 function show_item_if($item) {
