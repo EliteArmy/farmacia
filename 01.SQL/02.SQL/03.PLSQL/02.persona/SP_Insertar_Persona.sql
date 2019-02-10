@@ -10,18 +10,20 @@ CREATE PROCEDURE `SP_Insertar_Persona`(
     IN pI_direccion VARCHAR(300),
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
-    IN pI_fecha_nacimiento DATE
+    IN pI_fecha_nacimiento DATE,
+    OUT pO_mensaje VARCHAR(1000),
+    OUT pO_error BOOLEAN
 )
 SP:BEGIN
 
     -- Declaraciones
     DECLARE mensaje VARCHAR(1000);
-    DECLARE resultado BOOLEAN;
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
     START TRANSACTION;
     SET mensaje = '';
+
     -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_primer_nombre='' OR pI_primer_nombre IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'primer nombre, ');
@@ -36,16 +38,16 @@ SP:BEGIN
         SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
     END IF; 
     IF mensaje <> '' THEN
-        SET mensaje=CONCAT('Errore: ', mensaje);
-        SET resultado=TRUE;
-        SELECT mensaje, resultado;
+        SET pO_mensaje=CONCAT('Errores: ', mensaje);
+        SET pO_error=TRUE;
+        -- SELECT mensaje, resultado;, usar para salida de parametros en caso de no utilizar
+        -- parametros de salida
         LEAVE SP;
     END IF;
     
     -- Otras Validaciones
     -- email
-    IF (pI_correo_electronico  REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$') = 0  OR pI_correo_electronico = ""
-     THEN
+    IF (pI_correo_electronico  REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$') = 0 THEN
         SET mensaje=CONCAT(mensaje, 'correo invalido, ');
     END IF;
     
@@ -55,9 +57,9 @@ SP:BEGIN
     END IF;
     
      IF mensaje <> '' THEN
-        SET mensaje=CONCAT('Otros Errores: ', mensaje);
-        SET resultado=TRUE;
-        SELECT mensaje, resultado;
+        SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
+        SET pO_error=TRUE;
+        -- SELECT mensaje, resultado;
         LEAVE SP;
     END IF;
 
