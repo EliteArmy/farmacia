@@ -9,61 +9,43 @@ CREATE PROCEDURE `SP_Crear_Empleado`(
     IN pI_contrasena VARCHAR(50),
     IN pI_foto_url VARCHAR(100),
     IN pI_Estado VARCHAR(1),
+    OUT pO_mensaje VARCHAR(1000),
+    OUT pO_error BOOLEAN
     
     
-)
-SP:BEGIN
-
-    -- Declaraciones
+)SP:BEGIN
+    --Declaraciones
     DECLARE mensaje VARCHAR(1000);
-    DECLARE resultado BOOLEAN;
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
     START TRANSACTION;
     SET mensaje = '';
+
     -- Verificaciones de campos obligatorios que no esten vacios
-    IF pI_primer_nombre='' OR pI_primer_nombre IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'primer nombre, ');
+    
+    IF pI_fecha_ingreso='' OR pI_fecha_ingreso IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'Fecha ingreso, ');
     END IF; 
-    IF pI_primer_apellido='' OR pI_primer_apellido IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'primer apellido, ');
-    END IF; 
-    IF pI_sexo='' OR pI_sexo IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'sexo, ');
+    IF pI_usuario='' OR pI_usuario IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'nombre Usuario, ');
     END IF;
-    IF pI_numero_identidad='' OR pI_numero_identidad IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
+    IF pI_contrasena='' OR pI_contrasena IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'contraseña , ');
     END IF; 
     IF mensaje <> '' THEN
-        SET mensaje=CONCAT('Errore: ', mensaje);
-        SET resultado=TRUE;
-        SELECT mensaje, resultado;
+        SET pO_mensaje=CONCAT('Errores: ', mensaje);
+        SET pO_error=TRUE;
+        -- SELECT mensaje, resultado;, usar para salida de parametros en caso de no utilizar
+        -- parametros de salida
         LEAVE SP;
     END IF;
     
-    -- Otras Validaciones
-    -- email
-    IF (pI_correo_electronico  REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$') = 0  OR pI_correo_electronico = ""
-     THEN
-        SET mensaje=CONCAT(mensaje, 'correo invalido, ');
-    END IF;
-    
-    -- genero
-    IF NOT( pI_sexo = 'M' OR pI_sexo = 'F' OR pI_sexo='I') THEN
-     SET mensaje=CONCAT(mensaje,'genero invalido');
-    END IF;
-    
-     IF mensaje <> '' THEN
-        SET mensaje=CONCAT('Otros Errores: ', mensaje);
-        SET resultado=TRUE;
-        SELECT mensaje, resultado;
-        LEAVE SP;
-    END IF;
 
 END$$
 
 CALL SP_Insertar_Persona('SDF','b','a','h','M','a','a_2345@gmail.com.hn','a','2018-03-02');
+
 
 /*---COMENTARIOS LLAMAR AL SP con parametro de salida OUT*/
 /*---Llamar al procedimiento almacenado, las variables de salida se llaman con @
