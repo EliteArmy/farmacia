@@ -29,12 +29,18 @@
   <!-- Contenido -->
   <div class="container-fluid">
     <div class="row justify-content-center">
+      <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4">
+        <h4 class="text-center">Farmacia Esperanza</h4>
+      </div>
+    </div>
+    
+    <div class="row justify-content-center">
       <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4 well card">
 
         <div class="row justify-content-center">
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 texto">
-            <h4>
-              Iniciar Sesión
+            <h4 class="text-center">
+              Inicio de sesión
             </h4>
             
             <div class="form-group">
@@ -56,6 +62,7 @@
             <div >
               <div class="text-left" style="display:inline-block;">
                 <input class="text-left" type="checkbox" name="" onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'"> Mostrar Contraseña
+                <!--<span>Ha olvidado su Contraseña?</span>-->
               </div>
                            
               <div class="text-right" style="float:right">
