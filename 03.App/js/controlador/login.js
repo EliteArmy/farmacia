@@ -17,9 +17,14 @@ $(document).ready(function() {
     }
 
     $.ajax(settings).done(function (response) {
-      if (response.data.resultado) {
+      if (response.data.resultado == 1) {
         console.log(response);
         window.location.href = "index.php";
+        //alert(response.data.resultado);
+      } else {
+        $("#div-error-login").show();
+        console.log(response);
+        //alert(response.data.resultado);
       }
     });
   });  

@@ -36,7 +36,7 @@
             <h4>
               Iniciar Sesión
             </h4>
-
+            
             <div class="form-group">
                 <label for="user">Usuario</label>
                 <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" required autofocus>
@@ -50,11 +50,11 @@
               <div class="alert alert-danger" style="display: none;" id="div-error-login" role="alert">
                 <!--<span class="fas fa-exclamation" aria-hidden="true"></span>-->
                 <span class="sr-only">Error:</span>
-                  Introduzca un Correo y Contraseña validos 
+                  Introduzca un Usuario y Contraseña validos 
               </div>
                             
               <button type="submit" id="btn-login" class="btn btn-primary">Ingresar</button>
-
+            
           </div>
         </div>
 
