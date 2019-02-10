@@ -37,13 +37,15 @@ SP:BEGIN
         SET tempMensajeError=CONCAT(tempMensajeError, 'numero de identidad, ');
     END IF; 
     IF tempMensajeError <> '' THEN
-        SET pO_mensaje=CONCAT('Campos requeridos: ', tempMensajeError);
+        SET pO_mensaje=CONCAT('Campos requeridos vacios: ', tempMensajeError);
         SET pO_error=TRUE;
         LEAVE SP;
     END IF;
 
 END$$
 
+
+---COMENTARIOS LLAMAR AL SP
 /*---Llamar al procedimiento almacenado, las variables de salida se llaman con @
 CALL SP_Insertar_Persona(' ','b','a',null,'','a','a','a','03-03-2018',@mensaje , @error);
 SELECT @mensaje, @error;  --seleccionar las variables de salida del procedimietno almacenado
