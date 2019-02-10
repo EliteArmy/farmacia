@@ -18,9 +18,9 @@
 
 
   <!-- Contenido -->
-  <div class="container well card" >
-    <div class="row justify-content-center ">
-      <div class="col-12 col-md-11">
+  <div class="container-fluid" >
+    <div class="row justify-content-center">
+      <div class="col-11 col-md-11 col-lg-11 col-xl-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
