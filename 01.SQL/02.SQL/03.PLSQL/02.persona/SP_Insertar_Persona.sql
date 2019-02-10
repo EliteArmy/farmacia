@@ -44,7 +44,8 @@ SP:BEGIN
     
     -- Otras Validaciones
     -- email
-    IF (pI_correo_electronico  REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$') = 0 THEN
+    IF (pI_correo_electronico  REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$') = 0  OR pI_correo_electronico = ""
+     THEN
         SET mensaje=CONCAT(mensaje, 'correo invalido, ');
     END IF;
     
