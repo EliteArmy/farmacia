@@ -18,7 +18,7 @@ Login:BEGIN
   IF par_usuario = '' OR par_usuario IS NULL THEN
     SET mensaje = CONCAT('[usuario]',mensaje);
   END IF;
-  IF par_contrasena = '' OR par_contrasena IS NULL THEN
+  IF par_contrasena = SHA2('', '512') OR par_contrasena IS NULL THEN
     SET mensaje = CONCAT('[contrasena]',mensaje);
   END IF;
   IF mensaje != '' THEN
@@ -44,7 +44,7 @@ Login:BEGIN
     LEAVE Login;
   ELSE
     SET mensaje = 'Contraseña o usuario incorrecto';
-    SET resultado = TRUE;
+    SET resultado = FALSE;
     SELECT mensaje, resultado;
     LEAVE Login;
   end if;
