@@ -38,22 +38,31 @@
             </h4>
             
             <div class="form-group">
-                <label for="user">Usuario</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" required autofocus>
-              </div>
+              <label for="user">Usuario</label>
+              <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" required autofocus>
+            </div>
 
-              <div class="form-group">
-                <label for="pass">Contraseña</label>
-                <input type="password" class="form-control" name="password" id="password"  placeholder="Contraseña" required>
-              </div>
+            <div class="form-group">
+              <label for="pass">Contraseña</label>
+              <input type="password" class="form-control" name="password" id="password"  placeholder="Contraseña" required>
+            </div>
 
-              <div class="alert alert-danger" style="display: none;" id="div-error-login" role="alert">
-                <!--<span class="fas fa-exclamation" aria-hidden="true"></span>-->
-                <span class="sr-only">Error:</span>
-                  Introduzca un Usuario y Contraseña validos 
+            <div class="alert alert-danger" style="display: none;" id="div-error-login" role="alert">
+              <!--<span class="fas fa-exclamation" aria-hidden="true"></span>-->
+              <span class="sr-only">Error:</span>
+              Introduzca un Usuario y Contraseña validos 
+            </div>
+
+            <div >
+              <div class="text-left" style="display:inline-block;">
+                <input class="text-left" type="checkbox" name="" onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'"> Mostrar Contraseña
               </div>
-                            
-              <button type="submit" id="btn-login" class="btn btn-primary">Ingresar</button>
+                           
+              <div class="text-right" style="float:right">
+                <button type="submit" id="btn-login" class="btn btn-primary ">Ingresar</button>
+              </div>
+              
+            </div>
             
           </div>
         </div>
