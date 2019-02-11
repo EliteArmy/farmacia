@@ -13,6 +13,7 @@
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
+
 </head>
 <body>
 
@@ -39,7 +40,7 @@
 
   <!-- Modal -->
   <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         
         <div class="modal-header">
@@ -71,7 +72,7 @@
               <input type="text" class="form-control" id="" name="" placeholder="">
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-6 col-md-4">
               <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Categorias
@@ -85,7 +86,75 @@
               </div>
             </div>
 
+            <div class="form-group col-6 col-md-4">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Impuesto
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Impuesto1</a>
+                    <a class="dropdown-item" href="#">Impuesto2</a>
+                    <a class="dropdown-item" href="#">Impuesto3</a>
+                    <a class="dropdown-item" href="#">Impuesto4</a>
+                  </div>
+              </div>
+            </div>
+
+            <div class="form-group col-6 col-md-4">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Descuento
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Descuento1</a>
+                    <a class="dropdown-item" href="#">Descuento2</a>
+                    <a class="dropdown-item" href="#">Descuento3</a>
+                    <a class="dropdown-item" href="#">Descuento4</a>
+                  </div>
+              </div>
+            </div>
+
+            <div class="form-group col-6 col-md-4">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Laboratorio
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Laboratorio1</a>
+                    <a class="dropdown-item" href="#">Laboratorio2</a>
+                    <a class="dropdown-item" href="#">Laboratorio3</a>
+                    <a class="dropdown-item" href="#">Laboratorio4</a>
+                  </div>
+              </div>
+            </div>
+
+            <div class="form-group col-6 col-md-4">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Presentación
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Presentación</a>
+                    <a class="dropdown-item" href="#">Presentación</a>
+                    <a class="dropdown-item" href="#">Presentación</a>
+                    <a class="dropdown-item" href="#">Presentación</a>
+                  </div>
+              </div>
+            </div>
+
           </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
+                <label class="custom-file-label" for="inputGroupFile01">Elegir una fotografia</label>
+              </div>
+            </div>
         </div>
 
         <div class="modal-footer">
