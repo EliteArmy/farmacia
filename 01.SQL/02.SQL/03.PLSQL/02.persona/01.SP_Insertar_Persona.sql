@@ -102,7 +102,6 @@ CALL SP_Insertar_Persona(' ','b','a',null,'','a','a','a',''2018-03-02'',@mensaje
 SELECT @mensaje, @error;  --seleccionar las variables de salida del procedimietno almacenado
  
  SHOW COLUMNS FROM name_tbl  -- mostrar informacion de la estructura de una tabla
-
+  --Eliminar Triggers
+  DROP TRIGGER IF EXISTS chk_persona_genero
 */
-
-SHOW COLUMNS FROM genero;
