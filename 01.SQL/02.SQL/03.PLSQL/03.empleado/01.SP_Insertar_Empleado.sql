@@ -71,7 +71,7 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Insertar_Empleado('pedro','pedro','rodriguez','rodriguez','M','a','a_2345@sgmail.com.hn','0822299909897','2018-03-02','2018-03-02','mkdr', '1234', '','',@mensaje, @error);
+CALL SP_Insertar_Empleado('pedro','pedro','rodriguez','rodriguez','M','a','','0822299909897','2018-03-02','2018-03-02','mkdr', '1234', '','',@mensaje, @error);
 SELECT @mensaje, @error;
 
 

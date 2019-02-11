@@ -48,9 +48,12 @@ SP:BEGIN
     
     -- Otras Validaciones
     -- email
-    IF (pI_correo_electronico  REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$') = 0 THEN
-        SET mensaje=CONCAT(mensaje, 'correo invalido, ');
+    IF NOT (pI_correo_electronico='' OR pI_correo_electronico IS NULL) THEN 
+        IF (pI_correo_electronico  REGEXP '^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9][a-zA-Z0-9._-]*\\.[a-zA-Z]{2,4}$') = 0 THEN
+            SET mensaje=CONCAT(mensaje, 'correo invalido, ');
+        END IF;
     END IF;
+    
     
     -- genero
     IF NOT( pI_sexo = 'M' OR pI_sexo = 'F' OR pI_sexo='I') THEN
@@ -107,7 +110,7 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','a','a_2345@sgmail.com.hn','0822299909897','2018-03-02',@mensaje, @error);
+CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','dir','jjjj@gmail.com','0922299909897','2018-03-02',@mensaje, @error);
 SELECT @mensaje, @error;
     
 /*---COMENTARIOS  LLAMAR AL SP con parametro de salida OUT*/
