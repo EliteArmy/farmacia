@@ -11,14 +11,16 @@ CREATE PROCEDURE `SP_Actualizar_Empleado`(
     IN pI_direccion VARCHAR(300),
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
-    IN pI_fecha_nacimiento DATE,
-    OUT pO_mensaje VARCHAR(1000),
-    OUT pO_error BOOLEAN,
+    IN pI_fecha_nacimiento DATE
     -- employee fields
-    IN pI_fecha_ingreso DATE,
+    ,IN pI_fecha_ingreso DATE,
     IN pI_usuario VARCHAR(50),
     IN pI_foto_url VARCHAR(100),
-    IN pI_estado VARCHAR(1)
+    IN pI_estado VARCHAR(1),
+
+    
+    OUT pO_mensaje VARCHAR(1000),
+    OUT pO_error BOOLEAN
 )
 SP:BEGIN
 
@@ -115,7 +117,6 @@ SP:BEGIN
         WHERE 
             pI_id_empleado =empleado.id_empleado;
 
-
     CALL SP_Actualizar_Persona(pI_id_persona, pI_primer_nombre, pI_segundo_nombre ,pI_primer_apellido ,pI_segundo_apellido , pI_sexo ,
                              pI_direccion ,pI_correo_electronico ,pI_numero_identidad ,pI_fecha_nacimiento,@mensaje, @error);
     COMMIT;
@@ -123,31 +124,15 @@ SP:BEGIN
 
 
 --row affected
-CALL SP_Actualizar_Empleado(1, 1, "Alejandra", "e ","Nuñez","e", "F", "adadfd", "aleja@gmail.com", "0801199022344", STR_TO_DATE('01/29/1995','%m/%d/%Y'),
-                            @mensaje, @error, STR_TO_DATE('02/02/2019','%m/%d/%Y'),"Ale123", "https://www.youtube.com/watch?v=SnySPNnfDNY", "A");
+-- CALL SP_Actualizar_Empleado(1, 1, "Alejandra", "e ","Nuñez","e", "F", "adadfd", "aleja@gmail.com", "0801199022344", STR_TO_DATE('01/29/1995','%m/%d/%Y'),
+--                             @mensaje, @error, STR_TO_DATE('02/02/2019','%m/%d/%Y'),"Ale123", "https://www.youtube.com/watch?v=SnySPNnfDNY", "A");
+-- SELECT @mensaje, @error;
+
+
+-- unknow field pi_fecha_ingreso
+CALL SP_Actualizar_Empleado(1, 1, "Alejandra", "e ","Nuñez","e", "F", "adadfd", "aleja@gmail.com", "0801199022344", '01-29-1995',
+                             "02-02-2019","Ale123", "https://www.youtube.com/watch?v=SnySPNnfDNY", "A",@mensaje, @error);
 SELECT @mensaje, @error;
 
-CALL SP_Actualizar_Empleado(1, 1, "Alejandra", "e ","Nuñez","e", "F", "adadfd", "aleja@gmail.com", "0801199022344", '01/29/1995',
-                            @mensaje, @error, "02/02/2019","Ale123", "https://www.youtube.com/watch?v=SnySPNnfDNY", "A");
-SELECT @mensaje, @error;
 
-
-   IN pI_id_empleado INTEGER(11),
-    IN pI_id_persona INTEGER(11),
-    IN pI_primer_nombre VARCHAR(50),
-    IN pI_segundo_nombre VARCHAR(50),
-    IN pI_primer_apellido VARCHAR(50),
-    IN pI_segundo_apellido VARCHAR(50),
-    IN pI_sexo VARCHAR(1),
-    IN pI_direccion VARCHAR(300),
-    IN pI_correo_electronico VARCHAR(100),
-    IN pI_numero_identidad VARCHAR(13),
-    IN pI_fecha_nacimiento DATE,
-    OUT pO_mensaje VARCHAR(1000),
-    OUT pO_error BOOLEAN,
-    --employee fields
-    IN pI_fecha_ingreso DATE,
-    IN pI_usuario VARCHAR(50),
-    IN pI_foto_url VARCHAR(100),
-    IN pI_estado VARCHAR(1)
-)
+   
