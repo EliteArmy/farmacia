@@ -88,6 +88,19 @@ SP:BEGIN
         SET pO_error=TRUE;
     END IF;
 
+-- verify if there is an identifier
+
+    SELECT
+        COUNT(*)
+    INTO contador
+    FROM persona
+    WHERE pI_correo_electronico = persona.correo_electronico;
+
+
+    IF contador>= THEN
+        SET mensaje = CONCAT(mensaje, 'este correo ya esta asignado a otro usuario, ');
+        SET pO_error=TRUE;
+    END IF;
     -- verify if there is an identifier
 
     SELECT 
@@ -96,7 +109,7 @@ SP:BEGIN
     FROM persona
     WHERE pI_numero_identidad= persona.numero_identidad;
 
-    IF contador>1 THEN
+    IF contador>=1 THEN
         SET mensaje = CONCAT(mensaje, 'el identidicador esta repetido:, ');
         SET pO_error = TRUE;
     END IF;
