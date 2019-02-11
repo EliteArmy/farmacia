@@ -17,6 +17,7 @@ SP:BEGIN
 
     -- Declaraciones
     DECLARE mensaje VARCHAR(1000);
+    DECLARE contador INT;
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
@@ -59,7 +60,19 @@ SP:BEGIN
     IF (pI_numero_identidad REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$' ) = 0 THEN
         SET mensaje=CONCAT(mensaje,'numero de identidad invalido, ');
     END IF;
-	
+
+    -- Validar que el numero de identidad no se repita 
+    SELECT COUNT(*) INTO contador FROM persona WHERE numero_identidad = pI_numero_identidad;
+	IF contador>=1 THEN
+        SET mensaje = CONCAT(mensaje, 'numero de identidad ya existe, ');
+    END IF;
+
+      -- Validar  correo unico
+    SELECT COUNT(*) INTO contador FROM persona WHERE correo_electronico = pI_correo_electronico;
+	IF contador>=1 THEN
+        SET mensaje = CONCAT(mensaje, 'correo electronico ya existe, ');
+    END IF;
+
     IF mensaje <> '' THEN
         SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
         SET pO_error=TRUE;
@@ -93,7 +106,7 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','a','a_2345@gmail.com.hn','0801199609897','2018-03-02',@mensaje, @error);
+CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','a','a_2345@sgmail.com.hn','0822299909897','2018-03-02',@mensaje, @error);
 SELECT @mensaje, @error;
     
 /*---COMENTARIOS  LLAMAR AL SP con parametro de salida OUT*/
