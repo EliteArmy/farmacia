@@ -94,7 +94,7 @@ SP:BEGIN
 
     IF contador=0 THEN
         SET mensaje = CONCAT(mensaje, 'este usuario no esta registrado, ');
-        SET pI_error=TRUE;
+        SET pO_error=TRUE;
     END IF;
 
 -- verify if there is an identifier
