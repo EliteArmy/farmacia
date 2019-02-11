@@ -1,6 +1,5 @@
-DROP PROCEDURE IF EXISTS SP_Insertar_Persona;
-
 DELIMITER $$
+DROP PROCEDURE IF EXISTS SP_Insertar_Persona$$
 CREATE PROCEDURE `SP_Insertar_Persona`(
 	IN pI_primer_nombre VARCHAR(50),
     IN pI_segundo_nombre VARCHAR(50),
@@ -53,24 +52,57 @@ SP:BEGIN
     
     -- genero
     IF NOT( pI_sexo = 'M' OR pI_sexo = 'F' OR pI_sexo='I') THEN
-     SET mensaje=CONCAT(mensaje,'genero invalido');
+     SET mensaje=CONCAT(mensaje,'genero invalido, ');
     END IF;
     
-     IF mensaje <> '' THEN
+    -- identidad
+    IF (pI_numero_identidad REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$' ) = 0 THEN
+        SET mensaje=CONCAT(mensaje,'numero de identidad invalido, ');
+    END IF;
+	
+    IF mensaje <> '' THEN
         SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
         SET pO_error=TRUE;
-        -- SELECT mensaje, resultado;
+        -- SELECT mensaje, resultado; --Hacer el mismo trabajo que las variables de salida
+        -- se llama al procedimiento con call y devuelve los valores de salida mensaje y resultado
+        -- siendo mensaje y resultado variable locales declare mensaje varchar(1000); 
+        -- declare error BOOLEAN;
         LEAVE SP;
     END IF;
 
+    -- Insert y Commit
+    INSERT INTO persona (primer_nombre, 
+                         segundo_nombre, 
+                         primer_apellido, 
+                         segundo_apellido,
+                         sexo, 
+                         direccion, 
+                         correo_electronico,
+                         numero_identidad, 
+                         fecha_nacimiento)
+                 VALUES (pI_primer_nombre,
+                         pI_segundo_nombre,
+                         pI_primer_apellido, 
+                         pI_segundo_apellido,
+                         pI_sexo, 
+                         pI_direccion,
+                         pI_correo_electronico, 
+                         pI_numero_identidad, 
+                         pI_fecha_nacimiento);
+    COMMIT;
+
 END$$
 
-CALL SP_Insertar_Persona('SDF','b','a','h','M','a','a_2345@gmail.com.hn','a','2018-03-02');
-
+CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','a','a_2345@gmail.com.hn','0801199609897','2018-03-02',@mensaje, @error);
+SELECT @mensaje, @error;
+    
 /*---COMENTARIOS LLAMAR AL SP con parametro de salida OUT*/
 /*---Llamar al procedimiento almacenado, las variables de salida se llaman con @
 CALL SP_Insertar_Persona(' ','b','a',null,'','a','a','a',''2018-03-02'',@mensaje , @error);
 SELECT @mensaje, @error;  --seleccionar las variables de salida del procedimietno almacenado
+ 
+ SHOW COLUMNS FROM name_tbl  -- mostrar informacion de la estructura de una tabla
 
 */
 
+SHOW COLUMNS FROM genero;
