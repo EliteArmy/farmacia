@@ -1,7 +1,6 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Insertar_Producto$$
 CREATE PROCEDURE SP_Insertar_Producto(
-        IN pI_id_producto INTEGER(11),
         IN pI_id_presentacion INTEGER(11),
         IN pI_nombre VARCHAR(100),
         IN pI_codigo_barra VARCHAR(45),
@@ -11,21 +10,16 @@ CREATE PROCEDURE SP_Insertar_Producto(
         OUT pO_error BOOLEAN
 
 )
-Insertar_Producto:BEGIN
+  SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
-  DECLARE contador INT;
   DECLARE resultado BOOLEAN;
-
+  DECLARE contador INTEGER;
 -- Inicializaciones
   SET mensaje='';
   SET resultado = FALSE;
-  SET contador=0;
-
+  SET contador = 0;
    -- Verificaciones de campos obligatorios que no esten vacios
-    IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'id del producto, ');
-    END IF;
 
     IF pI_id_presentacion='' OR pI_id_presentacion IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'id de la presentacion del producto, ');
@@ -39,21 +33,32 @@ Insertar_Producto:BEGIN
         SET mensaje=CONCAT(mensaje, 'codigo de barra del producto, ');
     END IF;
 
-    --no se si es obligatorio la foto de un producto.
+	-- el campo de la foto de un producto puede ser null
    -- IF pI_url_foto='' OR pI_url_foto IS NULL THEN 
    --     SET mensaje=CONCAT(mensaje, 'foto del producto, ');
-
-    END IF;
+   
+   -- validacion de que id_categoria exista
+   SELECT COUNT(*)  INTO contador
+   FROM presentacion    
+   WHERE  id_presentacion= pI_id_presentacion;
+   
+   IF contador =0 THEN
+   SET mensaje = CONCAT(mensaje, 'el identificador de presentaciòn de producto no existe, ');
+   END IF;
+   
+   IF mensaje <> '' THEN
+        SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
+        SET pO_error=TRUE;
+        LEAVE SP;
+   END IF;
 
 
      INSERT INTO producto (
-                      id_producto,
                       id_presentacion,
                       nombre,
                       codigo_barra,
                       url_foto)
                  VALUES (
-                      pI_id_producto,
                       pI_id_presentacion,
                       pI_nombre,
                       pI_codigo_barra,
@@ -62,5 +67,10 @@ Insertar_Producto:BEGIN
 
 END $$
 
-# DELIMITER ;
-# CALL SP_Insertar_Producto('mmarousek0', SHA2('1234', '512'));
+
+
+
+CALL SP_Insertar_Producto(3,"paracetamol", "dfasdf46556", "https://www.youtube.com/watch?v=1XhyuRVf9B4",@mensaje,@error);
+SELECT @mensaje, @error;
+
+
