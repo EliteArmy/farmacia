@@ -40,7 +40,7 @@ CREATE PROCEDURE `SP_Crear_Empleado`(
         -- parametros de salida
         LEAVE SP;
     END IF;
-    
+    INSERT into empleado values (pI_id_empleado,date(pI_fecha_ingreso),pI_id_persona,pI_usuario,pI_contrasena,pI_foto_url,pI_Estado);
 
 END$$
 
