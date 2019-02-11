@@ -110,10 +110,10 @@ SP:BEGIN
     UPDATE empleado 
         SET
              -- employee registers
-            pI_fecha_ingreso = empleado.fecha_ingreso,          
-            pI_usuario =empleado.usuario,
-            pI_foto_url =empleado.foto_url,
-            pI_estado =empleado.estado
+             empleado.fecha_ingreso= pI_fecha_ingreso,           
+             empleado.usuario= pI_usuario, 
+             empleado.foto_url= pI_foto_url, 
+             empleado.estado = pI_estado
         WHERE 
             pI_id_empleado =empleado.id_empleado;
 
