@@ -8,7 +8,7 @@ CREATE PROCEDURE `SP_Actualizar_Persona`(
     IN pI_segundo_apellido VARCHAR(50),
     IN pI_direccion VARCHAR(300),
     IN pI_correo_electronico VARCHAR(100),
---  IN pI_numero_identidad VARCHAR(13),
+    IN pI_numero_identidad VARCHAR(13),
     OUT pO_mensaje VARCHAR(1000),
     OUT pO_error BOOLEAN
 )
@@ -103,18 +103,24 @@ SP:BEGIN
 
     UPDATE persona 
         SET
-            persona.primer_nombre = pI.primer_nombre,
-            persona.segundo_nombre = pI.segundo_nombre, 
-            persona.primer_apellido = pI.primer_apellido, 
-            persona.segundo_apellido = pI.segundo_apellido,
-            persona.direccion = pI.direccion, 
-            persona.correo_electronico = pI.correo_electronico,
-            persona.numero_identidad = pI.numero_identidad, 
+            persona.id_persona = pI_id_persona,
+            persona.primer_nombre = pI_primer_nombre,
+            persona.segundo_nombre = pI_segundo_nombre, 
+            persona.primer_apellido = pI_primer_apellido, 
+            persona.segundo_apellido = pI_segundo_apellido,
+            persona.direccion = pI_direccion, 
+            persona.correo_electronico = pI_correo_electronico,
+            persona.numero_identidad = pI_numero_identidad 
         WHERE
-            persona.id_persona= pI.id_persona;
+            persona.id_persona= pI_id_persona;
     COMMIT;
 END
 
-
-CALL SP_Actualizar_Persona(123,'pedro','pedro','rodriguez','rodriguez','a','a_2345@gmail.com.hn','0801199609897',@mensaje, @error);
+--duplicate
+CALL SP_Actualizar_Persona(2,'pedro','pedro','rodriguez','rodriguez','a','a_2345@gmail.com.hn','0801199609897',@mensaje, @error);
 SELECT @mensaje, @error;
+
+--row affected
+CALL SP_Actualizar_Persona(2,'pedro','pedro','rodriguez','rodriguez','a','a_2345@gmail.com.hn','0106199609897',@mensaje, @error);
+SELECT @mensaje, @error;
+
