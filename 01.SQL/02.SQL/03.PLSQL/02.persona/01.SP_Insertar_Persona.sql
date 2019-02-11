@@ -10,6 +10,7 @@ CREATE PROCEDURE `SP_Insertar_Persona`(
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
     IN pI_fecha_nacimiento DATE,
+    
     OUT pO_mensaje VARCHAR(1000),
     OUT pO_error BOOLEAN
 )
