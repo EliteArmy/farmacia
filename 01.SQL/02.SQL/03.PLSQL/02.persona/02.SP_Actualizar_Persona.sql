@@ -6,6 +6,7 @@ CREATE PROCEDURE `SP_Actualizar_Persona`(
     IN pI_segundo_nombre VARCHAR(50),
     IN pI_primer_apellido VARCHAR(50),
     IN pI_segundo_apellido VARCHAR(50),
+    IN pI_sexo VARCHAR(1),
     IN pI_direccion VARCHAR(300),
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
@@ -40,9 +41,14 @@ SP:BEGIN
     IF pI_correo_electronico='' OR pI_correo_electronico IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'correo , ');
     END IF;
---  IF pI_numero_identidad='' OR pI_numero_identidad IS NULL THEN 
---      SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
---  END IF; 
+    IF pI_numero_identidad='' OR pI_numero_identidad IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
+    END IF; 
+    IF pI_sexo='' OR pI_sexo IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
+    END IF;
+
+
 
     IF mensaje <> '' THEN
         SET pO_mensaje=CONCAT('Errores: ', mensaje);
@@ -88,7 +94,7 @@ SP:BEGIN
 
     IF contador=0 THEN
         SET mensaje = CONCAT(mensaje, 'este usuario no esta registrado, ');
-        SET pO_error=TRUE;
+        SET pI_error=TRUE;
     END IF;
 
 -- verify if there is an identifier
