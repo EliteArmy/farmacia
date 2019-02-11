@@ -36,9 +36,9 @@ SP:BEGIN
     SET contador =0;
 
     --verificacion campos persona
-    CALL SP_Actualizar_Persona(pI_id_persona, "pI_primer_nombre", "pI_segundo_nombre" ,"pI_primer_apellido" ,"pI_segundo_apellido ", "pI_sexo" ,
-                               "pI_direccion" ,"pI_correo_electronico" ,"pI_numero_identidad" ,@mensaje, @error);
-
+   -- CALL SP_Actualizar_Persona(pI_id_persona, "pI_primer_nombre", "pI_segundo_nombre" ,"pI_primer_apellido" ,"pI_segundo_apellido ", "pI_sexo" ,
+   --                            "pI_direccion" ,"pI_correo_electronico" ,"pI_numero_identidad" ,@mensaje, @error);
+    
 
 
     -- Verificaciones de campos obligatorios que no esten vacios
@@ -67,20 +67,6 @@ SP:BEGIN
     
 
     -- update n Commit
-
-    -- verify if there is an identifier
-
-    SELECT
-        COUNT(*)
-    INTO contador
-    FROM persona
-    WHERE pI_id_persona = persona.id_persona;
-
-
-    IF contador=0 THEN
-        SET mensaje = CONCAT(mensaje, 'este usuario no esta registrado, ');
-        SET pO_error=TRUE;
-    END IF;
 
 -- verify employee registers
 
@@ -112,7 +98,7 @@ SP:BEGIN
     FROM empleado
     WHERE pI_foto_url = empleado.foto_url;
 
-    IF contador>= THEN  
+    IF contador>=1 THEN  
         SET mensaje = CONCAT(mensaje, 'fotografia ya asignada : ');
         SET pI_error = TRUE;
     END IF;
@@ -128,6 +114,10 @@ SP:BEGIN
             pI_estado =empleado.estado
         WHERE 
             pI_id_empleado =empleado.id_empleado;
+
+
+    CALL SP_Actualizar_Persona(pI_id_persona, pI_primer_nombre, pI_segundo_nombre ,pI_primer_apellido ,pI_segundo_apellido , pI_sexo ,
+                             pI_direccion ,pI_correo_electronico ,pI_numero_identidad ,@mensaje, @error);
     COMMIT;
     END
 
