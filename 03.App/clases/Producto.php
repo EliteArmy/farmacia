@@ -7,6 +7,8 @@ class Producto{
 	private $codigoBarra;
 	private $urlFoto;
 	private $idImpuesto;
+	private $impuesto;
+	private $valorImpuesto;
 
 	public function __construct(
 		$idProducto = null,
@@ -88,6 +90,21 @@ class Producto{
 		$this->idImpuesto = $idImpuesto;
 	}
 
+	public function getImpuesto(){
+		return $this->impuesto;
+	}
+
+	public function setImpuesto($impuesto){
+		$this->impuesto = $impuesto;
+	}
+	public function getValorImpuesto(){
+		return $this->valorImpuesto;
+	}
+
+	public function setValorImpuesto($valorImpuesto){
+		$this->valorImpuesto = $valorImpuesto;
+	}
+
 	public function crear($conexion){
 	}
 	public function leer($conexion){
@@ -105,5 +122,17 @@ class Producto{
 	public function leerPresentacion($conexion){
 	}
 
+	public function crearImpuesto($conexion){
+		$sql = "CALL SP_Insertar_Impuesto('%s', %s)";
+		$valores = [$this->impuesto, $this->valorImpuesto];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows) == 1) return $rows[0];
+	}
+	public function actualizarImpuesto($conexion){
+	}
+	public function leerImpuesto($conexion){
+	}
+	public function borrarImpuesto($conexion){
+	}
 }
 ?>
