@@ -25,6 +25,7 @@ SP:BEGIN
     -- Declaraciones
     DECLARE mensaje VARCHAR(1000);
     DECLARE resultado BOOLEAN;
+    DECLARE contador INT;
     DECLARE ultimoId INTEGER;
 
     -- Inicializaciones
@@ -63,16 +64,43 @@ SP:BEGIN
                              pO_error);
     IF pO_error = TRUE THEN
         LEAVE SP;
-        SET pO_mensaje = CONCAT('E!!',pO_mensaje);
     END IF;
 
-    -- INSERT INTO persona(primer_nombre) VALUES ('Serapio')
-    -- COMMIT;
+    -- validar que el usuario no exista
+    SELECT COUNT(*) INTO contador FROM empleado WHERE usuario = pI_usuario;
+    IF contador>=1 THEN
+         SET mensaje=CONCAT(mensaje, 'usuario ya existe, ');
+    END IF;
+
+     IF mensaje <> '' THEN
+        SET pO_mensaje=CONCAT('Errores: ', mensaje);
+        SET pO_error=TRUE;
+        LEAVE SP;
+    END IF;
+	
+    -- utlimo id persona
+    SELECT MAX(id_persona) INTO ultimoId FROM persona;
+
+    INSERT INTO empleado(fecha_ingreso, 
+                         id_persona, 
+                         usuario, 
+                         contrasena, 
+                         foto_url, 
+                         estado) 
+                  VALUES (pI_fecha_ingreso,
+                          ultimoId,
+                          pI_usuario,
+                          pI_contrasena,
+                          pI_foto_url,
+                          pI_estado
+                         );
+    COMMIT;
 
 END$$
 
-CALL SP_Insertar_Empleado('pedro','pedro','rodriguez','rodriguez','M','a','','0822299909897','2018-03-02','2018-03-02','mkdr', '1234', '','',@mensaje, @error);
+CALL SP_Insertar_Empleado('pedro','pedro','rodriguez','rodriguez','M','dir','email2@unah.hn','0822299929867','2018-03-02','2018-03-02','mkdr', '1234', '','',@mensaje, @error);
 SELECT @mensaje, @error;
+
 
 
 
