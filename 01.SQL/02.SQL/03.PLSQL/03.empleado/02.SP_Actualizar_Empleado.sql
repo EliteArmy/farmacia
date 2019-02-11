@@ -12,6 +12,8 @@ CREATE PROCEDURE `SP_Actualizar_Empleado`(
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
     IN pI_fecha_nacimiento DATE,
+    OUT pO_mensaje VARCHAR(1000),
+    OUT pO_error BOOLEAN
 
     IN pI_fecha_ingreso DATE,
     IN pI_usuario VARCHAR(50),
@@ -34,13 +36,14 @@ SP:BEGIN
     SET contador =0;
 
     --verificacion campos persona
-    CALL SP_Actualizar_Persona (pI_id_persona, pI_primer_nombre, pI_segundo_nombre ,pI_primer_apellido ,pI_segundo_apellido ,pI_sexo ,pI_direccion ,pI_correo_electronico ,pI_numero_identidad,@mensaje, @error);
+    CALL SP_Actualizar_Persona(pI_id_persona, "pI_primer_nombre", "pI_segundo_nombre" ,"pI_primer_apellido" ,"pI_segundo_apellido ", "pI_sexo" ,
+                               "pI_direccion" ,"pI_correo_electronico" ,"pI_numero_identidad" ,@mensaje, @error);
 
 
 
     -- Verificaciones de campos obligatorios que no esten vacios
     -- employee registers
-     IF pI_fecha_ingreso='' OR pi:pI_fecha_ingreso IS NULL THEN 
+     IF pI_fecha_ingreso='' OR pI_fecha_ingreso IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'fecha de ingreso, ');
     END IF;
     IF pI_usuario='' OR pI_usuario IS NULL THEN 
@@ -124,13 +127,14 @@ SP:BEGIN
             pI_foto_url =empleado.foto_url,
             pI_estado =empleado.estado
         WHERE 
-        pI_id_empleado =empleado.id_empleado;
-           
-END
+            pI_id_empleado =empleado.id_empleado;
+    COMMIT;
+    END
 
 
 --row affected
-CALL SP_Actualizar_Empleado();
+CALL SP_Actualizar_Empleado(1, 1, "Alejandra", "e ","Nuñez","e", "F", "adadfd", "aleja@gmail.com", "0801199022344", STR_TO_DATE('01/29/1995','%m/%d/%Y'),
+                            STR_TO_DATE('02/02/2019','%m/%d/%Y'),"Ale123", "https://www.youtube.com/watch?v=SnySPNnfDNY", "A");
 SELECT @mensaje, @error;
 
 
