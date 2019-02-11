@@ -10,6 +10,7 @@ CREATE PROCEDURE `SP_Actualizar_Persona`(
     IN pI_direccion VARCHAR(300),
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
+    IN pI_fecha_nacimiento DATE,
     OUT pO_mensaje VARCHAR(1000),
     OUT pO_error BOOLEAN
 )
@@ -46,6 +47,9 @@ SP:BEGIN
     END IF; 
     IF pI_sexo='' OR pI_sexo IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
+    END IF;
+    IF pI_fecha_nacimiento='' OR pI_fecha_nacimiento IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'fecha de nacimiento, ');
     END IF;
 
 
@@ -106,7 +110,7 @@ SP:BEGIN
     WHERE pI_correo_electronico = persona.correo_electronico;
 
 
-    IF contador>= THEN
+    IF contador>=1 THEN
         SET mensaje = CONCAT(mensaje, 'este correo ya esta asignado a otro usuario, ');
         SET pO_error=TRUE;
     END IF;
@@ -132,17 +136,30 @@ SP:BEGIN
             persona.segundo_apellido = pI_segundo_apellido,
             persona.direccion = pI_direccion, 
             persona.correo_electronico = pI_correo_electronico,
-            persona.numero_identidad = pI_numero_identidad 
+            persona.numero_identidad = pI_numero_identidad, 
+            persona.fecha_nacimiento = pI_fecha_nacimiento
         WHERE
             persona.id_persona= pI_id_persona;
     COMMIT;
 END
 
 --duplicate
-CALL SP_Actualizar_Persona(2,'pedro','pedro','rodriguez','rodriguez','a','a_2345@gmail.com.hn','0801199609897',@mensaje, @error);
+CALL SP_Actualizar_Persona(2,'pedro','pedro','rodriguez','rodriguez','M','a','a_2345@gmail.com.hn','0801199609897','12-12-12', @mensaje, @error);
 SELECT @mensaje, @error;
 
 --row affected
-CALL SP_Actualizar_Persona(2,'pedro','pedro','rodriguez','rodriguez','a','a_2345@gmail.com.hn','0106199609897',@mensaje, @error);
+CALL SP_Actualizar_Persona(2,'pedro','pedro','rodriguez','rodriguez','M','a','a_2345@gmail.com.hn','0106199609897','12-03-13',@mensaje, @error);
 SELECT @mensaje, @error;
 
+  IN pI_id_persona INTEGER(11),
+    IN pI_primer_nombre VARCHAR(50),
+    IN pI_segundo_nombre VARCHAR(50),
+    IN pI_primer_apellido VARCHAR(50),
+    IN pI_segundo_apellido VARCHAR(50),
+    IN pI_sexo VARCHAR(1),
+    IN pI_direccion VARCHAR(300),
+    IN pI_correo_electronico VARCHAR(100),
+    IN pI_numero_identidad VARCHAR(13),
+    IN pI_fecha_nacimiento DATE,
+    OUT pO_mensaje VARCHAR(1000),
+    OUT pO_error BOOLEAN
