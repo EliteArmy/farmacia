@@ -37,6 +37,9 @@ SP:BEGIN
     IF pI_primer_apellido='' OR pI_primer_apellido IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'primer apellido, ');
     END IF;
+    IF pI_correo_electronico='' OR pI_correo_electronico IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'correo , ');
+    END IF;
 --  IF pI_numero_identidad='' OR pI_numero_identidad IS NULL THEN 
 --      SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
 --  END IF; 
