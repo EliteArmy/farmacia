@@ -96,7 +96,7 @@ END$$
 CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','a','a_2345@gmail.com.hn','0801199609897','2018-03-02',@mensaje, @error);
 SELECT @mensaje, @error;
     
-/*---COMENTARIOS LLAMAR AL SP con parametro de salida OUT*/
+/*---COMENTARIOS  LLAMAR AL SP con parametro de salida OUT*/
 /*---Llamar al procedimiento almacenado, las variables de salida se llaman con @
 CALL SP_Insertar_Persona(' ','b','a',null,'','a','a','a',''2018-03-02'',@mensaje , @error);
 SELECT @mensaje, @error;  --seleccionar las variables de salida del procedimietno almacenado
