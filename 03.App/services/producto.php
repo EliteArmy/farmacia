@@ -29,9 +29,24 @@ if(isset($_POST['accion'])){
 
     case 'crear-categoria':
       $cat = validarPOST('categoria');
-      $med = new Medicamento();
-      $med->setCategoria($cat);
-      $res["data"] = $med->crearCategoria($conexion);
+      $prod = new Producto();
+      $prod->setCategoria($cat);
+      $res["data"] = $prod->crearCategoria($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-laboratorio':
+      $res["data"] = Medicamento::leerLaboratorio($conexion);
+      echo json_encode($res);
+      break;
+
+    case 'leer-categoria':
+      $res["data"] = Producto::leerCategoria($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-impuesto':
+      $res["data"] = Producto::leerImpuesto($conexion);
       echo json_encode($res);
     break;
 

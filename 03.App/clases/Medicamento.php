@@ -2,8 +2,6 @@
 class Medicamento{
 	private $idLaboratorio;
 	private $laboratorio;
-	private $id_categoria;
-	private $categoria;
 
 	public function __construct(
 		$idLaboratorio = null,
@@ -35,22 +33,6 @@ class Medicamento{
 		$this->laboratorio = $laboratorio;
 	}
 
-	public function getCategoria(){
-		return $this->categoria;
-	}
-
-	public function setCategoria($categoria){
-		$this->categoria = $categoria;
-	}
-	public function getIdCategoria(){
-		return $this->idCategoria;
-	}
-
-	public function setIdCategoria($idCategoria){
-		$this->idCategoria = $idCategoria;
-	}
-
-
 	public function crear($conexion){
 	}
 	public function leer($conexion){
@@ -67,22 +49,11 @@ class Medicamento{
 	}
 	public function actualizarLaboratorio($conexion){
 	}
-	public function leerLaboratorio($conexion){
+	public static function leerLaboratorio($conexion){
+		$sql = "SELECT * FROM laboratorio";
+		return $conexion -> query($sql);
 	}
 	public function borrarLaboratorio($conexion){
 	}
-	public function crearCategoria($conexion){
-		$sql = "CALL SP_Insertar_Categoria('%s');";
-		$valores = [$this->categoria];
-		$rows = $conexion->query($sql, $valores);
-		if (count($rows) == 1) return $rows[0];
-	}
-	public function leerCategoria($conexion){
-	}
-	public function actualizarCategoria($conexion){
-	}
-	public function borrarCategoria($conexion){
-	}
-
 }
 ?>

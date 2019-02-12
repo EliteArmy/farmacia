@@ -9,6 +9,8 @@ class Producto{
 	private $idImpuesto;
 	private $impuesto;
 	private $valorImpuesto;
+	private $id_categoria;
+	private $categoria;
 
 	public function __construct(
 		$idProducto = null,
@@ -105,6 +107,22 @@ class Producto{
 		$this->valorImpuesto = $valorImpuesto;
 	}
 
+	public function getCategoria(){
+		return $this->categoria;
+	}
+
+	public function setCategoria($categoria){
+		$this->categoria = $categoria;
+	}
+	public function getIdCategoria(){
+		return $this->idCategoria;
+	}
+
+	public function setIdCategoria($idCategoria){
+		$this->idCategoria = $idCategoria;
+	}
+
+
 	public function crear($conexion){
 	}
 	public function leer($conexion){
@@ -130,9 +148,27 @@ class Producto{
 	}
 	public function actualizarImpuesto($conexion){
 	}
-	public function leerImpuesto($conexion){
+	public static function leerImpuesto($conexion){
+		$sql = "SELECT impuesto, valor, id_impuesto FROM impuesto";
+		return $conexion -> query($sql);
 	}
 	public function borrarImpuesto($conexion){
 	}
+
+	public function crearCategoria($conexion){
+		$sql = "CALL SP_Insertar_Categoria('%s');";
+		$valores = [$this->categoria];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows) == 1) return $rows[0];
+	}
+	public static function leerCategoria($conexion){
+		$sql = "SELECT * FROM categoria";
+		return $conexion -> query($sql);
+	}
+	public function actualizarCategoria($conexion){
+	}
+	public function borrarCategoria($conexion){
+	}
+
 }
 ?>
