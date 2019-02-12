@@ -13,9 +13,7 @@
 
 <body>
 
- <!-- NavBar para sólo editar una vez ;-) -->
  <!--<?php #include("./navbar.php"); ?>-->
-
 
   <!-- Contenido -->
   <div class="container-fluid" >
@@ -85,6 +83,7 @@
 
         <table class="table table-striped table-bordered">
           <thead>
+            
             <tr>
               <th>Código</th>
               <th>Cant.</th>
@@ -98,7 +97,8 @@
             </tr>
           </thead>
 
-          <tbody>
+          <tbody id="">
+            <!--Informacion generada por la Base -->
             <tr>
               <th scope="row">1</th>
               <td>Lorem</td>
@@ -110,6 +110,8 @@
               <td>Lorem</td>
               <td>Icon</td>
             </tr>
+
+            <!--Informacion generada por la Base -->
             <tr>
               <th scope="row">2</th>
               <td>Lorem</td>
@@ -122,6 +124,7 @@
               <td>Icon</td>
             </tr>
 
+            <!--Informacion generada por la Base -->
             <tr>
               <th scope="row">3</th>
               <td>Lorem</td>

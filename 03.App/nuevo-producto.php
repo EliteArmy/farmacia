@@ -61,18 +61,19 @@
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for=""></label>
-              <input type="text" class="form-control" id="" name="" placeholder="">
+              <label for="placeholder1">placeholder1</label>
+              <input type="text" class="form-control" id="" name="" placeholder="placeholder1">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for=""></label>
-              <input type="text" class="form-control" id="" name="" placeholder="">
+              <label for="placeholder2">placeholder2</label>
+              <input type="text" class="form-control" id="" name="" placeholder="placeholder2">
             </div>
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                <select class="selectpicker" multiple data-style="btn-primary">
+                <select id="slc-categoria" class="selectpicker" title="Categorias" data-style="btn-primary" multiple>
+                  <!--Informacion generada por la Base -->
                   <option>Categoria1</option>
                   <option>Categoria2</option>
                   <option>Categoria3</option>
@@ -83,7 +84,8 @@
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                <select class="selectpicker" multiple data-style="btn-primary">
+                <select id="slc-impuesto" class="selectpicker" title="Impuestos" data-style="btn-primary" multiple>
+                  <!--Informacion generada por la Base -->
                   <option>Impuesto1</option>
                   <option>Impuesto2</option>
                   <option>Impuesto3</option>
@@ -94,7 +96,8 @@
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                <select class="selectpicker" multiple data-style="btn-primary">
+                <select id="slc-descuento" class="selectpicker" title="Descuentos" data-style="btn-primary" multiple>
+                  <!--Informacion generada por la Base -->
                   <option>Descuento</option>
                   <option>Descuento</option>
                   <option>Descuento</option>
@@ -105,18 +108,20 @@
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                <select class="selectpicker" multiple data-style="btn-primary">
-                  <option>Laboratorio1</option>
-                  <option>Laboratorio2</option>
-                  <option>Laboratorio3</option>
-                  <option>Laboratorio4</option>
+                <select id="slc-presentacion" class="selectpicker" title="Presentacion" data-style="btn-primary" multiple>
+                  <!--Informacion generada por la Base -->
+                  <option>Presentacion1</option>
+                  <option>Presentacion2</option>
+                  <option>Presentacion3</option>
+                  <option>Presentacion4</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                <select class="selectpicker" multiple data-style="btn-primary">
+                <select id="slc-laboratorio" class="selectpicker" title="Laboratorio" data-style="btn-primary" multiple>
+                  <!--Informacion generada por la Base -->
                   <option>Laboratorio1</option>
                   <option>Laboratorio2</option>
                   <option>Laboratorio3</option>
@@ -142,7 +147,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" id="btn-guard-prod" class="btn btn-primary">Guardar Cambios</button>
         </div>
 
       </div>
@@ -155,6 +160,7 @@
   <script src="./js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
+  <script src="./js/controlador/nuevo-producto.js"></script>
   
 </body>
 </html>
