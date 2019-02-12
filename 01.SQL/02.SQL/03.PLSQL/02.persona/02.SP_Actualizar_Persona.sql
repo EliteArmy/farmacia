@@ -129,7 +129,6 @@ SP:BEGIN
 
     UPDATE persona 
         SET
-            persona.id_persona = pI_id_persona,
             persona.primer_nombre = pI_primer_nombre,
             persona.segundo_nombre = pI_segundo_nombre, 
             persona.primer_apellido = pI_primer_apellido, 
@@ -151,15 +150,3 @@ SELECT @mensaje, @error;
 CALL SP_Actualizar_Persona(2,'pedro','pedro','rodriguez','rodriguez','M','a','a_2345@gmail.com.hn','0106199609897','12-03-13',@mensaje, @error);
 SELECT @mensaje, @error;
 
-  IN pI_id_persona INTEGER(11),
-    IN pI_primer_nombre VARCHAR(50),
-    IN pI_segundo_nombre VARCHAR(50),
-    IN pI_primer_apellido VARCHAR(50),
-    IN pI_segundo_apellido VARCHAR(50),
-    IN pI_sexo VARCHAR(1),
-    IN pI_direccion VARCHAR(300),
-    IN pI_correo_electronico VARCHAR(100),
-    IN pI_numero_identidad VARCHAR(13),
-    IN pI_fecha_nacimiento DATE,
-    OUT pO_mensaje VARCHAR(1000),
-    OUT pO_error BOOLEAN
