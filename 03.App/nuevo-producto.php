@@ -1,7 +1,4 @@
-<?php
-  $idPagina = "nuevo-producto";
-  include("autenticacion.php");
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +11,11 @@
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
 
+  <link rel="stylesheet" href="./mult-sel-plugin/css/bootstrap-select.css" type="text/css"/>
+
 </head>
 <body>
 
-  <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -74,71 +72,56 @@
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Categorias
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Categoria1</a>
-                    <a class="dropdown-item" href="#">Categoria2</a>
-                    <a class="dropdown-item" href="#">Categoria3</a>
-                    <a class="dropdown-item" href="#">Categoria4</a>
-                  </div>
+                <select class="selectpicker" multiple data-style="btn-primary">
+                  <option>Categoria1</option>
+                  <option>Categoria2</option>
+                  <option>Categoria3</option>
+                  <option>Categoria4</option>
+                </select>
               </div>
             </div>
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Impuesto
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Impuesto1</a>
-                    <a class="dropdown-item" href="#">Impuesto2</a>
-                    <a class="dropdown-item" href="#">Impuesto3</a>
-                    <a class="dropdown-item" href="#">Impuesto4</a>
-                  </div>
+                <select class="selectpicker" multiple data-style="btn-primary">
+                  <option>Impuesto1</option>
+                  <option>Impuesto2</option>
+                  <option>Impuesto3</option>
+                  <option>Impuesto4</option>
+                </select>
               </div>
             </div>
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Descuento
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Descuento1</a>
-                    <a class="dropdown-item" href="#">Descuento2</a>
-                    <a class="dropdown-item" href="#">Descuento3</a>
-                    <a class="dropdown-item" href="#">Descuento4</a>
-                  </div>
+                <select class="selectpicker" multiple data-style="btn-primary">
+                  <option>Descuento</option>
+                  <option>Descuento</option>
+                  <option>Descuento</option>
+                  <option>Descuento</option>
+                </select>
               </div>
             </div>
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Laboratorio
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Laboratorio1</a>
-                    <a class="dropdown-item" href="#">Laboratorio2</a>
-                    <a class="dropdown-item" href="#">Laboratorio3</a>
-                    <a class="dropdown-item" href="#">Laboratorio4</a>
-                  </div>
+                <select class="selectpicker" multiple data-style="btn-primary">
+                  <option>Laboratorio1</option>
+                  <option>Laboratorio2</option>
+                  <option>Laboratorio3</option>
+                  <option>Laboratorio4</option>
+                </select>
               </div>
             </div>
 
             <div class="form-group col-6 col-md-4">
               <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Presentación
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Presentación</a>
-                    <a class="dropdown-item" href="#">Presentación</a>
-                    <a class="dropdown-item" href="#">Presentación</a>
-                    <a class="dropdown-item" href="#">Presentación</a>
-                  </div>
+                <select class="selectpicker" multiple data-style="btn-primary">
+                  <option>Laboratorio1</option>
+                  <option>Laboratorio2</option>
+                  <option>Laboratorio3</option>
+                  <option>Laboratorio4</option>
+                </select>
               </div>
             </div>
 
@@ -170,5 +153,7 @@
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
+
 </body>
 </html>
