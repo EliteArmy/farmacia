@@ -88,6 +88,14 @@ class Conexion{
     mysqli_free_result($resultado);
   }
 
+  public function ejecutarConsulta($sql){
+    return mysqli_query ($this->link, $sql);
+  }
+
+  public function obtenerFila($resultado){
+    return mysqli_fetch_array ($resultado);
+  }
+
   public function cerrar(){
     mysqli_close($this->link);
   }
