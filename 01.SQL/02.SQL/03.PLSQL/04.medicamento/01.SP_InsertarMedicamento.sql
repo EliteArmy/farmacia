@@ -3,6 +3,8 @@ DROP PROCEDURE IF EXISTS SP_Insertar_Medicamento$$
 CREATE PROCEDURE SP_Insertar_Medicamento(
         IN pI_id_laboratorio INTEGER(11),
         IN pI_id_producto INTEGER(11),
+        IN pI_estado VARCHAR(1),
+
 
         OUT pO_mensaje VARCHAR(1000),
         OUT pO_error BOOLEAN
@@ -27,6 +29,10 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
 
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'id del producto, ');
+    END IF;
+
+    IF pI_estado='' OR pI_estado IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'estado, ');
     END IF;
  -- ______________________CUERPO__________________________________________
    
@@ -57,11 +63,13 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
 
      INSERT INTO medicamentos (
                       id_laboratorio,
-                      id_producto
+                      id_producto,
+                      estado
                       )
                  VALUES (
                       pI_id_laboratorio,
-                      pI_id_producto
+                      pI_id_producto,
+                      pI_estado
                       );
     COMMIT;
     END $$
@@ -69,7 +77,7 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Insertar_Medicamento(3,666,@mensaje,@error);
+CALL SP_Insertar_Medicamento(3,666,"I", @mensaje,@error);
 SELECT @mensaje, @error;
 
 
