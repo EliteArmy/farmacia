@@ -9,8 +9,8 @@ class Producto{
 	private $idImpuesto;
 	private $impuesto;
 	private $valorImpuesto;
-	private $id_categoria;
-	private $categoria;
+	private $id_categoria; /*falta set y get */
+	private $categoria; /*falta set y get */
 
 	public function __construct(
 		$idProducto = null,
@@ -45,64 +45,62 @@ class Producto{
 	public function getIdProducto(){
 		return $this->idProducto;
 	}
-
 	public function setIdProducto($idProducto){
 		$this->idProducto = $idProducto;
-	}
+  }
+  
 	public function getIdPresentacion(){
 		return $this->idPresentacion;
 	}
-
 	public function setIdPresentacion($idPresentacion){
 		$this->idPresentacion = $idPresentacion;
-	}
+  }
+  
 	public function getNombre(){
 		return $this->nombre;
 	}
-
 	public function setNombre($nombre){
 		$this->nombre = $nombre;
-	}
+  }
+  
 	public function getPresentacion(){
 		return $this->presentacion;
 	}
-
 	public function setPresentacion($presentacion){
 		$this->presentacion = $presentacion;
-	}
+  }
+  
 	public function getCodigoBarra(){
 		return $this->codigoBarra;
 	}
-
 	public function setCodigoBarra($codigoBarra){
 		$this->codigoBarra = $codigoBarra;
-	}
+  }
+  
 	public function getUrlFoto(){
 		return $this->urlFoto;
 	}
-
 	public function setUrlFoto($urlFoto){
 		$this->urlFoto = $urlFoto;
-	}
+  }
+  
 	public function getIdImpuesto(){
 		return $this->idImpuesto;
 	}
-
 	public function setIdImpuesto($idImpuesto){
 		$this->idImpuesto = $idImpuesto;
-	}
-
+  }
+  
 	public function getImpuesto(){
 		return $this->impuesto;
 	}
-
 	public function setImpuesto($impuesto){
 		$this->impuesto = $impuesto;
-	}
+  }
+  
 	public function getValorImpuesto(){
 		return $this->valorImpuesto;
 	}
-
 	public function setValorImpuesto($valorImpuesto){
 		$this->valorImpuesto = $valorImpuesto;
 	}
@@ -110,14 +108,13 @@ class Producto{
 	public function getCategoria(){
 		return $this->categoria;
 	}
-
 	public function setCategoria($categoria){
 		$this->categoria = $categoria;
-	}
+  }
+  
 	public function getIdCategoria(){
 		return $this->idCategoria;
 	}
-
 	public function setIdCategoria($idCategoria){
 		$this->idCategoria = $idCategoria;
 	}
@@ -130,15 +127,24 @@ class Producto{
 	public function actualizar($conexion){
 	}
 	public function borrar($conexion){
+  }
+
+  
+  public function crearCategoria($conexion){
+		$sql = "CALL SP_Insertar_Categoria('%s');";
+		$valores = [$this->categoria];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows) == 1) return $rows[0];
 	}
-	public function crearPresentacion($conexion){
+	public static function leerCategoria($conexion){
+		$sql = "SELECT * FROM categoria";
+		return $conexion -> query($sql);
 	}
-	public function borrarPresentacion($conexion){
+	public function actualizarCategoria($conexion){
 	}
-	public function actualizarPresentacion($conexion){
+	public function borrarCategoria($conexion){
 	}
-	public function leerPresentacion($conexion){
-	}
+  
 
 	public function crearImpuesto($conexion){
 		$sql = "CALL SP_Insertar_Impuesto('%s', %s)";
@@ -155,20 +161,27 @@ class Producto{
 	public function borrarImpuesto($conexion){
 	}
 
-	public function crearCategoria($conexion){
-		$sql = "CALL SP_Insertar_Categoria('%s');";
-		$valores = [$this->categoria];
-		$rows = $conexion->query($sql, $valores);
-		if (count($rows) == 1) return $rows[0];
+
+  public function crearDescuento($conexion){
 	}
-	public static function leerCategoria($conexion){
-		$sql = "SELECT * FROM categoria";
-		return $conexion -> query($sql);
+	public function actualizarDescuento($conexion){
 	}
-	public function actualizarCategoria($conexion){
+	public function leerDescuento($conexion){
 	}
-	public function borrarCategoria($conexion){
+	public function borrarDescuento($conexion){
+  }
+
+
+	public function crearPresentacion($conexion){
 	}
+	public function borrarPresentacion($conexion){
+	}
+	public function actualizarPresentacion($conexion){
+	}
+	public function leerPresentacion($conexion){
+	}
+
+
 
 }
 ?>
