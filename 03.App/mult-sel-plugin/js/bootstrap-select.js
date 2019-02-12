@@ -490,8 +490,8 @@
 
   // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
   Selectpicker.DEFAULTS = {
-    noneSelectedText: 'Nada Seleccionado',
-    noneResultsText: 'Sin Resultados {0}',
+    noneSelectedText: 'Nothing selected',
+    noneResultsText: 'No results matched {0}',
     countSelectedText: function (numSelected, numTotal) {
       return (numSelected == 1) ? "{0} item selected" : "{0} items selected";
     },
@@ -501,10 +501,10 @@
         (numGroup == 1) ? 'Group limit reached ({n} item max)' : 'Group limit reached ({n} items max)'
       ];
     },
-    selectAllText: 'Seleccionar Todos',
-    deselectAllText: 'Desmarcar Todos',
+    selectAllText: 'Select All',
+    deselectAllText: 'Deselect All',
     doneButton: false,
-    doneButtonText: 'Cerrar',
+    doneButtonText: 'Close',
     multipleSeparator: ', ',
     styleBase: 'btn',
     style: classNames.BUTTONCLASS,

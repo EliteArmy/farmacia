@@ -154,6 +154,7 @@
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
-
+  <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
+  
 </body>
 </html>
