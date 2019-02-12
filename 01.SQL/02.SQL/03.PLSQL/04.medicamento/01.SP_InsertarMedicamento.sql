@@ -41,7 +41,7 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
 
 
    SELECT COUNT(*)  INTO contador
-   FROM producto    
+   FROM medicamentos    
    WHERE  id_producto= pI_id_producto;
    
    IF contador >=1 THEN
