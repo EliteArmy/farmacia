@@ -39,12 +39,13 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
    SET mensaje = CONCAT(mensaje, 'el identificador de laboratorio no existe, ');
    END IF;
 
+
    SELECT COUNT(*)  INTO contador
    FROM producto    
    WHERE  id_producto= pI_id_producto;
    
-   IF contador =0 THEN
-   SET mensaje = CONCAT(mensaje, 'el identificador de producto no existe, ');
+   IF contador >=1 THEN
+   SET mensaje = CONCAT(mensaje, 'el identificador de producto ya existe, ');
    END IF;
 
    IF mensaje <> '' THEN
@@ -68,7 +69,7 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Insertar_Medicamento(3,2,@mensaje,@error);
+CALL SP_Insertar_Medicamento(3,666,@mensaje,@error);
 SELECT @mensaje, @error;
 
 
