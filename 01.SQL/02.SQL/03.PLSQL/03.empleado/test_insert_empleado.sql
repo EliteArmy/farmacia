@@ -57,7 +57,7 @@ CREATE PROCEDURE SP_Test(
     END IF;
 
    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Campos Vacios: ', mensaje);
+        SET pO_mensaje=CONCAT('Error: ', mensaje);
         SET pO_error=TRUE;
         LEAVE SP;
    END IF;
