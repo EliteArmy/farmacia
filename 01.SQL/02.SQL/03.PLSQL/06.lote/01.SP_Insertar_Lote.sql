@@ -14,12 +14,10 @@ CREATE PROCEDURE SP_Inserta_Lote(
 )
   SP:BEGIN
     -- Declaraciones
-    DECLARE mensaje VARCHAR(255);
-    DECLARE resultado BOOLEAN;
+    DECLARE mensaje VARCHAR(1000);
     DECLARE contador INTEGER;
     -- Inicializaciones
     SET mensaje='';
-    SET resultado = FALSE;
     SET contador = 0;
 
  
@@ -56,11 +54,31 @@ CREATE PROCEDURE SP_Inserta_Lote(
         LEAVE SP;
    END IF;
 
+   -- Validar que id_producto exista
+   SELECT COUNT(*) INTO contador FROM producto WHERE id_producto = pI_id_producto;
+   IF contador=0 THEN
+     SET mensaje=CONCAT('id de producto no existe', mensaje);
+   END IF;
 
-     INSERT INTO lote (
-                      
-                      )
-                 VALUES (
+   IF mensaje <> '' THEN
+        SET pO_mensaje=CONCAT('Errores: ', mensaje);
+        SET pO_error=TRUE;
+        LEAVE SP;
+   END IF;
+
+
+     INSERT INTO lote (id_producto,
+                       lote,
+                       precio_costo,
+                       precio_venta,
+                       fecha_elaboracion,
+                       fecha_vencimiento)
+                VALUES(pI_id_producto,
+                       pI_lote,
+                       pI_precio_costo,
+                       pI_precio_venta,
+                       pI_fecha_elaboracion,
+                       pI_fecha_vencimiento
                      
                       );
     COMMIT;
