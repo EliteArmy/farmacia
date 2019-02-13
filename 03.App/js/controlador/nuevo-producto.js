@@ -22,7 +22,9 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    imprimirCategoria(response);
+    alert(response);
+    imprimirCategoria(response.data);
+    
   });
   
   function imprimirCategoria(response){
