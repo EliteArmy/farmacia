@@ -42,11 +42,11 @@ CREATE PROCEDURE SP_Insertar_Lote(
         SET mensaje=CONCAT('precio venta, ',mensaje);
     END IF;
 
-    IF pI_fecha_elaboracion=''  OR pI_fecha_elaboracion IS NULL THEN 
+    IF pI_fecha_elaboracion='0000-00-00' OR pI_fecha_elaboracion IS NULL THEN 
         SET mensaje=CONCAT('fecha elaboracion, ',mensaje);
     END IF;
 
-    IF pI_fecha_vencimiento=''  OR pI_fecha_vencimiento IS NULL THEN 
+    IF pI_fecha_vencimiento='0000-00-00' OR pI_fecha_vencimiento IS NULL THEN 
         SET mensaje=CONCAT('fecha vencimiento, ',mensaje);
     END IF;
 
@@ -67,8 +67,8 @@ CREATE PROCEDURE SP_Insertar_Lote(
         LEAVE SP;
    END IF;
 
-   INSERT INTO lote (id_producto, 
-					lote, 
+   UPDATE lote SET id_producto, 
+					lote,
 					precio_costo,
 					precio_venta,
 					fecha_elaboracion,
