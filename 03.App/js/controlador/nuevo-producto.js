@@ -20,14 +20,23 @@ $(document).ready(function() {
     }
   }
 
-
-  //alert(settings);
   $.ajax(settings).done(function (response) {
     console.log(response);
-    alert(settings);
+    imprimirCategoria(response);
   });
   
-  // alert(settings);
+  function imprimirCategoria(response){
+    $("#slc-categoria").empty();
+    //alert(response.length);
+    for (var i=0; i<response.length; i++){    
+      var categ = response[i];
+      var fila = 
+      '<option value="' + categ.id_categoria+'">' + categ.categoria + '</option>';
+      $("#slc-categoria").append(fila);
+      alert(fila);
+    }
+  }
+
  /*
   // ---- Leer Impuesto: ----
   var settings = {
