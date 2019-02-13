@@ -4,7 +4,7 @@ $(document).ready(function() {
     var parametros = $("#slc-categoria").val();
     alert(parametros);
   });
- 
+
   // ---- Leer Categoria: ----
   var settings = {
     "async": true,
@@ -22,21 +22,19 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    alert(response);
+    //alert(response.data);
     imprimirCategoria(response.data);
-    
   });
   
   function imprimirCategoria(response){
     $("#slc-categoria").empty();
-    //alert(response.length);
     for (var i=0; i<response.length; i++){    
       var categ = response[i];
       var fila = 
       '<option value="' + categ.id_categoria+'">' + categ.categoria + '</option>';
       $("#slc-categoria").append(fila);
-      alert(fila);
     }
+    $('.selectpicker').selectpicker('refresh');
   }
 
  /*
@@ -117,4 +115,5 @@ $(document).ready(function() {
   });
 
   */
+
 });

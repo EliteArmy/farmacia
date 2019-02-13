@@ -33,8 +33,8 @@
 
   <!-- Button trigger para el modal -->
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
-          Agregar Nuevo Producto
-        </button>
+    Agregar Nuevo Producto
+  </button>
 
   <!-- Modal -->
   <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,64 +70,50 @@
               <input type="text" class="form-control" id="" name="" placeholder="placeholder2">
             </div>
 
-            <div class="form-group col-6 col-md-4">
-              <div class="btn-group">
-                <select id="slc-categoria" class="selectpicker" title="Categorias" data-style="btn-primary" multiple>
-                  <!--Informacion generada por la Base -->
-                  <option>Categoria1</option>
-                  <option>Categoria2</option>
-                  <option>Categoria3</option>
-                  <option>Categoria4</option>
-                </select>
-              </div>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-categoria" class="selectpicker form-control" title="Categorias" data-style="btn-primary" multiple>
+                <!--Informacion generada -->
+              </select>
             </div>
 
-            <div class="form-group col-6 col-md-4">
-              <div class="btn-group">
-                <select id="slc-impuesto" class="selectpicker" title="Impuestos" data-style="btn-primary" multiple>
-                  <!--Informacion generada por la Base -->
-                  <option>Impuesto1</option>
-                  <option>Impuesto2</option>
-                  <option>Impuesto3</option>
-                  <option>Impuesto4</option>
-                </select>
-              </div>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-impuesto" class="selectpicker form-control" title="Impuestos" data-style="btn-primary" multiple>
+                <!--Informacion generada -->
+                <option>Impuesto1</option>
+                <option>Impuesto2</option>
+                <option>Impuesto3</option>
+                <option>Impuesto4</option>
+              </select>
             </div>
 
-            <div class="form-group col-6 col-md-4">
-              <div class="btn-group">
-                <select id="slc-descuento" class="selectpicker" title="Descuentos" data-style="btn-primary" multiple>
-                  <!--Informacion generada por la Base -->
-                  <option>Descuento</option>
-                  <option>Descuento</option>
-                  <option>Descuento</option>
-                  <option>Descuento</option>
-                </select>
-              </div>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-descuento" class="selectpicker form-control" title="Descuentos" data-style="btn-primary" multiple>
+                <!--Informacion generada -->
+                <option>Descuento</option>
+                <option>Descuento</option>
+                <option>Descuento</option>
+                <option>Descuento</option>
+              </select>
             </div>
 
-            <div class="form-group col-6 col-md-4">
-              <div class="btn-group">
-                <select id="slc-presentacion" class="selectpicker" title="Presentacion" data-style="btn-primary" multiple>
-                  <!--Informacion generada por la Base -->
-                  <option>Presentacion1</option>
-                  <option>Presentacion2</option>
-                  <option>Presentacion3</option>
-                  <option>Presentacion4</option>
-                </select>
-              </div>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-presentacion" class="selectpicker form-control" title="Presentacion" data-style="btn-primary" multiple>
+                <!--Informacion generada -->
+                <option>Presentacion1</option>
+                <option>Presentacion2</option>
+                <option>Presentacion3</option>
+                <option>Presentacion4</option>
+              </select>
             </div>
 
-            <div class="form-group col-6 col-md-4">
-              <div class="btn-group">
-                <select id="slc-laboratorio" class="selectpicker" title="Laboratorio" data-style="btn-primary" multiple>
-                  <!--Informacion generada por la Base -->
-                  <option>Laboratorio1</option>
-                  <option>Laboratorio2</option>
-                  <option>Laboratorio3</option>
-                  <option>Laboratorio4</option>
-                </select>
-              </div>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-laboratorio" class="selectpicker form-control" title="Laboratorio" data-style="btn-primary" multiple>
+                <!--Informacion generada -->
+                <option>Laboratorio1</option>
+                <option>Laboratorio2</option>
+                <option>Laboratorio3</option>
+                <option>Laboratorio4</option>
+              </select>
             </div>
 
           </div>
