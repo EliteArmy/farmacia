@@ -25,7 +25,7 @@ SP:BEGIN
     START TRANSACTION;
     SET mensaje = '';
 
-    -- Verificaciones de campos obligatorios que no esten vacios
+    -- ___________________VALIDACONES___________________________
     IF pI_primer_nombre='' OR pI_primer_nombre IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'primer nombre, ');
     END IF; 
@@ -37,15 +37,7 @@ SP:BEGIN
     END IF;
     IF pI_numero_identidad='' OR pI_numero_identidad IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
-    END IF; 
-    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Errores: ', mensaje);
-        SET pO_error=TRUE;
-        -- SELECT mensaje, resultado;, usar para salida de parametros en caso de no utilizar
-        -- parametros de salida
-        LEAVE SP;
-    END IF;
-    
+    END IF;   
     -- Otras Validaciones
     -- email
     IF NOT (pI_correo_electronico='' OR pI_correo_electronico IS NULL) THEN 
@@ -53,18 +45,15 @@ SP:BEGIN
             SET mensaje=CONCAT(mensaje, 'correo invalido, ');
         END IF;
     END IF;
-    
-    
     -- genero
     IF NOT( pI_sexo = 'M' OR pI_sexo = 'F' OR pI_sexo='I') THEN
      SET mensaje=CONCAT(mensaje,'genero invalido, ');
     END IF;
-    
     -- identidad
     IF (pI_numero_identidad REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$' ) = 0 THEN
         SET mensaje=CONCAT(mensaje,'numero de identidad invalido, ');
     END IF;
-
+    -- __________________________CUERPO DEL PL______________________________________________
     -- Validar que el numero de identidad no se repita 
     SELECT COUNT(*) INTO contador FROM persona WHERE numero_identidad = pI_numero_identidad;
 	IF contador>=1 THEN

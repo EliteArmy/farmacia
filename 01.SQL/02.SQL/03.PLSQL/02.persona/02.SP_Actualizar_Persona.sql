@@ -29,7 +29,7 @@ SP:BEGIN
     SET mensaje = '';
     SET contador =0;
 
-    -- Verificaciones de campos obligatorios que no esten vacios
+    -- ___________________VALIDACIONES___________________________________
     IF pI_id_persona ='' OR pI_id_persona IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'identificador persona, ');
     END IF;
@@ -52,16 +52,6 @@ SP:BEGIN
         SET mensaje=CONCAT(mensaje, 'fecha de nacimiento, ');
     END IF;
 
-
-
-    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Errores: ', mensaje);
-        SET pO_error=TRUE;
-        -- SELECT mensaje, resultado;, usar para salida de parametros en caso de no utilizar
-        -- parametros de salida
-        LEAVE SP;
-    END IF;
-    
     -- Otras Validaciones
     -- email
     IF (pI_correo_electronico  REGEXP '^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$') = 0 THEN
@@ -73,20 +63,9 @@ SP:BEGIN
    IF (pI_numero_identidad REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$' ) = 0 THEN
        SET mensaje=CONCAT(mensaje,'numero de identidad invalido, ');
    END IF;
-  
-  
-    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
-        SET pO_error=TRUE;
-        -- SELECT mensaje, resultado; --Hacer el mismo trabajo que las variables de salida
-        -- se llama al procedimiento con call y devuelve los valores de salida mensaje y resultado
-        -- siendo mensaje y resultado variable locales declare mensaje varchar(1000); 
-        -- declare error BOOLEAN;
-        LEAVE SP;
-    END IF;
-
+ 
+    -- ________________________________CUERPO DEL PL_________________________________________
     -- update n Commit
-
     -- verify if there is an identifier
 
     SELECT
@@ -98,7 +77,6 @@ SP:BEGIN
 
     IF contador=0 THEN
         SET mensaje = CONCAT(mensaje, 'este usuario no esta registrado, ');
-        SET pO_error=TRUE;
     END IF;
 
 -- verify if there is an identifier
@@ -112,7 +90,6 @@ SP:BEGIN
 
     IF contador>=1 THEN
         SET mensaje = CONCAT(mensaje, 'este correo ya esta asignado a otro usuario, ');
-        SET pO_error=TRUE;
     END IF;
     -- verify if there is an identifier
 
@@ -124,7 +101,16 @@ SP:BEGIN
 
     IF contador>=1 THEN
         SET mensaje = CONCAT(mensaje, 'el identidicador esta repetido:, ');
-        SET pO_error = TRUE;
+    END IF;
+  
+    IF mensaje <> '' THEN
+        SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
+        SET pO_error=TRUE;
+        -- SELECT mensaje, resultado; --Hacer el mismo trabajo que las variables de salida
+        -- se llama al procedimiento con call y devuelve los valores de salida mensaje y resultado
+        -- siendo mensaje y resultado variable locales declare mensaje varchar(1000); 
+        -- declare error BOOLEAN;
+        LEAVE SP;
     END IF;
 
     UPDATE persona 
