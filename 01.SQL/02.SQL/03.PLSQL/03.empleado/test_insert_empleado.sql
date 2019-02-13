@@ -26,6 +26,7 @@ CREATE PROCEDURE SP_Test(
   DECLARE mensaje VARCHAR(255);
   DECLARE resultado BOOLEAN;
   DECLARE contador INTEGER;
+  DECLARE ultimoId INTEGER;
 
 -- Inicializaciones
   SET AUTOCOMMIT=0;
@@ -79,12 +80,27 @@ CREATE PROCEDURE SP_Test(
 		SET pO_mensaje = pO_mensaje;
         LEAVE SP;
     END IF;
-    SET pO_mensaje = 'ERRORSOTE CABALLO! LAST';
+	 -- utlimo id persona + insercion de empleado
+    SELECT MAX(id_persona) INTO ultimoId FROM persona;
 
+    INSERT INTO empleado(fecha_ingreso, 
+                         id_persona, 
+                         usuario, 
+                         contrasena, 
+                         foto_url, 
+                         estado) 
+                  VALUES (pI_fecha_ingreso,
+                          ultimoId,
+                          pI_usuario,
+                          pI_contrasena,
+                          pI_foto_url,
+                          pI_estado
+                         );
+    COMMIT;
 
 END $$
 
-CALL SP_Test('WIL','WIL','WIL','WIL','M','SAFDYS','WIL','0801194513244','02-02-1996','02-02-1996','Histerico','ASD','ASDFGHJKL.COM','A',@mensaje,@error);
+CALL SP_Test('WIL','WIL','WIL','WIL','M','SAFDYS','WIL@GMAIL.COM','0801194513244',DATE('2002-02-03'),DATE('2002-02-03'),'Histerico','ASD','ASDFGHJKL.COM','A',@mensaje,@error);
 SELECT @mensaje,@error;
 
 
