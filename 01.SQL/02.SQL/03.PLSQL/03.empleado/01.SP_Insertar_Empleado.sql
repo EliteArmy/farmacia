@@ -51,6 +51,10 @@ SP:BEGIN
         LEAVE SP;
     END IF;
     
+    IF pO_error = TRUE THEN
+        LEAVE SP;
+    END IF;
+    
     CALL SP_Insertar_Persona(pI_primer_nombre,
                              pI_segundo_nombre,
                              pI_primer_apellido,
@@ -62,17 +66,14 @@ SP:BEGIN
                              pI_fecha_nacimiento,
                              pO_mensaje,
                              pO_error);
-    IF pO_error = TRUE THEN
-        LEAVE SP;
-    END IF;
 
     -- validar que el usuario no exista
-    SELECT COUNT(*) INTO contador FROM empleado WHERE usuario = pI_usuario;
+    SELECT COUNT(*) INTO contador FROM empleado WHERE empleado.usuario = pI_usuario;
     IF contador>=1 THEN
          SET mensaje=CONCAT(mensaje, 'usuario ya existe, ');
     END IF;
 
-     IF mensaje <> '' THEN
+    IF mensaje <> '' THEN
         SET pO_mensaje=CONCAT('Errores: ', mensaje);
         SET pO_error=TRUE;
         LEAVE SP;
