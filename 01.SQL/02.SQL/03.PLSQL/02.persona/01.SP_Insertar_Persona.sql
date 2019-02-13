@@ -110,7 +110,7 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','dir','jjjj@gmail.com','0922299909897','2018-03-02',@mensaje, @error);
+CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','dir','jjj1121j@gmail.com','0922267831234',null,@mensaje, @error);
 SELECT @mensaje, @error;
     
 /*---COMENTARIOS  LLAMAR AL SP con parametro de salida OUT*/
