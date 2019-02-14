@@ -12,8 +12,8 @@ Farmacia: Sistema de Gestión de Inventarios.
 * Wilian Barahona (****)
 * Ariel Palma (****)
 * Héctor Bardales (****)
-* Wilson (****)
-* Alejandro (****)
+* Wilson Paniagua (****)
+* Eduardo Escoto (****)
 * Antonio Aguilar (**jaguilar992@gmail.com**)
 
 ***Descripción:***
