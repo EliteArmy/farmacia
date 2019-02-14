@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Origin: *');
 
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
@@ -12,37 +12,37 @@ if(isset($_POST['accion'])){
   $conexion = new Conexion();
 
   switch ($_POST['accion']) {
-    
+
     case 'leer-categoria':
-      $res["data"] = Producto::leerCategoria($conexion);
+      $res['data'] = Producto::leerCategoria($conexion);
       echo json_encode($res);
     break;
 
     case 'leer-impuesto':
-      $res["data"] = Producto::leerImpuesto($conexion);
+      $res['data'] = Producto::leerImpuesto($conexion);
       echo json_encode($res);
     break;
     /*
     case 'leer-descuento':
-      $res["data"] = Producto::leerDescuento($conexion);
+      $res['data'] = Producto::leerDescuento($conexion);
       echo json_encode($res);
     break;
     */
     case 'leer-presentacion':
-      $res["data"] = Producto::leerProducto($conexion);
+      $res['data'] = Producto::leerProducto($conexion);
       echo json_encode($res);
     break;
 
     case 'leer-laboratorio':
-      $res["data"] = Medicamento::leerLaboratorio($conexion);
+      $res['data'] = Medicamento::leerLaboratorio($conexion);
       echo json_encode($res);
     break;
-    
+
     case 'crear-categoria':
       $cat = validarPOST('categoria');
       $prod = new Producto();
       $prod->setCategoria($cat);
-      $res["data"] = $prod->crearCategoria($conexion);
+      $res['data'] = $prod->crearCategoria($conexion);
       echo json_encode($res);
     break;
 
@@ -52,7 +52,7 @@ if(isset($_POST['accion'])){
       $prod = new Producto();
       $prod->setImpuesto($imp);
       $prod->setValorImpuesto($val);
-      $res["data"] = $prod->crearImpuesto($conexion);
+      $res['data'] = $prod->crearImpuesto($conexion);
       echo json_encode($res);
     break;
 
@@ -60,22 +60,22 @@ if(isset($_POST['accion'])){
       $lab = validarPOST('nombre_laboratorio');
       $med = new Medicamento();
       $med->setLaboratorio($lab);
-      $res["data"] = $med->crearLaboratorio($conexion);
+      $res['data'] = $med->crearLaboratorio($conexion);
       echo json_encode($res);
     break;
 
     // DEFAULT
     default:
-      $res["data"]['mensaje']='Accion no reconocida';
-      $res["data"]['resultado']=false;
+      $res['data']['mensaje']='Accion no reconocida';
+      $res['data']['resultado']=false;
       echo json_encode($res);
     break;
   }
   $conexion->cerrar();
   $conexion = null;
 } else {
-  $res["data"]['mensaje']='Accion no especificada';
-  $res["data"]['resultado']=false;
+  $res['data']['mensaje']='Accion no especificada';
+  $res['data']['resultado']=false;
   echo json_encode($res);
 }
 ?>

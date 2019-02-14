@@ -89,6 +89,31 @@ class Empleado extends Persona{
 	}
 
 	public function crear($conexion){
+		$sql = "
+			CALL SP_Insertar_Empleado(
+				'%s','%s','%s','%s','%s','%s','%s','%s',
+				DATE('%s'),DATE('%s'),'%s','%s','%s',@mensaje,@error
+			);
+			SELECT @mensaje,@error
+		";
+		$this->contrasena = hash('sha512', $this->contrasena);
+		$valores = [
+			$this->getPrimerNombre(),
+			$this->getSegundoNombre(),
+			$this->getPrimerApellido(),
+			$this->getSegundoApellido(),
+			$this->getSexo(),
+			$this->getDireccion(),
+			$this->getCorreoElectronico(),
+			$this->getNumeroIdentidad(),
+			$this->getFechaNacimiento(),
+			$this->getFechaIngreso(),
+			$this->getUsuario(),
+			$this->getContrasena(),
+			$this->getFotoUrl()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows[0];
 	}
 	public function borrar($conexion){
 	}
