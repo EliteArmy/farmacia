@@ -80,6 +80,8 @@ CREATE PROCEDURE SP_Insertar_Lote(
 					pI_fecha_elaboracion,
 					pI_fecha_vencimiento);
     COMMIT;
+    SET pO_mensaje='Insersion exitosa';
+    SET pO_error=FALSE;
 END $$
 
 CALL SP_Insertar_Lote(1,'paracetamol lot1', 200.0, 200, '2018-02-02','2018-02-02',@mensaje,@error);

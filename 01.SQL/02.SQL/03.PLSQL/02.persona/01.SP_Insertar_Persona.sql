@@ -96,6 +96,8 @@ SP:BEGIN
                          pI_numero_identidad, 
                          pI_fecha_nacimiento);
     COMMIT;
+    SET pO_mensaje='Insersion exitosa';
+    SET pO_error=FALSE;
 
 END$$
 

@@ -96,6 +96,8 @@ CREATE PROCEDURE SP_Insertar_Empleado(
                           'A'
                          );
     COMMIT;
+    SET pO_mensaje='Insersion exitosa';
+    SET pO_error=FALSE;
 
 END $$
 
