@@ -94,7 +94,6 @@ class Empleado extends Persona{
 				'%s','%s','%s','%s','%s','%s','%s','%s',
 				DATE('%s'),DATE('%s'),'%s','%s','%s',@mensaje,@error
 			);
-			SELECT @mensaje,@error
 		";
 		$this->contrasena = hash('sha512', $this->contrasena);
 		$valores = [
