@@ -19,6 +19,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
   SET mensaje='';
   SET resultado = FALSE;
   SET contador = 0;
+  -- _________________VERIFICACIONES_________________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
 
     IF pI_id_presentacion='' OR pI_id_presentacion IS NULL THEN 
@@ -36,7 +37,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
 	-- el campo de la foto de un producto puede ser null
    -- IF pI_url_foto='' OR pI_url_foto IS NULL THEN 
    --     SET mensaje=CONCAT(mensaje, 'foto del producto, ');
-   
+   -- _________________CUERPO DEL PL______________________________________
    -- validacion de que id_categoria exista
    SELECT COUNT(*)  INTO contador
    FROM presentacion    
@@ -44,6 +45,14 @@ CREATE PROCEDURE SP_Insertar_Producto(
    
    IF contador =0 THEN
    SET mensaje = CONCAT(mensaje, 'el identificador de presentaciòn de producto no existe, ');
+   END IF;
+   
+   SELECT COUNT(*) INTO contador
+   FROM producto
+   WHERE codigo_barra = pI_codigo_barra;
+   
+   IF contador >=1 THEN
+   SET mensaje = CONCAT(mensaje, 'el codigo de barra ya esta asignado, ');
    END IF;
    
    IF mensaje <> '' THEN
@@ -67,10 +76,9 @@ CREATE PROCEDURE SP_Insertar_Producto(
 
 END $$
 
-
-
-
-CALL SP_Insertar_Producto(3,"paracetamol", "dfasdf46556", "https://www.youtube.com/watch?v=1XhyuRVf9B4",@mensaje,@error);
+CALL SP_Insertar_Producto(51,"paracetamol", "dfasdf46ji56", "https://www.youtube.com/watch?v=YoDh_gHDvkk",@mensaje,@error);
 SELECT @mensaje, @error;
+
+SELECT * from producto
 
 

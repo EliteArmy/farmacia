@@ -56,7 +56,8 @@ CREATE PROCEDURE SP_Eliminar_Medicamento(
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Eliminar_Medicamento(3, @mensaje,@error);
+CALL SP_Eliminar_Medicamento(6, @mensaje,@error);
 SELECT @mensaje, @error;
 
+SELECT * FROM medicamentos
 

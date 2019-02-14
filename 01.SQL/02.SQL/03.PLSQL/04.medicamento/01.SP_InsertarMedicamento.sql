@@ -80,4 +80,6 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
 CALL SP_Insertar_Medicamento(3,666,"I", @mensaje,@error);
 SELECT @mensaje, @error;
 
+SELECT * FROM medicamentos
+
 

@@ -25,17 +25,7 @@ SP:BEGIN
     -- Verificaciones de campos obligatorios que no esten vacios
      IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'id de empleado, ');
-    END IF;
-  
-
-    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Errores: ', mensaje);
-        SET pO_error=TRUE;
-        -- SELECT mensaje, resultado;, usar para salida de parametros en caso de no utilizar
-        -- parametros de salida
-        LEAVE SP;
-    END IF;
-    
+    END IF;    
     -- ______________________CUERPO DEL PROCEDIMIENTO_________________________
 
     SELECT
@@ -46,7 +36,6 @@ SP:BEGIN
 
     IF contador=0 THEN  
         SET mensaje = CONCAT(mensaje, 'Usuario no registrado : ');
-        SET pO_error = TRUE;
     END IF;
  
     IF mensaje <> '' THEN
@@ -65,8 +54,10 @@ SP:BEGIN
     END;
 
 -- ________________________LLAMADO DEL PL_____________________________
-CALL SP_Eliminar_Empleado(2,@mensaje, @error);
+CALL SP_Eliminar_Empleado(8,@mensaje, @error);
 SELECT @mensaje, @error;
+
+SELECT * FROM empleado
 
 
    

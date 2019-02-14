@@ -36,13 +36,11 @@ SP:BEGIN
     START TRANSACTION;
     SET mensaje = '';
     SET contador =0;
-
-    -- verificacion campos persona
+   -- ___________________________VALIDACIONES__________________________________________________________
+   -- verificacion campos persona
    -- CALL SP_Actualizar_Persona(pI_id_persona, "pI_primer_nombre", "pI_segundo_nombre" ,"pI_primer_apellido" ,"pI_segundo_apellido ", "pI_sexo" ,
    --                            "pI_direccion" ,"pI_correo_electronico" ,"pI_numero_identidad" ,@mensaje, @error);
     
-
-
     -- Verificaciones de campos obligatorios que no esten vacios
     -- employee registers
      IF pI_fecha_ingreso='' OR pI_fecha_ingreso IS NULL THEN 
@@ -57,20 +55,9 @@ SP:BEGIN
      IF pI_estado='' OR pI_estado IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'estado del empleado, ');
     END IF;
-
-
-    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Errores: ', mensaje);
-        SET pO_error=TRUE;
-        -- SELECT mensaje, resultado;, usar para salida de parametros en caso de no utilizar
-        -- parametros de salida
-        LEAVE SP;
-    END IF;
-    
-
+	-- _________________________CUERPO DEL PL___________________________________________
     -- update n Commit
-
--- verify employee registers
+	-- verify employee registers
 
     SELECT
         COUNT(*)
@@ -80,7 +67,6 @@ SP:BEGIN
 
     IF contador=0 THEN  
         SET mensaje = CONCAT(mensaje, 'Usuario no registrado : ');
-        SET pO_error = TRUE;
     END IF;
 
     SELECT
@@ -91,22 +77,24 @@ SP:BEGIN
 
     IF contador>=1 THEN  
         SET mensaje = CONCAT(mensaje, 'El usuario solicitado ya existe : ');
-        SET pO_error = TRUE;
     END IF;
 
-    SELECT
-        COUNT(*)
-    INTO contador
+    SELECT COUNT(*) INTO contador
     FROM empleado
     WHERE pI_foto_url = empleado.foto_url;
 
     IF contador>=1 THEN  
         SET mensaje = CONCAT(mensaje, 'fotografia ya asignada : ');
-        SET pO_error = TRUE;
     END IF;
-
-
-
+	
+    IF mensaje <> '' THEN
+        SET pO_mensaje=CONCAT('Errores: ', mensaje);
+        SET pO_error=TRUE;
+        -- SELECT mensaje, resultado;, usar para salida de parametros en caso de no utilizar
+        -- parametros de salida
+        LEAVE SP;
+    END IF; 
+    
     UPDATE empleado 
         SET
              -- employee registers
@@ -120,19 +108,9 @@ SP:BEGIN
     CALL SP_Actualizar_Persona(pI_id_persona, pI_primer_nombre, pI_segundo_nombre ,pI_primer_apellido ,pI_segundo_apellido , pI_sexo ,
                              pI_direccion ,pI_correo_electronico ,pI_numero_identidad ,pI_fecha_nacimiento,@mensaje, @error);
     COMMIT;
-    END
+    END$$
 
 
---row affected
--- CALL SP_Actualizar_Empleado(1, 1, "Alejandra", "e ","Nuñez","e", "F", "adadfd", "aleja@gmail.com", "0801199022344", STR_TO_DATE('01/29/1995','%m/%d/%Y'),
---                             @mensaje, @error, STR_TO_DATE('02/02/2019','%m/%d/%Y'),"Ale123", "https://www.youtube.com/watch?v=SnySPNnfDNY", "A");
--- SELECT @mensaje, @error;
-
-
--- unknow field pi_fecha_ingreso
-CALL SP_Actualizar_Empleado(1, 1, "Alejandra", "e ","Nuñez","e", "F", "adadfd", "aleja@gmail.com", "0801199022344", '01-29-1995',
-                             "02-02-2019","Ale123", "https://www.youtube.com/watch?v=SnySPNnfDNY", "A",@mensaje, @error);
-SELECT @mensaje, @error;
 
 
    
