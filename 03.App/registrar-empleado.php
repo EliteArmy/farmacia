@@ -32,19 +32,19 @@
             <table class="table">
               <tr>
                 <td>Primer nombre: </td>
-                <td><input type="text" id="txt-primer_nombre" class="form-control"></td>
+                <td><input type="text" id="txt-primer-nombre" class="form-control"></td>
               </tr>
               <tr>
                 <td>Segundo nombre: </td>
-                <td><input type="text" id="txt-segundo_nombre" class="form-control"></td>
+                <td><input type="text" id="txt-segundo-nombre" class="form-control"></td>
               </tr>
               <tr>
                 <td>Primer apellido: </td>
-                <td><input type="text" id="txt-primer_apellido" class="form-control"></td>
+                <td><input type="text" id="txt-primer-apellido" class="form-control"></td>
               </tr>
               <tr>
                 <td>Segundo apellido: </td>
-                <td><input type="text" id="txt-segundo_apellido" class="form-control"></td>
+                <td><input type="text" id="txt-segundo-apellido" class="form-control"></td>
               </tr>
               <tr>
                 <td>Sexo: </td>
@@ -62,15 +62,15 @@
               </tr>
               <tr>
                 <td>Correo electrónico:</td>
-                <td><input type="email" id="txt-correo_electronico" class="form-control"></td>
+                <td><input type="email" id="txt-correo-electronico" class="form-control"></td>
               </tr>
               <tr>
                 <td>Número de identidad:</td>
-                <td><input type="text" id="txt-numero_identidad" class="form-control"></td>
+                <td><input type="text" id="txt-numero-identidad" class="form-control"></td>
               </tr>
               <tr>
                 <td>Fecha de nacimiento:</td>
-                <td><input type="date" id="txt-fecha_nacimiento" class="form-control"></td>
+                <td><input type="date" id="txt-fecha-nacimiento" class="form-control"></td>
               </tr>
             </table>
           </div>
@@ -93,7 +93,7 @@
               </tr>
               <tr>
                 <td>Fecha de ingreso:</td>
-                <td><input type="date" id="txt-fecha_ingreso" class="form-control"></td>
+                <td><input type="date" id="txt-fecha-ingreso" class="form-control"></td>
               </tr>
             </table>
           </div>
