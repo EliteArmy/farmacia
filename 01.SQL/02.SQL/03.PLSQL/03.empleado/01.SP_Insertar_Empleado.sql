@@ -15,7 +15,6 @@ CREATE PROCEDURE SP_Test(
     IN pI_usuario VARCHAR(50),
     IN pI_contrasena VARCHAR(128),
     IN pI_foto_url VARCHAR(100),
-    IN pI_estado VARCHAR(1),
 
     OUT pO_mensaje VARCHAR(1000),
     OUT pO_error BOOLEAN
@@ -94,13 +93,13 @@ CREATE PROCEDURE SP_Test(
                           pI_usuario,
                           pI_contrasena,
                           pI_foto_url,
-                          pI_estado
+                          'A'
                          );
     COMMIT;
 
 END $$
 
-CALL SP_Test('WIL','WIL','WIL','WIL','M','SAFDYS','WILi@GMAIL.COM','0801190513244',DATE('2002-02-03'),DATE('2002-02-03'),'Histerico8','ASD','ASDFGHJKL.COM','A',@mensaje,@error);
+CALL SP_Test('WIL','WIL','WIL','WIL','M','SAFDYS','WILi@GMAIL.COM','0801190513244',DATE('2002-02-03'),DATE('2002-02-03'),'Histerico8','ASD','ASDFGHJKL.COM',@mensaje,@error);
 SELECT @mensaje,@error;
 
 
