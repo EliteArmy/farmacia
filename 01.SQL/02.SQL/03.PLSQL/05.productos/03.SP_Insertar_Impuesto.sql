@@ -16,7 +16,7 @@ InsertarImpuesto:BEGIN
   SET resultado = FALSE;
   SET contador=0;
   SET ultimoId = 0;
-
+-- _________________VALIDACIONES________________________________
   IF par_impuesto = '' OR par_impuesto IS NULL THEN
     SET mensaje = '[nombre del impuesto]';
   END IF;

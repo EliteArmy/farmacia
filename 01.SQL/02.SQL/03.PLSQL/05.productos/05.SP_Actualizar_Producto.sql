@@ -20,8 +20,8 @@ CREATE PROCEDURE SP_Actualizar_Producto(
   SET mensaje='';
   SET resultado = FALSE;
   SET contador = 0;
+  -- ____________________VERIFICACIONES_________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
-
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'id del producto, ');
     END IF;
@@ -41,7 +41,7 @@ CREATE PROCEDURE SP_Actualizar_Producto(
 	-- el campo de la foto de un producto puede ser null
    -- IF pI_url_foto='' OR pI_url_foto IS NULL THEN 
    --     SET mensaje=CONCAT(mensaje, 'foto del producto, ');
-   
+   -- _____________________CUERPO DEL PL________________________________
    -- validacion de que id_categoria exista
    SELECT COUNT(*)  INTO contador
    FROM presentacion    
@@ -86,9 +86,6 @@ CREATE PROCEDURE SP_Actualizar_Producto(
     COMMIT;
 
 END $$
-
-
-
 
 CALL SP_Actualizar_Producto(3,51, "paracetamol", "dfasdf465544", "https://www.youtube.com/watch?v=l9kXym1doYA",@mensaje,@error);
 SELECT @mensaje, @error;
