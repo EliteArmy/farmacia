@@ -1,7 +1,7 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS SP_Test$$
-CREATE PROCEDURE SP_Test(
-	IN pI_primer_nombre VARCHAR(50),
+DROP PROCEDURE IF EXISTS SP_Insertar_Empleado$$
+CREATE PROCEDURE SP_Insertar_Empleado(
+  IN pI_primer_nombre VARCHAR(50),
     IN pI_segundo_nombre VARCHAR(50),
     IN pI_primer_apellido VARCHAR(50),
     IN pI_segundo_apellido VARCHAR(50),
@@ -10,7 +10,7 @@ CREATE PROCEDURE SP_Test(
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
     IN pI_fecha_nacimiento DATE,
-	-- campos empleado
+  -- campos empleado
     IN pI_fecha_ingreso DATE,
     IN pI_usuario VARCHAR(50),
     IN pI_contrasena VARCHAR(128),
@@ -53,11 +53,11 @@ CREATE PROCEDURE SP_Test(
     WHERE usuario=pI_usuario;
 
     IF contador>=1 THEN
-		SET mensaje = CONCAT(mensaje, 'usuario ya existe');
+    SET mensaje = CONCAT(mensaje, 'usuario ya existe');
     END IF;
 
    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Campos Vacios: ', mensaje);
+        SET pO_mensaje=CONCAT('Error: ', mensaje);
         SET pO_error=TRUE;
         LEAVE SP;
    END IF;
@@ -77,10 +77,10 @@ CREATE PROCEDURE SP_Test(
     );
     
     IF pO_error = TRUE THEN
-		SET pO_mensaje = pO_mensaje;
+    SET pO_mensaje = pO_mensaje;
         LEAVE SP;
     END IF;
-	 -- utlimo id persona + insercion de empleado
+   -- utlimo id persona + insercion de empleado
     SELECT MAX(id_persona) INTO ultimoId FROM persona;
 
     INSERT INTO empleado(fecha_ingreso, 
@@ -100,8 +100,9 @@ CREATE PROCEDURE SP_Test(
 
 END $$
 
-CALL SP_Test('WIL','WIL','WIL','WIL','M','SAFDYS','WIL2@GMAIL.COM','0801190013244',DATE('2002-02-03'),DATE('2002-02-03'),'Freezer','ASD','ASDFGHJKL.COM','A',@mensaje,@error);
+CALL SP_Insertar_Empleado('WIL','WIL','WIL','WIL','M','SAFDYS','WIL@GMAIL.COM','0801194513244',DATE('2002-02-03'),DATE('2002-02-03'),'Histerico','ASD','ASDFGHJKL.COM','A',@mensaje,@error);
 SELECT @mensaje,@error;
 
 
 select * from persona
+
