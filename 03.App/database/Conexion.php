@@ -55,7 +55,7 @@ class Conexion{
         $valores[$i] = $this->antiInyeccion($valores[$i]);
       }
       $consulta = vsprintf($sql, $valores);
-      echo $consulta;
+      // echo $consulta;
       $resultado = mysqli_query($this->link, $consulta);
       return $resultado;
     }else{

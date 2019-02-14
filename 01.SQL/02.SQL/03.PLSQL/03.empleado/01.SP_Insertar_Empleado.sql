@@ -105,5 +105,5 @@ CALL SP_Insertar_Empleado('WIL','WIL','WIL','WIL','M','SAFDYS','WILi@GMAIL.COM',
 SELECT @mensaje,@error;
 
 
-select * from persona
+select * from persona;
 
