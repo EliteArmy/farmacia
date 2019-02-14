@@ -1,6 +1,6 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS SP_Test$$
-CREATE PROCEDURE SP_Test(
+DROP PROCEDURE IF EXISTS SP_Insertar_Empleado$$
+CREATE PROCEDURE SP_Insertar_Empleado(
 	IN pI_primer_nombre VARCHAR(50),
     IN pI_segundo_nombre VARCHAR(50),
     IN pI_primer_apellido VARCHAR(50),
@@ -99,7 +99,7 @@ CREATE PROCEDURE SP_Test(
 
 END $$
 
-CALL SP_Test('WIL','WIL','WIL','WIL','M','SAFDYS','WILi@GMAIL.COM','0801190513244',DATE('2002-02-03'),DATE('2002-02-03'),'Histerico8','ASD','ASDFGHJKL.COM',@mensaje,@error);
+CALL SP_Insertar_Empleado('WIL','WIL','WIL','WIL','M','SAFDYS','WILi@GMAIL.COM','0801190513244',DATE('2002-02-03'),DATE('2002-02-03'),'Histerico8','ASD','ASDFGHJKL.COM',@mensaje,@error);
 SELECT @mensaje,@error;
 
 
