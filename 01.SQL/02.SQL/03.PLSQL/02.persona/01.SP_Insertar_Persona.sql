@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Insertar_Persona$$
 CREATE PROCEDURE `SP_Insertar_Persona`(
-	IN pI_primer_nombre VARCHAR(50),
+    IN pI_primer_nombre VARCHAR(50),
     IN pI_segundo_nombre VARCHAR(50),
     IN pI_primer_apellido VARCHAR(50),
     IN pI_segundo_apellido VARCHAR(50),
@@ -56,18 +56,18 @@ SP:BEGIN
     -- __________________________CUERPO DEL PL______________________________________________
     -- Validar que el numero de identidad no se repita 
     SELECT COUNT(*) INTO contador FROM persona WHERE numero_identidad = pI_numero_identidad;
-	IF contador>=1 THEN
+    IF contador>=1 THEN
         SET mensaje = CONCAT(mensaje, 'numero de identidad ya existe, ');
     END IF;
 
       -- Validar  correo unico
     SELECT COUNT(*) INTO contador FROM persona WHERE correo_electronico = pI_correo_electronico;
-	IF contador>=1 THEN
+    IF contador>=1 THEN
         SET mensaje = CONCAT(mensaje, 'correo electronico ya existe, ');
     END IF;
 
     IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
+        SET pO_mensaje=CONCAT('Resultado: ', mensaje);
         SET pO_error=TRUE;
         -- SELECT mensaje, resultado; --Hacer el mismo trabajo que las variables de salida
         -- se llama al procedimiento con call y devuelve los valores de salida mensaje y resultado
@@ -85,7 +85,8 @@ SP:BEGIN
                          direccion, 
                          correo_electronico,
                          numero_identidad, 
-                         fecha_nacimiento)
+                         fecha_nacimiento,
+                         estado)
                  VALUES (pI_primer_nombre,
                          pI_segundo_nombre,
                          pI_primer_apellido, 
@@ -94,7 +95,8 @@ SP:BEGIN
                          pI_direccion,
                          pI_correo_electronico, 
                          pI_numero_identidad, 
-                         pI_fecha_nacimiento);
+                         pI_fecha_nacimiento,
+                         'A');
     COMMIT;
     SET pO_mensaje='Insersion exitosa';
     SET pO_error=FALSE;
