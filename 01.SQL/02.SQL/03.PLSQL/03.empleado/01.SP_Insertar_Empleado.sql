@@ -100,7 +100,7 @@ CREATE PROCEDURE SP_Insertar_Empleado(
                           'A'
                          );
     COMMIT;
-    SET mensaje='Insersion exitosa';
+    SET mensaje='inserción exitosa';
     SET error=FALSE;
 
     SELECT mensaje, error;

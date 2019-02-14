@@ -107,6 +107,12 @@ SP:BEGIN
 
     CALL SP_Actualizar_Persona(pI_id_persona, pI_primer_nombre, pI_segundo_nombre ,pI_primer_apellido ,pI_segundo_apellido , pI_sexo ,
                              pI_direccion ,pI_correo_electronico ,pI_numero_identidad ,pI_fecha_nacimiento,@mensaje, @error);
+    
+    SET mensaje='inserción exitosa';
+    SET error=FALSE;
+
+    SELECT mensaje, error;
+
     COMMIT;
     END$$
 

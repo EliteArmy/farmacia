@@ -51,6 +51,8 @@ SP:BEGIN
             empleado.id_empleado = pI_id_empleado ;
 
     COMMIT;
+    SET pO_mensaje='inserción exitosa';
+    SET pO_error=FALSE;
     END;
 
 -- ________________________LLAMADO DEL PL_____________________________

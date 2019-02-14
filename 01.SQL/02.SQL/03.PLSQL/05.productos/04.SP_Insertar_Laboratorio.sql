@@ -36,7 +36,7 @@ InsertarLaboratorio:BEGIN
   INSERT INTO laboratorio (nombre_laboratorio) VALUES (par_nombre_laboratorio);
   SELECT LAST_INSERT_ID() INTO ultimoId;
   COMMIT;
-  SET mensaje = 'Insertado con éxito';
+  SET mensaje = 'inserción con éxito';
   SET resultado = TRUE;
   SELECT *, mensaje, resultado FROM laboratorio WHERE id_laboratorio = ultimoID;
 END $$

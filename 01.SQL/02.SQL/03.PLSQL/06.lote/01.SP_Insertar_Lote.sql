@@ -80,7 +80,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
 					pI_fecha_elaboracion,
 					pI_fecha_vencimiento);
     COMMIT;
-    SET pO_mensaje='Insersion exitosa';
+    SET pO_mensaje='inserción exitosa';
     SET pO_error=FALSE;
 END $$
 

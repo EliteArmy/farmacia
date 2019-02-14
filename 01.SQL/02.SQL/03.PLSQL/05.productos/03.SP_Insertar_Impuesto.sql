@@ -47,7 +47,7 @@ InsertarImpuesto:BEGIN
   SELECT LAST_INSERT_ID() INTO ultimoID;
   COMMIT;
 
-  SET mensaje = 'Insertado con éxito';
+  SET mensaje = 'inserción con éxito';
   SET resultado = TRUE;
   SELECT *, mensaje, resultado
   FROM impuesto

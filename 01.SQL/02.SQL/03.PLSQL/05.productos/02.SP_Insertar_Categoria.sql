@@ -37,7 +37,7 @@ InsertarCategoria:BEGIN
   SELECT LAST_INSERT_ID() INTO ultimoId;
   COMMIT;
 
-  SET mensaje = 'Insertado con éxito';
+  SET mensaje = 'inserción con éxito';
   SET resultado = TRUE;
   SELECT *, mensaje, resultado
   FROM categoria
