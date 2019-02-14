@@ -84,7 +84,8 @@ CREATE PROCEDURE SP_Actualizar_Producto(
              producto.id_producto = pI_id_producto;
        
     COMMIT;
-
+     SET pO_mensaje='inserción exitosa';
+     SET pO_error=FALSE;
 END $$
 
 CALL SP_Actualizar_Producto(3,51, "paracetamol", "dfasdf465544", "https://www.youtube.com/watch?v=l9kXym1doYA",@mensaje,@error);

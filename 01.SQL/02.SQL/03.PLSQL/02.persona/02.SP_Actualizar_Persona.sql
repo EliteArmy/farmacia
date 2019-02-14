@@ -126,7 +126,7 @@ SP:BEGIN
         WHERE
             persona.id_persona= pI_id_persona;
     COMMIT;
-    SET pO_mensaje='Insersion exitosa';
+    SET pO_mensaje='inserción exitosa';
     SET pO_error=FALSE;
 END
 
