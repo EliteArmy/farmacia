@@ -79,40 +79,24 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-impuesto" class="selectpicker form-control" title="Impuestos" data-style="btn-primary" multiple>
                 <!--Informacion generada -->
-                <option>Impuesto1</option>
-                <option>Impuesto2</option>
-                <option>Impuesto3</option>
-                <option>Impuesto4</option>
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-descuento" class="selectpicker form-control" title="Descuentos" data-style="btn-primary" multiple>
                 <!--Informacion generada -->
-                <option>Descuento</option>
-                <option>Descuento</option>
-                <option>Descuento</option>
-                <option>Descuento</option>
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-presentacion" class="selectpicker form-control" title="Presentacion" data-style="btn-primary" multiple>
                 <!--Informacion generada -->
-                <option>Presentacion1</option>
-                <option>Presentacion2</option>
-                <option>Presentacion3</option>
-                <option>Presentacion4</option>
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-laboratorio" class="selectpicker form-control" title="Laboratorio" data-style="btn-primary" multiple>
                 <!--Informacion generada -->
-                <option>Laboratorio1</option>
-                <option>Laboratorio2</option>
-                <option>Laboratorio3</option>
-                <option>Laboratorio4</option>
               </select>
             </div>
 
