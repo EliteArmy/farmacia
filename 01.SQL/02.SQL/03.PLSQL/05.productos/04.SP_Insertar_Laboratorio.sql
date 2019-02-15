@@ -33,7 +33,7 @@ InsertarLaboratorio:BEGIN
     LEAVE InsertarLaboratorio;
   END IF;
 
-  INSERT INTO laboratorio (nombre_laboratorio) VALUES (par_nombre_laboratorio);
+  INSERT INTO laboratorio (nombre_laboratorio, estado) VALUES (par_nombre_laboratorio, 'A');
   SELECT LAST_INSERT_ID() INTO ultimoId;
   COMMIT;
   SET mensaje = 'inserción con éxito';
@@ -42,4 +42,4 @@ InsertarLaboratorio:BEGIN
 END $$
 
 # DELIMITER ;
-# CALL SP_Insertar_Laboratorio(NULL);
+# CALL SP_Insertar_Laboratorio('Las3Farmas');
