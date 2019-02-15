@@ -1549,48 +1549,89 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`tgyqnadefylm8xww`@`%` PROCEDURE `SP_Insertar_Categoria`(
-  par_categoria VARCHAR(45)
+CREATE DEFINER=`tgyqnadefylm8xww`@`%` PROCEDURE `SP_Insertar_Categoria`(
+
+  par_categoria VARCHAR(45)
+
 )
-InsertarCategoria:BEGIN
--- Declaraciones
-  DECLARE mensaje VARCHAR(255);
-  DECLARE contador INT;
-  DECLARE resultado BOOLEAN;
-  DECLARE ultimoID INT;
-
--- Inicializaciones
-  SET mensaje='';
-  SET resultado = FALSE;
-  SET contador=0;
-  SET ultimoId = 0;
-
-  IF par_categoria = '' OR par_categoria IS NULL THEN
-    SET mensaje = 'Se necesita campo: categoria';
-    SELECT mensaje, resultado;
-    LEAVE InsertarCategoria;
-  END IF;
-
-  SELECT count(*) INTO contador FROM categoria
-  WHERE UPPER(categoria) LIKE UPPER(par_categoria);
-  IF contador > 0 THEN
-    SET mensaje = CONCAT('Nombre de categoría duplicado: ', par_categoria);
-    SELECT mensaje, resultado;
-    LEAVE InsertarCategoria;
-  END IF;
-
-  SET AUTOCOMMIT = 0;
-  START TRANSACTION;
-
-  INSERT INTO categoria (categoria) VALUES (par_categoria);
-  SELECT LAST_INSERT_ID() INTO ultimoId;
-  COMMIT;
-
-  SET mensaje = 'Insertado con éxito';
-  SET resultado = TRUE;
-  SELECT *, mensaje, resultado
-  FROM categoria
-  WHERE id_categoria = ultimoID;
+InsertarCategoria:BEGIN
+
+-- Declaraciones
+
+  DECLARE mensaje VARCHAR(255);
+
+  DECLARE contador INT;
+
+  DECLARE resultado BOOLEAN;
+
+  DECLARE ultimoID INT;
+
+
+
+-- Inicializaciones
+
+  SET mensaje='';
+
+  SET resultado = FALSE;
+
+  SET contador=0;
+
+  SET ultimoId = 0;
+
+
+
+  IF par_categoria = '' OR par_categoria IS NULL THEN
+
+    SET mensaje = 'Se necesita campo: categoria';
+
+    SELECT mensaje, resultado;
+
+    LEAVE InsertarCategoria;
+
+  END IF;
+
+
+
+  SELECT count(*) INTO contador FROM categoria
+
+  WHERE UPPER(categoria) LIKE UPPER(par_categoria);
+
+  IF contador > 0 THEN
+
+    SET mensaje = CONCAT('Nombre de categoría duplicado: ', par_categoria);
+
+    SELECT mensaje, resultado;
+
+    LEAVE InsertarCategoria;
+
+  END IF;
+
+
+
+  SET AUTOCOMMIT = 0;
+
+  START TRANSACTION;
+
+
+
+  INSERT INTO categoria (categoria) VALUES (par_categoria);
+
+  SELECT LAST_INSERT_ID() INTO ultimoId;
+
+  COMMIT;
+
+
+
+  SET mensaje = 'Insertado con éxito';
+
+  SET resultado = TRUE;
+
+  SELECT *, mensaje, resultado
+
+  FROM categoria
+
+  WHERE id_categoria = ultimoID;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1728,58 +1769,109 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`tgyqnadefylm8xww`@`%` PROCEDURE `SP_Insertar_Impuesto`(
-  par_impuesto VARCHAR(45)
-  ,par_valor INT
+CREATE DEFINER=`tgyqnadefylm8xww`@`%` PROCEDURE `SP_Insertar_Impuesto`(
+
+  par_impuesto VARCHAR(45)
+
+  ,par_valor INT
+
 )
-InsertarImpuesto:BEGIN
--- Declaraciones
-  DECLARE mensaje VARCHAR(255);
-  DECLARE contador INT;
-  DECLARE resultado BOOLEAN;
-  DECLARE ultimoID INT;
-
--- Inicializaciones
-  SET mensaje='';
-  SET resultado = FALSE;
-  SET contador=0;
-  SET ultimoId = 0;
-
-  IF par_impuesto = '' OR par_impuesto IS NULL THEN
-    SET mensaje = '[nombre del impuesto]';
-  END IF;
-  IF par_valor IS NULL OR par_valor = 0 OR par_valor = '' THEN
-    SET mensaje = '[valor > 0]';
-  END IF;
-
-  IF mensaje != '' THEN
-    SET mensaje = CONCAT('Se necesitan los siguientes campos: ', mensaje);
-    SELECT mensaje, resultado;
-    LEAVE InsertarImpuesto;
-  END IF;
-
-  SELECT COUNT(*) INTO contador
-  FROM impuesto WHERE UPPER(impuesto) LIKE UPPER(par_impuesto);
-
-  IF contador>0 THEN
-    SET mensaje = 'Nombre de impuesto duplicado';
-    SELECT mensaje, resultado;
-    LEAVE InsertarImpuesto;
-  end if;
-
-  SET AUTOCOMMIT = 0;
-  START TRANSACTION;
-
-  INSERT INTO impuesto (impuesto, valor, estado, fecha_inicio) VALUES
-  (par_impuesto, par_valor, 'A', CURDATE());
-  SELECT LAST_INSERT_ID() INTO ultimoID;
-  COMMIT;
-
-  SET mensaje = 'Insertado con éxito';
-  SET resultado = TRUE;
-  SELECT *, mensaje, resultado
-  FROM impuesto
-  WHERE id_impuesto = ultimoID;
+InsertarImpuesto:BEGIN
+
+-- Declaraciones
+
+  DECLARE mensaje VARCHAR(255);
+
+  DECLARE contador INT;
+
+  DECLARE resultado BOOLEAN;
+
+  DECLARE ultimoID INT;
+
+
+
+-- Inicializaciones
+
+  SET mensaje='';
+
+  SET resultado = FALSE;
+
+  SET contador=0;
+
+  SET ultimoId = 0;
+
+
+
+  IF par_impuesto = '' OR par_impuesto IS NULL THEN
+
+    SET mensaje = '[nombre del impuesto]';
+
+  END IF;
+
+  IF par_valor IS NULL OR par_valor = 0 OR par_valor = '' THEN
+
+    SET mensaje = '[valor > 0]';
+
+  END IF;
+
+
+
+  IF mensaje != '' THEN
+
+    SET mensaje = CONCAT('Se necesitan los siguientes campos: ', mensaje);
+
+    SELECT mensaje, resultado;
+
+    LEAVE InsertarImpuesto;
+
+  END IF;
+
+
+
+  SELECT COUNT(*) INTO contador
+
+  FROM impuesto WHERE UPPER(impuesto) LIKE UPPER(par_impuesto);
+
+
+
+  IF contador>0 THEN
+
+    SET mensaje = 'Nombre de impuesto duplicado';
+
+    SELECT mensaje, resultado;
+
+    LEAVE InsertarImpuesto;
+
+  end if;
+
+
+
+  SET AUTOCOMMIT = 0;
+
+  START TRANSACTION;
+
+
+
+  INSERT INTO impuesto (descripcion, porcentaje, estado, fecha_inicio) VALUES
+
+  (par_impuesto, par_valor, 'A', CURDATE());
+
+  SELECT LAST_INSERT_ID() INTO ultimoID;
+
+  COMMIT;
+
+
+
+  SET mensaje = 'Insertado con éxito';
+
+  SET resultado = TRUE;
+
+  SELECT *, mensaje, resultado
+
+  FROM impuesto
+
+  WHERE id_impuesto = ultimoID;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1796,45 +1888,83 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`tgyqnadefylm8xww`@`%` PROCEDURE `SP_Insertar_Laboratorio`(
-  par_nombre_laboratorio VARCHAR(45)
+CREATE DEFINER=`tgyqnadefylm8xww`@`%` PROCEDURE `SP_Insertar_Laboratorio`(
+
+  par_nombre_laboratorio VARCHAR(45)
+
 )
-InsertarLaboratorio:BEGIN
--- Declaraciones
-  DECLARE mensaje VARCHAR(255);
-  DECLARE contador INT;
-  DECLARE resultado BOOLEAN;
-  DECLARE ultimoID INT;
-
--- Inicializaciones
-  SET mensaje='';
-  SET resultado = FALSE;
-  SET contador=0;
-  SET ultimoId = 0;
-
-  IF par_nombre_laboratorio = '' OR par_nombre_laboratorio IS NULL THEN
-    SET mensaje = 'Se necesita campo: laboratorio';
-    SELECT mensaje, resultado;
-    LEAVE InsertarLaboratorio;
-  END IF;
-
-  SELECT count(*) INTO contador FROM laboratorio
-  WHERE UPPER(nombre_laboratorio) LIKE UPPER(par_nombre_laboratorio);
-  IF contador > 0 THEN
-    SET mensaje = CONCAT('Nombre de Laboratorio duplicado: ', par_nombre_laboratorio);
-    SELECT mensaje, resultado;
-    LEAVE InsertarLaboratorio;
-  END IF;
-
-  SET AUTOCOMMIT = 0;
-  START TRANSACTION;
-
-  INSERT INTO laboratorio (nombre_laboratorio) VALUES (par_nombre_laboratorio);
-  SELECT LAST_INSERT_ID() INTO ultimoId;
-  COMMIT;
-  SET mensaje = 'Insertado con éxito';
-  SET resultado = TRUE;
-  SELECT *, mensaje, resultado FROM laboratorio WHERE id_laboratorio = ultimoID;
+InsertarLaboratorio:BEGIN
+
+-- Declaraciones
+
+  DECLARE mensaje VARCHAR(255);
+
+  DECLARE contador INT;
+
+  DECLARE resultado BOOLEAN;
+
+  DECLARE ultimoID INT;
+
+
+
+-- Inicializaciones
+
+  SET mensaje='';
+
+  SET resultado = FALSE;
+
+  SET contador=0;
+
+  SET ultimoId = 0;
+
+
+
+  IF par_nombre_laboratorio = '' OR par_nombre_laboratorio IS NULL THEN
+
+    SET mensaje = 'Se necesita campo: laboratorio';
+
+    SELECT mensaje, resultado;
+
+    LEAVE InsertarLaboratorio;
+
+  END IF;
+
+
+
+  SELECT count(*) INTO contador FROM laboratorio
+
+  WHERE UPPER(nombre_laboratorio) LIKE UPPER(par_nombre_laboratorio);
+
+  IF contador > 0 THEN
+
+    SET mensaje = CONCAT('Nombre de Laboratorio duplicado: ', par_nombre_laboratorio);
+
+    SELECT mensaje, resultado;
+
+    LEAVE InsertarLaboratorio;
+
+  END IF;
+
+
+
+  SET AUTOCOMMIT = 0;
+
+  START TRANSACTION;
+
+
+
+  INSERT INTO laboratorio (nombre_laboratorio) VALUES (par_nombre_laboratorio);
+
+  SELECT LAST_INSERT_ID() INTO ultimoId;
+
+  COMMIT;
+
+  SET mensaje = 'Insertado con éxito';
+
+  SET resultado = TRUE;
+
+  SELECT *, mensaje, resultado FROM laboratorio WHERE id_laboratorio = ultimoID;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2242,55 +2372,103 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`tgyqnadefylm8xww`@`%` PROCEDURE `SP_Login`(
-  par_usuario VARCHAR(50)
-  ,par_contrasena VARCHAR(128)
+CREATE DEFINER=`tgyqnadefylm8xww`@`%` PROCEDURE `SP_Login`(
+
+  par_usuario VARCHAR(50)
+
+  ,par_contrasena VARCHAR(128)
+
 )
-Login:BEGIN
--- Declaraciones
-  DECLARE mensaje VARCHAR(255);
-  DECLARE contador INT;
-  DECLARE resultado BOOLEAN;
-
--- Inicializaciones
-  SET mensaje='';
-  SET resultado = FALSE;
-  SET contador=0;
-
-  IF par_usuario = '' OR par_usuario IS NULL THEN
-    SET mensaje = CONCAT('[usuario]',mensaje);
-  END IF;
-  IF par_contrasena = SHA2('', '512') OR par_contrasena IS NULL THEN
-    SET mensaje = CONCAT('[contrasena]',mensaje);
-  END IF;
-  IF mensaje != '' THEN
-    SET mensaje = CONCAT('Se necesitan los siguientes campos: ', mensaje);
-    SELECT mensaje, resultado;
-    LEAVE Login;
-  END IF;
-
-  SELECT count(*) into contador FROM empleado
-  WHERE usuario = par_usuario
-  AND contrasena = par_contrasena;
-
-  IF contador = 1 THEN
-    SET mensaje = 'Autenticado exitosamente';
-    SET resultado = TRUE;
-    SELECT
-      usuario, e.id_empleado, ve.tipo_usuario,foto_url, ve.nombre_completo, ve.permisos,   mensaje, resultado
-    FROM empleado e
-    INNER JOIN VistaEmpleado ve
-    ON e.id_empleado = ve.id_empleado
-    WHERE usuario = par_usuario
-    AND contrasena = par_contrasena;
-    LEAVE Login;
-  ELSE
-    SET mensaje = 'Contraseña o usuario incorrecto';
-    SET resultado = FALSE;
-    SELECT mensaje, resultado;
-    LEAVE Login;
-  end if;
-
+Login:BEGIN
+
+-- Declaraciones
+
+  DECLARE mensaje VARCHAR(255);
+
+  DECLARE contador INT;
+
+  DECLARE resultado BOOLEAN;
+
+
+
+-- Inicializaciones
+
+  SET mensaje='';
+
+  SET resultado = FALSE;
+
+  SET contador=0;
+
+
+
+  IF par_usuario = '' OR par_usuario IS NULL THEN
+
+    SET mensaje = CONCAT('[usuario]',mensaje);
+
+  END IF;
+
+  IF par_contrasena = SHA2('', '512') OR par_contrasena IS NULL THEN
+
+    SET mensaje = CONCAT('[contrasena]',mensaje);
+
+  END IF;
+
+  IF mensaje != '' THEN
+
+    SET mensaje = CONCAT('Se necesitan los siguientes campos: ', mensaje);
+
+    SELECT mensaje, resultado;
+
+    LEAVE Login;
+
+  END IF;
+
+
+
+  SELECT count(*) into contador FROM empleado
+
+  WHERE usuario = par_usuario
+
+  AND contrasena = par_contrasena;
+
+
+
+  IF contador = 1 THEN
+
+    SET mensaje = 'Autenticado exitosamente';
+
+    SET resultado = TRUE;
+
+    SELECT
+
+      usuario, e.id_empleado, ve.tipo_usuario,foto_url, ve.nombre_completo, ve.permisos,   mensaje, resultado
+
+    FROM empleado e
+
+    INNER JOIN VistaEmpleado ve
+
+    ON e.id_empleado = ve.id_empleado
+
+    WHERE usuario = par_usuario
+
+    AND contrasena = par_contrasena;
+
+    LEAVE Login;
+
+  ELSE
+
+    SET mensaje = 'Contraseña o usuario incorrecto';
+
+    SET resultado = FALSE;
+
+    SELECT mensaje, resultado;
+
+    LEAVE Login;
+
+  end if;
+
+
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;

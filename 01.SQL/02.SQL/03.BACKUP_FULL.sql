@@ -5852,7 +5852,7 @@ CREATE TABLE IF NOT EXISTS `impuesto` (
 -- Volcado de datos para la tabla `impuesto`
 --
 
-INSERT INTO `impuesto` (`id_impuesto`, `impuesto`, `valor`, `estado`, `fecha_inicio`) VALUES
+INSERT INTO `impuesto` (`id_impuesto`, descripcion, porcentaje, `estado`, `fecha_inicio`) VALUES
 (1, 'EXENTO', 0, 'A', '2018-12-22'),
 (2, 'ISV15', 15, 'A', '2018-12-22'),
 (3, 'ISV12', 15, 'A', '2018-12-22');

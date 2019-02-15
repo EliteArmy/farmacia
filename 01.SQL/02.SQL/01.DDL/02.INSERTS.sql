@@ -337,9 +337,9 @@ INSERT INTO ciudad (ciudad, id_municipio) VALUES ('Tegucigalpa', '0801');
 INSERT INTO forma_pago(descripcion, estado) VALUES ('Efectivo', 'A');
 
 -- IMPUESTO
-INSERT INTO impuesto (id_impuesto, impuesto, valor, estado, fecha_inicio) VALUES (2, 'ISV15', 15, 'A', CURRENT_DATE);
-INSERT INTO impuesto (id_impuesto, impuesto, valor, estado, fecha_inicio) VALUES (3, 'ISV12', 15, 'A', CURRENT_DATE);
-INSERT INTO impuesto (id_impuesto, impuesto, valor, estado, fecha_inicio) VALUES (1, 'EXENTO', 0, 'A', CURRENT_DATE);
+INSERT INTO impuesto (id_impuesto, descripcion, porcentaje, estado, fecha_inicio) VALUES (2, 'ISV15', 15, 'A', CURRENT_DATE);
+INSERT INTO impuesto (id_impuesto, descripcion, porcentaje, estado, fecha_inicio) VALUES (3, 'ISV12', 15, 'A', CURRENT_DATE);
+INSERT INTO impuesto (id_impuesto, descripcion, porcentaje, estado, fecha_inicio) VALUES (1, 'EXENTO', 0, 'A', CURRENT_DATE);
 
 -- TIPO_USUARIO
 INSERT INTO tipo_usuario (id_tipo_usuario, tipo_usuario) VALUES (1, 'Cajero');

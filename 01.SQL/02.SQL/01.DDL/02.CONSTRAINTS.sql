@@ -55,7 +55,7 @@ ADD CONSTRAINT chk_coste CHECK ( coste_total >= 0 );
 
 -- IMPUESTO
 ALTER TABLE impuesto
-ADD CONSTRAINT chk_minmax CHECK ( (valor >= 0) AND (valor <= 100) ),
+ADD CONSTRAINT chk_minmax CHECK ( (porcentaje >= 0) AND (porcentaje <= 100) ),
 ADD CONSTRAINT chk_estado CHECK ( estado IN ('A','I') );
 
 -- PRODUCTO
