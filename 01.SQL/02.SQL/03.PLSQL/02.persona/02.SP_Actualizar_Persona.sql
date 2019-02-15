@@ -127,7 +127,7 @@ SP:BEGIN
     END IF;
     
     IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ',mensaje)
+        SET mensaje=CONCAT('resultado: ',mensaje);
         SET resultado = TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=resultado;
