@@ -7,41 +7,38 @@ CREATE PROCEDURE `SP_Eliminar_Empleado`(
     OUT pO_error BOOLEAN
 )
 SP:BEGIN
-
     -- DECLARE
-    DECLARE 
-    mensaje VARCHAR(1000);
-    DECLARE
-    contador INTEGER(20);
-
+    DECLARE mensaje VARCHAR(1000);
+    DECLARE contador INTEGER(20);
+    DECLARE error BOOLEAN;
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
     START TRANSACTION;
     SET mensaje = '';
-    SET contador =0;
-
+    SET contador = 0;
+    SET error = FALSE;
     -- _______________________VALIDACION DE CAMPOS____________________________
     -- Verificaciones de campos obligatorios que no esten vacios
-     IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'id de empleado, ');
+    IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN 
+        SET mensaje=CONCAT('id de empleado',pI_id_empleado);
+    ELSE
+        SELECT COUNT(*) INTO contador
+        FROM empleado
+        WHERE empleado.id_empleado = pI_id_empleado;
+        
+        IF contador=0 THEN  
+            SET mensaje ='id empleado no existe';
+        END IF;
     END IF;    
-    -- ______________________CUERPO DEL PROCEDIMIENTO_________________________
-
-    SELECT
-        COUNT(*)
-    INTO contador
-    FROM empleado
-    WHERE empleado.id_empleado = pI_id_empleado;
-
-    IF contador=0 THEN  
-        SET mensaje = CONCAT(mensaje, 'Usuario no registrado : ');
-    END IF;
- 
+    
     IF mensaje <> '' THEN
-     SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
-     SET pO_error=TRUE;
-     LEAVE SP;
+        SET mensaje=CONCAT('resultado: ', mensaje);
+        SET error=TRUE;
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
+        SELECT mensaje, error;
+        LEAVE SP;
     END IF;
 
     UPDATE empleado 
@@ -49,15 +46,17 @@ SP:BEGIN
              empleado.estado = "I"
         WHERE 
             empleado.id_empleado = pI_id_empleado ;
-
     COMMIT;
-    SET pO_mensaje='inserción exitosa';
-    SET pO_error=FALSE;
-    END;
+
+    SET mensaje='eliminacion exitosa';
+    SET error=FALSE;
+    SET pO_mensaje=mensaje;
+    SET pO_error=error;
+    SELECT mensaje, error;
+END$$
 
 -- ________________________LLAMADO DEL PL_____________________________
-CALL SP_Eliminar_Empleado(8,@mensaje, @error);
-SELECT @mensaje, @error;
+CALL SP_Eliminar_Empleado(68,@mensaje, @error);
 
 SELECT * FROM empleado
 

@@ -67,7 +67,7 @@ SP:BEGIN
     END IF;
 
     IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Resultado: ', mensaje);
+        SET pO_mensaje=CONCAT('resultado: ', mensaje);
         SET pO_error=TRUE;
         -- SELECT mensaje, resultado; --Hacer el mismo trabajo que las variables de salida
         -- se llama al procedimiento con call y devuelve los valores de salida mensaje y resultado
@@ -98,7 +98,7 @@ SP:BEGIN
                          pI_fecha_nacimiento,
                          'A');
     COMMIT;
-    SET pO_mensaje='Insersion exitosa';
+    SET pO_mensaje='insersion exitosa';
     SET pO_error=FALSE;
 
 END$$

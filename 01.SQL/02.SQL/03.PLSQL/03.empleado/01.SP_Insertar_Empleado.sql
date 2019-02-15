@@ -15,6 +15,7 @@ CREATE PROCEDURE SP_Insertar_Empleado(
     IN pI_usuario VARCHAR(50),
     IN pI_contrasena VARCHAR(128),
     IN pI_foto_url VARCHAR(100),
+    IN pI_id_tipo_usuario INT(11),
     OUT pO_mensaje VARCHAR(1000),
     OUT pO_error BOOLEAN
 
@@ -46,19 +47,26 @@ CREATE PROCEDURE SP_Insertar_Empleado(
     IF pI_contrasena='' OR pI_contrasena IS NULL THEN 
         SET mensaje=CONCAT('contraseña, ',mensaje);
     END IF;
+    IF pI_id_tipo_usuario='' OR pI_id_tipo_usuario IS NULL THEN 
+        SET mensaje=CONCAT('id tipo usuario, ',mensaje);
+    END IF;
     -- _________________________CUERPO DEL PL_________________
 
-    SELECT COUNT(*) INTO contador 
-    FROM empleado 
+    SELECT COUNT(*) INTO contador FROM empleado 
     WHERE usuario=pI_usuario;
 
     IF contador>=1 THEN
-    SET mensaje = CONCAT(mensaje, 'usuario ya existe');
+      SET mensaje = CONCAT(mensaje, 'usuario ya existe');
+    END IF;
+
+    SELECT COUNT(*) INTO contador FROM tipo_usuario WHERE id_tipo_usuario = pI_id_tipo_usuario;
+    IF contador=0 THEN
+      SET mensaje = CONCAT(mensaje, 'id tipo usuario no existe');
     END IF;
 
    IF mensaje <> '' THEN
         SET error = TRUE;
-        SET mensaje=CONCAT('Resultado: ', mensaje);
+        SET mensaje=CONCAT('resultado: ', mensaje);
         SELECT mensaje,error;
         LEAVE SP;
    END IF;
@@ -79,7 +87,7 @@ CREATE PROCEDURE SP_Insertar_Empleado(
     
     IF pO_error = TRUE THEN
         SET error = TRUE;
-        SET mensaje=CONCAT('Resultado: ', pO_mensaje);
+        SET mensaje=pO_mensaje;
         SELECT mensaje,error;
         LEAVE SP;
     END IF;
@@ -91,13 +99,15 @@ CREATE PROCEDURE SP_Insertar_Empleado(
                          usuario, 
                          contrasena, 
                          foto_url, 
-                         estado) 
+                         estado,
+                         id_tipo_usuario) 
                   VALUES (pI_fecha_ingreso,
                           ultimoId,
                           pI_usuario,
                           pI_contrasena,
                           pI_foto_url,
-                          'A'
+                          'A',
+                          pI_id_tipo_usuario
                          );
     COMMIT;
     SET mensaje='inserción exitosa';
@@ -107,7 +117,13 @@ CREATE PROCEDURE SP_Insertar_Empleado(
 
 END $$
 
-CALL SP_Insertar_Empleado('','WIL','WIL','WIL','M','SAFDYS','WILi@GMAIL.COM','0801190513244',DATE('2002-02-03'),DATE('2002-02-03'),'HisterJKJJico8','ASD','ASDFGHJKL.COM',@mensaje,@error);
+select * from persona where numero_identidad='0801197607186';
+CALL SP_Insertar_Empleado('aa','WIL','WIL','WIL','M','SAFDYS',
+                          'ss@GMAIL.COM','0801197607286',
+                          DATE('2002-02-03'),DATE('2002-02-03'),
+                          'erJKJdJxicdo8','ASD','ASDFGHJKL.COM',2,
+                          @mensaje,@error);
+select @mensaje,@error;
 
 select * from persona;
 
