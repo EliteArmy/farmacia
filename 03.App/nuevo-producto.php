@@ -77,13 +77,13 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-impuesto" class="selectpicker form-control" title="Impuestos" data-style="btn-primary" multiple>
+              <select id="slc-impuesto" class="selectpicker form-control" title="Impuestos" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-descuento" class="selectpicker form-control" title="Descuentos" data-style="btn-primary" multiple>
+              <select id="slc-descuento" class="selectpicker form-control" title="Descuentos" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
             </div>

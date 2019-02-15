@@ -3,20 +3,23 @@ class Producto{
 	private $idProducto;
 	private $idPresentacion;
 	private $nombre;
-	private $presentacion;
 	private $codigoBarra;
   private $urlFoto;
+
+  private $presentacion;
   
 	private $idCategoria; /*falta set y get */
   private $categoria; /*falta set y get */
   
-  private $idImpuesto;
-	private $impuesto;
-  private $valorImpuesto;
+  private $idImpuesto; /*falta set y get */
+	private $impuesto; /*falta set y get */
+  private $porcentajeImpuesto; /*falta set y get */
+  private $estadoImpuesto; /*falta set y get */
 
-  private $idDescuento;
-  private $descripcion;
-  private $porcentaje;
+  private $idDescuento; /*falta set y get */
+  private $descuento; /*falta set y get */
+  private $porcentajeDescuento; /*falta set y get */
+  private $estadoDescuento; /*falta set y get */
 
 	public function __construct(
 		$idProducto = null,
@@ -145,7 +148,7 @@ class Producto{
   public function actualizarCategoria($conexion){
 	}
 	public static function leerCategoria($conexion){
-		$sql = "SELECT * FROM categoria";
+    $sql = "SELECT * FROM categoria";
 		return $conexion -> query($sql);
 	}
 	public function borrarCategoria($conexion){
@@ -161,7 +164,7 @@ class Producto{
 	public function actualizarImpuesto($conexion){
 	}
 	public static function leerImpuesto($conexion){
-		$sql = "SELECT id_impuesto, impuesto, valor FROM impuesto";
+		$sql = "SELECT * FROM impuesto";
 		return $conexion -> query($sql);
 	}
 	public function borrarImpuesto($conexion){
@@ -172,8 +175,8 @@ class Producto{
 	}
 	public function actualizarDescuento($conexion){
 	}
-	public function leerDescuento($conexion){
-    $sql = "SELECT id_descuento, porcentaje FROM descuento";
+	public static function leerDescuento($conexion){
+    $sql = "SELECT * FROM descuento";
     return $conexion -> query($sql);
 	}
 	public function borrarDescuento($conexion){
@@ -184,8 +187,8 @@ class Producto{
 	}
 	public function actualizarPresentacion($conexion){
 	}
-	public function leerPresentacion($conexion){
-    $sql = "SELECT id_presentacion, presentacion FROM presentacion";
+	public static function leerPresentacion($conexion){
+    $sql = "SELECT * FROM presentacion";
     return $conexion -> query($sql);
   }
   public function borrarPresentacion($conexion){

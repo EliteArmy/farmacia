@@ -5,7 +5,7 @@ $(document).ready(function() {
     alert(parametros);
   });
 
-  // ---- Leer Categoria: YA ----
+  // ---- Leer Categoria: ----
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -22,8 +22,6 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    //alert(response.data);
-    console.log("Mensaje cat");
     imprimirCategoria(response.data);
   });
   
@@ -39,7 +37,7 @@ $(document).ready(function() {
   }
 
 
-  // ---- Leer Impuesto: YA ----
+  // ---- Leer Impuesto: ----
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -56,7 +54,6 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    console.log("Mensaje imp");
     imprimirImpuesto(response.data);
   });
 
@@ -65,11 +62,12 @@ $(document).ready(function() {
     for (var i=0; i < response.length; i++){    
       var impue = response[i];
       var fila = 
-      '<option value="' + impue.id_impuesto + '">' + impue.valor + '</option>';
+      '<option value="' + impue.id_impuesto + '">' + impue.porcentaje + '</option>';
       $("#slc-impuesto").append(fila);
     }
     //$('.selectpicker').selectpicker('refresh');
   }
+
 
   // ---- Leer Descuento: ----
   var settings = {
@@ -88,7 +86,6 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    console.log("Mensaje des");
     imprimirDescuento(response.data);
   });
 
@@ -100,7 +97,7 @@ $(document).ready(function() {
       '<option value="' + desc.id_descuento +'">' + desc.porcentaje + '</option>';
       $("#slc-descuento").append(fila);
     }
-    $('.selectpicker').selectpicker('refresh');
+    //$('.selectpicker').selectpicker('refresh');
   }
 
   // ---- Leer Presentación: ---
@@ -119,7 +116,7 @@ $(document).ready(function() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log("Mensaje ");
+    console.log(response);
     imprimirPresentacion(response.data);
   });
 
@@ -128,7 +125,7 @@ $(document).ready(function() {
     for (var i=0; i < response.length; i++){    
       var presen = response[i];
       var fila = 
-      '<option value="' + presen.id_presentacion + '">' + presen.id_presentacion + '</option>';
+      '<option value="' + presen.id_presentacion + '">' + presen.presentacion + '</option>';
       $("#slc-presentacion").append(fila);
     }
     //$('.selectpicker').selectpicker('refresh');
@@ -151,7 +148,6 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    console.log("Mensaje labo");
     imprimirLaboratorio(response.data);
   });
 
@@ -163,7 +159,10 @@ $(document).ready(function() {
       '<option value="' + labo.id_laboratorio + '">' + labo.nombre_laboratorio + '</option>';
       $("#slc-laboratorio").append(fila);
     }
+    actualizar();
+  }
+  
+  function actualizar(){
     $('.selectpicker').selectpicker('refresh');
   }
-
 });
