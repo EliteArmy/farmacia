@@ -5,7 +5,7 @@ $(document).ready(function() {
     alert(parametros);
   });
 
-  // ---- Leer Categoria: ----
+  // ---- Leer Categoria: YA ----
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -34,11 +34,11 @@ $(document).ready(function() {
       '<option value="' + categ.id_categoria + '">' + categ.categoria + '</option>';
       $("#slc-categoria").append(fila);
     }
-    $('.selectpicker').selectpicker('refresh');
+    //$('.selectpicker').selectpicker('refresh');
   }
 
 
-  // ---- Leer Impuesto: ----
+  // ---- Leer Impuesto: YA ----
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -66,7 +66,7 @@ $(document).ready(function() {
       '<option value="' + impue.id_impuesto + '">' + impue.valor + '</option>';
       $("#slc-impuesto").append(fila);
     }
-    $('.selectpicker').selectpicker('refresh');
+    //$('.selectpicker').selectpicker('refresh');
   }
 
   // ---- Leer Descuento: ----
@@ -100,7 +100,7 @@ $(document).ready(function() {
     $('.selectpicker').selectpicker('refresh');
   }
 
-  // ---- Leer Presentación ---
+  // ---- Leer Presentación: ---
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -128,7 +128,7 @@ $(document).ready(function() {
       '<option value="' + presen.id_presentacion + '">' + presen.id_presentacion + '</option>';
       $("#slc-presentacion").append(fila);
     }
-    $('.selectpicker').selectpicker('refresh');
+    //$('.selectpicker').selectpicker('refresh');
   }
 
   // ---- Leer Laboratorio: ----

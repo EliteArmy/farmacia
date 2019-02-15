@@ -29,7 +29,7 @@ if(isset($_POST['accion'])){
     break;
     
     case 'leer-presentacion':
-      $res['data'] = Producto::leerProducto($conexion);
+      $res['data'] = Producto::leerPresentacion($conexion);
       echo json_encode($res);
     break;
 

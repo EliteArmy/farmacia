@@ -40,7 +40,8 @@ class Medicamento{
 	public function borrar($conexion){
 	}
 	public function actualizar($conexion){
-	}
+  }
+  
 	public function crearLaboratorio($conexion){
 		$sql = "CALL SP_Insertar_Laboratorio('%s');";
 		$valores = [$this->laboratorio];
@@ -54,6 +55,7 @@ class Medicamento{
 		return $conexion -> query($sql);
 	}
 	public function borrarLaboratorio($conexion){
-	}
+  }
+  
 }
 ?>
