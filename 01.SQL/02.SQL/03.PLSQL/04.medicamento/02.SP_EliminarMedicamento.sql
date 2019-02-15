@@ -10,12 +10,12 @@ CREATE PROCEDURE SP_Eliminar_Medicamento(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
-  DECLARE resultado BOOLEAN;
   DECLARE contador INTEGER;
+  DECLARE error BOOLEAN;
 -- Inicializaciones
   SET mensaje='';
-  SET resultado = FALSE;
   SET contador = 0;
+  SET error= FALSE;
 
   -- _______________________VALIDACION_____________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
@@ -48,8 +48,12 @@ CREATE PROCEDURE SP_Eliminar_Medicamento(
              medicamentos.estado = "I"
          WHERE
              medicamentos.id_medicamento= pI_id_medicamento;
-       
-    COMMIT;
+   
+     COMMIT;
+     SET mensaje= 'Eliminacion exitosa';
+     SET error=FALSE;
+     SET pO_mensaje=mensaje;
+     SELECT mensaje,error;
 
     END $$
 
