@@ -13,12 +13,12 @@ CREATE PROCEDURE SP_Insertar_Producto(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
-  DECLARE resultado BOOLEAN;
   DECLARE contador INTEGER;
+  DECLARE error BOOLEAN;
 -- Inicializaciones
   SET mensaje='';
-  SET resultado = FALSE;
   SET contador = 0;
+  SET error= FALSE;
   -- _________________VERIFICACIONES_________________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
 
@@ -54,31 +54,37 @@ CREATE PROCEDURE SP_Insertar_Producto(
    IF contador >=1 THEN
    SET mensaje = CONCAT(mensaje, 'el codigo de barra ya esta asignado, ');
    END IF;
-   
+
    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Otros Errores: ', mensaje);
-        SET pO_error=TRUE;
+        SET mensaje=CONCAT('resultado: ', mensaje);
+        SET error=TRUE;
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
+        SELECT mensaje,error;
         LEAVE SP;
-   END IF;
+   END IF;  
 
-
-     INSERT INTO producto (
+   INSERT INTO producto (
                       id_presentacion,
                       nombre,
                       codigo_barra,
-                      url_foto)
+                      url_foto,
+                      estado)
                  VALUES (
                       pI_id_presentacion,
                       pI_nombre,
                       pI_codigo_barra,
-                      pI_url_foto);
+                      pI_url_foto,
+                      'A');
     COMMIT;
-    SET pO_mensaje='inserción exitosa';
-    SET pO_error=FALSE;
+     SET mensaje= 'Insercion exitosa';
+     SET error=FALSE;
+     SET pO_mensaje=mensaje;
+     SELECT mensaje,error;
 
 END $$
 
-CALL SP_Insertar_Producto(51,"paracetamol", "dfasdf46ji56", "https://www.youtube.com/watch?v=YoDh_gHDvkk",@mensaje,@error);
+CALL SP_Insertar_Producto(51,"paracetamol", "aaaaa", "https://www.youtube.com/watch?v=Mcj75l2gJcY",@mensaje,@error);
 SELECT @mensaje, @error;
 
 SELECT * from producto

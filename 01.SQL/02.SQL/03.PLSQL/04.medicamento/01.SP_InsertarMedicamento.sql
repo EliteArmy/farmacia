@@ -3,8 +3,6 @@ DROP PROCEDURE IF EXISTS SP_Insertar_Medicamento$$
 CREATE PROCEDURE SP_Insertar_Medicamento(
         IN pI_id_laboratorio INTEGER(11),
         IN pI_id_producto INTEGER(11),
-        IN pI_estado VARCHAR(1),
-
 
         OUT pO_mensaje VARCHAR(1000),
         OUT pO_error BOOLEAN
@@ -30,15 +28,7 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'id del producto, ');
     END IF;
-
-    IF pI_estado='' OR pI_estado IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'estado, ');
-    END IF;
-    
-    IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
-      SET mensaje=CONCAT(mensaje,'estado invalido, ');
-    END IF;
- -- ______________________CUERPO__________________________________________
+    -- ______________CUERPO__________________________________________
    
 
    SELECT COUNT(*)  INTO contador
@@ -76,7 +66,7 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
                  VALUES (
                       pI_id_laboratorio,
                       pI_id_producto,
-                      pI_estado
+                      'A'
                       );
      
      COMMIT;
@@ -89,7 +79,7 @@ CREATE PROCEDURE SP_Insertar_Medicamento(
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Insertar_Medicamento(756,666,"A", @mensaje,@error);
+CALL SP_Insertar_Medicamento(756,666, @mensaje,@error);
 SELECT @mensaje, @error;
 
 SELECT * FROM medicamentos
