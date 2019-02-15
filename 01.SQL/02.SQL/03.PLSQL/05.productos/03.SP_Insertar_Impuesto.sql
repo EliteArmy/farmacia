@@ -31,7 +31,7 @@ InsertarImpuesto:BEGIN
   END IF;
 
   SELECT COUNT(*) INTO contador
-  FROM impuesto WHERE UPPER(impuesto) LIKE UPPER(par_impuesto);
+  FROM impuesto WHERE UPPER(descripcion) LIKE UPPER(par_impuesto);
 
   IF contador>0 THEN
     SET mensaje = 'Nombre de impuesto duplicado';
@@ -42,7 +42,7 @@ InsertarImpuesto:BEGIN
   SET AUTOCOMMIT = 0;
   START TRANSACTION;
 
-  INSERT INTO impuesto (impuesto, valor, estado, fecha_inicio) VALUES
+  INSERT INTO impuesto (descripcion, porcentaje, estado, fecha_inicio) VALUES
   (par_impuesto, par_valor, 'A', CURDATE());
   SELECT LAST_INSERT_ID() INTO ultimoID;
   COMMIT;

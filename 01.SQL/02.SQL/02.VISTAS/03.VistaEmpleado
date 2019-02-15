@@ -16,15 +16,13 @@ SELECT
     FROM pantalla_tipo_usuario ptu
     INNER JOIN pantalla p
       ON ptu.id_pantalla = p.id_pantalla
-    WHERE id_tipo_usuario = tue.id_tipo_usuario
+    WHERE id_tipo_usuario = e.id_tipo_usuario
   ) as permisos,
-  (SELECT tipo_usuario FROM tipo_usuario WHERE id_tipo_usuario = tue.id_tipo_usuario) as tipo_usuario
+  (SELECT tipo_usuario FROM tipo_usuario WHERE id_tipo_usuario = e.id_tipo_usuario) as tipo_usuario
 FROM persona p
 INNER JOIN empleado e
   on p.id_persona = e.id_persona
-INNER JOIN tipo_usuario_empleado tue
-ON e.id_empleado = tue.id_empleado
 ;
 
-SELECT * FROM VistaEmpleado;
+# SELECT * FROM VistaEmpleado;
 
