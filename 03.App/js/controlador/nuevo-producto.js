@@ -23,6 +23,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     //alert(response.data);
+    console.log("Mensaje cat");
     imprimirCategoria(response.data);
   });
   
@@ -55,6 +56,7 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
+    console.log("Mensaje imp");
     imprimirImpuesto(response.data);
   });
 
@@ -86,6 +88,7 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
+    console.log("Mensaje des");
     imprimirDescuento(response.data);
   });
 
@@ -116,7 +119,7 @@ $(document).ready(function() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    console.log("Mensaje ");
     imprimirPresentacion(response.data);
   });
 
@@ -148,6 +151,7 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
+    console.log("Mensaje labo");
     imprimirLaboratorio(response.data);
   });
 

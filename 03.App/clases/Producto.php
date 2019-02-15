@@ -169,7 +169,6 @@ class Producto{
 
 
   public function crearDescuento($conexion){
-    /* Y Aquí iria código, si tan solo tuviera uno */
 	}
 	public function actualizarDescuento($conexion){
 	}
@@ -182,7 +181,6 @@ class Producto{
 
 
 	public function crearPresentacion($conexion){
-    /* Y Aquí iria código, si tan solo tuviera uno */
 	}
 	public function actualizarPresentacion($conexion){
 	}
