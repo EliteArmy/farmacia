@@ -131,7 +131,10 @@ class Producto{
 
 	public function crear($conexion){
 	}
-	public function leer($conexion){
+	public static function leer($conexion){
+		$sql = 'SELECT * FROM VistaInventarioMercaderia';
+		$rows = $conexion->query($sql);
+		return $rows;
 	}
 	public function actualizar($conexion){
 	}

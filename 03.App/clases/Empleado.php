@@ -125,6 +125,12 @@ class Empleado extends Persona{
 		return $rows[0];
 	}
 	public function borrar($conexion){
+		$sql = 'CALL SP_Eliminar_Empleado(%s,@mensaje, @error);';
+		$valores = [
+			$this->getIdEmpleado()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows[0];
 	}
 	public function leer($conexion){
 	}
