@@ -38,9 +38,9 @@ FROM IngresoLote ilote;
 CREATE OR REPLACE VIEW VistaInventarioMercaderia AS
 SELECT
   codigo_barra
-  ,l.id_producto, l.id_lote, lote, existencia
+  ,l.id_producto, l.id_lote, lote, le.existencia
   , nombre as producto, presentacion, url_foto
-  ,precio_costo, precio_venta
+  ,precio_costo_unidad, precio_venta_unidad
   ,fecha_elaboracion, fecha_vecimiento
 FROM LoteExistencia le
 INNER JOIN lote l
@@ -59,9 +59,9 @@ SELECT * FROM LoteExistencia;
 CREATE OR REPLACE VIEW VistaProductosVencidos AS
 SELECT
     codigo_barra
-  ,l.id_producto, l.id_lote, lote, existencia
+  ,l.id_producto, l.id_lote, lote, le.existencia
   , nombre as producto, presentacion, url_foto
-  ,precio_costo, precio_venta
+  ,precio_costo_unidad, precio_venta_unidad
   ,fecha_elaboracion, fecha_vecimiento
 FROM LoteExistencia le
 INNER JOIN lote l
@@ -83,3 +83,5 @@ AND le.id_lote NOT IN (
 SELECT
 id_lote, existencia as cantidad, 1 as id_movimiento
 FROM VistaProductosVencidos;
+
+SELECT * FROM VistaInventarioMercaderia;

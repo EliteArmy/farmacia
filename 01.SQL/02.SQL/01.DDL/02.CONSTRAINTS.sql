@@ -68,8 +68,8 @@ ADD CONSTRAINT chk_codigo_formato CHECK ( codigo_barra REGEXP  '^[0-9]+$');
 
 -- LOTE
 ALTER TABLE lote
-ADD CONSTRAINT chk_precio_costo CHECK ( precio_costo > 0 ),
-ADD CONSTRAINT chk_precio_venata CHECK ( precio_venta > precio_costo),
+ADD CONSTRAINT chk_precio_costo CHECK ( precio_costo_unidad > 0 ),
+ADD CONSTRAINT chk_precio_venata CHECK ( precio_venta_unidad > precio_costo_unidad),
 ADD CONSTRAINT chk_fecha_elab CHECK ( fecha_elaboracion <= CURRENT_DATE ),
   ADD CONSTRAINT chk_fecha_venc CHECK (fecha_vecimiento > fecha_elaboracion );
 

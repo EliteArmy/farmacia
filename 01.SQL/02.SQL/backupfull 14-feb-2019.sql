@@ -2050,8 +2050,8 @@ SP:BEGIN
 
    INSERT INTO lote (id_producto, 
 					lote, 
-					precio_costo,
-					precio_venta,
+					precio_costo_unidad,
+					precio_venta_unidad,
 					fecha_elaboracion,
 					fecha_vecimiento)
 			VALUES (pI_id_producto,
@@ -2764,7 +2764,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`tgyqnadefylm8xww`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `VistaInventarioMercaderia` AS select `p`.`codigo_barra` AS `codigo_barra`,`l`.`id_producto` AS `id_producto`,`l`.`id_lote` AS `id_lote`,`l`.`lote` AS `lote`,`le`.`existencia` AS `existencia`,`p`.`nombre` AS `producto`,`p2`.`presentacion` AS `presentacion`,`p`.`url_foto` AS `url_foto`,`l`.`precio_costo` AS `precio_costo`,`l`.`precio_venta` AS `precio_venta`,`l`.`fecha_elaboracion` AS `fecha_elaboracion`,`l`.`fecha_vecimiento` AS `fecha_vecimiento` from (((`LoteExistencia` `le` join `lote` `l` on((`le`.`id_lote` = `l`.`id_lote`))) join `producto` `p` on((`l`.`id_producto` = `p`.`id_producto`))) join `presentacion` `p2` on((`p`.`id_presentacion` = `p2`.`id_presentacion`))) where (`l`.`fecha_vecimiento` > curdate()) order by `p`.`nombre`,`p2`.`presentacion`,`l`.`fecha_vecimiento` */;
+/*!50001 VIEW `VistaInventarioMercaderia` AS select `p`.`codigo_barra` AS `codigo_barra`,`l`.`id_producto` AS `id_producto`,`l`.`id_lote` AS `id_lote`,`l`.`lote` AS `lote`,`le`.`existencia` AS `existencia`,`p`.`nombre` AS `producto`,`p2`.`presentacion` AS `presentacion`,`p`.`url_foto` AS `url_foto`,`l`.precio_costo_unidad AS `precio_costo`,`l`.precio_venta_unidad AS `precio_venta`,`l`.`fecha_elaboracion` AS `fecha_elaboracion`,`l`.`fecha_vecimiento` AS `fecha_vecimiento` from (((`LoteExistencia` `le` join `lote` `l` on((`le`.`id_lote` = `l`.`id_lote`))) join `producto` `p` on((`l`.`id_producto` = `p`.`id_producto`))) join `presentacion` `p2` on((`p`.`id_presentacion` = `p2`.`id_presentacion`))) where (`l`.`fecha_vecimiento` > curdate()) order by `p`.`nombre`,`p2`.`presentacion`,`l`.`fecha_vecimiento` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2782,7 +2782,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`tgyqnadefylm8xww`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `VistaProductosVencidos` AS select `p`.`codigo_barra` AS `codigo_barra`,`l`.`id_producto` AS `id_producto`,`l`.`id_lote` AS `id_lote`,`l`.`lote` AS `lote`,`le`.`existencia` AS `existencia`,`p`.`nombre` AS `producto`,`p2`.`presentacion` AS `presentacion`,`p`.`url_foto` AS `url_foto`,`l`.`precio_costo` AS `precio_costo`,`l`.`precio_venta` AS `precio_venta`,`l`.`fecha_elaboracion` AS `fecha_elaboracion`,`l`.`fecha_vecimiento` AS `fecha_vecimiento` from (((`LoteExistencia` `le` join `lote` `l` on((`le`.`id_lote` = `l`.`id_lote`))) join `producto` `p` on((`l`.`id_producto` = `p`.`id_producto`))) join `presentacion` `p2` on((`p`.`id_presentacion` = `p2`.`id_presentacion`))) where ((`l`.`fecha_vecimiento` <= curdate()) and (not(`le`.`id_lote` in (select `dm`.`id_lote` from (`detalle_movimiento` `dm` join `movimiento_producto` `mp` on((`dm`.`id_movimiento` = `mp`.`id_movimiento`))) where (`mp`.`tipo_movimiento` = 'R'))))) */;
+/*!50001 VIEW `VistaProductosVencidos` AS select `p`.`codigo_barra` AS `codigo_barra`,`l`.`id_producto` AS `id_producto`,`l`.`id_lote` AS `id_lote`,`l`.`lote` AS `lote`,`le`.`existencia` AS `existencia`,`p`.`nombre` AS `producto`,`p2`.`presentacion` AS `presentacion`,`p`.`url_foto` AS `url_foto`,`l`.precio_costo_unidad AS `precio_costo`,`l`.precio_venta_unidad AS `precio_venta`,`l`.`fecha_elaboracion` AS `fecha_elaboracion`,`l`.`fecha_vecimiento` AS `fecha_vecimiento` from (((`LoteExistencia` `le` join `lote` `l` on((`le`.`id_lote` = `l`.`id_lote`))) join `producto` `p` on((`l`.`id_producto` = `p`.`id_producto`))) join `presentacion` `p2` on((`p`.`id_presentacion` = `p2`.`id_presentacion`))) where ((`l`.`fecha_vecimiento` <= curdate()) and (not(`le`.`id_lote` in (select `dm`.`id_lote` from (`detalle_movimiento` `dm` join `movimiento_producto` `mp` on((`dm`.`id_movimiento` = `mp`.`id_movimiento`))) where (`mp`.`tipo_movimiento` = 'R'))))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;

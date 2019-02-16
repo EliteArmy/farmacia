@@ -69,8 +69,8 @@ CREATE PROCEDURE SP_Insertar_Lote(
 
    UPDATE lote SET id_producto, 
 					lote,
-					precio_costo,
-					precio_venta,
+					precio_costo_unidad,
+					precio_venta_unidad,
 					fecha_elaboracion,
 					fecha_vecimiento)
 			VALUES (pI_id_producto,
@@ -87,4 +87,5 @@ END $$
 CALL SP_Insertar_Lote(1,'paracetamol lot1', 200.0, 200, '2018-02-02','2018-02-02',@mensaje,@error);
 SELECT @mensaje,@error;
 
-SELECT * FROM lote
+SELECT * FROM lote;
+

@@ -5919,7 +5919,7 @@ CREATE TABLE IF NOT EXISTS `lote` (
 -- Volcado de datos para la tabla `lote`
 --
 
-INSERT INTO `lote` (`id_lote`, `id_producto`, `lote`, `precio_costo`, `precio_venta`, `fecha_elaboracion`, `fecha_vecimiento`) VALUES
+INSERT INTO `lote` (`id_lote`, `id_producto`, `lote`, precio_costo_unidad, precio_venta_unidad, `fecha_elaboracion`, `fecha_vecimiento`) VALUES
 (1, 1, 'LOT-2017-11-21', 246.22, 265.96, '2017-11-21', '2019-02-23'),
 (2, 1, 'LOT-2017-05-23', 985.06, 1083.25, '2017-05-23', '2019-10-06'),
 (3, 1, 'LOT-2017-07-04', 456.29, 460.91, '2017-07-04', '2019-08-26'),
@@ -9366,7 +9366,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vistainventariomercaderia`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistainventariomercaderia`  AS  select `p`.`codigo_barra` AS `codigo_barra`,`l`.`id_producto` AS `id_producto`,`l`.`id_lote` AS `id_lote`,`l`.`lote` AS `lote`,`le`.`existencia` AS `existencia`,`p`.`nombre` AS `producto`,`p2`.`presentacion` AS `presentacion`,`p`.`url_foto` AS `url_foto`,`l`.`precio_costo` AS `precio_costo`,`l`.`precio_venta` AS `precio_venta`,`l`.`fecha_elaboracion` AS `fecha_elaboracion`,`l`.`fecha_vecimiento` AS `fecha_vecimiento` from (((`loteexistencia` `le` join `lote` `l` on((`le`.`id_lote` = `l`.`id_lote`))) join `producto` `p` on((`l`.`id_producto` = `p`.`id_producto`))) join `presentacion` `p2` on((`p`.`id_presentacion` = `p2`.`id_presentacion`))) where (`l`.`fecha_vecimiento` > curdate()) order by `p`.`nombre`,`p2`.`presentacion`,`l`.`fecha_vecimiento` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistainventariomercaderia`  AS  select `p`.`codigo_barra` AS `codigo_barra`,`l`.`id_producto` AS `id_producto`,`l`.`id_lote` AS `id_lote`,`l`.`lote` AS `lote`,`le`.`existencia` AS `existencia`,`p`.`nombre` AS `producto`,`p2`.`presentacion` AS `presentacion`,`p`.`url_foto` AS `url_foto`,`l`.precio_costo_unidad AS `precio_costo`,`l`.precio_venta_unidad AS `precio_venta`,`l`.`fecha_elaboracion` AS `fecha_elaboracion`,`l`.`fecha_vecimiento` AS `fecha_vecimiento` from (((`loteexistencia` `le` join `lote` `l` on((`le`.`id_lote` = `l`.`id_lote`))) join `producto` `p` on((`l`.`id_producto` = `p`.`id_producto`))) join `presentacion` `p2` on((`p`.`id_presentacion` = `p2`.`id_presentacion`))) where (`l`.`fecha_vecimiento` > curdate()) order by `p`.`nombre`,`p2`.`presentacion`,`l`.`fecha_vecimiento` ;
 
 -- --------------------------------------------------------
 
@@ -9375,7 +9375,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vistaproductosvencidos`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistaproductosvencidos`  AS  select `p`.`codigo_barra` AS `codigo_barra`,`l`.`id_producto` AS `id_producto`,`l`.`id_lote` AS `id_lote`,`l`.`lote` AS `lote`,`le`.`existencia` AS `existencia`,`p`.`nombre` AS `producto`,`p2`.`presentacion` AS `presentacion`,`p`.`url_foto` AS `url_foto`,`l`.`precio_costo` AS `precio_costo`,`l`.`precio_venta` AS `precio_venta`,`l`.`fecha_elaboracion` AS `fecha_elaboracion`,`l`.`fecha_vecimiento` AS `fecha_vecimiento` from (((`loteexistencia` `le` join `lote` `l` on((`le`.`id_lote` = `l`.`id_lote`))) join `producto` `p` on((`l`.`id_producto` = `p`.`id_producto`))) join `presentacion` `p2` on((`p`.`id_presentacion` = `p2`.`id_presentacion`))) where ((`l`.`fecha_vecimiento` <= curdate()) and (not(`le`.`id_lote` in (select `dm`.`id_lote` from (`detalle_movimiento` `dm` join `movimiento_producto` `mp` on((`dm`.`id_movimiento` = `mp`.`id_movimiento`))) where (`mp`.`tipo_movimiento` = 'R'))))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistaproductosvencidos`  AS  select `p`.`codigo_barra` AS `codigo_barra`,`l`.`id_producto` AS `id_producto`,`l`.`id_lote` AS `id_lote`,`l`.`lote` AS `lote`,`le`.`existencia` AS `existencia`,`p`.`nombre` AS `producto`,`p2`.`presentacion` AS `presentacion`,`p`.`url_foto` AS `url_foto`,`l`.precio_costo_unidad AS `precio_costo`,`l`.precio_venta_unidad AS `precio_venta`,`l`.`fecha_elaboracion` AS `fecha_elaboracion`,`l`.`fecha_vecimiento` AS `fecha_vecimiento` from (((`loteexistencia` `le` join `lote` `l` on((`le`.`id_lote` = `l`.`id_lote`))) join `producto` `p` on((`l`.`id_producto` = `p`.`id_producto`))) join `presentacion` `p2` on((`p`.`id_presentacion` = `p2`.`id_presentacion`))) where ((`l`.`fecha_vecimiento` <= curdate()) and (not(`le`.`id_lote` in (select `dm`.`id_lote` from (`detalle_movimiento` `dm` join `movimiento_producto` `mp` on((`dm`.`id_movimiento` = `mp`.`id_movimiento`))) where (`mp`.`tipo_movimiento` = 'R'))))) ;
 
 -- --------------------------------------------------------
 
