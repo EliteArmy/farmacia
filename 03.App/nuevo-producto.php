@@ -64,6 +64,7 @@
                   <td>
                     <span class="far fa-edit edit"></span>
                     <span class="far fa-trash-alt trash"></span>
+                    <span class="fas fa-search-plus search"></span>
                   </td>
                 </tr>
     
@@ -80,6 +81,7 @@
                   <td>
                     <span class="far fa-edit edit"></span>
                     <span class="far fa-trash-alt trash"></span>
+                    <span class="fas fa-search-plus search"></span>
                   </td>
                 </tr>
     
@@ -89,10 +91,20 @@
           </div>
         </div>
 
-        <!-- Button trigger para el modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
-          Agregar Nuevo Producto
-        </button>
+        <div class="row">
+          <div class="col-16 col-sm-6 col-md-6 col-lg-6">
+            <!-- Button trigger para el modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
+              Agregar Nuevo Producto
+            </button>
+          </div>
+          
+          <div class="col-16 col-sm-6 col-md-6 col-lg-6">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
+              Agregar Nuevo Lote
+            </button>
+          </div>  
+        </div>
 
       </div>
     </div>

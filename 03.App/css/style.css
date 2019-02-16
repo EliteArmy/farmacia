@@ -46,4 +46,8 @@ body .navbar li.active > a {
 .edit {
   color: green;
 }
+
+.search {
+  color: purple;
+}
 /*# sourceMappingURL=style.css.map */
