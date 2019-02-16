@@ -13,6 +13,8 @@
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./mult-sel-plugin/css/bootstrap-select.css" type="text/css"/>
+
 </head>
 <body>
 
@@ -22,7 +24,14 @@
     <div class="row justify-content-md-center">
       <div class="col-xs-12 col-md-11 well card">
         <div class="text-center">
- <div class="row">
+           <h4>Farmacia Esperanza</h4>
+          <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
+          <h4>RTN: 08011980123456</h4>
+          <h4>Registro de Productos</h4>
+        </div>
+         <div class="row">
+
+
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <table class="table table-striped table-bordered">
               <thead>
@@ -52,6 +61,8 @@
                   <td>Lorem</td>
                   <td>Lorem</td>
                   <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
                   <td>
                     <span class="far fa-edit edit"></span>
                     <span class="far fa-trash-alt trash"></span>
@@ -69,6 +80,9 @@
                   <td>Lorem</td>
                   <td>Lorem</td>
                   <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+
                   <td>
                     <span class="far fa-edit edit"></span>
                     <span class="far fa-trash-alt trash"></span>
@@ -85,16 +99,12 @@
         <div class="row">
           <div class="col-16 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
-              Agregar Nuevo Producto
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarempleado">
+              Agregar Nuevo Empleado
             </button>
           </div>
           
-          <div class="col-16 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
-              Agregar Nuevo Lote
-            </button>
-          </div>  
+            
         </div>
 
        </div>
@@ -185,8 +195,101 @@
         </div>
       </div>
     </div>
+  </div>-->
+   <!-- Modal -->
+
+    <div class="modal fade" id="agregarempleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-12 col-md-6">
+              <label for="txt-primer-nombre">Primer Nombre:</label>
+              <input type="text" class="form-control" id="txt-primer-nombre" name="txt-primer-nombre"  placeholder="Riko" required autofocus>
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="txt-segundo-nombre">Segundo Nombre:</label>
+              <input type="text" class="form-control" id="txt-segundo-nombre" name="txt-segundo-nombre" placeholder="Afedo">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="txt-primer-apellido">Primer Apellido:</label>
+              <input type="text" class="form-control" id="txt-primer-apellido" name="txt-primer-apellido" placeholder="pofavo">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="txt-segundo-apellido">Segundo Apellido:</label>
+              <input type="text" class="form-control" id="txt-segundo-apellido" name="txt-segundo-apellido" placeholder="placeholder2">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-sexo">Sexo:</label>
+              <select id="slc-sexo" class="selectpicker form-control" title="Elija un valor" data-style="btn-primary" >
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+                <label for="txt-direccion">Direccion:</label>
+                <input type="text" class="form-control" id="txt-direccion" name="txt-direccion" placeholder="colonia los Pinos, donde no asaltan">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+                <label for="txt-correo-electronico">Correo Electronico:</label>
+                <input type="text" class="form-control" id="txt-correo-electronico" name="txt-correo-electronico" placeholder="toñitohisterico@gmail.com">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+                <label for="txt-numero-identidad">Numero De Identidad:</label>
+                <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0801-1992-06677"> 
+            </div>
+            
+            <div class="form-group col-12 col-sm-6 col-md-6"> 
+               <label for="txt-fecha-nacimiento">Fecha Nacimiento:</label>
+               <input type="date" id="txt-fecha-nacimiento" class="form-control">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
+                <label class="custom-file-label" for="inputGroupFile01">Elegir una fotografia</label>
+              </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="btn-guard-prod" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+
+      </div>
+    </div>
   </div>
-  <!-- FIN Contenido -->
+  <!-- FIN Modal -->
+
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/popper.min.js"></script>
+  <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
+  <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <!--<script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>-->
+
 
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
