@@ -1,3 +1,7 @@
+<?php
+  $idPagina = "catalogo-inventario";
+  include("autenticacion.php");
+?>
 
 <!DOCTYPE html>
 <html>
@@ -10,12 +14,12 @@
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
-
   <link rel="stylesheet" href="./mult-sel-plugin/css/bootstrap-select.css" type="text/css"/>
 
 </head>
 <body>
 
+  <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -187,13 +191,13 @@
   </div>
   <!-- FIN Modal -->
 
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/popper.min.js"></script>
+  <script type="text/javascript" src="./js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
-  <script src="./js/controlador/nuevo-producto.js"></script>
+  <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>
 
 </body>
 </html>

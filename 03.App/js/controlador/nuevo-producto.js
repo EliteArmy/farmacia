@@ -23,6 +23,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirCategoria(response.data);
+    alert("Cate");
   });
   
   function imprimirCategoria(response){
@@ -33,7 +34,7 @@ $(document).ready(function() {
       '<option value="' + categ.id_categoria + '">' + categ.categoria + '</option>';
       $("#slc-categoria").append(fila);
     }
-    //$('.selectpicker').selectpicker('refresh');
+    $('.selectpicker').selectpicker('refresh');
   }
 
 
@@ -55,6 +56,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirImpuesto(response.data);
+    alert("Impu");
   });
 
   function imprimirImpuesto(response){
@@ -65,7 +67,7 @@ $(document).ready(function() {
       '<option value="' + impue.id_impuesto + '">' + impue.porcentaje + '</option>';
       $("#slc-impuesto").append(fila);
     }
-    //$('.selectpicker').selectpicker('refresh');
+    $('.selectpicker').selectpicker('refresh');
   }
 
 
@@ -87,6 +89,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirDescuento(response.data);
+    alert("desc");
   });
 
   function imprimirDescuento(response){
@@ -97,7 +100,7 @@ $(document).ready(function() {
       '<option value="' + desc.id_descuento +'">' + desc.porcentaje + '</option>';
       $("#slc-descuento").append(fila);
     }
-    //$('.selectpicker').selectpicker('refresh');
+    $('.selectpicker').selectpicker('refresh');
   }
 
   // ---- Leer Presentación: ---
@@ -118,6 +121,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirPresentacion(response.data);
+    alert("pres");
   });
 
   function imprimirPresentacion(response){
@@ -128,7 +132,7 @@ $(document).ready(function() {
       '<option value="' + presen.id_presentacion + '">' + presen.presentacion + '</option>';
       $("#slc-presentacion").append(fila);
     }
-    //$('.selectpicker').selectpicker('refresh');
+    $('.selectpicker').selectpicker('refresh');
   }
 
   // ---- Leer Laboratorio: ----
@@ -149,6 +153,8 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirLaboratorio(response.data);
+    alert("labo");
+
   });
 
   function imprimirLaboratorio(response){
@@ -159,7 +165,7 @@ $(document).ready(function() {
       '<option value="' + labo.id_laboratorio + '">' + labo.nombre_laboratorio + '</option>';
       $("#slc-laboratorio").append(fila);
     }
-    actualizar();
+    $('.selectpicker').selectpicker('refresh');
   }
   
   function actualizar(){
