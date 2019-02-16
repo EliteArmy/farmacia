@@ -111,7 +111,7 @@ SP:BEGIN
       SELECT COUNT(*) INTO contador FROM persona
       WHERE persona.correo_electronico=pI_correo_electronico AND persona.id_persona<>pI_id_persona;
       IF contador>=1 THEN 
-        SET mensaje=CONCAT(mensaje,'correo ya asignado, ');
+        SET mensaje=CONCAT(mensaje,'el correo no se puede usar, ya existe en la db, ');
       END IF;  
     END IF;
     
@@ -122,7 +122,7 @@ SP:BEGIN
       SELECT COUNT(*) INTO contador FROM persona
       WHERE persona.numero_identidad=pI_numero_identidad AND persona.id_persona<>pI_id_persona;
       IF contador>=1 THEN 
-        SET mensaje=CONCAT(mensaje,'numero de identidad ya asignado');
+        SET mensaje=CONCAT(mensaje,'el numero de identidad no se puede usar, ya existe en la db');
       END IF;  
     END IF;
     

@@ -100,7 +100,7 @@ SP:BEGIN
       SELECT COUNT(*) INTO contador FROM empleado
       WHERE empleado.usuario=pI_usuario AND empleado.id_empleado<>pI_id_empleado;
       IF contador>=1 THEN
-          SET mensaje='usuario ya asignado';
+          SET mensaje='el usuario no se puede usar, ya existe en la db';
           SET error=TRUE;
           SET pO_mensaje=mensaje;
           SET pO_error=error;
