@@ -1,8 +1,13 @@
 $(document).ready(function() {
   // Test
   $("#btn-guard-prod").click(function(){
-    var parametros = $("#slc-categoria").val();
+    var parametros = $("#slc-descuento").val();
+
     alert(parametros);
+  });
+
+  $("#reset-formulario").click(function(){
+    
   });
 
   // ---- Leer Categoria: ----
@@ -202,9 +207,9 @@ $(document).ready(function() {
         '<td id="">' + prod.categoria + '</td>';
         '<td id="">' + prod.estado + '</td>';
         '<td id="">' + 
-          '<span class="far fa-edit edit"></span>' +
-          '<span class="far fa-trash-alt trash"></span>' + 
-          '<span class="fas fa-search-plus search"></span>' +
+          '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>' +
+          '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
+          '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>' +
         '</td>';
       '</tr>';
       $("#tabla-info").append(fila);
