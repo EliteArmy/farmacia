@@ -248,7 +248,7 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-                <label for="txt-numero-identidad">Numero De Identidad:</label>
+                <label for="txt-numero-identidad">Numero de identidad:</label>
                 <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0801-1992-06677"> 
             </div>
             
@@ -257,20 +257,32 @@
                <input type="date" id="txt-fecha-nacimiento" class="form-control">
             </div>
 
-          </div>
+
+
+        <div class="form-group col-12 col-sm-6 col-md-6">
+                <label for="txt-usuario"> Usuario:</label>
+                <input type="text" class="form-control" id="txt-usuario" name="txt-usuario" placeholder="ness41">
+        </div>
+    
+        <div class="form-group col-12 col-sm-6 col-md-6">
+                <label for="txt-contrasena">Contrasena</label>
+                <input type="text" class="form-control" id="txt-contrasena" name="txt-contrasena" placeholder="12345678">
+        </div>
+        
+        <div class="form-group col-12 col-sm-6 col-md-6">
+          <label for="inputGroupFile01"> Fotografia: <br></label>
+          <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                </div>
+                <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
+                <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
+              </div>
+        </div>
         </div>
 
-        <div class="modal-footer">
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
-              </div>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
-                <label class="custom-file-label" for="inputGroupFile01">Elegir una fotografia</label>
-              </div>
-            </div>
-        </div>
+
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
