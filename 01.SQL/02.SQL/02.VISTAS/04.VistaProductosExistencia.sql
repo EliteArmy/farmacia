@@ -84,7 +84,7 @@ SELECT
 id_lote, existencia as cantidad, 1 as id_movimiento
 FROM VistaProductosVencidos;
 
-SELECT * FROM VistaInventarioMercaderiaDinamica;
+# SELECT * FROM VistaInventarioMercaderiaDinamica;
 
 CREATE VIEW DescuentosDisponibles AS
   SELECT
@@ -110,7 +110,16 @@ SELECT
       SELECT id_laboratorio FROM medicamentos m
       WHERE m.id_producto = l.id_producto
     )
-  ) as laboratorio
+  ) as laboratorio,
+  (
+    SELECT
+      GROUP_CONCAT(categoria, '') as categoria
+    FROM categoria_producto cat_prod
+    INNER JOIN categoria c
+      ON cat_prod.id_categoria = c.id_categoria
+    WHERE cat_prod.id_producto = p.id_producto
+    GROUP BY id_producto
+  ) as categoria
   ,imp_disp.id_impuesto
   ,imp_disp.descripcion as descripcion_impuesto
   ,imp_disp.porcentaje as porcentaje_impuesto
@@ -135,3 +144,9 @@ WHERE
   ON imp_disp.id_producto = p.id_producto
 ORDER BY p.id_producto, l.id_lote
 ;
+
+
+SELECT
+  id_producto, id_lote, lote, precio_venta_unidad, precio_costo_unidad,
+  existencia, presentacion, nombre, codigo_barra, url_foto, laboratorio, categoria
+FROM VistaInventarioMercaderia
