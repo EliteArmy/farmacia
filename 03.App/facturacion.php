@@ -93,7 +93,7 @@
               <th>Sub Total</th>
               <th>Descuento (%)</th>
               <th>Precio Total</th>
-              <th></th>
+              <th>Opción</th>
             </tr>
           </thead>
 
@@ -108,7 +108,10 @@
               <td>Lorem</td>
               <td>Lorem</td>
               <td>Lorem</td>
-              <td>Icon</td>
+              <td>
+                <span class="far fa-edit edit"></span>
+                <span class="far fa-trash-alt trash"></span>
+              </td>
             </tr>
 
             <!--Informacion generada por la Base -->
@@ -121,7 +124,10 @@
               <td>Lorem</td>
               <td>Lorem</td>
               <td>Lorem</td>
-              <td>Icon</td>
+              <td>
+                <span class="far fa-edit edit"></span>
+                <span class="far fa-trash-alt trash"></span>
+              </td>
             </tr>
 
             <!--Informacion generada por la Base -->
@@ -134,7 +140,10 @@
               <td>Lorem</td>
               <td>Lorem</td>
               <td>Lorem</td>
-              <td>Icon</td>
+              <td>
+                <span class="far fa-edit edit"></span>
+                <span class="far fa-trash-alt trash"></span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -178,6 +187,8 @@
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+
 
   <!-- Custom Javascript -->
   <!--<script src="./js/placeholder.js"></script> -->

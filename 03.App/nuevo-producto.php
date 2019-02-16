@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Plantilla</title>
+  <title>Nuevo Producto</title>
 
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -20,21 +20,83 @@
   <!-- Contenido -->
   <div class="container-fluid">
     <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-11">
+      <div class="col-xs-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
+          <h4>Registro de Productos</h4>
         </div>
+
+        <div class="row">
+          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
+            <table class="table table-striped table-bordered">
+              <thead>
+                
+                <tr>
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>Codigo Barra</th>
+                  <th>P. Costo</th>
+                  <th>P. Venta</th>
+                  <th>Categoria</th>
+                  <th>Existencia</th>
+                  <th>Estado</th>
+                  <th>Opción</th>
+                </tr>
+              </thead>
+    
+              <tbody id="">
+                <!--Informacion generada por la Base -->
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>
+                    <span class="far fa-edit edit"></span>
+                    <span class="far fa-trash-alt trash"></span>
+                  </td>
+                </tr>
+    
+                <!--Informacion generada por la Base -->
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>
+                    <span class="far fa-edit edit"></span>
+                    <span class="far fa-trash-alt trash"></span>
+                  </td>
+                </tr>
+    
+              </tbody>
+            </table>
+          
+          </div>
+        </div>
+
+        <!-- Button trigger para el modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
+          Agregar Nuevo Producto
+        </button>
+
       </div>
     </div>
   </div>
+
   <!-- FIN Contenido -->
 
-  <!-- Button trigger para el modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
-    Agregar Nuevo Producto
-  </button>
+
 
   <!-- Modal -->
   <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,7 +192,8 @@
   <script src="./js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
+  <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script src="./js/controlador/nuevo-producto.js"></script>
-  
+
 </body>
 </html>

@@ -37,4 +37,13 @@ body .navbar li.active > a {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
 }
+
+.trash {
+  color: red;
+  padding-left: 1px;
+}
+
+.edit {
+  color: green;
+}
 /*# sourceMappingURL=style.css.map */

@@ -26,6 +26,7 @@
           <h4>Registro de Empleados</h4>
           <hr>
         </div>
+        
         <div class="row">
           <div class="col-sm-12 col-xs-12 col-lg-6 col-md-12">
             <h4>Datos Personales:</h4>
