@@ -1,12 +1,24 @@
 $(document).ready(function() {
   // Test
   $("#btn-guard-prod").click(function(){
-    var parametros = $("#slc-descuento").val();
-    alert(parametros);
+    var cat = $("#slc-categoria").val();
+    var imp = $("#slc-impuesto").val();
+    var des = $("#slc-descuento").val();
+    var pre = $("#slc-presentacion").val();
+    var lab = $("#slc-laboratorio").val();
+    alert(
+      "Cat:" + cat +
+      "imp:" + imp +
+      "des:" + des + 
+      "pre:" + pre + 
+      "lab:" + lab
+    );
+
   });
 
   $("#reset-formulario").click(function(){
-    $('.selectpicker').selectpicker('deselectAll');
+    $('.selectpicker').selectpicker('val', '');
+    $('.selectpicker').selectpicker('refresh');
   });
 
   // ---- Leer Categoria: ----
@@ -192,7 +204,7 @@ $(document).ready(function() {
   
   function imprimirProducto(response){
     $("#tabla-info").empty();
-    for (var i=0; i < 150; i++){  
+    for (var i=0; i < 20; i++){  
       var prod = response[i];
       var fila = 
         '<tr>' +
