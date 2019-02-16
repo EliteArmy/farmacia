@@ -23,7 +23,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirCategoria(response.data);
-    alert("Cate");
+    //alert("Cate");
   });
   
   function imprimirCategoria(response){
@@ -36,7 +36,6 @@ $(document).ready(function() {
     }
     $('.selectpicker').selectpicker('refresh');
   }
-
 
   // ---- Leer Impuesto: ----
   var settings = {
@@ -56,7 +55,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirImpuesto(response.data);
-    alert("Impu");
+    //alert("Impu");
   });
 
   function imprimirImpuesto(response){
@@ -69,7 +68,6 @@ $(document).ready(function() {
     }
     $('.selectpicker').selectpicker('refresh');
   }
-
 
   // ---- Leer Descuento: ----
   var settings = {
@@ -89,7 +87,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirDescuento(response.data);
-    alert("desc");
+    //alert("desc");
   });
 
   function imprimirDescuento(response){
@@ -121,7 +119,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirPresentacion(response.data);
-    alert("pres");
+    //alert("pres");
   });
 
   function imprimirPresentacion(response){
@@ -153,8 +151,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirLaboratorio(response.data);
-    alert("labo");
-
+    //alert("labo");
   });
 
   function imprimirLaboratorio(response){
@@ -167,8 +164,51 @@ $(document).ready(function() {
     }
     $('.selectpicker').selectpicker('refresh');
   }
-  
-  function actualizar(){
-    $('.selectpicker').selectpicker('refresh');
+
+  // ---- Leer Productos: ----
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-producto"
+    }
   }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    imprimirProducto(response.data);
+    //alert("Prod");
+  });
+  
+  function imprimirProducto(response){
+    $("#tabla-info").empty();
+    for (var i=0; i < response.length; i++){    
+      var prod = response[i];
+      var fila = 
+      'tr';
+        '<th scope="row">'+ i +'</th>';
+        '<td id="">' + prod.nombre + '</td>';
+        '<td id="">' + prod.codigo_barra + '</td>';
+        '<td id="">' + prod.precio_costo + '</td>';
+        '<td id="">' + prod.precio_venta + '</td>';
+        '<td id="">' + prod.categoria + '</td>';
+        '<td id="">' + prod.existencia + '</td>';
+        '<td id="">' + prod.categoria + '</td>';
+        '<td id="">' + prod.estado + '</td>';
+        '<td id="">' + 
+          '<span class="far fa-edit edit"></span>' +
+          '<span class="far fa-trash-alt trash"></span>' + 
+          '<span class="fas fa-search-plus search"></span>' +
+        '</td>';
+      '</tr>';
+      $("#tabla-info").append(fila);
+    }
+  }
+
 });

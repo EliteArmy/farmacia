@@ -38,6 +38,11 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-producto':
+      $res['data'] = Producto::leerProducto($conexion);
+      echo json_encode($res);
+    break;
+
     case 'crear-categoria':
       $cat = validarPOST('categoria');
       $prod = new Producto();

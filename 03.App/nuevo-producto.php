@@ -38,7 +38,7 @@
               <thead>
                 
                 <tr>
-                  <th>Código</th>
+                  <th>#</th>
                   <th>Nombre</th>
                   <th>Codigo Barra</th>
                   <th>P. Costo</th>
@@ -62,9 +62,9 @@
                   <td>Lorem</td>
                   <td>Lorem</td>
                   <td>
-                    <span class="far fa-edit edit"></span>
-                    <span class="far fa-trash-alt trash"></span>
-                    <span class="fas fa-search-plus search"></span>
+                    <button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>
+                    <button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>
+                    <button type="button" onclick="" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>
                   </td>
                 </tr>
     
