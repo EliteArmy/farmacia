@@ -22,12 +22,12 @@ if(isset($_POST['accion'])){
       $res['data'] = Producto::leerImpuesto($conexion);
       echo json_encode($res);
     break;
-    
+
     case 'leer-descuento':
       $res['data'] = Producto::leerDescuento($conexion);
       echo json_encode($res);
     break;
-    
+
     case 'leer-presentacion':
       $res['data'] = Producto::leerPresentacion($conexion);
       echo json_encode($res);
@@ -39,7 +39,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-producto':
-      $res['data'] = Producto::leerProducto($conexion);
+      $res['data'] = Producto::leer($conexion);
       echo json_encode($res);
     break;
 
