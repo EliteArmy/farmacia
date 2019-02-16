@@ -35,7 +35,7 @@ FROM IngresoLote ilote;
 
 
 -- DROP VIEW InventarioMercaderia;
-CREATE OR REPLACE VIEW VistaInventarioMercaderia AS
+CREATE OR REPLACE VIEW VistaInventarioMercaderiaDinamica AS
 SELECT
   codigo_barra
   ,l.id_producto, l.id_lote, lote, le.existencia
@@ -84,4 +84,16 @@ SELECT
 id_lote, existencia as cantidad, 1 as id_movimiento
 FROM VistaProductosVencidos;
 
-SELECT * FROM VistaInventarioMercaderia;
+SELECT * FROM VistaInventarioMercaderiaDinamica;
+
+-- DROP VIEW InventarioMercaderia;
+CREATE OR REPLACE VIEW VistaInventarioMercaderia AS;
+
+SELECT
+*,
+(
+  SELECT
+)
+FROM lote l
+INNER JOIN producto p
+  ON l.id_producto = p.id_producto

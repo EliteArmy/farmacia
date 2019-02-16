@@ -34,6 +34,7 @@ if(isset($_POST['accion'])){
       $usuario = validarPOST('usuario');
       $contrasena = validarPOST('contrasena');
       $fotoUrl = validarPOST('foto_url');
+      $idTipoUsuario = validarPOST('id_tipo_usuario');
       $empleado = new Empleado();
       $empleado->setPrimerNombre($primerNombre);
       $empleado->setSegundoNombre($segundoNombre);
@@ -48,7 +49,52 @@ if(isset($_POST['accion'])){
       $empleado->setUsuario($usuario);
       $empleado->setContrasena($contrasena);
       $empleado->setFotoUrl($fotoUrl);
+      $empleado->setIdTipoUsuario($idTipoUsuario);
       $res['data'] = $empleado->crear($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'actualizar-empleado':
+      $idEmpleado = validarPOST('id_empleado');
+      $primerNombre = validarPOST('primer_nombre');
+      $segundoNombre = validarPOST('segundo_nombre');
+      $primerApellido = validarPOST('primer_apellido');
+      $segundoApellido = validarPOST('segundo_apellido');
+      $sexo = validarPOST('sexo');
+      $direccion = validarPOST('direccion');
+      $correoElectronico = validarPOST('correo_electronico');
+      $numeroIdentidad = validarPOST('numero_identidad');
+      $fechaNacimiento = validarPOST('fecha_nacimiento');
+      $fechaIngreso = validarPOST('fecha_ingreso');
+      $usuario = validarPOST('usuario');
+      $estado = validarPOST('estado');
+      $fotoUrl = validarPOST('foto_url');
+      $idTipoUsuario = validarPOST('id_tipo_usuario');
+      $empleado = new Empleado();
+      $empleado->setIdEmpleado($idEmpleado);
+      $empleado->setPrimerNombre($primerNombre);
+      $empleado->setSegundoNombre($segundoNombre);
+      $empleado->setPrimerApellido($primerApellido);
+      $empleado->setSegundoApellido($segundoApellido);
+      $empleado->setSexo($sexo);
+      $empleado->setEstado($estado);
+      $empleado->setDireccion($direccion);
+      $empleado->setCorreoElectronico($correoElectronico);
+      $empleado->setNumeroIdentidad($numeroIdentidad);
+      $empleado->setFechaNacimiento($fechaNacimiento);
+      $empleado->setFechaIngreso($fechaIngreso);
+      $empleado->setUsuario($usuario);
+      $empleado->setFotoUrl($fotoUrl);
+      $empleado->setIdTipoUsuario($idTipoUsuario);
+      $res['data'] = $empleado->actualizar($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'eliminar-empleado':
+      $idEmpleado = validarPOST('id_empleado');
+      $empleado = new Empleado();
+      $empleado->setIdEmpleado($idEmpleado);
+      $res['data'] = $empleado->borrar($conexion);
       echo json_encode($res);
     break;
 
