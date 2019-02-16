@@ -38,7 +38,7 @@
               <thead>
                 
                 <tr>
-                  <th>Código</th>
+                  <th>#</th>
                   <th>Nombre</th>
                   <th>Codigo Barra</th>
                   <th>P. Costo</th>
@@ -62,9 +62,9 @@
                   <td>Lorem</td>
                   <td>Lorem</td>
                   <td>
-                    <span class="far fa-edit edit"></span>
-                    <span class="far fa-trash-alt trash"></span>
-                    <span class="fas fa-search-plus search"></span>
+                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="far fa-edit edit"></span></button>
+                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="far fa-trash-alt trash"></span></button>
+                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="fas fa-search-plus search"></span></button>
                   </td>
                 </tr>
     
@@ -79,9 +79,9 @@
                   <td>Lorem</td>
                   <td>Lorem</td>
                   <td>
-                    <span class="far fa-edit edit"></span>
-                    <span class="far fa-trash-alt trash"></span>
-                    <span class="fas fa-search-plus search"></span>
+                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="far fa-edit edit"></span></button>
+                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="far fa-trash-alt trash"></span></button>
+                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="fas fa-search-plus search"></span></button>
                   </td>
                 </tr>
     
@@ -109,10 +109,7 @@
       </div>
     </div>
   </div>
-
   <!-- FIN Contenido -->
-
-
 
   <!-- Modal -->
   <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -149,31 +146,31 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-categoria" class="selectpicker form-control" title="Categorias" data-style="btn-primary" multiple>
+              <select id="slc-categoria" class="selectpicker form-control" data-live-search="true" title="Categorias" data-style="btn-primary" multiple>
                 <!--Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-impuesto" class="selectpicker form-control" title="Impuestos" data-style="btn-primary">
+              <select id="slc-impuesto" class="selectpicker form-control" data-live-search="true" title="Impuestos" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-descuento" class="selectpicker form-control" title="Descuentos" data-style="btn-primary">
+              <select id="slc-descuento" class="selectpicker form-control" data-live-search="true" title="Descuentos" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-presentacion" class="selectpicker form-control" title="Presentacion" data-style="btn-primary" multiple>
+              <select id="slc-presentacion" class="selectpicker form-control" data-live-search="true" title="Presentacion" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-laboratorio" class="selectpicker form-control" title="Laboratorio" data-style="btn-primary" multiple>
+              <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
             </div>
@@ -195,7 +192,9 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" id="btn-guard-prod" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn btn-primary" id="btn-guard-prod">Guardar Cambios</button>
+          <button type="button" class="btn btn-info" id="reset-formulario">Reset</button>
+
         </div>
 
       </div>

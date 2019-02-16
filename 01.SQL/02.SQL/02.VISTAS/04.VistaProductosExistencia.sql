@@ -86,14 +86,52 @@ FROM VistaProductosVencidos;
 
 SELECT * FROM VistaInventarioMercaderiaDinamica;
 
--- DROP VIEW InventarioMercaderia;
-CREATE OR REPLACE VIEW VistaInventarioMercaderia AS;
-
-SELECT
-*,
-(
+CREATE VIEW DescuentosDisponibles AS
   SELECT
-)
+    desc_lote.id_lote, d.id_descuento, descripcion, porcentaje, fecha_fin, fecha_inicio
+  FROM descuento_lote desc_lote
+  INNER JOIN descuento d
+    on desc_lote.id_descuento = d.id_descuento
+  WHERE
+    fecha_inicio >= CURDATE() AND fecha_fin > CURDATE()
+;
+
+-- DROP VIEW InventarioMercaderia;
+CREATE OR REPLACE VIEW VistaInventarioMercaderia AS
+SELECT
+  l.id_lote,l.id_producto,lote
+  ,precio_costo_unidad,precio_venta_unidad
+  ,fecha_elaboracion,fecha_vecimiento,l.estado as estado_lote,existencia ,id_presentacion
+  ,(SELECT presentacion FROM presentacion pre WHERE p.id_presentacion = pre.id_presentacion) as presentacion
+  ,p.nombre ,p.codigo_barra,p.url_foto
+  ,(
+    SELECT nombre_laboratorio FROM laboratorio
+    WHERE id_laboratorio = (
+      SELECT id_laboratorio FROM medicamentos m
+      WHERE m.id_producto = l.id_producto
+    )
+  ) as laboratorio
+  ,imp_disp.id_impuesto
+  ,imp_disp.descripcion as descripcion_impuesto
+  ,imp_disp.porcentaje as porcentaje_impuesto
+  ,(SELECT COUNT(*) FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as tiene_descuento
+  ,(SELECT descripcion FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as descripcion_descuento
+  ,(SELECT porcentaje FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as porcentaje_descuento
+  ,(SELECT fecha_inicio FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as fecha_inicio_descuento
+  ,(SELECT fecha_fin FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as fecha_fin_descuento
 FROM lote l
 INNER JOIN producto p
   ON l.id_producto = p.id_producto
+INNER JOIN (
+  SELECT
+  i.id_impuesto,descripcion,porcentaje, id_producto
+FROM impuesto_producto imp_prod
+INNER JOIN impuesto i
+  on imp_prod.id_impuesto = i.id_impuesto
+WHERE
+  imp_prod.fecha_inicio >= CURDATE()
+  AND imp_prod.estado='A'
+) imp_disp
+  ON imp_disp.id_producto = p.id_producto
+ORDER BY p.id_producto, l.id_lote
+;
