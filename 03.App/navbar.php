@@ -14,7 +14,7 @@
 
         <!--Item Facturas-->
         <?php if(show_menu_if(["buscar-factura","nueva-factura"])): ?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="nav-factura">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Facturas
           </a>
@@ -31,7 +31,7 @@
 
         <!--Item Inventarios-->
         <?php if(show_menu_if(["catalogo-inventario","ver-inventario"])):?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="nav-inventario">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Inventarios
           </a>
@@ -49,7 +49,7 @@
 
         <!--Item Productos-->
         <?php if(show_menu_if(["nuevo-medicamento","nuevo-producto","registro-lote-producto","registro-lote-medicamento","descartar-productos","gestionar-laboratorios"])):?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="nav-producto">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Productos
           </a>
@@ -87,7 +87,7 @@
 
         <!--Item Clientes-->
         <?php if(show_menu_if(["registrar-cliente","listado-cliente"])):?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="nav-cliente">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Clientes
           </a>
@@ -105,7 +105,7 @@
 
         <!--Item Empleados-->
         <?php if(show_menu_if(["registrar-empleado","listado-empleado"])):?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="nav-empleado">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Empleados
           </a>
@@ -123,7 +123,7 @@
 
         <!--Item Reportes-->
         <?php if(show_menu_if(["reporte-producto","reporte-empleado"])):?>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="nav-reporte">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Reportes
           </a>
@@ -142,7 +142,7 @@
 
       <ul class="navbar-nav ml-auto">
         <!--Item Administración-->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="nav-administracion">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?php
             echo $_SESSION["nombre_completo"];
