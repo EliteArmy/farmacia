@@ -2,12 +2,11 @@ $(document).ready(function() {
   // Test
   $("#btn-guard-prod").click(function(){
     var parametros = $("#slc-descuento").val();
-
     alert(parametros);
   });
 
   $("#reset-formulario").click(function(){
-    
+    $('.selectpicker').selectpicker('deselectAll');
   });
 
   // ---- Leer Categoria: ----
@@ -193,26 +192,25 @@ $(document).ready(function() {
   
   function imprimirProducto(response){
     $("#tabla-info").empty();
-    for (var i=0; i < response.length; i++){    
+    for (var i=0; i < 150; i++){  
       var prod = response[i];
       var fila = 
-      'tr';
-        '<th scope="row">'+ i +'</th>';
-        '<td id="">' + prod.nombre + '</td>';
-        '<td id="">' + prod.codigo_barra + '</td>';
-        '<td id="">' + prod.precio_costo + '</td>';
-        '<td id="">' + prod.precio_venta + '</td>';
-        '<td id="">' + prod.categoria + '</td>';
-        '<td id="">' + prod.existencia + '</td>';
-        '<td id="">' + prod.categoria + '</td>';
-        '<td id="">' + prod.estado + '</td>';
-        '<td id="">' + 
-          '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>' +
-          '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
-          '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>' +
-        '</td>';
-      '</tr>';
-      $("#tabla-info").append(fila);
+        '<tr>' +
+          '<th scope="row">'+ (i+1) +'</th>' +
+          '<td id="">' + prod.nombre + '</td>' + 
+          '<td id="">' + prod.codigo_barra + '</td>' +
+          '<td id="">' + prod.precio_costo_unidad + '</td>' +
+          '<td id="">' + prod.precio_venta_unidad + '</td>' +
+          '<td id="">' + "Categoria" + '</td>' +
+          '<td id="">' + prod.existencia + '</td>' +
+          '<td id="">' + prod.estado_lote + '</td>' +
+          '<td id="">' + 
+            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>' +
+            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
+            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>' +
+          '</td>'+
+        '</tr>';
+        $("#tabla-info").append(fila);
     }
   }
 

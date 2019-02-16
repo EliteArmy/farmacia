@@ -36,8 +36,7 @@
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <table class="table table-striped table-bordered">
               <thead>
-                
-                <tr>
+                <tr class="tableheader">
                   <th>#</th>
                   <th>Nombre</th>
                   <th>Codigo Barra</th>
@@ -50,7 +49,7 @@
                 </tr>
               </thead>
     
-              <tbody id="">
+              <tbody id="tabla-info">
                 <!--Informacion generada por la Base -->
                 <tr>
                   <th scope="row">1</th>
@@ -84,7 +83,6 @@
                     <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="fas fa-search-plus search"></span></button>
                   </td>
                 </tr>
-    
               </tbody>
             </table>
           
@@ -194,7 +192,6 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <button type="button" class="btn btn-primary" id="btn-guard-prod">Guardar Cambios</button>
           <button type="button" class="btn btn-info" id="reset-formulario">Reset</button>
-
         </div>
 
       </div>
