@@ -18,8 +18,92 @@
 
   <?php include("./navbar.php"); ?>
 
+ <div class="container-fluid">
+    <div class="row justify-content-md-center">
+      <div class="col-xs-12 col-md-11 well card">
+        <div class="text-center">
+ <div class="row">
+          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
+            <table class="table table-striped table-bordered">
+              <thead>
+                
+                <tr>
+                  <th>Código Empleado</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Usuario</th>
+                  <th>Contraseña</th>
+                  <th>E-Mail</th>
+                  <th>Sexo</th>
+                  <th>Codigo Persona</th>
+                  <th>No. Identidad</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+    
+              <tbody id="">
+               
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>
+                    <span class="far fa-edit edit"></span>
+                    <span class="far fa-trash-alt trash"></span>
+                    <span class="fas fa-search-plus search"></span>
+                  </td>
+                </tr>
+    
+                <!--Informacion generada por la Base -->
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>Lorem</td>
+                  <td>
+                    <span class="far fa-edit edit"></span>
+                    <span class="far fa-trash-alt trash"></span>
+                    <span class="fas fa-search-plus search"></span>
+                  </td>
+                </tr>
+    
+              </tbody>
+            </table>
+          
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-16 col-sm-6 col-md-6 col-lg-6">
+            <!-- Button trigger para el modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
+              Agregar Nuevo Producto
+            </button>
+          </div>
+          
+          <div class="col-16 col-sm-6 col-md-6 col-lg-6">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
+              Agregar Nuevo Lote
+            </button>
+          </div>  
+        </div>
+
+       </div>
+      </div>
+     </div>
+    </div>
+
   <!-- Contenido -->
-  <div class="container-fluid">
+ <!--<div class="container-fluid">
     <div class="row justify-content-md-center">
       <div class="col-xs-12 col-md-11 well card">
         <div class="text-center">
