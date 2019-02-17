@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row nuevo-producto">
           <div class="col-16 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
@@ -97,16 +97,6 @@
               <input type="text" class="form-control" id="Codigo-barra" name="" placeholder="Código de Barra">
             </div>
 
-            <div class="form-group col-12 col-md-6">
-              <label for="placeholder1">placeholder1</label>
-              <input type="text" class="form-control" id="" name="" placeholder="placeholder1">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="placeholder2">placeholder2</label>
-              <input type="text" class="form-control" id="" name="" placeholder="placeholder2">
-            </div>
-
             <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-categoria" class="selectpicker form-control" data-live-search="true" title="Categorias" data-style="btn-primary" multiple>
                 <!--Informacion generada -->
@@ -120,27 +110,21 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-descuento" class="selectpicker form-control" data-live-search="true" title="Descuentos" data-style="btn-primary">
-                <!--Informacion generada -->
-              </select>
-            </div>
-
-            <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-presentacion" class="selectpicker form-control" data-live-search="true" title="Presentacion" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
-                <!--Informacion generada -->
+              <select id="slc-tipo" class="selectpicker form-control" title="Tipo de Producto" data-style="btn-primary">
+                <option onclick="showMedicamento(P)" value="P">Producto</option>
+                <option onclick="showMedicamento(M)" value="M">Medicamento</option>
               </select>
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-tipo" class="selectpicker form-control" title="Tipo de Producto" data-style="btn-primary">
-                <option value="P">Producto</option>
-                <option value="M">Medicamento</option>
+            <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
+              <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
+                <!--Informacion generada -->
               </select>
             </div>
 

@@ -50,4 +50,8 @@ body .navbar li.active > a {
 .search {
   color: purple;
 }
+
+.nuevo-producto {
+  margin-top: 20px;
+}
 /*# sourceMappingURL=style.css.map */

@@ -222,7 +222,7 @@ $(document).ready(function() {
 
   // ---- Leer Productos (DataTables): ----
   $('#table-info').DataTable({
-    pageLength: 20,
+    pageLength: 10,
     searching: true,
     ordering: true,
     paging: true,
@@ -242,18 +242,19 @@ $(document).ready(function() {
     language: {
       oPaginate: {
           sNext: '<i class="fa fa-forward"></i>',
-          sPrevious: '<i class="fa fa-backward"></i>',
-          sFirst: '<i class="fa fa-step-backward"></i>',
-          sLast: '<i class="fa fa-step-forward"></i>' 
+          sPrevious: '<i class="fa fa-backward"></i>'
       }
     },
     columns: [
-      { "data": "id_empleado",title:"Id"},
-      { "data": "fecha_ingreso",title:"Fehca Ingreso"},
-      { "data": "id_persona",title:"Persona"},
-      { "data": "usuario",title:"Usuario"},
-      { "data": "estado",title:"Estado"},
-      { "data": "id_tipo_usuario",title:"Opcion",
+      { "data": "nombre", title:"Nombre"},
+      { "data": "codigo_barra", title:"Código Barra"},
+      { "data": "existencia", title:"Existencia"},
+      { "data": "precio_costo_unidad", title:"P. Costo"},
+      { "data": "precio_venta_unidad", title:"P. Venta"},
+      { "data": "lote", title:"Lote"},
+      { "data": "estado_lote", title:"E. Lote"},
+      { "data": "categoria", title:"Categoria"},
+      { "data": "id_producto", title:"Opcion",
       "render": function ( data, type, row, meta ) {
         return  '<button type="button" onclick="funcionActualizar()" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
                 '<button type="button" onclick="funcionBorrar()" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
@@ -276,4 +277,18 @@ function funcionActualizar(){
 function funcionMostrar(){
   alert("Mostrar Más...!");
 }
+
+function showMedicamento(let){
+  
+}
+
+$("#slc-tipo").change(function(){
+  var selected = $('#slc-tipo option:selected').val();
+  if(selected == "M"){
+    $('#laboratorio').show();
+  } else {
+    $('#laboratorio').hide();
+    $('#slc-laboratorio').val("");
+  }        
+});
 
