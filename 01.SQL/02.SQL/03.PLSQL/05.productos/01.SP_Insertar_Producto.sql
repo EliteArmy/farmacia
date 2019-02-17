@@ -21,18 +21,27 @@ CREATE PROCEDURE SP_Insertar_Producto(
   SET error= FALSE;
   -- _________________VERIFICACIONES_________________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
-
+    -- presentacion
     IF pI_id_presentacion='' OR pI_id_presentacion IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'id de la presentacion del producto, ');
     END IF;
-
+    -- nombre
     IF pI_nombre='' OR pI_nombre IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'nombre del producto, ');
     END IF;
-
+    -- codigo de barra alfanumerico
     IF pI_codigo_barra='' OR pI_codigo_barra IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'codigo de barra del producto, ');
     END IF;
+
+    -- validacion de codigo de barra numerico
+    
+    -- IF NOT (pI_codigo_barra='' OR pI_codigo_barra IS NULL) THEN 
+    --   IF (pI_codigo_barra  REGEXP '^[0-9]+$') = 0 THEN
+    --       SET mensaje=CONCAT(mensaje, 'codigo de barra invalido, ');
+    --   END IF;
+    -- END IF;
+        
 
 	-- el campo de la foto de un producto puede ser null
    -- IF pI_url_foto='' OR pI_url_foto IS NULL THEN 

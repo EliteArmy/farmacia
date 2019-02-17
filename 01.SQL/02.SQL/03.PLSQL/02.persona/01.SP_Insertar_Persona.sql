@@ -32,12 +32,13 @@ SP:BEGIN
     IF pI_primer_apellido='' OR pI_primer_apellido IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'primer apellido, ');
     END IF; 
+    IF pI_correo_electronico='' OR pI_correo_electronico IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'correo electrónico, ');
+    END IF; 
     IF pI_sexo='' OR pI_sexo IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'sexo, ');
     END IF;
-    IF pI_numero_identidad='' OR pI_numero_identidad IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
-    END IF;   
+    
     -- Otras Validaciones
     -- email
     IF NOT (pI_correo_electronico='' OR pI_correo_electronico IS NULL) THEN 
@@ -46,12 +47,17 @@ SP:BEGIN
         END IF;
     END IF;
     -- genero
-    IF NOT( pI_sexo = 'M' OR pI_sexo = 'F' OR pI_sexo='I') THEN
-     SET mensaje=CONCAT(mensaje,'genero invalido, ');
+    IF NOT (pI_sexo='' OR pI_sexo IS NULL) THEN
+        IF NOT( pI_sexo = 'M' OR pI_sexo = 'F' OR pI_sexo='I') THEN
+         SET mensaje=CONCAT(mensaje,'genero invalido, ');
+        END IF;
     END IF;
+
     -- identidad
-    IF (pI_numero_identidad REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$' ) = 0 THEN
-        SET mensaje=CONCAT(mensaje,'numero de identidad invalido, ');
+    IF NOT (pI_numero_identidad='' OR pI_numero_identidad IS NULL) THEN
+        IF (pI_numero_identidad REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$' ) = 0 THEN
+            SET mensaje=CONCAT(mensaje,'numero de identidad invalido, ');
+        END IF;
     END IF;
     -- __________________________CUERPO DEL PL______________________________________________
     -- Validar que el numero de identidad no se repita 
@@ -98,7 +104,7 @@ SP:BEGIN
                          pI_fecha_nacimiento,
                          'A');
     COMMIT;
-    SET pO_mensaje='insersion exitosa';
+    SET pO_mensaje='inserción exitosa';
     SET pO_error=FALSE;
 
 END$$
