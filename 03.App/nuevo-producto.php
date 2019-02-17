@@ -1,4 +1,7 @@
-
+<?php
+  $idPagina = "catalogo-inventario";
+  include("autenticacion.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +16,10 @@
   <link rel="stylesheet" href="./data-tables/css/jquery.dataTables.min.css" type="text/css"/>
   <link rel="stylesheet" href="./css/style.css">
 
-  
-
 </head>
 <body>
 
-
+  <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
   <div class="container-fluid">

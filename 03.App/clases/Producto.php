@@ -132,7 +132,17 @@ class Producto{
 	public function crear($conexion){
 	}
 	public static function leer($conexion){
-		$sql = 'SELECT * FROM VistaInventarioMercaderia';
+	}
+	public function actualizar($conexion){
+	}
+	public function borrar($conexion){
+  }
+
+
+  public function crear($conexion){
+	}
+	public static function leerProducto($conexion){
+		$sql = 'SELECT * FROM empleado';
 		$rows = $conexion->query($sql);
 		return $rows;
 	}

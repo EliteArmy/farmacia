@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // Test
+
   $("#btn-guard-prod").click(function(){
     var cat = $("#slc-categoria").val();
     var imp = $("#slc-impuesto").val();
@@ -15,7 +15,6 @@ $(document).ready(function() {
       "lab:" + lab +
       "pro:" + pro
     );
-
   });
 
   $("#reset-formulario").click(function(){
@@ -177,7 +176,7 @@ $(document).ready(function() {
     }
     $('.selectpicker').selectpicker('refresh');
   }
-
+/*
   // ---- Leer Productos: ----
   var settings = {
     "async": true,
@@ -221,9 +220,9 @@ $(document).ready(function() {
         $("#tabla-info").append(fila);
     }
   }
-  
+  */
 /*
-  // ---- Leer Productos: ----
+  // ---- Leer Productos (DataTables): ----
   $('#table-info').DataTable({
     pageLength: 20,
     searching: true,
@@ -251,18 +250,14 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { "data": "nombre"},
-      { "data": "codigo_barra"},
-      { "data": "precio_costo_unidad"},
-      { "data": "precio_venta_unidad"},
-      { "data": "categoria"},
-      { "data": "existencia"},
-      { "data": "estado_lote"}
+      { "data": "id_empleado"},
+      { "data": "fecha_ingreso"},
+      { "data": "id_persona"},
+      { "data": "usuario"},
+      { "data": "estado"},
+      { "data": "id_tipo_usuario"},
     ]
   });
 */
-
-
-
 
 });
