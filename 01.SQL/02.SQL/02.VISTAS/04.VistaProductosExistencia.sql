@@ -148,5 +148,7 @@ ORDER BY p.id_producto, l.id_lote
 
 SELECT
   id_producto, id_lote, lote, precio_venta_unidad, precio_costo_unidad,
-  existencia, presentacion, nombre, codigo_barra, url_foto, laboratorio, categoria
-FROM VistaInventarioMercaderia
+  existencia, presentacion, nombre, codigo_barra,
+  COALESCE(categoria, '') as categoria,
+  estado_lote
+FROM VistaInventarioMercaderia;
