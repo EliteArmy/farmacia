@@ -1,6 +1,6 @@
 ![Logo](./00.Branding/Logox100.png)
 
-# Ágata
+# Farma
 
 Farmacia: Sistema de Gestión de Inventarios.
 
