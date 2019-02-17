@@ -13,8 +13,11 @@
 
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./mult-sel-plugin/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./data-tables/css/jquery.dataTables.min.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/style.css">
+
+  
 
 </head>
 <body>
@@ -34,10 +37,9 @@
 
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
-            <table class="table table-striped table-bordered">
+            <table id="table-info" class="display" style="width: 100%;">
               <thead>
-                <tr class="tableheader">
-                  <th>#</th>
+                <tr>
                   <th>Nombre</th>
                   <th>Codigo Barra</th>
                   <th>P. Costo</th>
@@ -48,42 +50,7 @@
                   <th>Opción</th>
                 </tr>
               </thead>
-    
-              <tbody id="tabla-info">
-                <!--Informacion generada por la Base -->
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>
-                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="far fa-edit edit"></span></button>
-                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="far fa-trash-alt trash"></span></button>
-                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="fas fa-search-plus search"></span></button>
-                  </td>
-                </tr>
-    
-                <!--Informacion generada por la Base -->
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>Lorem</td>
-                  <td>
-                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="far fa-edit edit"></span></button>
-                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="far fa-trash-alt trash"></span></button>
-                    <button type="button" onclick="" class="btn btn-default" style="padding-left:3px; padding-right:3px;"><span class="fas fa-search-plus search"></span></button>
-                  </td>
-                </tr>
-              </tbody>
+
             </table>
           
           </div>
@@ -173,6 +140,13 @@
               </select>
             </div>
 
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-tipo" class="selectpicker form-control" title="Tipo de Producto" data-style="btn-primary">
+                <option value="P">Producto</option>
+                <option value="M">Medicamento</option>
+              </select>
+            </div>
+
           </div>
         </div>
 
@@ -205,6 +179,7 @@
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <script type="text/javascript" src="./data-tables/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>
 
 </body>

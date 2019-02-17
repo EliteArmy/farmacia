@@ -6,12 +6,14 @@ $(document).ready(function() {
     var des = $("#slc-descuento").val();
     var pre = $("#slc-presentacion").val();
     var lab = $("#slc-laboratorio").val();
+    var pro = $("#slc-tipo").val();
     alert(
       "Cat:" + cat +
       "imp:" + imp +
       "des:" + des + 
       "pre:" + pre + 
-      "lab:" + lab
+      "lab:" + lab +
+      "pro:" + pro
     );
 
   });
@@ -71,7 +73,6 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirImpuesto(response.data);
-    //alert("Impu");
   });
 
   function imprimirImpuesto(response){
@@ -103,7 +104,6 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirDescuento(response.data);
-    //alert("desc");
   });
 
   function imprimirDescuento(response){
@@ -135,7 +135,6 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirPresentacion(response.data);
-    //alert("pres");
   });
 
   function imprimirPresentacion(response){
@@ -167,7 +166,6 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirLaboratorio(response.data);
-    //alert("labo");
   });
 
   function imprimirLaboratorio(response){
@@ -180,7 +178,7 @@ $(document).ready(function() {
     }
     $('.selectpicker').selectpicker('refresh');
   }
-
+/*
   // ---- Leer Productos: ----
   var settings = {
     "async": true,
@@ -198,10 +196,48 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    imprimirProducto(response.data);
-    //alert("Prod");
+    //imprimirProducto(response.data);
   });
-  
+*/
+  $('#table-info').DataTable({
+    pageLength: 20,
+    searching: true,
+    ordering: true,
+    paging: true,
+    ajax: {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "json",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "leer-producto"
+      }
+    },
+    language: {
+      oPaginate: {
+          sNext: '<i class="fa fa-forward"></i>',
+          sPrevious: '<i class="fa fa-backward"></i>',
+          sFirst: '<i class="fa fa-step-backward"></i>',
+          sLast: '<i class="fa fa-step-forward"></i>' 
+      }
+    },
+
+    columns: [
+      { "data": "nombre"},
+      { "data": "codigo_barra"},
+      { "data": "precio_costo_unidad"},
+      { "data": "precio_venta_unidad"},
+      { "data": "categoria"},
+      { "data": "existencia"},
+      { "data": "estado_lote"}
+    ]
+  });
+
+  /*
   function imprimirProducto(response){
     $("#tabla-info").empty();
     for (var i=0; i < 20; i++){  
@@ -225,5 +261,7 @@ $(document).ready(function() {
         $("#tabla-info").append(fila);
     }
   }
+*/
+
 
 });
