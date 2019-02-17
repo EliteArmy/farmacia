@@ -132,21 +132,28 @@ class Producto{
 	public function crear($conexion){
 	}
 	public static function leer($conexion){
+		$sql = '
+			SELECT
+  			id_producto, id_lote, lote, precio_venta_unidad, precio_costo_unidad,
+  			existencia, presentacion, nombre, codigo_barra,
+  			COALESCE(categoria, \'\') as categoria,
+  			estado_lote
+			FROM VistaInventarioMercaderia;
+		';
+		$rows = $conexion->query($sql);
+		return $rows;
 	}
 	public function actualizar($conexion){
 	}
 	public function borrar($conexion){
   }
 
-
+  /*METODO DUPLICADO : USAR Producto::leer  */
 	public static function leerProducto($conexion){
 		$sql = 'SELECT * FROM VistaInventarioMercaderiaDinamica';
 		$rows = $conexion->query($sql);
 		return $rows;
 	}
-
-
-
 
   public function crearCategoria($conexion){
 		$sql = "CALL SP_Insertar_Categoria('%s');";

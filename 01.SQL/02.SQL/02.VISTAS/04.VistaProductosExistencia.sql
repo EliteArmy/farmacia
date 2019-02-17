@@ -86,14 +86,14 @@ FROM VistaProductosVencidos;
 
 # SELECT * FROM VistaInventarioMercaderiaDinamica;
 
-CREATE VIEW DescuentosDisponibles AS
+CREATE OR REPLACE VIEW DescuentosDisponibles AS
   SELECT
     desc_lote.id_lote, d.id_descuento, descripcion, porcentaje, fecha_fin, fecha_inicio
   FROM descuento_lote desc_lote
   INNER JOIN descuento d
     on desc_lote.id_descuento = d.id_descuento
   WHERE
-    fecha_inicio >= CURDATE() AND fecha_fin > CURDATE()
+    fecha_inicio <= CURDATE() AND fecha_fin > CURDATE()
 ;
 
 -- DROP VIEW InventarioMercaderia;
@@ -138,7 +138,7 @@ FROM impuesto_producto imp_prod
 INNER JOIN impuesto i
   on imp_prod.id_impuesto = i.id_impuesto
 WHERE
-  imp_prod.fecha_inicio >= CURDATE()
+  imp_prod.fecha_inicio <= CURDATE()
   AND imp_prod.estado='A'
 ) imp_disp
   ON imp_disp.id_producto = p.id_producto
@@ -152,3 +152,4 @@ SELECT
   COALESCE(categoria, '') as categoria,
   estado_lote
 FROM VistaInventarioMercaderia;
+
