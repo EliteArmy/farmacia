@@ -7,14 +7,12 @@ $(document).ready(function() {
     var pre = $("#slc-presentacion").val();
     var lab = $("#slc-laboratorio").val();
     var pro = $("#slc-tipo").val();
-    alert(
-      "Cat:" + cat +
+    alert("Cat:" + cat +
       "imp:" + imp +
       "des:" + des + 
       "pre:" + pre + 
       "lab:" + lab +
-      "pro:" + pro
-    );
+      "pro:" + pro);
   });
 
   $("#reset-formulario").click(function(){
@@ -40,14 +38,14 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     imprimirCategoria(response.data);
-    //alert("Cate");
   });
   
   function imprimirCategoria(response){
     $("#slc-categoria").empty();
     for (var i=0; i < response.length; i++){   
       var categ = response[i];
-      var fila = '<option value="' + categ.id_categoria + '">' + categ.categoria + '</option>';
+      var fila = 
+      '<option value="' + categ.id_categoria + '">' + categ.categoria + '</option>';
       $("#slc-categoria").append(fila);
     }
     $('.selectpicker').selectpicker('refresh');
@@ -106,7 +104,7 @@ $(document).ready(function() {
 
   function imprimirDescuento(response){
     $("#slc-descuento").empty();
-    for (var i=0; i < response.length; i++){    
+    for (var i=0; i < response.length; i++){
       var desc = response[i];
       var fila = 
       '<option value="' + desc.id_descuento +'">' + desc.porcentaje + '</option>';
@@ -220,8 +218,8 @@ $(document).ready(function() {
         $("#tabla-info").append(fila);
     }
   }
-  */
-/*
+*/
+
   // ---- Leer Productos (DataTables): ----
   $('#table-info').DataTable({
     pageLength: 20,
@@ -250,14 +248,32 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { "data": "id_empleado"},
-      { "data": "fecha_ingreso"},
-      { "data": "id_persona"},
-      { "data": "usuario"},
-      { "data": "estado"},
-      { "data": "id_tipo_usuario"},
+      { "data": "id_empleado",title:"Id"},
+      { "data": "fecha_ingreso",title:"Fehca Ingreso"},
+      { "data": "id_persona",title:"Persona"},
+      { "data": "usuario",title:"Usuario"},
+      { "data": "estado",title:"Estado"},
+      { "data": "id_tipo_usuario",title:"Opcion",
+      "render": function ( data, type, row, meta ) {
+        return  '<button type="button" onclick="funcionActualizar()" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+                '<button type="button" onclick="funcionBorrar()" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
+                '<button type="button" onclick="funcionMostrar()" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
+      }}
     ]
   });
-*/
+
 
 });
+
+function funcionBorrar(){
+  alert("Borrando...!");
+}
+
+function funcionActualizar(){
+  alert("Actualizando...!");
+}
+
+function funcionMostrar(){
+  alert("Mostrar Más...!");
+}
+
