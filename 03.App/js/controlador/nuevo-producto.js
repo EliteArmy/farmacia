@@ -46,10 +46,9 @@ $(document).ready(function() {
   
   function imprimirCategoria(response){
     $("#slc-categoria").empty();
-    for (var i=0; i < response.length; i++){    
+    for (var i=0; i < response.length; i++){   
       var categ = response[i];
-      var fila = 
-      '<option value="' + categ.id_categoria + '">' + categ.categoria + '</option>';
+      var fila = '<option value="' + categ.id_categoria + '">' + categ.categoria + '</option>';
       $("#slc-categoria").append(fila);
     }
     $('.selectpicker').selectpicker('refresh');
@@ -178,7 +177,7 @@ $(document).ready(function() {
     }
     $('.selectpicker').selectpicker('refresh');
   }
-/*
+
   // ---- Leer Productos: ----
   var settings = {
     "async": true,
@@ -196,9 +195,35 @@ $(document).ready(function() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
-    //imprimirProducto(response.data);
+    imprimirProducto(response.data);
   });
-*/
+
+  function imprimirProducto(response){
+    $("#tabla-info").empty();
+    for (var i=0; i < 20; i++){  
+      var prod = response[i];
+      var fila = 
+        '<tr>' +
+          '<th scope="row">'+ (i+1) +'</th>' +
+          '<td id="">' + prod.nombre + '</td>' + 
+          '<td id="">' + prod.codigo_barra + '</td>' +
+          '<td id="">' + prod.precio_costo_unidad + '</td>' +
+          '<td id="">' + prod.precio_venta_unidad + '</td>' +
+          '<td id="">' + "Categoria" + '</td>' +
+          '<td id="">' + prod.existencia + '</td>' +
+          '<td id="">' + prod.estado_lote + '</td>' +
+          '<td id="">' + 
+            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>' +
+            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
+            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>' +
+          '</td>'+
+        '</tr>';
+        $("#tabla-info").append(fila);
+    }
+  }
+  
+/*
+  // ---- Leer Productos: ----
   $('#table-info').DataTable({
     pageLength: 20,
     searching: true,
@@ -225,7 +250,6 @@ $(document).ready(function() {
           sLast: '<i class="fa fa-step-forward"></i>' 
       }
     },
-
     columns: [
       { "data": "nombre"},
       { "data": "codigo_barra"},
@@ -236,32 +260,9 @@ $(document).ready(function() {
       { "data": "estado_lote"}
     ]
   });
-
-  /*
-  function imprimirProducto(response){
-    $("#tabla-info").empty();
-    for (var i=0; i < 20; i++){  
-      var prod = response[i];
-      var fila = 
-        '<tr>' +
-          '<th scope="row">'+ (i+1) +'</th>' +
-          '<td id="">' + prod.nombre + '</td>' + 
-          '<td id="">' + prod.codigo_barra + '</td>' +
-          '<td id="">' + prod.precio_costo_unidad + '</td>' +
-          '<td id="">' + prod.precio_venta_unidad + '</td>' +
-          '<td id="">' + "Categoria" + '</td>' +
-          '<td id="">' + prod.existencia + '</td>' +
-          '<td id="">' + prod.estado_lote + '</td>' +
-          '<td id="">' + 
-            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>' +
-            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
-            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>' +
-          '</td>'+
-        '</tr>';
-        $("#tabla-info").append(fila);
-    }
-  }
 */
+
+
 
 
 });

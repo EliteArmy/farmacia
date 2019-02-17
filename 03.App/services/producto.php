@@ -33,13 +33,13 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'leer-laboratorio':
-      $res['data'] = Medicamento::leerLaboratorio($conexion);
+    case 'leer-producto':
+      $res['data'] = Producto::leerProducto($conexion);
       echo json_encode($res);
     break;
 
-    case 'leer-producto':
-      $res['data'] = Producto::leer($conexion);
+    case 'leer-laboratorio':
+      $res['data'] = Medicamento::leerLaboratorio($conexion);
       echo json_encode($res);
     break;
 
