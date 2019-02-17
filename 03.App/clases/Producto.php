@@ -140,7 +140,7 @@ class Producto{
 
 
 	public static function leerProducto($conexion){
-		$sql = 'SELECT * FROM empleado';
+		$sql = 'SELECT * FROM VistaInventarioMercaderiaDinamica';
 		$rows = $conexion->query($sql);
 		return $rows;
 	}
