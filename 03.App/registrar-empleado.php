@@ -259,7 +259,7 @@
 
         <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-tipo-usuario">Tipo de usuario:</label>
-              <select id="slc-tipo-usuario" class="selectpicker form-control" title="Tipo de Usuario" data-style="btn-primary">
+              <select id="slc-tipo-usuario" title="Tipo de Usuario" data-style="btn-primary">
                 <option value="A">Administrador</option>
                 <option value="C">Cajero</option>
               </select>
@@ -307,7 +307,7 @@
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
-  <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>-->
+  <!--<script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>-->
 
 
   <script src="./js/jquery.min.js"></script>
