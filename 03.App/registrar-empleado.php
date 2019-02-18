@@ -213,22 +213,22 @@
           <div class="row">
             <div class="form-group col-12 col-md-6">
               <label for="txt-primer-nombre">Primer Nombre:</label>
-              <input type="text" class="form-control" id="txt-primer-nombre" name="txt-primer-nombre"  placeholder="Riko" required autofocus>
+              <input type="text" class="form-control" id="txt-primer-nombre" name="txt-primer-nombre"  placeholder="nombre" required autofocus>
             </div>
 
             <div class="form-group col-12 col-md-6">
               <label for="txt-segundo-nombre">Segundo Nombre:</label>
-              <input type="text" class="form-control" id="txt-segundo-nombre" name="txt-segundo-nombre" placeholder="Afedo">
+              <input type="text" class="form-control" id="txt-segundo-nombre" name="txt-segundo-nombre" placeholder="nombre">
             </div>
 
             <div class="form-group col-12 col-md-6">
               <label for="txt-primer-apellido">Primer Apellido:</label>
-              <input type="text" class="form-control" id="txt-primer-apellido" name="txt-primer-apellido" placeholder="pofavo">
+              <input type="text" class="form-control" id="txt-primer-apellido" name="txt-primer-apellido" placeholder="apellido">
             </div>
 
             <div class="form-group col-12 col-md-6">
               <label for="txt-segundo-apellido">Segundo Apellido:</label>
-              <input type="text" class="form-control" id="txt-segundo-apellido" name="txt-segundo-apellido" placeholder="placeholder2">
+              <input type="text" class="form-control" id="txt-segundo-apellido" name="txt-segundo-apellido" placeholder="Apellido">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -238,18 +238,18 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-                <label for="txt-direccion">Direccion:</label>
-                <input type="text" class="form-control" id="txt-direccion" name="txt-direccion" placeholder="colonia los Pinos, donde no asaltan">
+              <label for="txt-direccion">Direccion:</label>
+              <input type="text" class="form-control" id="txt-direccion" name="txt-direccion" placeholder="Direccion">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-                <label for="txt-correo-electronico">Correo Electronico:</label>
-                <input type="text" class="form-control" id="txt-correo-electronico" name="txt-correo-electronico" placeholder="toñitohisterico@gmail.com">
+              <label for="txt-correo-electronico">Correo Electronico:</label>
+              <input type="text" class="form-control" id="txt-correo-electronico" name="txt-correo-electronico" placeholder=persona2018@gmail.com">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-                <label for="txt-numero-identidad">Numero de identidad:</label>
-                <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0801-1992-06677"> 
+              <label for="txt-numero-identidad">Numero de identidad:</label>
+              <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0801-1992-06677"> 
             </div>
             
             <div class="form-group col-12 col-sm-6 col-md-6"> 
@@ -260,8 +260,8 @@
 
 
         <div class="form-group col-12 col-sm-6 col-md-6">
-                <label for="txt-usuario"> Usuario:</label>
-                <input type="text" class="form-control" id="txt-usuario" name="txt-usuario" placeholder="ness41">
+              <label for="txt-usuario"> Usuario:</label>
+              <input type="text" class="form-control" id="txt-usuario" name="txt-usuario" placeholder="ness41">
         </div>
     
         <div class="form-group col-12 col-sm-6 col-md-6">
@@ -301,5 +301,10 @@
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <!--<script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>-->
+
+
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
 </body>
 </html>
