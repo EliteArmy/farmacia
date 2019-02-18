@@ -1,10 +1,8 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS SP_Insertar_impuesto_producto$$
-CREATE PROCEDURE SP_Insertar_impuesto_producto(
-        IN pI_id_impuesto INTEGER(11),
+DROP PROCEDURE IF EXISTS SP_Categoria_Producto$$
+CREATE PROCEDURE SP_Categoria_Producto(
+        IN pI_id_categoria INTEGER(11),
         IN pI_id_producto INTEGER(11),
-        IN pI_fecha_inicio DATE,
-        IN pI_fecha_fin DATE,
         IN pI_estado VARCHAR(1),
 
         OUT pO_mensaje VARCHAR(1000),
@@ -28,16 +26,12 @@ CREATE PROCEDURE SP_Insertar_impuesto_producto(
 
   -- ________________VALIDACIONES________________________________________  
    -- Verificaciones de campos obligatorios que no esten vacios
-    IF pI_id_impuesto='' OR pI_id_impuesto IS NULL THEN 
-        SET mensaje=CONCAT('id lote, ',mensaje);
+    IF pI_id_categoria='' OR pI_id_categoria IS NULL THEN 
+        SET mensaje=CONCAT('id categoria , ',mensaje);
     END IF;
 
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
         SET mensaje=CONCAT('id producto, ',mensaje);
-    END IF;
-
-    IF pI_fecha_inicio='' OR pI_fecha_inicio IS NULL THEN 
-        SET mensaje=CONCAT('fecha de inicio, ',mensaje);
     END IF;
 
     IF pI_estado='' OR pI_estado IS NULL THEN 
@@ -54,9 +48,9 @@ CREATE PROCEDURE SP_Insertar_impuesto_producto(
       SET mensaje=CONCAT(mensaje,'estado invalido, ');
     END IF;
     
-   SELECT COUNT(*) INTO contador FROM impuesto WHERE id_impuesto = pI_id_impuesto;
+   SELECT COUNT(*) INTO contador FROM categoria WHERE id_categoria = pI_id_categoria;
    IF contador = 0 THEN
-     SET mensaje=CONCAT('Id de impuesto no existe ,', mensaje);
+     SET mensaje=CONCAT('Id de categoria no existe ,', mensaje);
    END IF;
 
    SELECT COUNT(*) INTO contador FROM producto WHERE id_producto = pI_id_producto;
@@ -64,13 +58,9 @@ CREATE PROCEDURE SP_Insertar_impuesto_producto(
      SET mensaje=CONCAT('Id de producto no existe  ,', mensaje);
    END IF;
 
-   SELECT COUNT(*) INTO contador FROM impuesto_producto WHERE id_impuesto = pI_id_impuesto and id_producto = pI_id_producto;
+   SELECT COUNT(*) INTO contador FROM categoria_producto WHERE id_categoria = pI_id_categoria and id_producto = pI_id_producto;
    IF contador >0  THEN
-     SET mensaje=CONCAT('relacion ya establecida entre impuesto y producto ,', mensaje);
-   END IF;
-
-   IF pI_fecha_inicio < CURDATE() THEN
-     SET mensaje = CONCAT('Fecha de inicio inválida ,');
+     SET mensaje=CONCAT('relacion ya establecida entre categoria y producto ,', mensaje);
    END IF;
 
     IF mensaje <> '' THEN
@@ -79,25 +69,21 @@ CREATE PROCEDURE SP_Insertar_impuesto_producto(
         LEAVE SP;
    END IF;
 
-   INSERT INTO impuesto_producto (id_impuesto,
-                              id_producto, 
-			                    		fecha_inicio,
-			                    		fecha_fin,
-                              estado)
-			                    VALUES (pI_id_impuesto,
-                              pI_id_producto,
-			                    		pI_fecha_inicio,
-			                    		pI_fecha_fin,
-			                    		pI_estado);
+   INSERT INTO categoria_producto (id_categoria,
+                                  id_producto, 
+                                  estado)
+			                    VALUES (pI_id_categoria,
+                                  pI_id_producto,
+			                        		pI_estado);
     COMMIT;
     SET pO_mensaje='inserción exitosa';
     SET pO_error=FALSE;
 END $$
 
-CALL SP_Insertar_impuesto_producto(10,2, '2019-03-03','2018-02-02','I',@mensaje,@error);
+CALL  SP_Categoria_Producto(1,16,'A',@mensaje,@error);
 SELECT @mensaje,@error;
 
-SELECT * FROM impuesto_producto;
+SELECT * FROM categoria_producto;
 SELECT * FROM producto;
-SELECT * FROM impuesto;
-SHOW COLUMNS FROM descuento_producto;
+SELECT * FROM categoria;
+SHOW COLUMNS FROM categoria_producto;
