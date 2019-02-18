@@ -1,6 +1,6 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS SP_Insertar_descuento_Lote$$
-CREATE PROCEDURE SP_Insertar_descuento_Lote(
+DROP PROCEDURE IF EXISTS SP_Insertar_Descuento_Lote$$
+CREATE PROCEDURE SP_Insertar_Descuento_Lote(
         IN pI_id_lote INTEGER(11),
         IN pI_id_descuento INTEGER(11),
         IN pI_fecha_inicio DATE,
@@ -95,7 +95,7 @@ CREATE PROCEDURE SP_Insertar_descuento_Lote(
     SET pO_error=FALSE;
 END $$
 
-CALL SP_Insertar_descuento_Lote(2,2, '2021-03-03','2018-02-02','7',@mensaje,@error);
+CALL SP_Insertar_Descuento_Lote(2,2, '2021-03-03','2018-02-02','7',@mensaje,@error);
 SELECT @mensaje,@error;
 
 SELECT * FROM descuento_lote

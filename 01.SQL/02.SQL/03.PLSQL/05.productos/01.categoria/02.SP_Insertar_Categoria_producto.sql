@@ -1,6 +1,6 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS SP_Categoria_Producto$$
-CREATE PROCEDURE SP_Categoria_Producto(
+DROP PROCEDURE IF EXISTS SP_Insertar_Categoria_Producto$$
+CREATE PROCEDURE SP_Insertar_Categoria_Producto(
         IN pI_id_categoria INTEGER(11),
         IN pI_id_producto INTEGER(11),
         IN pI_estado VARCHAR(1),
@@ -80,7 +80,7 @@ CREATE PROCEDURE SP_Categoria_Producto(
     SET pO_error=FALSE;
 END $$
 
-CALL  SP_Categoria_Producto(1,16,'A',@mensaje,@error);
+CALL  SP_Insertar_Categoria_Producto(1,16,'A',@mensaje,@error);
 SELECT @mensaje,@error;
 
 SELECT * FROM categoria_producto;

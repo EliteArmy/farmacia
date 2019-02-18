@@ -1,6 +1,6 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS SP_Insertar_impuesto_producto$$
-CREATE PROCEDURE SP_Insertar_impuesto_producto(
+DROP PROCEDURE IF EXISTS SP_Insertar_Impuesto_Producto$$
+CREATE PROCEDURE SP_Insertar_Impuesto_Producto(
         IN pI_id_impuesto INTEGER(11),
         IN pI_id_producto INTEGER(11),
         IN pI_fecha_inicio DATE,
@@ -94,7 +94,7 @@ CREATE PROCEDURE SP_Insertar_impuesto_producto(
     SET pO_error=FALSE;
 END $$
 
-CALL SP_Insertar_impuesto_producto(10,2, '2019-03-03','2018-02-02','I',@mensaje,@error);
+CALL SP_Insertar_Impuesto_Producto(10,2, '2019-03-03','2018-02-02','I',@mensaje,@error);
 SELECT @mensaje,@error;
 
 SELECT * FROM impuesto_producto;

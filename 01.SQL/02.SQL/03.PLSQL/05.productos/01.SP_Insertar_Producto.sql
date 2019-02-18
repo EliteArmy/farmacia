@@ -30,13 +30,15 @@ CREATE PROCEDURE SP_Insertar_Producto(
   DECLARE id INT(11);
   
 
--- Inicializaciones
+  -- Inicializaciones
   SET mensaje='';
   SET contador = 0;
   SET error= FALSE;
   SET cadena='';
   SET iterador=1;
   SET contadorDigitos=0;
+  -- Borrar espacios, ids_categoria
+  SET cadena  = REPLACE(pI_ids_categorias,' ','');
   -- _________________VERIFICACIONES_________________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
     -- presentacion
@@ -52,7 +54,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
         SET mensaje=CONCAT(mensaje, 'codigo de barra, ');
     END IF;
 
-    IF pI_ids_categorias='' OR pI_ids_categorias IS NULL THEN 
+    IF pI_ids_categorias='' OR  cadena=',' OR pI_ids_categorias IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'id categoria,');
     END IF;
 
@@ -138,9 +140,6 @@ CREATE PROCEDURE SP_Insertar_Producto(
       LEAVE SP;
    END IF;
 
-   -- Validacion de ids_categorias, todas deben de existir en la db
-   -- Borrar espacios
-   SET cadena  = REPLACE(pI_ids_categorias,' ','');
 
    -- Contar candidad de comas en la cadena, luego sumarle 1 para establecer en numero de ids ingresados
    SET contadorDigitos = LENGTH(cadena) - LENGTH(REPLACE(cadena, ',', '')) + 1;
@@ -148,7 +147,9 @@ CREATE PROCEDURE SP_Insertar_Producto(
    -- FN_Split_Str recibe 3 argumentos(x , del , pos), x=> cadena ,
    -- del => delimitador(en este caso es ','), pos --> posicion a acceder , pos=1 => 11, pos=2 => 54;
    -- SELECT FN_Split_Str('11,54,3,4,55,6',  ',' ,7)
+
    
+   -- Validacion de ids_categorias, todas deben de existir en la db
     WHILE iterador<=contadorDigitos DO
         SET idCategoria = FN_Split_Str(cadena, ',', iterador);
         IF NOT(idCategoria='' OR idCategoria IS NULL) THEN
@@ -235,7 +236,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
 
 END $$
 
-CALL SP_Insertar_Producto(2,"paradsedta", "1adDd9dd4d1", "http://foto","4,3",1,9,"M", @mensaje,@error);
+CALL SP_Insertar_Producto(2,"paradsedta", "1adDd9Ddddd4d1", "http://foto","1,2,3",1,9,"M", @mensaje,@error);
 SELECT @mensaje, @error;
 
 select * from categoria_producto
