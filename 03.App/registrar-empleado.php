@@ -198,12 +198,12 @@
   </div>-->
    <!-- Modal -->
 
-    <div class="modal fade" id="agregarempleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="agregarempleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Producto</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Empleado</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -233,69 +233,70 @@
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-sexo">Sexo:</label>
-              <select id="slc-sexo" class="selectpicker form-control" title="Elija un valor" data-style="btn-primary" >
+              <select id="slc-sexo" class="selectpicker form-control" title="Elija un valor" data-style="btn-primary">
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-direccion">Direccion:</label>
+              <label for="txt-direccion">Dirección:</label>
               <input type="text" class="form-control" id="txt-direccion" name="txt-direccion" placeholder="Direccion">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-correo-electronico">Correo Electronico:</label>
+              <label for="txt-correo-electronico">Correo Electrónico:</label>
               <input type="text" class="form-control" id="txt-correo-electronico" name="txt-correo-electronico" placeholder=persona2018@gmail.com">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-numero-identidad">Numero de identidad:</label>
-              <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0801199206677"> 
+              <label for="txt-numero-identidad">Número de identidad:</label>
+              <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0102199912345"> 
             </div>
             
             <div class="form-group col-12 col-sm-6 col-md-6"> 
-               <label for="txt-fecha-nacimiento">Fecha Nacimiento:</label>
-               <input type="date" id="txt-fecha-nacimiento" class="form-control">
+              <label for="txt-fecha-nacimiento">Fecha Nacimiento:</label>
+              <input type="date" id="txt-fecha-nacimiento" class="form-control">
             </div>
 
-        <div class="form-group col-12 col-sm-6 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-tipo-usuario">Tipo de usuario:</label>
               <select id="slc-tipo-usuario" class="selectpicker form-control" title="Tipo de Usuario" data-style="btn-primary">
-                <option value="A">Administrador</option>
-                <option value="C">Cajero</option>
+                <option value="1">Administrador</option>
+                <option value="2">Cajero</option>
               </select>
-       </div>
+            </div>
 
-        <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-usuario"> Usuario:</label>
-              <input type="text" class="form-control" id="txt-usuario" name="txt-usuario" placeholder="ness41">
-        </div>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="txt-usuario">Usuario:</label>
+              <input type="text" class="form-control" id="txt-usuario" name="txt-usuario" placeholder="User">
+            </div>
     
-        <div class="form-group col-12 col-sm-6 col-md-6">
-                <label for="txt-contrasena">Contrasena</label>
-                <input type="text" class="form-control" id="txt-contrasena" name="txt-contrasena" placeholder="12345678">
-        </div>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="txt-contrasena">Contraseña</label>
+              <input type="text" class="form-control" id="txt-contrasena" name="txt-contrasena" placeholder="Contraseña">
+            </div>
         
-        <div class="form-group col-12 col-sm-6 col-md-6">
-          <label for="inputGroupFile01"> Fotografia: <br></label>
-          <div class="input-group mb-3">
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="inputGroupFile01">Fotografía:<br></label>
+              <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                  <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
                 </div>
+
                 <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
-                <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
+                  <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
+                  <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
+                </div>
               </div>
+            </div>
+          </div>
         </div>
-        </div>
-
-
-
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <button type="button" id="btn-guard-prod" class="btn btn-primary">Guardar Cambios</button>
         </div>
-
       </div>
     </div>
   </div>
@@ -309,9 +310,5 @@
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <!--<script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>-->
 
-
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
 </body>
 </html>
