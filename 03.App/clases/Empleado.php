@@ -133,6 +133,7 @@ class Empleado extends Persona{
 		return $rows[0];
 	}
 	public function leer($conexion){
+
 	}
 	public function actualizar($conexion){
 		$sql = "

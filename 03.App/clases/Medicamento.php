@@ -2,6 +2,7 @@
 class Medicamento extends Producto{
 	private $idLaboratorio;
 	private $laboratorio;
+	private $esMedicamento;
 
 	public function __construct(
 		$idLaboratorio = null,
@@ -33,7 +34,16 @@ class Medicamento extends Producto{
 		$this->laboratorio = $laboratorio;
 	}
 
-	public function crear($conexion, $opcion){
+	public function getEsMedicamento(){
+		return $this->esMedicamento;
+	}
+
+	public function setEsMedicamento($esMedicamento){
+		$this->esMedicamento = $esMedicamento;
+	}
+
+	public function crear($conexion){
+		$opcion = $this->esMedicamento ? 'M': 'P';
 		$sql = "CALL SP_Insertar_Producto(
 			%s, '%s', '%s', '%s', '%s' ,%s
 			,%s, '%s', @mensaje, @error
@@ -52,7 +62,7 @@ class Medicamento extends Producto{
 		return $rows;
 	}
 
-	public function leer($conexion){
+	public static function leer($conexion){
 	}
 	public function borrar($conexion){
 	}

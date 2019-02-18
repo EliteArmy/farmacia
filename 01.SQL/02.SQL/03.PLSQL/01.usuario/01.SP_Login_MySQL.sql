@@ -35,12 +35,12 @@ Login:BEGIN
     SET mensaje = 'Autenticado exitosamente';
     SET resultado = TRUE;
     SELECT
-      usuario, e.id_empleado, ve.tipo_usuario,foto_url, ve.nombre_completo, ve.permisos,   mensaje, resultado
-    FROM empleado e
-    INNER JOIN VistaEmpleado ve
-    ON e.id_empleado = ve.id_empleado
-    WHERE usuario = par_usuario
-    AND contrasena = par_contrasena;
+      ve.*, mensaje, resultado
+    FROM VistaEmpleado ve
+    INNER JOIN empleado e
+      ON ve.id_empleado = e.id_empleado
+    WHERE e.usuario = par_usuario
+    AND   e.contrasena = par_contrasena;
     LEAVE Login;
   ELSE
     SET mensaje = 'Contraseña o usuario incorrecto';

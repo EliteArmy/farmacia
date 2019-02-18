@@ -79,7 +79,7 @@ class Lote extends Producto{
 
 	public function crear($conexion){
 	}
-	public function leer($conexion){
+	public static function leer($conexion){
 	}
 	public function actualizar($conexion){
 	}

@@ -87,7 +87,12 @@ if(isset($_POST['accion'])){
       $prod -> setIdCategoria($idCategoria);
       $prod -> setIdImpuesto($idImpuesto);
       $prod -> setIdLaboratorio($idLaboratorio);
-      $prod->  crear($conexion, $opcion); // Medicamento::crear()
+      if ($opcion == 'P') {
+        $prod->setEsMedicamento(false);
+      } else if ($opcion == 'M') {
+        $prod->setEsMedicamento(true);
+      }
+      $prod->  crear($conexion); // Medicamento::crear()
       break;
     case 'crear-lote':
       $lote = new Lote();
