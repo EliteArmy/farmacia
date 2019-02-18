@@ -44,8 +44,6 @@ CREATE PROCEDURE SP_Insertar_descuento_Lote(
         SET mensaje=CONCAT('estado , ',mensaje);
     END IF;
 
-    
-
    IF mensaje <> '' THEN
         SET pO_mensaje=CONCAT('Campos Vacios: ', mensaje);
         SET pO_error=TRUE;
@@ -70,6 +68,12 @@ CREATE PROCEDURE SP_Insertar_descuento_Lote(
      SET mensaje = CONCAT('Fecha de inicio inválida');
    END IF;
 
+   SELECT COUNT(*) INTO contador FROM descuento_lote WHERE id_lote = pI_id_lote and id_descuento = pI_id_descuento;
+   IF contador >0  THEN
+     SET mensaje=CONCAT('relacion ya establecida entre lote y descuento ,', mensaje);
+   END IF;
+
+
     IF mensaje <> '' THEN
         SET pO_mensaje=CONCAT('Otros errores: ', mensaje);
         SET pO_error=TRUE;
@@ -91,7 +95,7 @@ CREATE PROCEDURE SP_Insertar_descuento_Lote(
     SET pO_error=FALSE;
 END $$
 
-CALL SP_Insertar_descuento_Lote(1,2, '2000-03-03','2018-02-02','2',@mensaje,@error);
+CALL SP_Insertar_descuento_Lote(2,2, '2021-03-03','2018-02-02','7',@mensaje,@error);
 SELECT @mensaje,@error;
 
 SELECT * FROM descuento_lote
