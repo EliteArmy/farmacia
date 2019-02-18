@@ -7,6 +7,7 @@ include_once('../database/Conexion.php');
 // Clases Usadas
 include_once('../clases/Producto.php');
 include_once('../clases/Medicamento.php');
+include_once('../clases/Lote.php');
 
 if(isset($_POST['accion'])){
   $conexion = new Conexion();
@@ -67,6 +68,30 @@ if(isset($_POST['accion'])){
       $med->setLaboratorio($lab);
       $res['data'] = $med->crearLaboratorio($conexion);
       echo json_encode($res);
+    break;
+
+    case 'crear-producto':
+      $idPresentacion = validarPOST('id_presentacion');
+      $nombre = validarPOST('nombre');
+      $codigoBarra = validarPOST('codigo_barra');
+      $urlFoto = validarPOST('url_foto');
+      $idCategoria = validarPOST('array_categoria');
+      $idImpuesto = validarPOST('id_impuesto');
+      $idLaboratorio = validarPOST('id_laboratorio');
+      $opcion = validarPOST('opcion');
+      $prod  = new Medicamento();
+      $prod -> setIdPresentacion($idPresentacion);
+      $prod -> setNombre($nombre);
+      $prod -> setCodigoBarra($codigoBarra);
+      $prod -> setUrlFoto($urlFoto);
+      $prod -> setIdCategoria($idCategoria);
+      $prod -> setIdImpuesto($idImpuesto);
+      $prod -> setIdLaboratorio($idLaboratorio);
+      $prod->  crear($conexion, $opcion); // Medicamento::crear()
+      break;
+    case 'crear-lote':
+      $lote = new Lote();
+
     break;
 
     // DEFAULT

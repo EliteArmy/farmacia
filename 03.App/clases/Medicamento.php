@@ -1,5 +1,5 @@
 <?php
-class Medicamento{
+class Medicamento extends Producto{
 	private $idLaboratorio;
 	private $laboratorio;
 
@@ -33,15 +33,32 @@ class Medicamento{
 		$this->laboratorio = $laboratorio;
 	}
 
-	public function crear($conexion){
+	public function crear($conexion, $opcion){
+		$sql = "CALL SP_Insertar_Producto(
+			%s, '%s', '%s', '%s', '%s' ,%s
+			,%s, '%s', @mensaje, @error
+		);";
+		$valores = [
+			$this->getIdCategoria(),
+			$this->getNombre(),
+			$this->getCodigoBarra(),
+			$this->getUrlFoto(),
+			$this->getIdCategoria(),
+			$this->getIdImpuesto(),
+			$this->getIdLaboratorio(),
+			$opcion
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
 	}
+
 	public function leer($conexion){
 	}
 	public function borrar($conexion){
 	}
 	public function actualizar($conexion){
   }
-  
+
 	public function crearLaboratorio($conexion){
 		$sql = "CALL SP_Insertar_Laboratorio('%s');";
 		$valores = [$this->laboratorio];
@@ -56,6 +73,6 @@ class Medicamento{
 	}
 	public function borrarLaboratorio($conexion){
   }
-  
+
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-class Lote{
+class Lote extends Producto{
 	private $idLote;
 	private $lote;
 	private $precioCosto;
