@@ -249,7 +249,7 @@
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="txt-numero-identidad">Numero de identidad:</label>
-              <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0801-1992-06677"> 
+              <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0801199206677"> 
             </div>
             
             <div class="form-group col-12 col-sm-6 col-md-6"> 
@@ -259,7 +259,7 @@
 
         <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-tipo-usuario">Tipo de usuario:</label>
-              <select id="slc-tipo-usuario" title="Tipo de Usuario" data-style="btn-primary">
+              <select id="slc-tipo-usuario" class="selectpicker form-control" title="Tipo de Usuario" data-style="btn-primary">
                 <option value="A">Administrador</option>
                 <option value="C">Cajero</option>
               </select>
