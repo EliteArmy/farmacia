@@ -167,7 +167,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
     SELECT mensaje,resultado;
 END $$
 
-CALL SP_Insertar_Lote(1,'lot01', 400,500 , '2019-02-02','2019-04-02',3,3,@mensaje,@error);
+CALL SP_Insertar_Lote(1,'lots01', 6,500 , '2018-02-02','2019-03-02',32,1,@mensaje,@error);
 SELECT @mensaje,@error;
 
 SELECT * FROM lote
