@@ -3,19 +3,43 @@ $(document).ready(function() {
   $("#btn-guard-prod").click(function(){
     var cat = $("#slc-categoria").val();
     var imp = $("#slc-impuesto").val();
-    var des = $("#slc-descuento").val();
     var pre = $("#slc-presentacion").val();
     var lab = $("#slc-laboratorio").val();
     var pro = $("#slc-tipo").val();
-    alert("Cat:" + cat +
+
+    alert(
+      "Cat:" + cat +
       "imp:" + imp +
-      "des:" + des + 
       "pre:" + pre + 
       "lab:" + lab +
-      "pro:" + pro);
+      "pro:" + pro );
+  });
+
+  $("#btn-guard-lote").click(function(){
+    var lot = $("#lote").val();
+    var des = $("#slc-descuento").val();
+    var pventa = $("#precio-venta").val();
+    var pcomp = $("#precio-compra").val();
+    var cant = $("#cantidad").val();
+    var fela = $("#fecha-elab").val();
+    var fven = $("#fecha-venc").val();
+    
+    alert(
+      "lote:" + lot +
+      "desc:" + des +
+      "pventa:" + pventa +
+      "pcomp:" + pcomp +
+      "cant:" + cant +
+      "fela:" + fela +
+      "fven:" + fven);
   });
 
   $("#reset-formulario").click(function(){
+    $('.selectpicker').selectpicker('val', '');
+    $('.selectpicker').selectpicker('refresh');
+  });
+
+  $(".cerrar").click(function(){
     $('.selectpicker').selectpicker('val', '');
     $('.selectpicker').selectpicker('refresh');
   });
@@ -219,7 +243,7 @@ $(document).ready(function() {
     }
   }
 */
-
+/*
   // ---- Leer Productos (DataTables): ----
   $('#table-info').DataTable({
     pageLength: 10,
@@ -262,7 +286,7 @@ $(document).ready(function() {
       }}
     ]
   });
-
+*/
 
 });
 

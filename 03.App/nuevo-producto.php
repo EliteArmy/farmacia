@@ -2,6 +2,7 @@
   $idPagina = "catalogo-inventario";
   include("autenticacion.php");
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,40 +33,26 @@
           <h4>Registro de Productos</h4>
         </div>
 
-        <div class="row">
-          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
-            <table id="table-info" class="display" style="width: 100%;">
-              <!--<thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Codigo Barra</th>
-                  <th>P. Costo</th>
-                  <th>P. Venta</th>
-                  <th>Categoria</th>
-                  <th>Existencia</th>
-                  <th>Estado</th>
-                  <th>Opción</th>
-                </tr>
-              </thead>-->
-
-            </table>
-          
-          </div>
-        </div>
-
         <div class="row nuevo-producto">
           <div class="col-16 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-producto">
               Agregar Nuevo Producto
             </button>
           </div>
           
           <div class="col-16 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-lote">
               Agregar Nuevo Lote
             </button>
           </div>  
+        </div>
+
+        <div class="row">
+          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
+            <table id="table-info" class="display" style="width: 100%;">
+            </table>
+          </div>
         </div>
 
       </div>
@@ -73,14 +60,14 @@
   </div>
   <!-- FIN Contenido -->
 
-  <!-- Modal -->
-  <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Modal Producto -->
+  <div class="modal fade" id="agregar-producto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Producto</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -144,15 +131,80 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" id="btn-guard-prod">Guardar Cambios</button>
           <button type="button" class="btn btn-info" id="reset-formulario">Reset</button>
+          <button type="button" class="btn btn-primary" id="btn-guard-prod">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal">Cerrar</button>
         </div>
 
       </div>
     </div>
   </div>
-  <!-- FIN Modal -->
+  <!-- FIN Modal Producto -->
+
+  <!-- Modal Lote -->
+  <div class="modal fade" id="agregar-lote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Lote</h5>
+          <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-12 col-md-6">
+              <label for="Lote">Lote</label>
+              <input id="lote" type="text" class="form-control" id="" name="" placeholder="Lote">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+            <label for="0.0">Descuento</label>
+              <select id="slc-descuento" class="selectpicker form-control" data-live-search="true" title="Descuentos" data-style="btn-primary">
+                <!--Informacion generada -->
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="0.0">Precio Venta</label><br>
+              <input id="precio-venta" type="number" step="any" min="0" placeholder="0.00">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="0.0">Precio Compra</label><br>
+              <input id="precio-compra" type="number" step="any" min="0" placeholder="0.00">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="0.0">Cantidad</label><br>
+              <input id="cantidad" type="number" step="1" min="0" placeholder="0">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="2000-12-31">Fecha Elaboración</label><br>
+              <input id="fecha-elab" type="date" placeholder="2000-12-31">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="2000-12-31">Fecha Vencimiento</label><br>
+              <input id="fecha-venc" type="date" placeholder="2000-12-31">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" id="reset-formulario">Reset</button>
+          <button type="button" class="btn btn-primary" id="btn-guard-lote">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- FIN Modal Lote -->
 
   <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/popper.min.js"></script>
