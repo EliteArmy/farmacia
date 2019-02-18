@@ -148,11 +148,9 @@ class Producto{
 	public function borrar($conexion){
   }
 
-  /*METODO DUPLICADO : USAR Producto::leer  */
-	public static function leerProducto($conexion){
-		$sql = 'SELECT * FROM VistaInventarioMercaderiaDinamica';
-		$rows = $conexion->query($sql);
-		return $rows;
+	public static function leerProdLote($conexion){
+		$sql = 'SELECT * FROM producto';
+		return $conexion -> query($sql);
 	}
 
   public function crearCategoria($conexion){

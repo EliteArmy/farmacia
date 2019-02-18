@@ -162,9 +162,8 @@
 
             <div class="form-group col-12 col-sm-6 col-md-6">
             <label for="producto">Producto</label>
-              <select id="slc-prod" class="selectpicker form-control" data-live-search="true" title="producto" data-style="btn-primary">
-                <option>Producto</option>
-                <option>Sin Terminar xd</option>
+              <select id="slc-prod" class="selectpicker form-control" data-live-search="true" title="productos" data-style="btn-primary">
+                <!--Informacion generada -->
               </select>
             </div>
             

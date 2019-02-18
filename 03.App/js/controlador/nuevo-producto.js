@@ -155,21 +155,6 @@ $(document).ready(function() {
     $('.selectpicker').selectpicker('refresh');
   }
 
-  $("#reset-prod").click(function(){
-    $('.selectpicker').selectpicker('val', '');
-    $('.selectpicker').selectpicker('refresh');
-    $("#nombre-producto").val("");
-    $("#codigo-barra").val("");
-  });
-
-  $(".cerrar").click(function(){
-    $('.selectpicker').selectpicker('val', '');
-    $('.selectpicker').selectpicker('refresh');
-    $("#nombre-producto").val("");
-    $("#codigo-barra").val("");
-  });
-
-/*
   // ---- Leer Productos: ----
   var settings = {
     "async": true,
@@ -181,7 +166,7 @@ $(document).ready(function() {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "leer-producto"
+      "accion": "leer-producto-lote"
     }
   }
 
@@ -191,29 +176,15 @@ $(document).ready(function() {
   });
 
   function imprimirProducto(response){
-    $("#tabla-info").empty();
-    for (var i=0; i < 20; i++){  
+    $("#slc-prod").empty();
+    for (var i=0; i < response.length; i++){  
       var prod = response[i];
       var fila = 
-        '<tr>' +
-          '<th scope="row">'+ (i+1) +'</th>' +
-          '<td id="">' + prod.nombre + '</td>' + 
-          '<td id="">' + prod.codigo_barra + '</td>' +
-          '<td id="">' + prod.precio_costo_unidad + '</td>' +
-          '<td id="">' + prod.precio_venta_unidad + '</td>' +
-          '<td id="">' + "Categoria" + '</td>' +
-          '<td id="">' + prod.existencia + '</td>' +
-          '<td id="">' + prod.estado_lote + '</td>' +
-          '<td id="">' + 
-            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>' +
-            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
-            '<button type="button" onclick="" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>' +
-          '</td>'+
-        '</tr>';
-        $("#tabla-info").append(fila);
+      '<option value="' + prod.id_producto + '">' + prod.nombre + '</option>';
+        $("#slc-prod").append(fila);
     }
+    $('.selectpicker').selectpicker('refresh');
   }
-*/
 
   // ---- Leer Productos (DataTables): ----
   $('#table-info').DataTable({
@@ -258,6 +229,20 @@ $(document).ready(function() {
     ]
   });
 
+  $("#reset-prod").click(function(){
+    $('.selectpicker').selectpicker('val', '');
+    $('.selectpicker').selectpicker('refresh');
+    $("#nombre-producto").val("");
+    $("#codigo-barra").val("");
+  });
+
+  $(".cerrar").click(function(){
+    $('.selectpicker').selectpicker('val', '');
+    $('.selectpicker').selectpicker('refresh');
+    $("#nombre-producto").val("");
+    $("#codigo-barra").val("");
+  });
+
 });
 
 /* Funcion de ocultar y Mostrar Laboratorio*/
@@ -279,7 +264,7 @@ $("#btn-guard-prod").click(function(){
   var imp = $("#slc-impuesto").val();
   var pre = $("#slc-presentacion").val();
   var lab = $("#slc-laboratorio").val();
-  var pro = $("#slc-tipo").val();
+  var tip = $("#slc-tipo").val();
 
   alert(
     "nom:" + nom +
@@ -288,12 +273,13 @@ $("#btn-guard-prod").click(function(){
     "imp:" + imp +
     "pre:" + pre + 
     "lab:" + lab +
-    "pro:" + pro );
+    "tip:" + tip );
 });
 
 /* Test de Valores mandados de Lote */
 $("#btn-guard-lote").click(function(){
   var lot = $("#lote").val();
+  var prod = $("#slc-prod").val();
   var des = $("#slc-descuento").val();
   var pvent = $("#precio-venta").val();
   var pcomp = $("#precio-compra").val();
@@ -303,6 +289,7 @@ $("#btn-guard-lote").click(function(){
   
   alert(
     "lote:" + lot +
+    "prod:" + prod +
     "desc:" + des +
     "pventa:" + pvent +
     "pcomp:" + pcomp +
