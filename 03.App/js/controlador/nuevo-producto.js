@@ -1,49 +1,5 @@
 $(document).ready(function() {
 
-  $("#btn-guard-prod").click(function(){
-    var cat = $("#slc-categoria").val();
-    var imp = $("#slc-impuesto").val();
-    var pre = $("#slc-presentacion").val();
-    var lab = $("#slc-laboratorio").val();
-    var pro = $("#slc-tipo").val();
-
-    alert(
-      "Cat:" + cat +
-      "imp:" + imp +
-      "pre:" + pre + 
-      "lab:" + lab +
-      "pro:" + pro );
-  });
-
-  $("#btn-guard-lote").click(function(){
-    var lot = $("#lote").val();
-    var des = $("#slc-descuento").val();
-    var pventa = $("#precio-venta").val();
-    var pcomp = $("#precio-compra").val();
-    var cant = $("#cantidad").val();
-    var fela = $("#fecha-elab").val();
-    var fven = $("#fecha-venc").val();
-    
-    alert(
-      "lote:" + lot +
-      "desc:" + des +
-      "pventa:" + pventa +
-      "pcomp:" + pcomp +
-      "cant:" + cant +
-      "fela:" + fela +
-      "fven:" + fven);
-  });
-
-  $("#reset-formulario").click(function(){
-    $('.selectpicker').selectpicker('val', '');
-    $('.selectpicker').selectpicker('refresh');
-  });
-
-  $(".cerrar").click(function(){
-    $('.selectpicker').selectpicker('val', '');
-    $('.selectpicker').selectpicker('refresh');
-  });
-
   // ---- Leer Categoria: ----
   var settings = {
     "async": true,
@@ -198,6 +154,21 @@ $(document).ready(function() {
     }
     $('.selectpicker').selectpicker('refresh');
   }
+
+  $("#reset-prod").click(function(){
+    $('.selectpicker').selectpicker('val', '');
+    $('.selectpicker').selectpicker('refresh');
+    $("#nombre-producto").val("");
+    $("#codigo-barra").val("");
+  });
+
+  $(".cerrar").click(function(){
+    $('.selectpicker').selectpicker('val', '');
+    $('.selectpicker').selectpicker('refresh');
+    $("#nombre-producto").val("");
+    $("#codigo-barra").val("");
+  });
+
 /*
   // ---- Leer Productos: ----
   var settings = {
@@ -243,7 +214,7 @@ $(document).ready(function() {
     }
   }
 */
-/*
+
   // ---- Leer Productos (DataTables): ----
   $('#table-info').DataTable({
     pageLength: 10,
@@ -286,10 +257,61 @@ $(document).ready(function() {
       }}
     ]
   });
-*/
 
 });
 
+/* Funcion de ocultar y Mostrar Laboratorio*/
+$("#slc-tipo").change(function(){
+  var selected = $('#slc-tipo option:selected').val();
+  if(selected == "M"){
+    $('#laboratorio').show();
+  } else {
+    $('#laboratorio').hide();
+    $('#slc-laboratorio').val("");
+  }        
+});
+
+/* Test de Valores mandados de Productos */
+$("#btn-guard-prod").click(function(){
+  var nom = $("#nombre-producto").val();
+  var bar = $("#codigo-barra").val();
+  var cat = $("#slc-categoria").val();
+  var imp = $("#slc-impuesto").val();
+  var pre = $("#slc-presentacion").val();
+  var lab = $("#slc-laboratorio").val();
+  var pro = $("#slc-tipo").val();
+
+  alert(
+    "nom:" + nom +
+    "bar:" + bar +
+    "Cat:" + cat +
+    "imp:" + imp +
+    "pre:" + pre + 
+    "lab:" + lab +
+    "pro:" + pro );
+});
+
+/* Test de Valores mandados de Lote */
+$("#btn-guard-lote").click(function(){
+  var lot = $("#lote").val();
+  var des = $("#slc-descuento").val();
+  var pvent = $("#precio-venta").val();
+  var pcomp = $("#precio-compra").val();
+  var cant = $("#cantidad").val();
+  var fela = $("#fecha-elab").val();
+  var fven = $("#fecha-venc").val();
+  
+  alert(
+    "lote:" + lot +
+    "desc:" + des +
+    "pventa:" + pvent +
+    "pcomp:" + pcomp +
+    "cant:" + cant +
+    "fela:" + fela +
+    "fven:" + fven);
+});
+
+/* Pruebas de los Fonts */
 function funcionBorrar(){
   alert("Borrando...!");
 }
@@ -302,17 +324,4 @@ function funcionMostrar(){
   alert("Mostrar Más...!");
 }
 
-function showMedicamento(let){
-  
-}
-
-$("#slc-tipo").change(function(){
-  var selected = $('#slc-tipo option:selected').val();
-  if(selected == "M"){
-    $('#laboratorio').show();
-  } else {
-    $('#laboratorio').hide();
-    $('#slc-laboratorio').val("");
-  }        
-});
 

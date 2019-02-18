@@ -42,7 +42,7 @@
           </div>
           
           <div class="col-16 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-lote">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#agregar-lote">
               Agregar Nuevo Lote
             </button>
           </div>  
@@ -76,12 +76,12 @@
           <div class="row">
             <div class="form-group col-12 col-md-6">
               <label for="nombre-producto">Nombre del Producto</label>
-              <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"  placeholder="Nombre del Producto" required autofocus>
+              <input id="nombre-producto" type="text" class="form-control" name="nombre-producto"  placeholder="Nombre del Producto" autofocus>
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="Codigo-barra">Código de Barra</label>
-              <input type="text" class="form-control" id="Codigo-barra" name="" placeholder="Código de Barra">
+              <label for="codigo-barra">Código de Barra</label>
+              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Código de Barra">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -125,13 +125,13 @@
               </div>
               <div class="custom-file">
                 <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
-                <label class="custom-file-label" for="inputGroupFile01">Elegir una fotografia</label>
+                <label class="custom-file-label" for="inputGroupFile01">Elegir una Fotografía</label>
               </div>
             </div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" id="reset-formulario">Reset</button>
+          <button type="button" class="btn btn-info" id="reset-prod">Reset</button>
           <button type="button" class="btn btn-primary" id="btn-guard-prod">Guardar Cambios</button>
           <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal">Cerrar</button>
         </div>
@@ -156,8 +156,41 @@
         <div class="modal-body">
           <div class="row">
             <div class="form-group col-12 col-md-6">
-              <label for="Lote">Lote</label>
-              <input id="lote" type="text" class="form-control" id="" name="" placeholder="Lote">
+              <label for="Lote">Nombre Lote</label>
+              <input id="lote" type="text" class="form-control" placeholder="Nombre Lote">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+            <label for="producto">Producto</label>
+              <select id="slc-prod" class="selectpicker form-control" data-live-search="true" title="producto" data-style="btn-primary">
+                <option>Producto</option>
+                <option>Sin Terminar xd</option>
+              </select>
+            </div>
+            
+            <div class="form-group col-12 col-md-6">
+              <label for="0.0">Precio Compra</label><br>
+              <input id="precio-compra" class="form-control" type="number" step="any" min="0" placeholder="0.00">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="0.0">Precio Venta</label><br>
+              <input id="precio-venta" class="form-control" type="number" step="any" min="0" placeholder="0.00">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="2000-12-31">Fecha Elaboración</label><br>
+              <input id="fecha-elab" class="form-control" type="date" placeholder="2000-12-31">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="2000-12-31">Fecha Vencimiento</label><br>
+              <input id="fecha-venc" class="form-control" type="date" placeholder="2000-12-31">
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+              <label for="0.0">Cantidad</label><br>
+              <input id="cantidad" class="form-control" type="number" step="1" min="0" placeholder="0">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -167,36 +200,11 @@
               </select>
             </div>
 
-            <div class="form-group col-12 col-md-6">
-              <label for="0.0">Precio Venta</label><br>
-              <input id="precio-venta" type="number" step="any" min="0" placeholder="0.00">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="0.0">Precio Compra</label><br>
-              <input id="precio-compra" type="number" step="any" min="0" placeholder="0.00">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="0.0">Cantidad</label><br>
-              <input id="cantidad" type="number" step="1" min="0" placeholder="0">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="2000-12-31">Fecha Elaboración</label><br>
-              <input id="fecha-elab" type="date" placeholder="2000-12-31">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="2000-12-31">Fecha Vencimiento</label><br>
-              <input id="fecha-venc" type="date" placeholder="2000-12-31">
-            </div>
-
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" id="reset-formulario">Reset</button>
+          <button type="button" class="btn btn-info" id="">Reset</button>
           <button type="button" class="btn btn-primary" id="btn-guard-lote">Guardar Cambios</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
