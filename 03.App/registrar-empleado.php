@@ -213,22 +213,22 @@
           <div class="row">
             <div class="form-group col-12 col-md-6">
               <label for="txt-primer-nombre">Primer Nombre:</label>
-              <input type="text" class="form-control" id="txt-primer-nombre" name="txt-primer-nombre"  placeholder="nombre" required autofocus>
+              <input type="text" class="form-control" id="txt-primer-nombre" name="txt-primer-nombre"  placeholder="Primer Nombre" required autofocus>
             </div>
 
             <div class="form-group col-12 col-md-6">
               <label for="txt-segundo-nombre">Segundo Nombre:</label>
-              <input type="text" class="form-control" id="txt-segundo-nombre" name="txt-segundo-nombre" placeholder="nombre">
+              <input type="text" class="form-control" id="txt-segundo-nombre" name="txt-segundo-nombre" placeholder="Segundo Nombre">
             </div>
 
             <div class="form-group col-12 col-md-6">
               <label for="txt-primer-apellido">Primer Apellido:</label>
-              <input type="text" class="form-control" id="txt-primer-apellido" name="txt-primer-apellido" placeholder="apellido">
+              <input type="text" class="form-control" id="txt-primer-apellido" name="txt-primer-apellido" placeholder="Primer Apellido">
             </div>
 
             <div class="form-group col-12 col-md-6">
               <label for="txt-segundo-apellido">Segundo Apellido:</label>
-              <input type="text" class="form-control" id="txt-segundo-apellido" name="txt-segundo-apellido" placeholder="Apellido">
+              <input type="text" class="form-control" id="txt-segundo-apellido" name="txt-segundo-apellido" placeholder="Segundo Apellido">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -257,7 +257,13 @@
                <input type="date" id="txt-fecha-nacimiento" class="form-control">
             </div>
 
-
+        <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-tipo-usuario">Tipo de usuario:</label>
+              <select id="slc-tipo-usuario" class="selectpicker form-control" title="Tipo de Usuario" data-style="btn-primary">
+                <option value="A">Administrador</option>
+                <option value="C">Cajero</option>
+              </select>
+       </div>
 
         <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="txt-usuario"> Usuario:</label>
@@ -284,6 +290,7 @@
 
 
 
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <button type="button" id="btn-guard-prod" class="btn btn-primary">Guardar Cambios</button>
@@ -300,7 +307,7 @@
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
-  <!--<script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>-->
+  <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>-->
 
 
   <script src="./js/jquery.min.js"></script>
