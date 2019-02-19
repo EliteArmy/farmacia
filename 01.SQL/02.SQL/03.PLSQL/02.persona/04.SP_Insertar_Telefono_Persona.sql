@@ -52,6 +52,19 @@ CREATE PROCEDURE SP_Insertar_Telefono_Persona(
       SET mensaje = CONCAT(mensaje, 'id persona no existe ');
     END IF;
 
+   SELECT COUNT(*) INTO contador FROM telefono 
+    WHERE telefono= pI_telefono ;
+
+    IF contador>0 THEN
+      SET mensaje = CONCAT(mensaje, 'este numero telefónico ya existe ');
+    END IF;
+
+   SELECT COUNT(*) INTO contador FROM telefono_persona 
+    WHERE id_telefono= pI_telefono AND id_persona=pI_id_persona;
+
+    IF contador>0 THEN
+      SET mensaje = CONCAT(mensaje, 'este numero telefónico ya existe para esta persona');
+    END IF;
 
    IF mensaje <> '' THEN
         SET error = TRUE;
@@ -83,7 +96,7 @@ CREATE PROCEDURE SP_Insertar_Telefono_Persona(
 
 END $$
 
-CALL SP_Insertar_Telefono_Persona (12,'I','1221-2649',@mensaje,@error);
+CALL SP_Insertar_Telefono_Persona (11,'I','2522-2649',@mensaje,@error);
 select @mensaje,@error;
 
 select * from telefono_persona ;
