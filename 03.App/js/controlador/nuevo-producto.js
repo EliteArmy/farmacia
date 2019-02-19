@@ -258,7 +258,7 @@ $("#slc-tipo").change(function(){
 
 /* Test de Valores mandados de Productos */
 $("#btn-guard-prod").click(function(){
-  var nom = $("#nombre-producto").val();
+  /*var nom = $("#nombre-producto").val();
   var bar = $("#codigo-barra").val();
   var cat = $("#slc-categoria").val();
   var imp = $("#slc-impuesto").val();
@@ -273,7 +273,34 @@ $("#btn-guard-prod").click(function(){
     "imp:" + imp +
     "pre:" + pre + 
     "lab:" + lab +
-    "tip:" + tip );
+    "tip:" + tip );*/
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "JSON",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "crear-producto",
+        "id_presentacion": $("#slc-presentacion").val(),
+        "nombre": $("#nombre-producto").val(),
+        "codigo_barra": $("#codigo-barra").val(),
+        "url_foto": "",
+        "array_categoria": $("#slc-categoria").val(),
+        "id_laboratorio": $("#slc-laboratorio").val(),
+        "opcion": $("#slc-tipo").val()
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+    });
+
+
 });
 
 /* Test de Valores mandados de Lote */

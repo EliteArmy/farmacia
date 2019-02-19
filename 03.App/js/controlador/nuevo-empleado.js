@@ -30,7 +30,7 @@ $(document).ready(function() {
       { "data": "correo_electronico", title: "Correo"},
       { "data": "fecha_ingreso", title: "Fecha Ingreso"},
       { "data": "sexo", title: "Sexo"},
-      { "data": "nombre", title: "Nombre"},
+      { "data": "nombres", title: "Nombre"},
       { "data": "apellidos", title: "Apellido"},
       { "data": "telefono", title: "Telefono",
       "render": function ( data, type, row, meta ) {
@@ -40,7 +40,6 @@ $(document).ready(function() {
       }}
     ]
   });
-
 
   $("#btn-guard-empleado").click(function(){
     var settings = {

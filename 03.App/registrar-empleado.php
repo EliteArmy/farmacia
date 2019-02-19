@@ -20,7 +20,7 @@
   <!-- Contenido -->
   <div class="container-fluid">
     <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-11 well card">
+      <div class="col-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
@@ -124,7 +124,7 @@
     
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="txt-contrasena">Contraseña</label>
-              <input type="text" class="form-control" id="txt-contrasena" name="txt-contrasena" placeholder="Contraseña">
+              <input type="password" class="form-control" id="txt-contrasena" name="txt-contrasena" placeholder="Contraseña">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">

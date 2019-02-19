@@ -21,7 +21,7 @@
   <!-- Contenido -->
   <div class="container-fluid">
     <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-11 well card">
+      <div class="col-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
@@ -30,14 +30,14 @@
         </div>
 
         <div class="row nuevo-producto">
-          <div class="col-16 col-sm-6 col-md-6 col-lg-6">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-producto">
               Agregar Nuevo Producto
             </button>
           </div>
           
-          <div class="col-16 col-sm-6 col-md-6 col-lg-6">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#agregar-lote">
               Agregar Nuevo Lote
             </button>
@@ -215,7 +215,7 @@
 
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
-  
+
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./data-tables/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>
