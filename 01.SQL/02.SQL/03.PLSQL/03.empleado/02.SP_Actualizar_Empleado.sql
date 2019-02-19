@@ -56,17 +56,7 @@ SP:BEGIN
     IF pI_usuario='' OR pI_usuario IS NULL THEN 
       SET mensaje=CONCAT(mensaje, 'usuario , ');
     END IF;
-    IF pI_estado='' OR pI_estado IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'estado, ');
-    END IF;
-    IF pI_id_tipo_usuario='' OR pI_id_tipo_usuario IS NULL THEN 
-        SET mensaje=CONCAT('id tipo usuario, ',mensaje);
-    END IF;
-     IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
-      SET mensaje=CONCAT(mensaje,'estado invalido, ');
-    END IF;
-
-
+  
 	-- _________________________CUERPO DEL PL___________________________________________
     -- update n Commit
 	-- verify employee registers
@@ -78,10 +68,6 @@ SP:BEGIN
         SET mensaje = CONCAT(mensaje, 'id empleado no existe: ');
     END IF;
 
-    SELECT COUNT(*) INTO contador FROM tipo_usuario WHERE id_tipo_usuario = pI_id_tipo_usuario;
-    IF contador=0 THEN
-      SET mensaje = CONCAT(mensaje, 'id tipo usuario no existe');
-    END IF;
 	
     IF mensaje <> '' THEN
         SET mensaje=CONCAT('resultado: ', mensaje);
@@ -140,8 +126,7 @@ SP:BEGIN
          empleado.usuario= pI_usuario, 
          -- empleado.contrasena = pI_contrasena, -- no borrar por si se ocupa borrar en un futuro
          empleado.foto_url= pI_foto_url, 
-         empleado.estado = pI_estado,
-         empleado.id_tipo_usuario =pI_id_tipo_usuario
+         empleado.estado = 'A'
     WHERE 
          empleado.id_empleado =pI_id_empleado;
     COMMIT;
@@ -154,22 +139,24 @@ SP:BEGIN
 
 END$$
 
+select * from empleado where id_empleado=68;
+select * from persona
 CALL SP_Actualizar_Empleado(
     68,
-    'w',
-    'rr',
-    'dd',
-    'rr',
-    'f',
-    'col x',
+    'Antonio',
+    'Jose',
+    'Aguilar',
+    'Aguilar',
+    'M',
+    'col firulais',
     'ssdfdfs@GMAIL.COM',
     '0801197605286',
     '2018-02-02',
     '2018-02-02',
     'erJKJdJfasxicdo8',
-    'http://foto11.jpg',
-    'A',
-    2,
+    'http://Tonito.jpg',
+    '',
+    "",
     @pO_mensaje,
     @pO_error
 )
