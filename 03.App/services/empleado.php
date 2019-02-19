@@ -35,6 +35,7 @@ if(isset($_POST['accion'])){
       $contrasena = validarPOST('contrasena');
       $fotoUrl = validarPOST('foto_url');
       $idTipoUsuario = validarPOST('id_tipo_usuario');
+      $telefono = validarPOST('telefono');
       $empleado = new Empleado();
       $empleado->setPrimerNombre($primerNombre);
       $empleado->setSegundoNombre($segundoNombre);
@@ -50,6 +51,7 @@ if(isset($_POST['accion'])){
       $empleado->setContrasena($contrasena);
       $empleado->setFotoUrl($fotoUrl);
       $empleado->setIdTipoUsuario($idTipoUsuario);
+      $empleado->setTelefono($telefono);
       $res['data'] = $empleado->crear($conexion);
       echo json_encode($res);
     break;
