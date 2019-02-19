@@ -22,14 +22,12 @@ class Medicamento extends Producto{
 	public function getIdLaboratorio(){
 		return $this->idLaboratorio;
 	}
-
 	public function setIdLaboratorio($idLaboratorio){
 		$this->idLaboratorio = $idLaboratorio;
 	}
 	public function getLaboratorio(){
 		return $this->laboratorio;
 	}
-
 	public function setLaboratorio($laboratorio){
 		$this->laboratorio = $laboratorio;
 	}
@@ -37,17 +35,19 @@ class Medicamento extends Producto{
 	public function getEsMedicamento(){
 		return $this->esMedicamento;
 	}
-
 	public function setEsMedicamento($esMedicamento){
 		$this->esMedicamento = $esMedicamento;
 	}
 
+
 	public function crear($conexion){
 		$opcion = $this->esMedicamento ? 'M': 'P';
-		$sql = "CALL SP_Insertar_Producto(
+    
+    $sql = "CALL SP_Insertar_Producto(
 			%s, '%s', '%s', '%s', '%s' ,%s
 			,%s, '%s', @mensaje, @error
-		);";
+    );";
+    
 		$valores = [
 			$this->getIdPresentacion(),
 			$this->getNombre(),
@@ -57,9 +57,11 @@ class Medicamento extends Producto{
 			$this->getIdImpuesto(),
 			$this->getIdLaboratorio(),
 			$opcion
-		];
+    ];
+    
 		$rows = $conexion->query($sql, $valores);
-		return $rows;
+    
+    return $rows;
 	}
 
 	public static function leer($conexion){

@@ -258,22 +258,6 @@ $("#slc-tipo").change(function(){
 
 /* Test de Valores mandados de Productos */
 $("#btn-guard-prod").click(function(){
-  /*var nom = $("#nombre-producto").val();
-  var bar = $("#codigo-barra").val();
-  var cat = $("#slc-categoria").val();
-  var imp = $("#slc-impuesto").val();
-  var pre = $("#slc-presentacion").val();
-  var lab = $("#slc-laboratorio").val();
-  var tip = $("#slc-tipo").val();
-
-  alert(
-    "nom:" + nom +
-    "bar:" + bar +
-    "Cat:" + cat +
-    "imp:" + imp +
-    "pre:" + pre + 
-    "lab:" + lab +
-    "tip:" + tip );*/
 
     var settings = {
       "async": true,
@@ -300,29 +284,27 @@ $("#btn-guard-prod").click(function(){
       console.log(response);
     });
 
+    /*var nom = $("#nombre-producto").val();
+    var bar = $("#codigo-barra").val();
+    var cat = $("#slc-categoria").val();
+    var imp = $("#slc-impuesto").val();
+    var pre = $("#slc-presentacion").val();
+    var lab = $("#slc-laboratorio").val();
+    var tip = $("#slc-tipo").val();
+
+    alert(
+      "nom:" + nom +
+      "bar:" + bar +
+      "Cat:" + cat +
+      "imp:" + imp +
+      "pre:" + pre + 
+      "lab:" + lab +
+      "tip:" + tip );*/
 
 });
 
 /* Test de Valores mandados de Lote */
 $("#btn-guard-lote").click(function(){
-  /*var lot = $("#lote").val();
-  var prod = $("#slc-prod").val();
-  var des = $("#slc-descuento").val();
-  var pvent = $("#precio-venta").val();
-  var pcomp = $("#precio-compra").val();
-  var cant = $("#cantidad").val();
-  var fela = $("#fecha-elab").val();
-  var fven = $("#fecha-venc").val();
-  
-  alert(
-    "lote:" + lot +
-    "prod:" + prod +
-    "desc:" + des +
-    "pventa:" + pvent +
-    "pcomp:" + pcomp +
-    "cant:" + cant +
-    "fela:" + fela +
-    "fven:" + fven);*/
 
     var settings = {
       "async": true,
@@ -349,6 +331,26 @@ $("#btn-guard-lote").click(function(){
     $.ajax(settings).done(function (response) {
       console.log(response);
     });
+
+    /*var lot = $("#lote").val();
+    var prod = $("#slc-prod").val();
+    var des = $("#slc-descuento").val();
+    var pvent = $("#precio-venta").val();
+    var pcomp = $("#precio-compra").val();
+    var cant = $("#cantidad").val();
+    var fela = $("#fecha-elab").val();
+    var fven = $("#fecha-venc").val();
+    
+    alert(
+      "lote:" + lot +
+      "prod:" + prod +
+      "desc:" + des +
+      "pventa:" + pvent +
+      "pcomp:" + pcomp +
+      "cant:" + cant +
+      "fela:" + fela +
+      "fven:" + fven);*/
+
 });
 
 /* Pruebas de los Fonts */
