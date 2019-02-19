@@ -7,6 +7,7 @@ class Lote extends Producto{
 	private $fechaElaboracion;
 	private $fechaVencimiento;
 	private $idDescuento;
+	private $existencia;
 
 	public function __construct(
 		$idLote = null,
@@ -78,7 +79,37 @@ class Lote extends Producto{
 		$this->fechaVencimiento = $fechaVencimiento;
 	}
 
+	public function getIdDescuento(){
+		return $this->idDescuento;
+	}
+
+	public function setIdDescuento($idDescuento){
+		$this->idDescuento = $idDescuento;
+	}
+	public function getExistencia(){
+		return $this->existencia;
+	}
+
+	public function setExistencia($existencia){
+		$this->existencia = $existencia;
+	}
+
 	public function crear($conexion){
+		$sql = "CALL SP_Insertar_Lote(
+			%s,'%s',%s,%s,DATE('%s'),DATE('%s'),%s,%s
+			,@mensaje,@error);";
+		$valores = [
+			$this->getIdProducto(),
+			$this->getLote(),
+			$this->getPrecioCosto(),
+			$this->getPrecioVenta(),
+			$this->getFechaElaboracion(),
+			$this->getFechaVencimiento(),
+			$this->getExistencia(),
+			$this->getIdDescuento()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows[0];
 	}
 	public static function leer($conexion){
 	}

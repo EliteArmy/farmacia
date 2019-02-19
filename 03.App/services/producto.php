@@ -115,6 +115,12 @@ if(isset($_POST['accion'])){
       $lot->setLote($lote);
       $lot->setPrecioCosto($precioCostoUnidad);
       $lot->setPrecioVenta($precioVentaUnidad);
+      $lot->setFechaElaboracion($fechaElaboracion);
+      $lot->setFechaVencimiento($fechaVencimiento);
+      $lot->setExistencia($existencia);
+      $lot->setIdDescuento($idDescuento);
+      $res["data"] = $lot->crear($conexion);
+      echo json_encode($res);
     break;
 
     // DEFAULT
