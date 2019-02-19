@@ -45,17 +45,6 @@
         </div>
 
         <div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success" role="alert" style="display:none;">
-              Producto insertado con exito.
-            </div>
-            <div id="div-error" class="alert alert-danger" role="alert" style="display:none;">
-              Error al insertar el Producto.
-            </div>            
-          </div>
-        </div>
-
-        <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <table id="table-info" class="display" style="width: 100%;">
             </table>
@@ -137,6 +126,15 @@
             </div>
         </div>
 
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div id="div-exito" class="alert alert-success" role="alert" style="display:none;">
+            Producto insertado con exito.
+          </div>
+          <div id="div-error" class="alert alert-danger" role="alert" style="display:none;">
+            Error al insertar el Producto.
+          </div>            
+        </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-info" id="reset-prod">Reset</button>
           <button type="button" class="btn btn-primary" id="btn-guard-prod">Guardar Cambios</button>
@@ -204,6 +202,15 @@
               <select id="slc-descuento" class="selectpicker form-control" data-live-search="true" title="Descuentos" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="div-exito" class="alert alert-success" role="alert" style="display:none;">
+                Producto insertado con exito.
+              </div>
+              <div id="div-error" class="alert alert-danger" role="alert" style="display:none;">
+                Error al insertar el Producto.
+              </div>            
             </div>
 
           </div>

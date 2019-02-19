@@ -155,6 +155,15 @@
               </div>
             </div>
 
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="div-exito" class="alert alert-success" role="alert" style="display:none;">
+                Empleado insertado con exito.
+              </div>
+              <div id="div-error" class="alert alert-danger" role="alert" style="display:none;">
+                Error al insertar el Empleado.
+              </div>            
+            </div>
+
           </div>
         </div>
 

@@ -284,11 +284,12 @@ $("#btn-guard-prod").click(function(){
       if (response.data[0].error == 0) {
         console.log(response.data);
         $("#div-exito").show();
-        $("#div-exito").fadeOut(5500);
+        $("#div-exito").fadeOut(10000);
       } else {
         console.log(response);
         $("#div-error").show();
-        $("#div-error").fadeOut(5500);
+        $("#div-error").html(response.data[0].mensaje);
+        $("#div-error").fadeOut(10000);
       }
     });
 

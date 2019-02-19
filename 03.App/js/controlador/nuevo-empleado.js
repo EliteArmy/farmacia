@@ -32,7 +32,9 @@ $(document).ready(function() {
       { "data": "sexo", title: "Sexo"},
       { "data": "nombres", title: "Nombre"},
       { "data": "apellidos", title: "Apellido"},
+      { "data": "estado", title: "Estado"},
       { "data": "telefono", title: "Telefono",
+      
       "render": function ( data, type, row, meta ) {
         return  '<button type="button" onclick="funcionActualizar()" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
                 '<button type="button" onclick="funcionBorrar()" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
@@ -75,10 +77,21 @@ $('#guard-empleado').click(function(){
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    if (response.data.error == 0) {
+      console.log(response.data);
+      $("#div-exito").show();
+      $("#div-exito").fadeOut(10000);
+    } else {
+      console.log(response);
+      $("#div-error").show();
+      $("#div-error").html(response.data.mensaje);
+      $("#div-error").fadeOut(10000);
+    }
   });
 
 });
+
+
 
 /* Pruebas de los Fonts */
 function funcionBorrar(){

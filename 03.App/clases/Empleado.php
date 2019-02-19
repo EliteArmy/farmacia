@@ -105,7 +105,7 @@ class Empleado extends Persona{
 	}
 
   public static function leer($conexion){
-	  $sql = 'SELECT * FROM VistaEmpleado';
+	  $sql = 'SELECT * FROM VistaEmpleado2';
 	  $rows = $conexion->query($sql);
     return $rows;
   }
@@ -144,7 +144,7 @@ class Empleado extends Persona{
   }
 
 	public function borrar($conexion){
-		$sql = 'CALL SP_Eliminar_Empleado(%s,@mensaje, @error);';
+		$sql = 'CALL SP_Eliminar_Empleado(%s, @mensaje, @error);';
     
     $valores = [
 			$this->getIdEmpleado()
