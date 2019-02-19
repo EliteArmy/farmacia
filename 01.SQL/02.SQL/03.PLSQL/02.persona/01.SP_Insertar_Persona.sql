@@ -10,7 +10,6 @@ CREATE PROCEDURE `SP_Insertar_Persona`(
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
     IN pI_fecha_nacimiento DATE,
-    IN pI_telefonos VARCHAR(1000),
     
     OUT pO_mensaje VARCHAR(1000),
     OUT pO_error BOOLEAN
@@ -19,24 +18,12 @@ SP:BEGIN
 
     -- Declaraciones
     DECLARE mensaje VARCHAR(1000);
-    DECLARE error BOOLEAN;
     DECLARE contador INT;
-    DECLARE cadena VARCHAR(1000);
-    DECLARE iterador INT;
-    DECLARE contadorDigitos INT;
-    DECLARE isTelefono BOOLEAN;
-    DECLARE telefono VARCHAR(50);
-    DECLARE ultimoId INT;
-
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
     START TRANSACTION;
     SET mensaje = '';
-    SET cadena='';
-    SET iterador=1;
-    SET contadorDigitos=0;
-    SET isTelefono=FALSE;
 
     -- ___________________VALIDACONES___________________________
     IF pI_primer_nombre='' OR pI_primer_nombre IS NULL THEN 
@@ -85,31 +72,6 @@ SP:BEGIN
         SET mensaje = CONCAT(mensaje, 'correo electronico ya existe, ');
     END IF;
 
-    IF NOT(pI_telefonos='' OR pI_telefonos IS NULL) THEN
-        SET cadena=REPLACE(pI_telefonos,' ','');
-        SET contadorDigitos = LENGTH(cadena) - LENGTH(REPLACE(cadena, ',', '')) + 1;
-        IF contadorDigitos>4 THEN
-            SET mensaje=CONCAT(mensaje,'telefonos maximos excedidos');
-        ELSE
-         -- Validacion de formato de numeros de telefonos
-            WHILE iterador<=contadorDigitos DO
-                SET telefono = FN_Split_Str(cadena, ',', iterador);
-                IF NOT(telefono='' OR telefono IS NULL) THEN
-                    IF( telefono REGEXP'^(2|3|6|7|8|9){1}[0-9]{3}-[0-9]{4}$')=0 THEN
-                        SET mensaje=CONCAT('formato de telefono invalido');
-                        SET error=TRUE;
-                        SET pO_mensaje=mensaje;
-                        SET pO_error=error;
-                        LEAVE SP;
-                    ELSE
-                       SET isTelefono=TRUE;
-                    END IF;
-                END IF;
-                SET iterador= iterador + 1;
-            END WHILE;
-        END IF;
-    END IF;
-
     IF mensaje <> '' THEN
         SET pO_mensaje=CONCAT('resultado: ', mensaje);
         SET pO_error=TRUE;
@@ -142,28 +104,13 @@ SP:BEGIN
                          pI_fecha_nacimiento,
                          'A');
     COMMIT;
-
-    -- IF isTelefono=TRUE THEN
-        SELECT MAX(id_persona) INTO ultimoId FROM persona;
-        CALL SP_Insertar_Telefono_Persona (ultimoId,'A',telefono,pO_mensaje,pO_error);
-        IF @pO_error=TRUE THEN
-            SET pO_mensaje=@pO_mensaje;
-            SET pO_error=TRUE;
-            LEAVE SP;
-        END IF;
-    -- END IF;
     SET pO_mensaje='inserción exitosa';
     SET pO_error=FALSE;
 
 END$$
 
-CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','dir','jj3321j@gmail.com','0922267837266',null,"8877-9809,8909-0987",@mensaje, @error);
-CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','dir','jjj11DD21j@gmail.com','0922267837234',null,"8877-9809,8909-0987",@mensaje, @error);
+CALL SP_Insertar_Persona('pedro','pedro','rodriguez','rodriguez','M','dir','jjj1121j@gmail.com','0922267831234',null,@mensaje, @error);
 SELECT @mensaje, @error;
-
-SELECT * from persona
-SELECT * FROM telefono_persona
-select * from telefono
     
 /*---COMENTARIOS  LLAMAR AL SP con parametro de salida OUT*/
 /*---Llamar al procedimiento almacenado, las variables de salida se llaman con @
