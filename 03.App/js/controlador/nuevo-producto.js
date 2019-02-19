@@ -258,7 +258,6 @@ $("#slc-tipo").change(function(){
 
 /* Test de Valores mandados de Productos */
 $("#btn-guard-prod").click(function(){
-
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -282,7 +281,15 @@ $("#btn-guard-prod").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      console.log(response);
+      if (response.data[0].error == 0) {
+        console.log(response.data);
+        $("#div-exito").show();
+        $("#div-exito").fadeOut(5500);
+      } else {
+        console.log(response);
+        $("#div-error").show();
+        $("#div-error").fadeOut(5500);
+      }
     });
 
     /*var nom = $("#nombre-producto").val();

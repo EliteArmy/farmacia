@@ -18,13 +18,14 @@ $(document).ready(function() {
 
     $.ajax(settings).done(function (response) {
       if (response.data.resultado == 1) {
-        console.log(response);
+        console.log(response.data);
         window.location.href = "index.php";
         //alert(response.data.resultado);
       } else {
         $("#div-error-login").show();
-        console.log(response);
-        //alert(response.data.resultado);
+        $("#div-error-login").fadeOut(5500);
+        console.log(response.data);
+        //alert(response.data);
       }
     });
   });  
