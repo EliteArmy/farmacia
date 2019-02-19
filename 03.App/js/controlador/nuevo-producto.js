@@ -276,7 +276,7 @@ $("#btn-guard-prod").click(function(){
         "url_foto": "",
         "array_categoria": $("#slc-categoria").val().join(),
         "id_impuesto": $("#slc-impuesto").val(),
-        "id_laboratorio": $("#slc-laboratorio").val(),
+        "id_laboratorio": $("#slc-laboratorio").val() || 0,
         "opcion": $("#slc-tipo").val()
       }
     }

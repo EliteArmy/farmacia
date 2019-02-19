@@ -105,7 +105,7 @@
               </select>
             </div>
 
-            <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
+            <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
