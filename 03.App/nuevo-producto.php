@@ -1,7 +1,4 @@
-<?php
-  $idPagina = "catalogo-inventario";
-  include("autenticacion.php");
-?>
+
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +17,6 @@
 </head>
 <body>
 
-  <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -216,8 +212,10 @@
   <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/popper.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+
   <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
+  
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./data-tables/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>
