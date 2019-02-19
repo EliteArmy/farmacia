@@ -338,15 +338,16 @@ $("#btn-guard-lote").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      if (response.data[0].error == 0) {
+      //console.log(response.data)
+      if (response.data.resultado == 1) {
         console.log(response.data);
-        $("#div-exito").show();
-        $("#div-exito").fadeOut(10000);
+        $("#div-exito2").show();
+        $("#div-exito2").fadeOut(10000);
       } else {
         console.log(response);
-        $("#div-error").show();
-        $("#div-error").html(response.data.mensaje);
-        $("#div-error").fadeOut(10000);
+        $("#div-error2").show();
+        $("#div-error2").html(response.data.mensaje);
+        $("#div-error2").fadeOut(10000);
       }
     });
 
@@ -385,3 +386,4 @@ function funcionMostrar(){
 }
 
 
+    
