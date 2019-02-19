@@ -321,11 +321,11 @@ $("#btn-guard-lote").click(function(){
         "id_producto": $("#slc-prod").val(),
         "lote": $("#lote").val(),
         "precio_costo_unidad": $("#precio-compra").val(),
-        "precio_venta_unidad": $("#precio-compra").val(),
+        "precio_venta_unidad": $("#precio-venta").val(),
         "fecha_elaboracion": $("#fecha-elab").val(),
         "fecha_vencimiento": $("#fecha-venc").val(),
         "existencia": $("#cantidad").val(),
-        "id_descuento": $("#slc-descuento").val()
+        "id_descuento": $("#slc-descuento").val() || 0
       }
     }
     
