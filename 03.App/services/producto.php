@@ -97,11 +97,24 @@ if(isset($_POST['accion'])){
       } else if ($opcion == 'M') {
         $prod->setEsMedicamento(true);
       }
-      $prod->  crear($conexion); // Medicamento::crear()
+      $res["data"] = $prod->  crear($conexion); // Medicamento::crear()
+      echo json_encode($res);
       break;
     case 'crear-lote':
-      $lote = new Lote();
+      $idProducto = validarPOST('id_producto');
+      $lote = validarPOST('lote');
+      $precioCostoUnidad = validarPOST('precio_costo_unidad');
+      $precioVentaUnidad = validarPOST('precio_venta_unidad');
+      $fechaElaboracion = validarPOST('fecha_elaboracion');
+      $fechaVencimiento = validarPOST('fecha_vencimiento');
+      $existencia = validarPOST('existencia');
+      $idDescuento = validarPOST('id_descuento');
 
+      $lot = new Lote();
+      $lot->setIdProducto($idProducto);
+      $lot->setLote($lote);
+      $lot->setPrecioCosto($precioCostoUnidad);
+      $lot->setPrecioVenta($precioVentaUnidad);
     break;
 
     // DEFAULT

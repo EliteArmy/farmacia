@@ -106,8 +106,8 @@ class Empleado extends Persona{
 
   public static function leer($conexion){
 	  $sql = 'SELECT * FROM VistaEmpleado';
-	  $rows = $conexion($sql);
-    return $rows[0];
+	  $rows = $conexion->query($sql);
+    return $rows;
   }
 
 	public function crear($conexion){

@@ -6,6 +6,7 @@ class Lote extends Producto{
 	private $precioVenta;
 	private $fechaElaboracion;
 	private $fechaVencimiento;
+	private $idDescuento;
 
 	public function __construct(
 		$idLote = null,

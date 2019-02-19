@@ -175,3 +175,5 @@ SELECT * FROM lote
 select * from producto
 select * from descuento
 select * from descuento_lote
+
+
