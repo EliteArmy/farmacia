@@ -9,14 +9,14 @@ $(document).ready(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/.php",
+      "url": "http://farma/services/empleado.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "leer-"
+        "accion": "leer-empleado"
       }
     },
     language: {
@@ -43,5 +43,5 @@ $(document).ready(function() {
     ]
   });
 
-
 });
+

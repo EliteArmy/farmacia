@@ -43,69 +43,72 @@ class Empleado extends Persona{
 	public function getIdEmpleado(){
 		return $this->idEmpleado;
 	}
-
 	public function setIdEmpleado($idEmpleado){
 		$this->idEmpleado = $idEmpleado;
-	}
+  }
+  
 	public function getFechaIngreso(){
 		return $this->fechaIngreso;
 	}
-
 	public function setFechaIngreso($fechaIngreso){
 		$this->fechaIngreso = $fechaIngreso;
-	}
+  }
+  
 	public function getUsuario(){
 		return $this->usuario;
 	}
-
 	public function setUsuario($usuario){
 		$this->usuario = $usuario;
-	}
+  }
+  
 	public function getContrasena(){
 		return $this->contrasena;
 	}
-
 	public function setContrasena($contrasena){
 		$this->contrasena = $contrasena;
-	}
+  }
+  
 	public function getContrasenaHash(){
 		return $this->contrasenaHash;
 	}
-
 	public function setContrasenaHash($contrasenaHash){
 		$this->contrasenaHash = $contrasenaHash;
-	}
+  }
+  
 	public function getFotoUrl(){
 		return $this->fotoUrl;
 	}
-
-	public function getIdTipoUsuario(){
+  
+  public function getIdTipoUsuario(){
 		return $this->idTipoUsuario;
 	}
-
 	public function setIdTipoUsuario($idTipoUsuario){
 		$this->idTipoUsuario = $idTipoUsuario;
 	}
 
 	public function setFotoUrl($fotoUrl){
 		$this->fotoUrl = $fotoUrl;
-	}
+  }
+  
 	public function getEstado(){
 		return $this->estado;
 	}
-
 	public function setEstado($estado){
 		$this->estado = $estado;
 	}
 	
-	
 	public function getTelefono(){
 		return $this->telefono;
 	}
-
 	public function setTelefono($telefono){
 		$this->telefono = $telefono;
 	}
+
+  public static function leer($conexion){
+	  $sql = 'SELECT * FROM VistaEmpleado';
+	  $rows = $conexion($sql);
+    return $rows[0];
+  }
 
 	public function crear($conexion){
 		$sql = "
@@ -114,8 +117,10 @@ class Empleado extends Persona{
 				DATE('%s'),DATE('%s'),'%s','%s','%s', %s, '%s', @mensaje,@error
 			);
 		";
-		$this->contrasena = hash('sha512', $this->contrasena);
-		$valores = [
+    
+    $this->contrasena = hash('sha512', $this->contrasena);
+    
+    $valores = [
 			$this->getPrimerNombre(),
 			$this->getSegundoNombre(),
 			$this->getPrimerApellido(),
@@ -134,7 +139,8 @@ class Empleado extends Persona{
 		];
 		$rows = $conexion->query($sql, $valores);
 		return $rows[0];
-	}
+  }
+  
 	public function borrar($conexion){
 		$sql = 'CALL SP_Eliminar_Empleado(%s,@mensaje, @error);';
 		$valores = [
@@ -142,12 +148,8 @@ class Empleado extends Persona{
 		];
 		$rows = $conexion->query($sql, $valores);
 		return $rows[0];
-	}
-	public function leer($conexion){
-	   $sql = 'SELECT * FROM VistaEmpleado';
-	   $rows = $conexion($sql);
-           return $rows[0];
-	}
+  }
+  
 	public function actualizar($conexion){
 		$sql = "
 		CALL SP_Actualizar_Empleado(
@@ -176,7 +178,8 @@ class Empleado extends Persona{
 		];
 		$rows = $conexion->query($sql, $valores);
 		return $rows[0];
-	}
+  }
+  
 	public function login($conexion){
 		$sql = "CALL SP_LOGIN('%s','%s')";
 		$this->contrasena = hash('sha512',$this->contrasena);

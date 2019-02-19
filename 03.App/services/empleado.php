@@ -1,10 +1,13 @@
 <?php
 header('Access-Control-Allow-Origin: *');
+
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
+
 // Clases Usadas
 include_once('../clases/Persona.php');
 include_once('../clases/Empleado.php');
+
 if(isset($_POST['accion'])){
   $conexion = new Conexion();
   switch ($_POST['accion']) {
@@ -14,9 +17,16 @@ if(isset($_POST['accion'])){
       $contrasena = validarPOST('contrasena');
 
       $empleado= new Empleado();
+      
       $empleado -> setUsuario($usuario);
       $empleado -> setContrasena($contrasena);
+      
       $res['data'] = $empleado->login($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-empleado':
+      $res['data'] = Empleado::leer($conexion);
       echo json_encode($res);
     break;
 
@@ -36,7 +46,9 @@ if(isset($_POST['accion'])){
       $fotoUrl = validarPOST('foto_url');
       $idTipoUsuario = validarPOST('id_tipo_usuario');
       $telefono = validarPOST('telefono');
+      
       $empleado = new Empleado();
+
       $empleado->setPrimerNombre($primerNombre);
       $empleado->setSegundoNombre($segundoNombre);
       $empleado->setPrimerApellido($primerApellido);
@@ -52,6 +64,7 @@ if(isset($_POST['accion'])){
       $empleado->setFotoUrl($fotoUrl);
       $empleado->setIdTipoUsuario($idTipoUsuario);
       $empleado->setTelefono($telefono);
+      
       $res['data'] = $empleado->crear($conexion);
       echo json_encode($res);
     break;
@@ -72,7 +85,9 @@ if(isset($_POST['accion'])){
       $estado = validarPOST('estado');
       $fotoUrl = validarPOST('foto_url');
       $idTipoUsuario = validarPOST('id_tipo_usuario');
+      
       $empleado = new Empleado();
+
       $empleado->setIdEmpleado($idEmpleado);
       $empleado->setPrimerNombre($primerNombre);
       $empleado->setSegundoNombre($segundoNombre);
@@ -88,6 +103,7 @@ if(isset($_POST['accion'])){
       $empleado->setUsuario($usuario);
       $empleado->setFotoUrl($fotoUrl);
       $empleado->setIdTipoUsuario($idTipoUsuario);
+      
       $res['data'] = $empleado->actualizar($conexion);
       echo json_encode($res);
     break;
