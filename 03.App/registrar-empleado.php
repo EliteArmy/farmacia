@@ -92,7 +92,7 @@
 
             <div class="form-group col-12 col-md-6">
               <label for="txt-telefono">Teléfono</label><br>
-              <input id="txt-telefono" class="form-control" type="number" step="1" placeholder="Teléfono">
+              <input id="txt-telefono" class="form-control" type="text" step="1" placeholder="1234-5678">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -107,7 +107,22 @@
 
             <div class="form-group col-12 col-sm-6 col-md-6"> 
               <label for="txt-fecha-nacimiento">Fecha Nacimiento:</label>
-              <input type="date" id="txt-fecha-nacimiento" class="form-control">
+              <input type="date" id="txt-fecha-nacimiento" class="form-control" placeholder="1999-12-31">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6"> 
+              <label for="txt-fecha-ingreso">Fecha Ingreso:</label>
+              <input type="date" id="txt-fecha-ingreso" class="form-control" placeholder="1999-12-31">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="txt-usuario">Usuario:</label>
+              <input type="text" class="form-control" id="txt-usuario" name="txt-usuario" placeholder="Usuario">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="txt-contrasena">Contraseña</label>
+              <input type="password" class="form-control" id="txt-contrasena" name="txt-contrasena" placeholder="Contraseña">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -116,16 +131,6 @@
                 <option value="1">Administrador</option>
                 <option value="2">Cajero</option>
               </select>
-            </div>
-
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-usuario">Usuario:</label>
-              <input type="text" class="form-control" id="txt-usuario" name="txt-usuario" placeholder="Usuario">
-            </div>
-    
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-contrasena">Contraseña</label>
-              <input type="password" class="form-control" id="txt-contrasena" name="txt-contrasena" placeholder="Contraseña">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -155,7 +160,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-info" id="">Reset</button>
-          <button type="button" id="btn-guard-prod" class="btn btn-primary" id="btn-guard-empleado">Guardar Cambios</button>
+          <button type="button" class="btn btn-primary" id="guard-empleado">Guardar Cambios</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
 

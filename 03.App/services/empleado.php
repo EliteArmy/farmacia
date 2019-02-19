@@ -44,7 +44,7 @@ if(isset($_POST['accion'])){
       $fechaIngreso = validarPOST('fecha_ingreso');
       $usuario = validarPOST('usuario');
       $contrasena = validarPOST('contrasena');
-      //$fotoUrl = validarPOST('foto_url');
+      $fotoUrl = validarPOST('foto_url');
       $idTipoUsuario = validarPOST('id_tipo_usuario');
       
       $empleado = new Empleado();
