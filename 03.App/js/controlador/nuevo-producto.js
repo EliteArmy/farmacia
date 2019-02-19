@@ -305,7 +305,7 @@ $("#btn-guard-prod").click(function(){
 
 /* Test de Valores mandados de Lote */
 $("#btn-guard-lote").click(function(){
-  var lot = $("#lote").val();
+  /*var lot = $("#lote").val();
   var prod = $("#slc-prod").val();
   var des = $("#slc-descuento").val();
   var pvent = $("#precio-venta").val();
@@ -322,7 +322,33 @@ $("#btn-guard-lote").click(function(){
     "pcomp:" + pcomp +
     "cant:" + cant +
     "fela:" + fela +
-    "fven:" + fven);
+    "fven:" + fven);*/
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "JSON",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "crear-lote",
+        "id_producto": $("#slc-prod").val(),
+        "lote": $("#lote").val(),
+        "precio_costo_unidad": $("#precio-compra").val(),
+        "precio_venta_unidad": $("#precio-compra").val(),
+        "fecha_elaboracion": $("#fecha-elab").val(),
+        "fecha_vencimiento": $("#fecha-venc").val(),
+        "existencia": $("#cantidad").val(),
+        "id_descuento": $("#slc-descuento").val()
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+    });
 });
 
 /* Pruebas de los Fonts */
