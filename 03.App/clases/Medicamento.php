@@ -49,7 +49,7 @@ class Medicamento extends Producto{
 			,%s, '%s', @mensaje, @error
 		);";
 		$valores = [
-			$this->getIdCategoria(),
+			$this->getIdPresentacion(),
 			$this->getNombre(),
 			$this->getCodigoBarra(),
 			$this->getUrlFoto(),
