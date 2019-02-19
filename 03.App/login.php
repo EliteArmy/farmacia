@@ -83,7 +83,7 @@
       <div class="row justify-content-center">
         <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4">
           <h4>
-            Pie de Página
+
           </h4>
         </div>
       </div>
