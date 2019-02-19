@@ -10,6 +10,7 @@ CREATE PROCEDURE SP_Insertar_Empleado(
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
     IN pI_fecha_nacimiento DATE,
+    IN pI_telefono VARCHAR(50),
   -- campos empleado
     IN pI_fecha_ingreso DATE,
     IN pI_usuario VARCHAR(50),
@@ -50,6 +51,15 @@ CREATE PROCEDURE SP_Insertar_Empleado(
     IF pI_id_tipo_usuario='' OR pI_id_tipo_usuario IS NULL THEN 
         SET mensaje=CONCAT('id tipo usuario, ',mensaje);
     END IF;
+
+    IF pI_telefono='' OR pI_telefono IS NULL THEN 
+        SET mensaje=CONCAT('telefono, ',mensaje);
+    END IF;
+
+    IF pI_fecha_nacimiento='' OR pI_fecha_nacimiento IS NULL THEN 
+        SET mensaje=CONCAT('fecha nacimiento, ',mensaje);
+    END IF;
+    -- __________
     -- _________________________CUERPO DEL PL_________________
 
     SELECT COUNT(*) INTO contador FROM empleado 
@@ -81,6 +91,7 @@ CREATE PROCEDURE SP_Insertar_Empleado(
                              pI_correo_electronico,
                              pI_numero_identidad,
                              pI_fecha_nacimiento,
+                             pI_telefono,
                              pO_mensaje,
                              pO_error
     );
@@ -118,10 +129,10 @@ CREATE PROCEDURE SP_Insertar_Empleado(
 END $$
 
 select * from persona where numero_identidad='0801197607186';
-CALL SP_Insertar_Empleado('aa','WIL','WIL','WIL','M','SAFDYS',
-                          'ss@GMAIL.COM','0801197607286',
-                          DATE('2002-02-03'),DATE('2002-02-03'),
-                          'erJKJdJxicdo8','ASD','ASDFGHJKL.COM',2,
+CALL SP_Insertar_Empleado('aa','WIL','WIL','WIL','M','dir',
+                          'sssw@GMAIL.COM','0801197607200',
+                          DATE('2002-02-03'),"3901-1987",DATE('2002-02-03'),
+                          'asd','ASD','ASDFGHJKL.COM',2,
                           @mensaje,@error);
 select @mensaje,@error;
 
