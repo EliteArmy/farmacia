@@ -274,7 +274,8 @@ $("#btn-guard-prod").click(function(){
         "nombre": $("#nombre-producto").val(),
         "codigo_barra": $("#codigo-barra").val(),
         "url_foto": "",
-        "array_categoria": $("#slc-categoria").val(),
+        "array_categoria": $("#slc-categoria").val().join(),
+        "id_impuesto": $("#slc-impuesto").val(),
         "id_laboratorio": $("#slc-laboratorio").val(),
         "opcion": $("#slc-tipo").val()
       }
