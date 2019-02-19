@@ -8,6 +8,7 @@ class Empleado extends Persona{
 	private $fotoUrl;
 	private $estado;
 	private $idTipoUsuario;
+	private $telefono;
 
 	public function __construct(
 		$idEmpleado = null,
@@ -96,12 +97,21 @@ class Empleado extends Persona{
 	public function setEstado($estado){
 		$this->estado = $estado;
 	}
+	
+	
+	public function getTelefono(){
+		return $this->telefono;
+	}
+
+	public function setTelefono($telefono){
+		$this->telefono = $telefono;
+	}
 
 	public function crear($conexion){
 		$sql = "
 			CALL SP_Insertar_Empleado(
 				'%s','%s','%s','%s','%s','%s','%s','%s',
-				DATE('%s'),DATE('%s'),'%s','%s','%s', %s,@mensaje,@error
+				DATE('%s'),DATE('%s'),'%s','%s','%s', %s, '%s', @mensaje,@error
 			);
 		";
 		$this->contrasena = hash('sha512', $this->contrasena);
@@ -119,7 +129,8 @@ class Empleado extends Persona{
 			$this->getUsuario(),
 			$this->getContrasena(),
 			$this->getFotoUrl(),
-			$this->getIdTipoUsuario()
+			$this->getIdTipoUsuario(),
+			$this->getTelefono()
 		];
 		$rows = $conexion->query($sql, $valores);
 		return $rows[0];
@@ -133,7 +144,9 @@ class Empleado extends Persona{
 		return $rows[0];
 	}
 	public function leer($conexion){
-
+	   $sql = 'SELECT * FROM VistaEmpleado';
+	   $rows = $conexion($sql);
+           return $rows[0];
 	}
 	public function actualizar($conexion){
 		$sql = "
