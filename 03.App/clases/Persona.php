@@ -136,7 +136,7 @@ class Persona{
 	}
 	public function borrar($conexion){
 	}
-	public function leer($conexion){
+	public static function leer($conexion){
 	}
 	public function actualizar($conexion){
 	}

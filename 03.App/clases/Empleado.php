@@ -46,39 +46,39 @@ class Empleado extends Persona{
 	public function setIdEmpleado($idEmpleado){
 		$this->idEmpleado = $idEmpleado;
   }
-  
+
 	public function getFechaIngreso(){
 		return $this->fechaIngreso;
 	}
 	public function setFechaIngreso($fechaIngreso){
 		$this->fechaIngreso = $fechaIngreso;
   }
-  
+
 	public function getUsuario(){
 		return $this->usuario;
 	}
 	public function setUsuario($usuario){
 		$this->usuario = $usuario;
   }
-  
+
 	public function getContrasena(){
 		return $this->contrasena;
 	}
 	public function setContrasena($contrasena){
 		$this->contrasena = $contrasena;
   }
-  
+
 	public function getContrasenaHash(){
 		return $this->contrasenaHash;
 	}
 	public function setContrasenaHash($contrasenaHash){
 		$this->contrasenaHash = $contrasenaHash;
   }
-  
+
 	public function getFotoUrl(){
 		return $this->fotoUrl;
 	}
-  
+
   public function getIdTipoUsuario(){
 		return $this->idTipoUsuario;
 	}
@@ -89,14 +89,14 @@ class Empleado extends Persona{
 	public function setFotoUrl($fotoUrl){
 		$this->fotoUrl = $fotoUrl;
   }
-  
+
 	public function getEstado(){
 		return $this->estado;
 	}
 	public function setEstado($estado){
 		$this->estado = $estado;
 	}
-	
+
 	public function getTelefono(){
 		return $this->telefono;
 	}
@@ -114,12 +114,12 @@ class Empleado extends Persona{
 		$sql = "
 			CALL SP_Insertar_Empleado(
 				'%s','%s','%s','%s','%s','%s','%s','%s',
-				DATE('%s'),DATE('%s'),'%s','%s','%s', %s, '%s', @mensaje,@error
+				DATE('%s'),'%s',DATE('%s'),'%s','%s','%s', %s, @mensaje,@error
 			);
 		";
-    
+
     $this->contrasena = hash('sha512', $this->contrasena);
-    
+
     $valores = [
 			$this->getPrimerNombre(),
 			$this->getSegundoNombre(),
@@ -130,17 +130,17 @@ class Empleado extends Persona{
 			$this->getCorreoElectronico(),
 			$this->getNumeroIdentidad(),
 			$this->getFechaNacimiento(),
+			$this->getTelefono(),
 			$this->getFechaIngreso(),
 			$this->getUsuario(),
 			$this->getContrasena(),
 			$this->getFotoUrl(),
-			$this->getIdTipoUsuario(),
-			$this->getTelefono()
+			$this->getIdTipoUsuario()
 		];
 		$rows = $conexion->query($sql, $valores);
 		return $rows[0];
   }
-  
+
 	public function borrar($conexion){
 		$sql = 'CALL SP_Eliminar_Empleado(%s,@mensaje, @error);';
 		$valores = [
@@ -149,7 +149,7 @@ class Empleado extends Persona{
 		$rows = $conexion->query($sql, $valores);
 		return $rows[0];
   }
-  
+
 	public function actualizar($conexion){
 		$sql = "
 		CALL SP_Actualizar_Empleado(
@@ -179,7 +179,7 @@ class Empleado extends Persona{
 		$rows = $conexion->query($sql, $valores);
 		return $rows[0];
   }
-  
+
 	public function login($conexion){
 		$sql = "CALL SP_LOGIN('%s','%s')";
 		$this->contrasena = hash('sha512',$this->contrasena);
@@ -193,6 +193,10 @@ class Empleado extends Persona{
 			$_SESSION["id_empleado"] = $rows[0]["id_empleado"];
 			$_SESSION["tipo_usuario"] = $rows[0]["tipo_usuario"];
 			$_SESSION["nombre_completo"] = $rows[0]["nombre_completo"];
+			$_SESSION["sexo"] = $rows[0]["sexo"];
+			$_SESSION["correo_electronico"] = $rows[0]["correo_electronico"];
+			$_SESSION["fecha_ingreso"] = $rows[0]["fecha_ingreso"];
+			$_SESSION["telefono"] = $rows[0]["telefono"];
 			$_SESSION["permisos"] = $rows[0]["permisos"];
 		}
 		return $rows[0];
