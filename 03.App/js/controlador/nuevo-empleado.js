@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  alert("El documento fue cargado");
+  
   // ---- Leer Empleados (DataTables): ----
   $('#table-info').DataTable({
     pageLength: 10,
@@ -43,8 +43,8 @@ $(document).ready(function() {
 
 });
 
-$("#btn-guard-empleado").click(function(){
-  alert("Entra");
+$('#guard-empleado').click(function(){
+    
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -66,7 +66,7 @@ $("#btn-guard-empleado").click(function(){
       "numero_identidad": $('#txt-numero-identidad').val(),
       "telefono": $('#txt-telefono').val(),
       "fecha_nacimiento": $('#txt-fecha-nacimiento').val(),
-      "fecha_ingreso": $('#txt-fecha-nacimiento').val(),
+      "fecha_ingreso": $('#txt-fecha-ingreso').val(),
       "usuario": $('#txt-usuario').val(),
       "contrasena": $('#txt-contrasena').val(),
       "foto_url": "",
@@ -76,7 +76,8 @@ $("#btn-guard-empleado").click(function(){
   
   $.ajax(settings).done(function (response) {
     console.log(response);
-  });     
+  });
+
 });
 
 /* Pruebas de los Fonts */
