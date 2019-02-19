@@ -29,6 +29,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
   SET mensaje='';
   SET resultado = FALSE;
   SET contador = 0;
+  SET isDescuento=FALSE;
   
    -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
