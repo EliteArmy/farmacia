@@ -1,5 +1,5 @@
 $(document).ready(function() {
- 
+  alert("El documento fue cargado");
   // ---- Leer Empleados (DataTables): ----
   $('#table-info').DataTable({
     pageLength: 10,
@@ -44,6 +44,7 @@ $(document).ready(function() {
 });
 
 $("#btn-guard-empleado").click(function(){
+  alert("Entra");
   var settings = {
     "async": true,
     "crossDomain": true,

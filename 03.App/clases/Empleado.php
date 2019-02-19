@@ -128,26 +128,31 @@ class Empleado extends Persona{
 			$this->getSexo(),
 			$this->getDireccion(),
 			$this->getCorreoElectronico(),
-			$this->getNumeroIdentidad(),
+      $this->getNumeroIdentidad(),
+      $this->getTelefono(),
 			$this->getFechaNacimiento(),
-			$this->getTelefono(),
 			$this->getFechaIngreso(),
 			$this->getUsuario(),
 			$this->getContrasena(),
 			$this->getFotoUrl(),
 			$this->getIdTipoUsuario()
-		];
+    ];
+    
 		$rows = $conexion->query($sql, $valores);
-		return $rows[0];
+    
+    return $rows[0];
   }
 
 	public function borrar($conexion){
 		$sql = 'CALL SP_Eliminar_Empleado(%s,@mensaje, @error);';
-		$valores = [
+    
+    $valores = [
 			$this->getIdEmpleado()
 		];
-		$rows = $conexion->query($sql, $valores);
-		return $rows[0];
+    
+    $rows = $conexion->query($sql, $valores);
+    
+    return $rows[0];
   }
 
 	public function actualizar($conexion){
@@ -158,8 +163,10 @@ class Empleado extends Persona{
 			@mensaje,@error
 		);
 		";
-		$this->contrasena = hash('sha512', $this->contrasena);
-		$valores = [
+    
+    $this->contrasena = hash('sha512', $this->contrasena);
+    
+    $valores = [
 			$this->getIdEmpleado(),
 			$this->getPrimerNombre(),
 			$this->getSegundoNombre(),
@@ -181,11 +188,16 @@ class Empleado extends Persona{
   }
 
 	public function login($conexion){
-		$sql = "CALL SP_LOGIN('%s','%s')";
-		$this->contrasena = hash('sha512',$this->contrasena);
-		$valores = [$this->usuario, $this->contrasena];
-		$rows = $conexion->query($sql, $valores);
-		if (count($rows) == 1 && isset($rows[0]["id_empleado"])){
+    
+    $sql = "CALL SP_LOGIN('%s','%s')";
+    
+    $this->contrasena = hash('sha512',$this->contrasena);
+    
+    $valores = [$this->usuario, $this->contrasena];
+    
+    $rows = $conexion->query($sql, $valores);
+    
+    if (count($rows) == 1 && isset($rows[0]["id_empleado"])){
 			$rows[0]["permisos"] = explode(",",$rows[0]["permisos"]);
 			session_start();
 			$_SESSION["usuario"] = $rows[0]["usuario"];
@@ -198,7 +210,8 @@ class Empleado extends Persona{
 			$_SESSION["fecha_ingreso"] = $rows[0]["fecha_ingreso"];
 			$_SESSION["telefono"] = $rows[0]["telefono"];
 			$_SESSION["permisos"] = $rows[0]["permisos"];
-		}
+    }
+    
 		return $rows[0];
 	}
 

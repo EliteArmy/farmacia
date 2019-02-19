@@ -37,6 +37,7 @@
           </div>
         </div>
         
+        <!-- Tabla de Empleados-->
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <table id="table-info" class="display" style="width: 100%;">
