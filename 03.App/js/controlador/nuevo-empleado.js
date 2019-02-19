@@ -41,47 +41,44 @@ $(document).ready(function() {
     ]
   });
 
-  $('#guard-empleado').click(function(){
-    alert("Entra");
+});
+
+$('#guard-empleado').click(function(){
     
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://farma/services/empleado.php",
-      "method": "POST",
-      "dataType": "json",
-      "headers": {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "accion": "insertar-empleado",
-        "primer_nombre": $('#txt-primer-nombre').val(),
-        "segundo_nombre": $('#txt-segundo-nombre').val(),
-        "primer_apellido": $('#txt-primer-apellido').val(),
-        "segundo_apellido": $('#txt-segundo-apellido').val(),
-        "sexo": $('#slc-sexo').val(),
-        "direccion": $('#txt-direccion').val(),
-        "correo_electronico": $('#txt-correo-electronico').val(),
-        "numero_identidad": $('#txt-numero-identidad').val(),
-        "telefono": $('#txt-telefono').val(),
-        "fecha_nacimiento": $('#txt-fecha-nacimiento').val(),
-        "fecha_ingreso": $('#txt-fecha-ingreso').val(),
-        "usuario": $('#txt-usuario').val(),
-        "contrasena": $('#txt-contrasena').val(),
-        "foto_url": "",
-        "id_tipo_usuario": $('#slc-tipo-usuario').val()
-      }
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/empleado.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "insertar-empleado",
+      "primer_nombre": $('#txt-primer-nombre').val(),
+      "segundo_nombre": $('#txt-segundo-nombre').val(),
+      "primer_apellido": $('#txt-primer-apellido').val(),
+      "segundo_apellido": $('#txt-segundo-apellido').val(),
+      "sexo": $('#slc-sexo').val(),
+      "direccion": $('#txt-direccion').val(),
+      "correo_electronico": $('#txt-correo-electronico').val(),
+      "numero_identidad": $('#txt-numero-identidad').val(),
+      "telefono": $('#txt-telefono').val(),
+      "fecha_nacimiento": $('#txt-fecha-nacimiento').val(),
+      "fecha_ingreso": $('#txt-fecha-ingreso').val(),
+      "usuario": $('#txt-usuario').val(),
+      "contrasena": $('#txt-contrasena').val(),
+      "foto_url": "",
+      "id_tipo_usuario": $('#slc-tipo-usuario').val()
     }
-    
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
+  }
   
+  $.ajax(settings).done(function (response) {
+    console.log(response);
   });
 
 });
-
-
 
 /* Pruebas de los Fonts */
 function funcionBorrar(){
