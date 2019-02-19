@@ -81,6 +81,11 @@ CREATE PROCEDURE SP_Insertar_Lote(
    SELECT COUNT(*) INTO contador FROM producto WHERE id_producto = pI_id_producto;
    IF contador = 0 THEN
      SET mensaje=CONCAT('Id de producto no existe, ', mensaje);
+   ELSE
+     SELECT COUNT(*) INTO contador FROM lote WHERE id_producto=pI_id_producto AND lote=pI_lote;
+     IF contador>=1 THEN 
+        SET mensaje=CONCAT(mensaje,'ya existe este lote, no se puede repetir el nombre del lote con el mismo producto');
+     END IF;
    END IF;
 
    -- Nombre del lote no se puede repetir
@@ -129,6 +134,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
    END IF;
 
 
+
    INSERT INTO lote (id_producto, 
           					lote, 
           					precio_costo_unidad,
@@ -168,7 +174,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
     SELECT mensaje,resultado;
 END $$
 
-CALL SP_Insertar_Lote(1,'lots01', 6,500 , '2018-02-02','2019-03-02',32,1,@mensaje,@error);
+CALL SP_Insertar_Lote(2,'lots01', 6,500 , '2018-02-02','2019-03-02',32,1,@mensaje,@error);
 SELECT @mensaje,@error;
 
 SELECT * FROM lote
