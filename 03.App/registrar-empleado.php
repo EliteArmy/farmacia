@@ -1,3 +1,7 @@
+<?php
+  $idPagina = "registrar-empleado";
+  include("autenticacion.php");
+?>
 
 <!DOCTYPE html>
 <html>
@@ -16,6 +20,7 @@
 </head>
 <body>
 
+  <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
   <div class="container-fluid">

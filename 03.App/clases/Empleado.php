@@ -128,9 +128,9 @@ class Empleado extends Persona{
 			$this->getSexo(),
 			$this->getDireccion(),
 			$this->getCorreoElectronico(),
-	        $this->getNumeroIdentidad(),
-	      	$this->getFechaNacimiento(),
-	        $this->getTelefono(),
+      $this->getNumeroIdentidad(),
+      $this->getFechaNacimiento(),
+      $this->getTelefono(),
 			$this->getFechaIngreso(),
 			$this->getUsuario(),
 			$this->getContrasena(),
@@ -199,8 +199,10 @@ class Empleado extends Persona{
     
     if (count($rows) == 1 && isset($rows[0]["id_empleado"])){
 			$rows[0]["permisos"] = explode(",",$rows[0]["permisos"]);
-			session_start();
-			$_SESSION["usuario"] = $rows[0]["usuario"];
+      
+      session_start();
+      
+      $_SESSION["usuario"] = $rows[0]["usuario"];
 			$_SESSION["foto_url"] = $rows[0]["foto_url"];
 			$_SESSION["id_empleado"] = $rows[0]["id_empleado"];
 			$_SESSION["tipo_usuario"] = $rows[0]["tipo_usuario"];

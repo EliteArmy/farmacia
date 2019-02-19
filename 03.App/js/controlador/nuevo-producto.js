@@ -288,7 +288,7 @@ $("#btn-guard-prod").click(function(){
       } else {
         console.log(response);
         $("#div-error").show();
-        $("#div-error").html(response.data[0].mensaje);
+        $("#div-error").html(response.data.mensaje);
         $("#div-error").fadeOut(10000);
       }
     });
@@ -338,7 +338,16 @@ $("#btn-guard-lote").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      console.log(response);
+      if (response.data[0].error == 0) {
+        console.log(response.data);
+        $("#div-exito").show();
+        $("#div-exito").fadeOut(10000);
+      } else {
+        console.log(response);
+        $("#div-error").show();
+        $("#div-error").html(response.data.mensaje);
+        $("#div-error").fadeOut(10000);
+      }
     });
 
     /*var lot = $("#lote").val();

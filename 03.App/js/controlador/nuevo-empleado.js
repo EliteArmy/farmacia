@@ -91,8 +91,6 @@ $('#guard-empleado').click(function(){
 
 });
 
-
-
 /* Pruebas de los Fonts */
 function funcionBorrar(){
   alert("Borrando...!");
