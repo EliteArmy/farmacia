@@ -117,11 +117,11 @@
         <div class="modal-footer">
           <div class="input-group mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                <span class="input-group-text" id="inputGroupFileAddon">Subir</span>
               </div>
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
-                <label class="custom-file-label" for="inputGroupFile01">Elegir una Fotografía</label>
+                <label class="custom-file-label" for="inputGroupFile">Elegir una Fotografía</label>
+                <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
               </div>
             </div>
         </div>
@@ -152,44 +152,44 @@
         <div class="modal-body">
           <div class="row">
             <div class="form-group col-12 col-md-6">
-              <label for="Lote">Nombre Lote</label>
+              <label for="lote">Nombre Lote</label>
               <input id="lote" type="text" class="form-control" placeholder="Nombre Lote">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-            <label for="producto">Producto</label>
+            <label for="slc-prod">Producto</label>
               <select id="slc-prod" class="selectpicker form-control" data-live-search="true" title="productos" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
             </div>
             
             <div class="form-group col-12 col-md-6">
-              <label for="0.0">Precio Compra</label><br>
+              <label for="precio-compra">Precio Compra</label><br>
               <input id="precio-compra" class="form-control" type="number" step="any" min="0" placeholder="0.00">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="0.0">Precio Venta</label><br>
+              <label for="precio-venta">Precio Venta</label><br>
               <input id="precio-venta" class="form-control" type="number" step="any" min="0" placeholder="0.00">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="2000-12-31">Fecha Elaboración</label><br>
+              <label for="fecha-elab">Fecha Elaboración</label><br>
               <input id="fecha-elab" class="form-control" type="date" placeholder="2000-12-31">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="2000-12-31">Fecha Vencimiento</label><br>
+              <label for="fecha-venc">Fecha Vencimiento</label><br>
               <input id="fecha-venc" class="form-control" type="date" placeholder="2000-12-31">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="0.0">Cantidad</label><br>
+              <label for="cantidad">Cantidad</label><br>
               <input id="cantidad" class="form-control" type="number" step="1" min="0" placeholder="0">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-            <label for="0.0">Descuento</label>
+            <label for="slc-descuento">Descuento</label>
               <select id="slc-descuento" class="selectpicker form-control" data-live-search="true" title="Descuentos" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>

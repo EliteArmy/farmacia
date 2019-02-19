@@ -1,4 +1,4 @@
-DELIMITER $$
+DELIMITER ;;
 DROP PROCEDURE IF EXISTS SP_Actualizar_Empleado$$
 CREATE PROCEDURE `SP_Actualizar_Empleado`(
     IN pI_id_empleado INTEGER(11),
