@@ -42,7 +42,7 @@ $(document).ready(function() {
   });
 
 
-  $("#").change(function(){
+  $("#btn-guard-empleado").click(function(){
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -53,7 +53,7 @@ $(document).ready(function() {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion":
+        "accion": "insertar-empleado",
         "primer_nombre": $('#txt-primer-nombre').val(),
         "segundo_nombre": $('#txt-segundo-nombre').val(),
         "primer_apellido": $('#txt-primer-apellido').val(),
@@ -62,12 +62,12 @@ $(document).ready(function() {
         "direccion": $('#txt-direccion').val(),
         "correo_electronico": $('#txt-correo-electronico').val(),
         "numero_identidad": $('#txt-numero-identidad').val(),
-        "telefono": $('#').val(),
+        "telefono": $('#txt-telefono').val(),
         "fecha_nacimiento": $('#txt-fecha-nacimiento').val(),
-        "fecha_ingreso": $('#').val(),
+        "fecha_ingreso": $('#txt-fecha-nacimiento').val(),
         "usuario": $('#txt-usuario').val(),
         "contrasena": $('#txt-contrasena').val(),
-        "foto_url": $('#').val(),
+        "foto_url": "",
         "id_tipo_usuario": $('#slc-tipo-usuario').val()
       }
     }

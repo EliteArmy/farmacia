@@ -17,30 +17,30 @@
 <body>
 
 
+  <!-- Contenido -->
   <div class="container-fluid">
     <div class="row justify-content-md-center">
       <div class="col-xs-12 col-md-11 well card">
         <div class="text-center">
-           <h4>Farmacia Esperanza</h4>
+          <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
           <h4>Registro de Productos</h4>
         </div>
 
-         <div class="row">
-          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
-            <table class="table table-striped table-bordered">
-            
-            </table>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-16 col-sm-6 col-md-6 col-lg-6">
+        <div class="row nuevo-producto">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarempleado">
               Agregar Nuevo Empleado
             </button>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
+            <table id="table-info" class="display" style="width: 100%;">
+            </table>
           </div>
         </div>
 
@@ -48,7 +48,9 @@
     </div>
     </div>
   </div>
+  <!-- FIN Contenido -->
 
+  <!-- Modal Empleado -->
   <div class="modal fade" id="agregarempleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -88,7 +90,7 @@
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="0.0">Teléfono</label><br>
+              <label for="txt-telefono">Teléfono</label><br>
               <input id="txt-telefono" class="form-control" type="number" step="1" placeholder="Teléfono">
             </div>
 
@@ -130,7 +132,6 @@
               <select id="slc-sexo" class="selectpicker form-control" title="Sexo" data-style="btn-primary">
               <option value="F">Femenino</option>  
               <option value="M">Masculino</option>
-              <option value="H">Helicoptero Apache</option>
               </select>
             </div>
         
@@ -142,7 +143,7 @@
                 </div>
 
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" lang="es">
+                  <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon01" lang="es">
                   <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
                 </div>
               </div>
@@ -153,14 +154,14 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-info" id="">Reset</button>
+          <button type="button" id="btn-guard-prod" class="btn btn-primary" id="btn-guard-empleado">Guardar Cambios</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" id="btn-guard-prod" class="btn btn-primary">Guardar Cambios</button>
         </div>
 
       </div>
     </div>
   </div>
-  <!-- FIN Modal -->
+  <!-- FIN Modal Empleado -->
 
   <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/popper.min.js"></script>
