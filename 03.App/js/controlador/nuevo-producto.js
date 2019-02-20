@@ -283,13 +283,13 @@ $("#btn-guard-prod").click(function(){
     $.ajax(settings).done(function (response) {
       if (response.data[0].error == 0) {
         console.log(response.data);
-        $("#div-exito").show();
-        $("#div-exito").fadeOut(10000);
+        $("#div-exito-producto").show();
+        $("#div-exito-producto").fadeOut(10000);
       } else {
         console.log(response);
-        $("#div-error").show();
-        $("#div-error").html(response.data.mensaje);
-        $("#div-error").fadeOut(10000);
+        $("#div-error-producto").show();
+        $("#div-error-producto").html(response.data[0].mensaje);
+        $("#div-error-producto").fadeOut(10000);
       }
     });
 
@@ -339,15 +339,15 @@ $("#btn-guard-lote").click(function(){
     
     $.ajax(settings).done(function (response) {
       //console.log(response.data)
-      if (response.data.resultado == 1) {
+      if (response.data.resultado == 0) {
         console.log(response.data);
-        $("#div-exito2").show();
-        $("#div-exito2").fadeOut(10000);
+        $("#div-exito-lote").show();
+        $("#div-exito-lote").fadeOut(10000);
       } else {
         console.log(response);
-        $("#div-error2").show();
-        $("#div-error2").html(response.data.mensaje);
-        $("#div-error2").fadeOut(10000);
+        $("#div-error-lote").show();
+        $("#div-error-lote").html(response.data.mensaje);
+        $("#div-error-lote").fadeOut(10000);
       }
     });
 

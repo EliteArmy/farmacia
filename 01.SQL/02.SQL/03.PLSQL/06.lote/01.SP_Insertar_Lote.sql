@@ -1,4 +1,4 @@
-DELIMITER ;;
+DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Insertar_Lote$$
 CREATE PROCEDURE SP_Insertar_Lote(
         IN pI_id_producto INT(11),
@@ -168,11 +168,11 @@ CREATE PROCEDURE SP_Insertar_Lote(
     
 
     SET mensaje="Insercion exitosa";
-    SET resultado=TRUE;
+    SET resultado=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=resultado;
     SELECT mensaje,resultado;
-END ;;
+END $$
 
 CALL SP_Insertar_Lote(2,'lots01', 6,500 , '2018-02-02','2019-03-02',32,1,@mensaje,@error);
 SELECT @mensaje,@error;

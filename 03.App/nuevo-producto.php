@@ -131,10 +131,10 @@
         </div>
 
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div id="div-exito" class="alert alert-success" role="alert" style="display:none;">
+          <div id="div-exito-producto" class="alert alert-success" role="alert" style="display:none;">
             Producto insertado con exito.
           </div>
-          <div id="div-error" class="alert alert-danger" role="alert" style="display:none;">
+          <div id="div-error-producto" class="alert alert-danger" role="alert" style="display:none;">
             Error al insertar el Producto.
           </div>            
         </div>
@@ -209,11 +209,11 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <div id="div-exito2" class="alert alert-success" role="alert" style="display:none;">
-                Producto insertado con exito.
+              <div id="div-exito-lote" class="alert alert-success" role="alert" style="display:none;">
+                Lote insertado con exito.
               </div>
-              <div id="div-error2" class="alert alert-danger" role="alert" style="display:none;">
-                Error al insertar el Producto.
+              <div id="div-error-lote" class="alert alert-danger" role="alert" style="display:none;">
+                Error al insertar el Lote.
               </div>            
             </div>
 
