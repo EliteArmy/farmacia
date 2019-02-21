@@ -196,7 +196,7 @@
 
   <script>
 function funcionBorrar(vari){
-  alert("Borrando.. " + vari);
+  alert("Borrando... " + vari);
 }
 
 function funcionActualizar(vari){
