@@ -194,5 +194,20 @@
   <script type="text/javascript" src="./data-tables/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="./js/controlador/nuevo-empleado.js"></script>
 
+  <script>
+function funcionBorrar(vari){
+  alert("Borrando.. " + vari);
+}
+
+function funcionActualizar(vari){
+  alert("Actualizando.. " + vari);
+}
+
+function funcionMostrar(vari){
+  alert("Mostrar Más.. " + vari);
+}
+</script>
+
+
 </body>
 </html>
