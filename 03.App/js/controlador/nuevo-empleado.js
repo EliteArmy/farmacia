@@ -26,20 +26,19 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { "data": "usuario", title: "Usuario"},
-      { "data": "correo_electronico", title: "Correo"},
-      { "data": "fecha_ingreso", title: "Fecha Ingreso"},
-      { "data": "sexo", title: "Sexo"},
-      { "data": "nombres", title: "Nombre"},
-      { "data": "apellidos", title: "Apellido"},
-      { "data": "estado", title: "Estado"},
-      { "data": "telefono", title: "Telefono",
-      
-      "render": function ( data, type, row, meta ) {
-        return  '<button type="button" onclick="funcionActualizar()" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-                '<button type="button" onclick="funcionBorrar()" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
-                '<button type="button" onclick="funcionMostrar()" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
-      }}
+      { data: "usuario", title: "Usuario"},
+      { data: "correo_electronico", title: "Correo"},
+      { data: "fecha_ingreso", title: "Fecha Ingreso"},
+      { data: "sexo", title: "Sexo"},
+      { data: "nombres", title: "Nombre"},
+      { data: "apellidos", title: "Apellido"},
+      { data: "estado", title: "Estado"},
+      { data: null, title: "Opción",
+      render: function (data, type, row, meta) {
+        return '<button type="button" onclick="funcionActualizar('+ row.usuario +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+              '<button type="button" onclick="funcionBorrar('+ row.usuario +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
+              '<button type="button" onclick="funcionMostrar('+ row.usuario +')" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
+}}
     ]
   });
 
@@ -92,14 +91,14 @@ $('#guard-empleado').click(function(){
 });
 
 /* Pruebas de los Fonts */
-function funcionBorrar(){
-  alert("Borrando...!");
+function funcionBorrar(vari){
+  alert("Borrando.. " + vari);
 }
 
-function funcionActualizar(){
-  alert("Actualizando...!");
+function funcionActualizar(vari){
+  alert("Actualizando.. " + vari);
 }
 
-function funcionMostrar(){
-  alert("Mostrar Más...!");
+function funcionMostrar(vari){
+  alert("Mostrar Más.. " + vari);
 }

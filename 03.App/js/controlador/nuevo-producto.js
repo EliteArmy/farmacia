@@ -212,19 +212,19 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { "data": "nombre", title:"Nombre"},
-      { "data": "codigo_barra", title:"Código Barra"},
-      { "data": "existencia", title:"Existencia"},
-      { "data": "precio_costo_unidad", title:"P. Costo"},
-      { "data": "precio_venta_unidad", title:"P. Venta"},
-      { "data": "lote", title:"Lote"},
-      { "data": "estado_lote", title:"E. Lote"},
-      { "data": "categoria", title:"Categoria"},
-      { "data": "id_producto", title:"Opcion",
-      "render": function ( data, type, row, meta ) {
-        return  '<button type="button" onclick="funcionActualizar()" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-                '<button type="button" onclick="funcionBorrar()" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
-                '<button type="button" onclick="funcionMostrar()" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
+      { data: "nombre", title:"Nombre"},
+      { data: "codigo_barra", title:"Código Barra"},
+      { data: "existencia", title:"Existencia"},
+      { data: "precio_costo_unidad", title:"P. Costo"},
+      { data: "precio_venta_unidad", title:"P. Venta"},
+      { data: "lote", title:"Lote"},
+      { data: "estado_lote", title:"E. Lote"},
+      { data: "categoria", title:"Categoria"},
+      { data: null, title: "Opción",
+      render: function ( data, type, row, meta ) {
+        return '<button type="button" onclick="funcionActualizar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+               '<button type="button" onclick="funcionBorrar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
+               '<button type="button" onclick="funcionMostrar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
       }}
     ]
   });
@@ -373,16 +373,16 @@ $("#btn-guard-lote").click(function(){
 });
 
 /* Pruebas de los Fonts */
-function funcionBorrar(){
-  alert("Borrando...!");
+function funcionBorrar(vari){
+  alert("Borrando.. " + vari);
 }
 
-function funcionActualizar(){
-  alert("Actualizando...!");
+function funcionActualizar(vari){
+  alert("Actualizando.. " + vari);
 }
 
-function funcionMostrar(){
-  alert("Mostrar Más...!");
+function funcionMostrar(vari){
+  alert("Mostrar Más.. " + vari);
 }
 
 

@@ -76,7 +76,13 @@
           <div class="row">
             <div class="form-group col-12 col-md-6">
               <label for="nombre-producto">Nombre del Producto</label>
-              <input id="nombre-producto" type="text" class="form-control" name="nombre-producto"  placeholder="Nombre del Producto" autofocus>
+              <input id="nombre-producto" type="text" class="form-control is-valid" name="nombre-producto"  placeholder="Nombre del Producto" autofocus>
+              <div class="invalid-feedback">
+                El nombre esta incorrecto.
+              </div>
+              <div class="valid-feedback">
+                Nombre correcto
+              </div>
             </div>
 
             <div class="form-group col-12 col-md-6">
