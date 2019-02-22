@@ -114,7 +114,7 @@ class Empleado extends Persona{
 		$sql = "
 			CALL SP_Insertar_Empleado(
 				'%s','%s','%s','%s','%s','%s','%s','%s',
-				DATE('%s'),'%s',DATE('%s'),'%s','%s','%s', %s, @mensaje,@error
+				DATE('%s'),'%s',DATE('%s'),'%s','%s','%s', %s, @mensaje, @error
 			);
 		";
 
