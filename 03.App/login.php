@@ -34,7 +34,7 @@
         <div class="row justify-content-center">
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 texto">
             <div class="row justify-content-center">
-              <img src="./img/icon.png" alt="Logo" width="50px">
+              <img src="./img/icon.png" alt="Logo" width="50px" height="50px">
             </div>
             <h4 class="text-center">Farmacia Esperanza</h4>
             <hr>
