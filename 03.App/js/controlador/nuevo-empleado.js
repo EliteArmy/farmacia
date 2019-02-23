@@ -6,6 +6,7 @@ $(document).ready(function() {
     searching: true,
     ordering: true,
     paging: true,
+    responsive: true,
     ajax: {
       "async": true,
       "crossDomain": true,
@@ -28,11 +29,11 @@ $(document).ready(function() {
     columns: [
       { data: "usuario", title: "Usuario"},
       { data: "correo_electronico", title: "Correo"},
-      { data: "fecha_ingreso", title: "Fecha Ingreso"},
-      { data: "sexo", title: "Sexo"},
       { data: "nombres", title: "Nombre"},
       { data: "apellidos", title: "Apellido"},
+      { data: "fecha_ingreso", title: "Fecha Ingreso"},
       { data: "estado", title: "Estado"},
+      { data: "sexo", title: "Sexo"},
       { data: null, title: "Opción",
       render: function (data, type, row, meta) {
         return '<button type="button" onclick="funcionActualizar(\''+row.usuario+'\')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+

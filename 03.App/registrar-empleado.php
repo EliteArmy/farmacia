@@ -14,7 +14,7 @@
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./mult-sel-plugin/css/bootstrap-select.css" type="text/css"/>
-  <link rel="stylesheet" href="./data-tables/css/jquery.dataTables.min.css" type="text/css"/>
+  <link rel="stylesheet" href="./data-tables/css/datatables.css" type="text/css"/>
   <link rel="stylesheet" href="./css/style.css">
 
 </head>
@@ -45,7 +45,7 @@
         <!-- Tabla de Empleados-->
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
-            <table id="table-info" class="display" style="width: 100%;">
+            <table id="table-info" class="display table-striped table-bordered" style="width: 100%;">
             </table>
           </div>
         </div>
@@ -191,7 +191,7 @@
   <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
 
   <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
-  <script type="text/javascript" src="./data-tables/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="./data-tables/js/datatables.js"></script>
   <script type="text/javascript" src="./js/controlador/nuevo-empleado.js"></script>
 
 </body>

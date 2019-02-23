@@ -192,6 +192,7 @@ $(document).ready(function() {
     searching: true,
     ordering: true,
     paging: true,
+    responsive: true,
     ajax: {
       "async": true,
       "crossDomain": true,
@@ -214,12 +215,12 @@ $(document).ready(function() {
     columns: [
       { data: "nombre", title:"Nombre"},
       { data: "codigo_barra", title:"Código Barra"},
+      { data: "lote", title:"Lote"},
       { data: "existencia", title:"Existencia"},
       { data: "precio_costo_unidad", title:"P. Costo"},
       { data: "precio_venta_unidad", title:"P. Venta"},
-      { data: "lote", title:"Lote"},
       { data: "estado_lote", title:"E. Lote"},
-      { data: "categoria", title:"Categoria"},
+      { data: "categoria", title:"Categoria", width: "20%"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionActualizar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+

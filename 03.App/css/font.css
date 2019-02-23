@@ -2,4 +2,29 @@
   font-family: "Avenir";
   src: url("../fonts/Avenir.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Avenir-Black";
+  src: url("../fonts/AvenirLTStd-Black.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Avenird-Book";
+  src: url("../fonts/AvenirLTStd-Book.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Avenir-Heavy";
+  src: url("../fonts/AvenirLTStd-Heavy.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Avenir-Light";
+  src: url("../fonts/AvenirLTStd-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Avenir-Medium";
+  src: url("../fonts/AvenirLTStd-Medium.otf") format("opentype");
+}
 /*# sourceMappingURL=font.css.map */

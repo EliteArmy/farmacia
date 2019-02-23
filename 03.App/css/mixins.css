@@ -1,1 +1,10 @@
-/* No CSS *//*# sourceMappingURL=mixins.css.map */
+.btn:visited, .btn:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  -webkit-transition: -webkit-box-shadow 0.5s;
+  transition: -webkit-box-shadow 0.5s;
+  transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s, -webkit-box-shadow 0.5s;
+}
+/*# sourceMappingURL=mixins.css.map */

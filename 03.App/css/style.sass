@@ -64,3 +64,29 @@ body
   +material-button($secondary)
 .btn-info
   +material-button(adjust-hue($primary, 180))
+
+
+
+table.table-bordered.dataTable th, table.table-bordered.dataTable td 
+  padding-left: 10px
+  height: 45px
+
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before 
+  top: 16px;
+  left: 4px;
+  height: 14px;
+  width: 14px;
+  display: block;
+  position: absolute;
+  color: white;
+  border: 1px solid white;
+  border-radius: 14px;
+  box-shadow: 0 0 3px #444;
+  box-sizing: content-box;
+  text-align: center;
+  text-indent: 0 !important;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 15px;
+  content: '+';
+  background-color: #0275d8;
+
