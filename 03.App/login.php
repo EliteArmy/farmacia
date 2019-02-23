@@ -21,26 +21,23 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
+<body id="login">
   <section class="login">
 
   </section>
   <!-- Contenido -->
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4">
-        <h4 class="text-center">Farmacia Esperanza</h4>
-      </div>
-    </div>
-    
+  <div class="container">
     <div class="row justify-content-center">
       <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4 well card">
 
         <div class="row justify-content-center">
           <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 texto">
-            <h4 class="text-center">
-              Inicio de sesión
-            </h4>
+            <div class="row justify-content-center">
+              <img src="./img/icon.png" alt="Logo" width="50px">
+            </div>
+            <h4 class="text-center">Farmacia Esperanza</h4>
+            <hr>
+            <h4 class="text-center">Inicio de sesión</h4>
             
             <div class="form-group">
               <label for="user">Usuario</label>
