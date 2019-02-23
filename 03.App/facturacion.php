@@ -1,3 +1,7 @@
+<?php
+  $idPagina = "nueva-factura";
+  include("autenticacion.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +17,7 @@
 
 <body>
 
- <!--<?php #include("./navbar.php"); ?>-->
+ <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
   <div class="container-fluid" >

@@ -26,8 +26,9 @@
 
   </section>
   <!-- Contenido -->
+<div class="jumbotron vertical-center">
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-middle">
       <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4 well card">
 
         <div class="row justify-content-center">
@@ -73,6 +74,7 @@
       </div>
     </div>
   </div>
+</div>
   <!-- FIN Contenido -->
 
   <footer>

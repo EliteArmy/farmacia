@@ -23,7 +23,7 @@
             <a class="dropdown-item" href="buscar-factura.php">Buscar Factura</a>
             <?php endif;?>
             <?php if(show_item_if("nueva-factura")):?>
-            <a class="dropdown-item" href="nueva-factura.php">Nueva Factura</a>
+            <a class="dropdown-item" href="facturacion.php">Nueva Factura</a>
             <?php endif;?>
           </div>
         </li>

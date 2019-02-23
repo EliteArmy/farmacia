@@ -25,6 +25,8 @@
   margin: 0 auto;
   background: url("../img/wallpaper.jpg") no-repeat center center fixed;
   background-size: cover; }
+  #login .jumbotron {
+    background: none; }
   #login h4 {
     color: #e37179; }
 
@@ -50,7 +52,7 @@ body {
   font-size: 14px; }
   body h4 {
     font-size: 18px;
-    color: #c72732; }
+    color: #db4651; }
   body .navbar .dropdown-header {
     font-weight: bold;
     font-size: 14px; }
