@@ -25,7 +25,7 @@ body
   font-size: 14px
   h4
     font-size: 18px
-    color: darken(mix($accent, $primary, 50), 10)
+    color: darken(adjust-hue($primary, 140), 10)
   .navbar
     .dropdown-header
       font-weight: bold
@@ -85,21 +85,19 @@ table.table-bordered.dataTable th, table.table-bordered.dataTable td
 // Corrección Boton (+) de dataTable
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, 
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before 
-  top: 16px
-  left: 4px
-  height: 14px
-  width: 14px
+  height: 20px
+  width: 20px
   display: block
   position: absolute
   color: white
-  border: 1px solid white
-  border-radius: 14px
-  box-shadow: 0 0 3px #444
+  border: none
+  border-radius: 20px
+  box-shadow: none
   box-sizing: content-box
   text-align: center
   text-indent: 0 !important
   font-family: 'Courier New', Courier, monospace
-  line-height: 15px
+  line-height: 20px
   content: '+'
   background-color: $primary !important
 
