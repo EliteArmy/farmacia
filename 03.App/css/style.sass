@@ -48,45 +48,57 @@ body
   color: $green
 
 .search
-  color: $purple
+  color: $accent
 
 .nuevo-producto
   margin-top: 20px
   margin-bottom: 20px
 
+.btn-primary
+  +material-button($primary)
+
+.btn-secondary
+  +material-button($secondary)
+
+.btn-info
+  +material-button(adjust-hue($primary, 180))
+
+// Select - Picker
 .show > .btn-primary.dropdown-toggle
   +material-button($primary)
 .dropdown-item:active, .dropdown-item.active
   background-color: $primary
-.btn-primary
-  +material-button($primary)
-.btn-secondary
-  +material-button($secondary)
-.btn-info
-  +material-button(adjust-hue($primary, 180))
 
+// Paginacion Datatables
+.page-item
+  .page-link
+    color: $primary
+  &.active .page-link
+    background-color: $primary
+    border-color: $primary
 
 
 table.table-bordered.dataTable th, table.table-bordered.dataTable td 
   padding-left: 10px
   height: 45px
 
-table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before 
-  top: 16px;
-  left: 4px;
-  height: 14px;
-  width: 14px;
-  display: block;
-  position: absolute;
-  color: white;
-  border: 1px solid white;
-  border-radius: 14px;
-  box-shadow: 0 0 3px #444;
-  box-sizing: content-box;
-  text-align: center;
-  text-indent: 0 !important;
-  font-family: 'Courier New', Courier, monospace;
-  line-height: 15px;
-  content: '+';
-  background-color: #0275d8;
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, 
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before 
+  top: 16px
+  left: 4px
+  height: 14px
+  width: 14px
+  display: block
+  position: absolute
+  color: white
+  border: 1px solid white
+  border-radius: 14px
+  box-shadow: 0 0 3px #444
+  box-sizing: content-box
+  text-align: center
+  text-indent: 0 !important
+  font-family: 'Courier New', Courier, monospace
+  line-height: 15px
+  content: '+'
+  background-color: $primary !important
 
