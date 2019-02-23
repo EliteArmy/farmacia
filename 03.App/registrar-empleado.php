@@ -12,12 +12,13 @@
   <title>Registro de Empleados</title>
 
   <link rel="icon" href="./img/icon.png">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./mult-sel-plugin/css/bootstrap-select.css" type="text/css"/>
-  <link rel="stylesheet" href="./data-tables/css/datatables.css" type="text/css"/>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
 
 </head>
+
 <body>
 
   <?php include("./navbar.php"); ?>
@@ -33,7 +34,7 @@
           <h4>Registro de Productos</h4>
         </div>
 
-        <div class="row nuevo-producto">
+        <div class="row nuevo-boton">
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarempleado">
@@ -187,11 +188,11 @@
   <script type="text/javascript" src="./js/popper.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
-  <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
+  <script type="text/javascript" src="/plugin/bootstrap-select/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="/plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
 
-  <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
-  <script type="text/javascript" src="./data-tables/js/datatables.js"></script>
+  <script type="text/javascript" src="/plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <script type="text/javascript" src="/plugin/data-tables/js/datatables.js"></script>
   <script type="text/javascript" src="./js/controlador/nuevo-empleado.js"></script>
 
 </body>

@@ -12,15 +12,16 @@
   <title>Nuevo Producto</title>
 
   <link rel="icon" href="./img/icon.png">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./mult-sel-plugin/css/bootstrap-select.css" type="text/css"/>
-  <link rel="stylesheet" href="./data-tables/css/datatables.css" type="text/css"/>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
 
 </head>
+
 <body>
 
-<?php include("./navbar.php"); ?>
+  <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -33,14 +34,15 @@
           <h4>Registro de Productos</h4>
         </div>
 
-        <div class="row nuevo-producto">
+        <div class="row nuevo-boton">
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-producto">
               Agregar Nuevo Producto
             </button>
           </div>
-          
+
+          <!-- Button trigger para el modal -->
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#agregar-lote">
               Agregar Nuevo Lote
@@ -48,6 +50,7 @@
           </div>  
         </div>
 
+        <!-- Tabla de Lotes -->
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <table id="table-info" class="display table-striped table-bordered" style="width: 100%;">
@@ -92,19 +95,19 @@
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-categoria" class="selectpicker form-control" data-live-search="true" title="Categorias" data-style="btn-primary" multiple>
-                <!--Informacion generada -->
+                <!-- Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-impuesto" class="selectpicker form-control" data-live-search="true" title="Impuestos" data-style="btn-primary">
-                <!--Informacion generada -->
+                <!-- Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <select id="slc-presentacion" class="selectpicker form-control" data-live-search="true" title="Presentacion" data-style="btn-primary">
-                <!--Informacion generada -->
+                <!-- Informacion generada -->
               </select>
             </div>
 
@@ -241,11 +244,11 @@
   <script type="text/javascript" src="./js/popper.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="./mult-sel-plugin/js/bootstrap-select.js"></script>
-  <script type="text/javascript" src="./mult-sel-plugin/js/lang/defaults-es_ES.js"></script>
+  <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
 
-  <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
-  <script type="text/javascript" src="./data-tables/js/datatables.js"></script>
+  <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
   <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>
 
 </body>

@@ -10,9 +10,11 @@
 
   <title>Facturación</title>
 
-  <link rel="icon" href="./img/icon.png">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href=".plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href=".plugin/data-tables/css/datatables.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
+  
 </head>
 
 <body>

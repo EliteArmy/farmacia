@@ -1,0 +1,163 @@
+<div class="form-group col-12 col-md-6">
+  <label for="placeholder1">placeholder1</label>
+  <input type="text" class="form-control" id="" name="" placeholder="placeholder1">
+</div>
+
+<div class="form-group col-12 col-md-6">
+  <label for="placeholder2">placeholder2</label>
+  <input type="text" class="form-control" id="" name="" placeholder="placeholder2">
+</div>
+
+
+<form>
+  <div class="form-row align-items-center">
+    <div class="col-auto my-1">
+      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+        <option selected>Choose...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="col-auto my-1">
+      <div class="custom-control custom-checkbox mr-sm-2">
+        <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+        <label class="custom-control-label" for="customControlAutosizing">Remember my preference</label>
+      </div>
+    </div>
+    <div class="col-auto my-1">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+
+
+<label for="inputPassword5">Password</label>
+<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+<small id="passwordHelpBlock" class="form-text text-muted">
+  Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+</small>
+
+
+<form>
+    <div class="form-row">
+  
+      <div class="col-md-4 mb-3">
+        <label for="validationServer01">First name</label>
+        <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+  
+      <div class="col-md-4 mb-3">
+        <label for="validationServer02">Last name</label>
+        <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+  
+      <div class="col-md-4 mb-3">
+        <label for="validationServerUsername">Username</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend3">@</span>
+          </div>
+          <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
+          <div class="invalid-feedback">
+            Please choose a username.
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationServer03">City</label>
+        <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="City" required>
+        <div class="invalid-feedback">
+          Please provide a valid city.
+        </div>
+      </div>
+  
+      <div class="col-md-3 mb-3">
+        <label for="validationServer04">State</label>
+        <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
+      </div>
+  
+      <div class="col-md-3 mb-3">
+        <label for="validationServer05">Zip</label>
+        <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
+        <div class="invalid-feedback">
+          Please provide a valid zip.
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+        <label class="form-check-label" for="invalidCheck3">
+          Agree to terms and conditions
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div>
+    
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </form>
+
+
+
+
+  $(document)
+  .ready(function() {
+    $.ajax({
+      url: 'https://jsonplaceholder.typicode.com/users',
+      method: 'get',
+      dataType: 'json',
+      success: function(data) {
+        var exampleTable = $('#example')
+          .DataTable({
+            data: data,
+            'aaSorting': [[1, 'asc']],
+            dom: "<'row'<'col-md-6 text-left'T><'col-md-6 text-right'f>>" +
+                "<'row'<'col-md-12't>>" +
+                "<'row'<'col-md-6'i><'col-md-6'p>>",
+            'columnDefs': [
+                { 'width': '25px', 'targets': [0] },
+                { 'sortable': false, 'targets': [0] }
+            ],
+
+            'columns': [
+                { 'data': 'id',
+                  'render': function(data, type, full, meta) {
+                      return '<button class="btn btn-primary btn-xs" id="btnOne"><i class="fa fa-edit"></i></button>';
+                  }
+                },
+                { 'data': 'name' },
+                { 'data': 'username' },
+                { //'data': 'email',
+                  'render': function(data, type, full, meta) {
+                      return '<a href="mailto:' + full.email + '?">E-Mail</a>';
+                  }
+                },
+                { 'data': 'phone' },
+                { //'data': 'website',
+                  'render': function(data, type, full, meta) {
+                      return '<a href="http://' + full.website + '"target=_blank">Website</a>';
+                  }
+                },
+            ]
+
+          });
+      } // Success
+    });
+  });

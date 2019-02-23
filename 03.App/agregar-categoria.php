@@ -32,7 +32,6 @@
   </div>
   <!-- FIN Contenido -->
 
-
   <div class="row nuevo-producto">
     <div class="col-12 col-sm-6 col-md-6 col-lg-6">
       <!-- Button trigger para el modal -->
@@ -42,7 +41,7 @@
     </div>
   </div>
 
-<!-- Modal -->
+  <!-- Modal -->
   <div class="modal fade" id="agregar-categoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -64,6 +63,7 @@
             
            </div>
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-info" id="">Reset</button>
           <button type="button" class="btn btn-primary" id="guard-empleado">Guardar Cambios</button>
@@ -73,10 +73,8 @@
       </div>
     </div>
   </div>
+  <!-- Fin Modal -->
 
-
-
-  
 
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
