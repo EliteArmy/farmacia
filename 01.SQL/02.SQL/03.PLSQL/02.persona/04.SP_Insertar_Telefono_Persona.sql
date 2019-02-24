@@ -8,9 +8,9 @@ CREATE PROCEDURE SP_Insertar_Telefono_Persona(
   OUT pO_error BOOLEAN
 
 )
-  SP:BEGIN
+SP:BEGIN
 -- Declaraciones
-  DECLARE mensaje VARCHAR(255);
+  DECLARE mensaje VARCHAR(1000);
   DECLARE resultado BOOLEAN;
   DECLARE contador INTEGER;
   DECLARE ultimoId INTEGER;
@@ -28,49 +28,57 @@ CREATE PROCEDURE SP_Insertar_Telefono_Persona(
    -- Verificaciones de campos obligatorios que no esten vacios
    -- __________________________VALIDACIONES___________________
     IF pI_id_persona='' OR pI_id_persona IS NULL THEN 
-        SET mensaje=CONCAT('identificador de persona , ',mensaje);
+        SET mensaje=CONCAT('Identificador de persona vacio, ',mensaje);
     END IF;
     IF pI_estado='' OR pI_estado IS NULL THEN 
-        SET mensaje=CONCAT('identificador de telefono, ',mensaje);
+        SET mensaje=CONCAT('Identificador de telefono vacio, ',mensaje);
     END IF;
     IF pI_telefono='' OR pI_telefono IS NULL THEN
-      SET mensaje=CONCAT('telefono, ',mensaje);
+      SET mensaje=CONCAT('Telefono vacio, ',mensaje);
     ELSE
       IF( pI_telefono REGEXP'^(2|3|6|7|8|9){1}[0-9]{3}-[0-9]{4}$')=0 THEN
-        SET mensaje=CONCAT(mensaje,'Formato del Telefono invalido, ');
+        SET mensaje=CONCAT(mensaje,'Formato del telefono invalido, ');
       END IF;
     END IF;
     -- _________________________CUERPO DEL PL_________________
     IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
-      SET mensaje=CONCAT(mensaje,'estado invalido, ');
+      SET mensaje=CONCAT(mensaje,'Estado invalido, ');
     END IF;
 
     SELECT COUNT(*) INTO contador FROM persona 
     WHERE id_persona=pI_id_persona;
 
     IF contador= 0 THEN
-      SET mensaje = CONCAT(mensaje, 'id persona no existe ');
+      SET mensaje = CONCAT(mensaje, 'La persona no existe ');
     END IF;
 
    SELECT COUNT(*) INTO contador FROM telefono 
     WHERE telefono= pI_telefono ;
 
     IF contador>0 THEN
-      SET mensaje = CONCAT(mensaje, 'este numero telefónico ya existe ');
-    END IF;
-
-   SELECT COUNT(*) INTO contador FROM telefono_persona 
-    WHERE id_telefono= pI_telefono AND id_persona=pI_id_persona;
-
-    IF contador>0 THEN
-      SET mensaje = CONCAT(mensaje, 'este numero telefónico ya existe para esta persona');
+      SET mensaje = CONCAT(mensaje, 'Este numero telefónico ya existe ');
     END IF;
 
    IF mensaje <> '' THEN
+        SET mensaje=mensaje;
         SET error = TRUE;
-        SET mensaje=CONCAT('error: ', mensaje);
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
         SELECT mensaje,error;
         LEAVE SP;
+   END IF;
+
+   SELECT COUNT(*) INTO contador FROM telefono_persona tp
+   INNER JOIN telefono t ON  tp.id_telefono = t.id_telefono
+   WHERE t.telefono=pI_telefono AND tp.id_persona=pI_id_persona;
+
+   IF contador>0 THEN
+      SET mensaje ='Este numero telefónico ya existe para esta persona';
+      SET error = TRUE;
+      SET pO_mensaje=mensaje;
+      SET pO_error=error;
+      SELECT mensaje,error;
+      LEAVE SP;
    END IF;
 
    
@@ -88,18 +96,20 @@ CREATE PROCEDURE SP_Insertar_Telefono_Persona(
                                 pI_estado);
     
     COMMIT;
-    SET mensaje='inserción exitosa';
+    SET mensaje='Inserción exitosa';
     SET error=FALSE;
     SET pO_mensaje = mensaje;
     SET pO_error = error;
     SELECT mensaje,error;
 
-END $$
+END$$
 
-CALL SP_Insertar_Telefono_Persona (11,'I','2522-2649',@mensaje,@error);
+CALL SP_Insertar_Telefono_Persona (11,'A','2543-2649',@mensaje,@error);
 select @mensaje,@error;
 
-select * from telefono_persona ;
-SELECT * FROM telefono;
+select * from telefono_persona where id_persona=11;
+SELECT * FROM telefono where id_telefono="549";
 SELECT * FROM persona;
 show columns from telefono
+
+select count(*) from telefono where telefono='2522-2649'

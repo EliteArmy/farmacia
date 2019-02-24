@@ -11,6 +11,8 @@ CREATE PROCEDURE `SP_Actualizar_Persona`(
     IN pI_correo_electronico VARCHAR(100),
     IN pI_numero_identidad VARCHAR(13),
     IN pI_fecha_nacimiento DATE,
+    IN pI_telefono VARCHAR(50),
+    IN pI_telefono_antiguo VARCHAR(50),
     IN pI_estado VARCHAR(1),
     OUT pO_mensaje VARCHAR(1000),
     OUT pO_error BOOLEAN
@@ -21,6 +23,9 @@ SP:BEGIN
     DECLARE mensaje VARCHAR(1000);
     DECLARE resultado BOOLEAN;
     DECLARE contador INTEGER(20);
+    DECLARE uEstado VARCHAR(1);
+    DECLARE isTelefono BOOLEAN;
+    DECLARE idTelefono INT;
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
@@ -28,93 +33,81 @@ SP:BEGIN
     SET mensaje = '';
     SET contador =0;
     SET resultado =FALSE;
-   
+    SET uEstado='A';
+    SET isTelefono=FALSE;
+    
     -- ___________________VALIDACIONES___________________________________
     IF pI_id_persona ='' OR pI_id_persona IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'identificador persona, ');
-    END IF;
-    IF pI_primer_nombre='' OR pI_primer_nombre IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'primer nombre, ');
-    END IF; 
-    IF pI_primer_apellido='' OR pI_primer_apellido IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'primer apellido, ');
-    END IF;
-    IF pI_correo_electronico='' OR pI_correo_electronico IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'correo , ');
-    END IF;
-    IF pI_numero_identidad='' OR pI_numero_identidad IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
-    END IF; 
-    IF pI_sexo='' OR pI_sexo IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'numero de identidad, ');
-    END IF;
-    IF pI_fecha_nacimiento='' OR pI_fecha_nacimiento IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'fecha de nacimiento, ');
-    END IF;
-     IF pI_estado='' OR pI_estado IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'estado, ');
+        SET mensaje=CONCAT(mensaje, 'Identificador de persona vacio, ');
+    ELSE
+        SELECT COUNT(*) INTO contador FROM persona
+        WHERE pI_id_persona = persona.id_persona;
+
+        IF contador=0 THEN
+            SET mensaje = CONCAT(mensaje, 'La persona no existe, ');
+        END IF;
+        
     END IF;
 
-    -- Otras Validaciones
-    -- email
-    IF NOT (pI_correo_electronico='' OR pI_correo_electronico IS NULL) THEN 
-        IF (pI_correo_electronico  REGEXP '^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9][a-zA-Z0-9._-]*\\.[a-zA-Z]{2,4}$') = 0 THEN
-            SET mensaje=CONCAT(mensaje, 'correo invalido, ');
+    IF pI_primer_nombre='' OR pI_primer_nombre IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'Primer nombre vacio, ');
+    END IF; 
+
+    IF pI_primer_apellido='' OR pI_primer_apellido IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'primer apellido vacio, ');
+    END IF;
+   
+    IF pI_numero_identidad='' OR pI_numero_identidad IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'Numero de identidad vacia, ');
+    END IF; 
+
+    IF pI_sexo='' OR pI_sexo IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'Sexo vacio, ');
+    ELSE
+        IF NOT( pI_sexo = 'M' OR pI_sexo = 'F' OR pI_sexo='I' ) THEN
+          SET mensaje=CONCAT(mensaje,'Sexo invalido, ');
         END IF;
     END IF;
-    
-    
+  
+
+    -- Otras Validaciones
     -- identidad
-   IF (pI_numero_identidad REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$' ) = 0 THEN
-       SET mensaje=CONCAT(mensaje,'numero de identidad invalido, ');
+   IF NOT(pI_numero_identidad='' OR pI_numero_identidad IS NULL) THEN
+        IF (pI_numero_identidad REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$' ) = 0 THEN
+            SET mensaje=CONCAT(mensaje,'Numero de identidad invalido, ');
+        END IF;
    END IF;
 
-    IF NOT( pI_sexo = 'M' OR pI_sexo = 'F' OR pI_sexo='I' ) THEN
-      SET mensaje=CONCAT(mensaje,'sexo invalido, ');
-    END IF;
- 
-
-    IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
-      SET mensaje=CONCAT(mensaje,'estado invalido, ');
-    END IF;
-
-   
- 
-    -- ________________________________CUERPO DEL PL_________________________________________
-    -- update n Commit
-    -- verify if there is an identifier
-
-    SELECT COUNT(*) INTO contador FROM persona
-    WHERE pI_id_persona = persona.id_persona;
-
-    IF contador=0 THEN
-        SET mensaje = CONCAT(mensaje, 'id persona no existe, ');
-    END IF;
 
     IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ',mensaje);
+        SET mensaje=mensaje;
         SET resultado=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=resultado;
         SELECT mensaje, resultado;
-        -- SELECT mensaje, resultado; --Hacer el mismo trabajo que las variables de salida
-        -- se llama al procedimiento con call y devuelve los valores de salida mensaje y resultado
-        -- siendo mensaje y resultado variable locales declare mensaje varchar(1000); 
-        -- declare error BOOLEAN;
         LEAVE SP;
     END IF;
 
-    -- verificar email valido para actualizacion(Pertenesca a la misma persona o no este en la db)
-    SELECT COUNT(*) INTO contador FROM persona
-    WHERE persona.id_persona=pI_id_persona AND pI_correo_electronico = persona.correo_electronico; 
-    IF contador=0 THEN
-      SELECT COUNT(*) INTO contador FROM persona
-      WHERE persona.correo_electronico=pI_correo_electronico AND persona.id_persona<>pI_id_persona;
-      IF contador>=1 THEN 
-        SET mensaje=CONCAT(mensaje,'el correo no se puede usar, ya existe en la db, ');
-      END IF;  
+      -- email
+    IF NOT (pI_correo_electronico='' OR pI_correo_electronico IS NULL) THEN 
+        IF (pI_correo_electronico  REGEXP '^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9][a-zA-Z0-9._-]*\\.[a-zA-Z]{2,4}$') = 0 THEN
+            SET mensaje=CONCAT(mensaje, 'Correo electronico invalido, ');
+        ELSE
+             -- verificar email valido para actualizacion(Pertenesca a la misma persona o no este en la db)
+            SELECT COUNT(*) INTO contador FROM persona
+            WHERE persona.id_persona=pI_id_persona AND pI_correo_electronico = persona.correo_electronico; 
+            IF contador=0 THEN
+              SELECT COUNT(*) INTO contador FROM persona
+              WHERE persona.correo_electronico=pI_correo_electronico AND persona.id_persona<>pI_id_persona;
+              IF contador>=1 THEN 
+                SET mensaje=CONCAT(mensaje,'El correo electronico a actualizar ya existe, ');
+              END IF;  
+            END IF;
+        END IF;
     END IF;
     
+
+  
     -- verificar numero de identidad valido para actualizacion(Pertenesca a la misma persona o no este en la db)
     SELECT COUNT(*) INTO contador FROM persona
     WHERE persona.id_persona=pI_id_persona AND pI_numero_identidad = persona.numero_identidad; 
@@ -122,12 +115,50 @@ SP:BEGIN
       SELECT COUNT(*) INTO contador FROM persona
       WHERE persona.numero_identidad=pI_numero_identidad AND persona.id_persona<>pI_id_persona;
       IF contador>=1 THEN 
-        SET mensaje=CONCAT(mensaje,'el numero de identidad no se puede usar, ya existe en la db');
+        SET mensaje=CONCAT(mensaje,'El numero de identidad a actualizar ya existe');
       END IF;  
     END IF;
-    
+
+    IF NOT(pI_telefono='' OR pI_telefono IS NULL) THEN
+         IF( pI_telefono REGEXP'^(2|3|6|7|8|9){1}[0-9]{3}-[0-9]{4}$')=0 THEN
+             SET mensaje=CONCAT(mensaje,'Formato del telefono invalido, ');
+         ELSE
+            SELECT COUNT(*) INTO contador FROM telefono_persona tp
+            INNER JOIN telefono t ON  tp.id_telefono = t.id_telefono
+            WHERE t.telefono=pI_telefono AND tp.id_persona=pI_id_persona;
+            IF contador=0 THEN
+              SELECT COUNT(*) INTO contador FROM telefono_persona tp
+              INNER JOIN telefono t ON  tp.id_telefono = t.id_telefono
+              WHERE t.telefono=pI_telefono AND tp.id_persona<>pI_id_persona;
+              IF contador>=1 THEN 
+                SET mensaje=CONCAT(mensaje,'El numero de telefono a actualizar ya existe');
+              ELSE
+                SET isTelefono=TRUE;
+              END IF;  
+            END IF;
+         END IF;    
+    END IF;
+
+    IF isTelefono THEN
+         IF pI_telefono_antiguo='' OR pI_telefono_antiguo IS NULL THEN
+            SET mensaje=CONCAT(mensaje,'Telefono antiguo vacio, ');
+         ELSE
+            IF( pI_telefono_antiguo REGEXP'^(2|3|6|7|8|9){1}[0-9]{3}-[0-9]{4}$')=0 THEN
+              SET mensaje=CONCAT(mensaje,'Formato del telefono antiguo invalido, ');
+            END IF;    
+         END IF;
+    END IF;
+
+    IF NOT(pI_estado='' OR pI_estado IS NULL) THEN 
+        IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
+          SET mensaje=CONCAT(mensaje,'Estado invalido, ');
+        ELSE
+            SET uEstado=pI_estado;
+        END IF;
+    END IF;
+
     IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ',mensaje);
+        SET mensaje=mensaje;
         SET resultado = TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=resultado;
@@ -145,12 +176,21 @@ SP:BEGIN
             persona.correo_electronico = pI_correo_electronico,
             persona.numero_identidad = pI_numero_identidad, 
             persona.fecha_nacimiento = pI_fecha_nacimiento,
-            persona.estado= pI_estado
+            persona.estado= uEstado
         WHERE
             persona.id_persona= pI_id_persona;
     COMMIT;
+
+
+    -- UPDATE telefono
+    IF isTelefono THEN
+       SELECT id_telefono INTO idTelefono FROM telefono WHERE telefono=pI_telefono_antiguo;
+       UPDATE telefono SET telefono=pI_telefono WHERE id_telefono=idTelefono;
+    END IF;
+   
+
     
-    SET mensaje='actualizacion exitosa';
+    SET mensaje='Actualizacion exitosa';
     SET resultado=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=resultado;
@@ -158,9 +198,22 @@ SP:BEGIN
     
     
 END$$
-select * from persona where correo_electronico="a_2345788@gmail.com.hn";
+
+-- Actulizacion invalida
+select * from persona where correo_electronico="a_jjjj87@live.com";
+select * from persona where numero_identidad="0801199707186";
+select * from persona where id_persona=570;
+select * from telefono_persona where id_persona>560;
+select * from telefono where telefono='3333-4455';
+select * from telefono where id_telefono>=541;
+select * from telefono t inner join telefono_persona tp on t.id_telefono = tp.id_telefono
+where id_persona=570;
+
 -- duplicate
-CALL SP_Actualizar_Persona(2,'petter','petter','rodriguez','rodriguez','M','a','a_jjjj87@live.com','0801199707186','12-12-12','A', @mensaje, @error);
+CALL SP_Actualizar_Persona(570,'petter','','rodriguez','','M','dir','a_jjjj87@live.com',
+							'0801199707186','12-12-12','A', @mensaje, @error);
 
 -- row affected
-CALL SP_Actualizar_Persona(2,'pedro','pedro','rodriguez','rodriguez','M','a','a_2345@gmail.com.hn','0106199609897','12-03-13','',@mensaje, @error);
+CALL SP_Actualizar_Persona(570,'petttter','','rodriguez','','M','dir','Nue12aa21@gmail.com',
+							'0101199708097','12-12-12','2244-4459','2233-4459',
+                            "A", @mensaje, @error);

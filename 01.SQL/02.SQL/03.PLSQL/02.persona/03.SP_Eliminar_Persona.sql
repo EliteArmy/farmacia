@@ -6,9 +6,9 @@ CREATE PROCEDURE SP_Eliminar_Persona(
         OUT pO_mensaje VARCHAR(1000),
         OUT pO_error BOOLEAN
 )
-  SP:BEGIN
+SP:BEGIN
 -- Declaraciones
-  DECLARE mensaje VARCHAR(255);
+  DECLARE mensaje VARCHAR(1000);
   DECLARE error BOOLEAN;
   DECLARE contador INTEGER;
 -- Inicializaciones
@@ -20,21 +20,21 @@ CREATE PROCEDURE SP_Eliminar_Persona(
    -- Verificaciones de campos obligatorios que no esten vacios
 
     IF pI_id_persona='' OR pI_id_persona IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'id persona, ');
+        SET mensaje=CONCAT(mensaje, 'Identificador de persona vacio, ');
     ELSE
        SELECT COUNT(*)  INTO contador
        FROM persona    
        WHERE  id_persona= pI_id_persona;
        
        IF contador =0 THEN
-        SET mensaje = CONCAT(mensaje,'id persona no existe');
+        SET mensaje = CONCAT(mensaje,'La persona no existe');
        END IF;
     END IF;
 
  -- ______________________CUERPO__________________________________________
   
    IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ', mensaje);
+        SET mensaje=mensaje;
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
@@ -48,18 +48,20 @@ CREATE PROCEDURE SP_Eliminar_Persona(
        
     COMMIT;
 
-    SET mensaje='eliminacion exitosa';
+    SET mensaje='Eliminacion exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
     SELECT mensaje, error;
 
-END $$
+END$$
 
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Eliminar_Persona(3, @mensaje,@error);
+CALL SP_Eliminar_Persona
+(3, @mensaje,@error);
 
-SELECT * FROM persona
+SELECT *
+FROM persona
 
