@@ -79,9 +79,11 @@ if(isset($_POST['accion'])){
       $direccion = validarPOST('direccion');
       $correoElectronico = validarPOST('correo_electronico');
       $numeroIdentidad = validarPOST('numero_identidad');
+      $telefono = validarPOST('telefono');
       $fechaNacimiento = validarPOST('fecha_nacimiento');
       $fechaIngreso = validarPOST('fecha_ingreso');
       $usuario = validarPOST('usuario');
+
       $estado = validarPOST('estado');
       $fotoUrl = validarPOST('foto_url');
       $idTipoUsuario = validarPOST('id_tipo_usuario');
@@ -94,13 +96,14 @@ if(isset($_POST['accion'])){
       $empleado->setPrimerApellido($primerApellido);
       $empleado->setSegundoApellido($segundoApellido);
       $empleado->setSexo($sexo);
-      $empleado->setEstado($estado);
       $empleado->setDireccion($direccion);
       $empleado->setCorreoElectronico($correoElectronico);
       $empleado->setNumeroIdentidad($numeroIdentidad);
+      $empleado->setTelefono($telefono);
       $empleado->setFechaNacimiento($fechaNacimiento);
       $empleado->setFechaIngreso($fechaIngreso);
       $empleado->setUsuario($usuario);
+      
       $empleado->setFotoUrl($fotoUrl);
       $empleado->setIdTipoUsuario($idTipoUsuario);
       
@@ -113,6 +116,7 @@ if(isset($_POST['accion'])){
       $empleado = new Empleado();
       $empleado->setIdEmpleado($idEmpleado);
       $res['data'] = $empleado->borrar($conexion);
+      
       echo json_encode($res);
     break;
 

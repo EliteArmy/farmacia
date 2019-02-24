@@ -41,8 +41,17 @@
               Agregar Nuevo Empleado
             </button>
           </div>
+
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito-2" class="alert alert-success nuevo-alert" role="alert" style="display:none;">
+              Empleado insertado con exito.
+            </div>
+            <div id="div-error-2" class="alert alert-danger nuevo-alert" role="alert" style="display:none;">
+              Error al insertar el Empleado.
+            </div>            
+          </div>
         </div>
-        
+
         <!-- Tabla de Empleados-->
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">

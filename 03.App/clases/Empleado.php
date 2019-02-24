@@ -176,9 +176,10 @@ class Empleado extends Persona{
 			$this->getDireccion(),
 			$this->getCorreoElectronico(),
 			$this->getNumeroIdentidad(),
-			$this->getFechaNacimiento(),
+      $this->getFechaNacimiento(),
 			$this->getFechaIngreso(),
-			$this->getUsuario(),
+      $this->getUsuario(),
+      // password
 			$this->getFotoUrl(),
 			$this->getEstado(),
 			$this->getIdTipoUsuario()
