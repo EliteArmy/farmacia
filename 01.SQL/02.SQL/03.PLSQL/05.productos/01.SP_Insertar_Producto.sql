@@ -43,31 +43,31 @@ CREATE PROCEDURE SP_Insertar_Producto(
    -- Verificaciones de campos obligatorios que no esten vacios
     -- presentacion
     IF pI_id_presentacion='' OR pI_id_presentacion IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'id presentacion, ');
+        SET mensaje=CONCAT(mensaje, 'Identificador de presentacion vacio, ');
     END IF;
     -- nombre
     IF pI_nombre='' OR pI_nombre IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'nombre del producto, ');
+        SET mensaje=CONCAT(mensaje, 'Nombre del producto vacio, ');
     END IF;
     -- codigo de barra alfanumerico
     IF pI_codigo_barra='' OR pI_codigo_barra IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'codigo de barra, ');
+        SET mensaje=CONCAT(mensaje, 'Codigo de barra vacio, ');
     END IF;
 
     IF pI_ids_categorias='' OR  cadena=',' OR pI_ids_categorias IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'id categoria,');
+        SET mensaje=CONCAT(mensaje, 'Identificador de categoria vacio,');
     END IF;
 
      IF pI_id_impuesto='' OR pI_id_impuesto IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'id impuesto, ');
+        SET mensaje=CONCAT(mensaje, 'Identificador de impuesto vacio, ');
     END IF;
 
     IF pI_opcion='' OR pI_opcion IS NULL THEN
-        SET mensaje=CONCAT(mensaje, 'opcion, ');
+        SET mensaje=CONCAT(mensaje, 'Opcion vacia, ');
     END IF;
 
     IF NOT(pI_opcion='M' OR pI_opcion='P') THEN
-        SET mensaje=CONCAT(mensaje, 'opcion invalida, ');
+        SET mensaje=CONCAT(mensaje, 'Opcion invalida, ');
     END IF;
 
     -- validacion de codigo de barra numerico
@@ -86,7 +86,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
 
    -- Verificacion de parametros basicos   
    IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ', mensaje);
+        SET mensaje=mensaje;
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
@@ -101,7 +101,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
    WHERE  id_presentacion= pI_id_presentacion;
    
    IF contador=0 THEN
-      SET mensaje = CONCAT(mensaje, 'el id de presentacion no existe, ');
+      SET mensaje = CONCAT(mensaje, 'La presentacion no existe, ');
    END IF;
    
    SELECT COUNT(*) INTO contador
@@ -109,7 +109,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
    WHERE codigo_barra = pI_codigo_barra;
    
    IF contador >=1 THEN
-     SET mensaje = CONCAT(mensaje, 'el codigo de barra ya esta asignado en la db, ');
+     SET mensaje = CONCAT(mensaje, 'Codigo de barra asignado a otro producto, ');
    END IF;
 
    SELECT COUNT(*) INTO contador
@@ -117,22 +117,22 @@ CREATE PROCEDURE SP_Insertar_Producto(
    WHERE id_impuesto = pI_id_impuesto;
 
    IF contador=0 THEN
-      SET mensaje = CONCAT(mensaje, 'el id de impuesto no existe, ');
+      SET mensaje = CONCAT(mensaje, 'El impuesto no existe, ');
    END IF;
 
    IF pI_opcion='M' THEN
       IF pI_id_laboratorio='' OR pI_id_laboratorio IS NULL THEN
-          SET mensaje=CONCAT(mensaje, 'id laboratorio, ');
+          SET mensaje=CONCAT(mensaje, 'Identificador de laboratorio vacio,  ');
       ELSE
           SELECT COUNT(*) INTO contador FROM laboratorio WHERE id_laboratorio = pI_id_laboratorio;
           IF contador=0 THEN
-             SET mensaje=CONCAT(mensaje,'el id de laboratorio no exite,');
+             SET mensaje=CONCAT(mensaje,'El laboratorio no existe,');
           END IF;
       END IF;
    END IF;
 
    IF mensaje <> '' THEN
-      SET mensaje=CONCAT('resultado: ', mensaje);
+      SET mensaje=mensaje;
       SET error=TRUE;
       SET pO_mensaje=mensaje;
       SET pO_error=error;
@@ -158,7 +158,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
         -- si este fuera el caso, la consulta devolveria un error
           SELECT COUNT(*) INTO contador FROM categoria WHERE id_categoria=idCategoria;
           IF contador=0 THEN
-            SET mensaje=CONCAT('resultado: id de categoria no existe');
+            SET mensaje=CONCAT('La categoria no existe');
             SET error=TRUE;
             SET pO_mensaje=mensaje;
             SET pO_error=error;

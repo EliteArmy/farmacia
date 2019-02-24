@@ -24,40 +24,38 @@ CREATE PROCEDURE SP_Insertar_Empleado(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
-  DECLARE resultado BOOLEAN;
+  DECLARE error BOOLEAN;
   DECLARE contador INTEGER;
   DECLARE ultimoId INTEGER;
-  DECLARE error BOOLEAN;
 
 -- Inicializaciones
   SET AUTOCOMMIT=0;
   START TRANSACTION;
   SET mensaje='';
-  SET resultado = FALSE;
   SET contador = 0;
   SET error=FALSE;
   
    -- Verificaciones de campos obligatorios que no esten vacios
    -- __________________________VALIDACIONES___________________
     IF pI_usuario='' OR pI_usuario IS NULL THEN 
-        SET mensaje=CONCAT('usuario, ',mensaje);
+        SET mensaje=CONCAT('Usuario vacio, ',mensaje);
     END IF;
     IF pI_fecha_ingreso='' OR pI_fecha_ingreso IS NULL THEN 
-        SET mensaje=CONCAT('fecha, ',mensaje);
+        SET mensaje=CONCAT('Fecha de ingreso vacia, ',mensaje);
     END IF;
     IF pI_contrasena='' OR pI_contrasena IS NULL THEN 
-        SET mensaje=CONCAT('contraseña, ',mensaje);
+        SET mensaje=CONCAT('Contraseña vacia, ',mensaje);
     END IF;
     IF pI_id_tipo_usuario='' OR pI_id_tipo_usuario IS NULL THEN 
-        SET mensaje=CONCAT('id tipo usuario, ',mensaje);
+        SET mensaje=CONCAT('Tipo usuario vacio, ',mensaje);
     END IF;
 
     IF pI_telefono='' OR pI_telefono IS NULL THEN 
-        SET mensaje=CONCAT('telefono, ',mensaje);
+        SET mensaje=CONCAT('Telefono vacio, ',mensaje);
     END IF;
 
     IF pI_fecha_nacimiento='' OR pI_fecha_nacimiento IS NULL THEN 
-        SET mensaje=CONCAT('fecha nacimiento, ',mensaje);
+        SET mensaje=CONCAT('Fecha de nacimiento vacia, ',mensaje);
     END IF;
     -- __________
     -- _________________________CUERPO DEL PL_________________
@@ -66,17 +64,19 @@ CREATE PROCEDURE SP_Insertar_Empleado(
     WHERE usuario=pI_usuario;
 
     IF contador>=1 THEN
-      SET mensaje = CONCAT(mensaje, 'usuario ya existe');
+      SET mensaje = CONCAT(mensaje, 'El usuario ya existe');
     END IF;
 
     SELECT COUNT(*) INTO contador FROM tipo_usuario WHERE id_tipo_usuario = pI_id_tipo_usuario;
     IF contador=0 THEN
-      SET mensaje = CONCAT(mensaje, 'id tipo usuario no existe');
+      SET mensaje = CONCAT(mensaje, 'El tipo de usuario no existe');
     END IF;
 
    IF mensaje <> '' THEN
         SET error = TRUE;
-        SET mensaje=CONCAT('resultado: ', mensaje);
+        SET mensaje=mensaje;
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
         SELECT mensaje,error;
         LEAVE SP;
    END IF;
@@ -96,9 +96,11 @@ CREATE PROCEDURE SP_Insertar_Empleado(
                              pO_error
     );
     
-    IF pO_error = TRUE THEN
-        SET error = TRUE;
-        SET mensaje=pO_mensaje;
+    IF @pO_error THEN
+        SET error = @pO_error;
+        SET mensaje=@pO_mensaje;
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
         SELECT mensaje,error;
         LEAVE SP;
     END IF;
@@ -121,18 +123,21 @@ CREATE PROCEDURE SP_Insertar_Empleado(
                           pI_id_tipo_usuario
                          );
     COMMIT;
-    SET mensaje='inserción exitosa';
-    SET error=FALSE;
 
-    SELECT mensaje, error;
+    SET mensaje='Inserción exitosa';
+    SET error = FALSE;
+    SET pO_mensaje=mensaje;
+    SET pO_error=error;
+    SELECT mensaje,error;
+
 
 END $$
 
 select * from persona where numero_identidad='0801197607186';
 CALL SP_Insertar_Empleado('aa','WIL','WIL','WIL','M','dir',
-                          'sssw@GMAIL.COM','0801197607200',
-                          DATE('2002-02-03'),"3901-1987",DATE('2002-02-03'),
-                          'asd','ASD','ASDFGHJKL.COM',2,
+                          'ssswAASDSASDFD@GMAIL.COM','0802195607299',
+                          DATE('2002-02-03'),"3569-8987",DATE('2002-02-03'),
+                          'SDFASDFASDF','ASD','ASDFGHJKL.COM',2,
                           @mensaje,@error);
 select @mensaje,@error;
 

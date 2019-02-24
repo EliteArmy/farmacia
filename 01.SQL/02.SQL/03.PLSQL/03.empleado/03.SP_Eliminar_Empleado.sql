@@ -21,19 +21,19 @@ SP:BEGIN
     -- _______________________VALIDACION DE CAMPOS____________________________
     -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN 
-        SET mensaje=CONCAT('id de empleado',pI_id_empleado);
+        SET mensaje=CONCAT('Identificador de empleado vacio, ');
     ELSE
         SELECT COUNT(*) INTO contador
         FROM empleado
         WHERE empleado.id_empleado = pI_id_empleado;
         
         IF contador=0 THEN  
-            SET mensaje ='id empleado no existe';
+            SET mensaje ='El empleado no existe';
         END IF;
     END IF;    
     
     IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ', mensaje);
+        SET mensaje=mensaje;
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
@@ -48,7 +48,7 @@ SP:BEGIN
             empleado.id_empleado = pI_id_empleado ;
     COMMIT;
 
-    SET mensaje='eliminacion exitosa';
+    SET mensaje='Eliminacion exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

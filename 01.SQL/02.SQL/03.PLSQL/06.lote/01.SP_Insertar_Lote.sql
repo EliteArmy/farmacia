@@ -17,7 +17,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(1000);
-  DECLARE resultado BOOLEAN;
+  DECLARE error BOOLEAN;
   DECLARE contador INTEGER;
   DECLARE ultimoId INTEGER;
   DECLARE isDescuento BOOLEAN;
@@ -27,64 +27,64 @@ CREATE PROCEDURE SP_Insertar_Lote(
   START TRANSACTION;
 -- Inicializaciones
   SET mensaje='';
-  SET resultado = FALSE;
+  SET error = FALSE;
   SET contador = 0;
   SET isDescuento=FALSE;
   
    -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
-        SET mensaje=CONCAT('id producto, ',mensaje);
+        SET mensaje=CONCAT('Identificador de producto vacio, ',mensaje);
     END IF;
 
     IF pI_lote='' OR pI_lote IS NULL THEN 
-        SET mensaje=CONCAT('lote, ',mensaje);
+        SET mensaje=CONCAT('lNombre del lote vacio, ',mensaje);
     END IF;
 
     IF pI_precio_costo_unidad='' OR pI_precio_costo_unidad IS NULL THEN 
-        SET mensaje=CONCAT('precio costo, ',mensaje);
+        SET mensaje=CONCAT('Precio de costo vacio, ',mensaje);
     END IF;
 
     IF pI_precio_venta_unidad='' OR pI_precio_venta_unidad IS NULL THEN 
-        SET mensaje=CONCAT('precio venta, ',mensaje);
+        SET mensaje=CONCAT('Precio de venta vacio, ',mensaje);
     END IF;
 
     IF pI_fecha_elaboracion=''  OR pI_fecha_elaboracion IS NULL THEN 
-        SET mensaje=CONCAT('fecha elaboracion, ',mensaje);
+        SET mensaje=CONCAT('Fecha de elaboracion vacia, ',mensaje);
     END IF;
 
     IF pI_fecha_vencimiento=''  OR pI_fecha_vencimiento IS NULL THEN 
-        SET mensaje=CONCAT('fecha vencimiento, ',mensaje);
+        SET mensaje=CONCAT('Fecha de vencimiento vacia, ',mensaje);
     END IF;
 
     IF pI_existencia=''  OR pI_existencia IS NULL THEN 
-        SET mensaje=CONCAT('existencia, ',mensaje);
+        SET mensaje=CONCAT('Existencia vacia, ',mensaje);
     END IF;
 
     IF NOT(pI_id_descuento=''  OR pI_id_descuento IS NULL) THEN 
       SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento;
       IF contador=0 THEN
-        SET mensaje=CONCAT(mensaje,'id descuento no existe');
+        SET mensaje=CONCAT(mensaje,'El descuento no existe');
       ELSE
         SET isDescuento=TRUE;
       END IF;
     END IF;
 
    IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ', mensaje);
-        SET resultado=TRUE;
+        SET mensaje=mensaje;
+        SET error=TRUE;
         SET pO_mensaje=mensaje;
-        SET pO_error=resultado;
-        SELECT mensaje,resultado;
+        SET pO_error=error;
+        SELECT mensaje,error;
         LEAVE SP;
    END IF;
 
    SELECT COUNT(*) INTO contador FROM producto WHERE id_producto = pI_id_producto;
    IF contador = 0 THEN
-     SET mensaje=CONCAT('Id de producto no existe, ', mensaje);
+     SET mensaje=CONCAT(mensaje, 'EL producto no existe, ');
    ELSE
      SELECT COUNT(*) INTO contador FROM lote WHERE id_producto=pI_id_producto AND lote=pI_lote;
      IF contador>=1 THEN 
-        SET mensaje=CONCAT(mensaje,'ya existe este lote, no se puede repetir el nombre del lote con el mismo producto');
+        SET mensaje=CONCAT(mensaje,'Ya existe este lote, no se puede repetir el nombre del lote con el mismo producto');
      END IF;
    END IF;
 
@@ -99,7 +99,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
    END IF;
 
    IF pI_fecha_vencimiento < CURDATE() THEN
-      SET mensaje=CONCAT(mensaje,'fecha de vencimiento invalida, fecha menor que la actual, ');
+      SET mensaje=CONCAT(mensaje,'Fecha de vencimiento invalida, fecha menor que la actual, ');
    END IF;
 
    IF pI_fecha_elaboracion >= pI_fecha_vencimiento THEN
@@ -107,29 +107,29 @@ CREATE PROCEDURE SP_Insertar_Lote(
    END IF;
 
    IF pI_precio_costo_unidad=0 THEN
-      SET mensaje=CONCAT(mensaje,'precio costo invalido, no puede ser cero, ');
+      SET mensaje=CONCAT(mensaje,'Precio de costo invalido, no puede ser cero, ');
    END IF;
 
    IF pI_precio_venta_unidad=0 THEN
-      SET mensaje=CONCAT(mensaje,'precio venta invalido, no puede ser cero,');
+      SET mensaje=CONCAT(mensaje,'Precio venta invalido, no puede ser cero,');
    END IF;
 
    IF pI_existencia<=0 THEN
-      SET mensaje=CONCAT(mensaje,'existencia invalida, no puede ser menor o igual a cero,');
+      SET mensaje=CONCAT(mensaje,'Existencia invalida, no puede ser menor o igual a cero,');
    END IF;
 
    IF NOT(pI_precio_venta_unidad=0 OR pI_precio_costo_unidad=0) THEN
       IF pI_precio_costo_unidad>=pI_precio_venta_unidad THEN
-        SET mensaje=CONCAT(mensaje,'precio costo no puede ser mayor o igual que precio venta');
+        SET mensaje=CONCAT(mensaje,'[recio de costo no puede ser mayor o igual que precio venta');
       END IF;
    END IF;
 
    IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ', mensaje);
-        SET resultado=TRUE;
+        SET mensaje=mensaje;
+        SET error=TRUE;
         SET pO_mensaje=mensaje;
-        SET pO_error=resultado;
-        SELECT mensaje,resultado;
+        SET pO_error=error;
+        SELECT mensaje,error;
         LEAVE SP;
    END IF;
 
@@ -158,20 +158,20 @@ CREATE PROCEDURE SP_Insertar_Lote(
       CALL SP_Insertar_Descuento_Lote(ultimoId, pI_id_descuento, CURDATE(), DATE(''),'A',pO_mensaje,pO_error);
       IF pO_error=TRUE THEN
         SET mensaje=pO_mensaje;
-        SET resultado=TRUE;
+        SET error=TRUE;
         SET pO_mensaje=mensaje;
-        SET pO_error=resultado;
-        SELECT mensaje,resultado;
+        SET pO_error=error;
+        SELECT mensaje,error;
           LEAVE SP;
       END IF;
     END IF;
     
 
     SET mensaje="Insercion exitosa";
-    SET resultado=FALSE;
+    SET error=FALSE;
     SET pO_mensaje=mensaje;
-    SET pO_error=resultado;
-    SELECT mensaje,resultado;
+    SET pO_error=error;
+    SELECT mensaje,error;
 END $$
 
 CALL SP_Insertar_Lote(2,'lots01', 6,500 , '2018-02-02','2019-03-02',32,1,@mensaje,@error);

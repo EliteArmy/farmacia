@@ -21,7 +21,7 @@ SP:BEGIN
 
     -- Declaraciones
     DECLARE mensaje VARCHAR(1000);
-    DECLARE resultado BOOLEAN;
+    DECLARE error BOOLEAN;
     DECLARE contador INTEGER(20);
     DECLARE uEstado VARCHAR(1);
     DECLARE isTelefono BOOLEAN;
@@ -32,7 +32,7 @@ SP:BEGIN
     START TRANSACTION;
     SET mensaje = '';
     SET contador =0;
-    SET resultado =FALSE;
+    SET error =FALSE;
     SET uEstado='A';
     SET isTelefono=FALSE;
     
@@ -81,10 +81,10 @@ SP:BEGIN
 
     IF mensaje <> '' THEN
         SET mensaje=mensaje;
-        SET resultado=TRUE;
+        SET error=TRUE;
         SET pO_mensaje=mensaje;
-        SET pO_error=resultado;
-        SELECT mensaje, resultado;
+        SET pO_error=error;
+        SELECT mensaje, error;
         LEAVE SP;
     END IF;
 
@@ -159,10 +159,10 @@ SP:BEGIN
 
     IF mensaje <> '' THEN
         SET mensaje=mensaje;
-        SET resultado = TRUE;
+        SET error = TRUE;
         SET pO_mensaje=mensaje;
-        SET pO_error=resultado;
-        SELECT mensaje, resultado;
+        SET pO_error=error;
+        SELECT mensaje, error;
         LEAVE SP;
     END IF;
 
@@ -186,15 +186,16 @@ SP:BEGIN
     IF isTelefono THEN
        SELECT id_telefono INTO idTelefono FROM telefono WHERE telefono=pI_telefono_antiguo;
        UPDATE telefono SET telefono=pI_telefono WHERE id_telefono=idTelefono;
+       COMMIT;
     END IF;
    
 
     
     SET mensaje='Actualizacion exitosa';
-    SET resultado=FALSE;
+    SET error=FALSE;
     SET pO_mensaje=mensaje;
-    SET pO_error=resultado;
-    SELECT mensaje, resultado;
+    SET pO_error=error;
+    SELECT mensaje, error;
     
     
 END$$
