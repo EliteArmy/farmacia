@@ -1,5 +1,5 @@
 <?php
-  $idPagina = "agregar-categoria";
+  $idPagina = "gestionar-info-producto";
   include("autenticacion.php");
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Agregar Categoria</title>
+  <title>Gestionar Informacion de Productos</title>
 
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
