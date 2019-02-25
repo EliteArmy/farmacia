@@ -1,5 +1,5 @@
 <?php
-  $idPagina = "agregar-presentacion";
+  $idPagina = "gestionar-descuentos";
   include("autenticacion.php");
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Agregar Presentacion</title>
+  <title>Gestion de Descuentos</title>
 
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -35,19 +35,19 @@
   <div class="row nuevo-producto">
     <div class="col-12 col-sm-6 col-md-6 col-lg-6">
       <!-- Button trigger para el modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-presentacion">
-        Agregar Nueva Presentación
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-decuento">
+        Agregar Descuento
       </button>
     </div>
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="agregar-presentacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="agregar-descuento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Nueva Presentación</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Descuentos</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -56,11 +56,20 @@
         <div class="modal-body">
           <div class="row">
             <div class="form-group col-12 col-md-6">
-              <label for="txt-nombre-presentacion">Presentación: </label>
-              <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
+              <label for="txt-descripcion">Inserte Descripción: </label>
+              <input type="text-area" class="form-control" id="txt-nombre-laboratorio" name="txt-nombre-laboratorio"  placeholder="nombre del laboratorio" required autofocus>
             </div>
 
-            
+            <div class="form-group col-12 col-md-6">
+              <label for="txt-direccion">Dirección: </label>
+              <input type="text" class="form-control" id="txt-direccion" name="txt-direccion"  placeholder="Dirección" required autofocus>
+            </div>
+
+             <div class="form-group col-12 col-md-6">
+              <label for="txt-telefono-lab">Número de telefono </label>
+              <input type="text" class="form-control" id="txt-telefono-lab" name="txt-telefono-lab"  placeholder="2222-0854" required autofocus>
+            </div>
+
            </div>
         </div>
 
