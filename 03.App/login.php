@@ -41,13 +41,19 @@
               <hr>
               <h4 class="text-center">Inicio de sesión</h4>
               
-              <div class="form-group">
-                <label for="user">Usuario</label>
+              <label for="username">Usuario</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text fas fa-user"></span>
+                </div>
                 <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" required autofocus>
               </div>
 
-              <div class="form-group">
-                <label for="pass">Contraseña</label>
+              <label for="password">Contraseña</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text fas fa-lock"></span>
+                </div>
                 <input type="password" class="form-control" name="password" id="password"  placeholder="Contraseña" required>
               </div>
 
@@ -83,7 +89,9 @@
       <div class="row justify-content-center">
         <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4">
           <h4>
-
+            <p class="mt-3 mb-3 text-center">
+              Copyright © 2019 Esperanza
+            </p>
           </h4>
         </div>
       </div>
@@ -93,6 +101,7 @@
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script src="./js/controlador/login.js"></script>
 </body>
 </html>
