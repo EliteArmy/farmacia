@@ -202,7 +202,7 @@
 
   <script type="text/javascript" src="/plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="/plugin/data-tables/js/datatables.js"></script>
-  <script type="text/javascript" src="./js/controlador/nuevo-empleado.js"></script>
+  <script type="text/javascript" src="./js/controlador/empleado.js"></script>
 
 </body>
 </html>

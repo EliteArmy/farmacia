@@ -40,23 +40,17 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-producto">
               Agregar Nuevo Producto
             </button>
-          </div>
-
-          <!-- Button trigger para el modal -->
-          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#agregar-lote">
-              Agregar Nuevo Lote
-            </button>
           </div>  
         </div>
 
-        <!-- Tabla de Lotes -->
+        <!-- Tabla de Producto -->
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <table id="table-info" class="display table-striped table-bordered" style="width: 100%;">
             </table>
           </div>
         </div>
+        <!-- Fin Tabla de Producto-->
 
       </div>
     </div>
@@ -159,87 +153,6 @@
   </div>
   <!-- FIN Modal Producto -->
 
-  <!-- Modal Lote -->
-  <div class="modal fade" id="agregar-lote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Lote</h5>
-          <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group col-12 col-md-6">
-              <label for="lote">Nombre Lote</label>
-              <input id="lote" type="text" class="form-control" placeholder="Nombre Lote">
-            </div>
-
-            <div class="form-group col-12 col-sm-6 col-md-6">
-            <label for="slc-prod">Producto</label>
-              <select id="slc-prod" class="selectpicker form-control" data-live-search="true" title="productos" data-style="btn-primary">
-                <!--Informacion generada -->
-              </select>
-            </div>
-            
-            <div class="form-group col-12 col-md-6">
-              <label for="precio-compra">Precio Compra</label><br>
-              <input id="precio-compra" class="form-control" type="number" step="any" min="0" placeholder="0.00">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="precio-venta">Precio Venta</label><br>
-              <input id="precio-venta" class="form-control" type="number" step="any" min="0" placeholder="0.00">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="fecha-elab">Fecha Elaboración</label><br>
-              <input id="fecha-elab" class="form-control" type="date" placeholder="2000-12-31">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="fecha-venc">Fecha Vencimiento</label><br>
-              <input id="fecha-venc" class="form-control" type="date" placeholder="2000-12-31">
-            </div>
-
-            <div class="form-group col-12 col-md-6">
-              <label for="cantidad">Cantidad</label><br>
-              <input id="cantidad" class="form-control" type="number" step="1" min="0" placeholder="0">
-            </div>
-
-            <div class="form-group col-12 col-sm-6 col-md-6">
-            <label for="slc-descuento">Descuento</label>
-              <select id="slc-descuento" class="selectpicker form-control" data-live-search="true" title="Descuentos" data-style="btn-primary">
-                <!--Informacion generada -->
-              </select>
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <div id="div-exito-lote" class="alert alert-success" role="alert" style="display:none;">
-                Lote insertado con exito.
-              </div>
-              <div id="div-error-lote" class="alert alert-danger" role="alert" style="display:none;">
-                Error al insertar el Lote.
-              </div>            
-            </div>
-
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" id="">Reset</button>
-          <button type="button" class="btn btn-primary" id="btn-guard-lote">Guardar Cambios</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- FIN Modal Lote -->
-
   <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/popper.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
@@ -249,7 +162,7 @@
 
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
-  <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>
+  <script type="text/javascript" src="./js/controlador/producto.js"></script>
 
 </body>
 </html>
