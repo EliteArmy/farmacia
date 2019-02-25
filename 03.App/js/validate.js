@@ -16,19 +16,18 @@ class Forma {
 			let value = $("#" + id).val();
     	let regexp = this.inputs[id].pattern;
     	let flag = this.inputs[id].mandatory;
-			
 			if (value == '' && flag === true){
 				$("#" + id).removeClass('is-valid');
 				$("#" + id).addClass('is-invalid');
 				this.inputs[id].ready = false;
-				// console.log("Campo requerido");
+				$("#" + id).next('.invalid-feedback').html("Campo requerido");
 			}
 			else if (!regexp.exec(value)) {
 				$("#" + id).removeClass('is-valid');
 				$("#" + id).addClass('is-invalid');
 				this.inputs[id].ready = false;
-				// console.log("El valor del campo no es válido");
-			}else{
+				$("#" + id).next('.invalid-feedback').html("El valor del campo no es válido");
+			} else {
 				$("#" + id).addClass('is-valid');
 				$("#" + id).removeClass('is-invalid');
 				$("#" + id + "-validate").html("");
