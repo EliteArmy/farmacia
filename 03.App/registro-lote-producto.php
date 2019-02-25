@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./css/style.css">
 
 </head>
-<!-- <body class="root"> -->
+
 <body>
 
   <?php
@@ -72,7 +72,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="form-group col-12 col-md-6">
-              <label for="lote">Nombre Lote</label>
+              <label for="lote">Nombre del Lote</label>
               <input id="lote" type="text" class="form-control" placeholder="Nombre Lote">
             </div>
 
@@ -84,22 +84,22 @@
             </div>
             
             <div class="form-group col-12 col-md-6">
-              <label for="precio-compra">Precio Compra</label><br>
+              <label for="precio-compra">Precio de Compra</label><br>
               <input id="precio-compra" class="form-control" type="text" step="any" min="0" placeholder="0.00">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="precio-venta">Precio Venta</label><br>
+              <label for="precio-venta">Precio de Venta</label><br>
               <input id="precio-venta" class="form-control" type="text" step="any" min="0" placeholder="0.00">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="fecha-elab">Fecha Elaboración</label><br>
+              <label for="fecha-elab">Fecha de Elaboración</label><br>
               <input id="fecha-elab" class="form-control" type="date" placeholder="2000-12-31">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="fecha-venc">Fecha Vencimiento</label><br>
+              <label for="fecha-venc">Fecha de Vencimiento</label><br>
               <input id="fecha-venc" class="form-control" type="date" placeholder="2000-12-31">
             </div>
 

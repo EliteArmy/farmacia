@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Nuevo Producto</title>
+  <title>Registro Nuevo Producto</title>
 
   <link rel="icon" href="./img/icon.png">
   <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
@@ -40,7 +40,16 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-producto">
               Agregar Nuevo Producto
             </button>
-          </div>  
+          </div>
+          
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito-producto" class="alert alert-success" role="alert" style="display:none;">
+              Producto insertado con exito.
+            </div>
+            <div id="div-error-producto" class="alert alert-danger" role="alert" style="display:none;">
+              Error al insertar el Producto.
+            </div>            
+          </div>
         </div>
 
         <!-- Tabla de Producto -->
@@ -133,15 +142,6 @@
             </div>
         </div>
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div id="div-exito-producto" class="alert alert-success" role="alert" style="display:none;">
-            Producto insertado con exito.
-          </div>
-          <div id="div-error-producto" class="alert alert-danger" role="alert" style="display:none;">
-            Error al insertar el Producto.
-          </div>            
-        </div>
-
         <div class="modal-footer">
           <button type="button" class="btn btn-info" id="reset-prod">Reset</button>
           <button type="button" class="btn btn-primary" id="btn-guard-prod">Guardar Cambios</button>
@@ -162,7 +162,7 @@
 
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
-  <script type="text/javascript" src="./js/controlador/producto.js"></script>
+  <script type="text/javascript" src="./js/controlador/nuevo-producto.js"></script>
 
 </body>
 </html>
