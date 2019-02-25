@@ -1,16 +1,4 @@
-//  FORMAS
-let formaLote = new Forma('agregar-lote');
-formaLote.addInput('lote', /^.+$/, true);
-formaLote.addInput('slc-prod');
-formaLote.addInput('precio-compra', /^(\$?\d{1,3}(?:,?\d{3})*(?:\.\d{2})?|\.\d{2})?$/, true);
-formaLote.addInput('precio-venta', /^(\$?\d{1,3}(?:,?\d{3})*(?:\.\d{2})?|\.\d{2})?$/, true);
-formaLote.addInput('fecha-elab');
-formaLote.addInput('fecha-venc');
-formaLote.addInput('cantidad', /^[1-9][0-9]*$/, true);
-formaLote.addInput('slc-descuento');
 
-formaLote.setButton('btn-guard-lote');
-Forma.addTrigger(formaLote);
 
 
 $(document).ready(function() {

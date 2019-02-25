@@ -147,6 +147,7 @@
 
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
+  <script type="text/javascript" src="./js/validate.js"></script>
   <script type="text/javascript" src="./js/controlador/lote.js"></script>
 
 </body>
