@@ -9,6 +9,7 @@ class Empleado extends Persona{
 	private $estado;
 	private $idTipoUsuario;
 	private $telefono;
+	private $telefonoAntiguo;
 
 	public function __construct(
 		$idEmpleado = null,
@@ -104,6 +105,13 @@ class Empleado extends Persona{
 		$this->telefono = $telefono;
 	}
 
+	public function getTelefonoAntiguo(){
+			return $this->telefonoAntiguo;
+	}
+	public function setTelefonoAntiguo($telefonoAntiguo){
+		$this->telefonoAntiguo = $telefonoAntiguo;
+	}
+
   public static function leer($conexion){
 	  $sql = 'SELECT * FROM VistaEmpleado2';
 	  $rows = $conexion->query($sql);
@@ -159,7 +167,7 @@ class Empleado extends Persona{
 		$sql = "
 		CALL SP_Actualizar_Empleado(
 			%s,'%s','%s','%s','%s','%s','%s','%s',
-			'%s','%s','%s','%s','%s','%s',%s,
+			'%s',DATE('%s'),'%s','%s',DATE('%s'),'%s','%s','%s',%s,
 			@mensaje,@error
 		);
 		";
@@ -176,9 +184,11 @@ class Empleado extends Persona{
 			$this->getDireccion(),
 			$this->getCorreoElectronico(),
 			$this->getNumeroIdentidad(),
-      $this->getFechaNacimiento(),
+            $this->getFechaNacimiento(),
+            $this->getTelefono(),
+            $this->getTelefonoAntiguo(),
 			$this->getFechaIngreso(),
-      $this->getUsuario(),
+            $this->getUsuario(),
       // password
 			$this->getFotoUrl(),
 			$this->getEstado(),
