@@ -1,5 +1,5 @@
 <?php
-  $idPagina = "nuevo-medicamento";
+  $idPagina = "gestionar-info-producto";
   include("autenticacion.php");
 ?>
 <!DOCTYPE html>

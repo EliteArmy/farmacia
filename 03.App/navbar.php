@@ -48,19 +48,19 @@
         <?php endif;?>
 
         <!--Item Productos-->
-        <?php if(show_menu_if(["nuevo-medicamento","nuevo-producto","registro-lote-producto","registro-lote-medicamento","descartar-productos","gestionar-laboratorios"])):?>
+        <?php if(show_menu_if(["gestionar-info-producto","nuevo-producto","registro-lote-producto","registro-lote-medicamento","descartar-productos","gestionar-laboratorios"])):?>
         <li class="nav-item dropdown" id="nav-producto">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Productos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <?php if(show_menu_if(["nuevo-medicamento","nuevo-producto","registro-lote-producto","registro-lote-medicamento"])):?>
+            <?php if(show_menu_if(["gestionar-info-producto","nuevo-producto","registro-lote-producto","registro-lote-medicamento"])):?>
             <p class="dropdown-header">Producto</p>
-            <?php if(show_item_if("nuevo-medicamento")):?>
-            <a class="dropdown-item" href="nuevo-medicamento.php">Nuevo Medicamento</a>
-            <?php endif;?>
             <?php if(show_item_if("nuevo-producto")):?>
-            <a class="dropdown-item" href="nuevo-producto.php">Nuevo producto</a>
+            <a class="dropdown-item" href="nuevo-producto.php">Nuevo Producto</a>
+            <?php endif;?>
+            <?php if(show_item_if("gestionar-info-producto")):?>
+            <a class="dropdown-item" href="gestionar-info-producto.php">Gestionar información de Productos</a>
             <?php endif;?>
             <?php if(show_item_if("registro-lote-producto")):?>
             <a class="dropdown-item" href="registro-lote-producto.php">Registrar Lote de Producto</a>
