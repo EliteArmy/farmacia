@@ -128,10 +128,10 @@ SP:BEGIN
     COMMIT;
 	IF isTelefono THEN
         SELECT MAX(id_persona) INTO ultimoId FROM persona;
-        CALL SP_Insertar_Telefono_Persona (ultimoId,'A',pI_telefono,pO_mensaje,pO_error);
-        IF @pO_error THEN
-            SET mensaje=@pO_mensaje;
-            SET error = @pO_error;
+        CALL SP_Insertar_Telefono_Persona (ultimoId,'A',pI_telefono,@mensajeInsertarTelefonoPersona,@errorInsertarTelefonoPersona);
+        IF @errorInsertarTelefonoPersona THEN
+            SET mensaje=@mensajeInsertarTelefonoPersona;
+            SET error = TRUE;
             SET pO_mensaje=mensaje;
             SET pO_error=error;
             SELECT mensaje,error;

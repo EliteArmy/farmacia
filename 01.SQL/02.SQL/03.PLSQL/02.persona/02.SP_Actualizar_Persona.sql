@@ -145,6 +145,13 @@ SP:BEGIN
          ELSE
             IF( pI_telefono_antiguo REGEXP'^(2|3|6|7|8|9){1}[0-9]{3}-[0-9]{4}$')=0 THEN
               SET mensaje=CONCAT(mensaje,'Formato del telefono antiguo invalido, ');
+            ELSE
+                SELECT COUNT(*) INTO contador FROM telefono_persona tp
+                INNER JOIN telefono t ON  tp.id_telefono = t.id_telefono
+                WHERE t.telefono=pI_telefono_antiguo AND tp.id_persona=pI_id_persona; 
+                IF contador=0 THEN
+                    SET mensaje=CONCAT(mensaje,'El numero de telefono antiguo para esta persona no existe, ');
+                END IF;
             END IF;    
          END IF;
     END IF;

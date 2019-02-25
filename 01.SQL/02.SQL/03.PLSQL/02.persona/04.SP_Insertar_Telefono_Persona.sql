@@ -11,7 +11,6 @@ CREATE PROCEDURE SP_Insertar_Telefono_Persona(
 SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(1000);
-  DECLARE resultado BOOLEAN;
   DECLARE contador INTEGER;
   DECLARE ultimoId INTEGER;
   DECLARE error BOOLEAN;
@@ -21,7 +20,6 @@ SP:BEGIN
   SET ultimoId=0;
   START TRANSACTION;
   SET mensaje='';
-  SET resultado = FALSE;
   SET contador = 0;
   SET error=FALSE;
   

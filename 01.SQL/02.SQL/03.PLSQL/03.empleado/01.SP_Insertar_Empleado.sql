@@ -38,40 +38,50 @@ CREATE PROCEDURE SP_Insertar_Empleado(
    -- Verificaciones de campos obligatorios que no esten vacios
    -- __________________________VALIDACIONES___________________
     IF pI_usuario='' OR pI_usuario IS NULL THEN 
-        SET mensaje=CONCAT('Usuario vacio, ',mensaje);
+        SET mensaje=CONCAT(mensaje, 'Usuario vacio, ');
+    ELSE
+        SELECT COUNT(*) INTO contador FROM empleado 
+        WHERE usuario=pI_usuario;
+
+        IF contador>=1 THEN
+          SET mensaje = CONCAT(mensaje, 'El usuario ya existe');
+        END IF;
     END IF;
+
     IF pI_fecha_ingreso='' OR pI_fecha_ingreso IS NULL THEN 
-        SET mensaje=CONCAT('Fecha de ingreso vacia, ',mensaje);
+        SET mensaje=CONCAT(mensaje, 'Fecha de ingreso vacia, ');
     END IF;
+
     IF pI_contrasena='' OR pI_contrasena IS NULL THEN 
-        SET mensaje=CONCAT('Contraseña vacia, ',mensaje);
+        SET mensaje=CONCAT(mensaje, 'Contraseña vacia, ');
     END IF;
+
     IF pI_id_tipo_usuario='' OR pI_id_tipo_usuario IS NULL THEN 
-        SET mensaje=CONCAT('Tipo usuario vacio, ',mensaje);
+        SET mensaje=CONCAT(mensaje, 'Tipo usuario vacio, ');
+    ELSE
+        SELECT COUNT(*) INTO contador FROM tipo_usuario WHERE id_tipo_usuario = pI_id_tipo_usuario;
+        IF contador=0 THEN
+          SET mensaje = CONCAT(mensaje, 'El tipo de usuario no existe');
+        END IF;
+
     END IF;
 
     IF pI_telefono='' OR pI_telefono IS NULL THEN 
-        SET mensaje=CONCAT('Telefono vacio, ',mensaje);
+        SET mensaje=CONCAT(mensaje, 'Telefono vacio, ');
     END IF;
 
     IF pI_fecha_nacimiento='' OR pI_fecha_nacimiento IS NULL THEN 
-        SET mensaje=CONCAT('Fecha de nacimiento vacia, ',mensaje);
-    END IF;
-    -- __________
-    -- _________________________CUERPO DEL PL_________________
-
-    SELECT COUNT(*) INTO contador FROM empleado 
-    WHERE usuario=pI_usuario;
-
-    IF contador>=1 THEN
-      SET mensaje = CONCAT(mensaje, 'El usuario ya existe');
+        SET mensaje=CONCAT(mensaje, 'Fecha de nacimiento vacia, ');
     END IF;
 
-    SELECT COUNT(*) INTO contador FROM tipo_usuario WHERE id_tipo_usuario = pI_id_tipo_usuario;
-    IF contador=0 THEN
-      SET mensaje = CONCAT(mensaje, 'El tipo de usuario no existe');
+     IF pI_direccion='' OR pI_direccion IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'Direccion vacia, ');
     END IF;
 
+     IF pI_correo_electronico='' OR pI_correo_electronico IS NULL THEN 
+        SET mensaje=CONCAT(mensaje, 'Correo electronico vacio, ');
+    END IF;
+   
    IF mensaje <> '' THEN
         SET error = TRUE;
         SET mensaje=mensaje;
@@ -92,13 +102,14 @@ CREATE PROCEDURE SP_Insertar_Empleado(
                              pI_numero_identidad,
                              pI_fecha_nacimiento,
                              pI_telefono,
-                             pO_mensaje,
-                             pO_error
+                             @mensajeInsertarPersonaEmpleado,
+                             @errorInsertarPesonaEmpleado
+                             
     );
     
-    IF @pO_error THEN
-        SET error = @pO_error;
-        SET mensaje=@pO_mensaje;
+    IF @errorInsertarPesonaEmpleado THEN
+        SET mensaje = @mensajeInsertarPersonaEmpleado;
+        SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
         SELECT mensaje,error;

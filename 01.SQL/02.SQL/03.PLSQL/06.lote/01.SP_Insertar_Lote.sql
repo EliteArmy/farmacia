@@ -37,7 +37,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
     END IF;
 
     IF pI_lote='' OR pI_lote IS NULL THEN 
-        SET mensaje=CONCAT('lNombre del lote vacio, ',mensaje);
+        SET mensaje=CONCAT('Nombre del lote vacio, ',mensaje);
     END IF;
 
     IF pI_precio_costo_unidad='' OR pI_precio_costo_unidad IS NULL THEN 
@@ -120,7 +120,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
 
    IF NOT(pI_precio_venta_unidad=0 OR pI_precio_costo_unidad=0) THEN
       IF pI_precio_costo_unidad>=pI_precio_venta_unidad THEN
-        SET mensaje=CONCAT(mensaje,'[recio de costo no puede ser mayor o igual que precio venta');
+        SET mensaje=CONCAT(mensaje,'Precio de costo no puede ser mayor o igual que precio venta');
       END IF;
    END IF;
 
@@ -155,9 +155,9 @@ CREATE PROCEDURE SP_Insertar_Lote(
 
     IF isDescuento=TRUE THEN
       SELECT MAX(id_lote) INTO ultimoId FROM lote;
-      CALL SP_Insertar_Descuento_Lote(ultimoId, pI_id_descuento, CURDATE(), DATE(''),'A',pO_mensaje,pO_error);
-      IF pO_error=TRUE THEN
-        SET mensaje=pO_mensaje;
+      CALL SP_Insertar_Descuento_Lote(ultimoId, pI_id_descuento, CURDATE(), DATE(''),'A',@mensajeInsertarLoteDescuento,@errorInsertarLoteDescuento);
+      IF @errorInsertarLoteDescuento THEN
+        SET mensaje=@mensajeInsertarLoteDescuento;
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;

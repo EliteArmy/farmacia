@@ -12,7 +12,7 @@ CREATE PROCEDURE SP_Insertar_Categoria_Producto(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
-  DECLARE resultado BOOLEAN;
+  DECLARE error BOOLEAN;
   DECLARE contador INTEGER;
 
 
@@ -20,52 +20,60 @@ CREATE PROCEDURE SP_Insertar_Categoria_Producto(
   START TRANSACTION;
 -- Inicializaciones
   SET mensaje='';
-  SET resultado = FALSE;
+  SET error = FALSE;
   SET contador = 0;
   
 
   -- ________________VALIDACIONES________________________________________  
    -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_categoria='' OR pI_id_categoria IS NULL THEN 
-        SET mensaje=CONCAT('id categoria , ',mensaje);
+        SET mensaje=CONCAT(mensaje,'Identificador de  categoria  vacio, ');
     END IF;
 
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
-        SET mensaje=CONCAT('id producto, ',mensaje);
+        SET mensaje=CONCAT(mensaje,'Identificador de producto vacio, ');
     END IF;
 
     IF pI_estado='' OR pI_estado IS NULL THEN 
-        SET mensaje=CONCAT('estado , ',mensaje);
+        SET mensaje=CONCAT(mensaje,'Estado vacio , ');
+    ELSE
+       IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
+        SET mensaje=CONCAT(mensaje,'Estado invalido, ');
+      END IF;
     END IF;
 
    IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Campos Vacios: ', mensaje);
-        SET pO_error=TRUE;
+        SET mensaje=mensaje;
+        SET error=TRUE;
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
+        SELECT mensaje,error;
         LEAVE SP;
    END IF;
   -- _________________________CUERPO DEL PL_______________________________-
-   IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
-      SET mensaje=CONCAT(mensaje,'estado invalido, ');
-    END IF;
+  
     
    SELECT COUNT(*) INTO contador FROM categoria WHERE id_categoria = pI_id_categoria;
    IF contador = 0 THEN
-     SET mensaje=CONCAT('Id de categoria no existe ,', mensaje);
+     SET mensaje=CONCAT('La categoria no existe ,', mensaje);
    END IF;
 
    SELECT COUNT(*) INTO contador FROM producto WHERE id_producto = pI_id_producto;
    IF contador = 0 THEN
-     SET mensaje=CONCAT('Id de producto no existe  ,', mensaje);
+     SET mensaje=CONCAT('El producto no existe  ,', mensaje);
    END IF;
 
    SELECT COUNT(*) INTO contador FROM categoria_producto WHERE id_categoria = pI_id_categoria and id_producto = pI_id_producto;
    IF contador >0  THEN
-     SET mensaje=CONCAT('relacion ya establecida entre categoria y producto ,', mensaje);
+     SET mensaje=CONCAT('Esta categoria ya existe para este producto,', mensaje);
    END IF;
 
     IF mensaje <> '' THEN
-        SET pO_mensaje=CONCAT('Otros errores: ', mensaje);
-        SET pO_error=TRUE;
+        SET mensaje=mensaje;
+        SET error=TRUE;
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
+        SELECT mensaje,error;
         LEAVE SP;
    END IF;
 
@@ -76,8 +84,12 @@ CREATE PROCEDURE SP_Insertar_Categoria_Producto(
                                   pI_id_producto,
 			                        		pI_estado);
     COMMIT;
-    SET pO_mensaje='inserción exitosa';
-    SET pO_error=FALSE;
+    SET mensaje='Incercion Exitosa';
+    SET error=FALSE;
+    SET pO_mensaje=mensaje;
+    SET pO_error=error;
+    SELECT mensaje,error;
+    
 END $$
 
 CALL  SP_Insertar_Categoria_Producto(1,16,'A',@mensaje,@error);

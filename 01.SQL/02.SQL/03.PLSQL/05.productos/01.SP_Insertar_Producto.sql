@@ -170,6 +170,20 @@ CREATE PROCEDURE SP_Insertar_Producto(
         SET iterador= iterador + 1;
     END WHILE;
 
+    IF pI_opcion='M' THEN
+      SELECT COUNT(*) INTO contador FROM medicamentos m
+      INNER JOIN producto p ON p.id_producto=m.id_producto
+      WHERE p.nombre=pI_nombre AND m.id_laboratorio=pI_id_laboratorio;
+      IF contador>=1 THEN
+          SET mensaje=CONCAT('El medicamento con este laboratorio ya esta registrado');
+          SET error=TRUE;
+          SET pO_mensaje=mensaje;
+          SET pO_error=error;
+          SELECT mensaje,error;
+          LEAVE SP;
+      END IF;
+    END IF;
+
 
     -- Insertar Producto
     INSERT INTO producto (
@@ -192,9 +206,9 @@ CREATE PROCEDURE SP_Insertar_Producto(
    WHILE iterador<=contadorDigitos DO
         SET idCategoria = FN_Split_Str(cadena, ',', iterador);
         IF NOT(idCategoria='' OR idCategoria IS NULL) THEN
-      		 CALL SP_Insertar_Categoria_Producto(idCategoria, ultimoId, 'A',pO_mensaje, pO_error);
-             IF pO_error=TRUE THEN
-				        SET mensaje=pO_mensaje;
+      		 CALL SP_Insertar_Categoria_Producto(idCategoria, ultimoId, 'A',@mensajeInsertarCategoriaProducto, @errorInsertarCategoriaProducto);
+             IF @errorInsertarCategoriaProducto THEN
+				        SET mensaje=@mensajeInsertarCategoriaProducto;
                 SET error=TRUE;
                 SET pO_mensaje=mensaje;
                 SET pO_error=error;
@@ -208,11 +222,11 @@ CREATE PROCEDURE SP_Insertar_Producto(
 
 
     -- Insertar ImpuestoxProducto
-    CALL SP_Insertar_Impuesto_Producto(pI_id_impuesto, ultimoId, CURDATE(), DATE(''), 'A',pO_mensaje,pO_error);
+    CALL SP_Insertar_Impuesto_Producto(pI_id_impuesto, ultimoId, CURDATE(), DATE(''), 'A',@mensajeInsertarImpuestoProducto,@errorInsertarImpuestoProducto);
 
     -- var => pO_error de =>CALL SP_Insertar_Impuesto
-    IF pO_error=TRUE THEN
-        SET mensaje=pO_mensaje;
+    IF @errorInsertarImpuestoProducto THEN
+        SET mensaje=@mensajeInsertarImpuestoProducto;
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
