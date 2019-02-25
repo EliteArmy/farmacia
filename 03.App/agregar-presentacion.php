@@ -47,7 +47,7 @@
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar nueva presentación</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Nueva Presentación</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -56,8 +56,8 @@
         <div class="modal-body">
           <div class="row">
             <div class="form-group col-12 col-md-6">
-              <label for="txt-nombre-presentacion">Nombre presentación: </label>
-              <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="nombre de la presentacion" required autofocus>
+              <label for="txt-nombre-presentacion">Presentación: </label>
+              <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
             </div>
 
             
