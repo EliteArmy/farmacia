@@ -147,45 +147,6 @@ $("#slc-tipo").change(function(){
   }        
 });
 
-/* Test de Valores mandados de Productos */
-$("#btn-guard-prod").click(function(){
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://farma/services/producto.php",
-      "method": "POST",
-      "dataType": "JSON",
-      "headers": {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "accion": "crear-producto",
-        "id_presentacion": $("#slc-presentacion").val(),
-        "nombre": $("#nombre-producto").val(),
-        "codigo_barra": $("#codigo-barra").val(),
-        "url_foto": "",
-        "array_categoria": $("#slc-categoria").val().join(),
-        "id_impuesto": $("#slc-impuesto").val(),
-        "id_laboratorio": $("#slc-laboratorio").val() || 0,
-        "opcion": $("#slc-tipo").val()
-      }
-    }
-    
-    $.ajax(settings).done(function (response) {
-      if (response.data[0].error == 0) {
-        console.log(response.data);
-        $("#div-exito-producto").show();
-        $("#div-exito-producto").fadeOut(10000);
-      } else {
-        console.log(response);
-        $("#div-error-producto").show();
-        $("#div-error-producto").html(response.data[0].mensaje);
-        $("#div-error-producto").fadeOut(10000);
-      }
-    });
-
-});
-
 /* Test de Valores mandados de Lote */
 $("#btn-guard-lote").click(function(){
 

@@ -28,7 +28,7 @@
   <!-- Contenido -->
   <div class="container-fluid">
     <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-11">
+      <div class="col-xs-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
@@ -38,10 +38,19 @@
         <div class="row nuevo-boton">
           <!-- Button trigger para el modal -->
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#agregar-lote">
+            <button type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#agregar-lote">
               Agregar Nuevo Lote
             </button>
-          </div>  
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito-producto" class="alert alert-success" role="alert" style="display:none;">
+              Producto insertado con exito.
+            </div>
+            <div id="div-error-producto" class="alert alert-danger" role="alert" style="display:none;">
+              Error al insertar el Producto.
+            </div>            
+          </div>
         </div>
 
         <!-- Tabla de Lotes -->
