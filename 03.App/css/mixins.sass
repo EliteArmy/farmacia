@@ -40,8 +40,9 @@
   transition: background 0s !important
 
 =material-button($color)
-  +ripple($color)
-  &:hover
+  &:not([disabled = "disabled"])
+    +ripple($color)
+  &:hover:not([disabled = "disabled"])
     +ripple-hover($color)
-  &:active
+  &:active:not([disabled = "disabled"])
     +ripple-active($color)
