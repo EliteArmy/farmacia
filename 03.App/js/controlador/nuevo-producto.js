@@ -340,7 +340,7 @@ $("#btn-guard-lote").click(function(){
     
     $.ajax(settings).done(function (response) {
       //console.log(response.data)
-      if (response.data.resultado == 0) {
+      if (response.data.error == 0) {
         console.log(response.data);
         $("#div-exito-lote").show();
         $("#div-exito-lote").fadeOut(10000);
