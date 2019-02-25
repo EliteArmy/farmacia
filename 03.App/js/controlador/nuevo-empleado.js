@@ -79,10 +79,10 @@ $('#guard-empleado').click(function(){
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
+      // Se encarga de refrescar las tablas
+      $('#table-info').DataTable().ajax.reload();
       $("#div-exito").show();
       $("#div-exito").fadeOut(10000);
-       // Se encarga de refrescar las tablas
-      $('#table-info').DataTable().ajax.reload();
     } else {
       console.log(response);
       $("#div-error").show();
@@ -114,6 +114,9 @@ function funcionBorrar(vari){
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
+       // Se encarga de refrescar las tablas
+      $('#table-info').DataTable().ajax.reload();
+
       $("#div-exito-2").show();
       $("#div-exito-2").html(response.data.mensaje);
       $("#div-exito-2").fadeOut(10000);
@@ -125,8 +128,6 @@ function funcionBorrar(vari){
     }
   });
 
-  // Se encarga de refrescar las tablas
-  $('#table-info').DataTable().ajax.reload();
 }
 
 function funcionActualizar(vari){
