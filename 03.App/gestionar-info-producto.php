@@ -24,6 +24,7 @@
   <!-- Contenido -->
   <div class="container-fluid ">
     <div class="row justify-content-md-center ">
+      <div class="container well card">
       
         <div class="text-center ">
           <h4>Farmacia Esperanza</h4>
@@ -31,6 +32,7 @@
           <h4>RTN: 08011980123456</h4>
           <h4>Gestión de Productos</h4>
         </div>
+      </div>
 
         <div class="container ">
          <div class="row">
@@ -65,13 +67,12 @@
            <div class="modal-footer">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
            </div>
           </div>
 
           <div class="col-md-3">
-          
+           <div class="container-fluid well card">
            <h5>Agregar Impuesto</h5>
            <div class="form-group">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
@@ -107,14 +108,16 @@
            <div class="modal-footer">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+             
             </div>
            
          </div>
+       </div>
+
 
 
           <div class="col-md-3 sidebar" >
-        
+           <div class="container-fluid well card">
             <div class="form">
               <h5>Agregar Categoria</h5>
               <label for="txt-nombre-categoria">Nombre categoria: </label>
@@ -123,12 +126,14 @@
             <div class="modal-footer">
              <button type="button" class="btn btn-info" id="">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
-             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            
             </div>
 
           </div>
+        </div>
           
           <div class="col-md-3"> 
+           <div class="container-fluid well card">
             <div class="form">
               <h5>Agregar Presentacion</h5>
               <label for="txt-nombre-presentacion">Presentación: </label>
@@ -137,8 +142,9 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              
             </div>
+           </div>
           </div>
        
 
