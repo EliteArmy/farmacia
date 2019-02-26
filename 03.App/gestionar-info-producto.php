@@ -104,11 +104,24 @@
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
             <textarea class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus></textarea>
            </div>
-
-
-
-
+           <div class="form-group">
+            <label for="in-descuento">Porcentaje Descuento:</label>
+            <input type="number" min="1" max="100" id="in-descuento" name="in-descuento" placeholder="%">
+           </div>
            
+
+           <div class="form-group col-md-6" >
+            <label for="fecha-inicio">Fecha Inicio:</label>
+            <input type="date" id="fecha-inicio" name="fecha-inicio" class="form" align="left">
+          
+            <label for="fecha-final">Fecha  Final: </label>
+            <input type="date" id="fecha-final" name="fecha-final" class="form">
+           </d
+
+
+
+
+
            <div class="modal-footer">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
