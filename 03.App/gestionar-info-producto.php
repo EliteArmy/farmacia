@@ -23,19 +23,19 @@
 
   <!-- Contenido -->
   <div class="container-fluid ">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center ">
       
-        <div class="text-center">
+        <div class="text-center ">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
           <h4>Gestión de Productos</h4>
         </div>
 
-        <div class="container well card">
+        <div class="container ">
          <div class="row">
-
-          <div class="col-md-3">
+          <div class="col-md-3 ">
+           <div class="container-fluid will card">
            <h5>Agregar Descuento</h5>
            <div class="form-group">
               <label for="txt-descripcion">Inserte Descripción: </label>
@@ -67,7 +67,7 @@
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
-
+           </div>
           </div>
 
           <div class="col-md-3">
