@@ -71,12 +71,19 @@
           </div> 
           
           <div class=col-md-3>
+          
            <h5>Impuesto</h5>
+          
+           <div class="form-group">
+            <label for="in-descuento">Porcentaje Descuento:</label>
+            <input type="number" min="1" max="100" id="in-descuento" name="in-descuento" placeholder="%">
+           </div>
+            
            <div class="form-group">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
             <textarea class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus></textarea>
-          </div>
-          
+           </div>
+           
          </div>
 
 
