@@ -39,20 +39,10 @@
            <h5>Agregar Descuento</h5>
            <div class="form-group">
               <label for="txt-descripcion">Inserte Descripción: </label>
-              <textarea class="form-control" id="txt-descripcion" name="txt-descripcion"  rows="3" required autofocus></textarea>
+             <input class="form-control" id="txt-descripcion" name="txt-descripcion"  rows="3" required autofocus>
            </div>
 
 
-           <div class="col-md-8">
-           <div class="input-group">
-           <div class="input-group-prepend">
-           <div class="input-group-text">%</div>
-           </div>
-            
-            <input type="number" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
-           
-           </div>
-           </div>
 
            <div class="form-group col-md-12" >
             <label for="fecha-inicio">Fecha Inicio:</label>
@@ -75,7 +65,7 @@
            <h5>Agregar Impuesto</h5>
            <div class="form-group">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
-            <textarea class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus></textarea>
+            <input class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus>
            </div>
 
            <div class="col-md-8">
