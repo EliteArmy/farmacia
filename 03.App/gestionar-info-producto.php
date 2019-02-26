@@ -116,7 +116,7 @@
           
             <label for="fecha-final">Fecha  Final: </label>
             <input type="date" id="fecha-final" name="fecha-final" class="form">
-           </d
+           </div>
 
 
 
