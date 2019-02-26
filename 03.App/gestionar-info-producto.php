@@ -39,7 +39,7 @@
           <div class="col-md-3 ">
            <div class="container-fluid will card">
            <h5>Agregar Descuento</h5>
-           <div class="form-group">
+           <div class="form-group col-md-12">
               <label for="txt-descripcion">Inserte Descripción: </label>
              <input class="form-control" id="txt-descripcion" name="txt-descripcion"  rows="3" required autofocus>
            </div>
@@ -74,7 +74,7 @@
           <div class="col-md-3">
            <div class="container-fluid well card">
            <h5>Agregar Impuesto</h5>
-           <div class="form-group">
+           <div class="form-group col-md-12">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
             <input class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus>
            </div>
