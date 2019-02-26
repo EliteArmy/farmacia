@@ -113,9 +113,20 @@ class Empleado extends Persona{
 	}
 
   public static function leer($conexion){
-	  $sql = 'SELECT * FROM VistaEmpleado2';
+	  $sql = 'SELECT * FROM VistaEmpleado';
 	  $rows = $conexion->query($sql);
     return $rows;
+  }
+
+	public function leerPorId($conexion){
+	  $sql = '
+			SELECT * FROM VistaEmpleado
+			WHERE id_empleado = %s
+		';
+		$valores = [$this->getIdEmpleado()];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows)) return $rows[0];
+		else return null;
   }
 
 	public function crear($conexion){
@@ -145,21 +156,21 @@ class Empleado extends Persona{
 			$this->getFotoUrl(),
 			$this->getIdTipoUsuario()
     ];
-    
+
 		$rows = $conexion->query($sql, $valores);
-    
+
     return $rows[0];
   }
 
 	public function borrar($conexion){
 		$sql = 'CALL SP_Eliminar_Empleado(%s, @mensaje, @error);';
-    
+
     $valores = [
 			$this->getIdEmpleado()
 		];
-    
+
     $rows = $conexion->query($sql, $valores);
-    
+
     return $rows[0];
   }
 
@@ -171,9 +182,9 @@ class Empleado extends Persona{
 			@mensaje,@error
 		);
 		";
-    
+
     $this->contrasena = hash('sha512', $this->contrasena);
-    
+
     $valores = [
 			$this->getIdEmpleado(),
 			$this->getPrimerNombre(),
@@ -199,20 +210,20 @@ class Empleado extends Persona{
   }
 
 	public function login($conexion){
-    
+
     $sql = "CALL SP_LOGIN('%s','%s')";
-    
+
     $this->contrasena = hash('sha512',$this->contrasena);
-    
+
     $valores = [$this->usuario, $this->contrasena];
-    
+
     $rows = $conexion->query($sql, $valores);
-    
+
     if (count($rows) == 1 && isset($rows[0]["id_empleado"])){
 			$rows[0]["permisos"] = explode(",",$rows[0]["permisos"]);
-      
+
       session_start();
-      
+
       $_SESSION["usuario"] = $rows[0]["usuario"];
 			$_SESSION["foto_url"] = $rows[0]["foto_url"];
 			$_SESSION["id_empleado"] = $rows[0]["id_empleado"];
@@ -224,7 +235,7 @@ class Empleado extends Persona{
 			$_SESSION["telefono"] = $rows[0]["telefono"];
 			$_SESSION["permisos"] = $rows[0]["permisos"];
     }
-    
+
 		return $rows[0];
 	}
 

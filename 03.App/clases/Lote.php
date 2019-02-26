@@ -122,8 +122,18 @@ class Lote extends Producto{
 		";
 		$valores = [$this->getIdLote()];
 		$rows = $conexion->query($sql, $valores);
-		return $rows;
+		if (count($rows)) return $rows[0];
+		else return null;
 	}
+
+	public function leerDescuentoPorId($conexion){
+		$sql = "SELECT * FROM descuento WHERE id_descuento = %d";
+		$valores = [$this->getIdDescuento()];
+		$rows = $conexion -> query($sql, $valores);
+		if (count($rows)) return $rows[0];
+		else return null;
+	}
+
 	public function actualizar($conexion){
 	}
 	public function borrar($conexion){

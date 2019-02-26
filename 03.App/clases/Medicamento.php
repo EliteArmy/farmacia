@@ -42,12 +42,10 @@ class Medicamento extends Producto{
 
 	public function crear($conexion){
 		$opcion = $this->esMedicamento ? 'M': 'P';
-    
     $sql = "CALL SP_Insertar_Producto(
 			%s, '%s', '%s', '%s', '%s' ,%s
 			,%s, '%s', @mensaje, @error
     );";
-    
 		$valores = [
 			$this->getIdPresentacion(),
 			$this->getNombre(),
@@ -58,9 +56,7 @@ class Medicamento extends Producto{
 			$this->getIdLaboratorio(),
 			$opcion
     ];
-    
 		$rows = $conexion->query($sql, $valores);
-    
     return $rows;
 	}
 

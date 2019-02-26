@@ -17,11 +17,19 @@ if(isset($_POST['accion'])){
       $contrasena = validarPOST('contrasena');
 
       $empleado= new Empleado();
-      
+
       $empleado -> setUsuario($usuario);
       $empleado -> setContrasena($contrasena);
-      
+
       $res['data'] = $empleado->login($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-empleado-id':
+      $idEmpleado = validarPOST('id_empleado');
+      $empleado = new Empleado();
+      $empleado->setIdEmpleado($idEmpleado);
+      $res['data'] = $empleado->leerPorId($conexion);
       echo json_encode($res);
     break;
 
@@ -46,7 +54,7 @@ if(isset($_POST['accion'])){
       $contrasena = validarPOST('contrasena');
       $fotoUrl = validarPOST('foto_url');
       $idTipoUsuario = validarPOST('id_tipo_usuario');
-      
+
       $empleado = new Empleado();
 
       $empleado->setPrimerNombre($primerNombre);
@@ -64,7 +72,7 @@ if(isset($_POST['accion'])){
       $empleado->setContrasena($contrasena);
       $empleado->setFotoUrl($fotoUrl);
       $empleado->setIdTipoUsuario($idTipoUsuario);
-      
+
       $res['data'] = $empleado->crear($conexion);
       echo json_encode($res);
     break;
@@ -89,7 +97,7 @@ if(isset($_POST['accion'])){
       $estado = validarPOST('estado');
 
       $idTipoUsuario = validarPOST('id_tipo_usuario');
-      
+
       $empleado = new Empleado();
 
       $empleado->setIdEmpleado($idEmpleado);
@@ -106,11 +114,11 @@ if(isset($_POST['accion'])){
       $empleado->setTelefonoAntiguo($telefonoAntiguo);
       $empleado->setFechaIngreso($fechaIngreso);
       $empleado->setUsuario($usuario);
-      
+
       $empleado->setFotoUrl($fotoUrl);
       $empleado->setEstado($estado);
       $empleado->setIdTipoUsuario($idTipoUsuario);
-      
+
       $res['data'] = $empleado->actualizar($conexion);
       echo json_encode($res);
     break;
@@ -120,7 +128,7 @@ if(isset($_POST['accion'])){
       $empleado = new Empleado();
       $empleado->setIdEmpleado($idEmpleado);
       $res['data'] = $empleado->borrar($conexion);
-      
+
       echo json_encode($res);
     break;
 

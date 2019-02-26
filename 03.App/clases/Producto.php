@@ -148,12 +148,31 @@ class Producto{
 	public function actualizar($conexion){
   }
   public static function leer($conexion){
-		$sql = 'SELECT * FROM producto';
+		$sql = '
+			SELECT
+  			*,
+  			(pro.id_producto IN (SELECT id_producto FROM medicamentos)) as es_medicamento
+  			,(SELECT presentacion FROM presentacion WHERE pro.id_presentacion = id_presentacion) as presentacion
+				,CASE WHEN (pro.id_producto IN (SELECT id_producto FROM medicamentos)) = TRUE
+					THEN (SELECT nombre_laboratorio FROM laboratorio WHERE id_laboratorio = (SELECT id_laboratorio FROM medicamentos WHERE id_producto = pro.id_producto))
+					ELSE \'\' END as laboratorio
+			FROM producto pro
+		';
 		return $conexion -> query($sql);
 	}
-	public function borrar($conexion){
-  }
 
+	public function borrar($conexion){
+	}
+
+	public function leerCategoriaPorId($conexion){
+		$sql = '
+			SELECT * FROM categoria WHERE id_categoria = %s
+		';
+		$valores = [$this->getIdCategoria()];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows)) return $rows[0];
+		else return null;
+	}
 
   public function crearCategoria($conexion){
 		$sql = "CALL SP_Insertar_Categoria('%s');";

@@ -10,6 +10,7 @@ SELECT
   ,p.fecha_nacimiento
   ,p.numero_identidad
   ,e.foto_url
+  ,e.estado
   ,CONCAT(primer_nombre , (CASE WHEN segundo_nombre is NULL THEN '' ELSE CONCAT(' ', segundo_nombre) END)) as nombres
   ,CONCAT(primer_apellido , (CASE WHEN segundo_apellido IS NULL THEN '' ELSE CONCAT(' ' , segundo_apellido) END)) as apellidos
   ,CONCAT (
@@ -42,7 +43,3 @@ INNER JOIN empleado e
 ;
 
 SELECT * FROM VistaEmpleado;
-
-UPDATE empleado
-SET foto_url = 'https://www.alfabetajuega.com/wp-content/uploads/2018/10/alfabetajuega-a16-260118.jpg'
-WHERE id_empleado>=1;

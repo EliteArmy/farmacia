@@ -19,6 +19,14 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-categoria-id':
+      $idCategoria = validarPOST('id_categoria');
+      $producto = new Producto();
+      $producto->setIdCategoria($idCategoria);
+      $res['data'] = $producto->leerCategoriaPorId($conexion);
+      echo json_encode($res);
+    break;
+
     case 'leer-impuesto':
       $res['data'] = Producto::leerImpuesto($conexion);
       echo json_encode($res);
@@ -26,6 +34,14 @@ if(isset($_POST['accion'])){
 
     case 'leer-descuento':
       $res['data'] = Producto::leerDescuento($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-descuento-id':
+      $idDescuento = validarPOST('id_descuento');
+      $lote = new Lote();
+      $lote->setIdDescuento($idDescuento);
+      $res['data'] = $lote->leerDescuentoPorId($conexion);
       echo json_encode($res);
     break;
 
@@ -131,7 +147,7 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'leer-producto-id':
+    case 'leer-lote-id':
       $idLote = validarPOST('id_lote');
       $lot = new Lote();
       $lot->setIdLote($idLote);
