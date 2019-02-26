@@ -218,29 +218,62 @@ $("#btn-guard-producto").click(function(){
     $.ajax(settings).done(function (response) {
       if (response.data[0].error == 0) {
         console.log(response.data);
-        $("#div-exito-producto").show();
-        $("#div-exito-producto").fadeOut(10000);
+        $('#table-info').DataTable().ajax.reload();
+        $("#div-exito").show();
+        $("#div-exito").html(response.data[0].mensaje);
+        $("#div-exito").fadeOut(10000);
       } else {
         console.log(response);
-        $("#div-error-producto").show();
-        $("#div-error-producto").html(response.data[0].mensaje);
-        $("#div-error-producto").fadeOut(10000);
+        $("#div-error").show();
+        $("#div-error").html(response.data[0].mensaje);
+        $("#div-error").fadeOut(10000);
       }
     });
 
 });
 
 /* Pruebas de los Fonts */
-function funcionBorrar(vari){
-  alert("Borrando.. " + vari);
+function funcionBorrar(nomb){
+  alert("Borrando.. " + nomb);
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/empleado.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "eliminar-",
+      "id_producto": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    if (response.data.error == 0) {
+      console.log(response.data);
+      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+      $("#div-exito").show();
+      $("#div-exito").html(response.data.mensaje);
+      $("#div-exito").fadeOut(10000);
+    } else {
+      console.log(response);
+      $("#div-error").show();
+      $("#div-error").html(response.data.mensaje);
+      $("#div-error").fadeOut(10000);
+    }
+  });
+
 }
 
-function funcionActualizar(vari){
-  alert("Actualizando.. " + vari);
+function funcionActualizar(nomb){
+  alert("Actualizando.. " + nomb);
 }
 
-function funcionMostrar(vari){
-  alert("Mostrar Más.. " + vari);
+function funcionMostrar(nomb){
+  alert("Mostrar Más.. " + nomb);
 }
 
 

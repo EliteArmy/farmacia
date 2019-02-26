@@ -11,7 +11,8 @@ formaLote.addInput('slc-prod');
 formaLote.setButton('btn-guard-lote');
 Forma.addTrigger(formaLote);
 
-/* Hay un bug con el reset, no valida bien*/
+/* Hay un bug con el reset: no valida bien luego de usar el boton de reset*/
+/* El mensaje no deberia de aparecer en rojo inicialmente */
 
 $(document).ready(function() {
 
@@ -104,9 +105,9 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { data: "nombre", title:"Nombre"},
+      { data: "lote", title:"Nombre Lote"},
+      { data: "nombre", title:"Nombre Prod."},
       { data: "codigo_barra", title:"Código Barra"},
-      { data: "lote", title:"Lote"},
       { data: "existencia", title:"Existencia"},
       { data: "precio_costo_unidad", title:"P. Costo"},
       { data: "precio_venta_unidad", title:"P. Venta"},
@@ -186,16 +187,47 @@ $("#btn-guard-lote").click(function(){
 });
 
 /* Pruebas de los Fonts */
-function funcionBorrar(vari){
-  alert("Borrando.. " + vari);
+function funcionBorrar(nomb){
+  alert("Borrando.. " + nomb);
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/empleado.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "eliminar-",
+      "id_lote": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    if (response.data.error == 0) {
+      console.log(response.data);
+      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+      $("#div-exito").show();
+      $("#div-exito").html(response.data.mensaje);
+      $("#div-exito").fadeOut(10000);
+    } else {
+      console.log(response);
+      $("#div-error").show();
+      $("#div-error").html(response.data.mensaje);
+      $("#div-error").fadeOut(10000);
+    }
+  });
+
 }
 
-function funcionActualizar(vari){
-  alert("Actualizando.. " + vari);
+function funcionActualizar(nomb){
+  alert("Actualizando.. " + nomb);
 }
 
-function funcionMostrar(vari){
-  alert("Mostrar Más.. " + vari);
+function funcionMostrar(nomb){
+  alert("Mostrar Más.. " + nomb);
 }
 
     

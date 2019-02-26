@@ -92,8 +92,7 @@ $('#guard-empleado').click(function(){
 
 });
 
-/* Pruebas de los Fonts */
-function funcionBorrar(vari){
+function funcionBorrar(nomb){
 
   var settings = {
     "async": true,
@@ -106,24 +105,22 @@ function funcionBorrar(vari){
     },
     "data": {
       "accion": "eliminar-empleado",
-      "id_empleado": vari
+      "id_empleado": nomb
     }
   }
   
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
-       // Se encarga de refrescar las tablas
-      $('#table-info').DataTable().ajax.reload();
-
-      $("#div-exito-2").show();
-      $("#div-exito-2").html(response.data.mensaje);
-      $("#div-exito-2").fadeOut(10000);
+      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+      $("#div-exito").show();
+      $("#div-exito").html(response.data.mensaje);
+      $("#div-exito").fadeOut(10000);
     } else {
       console.log(response);
-      $("#div-error-2").show();
-      $("#div-error-2").html(response.data.mensaje);
-      $("#div-error-2").fadeOut(10000);
+      $("#div-error").show();
+      $("#div-error").html(response.data.mensaje);
+      $("#div-error").fadeOut(10000);
     }
   });
 

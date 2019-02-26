@@ -83,7 +83,7 @@
           <div class="row">
             <div class="form-group col-12 col-md-6">
               <label for="lote">Nombre del Lote</label>
-              <input id="lote" type="text" class="form-control" placeholder="Nombre Lote">
+              <input id="lote" type="text" class="form-control" placeholder="Nombre del Lote">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -126,10 +126,10 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <div id="div-exito-lote" class="alert alert-success" role="alert" style="display:none;">
+              <div id="div-exito-lote" class="alert alert-success nuevo-alert" role="alert" style="display:none;">
                 Lote insertado con exito.
               </div>
-              <div id="div-error-lote" class="alert alert-danger" role="alert" style="display:none;">
+              <div id="div-error-lote" class="alert alert-danger nuevo-alert" role="alert" style="display:none;">
                 Error al insertar el Lote.
               </div>            
             </div>
