@@ -66,7 +66,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-info" id="">Reset</button>
-          <button type="button" class="btn btn-primary" id="guard-empleado">Guardar Cambios</button>
+          <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar Cambios</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
 
