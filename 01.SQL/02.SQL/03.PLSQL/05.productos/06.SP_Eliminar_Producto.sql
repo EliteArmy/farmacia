@@ -45,7 +45,6 @@ CREATE PROCEDURE SP_Eliminar_Producto(
         LEAVE SP;
    END IF;   
 
-
      UPDATE producto 
          SET
              estado = "I"
@@ -53,19 +52,37 @@ CREATE PROCEDURE SP_Eliminar_Producto(
              producto.id_producto= pI_id_producto;
    
      COMMIT;
+
+     SELECT COUNT(*) INTO contador FROM producto p 
+     INNER JOIN medicamentos m ON p.id_producto= m.id_producto
+     WHERE p.id_producto= pI_id_producto;
+
+     IF contador>0 THEN
+       SELECT id_medicamento INTO contador FROM producto p 
+       INNER JOIN medicamentos m ON p.id_producto= m.id_producto
+       WHERE p.id_producto= pI_id_producto;
+
+        UPDATE medicamentos 
+         SET
+             estado = "I"
+         WHERE
+             medicamentos.id_medicamento= contador;
+       COMMIT;
+    END IF;
      SET mensaje= 'Eliminación exitosa';
      SET error=FALSE;
      SET pO_mensaje=mensaje;
      SET pO_error=error;
      SELECT mensaje,error;
-
 END $$
 
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Eliminar_Producto(8, @mensaje,@error);
+CALL SP_Eliminar_Producto(201, @mensaje,@error);
 SELECT @mensaje, @error;
 
-SELECT * FROM producto
+SELECT * FROM producto where id_producto=201
+select * from medicamentos
+SELECT * FROM medicamentos WHERE id_producto=201;
 
