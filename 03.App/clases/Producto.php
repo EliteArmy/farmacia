@@ -129,9 +129,7 @@ class Producto{
 	}
 
 
-	public function crear($conexion){
-	}
-	public static function leer($conexion){
+	public static function leerLote($conexion){
 		$sql = '
 			SELECT
   			id_producto, id_lote, lote, precio_venta_unidad, precio_costo_unidad,
@@ -143,15 +141,19 @@ class Producto{
 		$rows = $conexion->query($sql);
 		return $rows;
 	}
+
+
+	public function crear($conexion){
+	}
 	public function actualizar($conexion){
+  }
+  public static function leer($conexion){
+		$sql = 'SELECT * FROM producto';
+		return $conexion -> query($sql);
 	}
 	public function borrar($conexion){
   }
 
-	public static function leerProdLote($conexion){
-		$sql = 'SELECT * FROM producto';
-		return $conexion -> query($sql);
-	}
 
   public function crearCategoria($conexion){
 		$sql = "CALL SP_Insertar_Categoria('%s');";

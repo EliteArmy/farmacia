@@ -39,13 +39,13 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'leer-producto-lote':
-      $res['data'] = Producto::leerProdLote($conexion);
+    case 'leer-producto':
+      $res['data'] = Producto::leer($conexion);
       echo json_encode($res);
     break;
 
-    case 'leer-producto':
-      $res['data'] = Producto::leer($conexion);
+    case 'leer-lote-producto':
+      $res['data'] = Producto::leerLote($conexion);
       echo json_encode($res);
     break;
 

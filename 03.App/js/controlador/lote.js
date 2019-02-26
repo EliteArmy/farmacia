@@ -76,7 +76,7 @@ $(document).ready(function() {
     $('.selectpicker').selectpicker('refresh');
   }
 
-  // ---- Leer Productos (DataTables): ----
+  // ---- Lote Productos (DataTables): ----
   $('#table-info').DataTable({
     pageLength: 10,
     searching: true,
@@ -93,13 +93,13 @@ $(document).ready(function() {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "leer-producto"
+        "accion": "leer-lote-producto"
       }
     },
     language: {
       oPaginate: {
-          sNext: '<i class="fa fa-forward"></i>',
-          sPrevious: '<i class="fa fa-backward"></i>'
+          sNext: '<i class="fas fa-forward"></i>',
+          sPrevious: '<i class="fas fa-backward"></i>'
       }
     },
     columns: [
@@ -134,17 +134,6 @@ $(document).ready(function() {
     $("#codigo-barra").val("");
   });
 
-});
-
-/* Funcion de ocultar y Mostrar Laboratorio*/
-$("#slc-tipo").change(function(){
-  var selected = $('#slc-tipo option:selected').val();
-  if(selected == "M"){
-    $('#laboratorio').show();
-  } else {
-    $('#laboratorio').hide();
-    $('#slc-laboratorio').val("");
-  }        
 });
 
 /* Test de Valores mandados de Lote */

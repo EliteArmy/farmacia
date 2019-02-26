@@ -132,14 +132,15 @@
 
         <div class="modal-footer">
           <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupFileAddon">Subir</span>
-              </div>
-              <div class="custom-file">
-                <label class="custom-file-label" for="inputGroupFile">Elegir una Fotografía</label>
-                <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
-              </div>
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon">Subir</span>
             </div>
+            
+            <div class="custom-file">
+              <label class="custom-file-label" for="inputGroupFile">Elegir una Fotografía</label>
+              <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+            </div>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -162,6 +163,8 @@
 
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
+  
+  <script type="text/javascript" src="./js/validate.js"></script>
   <script type="text/javascript" src="./js/controlador/producto.js"></script>
 
 </body>
