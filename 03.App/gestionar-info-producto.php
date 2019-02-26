@@ -22,7 +22,7 @@
   <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
-  <div class="container-fluid">
+  <div class="container-fluid ">
     <div class="row justify-content-md-center">
       
         <div class="text-center">
@@ -32,7 +32,7 @@
           <h4>Gestión de Productos</h4>
         </div>
 
-        <div class="container">
+        <div class="container well card">
          <div class="row">
 
           <div class="col-md-3">
@@ -41,8 +41,18 @@
               <label for="txt-descripcion">Inserte Descripción: </label>
              <input class="form-control" id="txt-descripcion" name="txt-descripcion"  rows="3" required autofocus>
            </div>
-
-
+          
+           <div class="col-md-8">
+           <div class="input-group">
+           <div class="input-group-prepend">
+           <div class="input-group-text">%</div>
+           </div>
+            
+            <input type="number" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
+           
+           </div>
+           </div>
+          
 
            <div class="form-group col-md-12" >
             <label for="fecha-inicio">Fecha Inicio:</label>
@@ -60,7 +70,7 @@
 
           </div>
 
-          <div class=col-md-3>
+          <div class="col-md-3">
           
            <h5>Agregar Impuesto</h5>
            <div class="form-group">
@@ -74,11 +84,13 @@
            <div class="input-group-text">%</div>
            </div>
             
-            <input type="number" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
+            <input type="number" class="form-control" min="1" max="100" id="in-impuesto" name="in-impuesto">
            
            </div>
            </div>
           
+
+
 
            <div class="form-group col-md-12" >
             <label for="fecha-inicio">Fecha Inicio:</label>
@@ -101,7 +113,7 @@
          </div>
 
 
-          <div class="col-md-3 sidebar" style="background-color: #3e69ac">
+          <div class="col-md-3 sidebar" >
         
             <div class="form">
               <h5>Agregar Categoria</h5>
