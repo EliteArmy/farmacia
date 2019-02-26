@@ -218,7 +218,7 @@ $("#btn-guard-producto").click(function(){
     $.ajax(settings).done(function (response) {
       if (response.data[0].error == 0) {
         console.log(response.data);
-        $('#table-info').DataTable().ajax.reload();
+        $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
         $("#div-exito").show();
         $("#div-exito").html(response.data[0].mensaje);
         $("#div-exito").fadeOut(10000);
@@ -232,21 +232,20 @@ $("#btn-guard-producto").click(function(){
 
 });
 
-/* Pruebas de los Fonts */
 function funcionBorrar(nomb){
   alert("Borrando.. " + nomb);
 
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
+    "url": "http://farma/services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "eliminar-",
+      "accion": "eliminar-producto",
       "id_producto": nomb
     }
   }
@@ -269,7 +268,7 @@ function funcionBorrar(nomb){
 }
 
 function funcionActualizar(nomb){
-  alert("Actualizando.. " + nomb);
+  alert("Actualizando en proceso.. " + nomb);
 }
 
 function funcionMostrar(nomb){

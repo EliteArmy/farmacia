@@ -143,7 +143,7 @@ $(".cerrar").click(function(){
   $("#codigo-barra").val("");
 });
 
-/* Test de Valores mandados de Lote */
+/* Creación de nuevos Lotes */
 $("#btn-guard-lote").click(function(){
 
     var settings = {
@@ -169,7 +169,6 @@ $("#btn-guard-lote").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      //console.log(response.data)
       if (response.data.error == 0) {
         console.log(response.data);
         $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
@@ -186,21 +185,20 @@ $("#btn-guard-lote").click(function(){
 
 });
 
-/* Pruebas de los Fonts */
 function funcionBorrar(nomb){
   alert("Borrando.. " + nomb);
 
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
+    "url": "http://farma/services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "eliminar-",
+      "accion": "eliminar-lote",
       "id_lote": nomb
     }
   }
@@ -223,7 +221,7 @@ function funcionBorrar(nomb){
 }
 
 function funcionActualizar(nomb){
-  alert("Actualizando.. " + nomb);
+  alert("Actualizando en proceso.. " + nomb);
 }
 
 function funcionMostrar(nomb){

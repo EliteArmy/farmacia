@@ -44,11 +44,9 @@
           </div>
 
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success" role="alert" style="display:none;">
-              Producto insertado con exito.
+            <div id="div-exito" class="alert alert-success nuevo-alert" role="alert" style="display:none;">
             </div>
-            <div id="div-error" class="alert alert-danger" role="alert" style="display:none;">
-              Error al insertar el Producto.
+            <div id="div-error" class="alert alert-danger nuevo-alert" role="alert" style="display:none;">
             </div>            
           </div>
         </div>
