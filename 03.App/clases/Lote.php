@@ -113,6 +113,17 @@ class Lote extends Producto{
 	}
 	public static function leer($conexion){
 	}
+	public function leerPorId($conexion){
+		$sql = "
+			SELECT
+				*
+			FROM VistaInventarioMercaderia
+			WHERE id_lote = '%s'
+		";
+		$valores = [$this->getIdLote()];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
+	}
 	public function actualizar($conexion){
 	}
 	public function borrar($conexion){

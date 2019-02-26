@@ -84,9 +84,9 @@ if(isset($_POST['accion'])){
       $idImpuesto = validarPOST('id_impuesto');
       $idLaboratorio = validarPOST('id_laboratorio');
       $opcion = validarPOST('opcion');
-      
+
       $prod  = new Medicamento();
-      
+
       $prod -> setIdPresentacion($idPresentacion);
       $prod -> setNombre($nombre);
       $prod -> setCodigoBarra($codigoBarra);
@@ -94,7 +94,7 @@ if(isset($_POST['accion'])){
       $prod -> setIdCategoria($idCategoria);
       $prod -> setIdImpuesto($idImpuesto);
       $prod -> setIdLaboratorio($idLaboratorio);
-      
+
       if ($opcion == 'P') {
         $prod->setEsMedicamento(false);
       } else if ($opcion == 'M') {
@@ -102,10 +102,10 @@ if(isset($_POST['accion'])){
       }
 
       $res["data"] = $prod->crear($conexion); // Medicamento::crear()
-      
+
       echo json_encode($res);
     break;
-    
+
     case 'crear-lote':
       $idProducto = validarPOST('id_producto');
       $lote = validarPOST('lote');
@@ -117,7 +117,7 @@ if(isset($_POST['accion'])){
       $idDescuento = validarPOST('id_descuento');
 
       $lot = new Lote();
-      
+
       $lot->setIdProducto($idProducto);
       $lot->setLote($lote);
       $lot->setPrecioCosto($precioCostoUnidad);
@@ -126,8 +126,16 @@ if(isset($_POST['accion'])){
       $lot->setFechaVencimiento($fechaVencimiento);
       $lot->setExistencia($existencia);
       $lot->setIdDescuento($idDescuento);
-      
+
       $res["data"] = $lot->crear($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-producto-id':
+      $idLote = validarPOST('id_lote');
+      $lot = new Lote();
+      $lot->setIdLote($idLote);
+      $res['data'] = $lot->leerPorId($conexion);
       echo json_encode($res);
     break;
 
