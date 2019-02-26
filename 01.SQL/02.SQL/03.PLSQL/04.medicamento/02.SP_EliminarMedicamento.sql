@@ -53,12 +53,12 @@ CREATE PROCEDURE SP_Eliminar_Medicamento(
              medicamentos.id_medicamento= pI_id_medicamento;
    
      COMMIT;
-     SET mensaje= 'Eliminacion exitosa';
+     SET mensaje= 'Eliminación exitosa';
      SET error=FALSE;
      SET pO_mensaje=mensaje;
      SELECT mensaje,error;
 
-    END $$
+END $$
 
 
 

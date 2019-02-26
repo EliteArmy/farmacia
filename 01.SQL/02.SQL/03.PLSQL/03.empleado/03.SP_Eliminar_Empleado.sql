@@ -48,7 +48,7 @@ SP:BEGIN
             empleado.id_empleado = pI_id_empleado ;
     COMMIT;
 
-    SET mensaje='Eliminacion exitosa';
+    SET mensaje='Eliminación exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

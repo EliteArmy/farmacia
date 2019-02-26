@@ -53,7 +53,7 @@ CREATE PROCEDURE SP_Eliminar_Producto(
              producto.id_producto= pI_id_producto;
    
      COMMIT;
-     SET mensaje= 'Eliminacion exitosa';
+     SET mensaje= 'Eliminación exitosa';
      SET error=FALSE;
      SET pO_mensaje=mensaje;
      SET pO_error=error;

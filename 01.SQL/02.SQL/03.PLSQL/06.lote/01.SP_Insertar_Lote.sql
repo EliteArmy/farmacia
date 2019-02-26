@@ -167,7 +167,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
     END IF;
     
 
-    SET mensaje="Insercion exitosa";
+    SET mensaje="Inserción exitosa";
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

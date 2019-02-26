@@ -84,7 +84,7 @@ CREATE PROCEDURE SP_Insertar_Categoria_Producto(
                                   pI_id_producto,
 			                        		pI_estado);
     COMMIT;
-    SET mensaje='Incercion Exitosa';
+    SET mensaje='Incerción Exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

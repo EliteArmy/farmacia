@@ -206,7 +206,7 @@ SP:BEGIN
       COMMIT; 
     END IF;
     
-    SET mensaje='Actualizacion exitosa';
+    SET mensaje='Actualización exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

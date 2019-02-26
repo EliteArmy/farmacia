@@ -111,7 +111,7 @@ CREATE PROCEDURE SP_Actualizar_Producto(
              producto.id_producto = pI_id_producto;
        
     COMMIT;
-     SET mensaje= 'Actualizacion exitosa';
+     SET mensaje= 'Actualización exitosa';
      SET error=FALSE;
      SET pO_mensaje=mensaje;
      SELECT mensaje,error;

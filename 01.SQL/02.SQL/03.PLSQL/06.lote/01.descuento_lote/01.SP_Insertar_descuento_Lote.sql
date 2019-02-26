@@ -99,7 +99,7 @@ CREATE PROCEDURE SP_Insertar_Descuento_Lote(
 			                    		pI_fecha_fin,
 			                    		pI_estado);
     COMMIT;
-    SET mensaje='Insercion exitosa';
+    SET mensaje='Inserción exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

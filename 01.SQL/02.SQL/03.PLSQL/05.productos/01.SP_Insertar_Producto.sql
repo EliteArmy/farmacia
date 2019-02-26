@@ -242,7 +242,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
 
    
   -- Mensaje de salida, proceso exitoso
-   SET mensaje='Insercion exitosa';
+   SET mensaje='Inserción exitosa';
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
