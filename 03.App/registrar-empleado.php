@@ -197,11 +197,13 @@
   <script type="text/javascript" src="./js/popper.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="/plugin/bootstrap-select/js/bootstrap-select.js"></script>
-  <script type="text/javascript" src="/plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
+  <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
 
-  <script type="text/javascript" src="/plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
-  <script type="text/javascript" src="/plugin/data-tables/js/datatables.js"></script>
+  <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
+  
+  <script type="text/javascript" src="./js/validate.js"></script>
   <script type="text/javascript" src="./js/controlador/empleado.js"></script>
 
 </body>

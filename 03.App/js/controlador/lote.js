@@ -11,6 +11,7 @@ formaLote.addInput('slc-prod');
 formaLote.setButton('btn-guard-lote');
 Forma.addTrigger(formaLote);
 
+/* Hay un bug con el reset, no valida bien*/
 
 $(document).ready(function() {
 
@@ -56,7 +57,7 @@ $(document).ready(function() {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "leer-producto-lote"
+      "accion": "leer-producto"
     }
   }
 
@@ -120,20 +121,25 @@ $(document).ready(function() {
     ]
   });
 
-  $("#reset-prod").click(function(){
-    $('.selectpicker').selectpicker('val', '');
-    $('.selectpicker').selectpicker('refresh');
-    $("#nombre-producto").val("");
-    $("#codigo-barra").val("");
-  });
+});
 
-  $(".cerrar").click(function(){
-    $('.selectpicker').selectpicker('val', '');
-    $('.selectpicker').selectpicker('refresh');
-    $("#nombre-producto").val("");
-    $("#codigo-barra").val("");
-  });
+/* Reset de Valores del Formulario */
+$("#reset-lote").click(function(){
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+  $("#lote").val("");
+  $("#precio-compra").val("");
+  $("#precio-venta").val("");
+  $("#fecha-elab").val("");
+  $("#fecha-venc").val("");
+  $("#cantidad").val("");
+});
 
+$(".cerrar").click(function(){
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+  $("#nombre-producto").val("");
+  $("#codigo-barra").val("");
 });
 
 /* Test de Valores mandados de Lote */
@@ -165,13 +171,15 @@ $("#btn-guard-lote").click(function(){
       //console.log(response.data)
       if (response.data.error == 0) {
         console.log(response.data);
-        $("#div-exito-lote").show();
-        $("#div-exito-lote").fadeOut(10000);
+        $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+        $("#div-exito").show();
+        $("#div-exito").html(response.data.mensaje);
+        $("#div-exito").fadeOut(10000);
       } else {
         console.log(response);
-        $("#div-error-lote").show();
-        $("#div-error-lote").html(response.data.mensaje);
-        $("#div-error-lote").fadeOut(10000);
+        $("#div-error").show();
+        $("#div-error").html(response.data.mensaje);
+        $("#div-error").fadeOut(10000);
       }
     });
 

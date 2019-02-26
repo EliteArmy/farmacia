@@ -56,6 +56,7 @@
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <table id="table-info" class="display table-striped table-bordered" style="width: 100%;">
+            
             </table>
           </div>
         </div>
@@ -130,6 +131,7 @@
           </div>
         </div>
 
+        <!-- Solo es para la separación en el Modal -->
         <div class="modal-footer">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -145,7 +147,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-info" id="reset-prod">Reset</button>
-          <button type="button" class="btn btn-primary" id="btn-guard-prod">Guardar Cambios</button>
+          <button type="button" class="btn btn-primary" id="btn-guard-producto">Guardar Cambios</button>
           <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal">Cerrar</button>
         </div>
 

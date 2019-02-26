@@ -154,7 +154,7 @@ $(document).ready(function() {
       { data: "nombre", title:"Nombre"},
       { data: "codigo_barra", title:"Código Barra"},
       { data: "estado", title:"Estado"},
-      { data: null, title: "Opción",
+      { data: null, title: "Opción", width: "11%",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionActualizar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
                '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
@@ -163,23 +163,24 @@ $(document).ready(function() {
     ]
   });
 
-  $("#reset-prod").click(function(){
-    $('.selectpicker').selectpicker('val', '');
-    $('.selectpicker').selectpicker('refresh');
-    $("#nombre-producto").val("");
-    $("#codigo-barra").val("");
-  });
-
-  $(".cerrar").click(function(){
-    $('.selectpicker').selectpicker('val', '');
-    $('.selectpicker').selectpicker('refresh');
-    $("#nombre-producto").val("");
-    $("#codigo-barra").val("");
-  });
-
 });
 
-/* Funcion de ocultar y Mostrar Laboratorio*/
+/* Reset de Valores del Formulario */
+$("#reset-prod").click(function(){
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+  $("#nombre-producto").val("");
+  $("#codigo-barra").val("");
+});
+
+$(".cerrar").click(function(){
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+  $("#nombre-producto").val("");
+  $("#codigo-barra").val("");
+});
+
+/* Función de ocultar y mostrar Laboratorio*/
 $("#slc-tipo").change(function(){
   var selected = $('#slc-tipo option:selected').val();
   if(selected == "M"){
@@ -190,9 +191,8 @@ $("#slc-tipo").change(function(){
   }        
 });
 
-/* CMBIAR EL NOMBRE DE ESTE BOTON */
-/* Test de Valores mandados de Productos */
-$("#btn-guard-prod").click(function(){
+/* Creación de nuevos Productos */
+$("#btn-guard-producto").click(function(){
     var settings = {
       "async": true,
       "crossDomain": true,

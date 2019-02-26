@@ -79,8 +79,7 @@ $('#guard-empleado').click(function(){
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
-      // Se encarga de refrescar las tablas
-      $('#table-info').DataTable().ajax.reload();
+      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
       $("#div-exito").show();
       $("#div-exito").fadeOut(10000);
     } else {
