@@ -73,14 +73,14 @@
             <textarea class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus></textarea>
            </div>
 
-           <div class="my-1">
+           <div class="col-md-8">
            <div class="input-group">
            <div class="input-group-prepend">
            <div class="input-group-text">%</div>
-          
+           </div>
             
             <input type="number" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
-           </div>
+           
            </div>
            </div>
           
