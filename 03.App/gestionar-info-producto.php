@@ -49,12 +49,12 @@
            </div>
            
 
-           <div class="form-group col-md-6" >
+           <div class="form-group col-md-12" >
             <label for="fecha-inicio">Fecha Inicio:</label>
-            <input type="date" id="fecha-inicio" name="fecha-inicio" class="form" align="left">
+            <input type="date" id="fecha-inicio" name="fecha-inicio" class="form-control" align="left">
           
             <label for="fecha-final">Fecha  Final: </label>
-            <input type="date" id="fecha-final" name="fecha-final" class="form">
+            <input type="date" id="fecha-final" name="fecha-final" class="form-control">
            </div>
 
            <div class="modal-footer">
@@ -63,7 +63,48 @@
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
 
+          </div>
+
+          <div class=col-md-3>
+          
+           <h5>Agregar Impuesto</h5>
+           <div class="form-group">
+            <label for="txt-descripcion-imp">Inserte Descripción: </label>
+            <textarea class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus></textarea>
            </div>
+
+           <div class="my-1">
+           <div class="input-group">
+           <div class="input-group-prepend">
+           <div class="input-group-text">%</div>
+          
+            
+            <input type="number" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
+           </div>
+           </div>
+           </div>
+          
+
+           <div class="form-group col-md-12" >
+            <label for="fecha-inicio">Fecha Inicio:</label>
+            <input type="date" id="fecha-inicio" name="fecha-inicio" class="form-control" align="left">
+          
+            <label for="fecha-final">Fecha  Final: </label>
+            <input type="date" id="fecha-final" name="fecha-final" class="form-control">
+           </div>
+
+
+
+
+
+           <div class="modal-footer">
+              <button type="button" class="btn btn-info" id="">Reset</button>
+              <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+           
+         </div>
+
 
           <div class="col-md-3 sidebar" style="background-color: #3e69ac">
         
@@ -97,39 +138,7 @@
 
 
           
-          <div class=col-md-3>
-          
-           <h5>Impuesto</h5>
-           <div class="form-group">
-            <label for="txt-descripcion-imp">Inserte Descripción: </label>
-            <textarea class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus></textarea>
-           </div>
-           <div class="form-group">
-            <label for="in-descuento">Porcentaje Descuento:</label>
-            <input type="number" min="1" max="100" id="in-descuento" name="in-descuento" placeholder="%">
-           </div>
-           
-
-           <div class="form-group col-md-6" >
-            <label for="fecha-inicio">Fecha Inicio:</label>
-            <input type="date" id="fecha-inicio" name="fecha-inicio" class="form" align="left">
-          
-            <label for="fecha-final">Fecha  Final: </label>
-            <input type="date" id="fecha-final" name="fecha-final" class="form">
-           </div>
-
-
-
-
-
-           <div class="modal-footer">
-              <button type="button" class="btn btn-info" id="">Reset</button>
-              <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-           
-         </div>
-
+         
 
 
        
