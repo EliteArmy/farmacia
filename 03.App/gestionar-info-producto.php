@@ -43,11 +43,16 @@
            </div>
 
 
-           <div class="form-group">
-            <label for="in-descuento">Porcentaje Descuento:</label>
-            <input type="number" min="1" max="100" id="in-descuento" name="in-descuento" placeholder="%">
+           <div class="col-md-8">
+           <div class="input-group">
+           <div class="input-group-prepend">
+           <div class="input-group-text">%</div>
            </div>
+            
+            <input type="number" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
            
+           </div>
+           </div>
 
            <div class="form-group col-md-12" >
             <label for="fecha-inicio">Fecha Inicio:</label>
