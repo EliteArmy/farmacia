@@ -32,6 +32,14 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-impuesto-id':
+      $idImpuesto = validarPOST('id_impuesto');
+      $producto = new Producto();
+      $producto->setIdImpuesto($idImpuesto);
+      $res['data'] = $producto->leerImpuestoPorId($conexion);
+      echo json_encode($res);
+    break;
+
     case 'leer-descuento':
       $res['data'] = Producto::leerDescuento($conexion);
       echo json_encode($res);
@@ -52,6 +60,14 @@ if(isset($_POST['accion'])){
 
     case 'leer-laboratorio':
       $res['data'] = Medicamento::leerLaboratorio($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-laboratorio-id':
+      $idLaboratorio = validarPOST('id_laboratorio');
+      $medic = new Medicamento();
+      $medic->setIdLaboratorio($idLaboratorio);
+      $res['data'] = $medic->leerLaboratorioPorId($conexion);
       echo json_encode($res);
     break;
 

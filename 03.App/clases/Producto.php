@@ -229,5 +229,13 @@ class Producto{
   public function borrarPresentacion($conexion){
 	}
 
+	public function leerImpuestoPorId($conexion){
+		$sql = 'SELECT * FROM impuesto WHERE id_impuesto = %d';
+		$valores = [$this->getIdImpuesto()];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows)) return $rows[0];
+		else return null;
+	}
+
 }
 ?>

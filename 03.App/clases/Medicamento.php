@@ -79,6 +79,14 @@ class Medicamento extends Producto{
 		$sql = "SELECT * FROM laboratorio";
 		return $conexion -> query($sql);
 	}
+
+	public function leerLaboratorioPorId($conexion){
+		$sql = 'SELECT * FROM laboratorio WHERE id_laboratorio = %d';
+		$valores = [$this->getIdLaboratorio()];
+		$rows = $conexion ->query($sql, $valores);
+		if (count($rows)) return $rows[0];
+		else return null;
+	}
 	public function borrarLaboratorio($conexion){
   }
 
