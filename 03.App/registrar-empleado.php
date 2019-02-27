@@ -43,9 +43,9 @@
           </div>
 
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito-2" class="alert alert-success nuevo-alert" role="alert" style="display:none;">
+            <div id="div-exito" class="alert alert-success nuevo-alert" role="alert" style="display:none;">
             </div>
-            <div id="div-error-2" class="alert alert-danger nuevo-alert" role="alert" style="display:none;">
+            <div id="div-error" class="alert alert-danger nuevo-alert" role="alert" style="display:none;">
             </div>            
           </div>
         </div>
@@ -79,63 +79,63 @@
         <div class="modal-body">
           <div class="row">
             <div class="form-group col-12 col-md-6">
-              <label for="txt-primer-nombre">Primer Nombre:</label>
-              <input type="text" class="form-control" id="txt-primer-nombre" name="txt-primer-nombre"  placeholder="Primer Nombre" required autofocus>
+              <label for="primer-nombre">Primer Nombre:</label>
+              <input type="text" class="form-control" id="primer-nombre" name="primer-nombre"  placeholder="Primer Nombre" required autofocus>
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="txt-segundo-nombre">Segundo Nombre:</label>
-              <input type="text" class="form-control" id="txt-segundo-nombre" name="txt-segundo-nombre" placeholder="Segundo Nombre">
+              <label for="segundo-nombre">Segundo Nombre:</label>
+              <input type="text" class="form-control" id="segundo-nombre" name="segundo-nombre" placeholder="Segundo Nombre">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="txt-primer-apellido">Primer Apellido:</label>
-              <input type="text" class="form-control" id="txt-primer-apellido" name="txt-primer-apellido" placeholder="Primer Apellido">
+              <label for="primer-apellido">Primer Apellido:</label>
+              <input type="text" class="form-control" id="primer-apellido" name="primer-apellido" placeholder="Primer Apellido">
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="txt-segundo-apellido">Segundo Apellido:</label>
-              <input type="text" class="form-control" id="txt-segundo-apellido" name="txt-segundo-apellido" placeholder="Segundo Apellido">
+              <label for="segundo-apellido">Segundo Apellido:</label>
+              <input type="text" class="form-control" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo Apellido">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-numero-identidad">Número de identidad:</label>
-              <input type="text" class="form-control" id="txt-numero-identidad" name="txt-numero-identidad" placeholder="0102199912345"> 
+              <label for="numero-identidad">Número de identidad:</label>
+              <input type="text" class="form-control" id="numero-identidad" name="numero-identidad" placeholder="0102199912345"> 
             </div>
 
             <div class="form-group col-12 col-md-6">
-              <label for="txt-telefono">Teléfono</label><br>
-              <input id="txt-telefono" class="form-control" type="text" step="1" placeholder="1234-5678">
+              <label for="telefono">Teléfono</label><br>
+              <input id="telefono" class="form-control" type="text" step="1" placeholder="1234-5678">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-correo-electronico">Correo Electrónico:</label>
-              <input type="text" class="form-control" id="txt-correo-electronico" name="txt-correo-electronico" placeholder=persona2018@gmail.com">
+              <label for="correo-electronico">Correo Electrónico:</label>
+              <input type="text" class="form-control" id="correo-electronico" name="correo-electronico" placeholder=persona2018@gmail.com">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-direccion">Dirección:</label>
-              <input type="text" class="form-control" id="txt-direccion" name="txt-direccion" placeholder="Dirección">
+              <label for="direccion">Dirección:</label>
+              <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6"> 
-              <label for="txt-fecha-nacimiento">Fecha Nacimiento:</label>
-              <input type="date" id="txt-fecha-nacimiento" class="form-control" placeholder="1999-12-31">
+              <label for="fecha-nacimiento">Fecha Nacimiento:</label>
+              <input type="date" id="fecha-nacimiento" class="form-control" placeholder="1999-12-31">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6"> 
-              <label for="txt-fecha-ingreso">Fecha Ingreso:</label>
-              <input type="date" id="txt-fecha-ingreso" class="form-control" placeholder="1999-12-31">
+              <label for="fecha-ingreso">Fecha Ingreso:</label>
+              <input type="date" id="fecha-ingreso" class="form-control" placeholder="1999-12-31">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-usuario">Usuario:</label>
-              <input type="text" class="form-control" id="txt-usuario" name="txt-usuario" placeholder="Usuario">
+              <label for="usuario">Usuario:</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="txt-contrasena">Contraseña</label>
-              <input type="password" class="form-control" id="txt-contrasena" name="txt-contrasena" placeholder="Contraseña">
+              <label for="contrasena">Contraseña</label>
+              <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -155,6 +155,14 @@
             </div>
         
             <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-estado">Estado:</label>
+              <select id="slc-estado" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+              <option value="A">Activo</option>  
+              <option value="I">Inactivo</option>
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="inputGroupFile01">Fotografía:<br></label>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -166,15 +174,6 @@
                   <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
                 </div>
               </div>
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <div id="div-exito" class="alert alert-success" role="alert" style="display:none;">
-                Empleado insertado con exito.
-              </div>
-              <div id="div-error" class="alert alert-danger" role="alert" style="display:none;">
-                Error al insertar el Empleado.
-              </div>            
             </div>
 
           </div>

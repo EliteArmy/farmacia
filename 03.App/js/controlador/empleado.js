@@ -36,9 +36,8 @@ $(document).ready(function() {
       { data: "sexo", title: "Sexo"},
       { data: null, title: "Opción",
       render: function (data, type, row, meta) {
-        return '<button type="button" onclick="funcionActualizar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-              '<button type="button" onclick="funcionBorrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
-              '<button type="button" onclick="funcionMostrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
+        return '<button type="button" onclick="funcionBuscar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+              '<button type="button" onclick="funcionBorrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
   });
@@ -59,19 +58,19 @@ $('#guard-empleado').click(function(){
     },
     "data": {
       "accion": "insertar-empleado",
-      "primer_nombre": $('#txt-primer-nombre').val(),
-      "segundo_nombre": $('#txt-segundo-nombre').val(),
-      "primer_apellido": $('#txt-primer-apellido').val(),
-      "segundo_apellido": $('#txt-segundo-apellido').val(),
+      "primer_nombre": $('#primer-nombre').val(),
+      "segundo_nombre": $('#segundo-nombre').val(),
+      "primer_apellido": $('#primer-apellido').val(),
+      "segundo_apellido": $('#segundo-apellido').val(),
       "sexo": $('#slc-sexo').val(),
-      "direccion": $('#txt-direccion').val(),
-      "correo_electronico": $('#txt-correo-electronico').val(),
-      "numero_identidad": $('#txt-numero-identidad').val(),
-      "telefono": $('#txt-telefono').val(),
-      "fecha_nacimiento": $('#txt-fecha-nacimiento').val(),
-      "fecha_ingreso": $('#txt-fecha-ingreso').val(),
-      "usuario": $('#txt-usuario').val(),
-      "contrasena": $('#txt-contrasena').val(),
+      "direccion": $('#direccion').val(),
+      "correo_electronico": $('#correo-electronico').val(),
+      "numero_identidad": $('#numero-identidad').val(),
+      "telefono": $('#telefono').val(),
+      "fecha_nacimiento": $('#fecha-nacimiento').val(),
+      "fecha_ingreso": $('#fecha-ingreso').val(),
+      "usuario": $('#usuario').val(),
+      "contrasena": $('#contrasena').val(),
       "foto_url": "",
       "id_tipo_usuario": $('#slc-tipo-usuario').val()
     }
@@ -93,10 +92,10 @@ $('#guard-empleado').click(function(){
 
 });
 
-/* CRUD Empleado: Update */
-function funcionActualizar(nomb){
-  alert("Actualizando en proceso de creación " + nomb);
-  /*
+/* Buscar un Empleado */
+function funcionBuscar(nomb){
+  alert("mensaje" + nomb);
+
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -107,43 +106,41 @@ function funcionActualizar(nomb){
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "actualizar-empleado",
-
-      "primer_nombre": $('#txt-primer-nombre').val(),
-      "segundo_nombre": $('#txt-segundo-nombre').val(),
-      "primer_apellido": $('#txt-primer-apellido').val(),
-      "segundo_apellido": $('#txt-segundo-apellido').val(),
-      "sexo": $('#slc-sexo').val(),
-      "direccion": $('#txt-direccion').val(),
-      "correo_electronico": $('#txt-correo-electronico').val(),
-      "numero_identidad": $('#txt-numero-identidad').val(),
-      "telefono": $('#txt-telefono').val(),
-      "fecha_nacimiento": $('#txt-fecha-nacimiento').val(),
-      "fecha_ingreso": $('#txt-fecha-ingreso').val(),
-      "usuario": $('#txt-usuario').val(),
-      "contrasena": $('#txt-contrasena').val(),
-      "foto_url": "",
-      "id_tipo_usuario": $('#slc-tipo-usuario').val()
+      "accion": "leer-empleado-id",
+      "id_empleado": nomb
     }
   }
   
   $.ajax(settings).done(function (response) {
-    if (response.data.error == 0) {
-      console.log(response.data);
-      $("#div-exito").show();
-      $("#div-exito").html(response.data.mensaje);
-      $("#div-exito").fadeOut(10000);
-    } else {
-      console.log(response);
-      $("#div-error").show();
-      $("#div-error").html(response.data.mensaje);
-      $("#div-error").fadeOut(10000);
-    }
-  });
-*/
 
-  // Se encarga de refrescar las tablas
-  // $('#table-info').DataTable().ajax.reload();
+    console.log(response.data);
+    $('#primer-nombre').val(response.data.primer_nombre);
+    $('#segundo-nombre').val(response.data.segundo_nombre);
+    $('#primer-apellido').val(response.data.primer_apellido);
+    $('#segundo-apellido').val(response.data.segundo_apellido);
+    $('#slc-sexo').val(response.data.sexo);
+    $('#direccion').val(response.data.direccion);
+    $('#correo-electronico').val(response.data.correo_electronico);
+    $('#numero-identidad').val(response.data.numero_identidad);
+    $('#telefono').val(response.data.telefono);
+    $('#fecha-nacimiento').val(response.data.fecha_nacimiento);
+    $('#fecha-ingreso').val(response.data.fecha_ingreso);
+    $('#usuario').val(response.data.usuario);
+    $('#contrasena').val(response.data.contrasena);
+    $('#slc-estado').val(response.data.estado);
+    $('#slc-tipo-usuario').val(response.data.id_tipo_usuario);
+      
+  });
+
+}
+
+/* CRUD Empleado: Update */
+function funcionActualizar(nomb){
+  alert("Actualizando en proceso de creación " + nomb);
+
+  
+  // $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+
 }
 
 /* CRUD Empleado: Delete */
