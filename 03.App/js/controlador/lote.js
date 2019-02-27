@@ -78,7 +78,7 @@ $(document).ready(function() {
     $('.selectpicker').selectpicker('refresh');
   }
 
-  // ---- Lote Productos (DataTables): ----
+  /* CRUD Lote: Read */
   $('#table-info').DataTable({
     pageLength: 10,
     searching: true,
@@ -124,26 +124,7 @@ $(document).ready(function() {
 
 });
 
-/* Reset de Valores del Formulario */
-$("#reset-lote").click(function(){
-  $('.selectpicker').selectpicker('val', '');
-  $('.selectpicker').selectpicker('refresh');
-  $("#lote").val("");
-  $("#precio-compra").val("");
-  $("#precio-venta").val("");
-  $("#fecha-elab").val("");
-  $("#fecha-venc").val("");
-  $("#cantidad").val("");
-});
-
-$(".cerrar").click(function(){
-  $('.selectpicker').selectpicker('val', '');
-  $('.selectpicker').selectpicker('refresh');
-  $("#nombre-producto").val("");
-  $("#codigo-barra").val("");
-});
-
-/* Creación de nuevos Lotes */
+/* CRUD Lote: Create */
 $("#btn-guard-lote").click(function(){
 
     var settings = {
@@ -185,6 +166,14 @@ $("#btn-guard-lote").click(function(){
 
 });
 
+/* CRUD Lote: Update */
+function funcionActualizar(nomb){
+  alert("Actualizando en proceso.. " + nomb);
+
+
+}
+
+/* CRUD Lote: Delete */
 function funcionBorrar(nomb){
   alert("Borrando.. " + nomb);
 
@@ -220,12 +209,22 @@ function funcionBorrar(nomb){
 
 }
 
-function funcionActualizar(nomb){
-  alert("Actualizando en proceso.. " + nomb);
-}
+/* Reset de Valores del Formulario */
+$("#reset-lote").click(function(){
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+  $("#lote").val("");
+  $("#precio-compra").val("");
+  $("#precio-venta").val("");
+  $("#fecha-elab").val("");
+  $("#fecha-venc").val("");
+  $("#cantidad").val("");
+});
 
-function funcionMostrar(nomb){
-  alert("Mostrar Más.. " + nomb);
-}
+$(".cerrar").click(function(){
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+  $("#nombre-producto").val("");
+  $("#codigo-barra").val("");
+});
 
-    

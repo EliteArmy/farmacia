@@ -124,7 +124,7 @@ $(document).ready(function() {
     $('.selectpicker').selectpicker('refresh');
   }
 
-  // ---- Leer Productos (DataTables): ----
+  /* CRUD Producto: Read */
   $('#table-info').DataTable({
     pageLength: 10,
     searching: true,
@@ -154,7 +154,7 @@ $(document).ready(function() {
       { data: "nombre", title:"Nombre"},
       { data: "codigo_barra", title:"Código Barra"},
       { data: "estado", title:"Estado"},
-      { data: null, title: "Opción", width: "11%",
+      { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionActualizar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
                '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
@@ -165,33 +165,7 @@ $(document).ready(function() {
 
 });
 
-/* Reset de Valores del Formulario */
-$("#reset-prod").click(function(){
-  $('.selectpicker').selectpicker('val', '');
-  $('.selectpicker').selectpicker('refresh');
-  $("#nombre-producto").val("");
-  $("#codigo-barra").val("");
-});
-
-$(".cerrar").click(function(){
-  $('.selectpicker').selectpicker('val', '');
-  $('.selectpicker').selectpicker('refresh');
-  $("#nombre-producto").val("");
-  $("#codigo-barra").val("");
-});
-
-/* Función de ocultar y mostrar Laboratorio*/
-$("#slc-tipo").change(function(){
-  var selected = $('#slc-tipo option:selected').val();
-  if(selected == "M"){
-    $('#laboratorio').show();
-  } else {
-    $('#laboratorio').hide();
-    $('#slc-laboratorio').val("");
-  }        
-});
-
-/* Creación de nuevos Productos */
+/* CRUD Producto: Create */
 $("#btn-guard-producto").click(function(){
     var settings = {
       "async": true,
@@ -232,6 +206,7 @@ $("#btn-guard-producto").click(function(){
 
 });
 
+/* CRUD Producto: Delete */
 function funcionBorrar(nomb){
   alert("Borrando.. " + nomb);
 
@@ -267,13 +242,33 @@ function funcionBorrar(nomb){
 
 }
 
+/* CRUD Producto: Update */
 function funcionActualizar(nomb){
   alert("Actualizando en proceso.. " + nomb);
 }
 
-function funcionMostrar(nomb){
-  alert("Mostrar Más.. " + nomb);
-}
+/* Reset de Valores del Formulario */
+$("#reset-prod").click(function(){
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+  $("#nombre-producto").val("");
+  $("#codigo-barra").val("");
+});
 
+$(".cerrar").click(function(){
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+  $("#nombre-producto").val("");
+  $("#codigo-barra").val("");
+});
 
-    
+/* Función de ocultar y mostrar Laboratorio*/
+$("#slc-tipo").change(function(){
+  var selected = $('#slc-tipo option:selected').val();
+  if(selected == "M"){
+    $('#laboratorio').show();
+  } else {
+    $('#laboratorio').hide();
+    $('#slc-laboratorio').val("");
+  }        
+});

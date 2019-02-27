@@ -1,6 +1,6 @@
 $(document).ready(function() {
   
-  // ---- Leer Empleados (DataTables): ----
+  /* CRUD Empleado: Read */
   $('#table-info').DataTable({
     pageLength: 10,
     searching: true,
@@ -39,12 +39,13 @@ $(document).ready(function() {
         return '<button type="button" onclick="funcionActualizar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
               '<button type="button" onclick="funcionBorrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
               '<button type="button" onclick="funcionMostrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
-}}
+      }}
     ]
   });
 
 });
 
+/* CRUD Empleado: Create */
 $('#guard-empleado').click(function(){
     
   var settings = {
@@ -92,42 +93,9 @@ $('#guard-empleado').click(function(){
 
 });
 
-function funcionBorrar(nomb){
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "eliminar-empleado",
-      "id_empleado": nomb
-    }
-  }
-  
-  $.ajax(settings).done(function (response) {
-    if (response.data.error == 0) {
-      console.log(response.data);
-      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-      $("#div-exito").show();
-      $("#div-exito").html(response.data.mensaje);
-      $("#div-exito").fadeOut(10000);
-    } else {
-      console.log(response);
-      $("#div-error").show();
-      $("#div-error").html(response.data.mensaje);
-      $("#div-error").fadeOut(10000);
-    }
-  });
-
-}
-
-function funcionActualizar(vari){
-  alert("Actualizando en proceso de creación " + vari);
+/* CRUD Empleado: Update */
+function funcionActualizar(nomb){
+  alert("Actualizando en proceso de creación " + nomb);
   /*
   var settings = {
     "async": true,
@@ -162,14 +130,14 @@ function funcionActualizar(vari){
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
-      $("#div-exito-2").show();
-      $("#div-exito-2").html(response.data.mensaje);
-      $("#div-exito-2").fadeOut(10000);
+      $("#div-exito").show();
+      $("#div-exito").html(response.data.mensaje);
+      $("#div-exito").fadeOut(10000);
     } else {
       console.log(response);
-      $("#div-error-2").show();
-      $("#div-error-2").html(response.data.mensaje);
-      $("#div-error-2").fadeOut(10000);
+      $("#div-error").show();
+      $("#div-error").html(response.data.mensaje);
+      $("#div-error").fadeOut(10000);
     }
   });
 */
@@ -178,6 +146,39 @@ function funcionActualizar(vari){
   // $('#table-info').DataTable().ajax.reload();
 }
 
-function funcionMostrar(vari){
-  alert("Mostrar Más.. " + vari);
+/* CRUD Empleado: Delete */
+function funcionBorrar(nomb){
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/empleado.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "eliminar-empleado",
+      "id_empleado": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    if (response.data.error == 0) {
+      console.log(response.data);
+      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+      $("#div-exito").show();
+      $("#div-exito").html(response.data.mensaje);
+      $("#div-exito").fadeOut(10000);
+    } else {
+      console.log(response);
+      $("#div-error").show();
+      $("#div-error").html(response.data.mensaje);
+      $("#div-error").fadeOut(10000);
+    }
+  });
+
 }
+
+
