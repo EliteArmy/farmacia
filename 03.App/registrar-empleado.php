@@ -110,14 +110,19 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="telefono">Teléfono</label><br>
-              <input id="telefono" class="form-control" type="text" step="1" placeholder="1234-5678">
-            </div>
-
-            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="correo-electronico">Correo Electrónico:</label>
               <input type="text" class="form-control" id="correo-electronico" name="correo-electronico" placeholder="correo@gmail.com">
             </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" class="form-control" type="text" placeholder="1234-5678">
+            </div>
+
+            <div id="tel-nuevo" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
+              <label for="telefono-nuevo">Teléfono Nuevo</label>
+              <input id="telefono-nuevo" class="form-control" type="text" placeholder="1234-5678">
+            </div>  
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="direccion">Dirección:</label>
@@ -168,7 +173,7 @@
               </select>
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6">
+            <div class="form-group col-12">
               <label for="inputGroupFile01">Fotografía:<br></label>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">

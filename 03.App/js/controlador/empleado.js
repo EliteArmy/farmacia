@@ -99,6 +99,7 @@ function funcionBuscar(nomb){
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
   $("#footer-actualizar").show();
+  $("#tel-nuevo").show();
 
   var settings = {
     "async": true,
@@ -142,6 +143,7 @@ function funcionBuscar(nomb){
 /* Función que se encarga de dejar los campos por defecto */
 $("#crear-empleado").click(function(){
   $("#footer-guardar").show();
+  $("#tel-nuevo").hide();
   $("#footer-actualizar").hide();
 
   $('#id-empleado').val("");
@@ -154,6 +156,7 @@ $("#crear-empleado").click(function(){
   $('#correo-electronico').val("");
   $('#numero-identidad').val("");
   $('#telefono').val("");
+  $('#telefono-nuevo').val("");
   $('#fecha-nacimiento').val("");
   $('#fecha-ingreso').val("");
   $('#usuario').val("");
@@ -162,14 +165,58 @@ $("#crear-empleado").click(function(){
   $('#slc-tipo-usuario').val("");
 });
 
-/* CRUD Empleado: Update */
-function funcionActualizar(nomb){
-  alert("Actualizando en proceso de creación " + nomb);
+$("#actualizar-empleado").click(function(){
 
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/empleado.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-empleado",
+      
+      "id-empleado": $('#id-empleado').val(),
+      "primer_nombre": $('#primer-nombre').val(),
+      "segundo_nombre": $('#segundo-nombre').val(),
+      "primer_apellido": $('#primer-apellido').val(),
+      "segundo_apellido": $('#segundo-apellido').val(),
+      "sexo": $('#slc-sexo').val(),
+      "direccion": $('#direccion').val(),
+      "correo_electronico": $('#correo-electronico').val(),
+      "numero_identidad": $('#numero-identidad').val(),
+      "fecha_nacimiento": $('#fecha-nacimiento').val(),
+      
+      "telefono": $('#telefono-nuevo').val(),
+      "telefono_antiguo": $('#telefono').val(),
+      
+      "fecha_ingreso": $('#fecha-ingreso').val(),
+      "usuario": $('#usuario').val(),
+      "foto_url": "",
+      "id_tipo_usuario": $('#slc-tipo-usuario').val()
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    if (response.data.error == 0) {
+      console.log(response.data);
+      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+      $("#div-exito").show();
+      $("#div-exito").html(response.data.mensaje);
+      $("#div-exito").fadeOut(10000);
+    } else {
+      console.log(response);
+      $("#div-error").show();
+      $("#div-error").html(response.data.mensaje);
+      $("#div-error").fadeOut(10000);
+    }
+  });
+  
+});
 
-  // $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-
-}
 
 /* CRUD Empleado: Delete */
 function funcionBorrar(nomb){

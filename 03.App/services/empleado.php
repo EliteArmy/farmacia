@@ -88,14 +88,14 @@ if(isset($_POST['accion'])){
       $correoElectronico = validarPOST('correo_electronico');
       $numeroIdentidad = validarPOST('numero_identidad');
       $fechaNacimiento = validarPOST('fecha_nacimiento');
+
       $telefono = validarPOST('telefono');
-      $telefonoAntiguo=validarPOST('telefono_antiguo');
+      $telefonoAntiguo = validarPOST('telefono_antiguo');
 
       $fechaIngreso = validarPOST('fecha_ingreso');
       $usuario = validarPOST('usuario');
       $fotoUrl = validarPOST('foto_url');
       $estado = validarPOST('estado');
-
       $idTipoUsuario = validarPOST('id_tipo_usuario');
 
       $empleado = new Empleado();
@@ -110,11 +110,12 @@ if(isset($_POST['accion'])){
       $empleado->setCorreoElectronico($correoElectronico);
       $empleado->setNumeroIdentidad($numeroIdentidad);
       $empleado->setFechaNacimiento($fechaNacimiento);
+
       $empleado->setTelefono($telefono);
       $empleado->setTelefonoAntiguo($telefonoAntiguo);
+
       $empleado->setFechaIngreso($fechaIngreso);
       $empleado->setUsuario($usuario);
-
       $empleado->setFotoUrl($fotoUrl);
       $empleado->setEstado($estado);
       $empleado->setIdTipoUsuario($idTipoUsuario);

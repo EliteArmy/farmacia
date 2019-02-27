@@ -106,7 +106,7 @@ class Empleado extends Persona{
 	}
 
 	public function getTelefonoAntiguo(){
-			return $this->telefonoAntiguo;
+		return $this->telefonoAntiguo;
 	}
 	public function setTelefonoAntiguo($telefonoAntiguo){
 		$this->telefonoAntiguo = $telefonoAntiguo;
@@ -147,9 +147,9 @@ class Empleado extends Persona{
 			$this->getSexo(),
 			$this->getDireccion(),
 			$this->getCorreoElectronico(),
-	        $this->getNumeroIdentidad(),
-	        $this->getFechaNacimiento(),
-	        $this->getTelefono(),
+	    $this->getNumeroIdentidad(),
+	    $this->getFechaNacimiento(),
+	    $this->getTelefono(),
 			$this->getFechaIngreso(),
 			$this->getUsuario(),
 			$this->getContrasena(),
@@ -179,11 +179,11 @@ class Empleado extends Persona{
 		CALL SP_Actualizar_Empleado(
 			%s,'%s','%s','%s','%s','%s','%s','%s',
 			'%s',DATE('%s'),'%s','%s',DATE('%s'),'%s','%s','%s',%s,
-			@mensaje,@error
+			@mensaje, @error
 		);
 		";
 
-    $this->contrasena = hash('sha512', $this->contrasena);
+    //$this->contrasena = hash('sha512', $this->contrasena);
 
     $valores = [
 			$this->getIdEmpleado(),
@@ -195,11 +195,11 @@ class Empleado extends Persona{
 			$this->getDireccion(),
 			$this->getCorreoElectronico(),
 			$this->getNumeroIdentidad(),
-            $this->getFechaNacimiento(),
-            $this->getTelefono(),
-            $this->getTelefonoAntiguo(),
+      $this->getFechaNacimiento(),
+      $this->getTelefono(),
+      $this->getTelefonoAntiguo(),
 			$this->getFechaIngreso(),
-            $this->getUsuario(),
+      $this->getUsuario(),
       // password
 			$this->getFotoUrl(),
 			$this->getEstado(),
