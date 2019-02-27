@@ -166,6 +166,43 @@ $("#btn-guard-lote").click(function(){
 
 });
 
+/* Buscar un Empleado */
+function funcionBuscar(nomb){
+  alert("mensaje" + nomb);
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/empleado.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-lote-id",
+      "id_empleado": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+
+    console.log(response.data);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+
+      
+  });
+
+}
+
 /* CRUD Lote: Update */
 function funcionActualizar(nomb){
   alert("Actualizando en proceso.. " + nomb);

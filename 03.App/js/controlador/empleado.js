@@ -36,8 +36,8 @@ $(document).ready(function() {
       { data: "sexo", title: "Sexo"},
       { data: null, title: "Opción",
       render: function (data, type, row, meta) {
-        return '<button type="button" onclick="funcionBuscar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-              '<button type="button" onclick="funcionBorrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        return '<button type="button" onclick="funcionBuscar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarempleado"><span class="far fa-edit edit"></span></button>'+
+              '<button type="button" onclick="funcionBorrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarempleado"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
   });
@@ -94,7 +94,11 @@ $('#guard-empleado').click(function(){
 
 /* Buscar un Empleado */
 function funcionBuscar(nomb){
-  alert("mensaje" + nomb);
+  //alert("mensaje" + nomb);
+
+  // Se hace el cambio del footer en el Modal
+  $("#footer-guardar").hide();
+  $("#footer-actualizar").show();
 
   var settings = {
     "async": true,
@@ -114,11 +118,12 @@ function funcionBuscar(nomb){
   $.ajax(settings).done(function (response) {
 
     console.log(response.data);
+    $('#id-empleado').val(response.data.id_empleado);
     $('#primer-nombre').val(response.data.primer_nombre);
     $('#segundo-nombre').val(response.data.segundo_nombre);
     $('#primer-apellido').val(response.data.primer_apellido);
     $('#segundo-apellido').val(response.data.segundo_apellido);
-    $('#slc-sexo').val(response.data.sexo);
+    $('#slc-sexo').selectpicker('val', response.data.sexo);
     $('#direccion').val(response.data.direccion);
     $('#correo-electronico').val(response.data.correo_electronico);
     $('#numero-identidad').val(response.data.numero_identidad);
@@ -126,19 +131,42 @@ function funcionBuscar(nomb){
     $('#fecha-nacimiento').val(response.data.fecha_nacimiento);
     $('#fecha-ingreso').val(response.data.fecha_ingreso);
     $('#usuario').val(response.data.usuario);
-    $('#contrasena').val(response.data.contrasena);
-    $('#slc-estado').val(response.data.estado);
-    $('#slc-tipo-usuario').val(response.data.id_tipo_usuario);
+    $('#contrasena').val("");
+    $('#slc-estado').selectpicker('val', response.data.estado);
+    $('#slc-tipo-usuario').selectpicker('val', response.data.id_tipo_usuario);
       
   });
 
 }
 
+/* Función que se encarga de dejar los campos por defecto */
+$("#crear-empleado").click(function(){
+  $("#footer-guardar").show();
+  $("#footer-actualizar").hide();
+
+  $('#id-empleado').val("");
+  $('#primer-nombre').val("");
+  $('#segundo-nombre').val("");
+  $('#primer-apellido').val("");
+  $('#segundo-apellido').val("");
+  $('#slc-sexo').val("");
+  $('#direccion').val("");
+  $('#correo-electronico').val("");
+  $('#numero-identidad').val("");
+  $('#telefono').val("");
+  $('#fecha-nacimiento').val("");
+  $('#fecha-ingreso').val("");
+  $('#usuario').val("");
+  $('#contrasena').val("");
+  $('#slc-estado').val("");
+  $('#slc-tipo-usuario').val("");
+});
+
 /* CRUD Empleado: Update */
 function funcionActualizar(nomb){
   alert("Actualizando en proceso de creación " + nomb);
 
-  
+
   // $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
 
 }
@@ -177,5 +205,4 @@ function funcionBorrar(nomb){
   });
 
 }
-
 

@@ -37,7 +37,7 @@
         <div class="row nuevo-boton">
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarempleado">
+            <button id="crear-empleado" type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarempleado">
               Agregar Nuevo Empleado
             </button>
           </div>
@@ -78,22 +78,28 @@
         
         <div class="modal-body">
           <div class="row">
-            <div class="form-group col-12 col-md-6">
+
+            <div class="form-group col-12" style="display:none;">
+              <label for="id-empleado"></label>
+              <input type="text" class="form-control" id="id-empleado" name="id-empleado"  placeholder="">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="primer-nombre">Primer Nombre:</label>
               <input type="text" class="form-control" id="primer-nombre" name="primer-nombre"  placeholder="Primer Nombre" required autofocus>
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="segundo-nombre">Segundo Nombre:</label>
               <input type="text" class="form-control" id="segundo-nombre" name="segundo-nombre" placeholder="Segundo Nombre">
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="primer-apellido">Primer Apellido:</label>
               <input type="text" class="form-control" id="primer-apellido" name="primer-apellido" placeholder="Primer Apellido">
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="segundo-apellido">Segundo Apellido:</label>
               <input type="text" class="form-control" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo Apellido">
             </div>
@@ -103,14 +109,14 @@
               <input type="text" class="form-control" id="numero-identidad" name="numero-identidad" placeholder="0102199912345"> 
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="telefono">Teléfono</label><br>
               <input id="telefono" class="form-control" type="text" step="1" placeholder="1234-5678">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="correo-electronico">Correo Electrónico:</label>
-              <input type="text" class="form-control" id="correo-electronico" name="correo-electronico" placeholder=persona2018@gmail.com">
+              <input type="text" class="form-control" id="correo-electronico" name="correo-electronico" placeholder="correo@gmail.com">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -179,9 +185,15 @@
           </div>
         </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" id="">Reset</button>
-          <button type="button" class="btn btn-primary" id="guard-empleado">Guardar Cambios</button>
+        <div id="footer-guardar" class="modal-footer">
+          <button type="button" class="btn btn-info" id="reset-emple">Reset</button>
+          <button type="button" class="btn btn-primary" id="guard-empleado">Crear Empleado</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+
+        <div id="footer-actualizar" class="modal-footer" style="display:none;">
+          <button type="button" class="btn btn-info" id="reset-emple">Reset</button>
+          <button type="button" class="btn btn-primary" id="actualizar-empleado">Actualizar Cambios</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
 
