@@ -119,6 +119,11 @@ function funcionBuscar(nomb){
   $.ajax(settings).done(function (response) {
 
     console.log(response.data);
+    
+    $('#telefono-nuevo').val("");
+    $('#telefono').prop('readonly', true);
+    $('#contrasena').prop('readonly', true);
+
     $('#id-empleado').val(response.data.id_empleado);
     $('#primer-nombre').val(response.data.primer_nombre);
     $('#segundo-nombre').val(response.data.segundo_nombre);
@@ -142,9 +147,11 @@ function funcionBuscar(nomb){
 
 /* Función que se encarga de dejar los campos por defecto */
 $("#crear-empleado").click(function(){
+  $("#footer-actualizar").hide();
   $("#footer-guardar").show();
   $("#tel-nuevo").hide();
-  $("#footer-actualizar").hide();
+  $('#telefono').prop('readonly', false);
+  $('#contrasena').prop('readonly', false);
 
   $('#id-empleado').val("");
   $('#primer-nombre').val("");
@@ -166,7 +173,7 @@ $("#crear-empleado").click(function(){
 });
 
 $("#actualizar-empleado").click(function(){
-
+  
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -179,7 +186,7 @@ $("#actualizar-empleado").click(function(){
     "data": {
       "accion": "actualizar-empleado",
       
-      "id-empleado": $('#id-empleado').val(),
+      "id_empleado": $('#id-empleado').val(),
       "primer_nombre": $('#primer-nombre').val(),
       "segundo_nombre": $('#segundo-nombre').val(),
       "primer_apellido": $('#primer-apellido').val(),
@@ -193,6 +200,7 @@ $("#actualizar-empleado").click(function(){
       "telefono": $('#telefono-nuevo').val(),
       "telefono_antiguo": $('#telefono').val(),
       
+      "estado":$('#slc-estado').val(),
       "fecha_ingreso": $('#fecha-ingreso').val(),
       "usuario": $('#usuario').val(),
       "foto_url": "",
