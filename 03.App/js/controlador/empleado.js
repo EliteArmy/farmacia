@@ -134,6 +134,7 @@ function funcionBuscar(nomb){
     $('#correo-electronico').val(response.data.correo_electronico);
     $('#numero-identidad').val(response.data.numero_identidad);
     $('#telefono').val(response.data.telefono);
+    $('#telefono-nuevo').val(response.data.telefono);
     $('#fecha-nacimiento').val(response.data.fecha_nacimiento);
     $('#fecha-ingreso').val(response.data.fecha_ingreso);
     $('#usuario').val(response.data.usuario);
