@@ -85,6 +85,16 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="usuario">Usuario:</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="contrasena">Contraseña</label>
+              <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="primer-nombre">Primer Nombre:</label>
               <input type="text" class="form-control" id="primer-nombre" name="primer-nombre"  placeholder="Primer Nombre" required autofocus>
             </div>
@@ -122,7 +132,12 @@
             <div id="tel-nuevo" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
               <label for="telefono-nuevo">Teléfono Nuevo</label>
               <input id="telefono-nuevo" class="form-control" type="text" placeholder="1234-5678">
-            </div>  
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6"> 
+              <label for="fecha-ingreso">Fecha Ingreso:</label>
+              <input type="date" id="fecha-ingreso" class="form-control" placeholder="1999-12-31">
+            </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="direccion">Dirección:</label>
@@ -134,34 +149,11 @@
               <input type="date" id="fecha-nacimiento" class="form-control" placeholder="1999-12-31">
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6"> 
-              <label for="fecha-ingreso">Fecha Ingreso:</label>
-              <input type="date" id="fecha-ingreso" class="form-control" placeholder="1999-12-31">
-            </div>
-
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="usuario">Usuario:</label>
-              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
-            </div>
-
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="contrasena">Contraseña</label>
-              <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
-            </div>
-
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-tipo-usuario">Tipo de Usuario:</label>
               <select id="slc-tipo-usuario" class="selectpicker form-control" title="Tipo de Usuario" data-style="btn-primary">
                 <option value="1">Administrador</option>
                 <option value="2">Cajero</option>
-              </select>
-            </div>
-
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="slc-sexo">Sexo:</label>
-              <select id="slc-sexo" class="selectpicker form-control" title="Sexo" data-style="btn-primary">
-              <option value="F">Femenino</option>  
-              <option value="M">Masculino</option>
               </select>
             </div>
         
@@ -170,6 +162,14 @@
               <select id="slc-estado" class="selectpicker form-control" title="Estado" data-style="btn-primary">
               <option value="A">Activo</option>  
               <option value="I">Inactivo</option>
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-sexo">Sexo:</label>
+              <select id="slc-sexo" class="selectpicker form-control" title="Sexo" data-style="btn-primary">
+              <option value="F">Femenino</option>  
+              <option value="M">Masculino</option>
               </select>
             </div>
 
