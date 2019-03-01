@@ -81,6 +81,7 @@ $('#guard-empleado').click(function(){
       console.log(response.data);
       $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
       $("#div-exito").show();
+      $("#div-exito").html(response.data.mensaje);
       $("#div-exito").fadeOut(10000);
     } else {
       console.log(response);

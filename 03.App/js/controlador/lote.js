@@ -166,9 +166,8 @@ $("#btn-guard-lote").click(function(){
 
 });
 
-/* Buscar un Empleado */
+/* Buscar un Lote */
 function funcionBuscar(nomb){
-  alert("mensaje" + nomb);
 
   var settings = {
     "async": true,
@@ -203,16 +202,41 @@ function funcionBuscar(nomb){
 
 }
 
+/* Función que se encarga de dejar los campos por defecto */
+$("#crear-lote").click(function(){
+  $("#footer-actualizar").hide();
+  $("#footer-guardar").show();
+  $("#tel-nuevo").hide();
+  $('#telefono').prop('readonly', false);
+  $('#contrasena').prop('readonly', false);
+
+  $('#id-empleado').val("");
+  $('#primer-nombre').val("");
+  $('#segundo-nombre').val("");
+  $('#primer-apellido').val("");
+  $('#segundo-apellido').val("");
+  $('#slc-sexo').val("");
+  $('#direccion').val("");
+  $('#correo-electronico').val("");
+  $('#numero-identidad').val("");
+  $('#telefono').val("");
+  $('#telefono-nuevo').val("");
+  $('#fecha-nacimiento').val("");
+  $('#fecha-ingreso').val("");
+  $('#usuario').val("");
+  $('#contrasena').val("");
+  $('#slc-estado').val("");
+  $('#slc-tipo-usuario').val("");
+});
+
 /* CRUD Lote: Update */
 function funcionActualizar(nomb){
   alert("Actualizando en proceso.. " + nomb);
-
 
 }
 
 /* CRUD Lote: Delete */
 function funcionBorrar(nomb){
-  alert("Borrando.. " + nomb);
 
   var settings = {
     "async": true,

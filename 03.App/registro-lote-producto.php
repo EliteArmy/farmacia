@@ -15,15 +15,15 @@
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>  
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
+
 
 </head>
 
 <body>
 
-  <?php
-    include("./navbar.php");
-  ?>
+  <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -35,18 +35,18 @@
           <h4>RTN: 08011980123456</h4>
         </div>
 
-        <div class="row nuevo-boton">
+        <div class="row mt-3 mb-3">
           <!-- Button trigger para el modal -->
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#agregar-lote">
+            <button id="crear-lote" type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-lote">
               Agregar Nuevo Lote
             </button>
           </div>
 
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert" role="alert" style="display:none;">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
             </div>
-            <div id="div-error" class="alert alert-danger nuevo-alert" role="alert" style="display:none;">
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
             </div>            
           </div>
         </div>
@@ -54,8 +54,8 @@
         <!-- Tabla de Lotes -->
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
-            <table id="table-info" class="display table-striped table-bordered" style="width: 100%;">
-            
+            <table id="table-info" class="display table-striped table-bordered w-100">
+              <!-- Informacion generada -->
             </table>
           </div>
         </div>
@@ -66,12 +66,12 @@
   <!-- FIN Contenido -->
 
     <!-- Modal Lote -->
-    <div class="modal fade" id="agregar-lote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="agregar-lote" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Lote</h5>
+          <h5 class="modal-title" id="ModalLabel">Agregar Nuevo Lote</h5>
           <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -79,7 +79,13 @@
         
         <div class="modal-body">
           <div class="row">
-            <div class="form-group col-12 col-md-6">
+
+            <div class="form-group col-12" style="display:none;">
+              <label for="id-lote"></label>
+              <input type="text" class="form-control" id="id-lote" name="id-lote"  placeholder="">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="lote">Nombre del Lote</label>
               <input id="lote" type="text" class="form-control" placeholder="Nombre del Lote">
             </div>
@@ -91,27 +97,27 @@
               </select>
             </div>
             
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="precio-compra">Precio de Compra</label><br>
               <input id="precio-compra" class="form-control" type="text" step="any" min="0" placeholder="0.00">
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="precio-venta">Precio de Venta</label><br>
               <input id="precio-venta" class="form-control" type="text" step="any" min="0" placeholder="0.00">
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="fecha-elab">Fecha de Elaboración</label><br>
               <input id="fecha-elab" class="form-control" type="date" placeholder="2000-12-31">
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="fecha-venc">Fecha de Vencimiento</label><br>
               <input id="fecha-venc" class="form-control" type="date" placeholder="2000-12-31">
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="cantidad">Cantidad</label><br>
               <input id="cantidad" class="form-control" type="number" step="1" min="0" placeholder="0">
             </div>
@@ -123,21 +129,18 @@
               </select>
             </div>
 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <div id="div-exito-lote" class="alert alert-success nuevo-alert" role="alert" style="display:none;">
-                Lote insertado con exito.
-              </div>
-              <div id="div-error-lote" class="alert alert-danger nuevo-alert" role="alert" style="display:none;">
-                Error al insertar el Lote.
-              </div>            
-            </div>
-
           </div>
         </div>
 
-        <div class="modal-footer">
+        <div id="footer-guardar" class="modal-footer">
           <button type="button" class="btn btn-info" id="reset-lote">Reset</button>
-          <button type="button" class="btn btn-primary" id="btn-guard-lote">Guardar Cambios</button>
+          <button type="button" class="btn btn-primary" id="btn-guard-lote">Crear Lote</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+
+        <div id="footer-actualizar" class="modal-footer" style="display:none;">
+          <button type="button" class="btn btn-info" id="reset-lote">Reset</button>
+          <button type="button" class="btn btn-primary" id="actualizar-lote">Actualizar Cambios</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
 

@@ -12,9 +12,11 @@
   <title>Registro de Empleados</title>
 
   <link rel="icon" href="./img/icon.png">
+
   <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
 
 </head>
@@ -34,7 +36,7 @@
           <h4>Registro de Productos</h4>
         </div>
 
-        <div class="row nuevo-boton">
+        <div class="row mt-3 mb-3">
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
             <button id="crear-empleado" type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarempleado">
@@ -43,9 +45,9 @@
           </div>
 
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert" role="alert" style="display:none;">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
             </div>
-            <div id="div-error" class="alert alert-danger nuevo-alert" role="alert" style="display:none;">
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
             </div>            
           </div>
         </div>
@@ -53,7 +55,8 @@
         <!-- Tabla de Empleados-->
         <div class="row">
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
-            <table id="table-info" class="display table-striped table-bordered" style="width: 100%;">
+            <table id="table-info" class="display table-striped table-bordered w-100">
+              <!-- Informacion generada -->
             </table>
           </div>
         </div>
@@ -65,12 +68,12 @@
   <!-- FIN Contenido -->
 
   <!-- Modal Empleado -->
-  <div class="modal fade" id="agregarempleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="agregarempleado" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Empleado</h5>
+          <h5 class="modal-title" id="ModalLabel">Agregar Nuevo Empleado</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

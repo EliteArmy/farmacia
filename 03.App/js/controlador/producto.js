@@ -208,7 +208,6 @@ $("#btn-guard-producto").click(function(){
 
 /* CRUD Producto: Delete */
 function funcionBorrar(nomb){
-  alert("Borrando.. " + nomb);
 
   var settings = {
     "async": true,
@@ -241,6 +240,20 @@ function funcionBorrar(nomb){
   });
 
 }
+
+/* Función que se encarga de dejar los campos por defecto */
+$("#crear-producto").click(function(){
+  $("#footer-actualizar").hide();
+  $("#footer-guardar").show();
+  
+  $('#nombre-producto').val("");
+  $('#codigo-barra').val("");
+  $('#slc-categoria').val("");
+  $('#slc-impuesto').val("");
+  $('#slc-presentacion').val("");
+  $('#slc-tipo').val("");
+  $('#slc-laboratorio').val("");
+});
 
 /* CRUD Producto: Update */
 function funcionActualizar(nomb){
