@@ -22,8 +22,8 @@ $(document).ready(function() {
     },
     language: {
       oPaginate: {
-          sNext: '<i class="fa fa-forward"></i>',
-          sPrevious: '<i class="fa fa-backward"></i>'
+          sNext: '<i class="fas fa-forward"></i>',
+          sPrevious: '<i class="fas fa-backward"></i>'
       }
     },
     columns: [
@@ -58,6 +58,7 @@ $('#guard-empleado').click(function(){
     },
     "data": {
       "accion": "insertar-empleado",
+
       "primer_nombre": $('#primer-nombre').val(),
       "segundo_nombre": $('#segundo-nombre').val(),
       "primer_apellido": $('#primer-apellido').val(),
@@ -79,12 +80,14 @@ $('#guard-empleado').click(function(){
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
+
       $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
       $("#div-exito").show();
       $("#div-exito").html(response.data.mensaje);
       $("#div-exito").fadeOut(10000);
     } else {
       console.log(response);
+
       $("#div-error").show();
       $("#div-error").html(response.data.mensaje);
       $("#div-error").fadeOut(10000);
@@ -95,11 +98,9 @@ $('#guard-empleado').click(function(){
 
 /* Buscar un Empleado */
 function funcionBuscar(nomb){
-  //alert("mensaje" + nomb);
-
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
-  $("#footer-actualizar").show();
+  $("#footer-actualizar").removeClass("d-none");
   $("#tel-nuevo").show();
 
   var settings = {
@@ -118,7 +119,6 @@ function funcionBuscar(nomb){
   }
   
   $.ajax(settings).done(function (response) {
-
     console.log(response.data);
     
     $('#telefono-nuevo').val("");
@@ -144,35 +144,7 @@ function funcionBuscar(nomb){
     $('#slc-tipo-usuario').selectpicker('val', response.data.id_tipo_usuario);
       
   });
-
 }
-
-/* Función que se encarga de dejar los campos por defecto */
-$("#crear-empleado").click(function(){
-  $("#footer-actualizar").hide();
-  $("#footer-guardar").show();
-  $("#tel-nuevo").hide();
-  $('#telefono').prop('readonly', false);
-  $('#contrasena').prop('readonly', false);
-
-  $('#id-empleado').val("");
-  $('#primer-nombre').val("");
-  $('#segundo-nombre').val("");
-  $('#primer-apellido').val("");
-  $('#segundo-apellido').val("");
-  $('#slc-sexo').val("");
-  $('#direccion').val("");
-  $('#correo-electronico').val("");
-  $('#numero-identidad').val("");
-  $('#telefono').val("");
-  $('#telefono-nuevo').val("");
-  $('#fecha-nacimiento').val("");
-  $('#fecha-ingreso').val("");
-  $('#usuario').val("");
-  $('#contrasena').val("");
-  $('#slc-estado').val("");
-  $('#slc-tipo-usuario').val("");
-});
 
 $("#actualizar-empleado").click(function(){
   
@@ -227,7 +199,6 @@ $("#actualizar-empleado").click(function(){
   
 });
 
-
 /* CRUD Empleado: Delete */
 function funcionBorrar(nomb){
 
@@ -249,12 +220,14 @@ function funcionBorrar(nomb){
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
+      
       $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
       $("#div-exito").show();
       $("#div-exito").html(response.data.mensaje);
       $("#div-exito").fadeOut(10000);
     } else {
       console.log(response);
+      
       $("#div-error").show();
       $("#div-error").html(response.data.mensaje);
       $("#div-error").fadeOut(10000);
@@ -263,3 +236,30 @@ function funcionBorrar(nomb){
 
 }
 
+/* Función que se encarga de dejar los campos por defecto */
+$(".reset").click(function(){
+  $("#footer-actualizar").addClass("d-none");
+  $("#footer-guardar").show();
+
+  $("#tel-nuevo").hide();
+  $('#telefono').prop('readonly', false);
+  $('#contrasena').prop('readonly', false);
+
+  $('#id-empleado').val("");
+  $('#primer-nombre').val("");
+  $('#segundo-nombre').val("");
+  $('#primer-apellido').val("");
+  $('#segundo-apellido').val("");
+  $('#slc-sexo').val("");
+  $('#direccion').val("");
+  $('#correo-electronico').val("");
+  $('#numero-identidad').val("");
+  $('#telefono').val("");
+  $('#telefono-nuevo').val("");
+  $('#fecha-nacimiento').val("");
+  $('#fecha-ingreso').val("");
+  $('#usuario').val("");
+  $('#contrasena').val("");
+  $('#slc-estado').val("");
+  $('#slc-tipo-usuario').val("");
+});

@@ -116,8 +116,7 @@ $(document).ready(function() {
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionActualizar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-               '<button type="button" onclick="funcionBorrar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
-               '<button type="button" onclick="funcionMostrar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
+               '<button type="button" onclick="funcionBorrar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
   });
@@ -138,6 +137,7 @@ $("#btn-guard-lote").click(function(){
       },
       "data": {
         "accion": "crear-lote",
+
         "id_producto": $("#slc-prod").val(),
         "lote": $("#lote").val(),
         "precio_costo_unidad": $("#precio-compra").val(),
@@ -152,12 +152,14 @@ $("#btn-guard-lote").click(function(){
     $.ajax(settings).done(function (response) {
       if (response.data.error == 0) {
         console.log(response.data);
+
         $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
         $("#div-exito").show();
         $("#div-exito").html(response.data.mensaje);
         $("#div-exito").fadeOut(10000);
       } else {
         console.log(response);
+
         $("#div-error").show();
         $("#div-error").html(response.data.mensaje);
         $("#div-error").fadeOut(10000);
@@ -168,11 +170,14 @@ $("#btn-guard-lote").click(function(){
 
 /* Buscar un Lote */
 function funcionBuscar(nomb){
+  // Se hace el cambio del footer en el Modal
+  $("#footer-guardar").hide();
+  $("#footer-actualizar").show();
 
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
+    "url": "http://farma/services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -180,14 +185,14 @@ function funcionBuscar(nomb){
     },
     "data": {
       "accion": "leer-lote-id",
-      "id_empleado": nomb
+      "id_lote": nomb
     }
   }
   
   $.ajax(settings).done(function (response) {
-
     console.log(response.data);
-    $('#').val(response.data.);
+
+    $('#id-lote').val(response.data.id_lote);
     $('#').val(response.data.);
     $('#').val(response.data.);
     $('#').val(response.data.);
@@ -197,37 +202,9 @@ function funcionBuscar(nomb){
     $('#').val(response.data.);
     $('#').val(response.data.);
 
-      
   });
 
 }
-
-/* Función que se encarga de dejar los campos por defecto */
-$("#crear-lote").click(function(){
-  $("#footer-actualizar").hide();
-  $("#footer-guardar").show();
-  $("#tel-nuevo").hide();
-  $('#telefono').prop('readonly', false);
-  $('#contrasena').prop('readonly', false);
-
-  $('#id-empleado').val("");
-  $('#primer-nombre').val("");
-  $('#segundo-nombre').val("");
-  $('#primer-apellido').val("");
-  $('#segundo-apellido').val("");
-  $('#slc-sexo').val("");
-  $('#direccion').val("");
-  $('#correo-electronico').val("");
-  $('#numero-identidad').val("");
-  $('#telefono').val("");
-  $('#telefono-nuevo').val("");
-  $('#fecha-nacimiento').val("");
-  $('#fecha-ingreso').val("");
-  $('#usuario').val("");
-  $('#contrasena').val("");
-  $('#slc-estado').val("");
-  $('#slc-tipo-usuario').val("");
-});
 
 /* CRUD Lote: Update */
 function funcionActualizar(nomb){
@@ -269,6 +246,30 @@ function funcionBorrar(nomb){
   });
 
 }
+
+/* Función que se encarga de dejar los campos por defecto */
+$("#crear-lote").click(function(){
+  $("#footer-actualizar").hide();
+  $("#footer-guardar").show();
+
+  $('#id-lote').val("");
+  $('#lote').val("");
+  $('#slc-prod').val("");
+  $('#precio-compra').val("");
+  $('#precio-venta').val("");
+  $('#fecha-elab').val("");
+  $('#fecha-venc').val("");
+  $('#cantidad').val("");
+  $('#slc-descuento').val("");
+  $('#telefono').val("");
+  $('#telefono-nuevo').val("");
+  $('#fecha-nacimiento').val("");
+  $('#fecha-ingreso').val("");
+  $('#usuario').val("");
+  $('#contrasena').val("");
+  $('#slc-estado').val("");
+  $('#slc-tipo-usuario').val("");
+});
 
 /* Reset de Valores del Formulario */
 $("#reset-lote").click(function(){

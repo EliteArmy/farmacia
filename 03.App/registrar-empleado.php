@@ -33,13 +33,13 @@
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
-          <h4>Registro de Productos</h4>
+          <h4>Registro de Empleados</h4>
         </div>
 
         <div class="row mt-3 mb-3">
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <!-- Button trigger para el modal -->
-            <button id="crear-empleado" type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarempleado">
+            <button id="crear-empleado" type="button" class="btn btn-primary reset" data-toggle="modal" data-target="#agregarempleado">
               Agregar Nuevo Empleado
             </button>
           </div>
@@ -82,9 +82,9 @@
         <div class="modal-body">
           <div class="row">
 
-            <div class="form-group col-12" style="display:none;">
+            <div class="form-group col-12 d-none">
               <label for="id-empleado"></label>
-              <input type="text" class="form-control" id="id-empleado" name="id-empleado"  placeholder="">
+              <input type="text" class="form-control" id="id-empleado" name="id-empleado">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -194,15 +194,15 @@
         </div>
 
         <div id="footer-guardar" class="modal-footer">
-          <button type="button" class="btn btn-info" id="reset-emple">Reset</button>
+          <button type="button" class="btn btn-info reset">Reset</button>
           <button type="button" class="btn btn-primary" id="guard-empleado">Crear Empleado</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div>
 
-        <div id="footer-actualizar" class="modal-footer" style="display:none;">
-          <button type="button" class="btn btn-info" id="reset-emple">Reset</button>
+        <div id="footer-actualizar" class="modal-footer d-none">
+          <button type="button" class="btn btn-info reset">Reset</button>
           <button type="button" class="btn btn-primary" id="actualizar-empleado">Actualizar Cambios</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div>
 
       </div>

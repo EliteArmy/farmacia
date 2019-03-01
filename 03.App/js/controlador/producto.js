@@ -157,8 +157,7 @@ $(document).ready(function() {
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionActualizar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-               '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>' + 
-               '<button type="button" onclick="funcionMostrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="fas fa-search-plus search"></span></button>';
+               '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
   });
@@ -178,6 +177,7 @@ $("#btn-guard-producto").click(function(){
       },
       "data": {
         "accion": "crear-producto",
+
         "id_presentacion": $("#slc-presentacion").val(),
         "nombre": $("#nombre-producto").val(),
         "codigo_barra": $("#codigo-barra").val(),
@@ -192,12 +192,14 @@ $("#btn-guard-producto").click(function(){
     $.ajax(settings).done(function (response) {
       if (response.data[0].error == 0) {
         console.log(response.data);
+
         $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
         $("#div-exito").show();
         $("#div-exito").html(response.data[0].mensaje);
         $("#div-exito").fadeOut(10000);
       } else {
         console.log(response);
+
         $("#div-error").show();
         $("#div-error").html(response.data[0].mensaje);
         $("#div-error").fadeOut(10000);
@@ -205,6 +207,48 @@ $("#btn-guard-producto").click(function(){
     });
 
 });
+
+/* Buscar un Producto */
+function funcionBuscar(nomb){
+  // Se hace el cambio del footer en el Modal
+  $("#footer-guardar").hide();
+  $("#footer-actualizar").show();
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-producto-id",
+      "id_producto": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+    
+    $('#id-producto').val(response.data.id_producto);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+    $('#').val(response.data.);
+      
+  });
+}
+
+/* CRUD Producto: Update */
+function funcionActualizar(nomb){
+  alert("Actualizando en proceso.. " + nomb);
+}
 
 /* CRUD Producto: Delete */
 function funcionBorrar(nomb){
@@ -245,7 +289,7 @@ function funcionBorrar(nomb){
 $("#crear-producto").click(function(){
   $("#footer-actualizar").hide();
   $("#footer-guardar").show();
-  
+
   $('#nombre-producto').val("");
   $('#codigo-barra').val("");
   $('#slc-categoria').val("");
@@ -254,11 +298,6 @@ $("#crear-producto").click(function(){
   $('#slc-tipo').val("");
   $('#slc-laboratorio').val("");
 });
-
-/* CRUD Producto: Update */
-function funcionActualizar(nomb){
-  alert("Actualizando en proceso.. " + nomb);
-}
 
 /* Reset de Valores del Formulario */
 $("#reset-prod").click(function(){
@@ -285,3 +324,4 @@ $("#slc-tipo").change(function(){
     $('#slc-laboratorio').val("");
   }        
 });
+

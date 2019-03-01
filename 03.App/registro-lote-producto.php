@@ -33,6 +33,7 @@
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
+          <h4>Registro de Lotes</h4>
         </div>
 
         <div class="row mt-3 mb-3">
@@ -80,9 +81,9 @@
         <div class="modal-body">
           <div class="row">
 
-            <div class="form-group col-12" style="display:none;">
+            <div class="form-group col-12 d-none">
               <label for="id-lote"></label>
-              <input type="text" class="form-control" id="id-lote" name="id-lote"  placeholder="">
+              <input type="text" class="form-control" id="id-lote" name="id-lote">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -99,12 +100,12 @@
             
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="precio-compra">Precio de Compra</label><br>
-              <input id="precio-compra" class="form-control" type="text" step="any" min="0" placeholder="0.00">
+              <input id="precio-compra" class="form-control" type="text" placeholder="0.00">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="precio-venta">Precio de Venta</label><br>
-              <input id="precio-venta" class="form-control" type="text" step="any" min="0" placeholder="0.00">
+              <input id="precio-venta" class="form-control" type="text" placeholder="0.00">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -133,15 +134,15 @@
         </div>
 
         <div id="footer-guardar" class="modal-footer">
-          <button type="button" class="btn btn-info" id="reset-lote">Reset</button>
+          <button type="button" class="btn btn-info reset">Reset</button>
           <button type="button" class="btn btn-primary" id="btn-guard-lote">Crear Lote</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div>
 
-        <div id="footer-actualizar" class="modal-footer" style="display:none;">
-          <button type="button" class="btn btn-info" id="reset-lote">Reset</button>
+        <div id="footer-actualizar" class="modal-footer d-none">
+          <button type="button" class="btn btn-info reset">Reset</button>
           <button type="button" class="btn btn-primary" id="actualizar-lote">Actualizar Cambios</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div>
 
       </div>
@@ -149,9 +150,9 @@
   </div>
   <!-- FIN Modal Lote -->
 
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/popper.min.js"></script>
+  <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
