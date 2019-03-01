@@ -21,11 +21,12 @@
   <!-- Contenido -->
   <div class="container-fluid">
     <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-11">
+      <div class="col-xs-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
+
         </div>
       </div>
     </div>

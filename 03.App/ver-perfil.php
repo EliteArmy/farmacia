@@ -29,6 +29,9 @@
         <div class="row">
           <div class="col-12 col-md-6 col-lg-6">
             <img src="<?php echo $_SESSION["foto_url"] ?>" alt="Foto" width="100% ">
+            <div class="row">
+              <input type="file" name="imagen" id="imagen">
+            </div>
           </div>
 
           <div class="col-12 col-md-6 col-lg-6">
@@ -64,7 +67,6 @@
                 <td>Fecha ingreso: </td>
                 <td><?php echo $_SESSION["fecha_ingreso"] ?></td>
               </tr>
-
               <tr>
                 <td colspan="2">
                   <button type="button" data-toggle="modal" data-target="#editarPerfil" class="btn btn-primary btn-block">Editar perfil</button>
@@ -111,5 +113,6 @@
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/ver-perfil.js"></script>
 </body>
 </html>
