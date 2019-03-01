@@ -115,8 +115,8 @@ $(document).ready(function() {
       { data: "categoria", title:"Categoria", width: "20%"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionActualizar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-               '<button type="button" onclick="funcionBorrar('+ row.existencia +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        return '<button type="button" onclick="funcionBuscar('+ row.id_lote +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-lote"><span class="far fa-edit edit"></span></button>'+
+               '<button type="button" onclick="funcionBorrar('+ row.id_lote +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-lote"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
   });
@@ -139,7 +139,7 @@ $("#btn-guard-lote").click(function(){
         "accion": "crear-lote",
 
         "id_producto": $("#slc-prod").val(),
-        "lote": $("#lote").val(),
+        "lote": $("#nombre-lote").val(),
         "precio_costo_unidad": $("#precio-compra").val(),
         "precio_venta_unidad": $("#precio-venta").val(),
         "fecha_elaboracion": $("#fecha-elab").val(),
@@ -152,14 +152,12 @@ $("#btn-guard-lote").click(function(){
     $.ajax(settings).done(function (response) {
       if (response.data.error == 0) {
         console.log(response.data);
-
         $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
         $("#div-exito").show();
         $("#div-exito").html(response.data.mensaje);
         $("#div-exito").fadeOut(10000);
       } else {
         console.log(response);
-
         $("#div-error").show();
         $("#div-error").html(response.data.mensaje);
         $("#div-error").fadeOut(10000);
@@ -172,7 +170,7 @@ $("#btn-guard-lote").click(function(){
 function funcionBuscar(nomb){
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
-  $("#footer-actualizar").show();
+  $("#footer-actualizar").removeClass("d-none");
 
   var settings = {
     "async": true,
@@ -191,16 +189,17 @@ function funcionBuscar(nomb){
   
   $.ajax(settings).done(function (response) {
     console.log(response.data);
+    $('#cantidad').prop('readonly', true);
 
     $('#id-lote').val(response.data.id_lote);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
+    $('#nombre-lote').val(response.data.lote);
+    //$('#slc-prod').val(response.data.placeholder);
+    $('#precio-compra').val(response.data.precio_costo_unidad);
+    $('#precio-venta').val(response.data.precio_venta_unidad);
+    $('#fecha-elab').val(response.data.fecha_elaboracion);
+    $('#fecha-venc').val(response.data.fecha_vencimiento);
+    $('#cantidad').val(response.data.existencia);
+    $('#slc-descuento').val(response.data.id_descuento);
 
   });
 
@@ -209,7 +208,6 @@ function funcionBuscar(nomb){
 /* CRUD Lote: Update */
 function funcionActualizar(nomb){
   alert("Actualizando en proceso.. " + nomb);
-
 }
 
 /* CRUD Lote: Delete */
@@ -234,13 +232,13 @@ function funcionBorrar(nomb){
     if (response.data.error == 0) {
       console.log(response.data);
       $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-      $("#div-exito").show();
       $("#div-exito").html(response.data.mensaje);
+      $("#div-exito").show();
       $("#div-exito").fadeOut(10000);
     } else {
       console.log(response);
-      $("#div-error").show();
       $("#div-error").html(response.data.mensaje);
+      $("#div-error").show();
       $("#div-error").fadeOut(10000);
     }
   });
@@ -248,45 +246,25 @@ function funcionBorrar(nomb){
 }
 
 /* Función que se encarga de dejar los campos por defecto */
-$("#crear-lote").click(function(){
-  $("#footer-actualizar").hide();
+$(".reset").click(function(){
+  // Se hace el cambio del footer en el Modal
+  $("#footer-actualizar").addClass("d-none");
   $("#footer-guardar").show();
 
-  $('#id-lote').val("");
-  $('#lote').val("");
-  $('#slc-prod').val("");
-  $('#precio-compra').val("");
-  $('#precio-venta').val("");
-  $('#fecha-elab').val("");
-  $('#fecha-venc').val("");
-  $('#cantidad').val("");
-  $('#slc-descuento').val("");
-  $('#telefono').val("");
-  $('#telefono-nuevo').val("");
-  $('#fecha-nacimiento').val("");
-  $('#fecha-ingreso').val("");
-  $('#usuario').val("");
-  $('#contrasena').val("");
-  $('#slc-estado').val("");
-  $('#slc-tipo-usuario').val("");
-});
+  $('#cantidad').prop('readonly', false); // Deshabilita los campos
 
-/* Reset de Valores del Formulario */
-$("#reset-lote").click(function(){
   $('.selectpicker').selectpicker('val', '');
   $('.selectpicker').selectpicker('refresh');
-  $("#lote").val("");
+  
+  $("#id-lote").val("");
+  $("#nombre-lote").val("");
+  $("#slc-prod").val("");
   $("#precio-compra").val("");
   $("#precio-venta").val("");
   $("#fecha-elab").val("");
   $("#fecha-venc").val("");
   $("#cantidad").val("");
+  $("#slc-descuento").val("");
 });
 
-$(".cerrar").click(function(){
-  $('.selectpicker').selectpicker('val', '');
-  $('.selectpicker').selectpicker('refresh');
-  $("#nombre-producto").val("");
-  $("#codigo-barra").val("");
-});
 

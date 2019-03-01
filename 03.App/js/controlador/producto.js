@@ -156,8 +156,8 @@ $(document).ready(function() {
       { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionActualizar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-               '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+               '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
   });
@@ -192,14 +192,12 @@ $("#btn-guard-producto").click(function(){
     $.ajax(settings).done(function (response) {
       if (response.data[0].error == 0) {
         console.log(response.data);
-
         $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
         $("#div-exito").show();
         $("#div-exito").html(response.data[0].mensaje);
         $("#div-exito").fadeOut(10000);
       } else {
         console.log(response);
-
         $("#div-error").show();
         $("#div-error").html(response.data[0].mensaje);
         $("#div-error").fadeOut(10000);
@@ -212,7 +210,8 @@ $("#btn-guard-producto").click(function(){
 function funcionBuscar(nomb){
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
-  $("#footer-actualizar").show();
+  $("#footer-actualizar").removeClass("d-none");
+  $('#laboratorio').show();
 
   var settings = {
     "async": true,
@@ -233,14 +232,13 @@ function funcionBuscar(nomb){
     console.log(response.data);
     
     $('#id-producto').val(response.data.id_producto);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
-    $('#').val(response.data.);
+    $('#nombre-producto').val(response.data.nombre);
+    $('#codigo-barra').val(response.data.codigo_barra);
+    $('#slc-categoria').val(response.data.array_categoria);
+    $('#slc-impuesto').val(response.data.id_impuesto);
+    $('#slc-presentacion').val(response.data.presentacion);
+    //$('#foto').val(response.data.url_foto);
+    $('#slc-laboratorio').val(response.data.id_laboratorio);
       
   });
 }
@@ -286,12 +284,16 @@ function funcionBorrar(nomb){
 }
 
 /* Función que se encarga de dejar los campos por defecto */
-$("#crear-producto").click(function(){
-  $("#footer-actualizar").hide();
+$(".reset").click(function(){
+  $("#footer-actualizar").addClass("d-none");
   $("#footer-guardar").show();
+  $('#laboratorio').hide();
 
-  $('#nombre-producto').val("");
-  $('#codigo-barra').val("");
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+
+  $("#nombre-producto").val("");
+  $("#codigo-barra").val("");
   $('#slc-categoria').val("");
   $('#slc-impuesto').val("");
   $('#slc-presentacion').val("");
@@ -299,25 +301,11 @@ $("#crear-producto").click(function(){
   $('#slc-laboratorio').val("");
 });
 
-/* Reset de Valores del Formulario */
-$("#reset-prod").click(function(){
-  $('.selectpicker').selectpicker('val', '');
-  $('.selectpicker').selectpicker('refresh');
-  $("#nombre-producto").val("");
-  $("#codigo-barra").val("");
-});
-
-$(".cerrar").click(function(){
-  $('.selectpicker').selectpicker('val', '');
-  $('.selectpicker').selectpicker('refresh');
-  $("#nombre-producto").val("");
-  $("#codigo-barra").val("");
-});
-
 /* Función de ocultar y mostrar Laboratorio*/
 $("#slc-tipo").change(function(){
   var selected = $('#slc-tipo option:selected').val();
-  if(selected == "M"){
+  if (selected == "M"){
+    $('#slc-laboratorio').val("");
     $('#laboratorio').show();
   } else {
     $('#laboratorio').hide();

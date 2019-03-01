@@ -87,8 +87,8 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="lote">Nombre del Lote</label>
-              <input id="lote" type="text" class="form-control" placeholder="Nombre del Lote">
+              <label for="nombre-lote">Nombre del Lote</label>
+              <input id="nombre-lote" type="text" class="form-control" placeholder="Nombre del Lote">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">

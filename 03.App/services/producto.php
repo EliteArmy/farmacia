@@ -171,6 +171,14 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-producto-id':
+      $idProducto = validarPOST('id_producto');
+      $prod = new Lote();
+      $prod->setIdProd($idProducto);
+      $res['data'] = $prod->leerPorId($conexion);
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res['data']['mensaje']='Accion no reconocida';

@@ -80,14 +80,12 @@ $('#guard-empleado').click(function(){
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
-
       $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
       $("#div-exito").show();
       $("#div-exito").html(response.data.mensaje);
       $("#div-exito").fadeOut(10000);
     } else {
       console.log(response);
-
       $("#div-error").show();
       $("#div-error").html(response.data.mensaje);
       $("#div-error").fadeOut(10000);
@@ -220,16 +218,14 @@ function funcionBorrar(nomb){
   $.ajax(settings).done(function (response) {
     if (response.data.error == 0) {
       console.log(response.data);
-      
       $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-      $("#div-exito").show();
       $("#div-exito").html(response.data.mensaje);
+      $("#div-exito").show();
       $("#div-exito").fadeOut(10000);
     } else {
       console.log(response);
-      
-      $("#div-error").show();
       $("#div-error").html(response.data.mensaje);
+      $("#div-error").show();
       $("#div-error").fadeOut(10000);
     }
   });
@@ -242,8 +238,8 @@ $(".reset").click(function(){
   $("#footer-guardar").show();
 
   $("#tel-nuevo").hide();
-  $('#telefono').prop('readonly', false);
-  $('#contrasena').prop('readonly', false);
+  $('#telefono').prop('readonly', false); // Deshabilita los campos
+  $('#contrasena').prop('readonly', false); // Deshabilita los campos
 
   $('#id-empleado').val("");
   $('#primer-nombre').val("");
