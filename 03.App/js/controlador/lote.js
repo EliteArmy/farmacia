@@ -1,5 +1,5 @@
 //  FORMAS
-let formaLote = new Forma('agregar-lote');
+/*let formaLote = new Forma('agregar-lote');
 formaLote.addInput('lote', /^.+$/, true);
 formaLote.addInput('precio-compra', /^(\$?\d{1,3}(?:,?\d{3})*(?:\.\d{2})?|\.\d{2})?$/, true);
 formaLote.addInput('precio-venta', /^(\$?\d{1,3}(?:,?\d{3})*(?:\.\d{2})?|\.\d{2})?$/, true);
@@ -9,7 +9,7 @@ formaLote.addInput('cantidad', /^[1-9][0-9]*$/, true);
 formaLote.addInput('slc-prod');
 
 formaLote.setButton('btn-guard-lote');
-Forma.addTrigger(formaLote);
+Forma.addTrigger(formaLote);*/
 
 /* Hay un bug con el reset: no valida bien luego de usar el boton de reset*/
 /* El mensaje no deberia de aparecer en rojo inicialmente */
@@ -116,7 +116,7 @@ $(document).ready(function() {
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionBuscar('+ row.id_lote +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-lote"><span class="far fa-edit edit"></span></button>'+
-               '<button type="button" onclick="funcionBorrar('+ row.id_lote +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-lote"><span class="far fa-trash-alt trash"></span></button>';
+               '<button type="button" onclick="funcionBorrar('+ row.id_lote +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
   });
@@ -124,8 +124,7 @@ $(document).ready(function() {
 });
 
 /* CRUD Lote: Create */
-$("#btn-guard-lote").click(function(){
-
+$("#guard-lote").click(function(){
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -150,18 +149,8 @@ $("#btn-guard-lote").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      if (response.data.error == 0) {
-        console.log(response.data);
-        $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-        $("#div-exito").show();
-        $("#div-exito").html(response.data.mensaje);
-        $("#div-exito").fadeOut(10000);
-      } else {
-        console.log(response);
-        $("#div-error").show();
-        $("#div-error").html(response.data.mensaje);
-        $("#div-error").fadeOut(10000);
-      }
+      console.log(response.data);
+      imprimirMensaje(response);
     });
 
 });
@@ -208,11 +197,11 @@ function funcionBuscar(nomb){
 /* CRUD Lote: Update */
 function funcionActualizar(nomb){
   alert("Actualizando en proceso.. " + nomb);
+  //imprimirMensaje(response);
 }
 
 /* CRUD Lote: Delete */
 function funcionBorrar(nomb){
-
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -229,20 +218,35 @@ function funcionBorrar(nomb){
   }
   
   $.ajax(settings).done(function (response) {
-    if (response.data.error == 0) {
-      console.log(response.data);
-      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-      $("#div-exito").html(response.data.mensaje);
-      $("#div-exito").show();
-      $("#div-exito").fadeOut(10000);
-    } else {
-      console.log(response);
-      $("#div-error").html(response.data.mensaje);
-      $("#div-error").show();
-      $("#div-error").fadeOut(10000);
-    }
+    imprimirMensaje(response);
   });
 
+}
+
+function imprimirMensaje(response){
+  if (response.data.error == 0) {
+    console.log(response.data);
+    $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito").html(response.data.mensaje);
+    $("#div-exito").removeClass("d-none");
+    
+    $("#div-exito").hide(8000, function(){
+      $('#div-exito').addClass("d-none");
+      $("#div-exito").show();
+      $("#div-exito").html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error").html(response.data.mensaje);
+    $("#div-error").removeClass("d-none");
+   
+    $("#div-error").hide(8000, function(){
+      $('#div-error').show();
+      $('#div-error').addClass("d-none");
+      $("#div-error").html("");
+    });
+  }
 }
 
 /* Función que se encarga de dejar los campos por defecto */

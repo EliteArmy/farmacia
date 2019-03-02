@@ -46,7 +46,6 @@ $(document).ready(function() {
 
 /* CRUD Empleado: Create */
 $('#guard-empleado').click(function(){
-    
   var settings = {
     "async": true,
     "crossDomain": true,

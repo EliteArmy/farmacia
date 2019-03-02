@@ -135,7 +135,7 @@
 
         <div id="footer-guardar" class="modal-footer">
           <button type="button" class="btn btn-info reset">Reset</button>
-          <button type="button" class="btn btn-primary" id="btn-guard-lote">Crear Lote</button>
+          <button type="button" class="btn btn-primary" id="guard-lote">Crear Lote</button>
           <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div>
 

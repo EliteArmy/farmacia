@@ -157,7 +157,7 @@ $(document).ready(function() {
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
-               '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-trash-alt trash"></span></button>';
+               '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
   });
@@ -190,18 +190,7 @@ $("#btn-guard-producto").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      if (response.data[0].error == 0) {
-        console.log(response.data);
-        $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-        $("#div-exito").show();
-        $("#div-exito").html(response.data[0].mensaje);
-        $("#div-exito").fadeOut(10000);
-      } else {
-        console.log(response);
-        $("#div-error").show();
-        $("#div-error").html(response.data[0].mensaje);
-        $("#div-error").fadeOut(10000);
-      }
+      imprimirMensaje(response);
     });
 
 });
@@ -246,6 +235,7 @@ function funcionBuscar(nomb){
 /* CRUD Producto: Update */
 function funcionActualizar(nomb){
   alert("Actualizando en proceso.. " + nomb);
+  //imprimirMensaje(response);
 }
 
 /* CRUD Producto: Delete */
@@ -267,20 +257,35 @@ function funcionBorrar(nomb){
   }
   
   $.ajax(settings).done(function (response) {
-    if (response.data.error == 0) {
-      console.log(response.data);
-      $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-      $("#div-exito").show();
-      $("#div-exito").html(response.data.mensaje);
-      $("#div-exito").fadeOut(10000);
-    } else {
-      console.log(response);
-      $("#div-error").show();
-      $("#div-error").html(response.data.mensaje);
-      $("#div-error").fadeOut(10000);
-    }
+    imprimirMensaje(response);
   });
 
+}
+
+function imprimirMensaje(response){
+  if (response.data[0].error == 0) {
+    console.log(response.data);
+    $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito").html(response.data[0].mensaje);
+    $("#div-exito").removeClass("d-none");
+    
+    $("#div-exito").hide(8000, function(){
+      $('#div-exito').addClass("d-none");
+      $("#div-exito").show();
+      $("#div-exito").html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error").html(response.data[0].mensaje);
+    $("#div-error").removeClass("d-none");
+   
+    $("#div-error").hide(8000, function(){
+      $('#div-error').show();
+      $('#div-error').addClass("d-none");
+      $("#div-error").html("");
+    });
+  }
 }
 
 /* Función que se encarga de dejar los campos por defecto */
