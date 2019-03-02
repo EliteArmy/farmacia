@@ -3,9 +3,10 @@ CREATE OR REPLACE VIEW VistaClientes AS
 SELECT
   id_cliente
   ,numero_identidad
-  ,primer_nombre || (CASE WHEN segundo_nombre is NULL THEN '' ELSE ' '||segundo_nombre END) as nombres
-  ,primer_apellido || (CASE WHEN segundo_apellido IS NULL THEN '' ELSE ' '|| segundo_apellido END) as apellidos
-  ,primer_nombre || (CASE WHEN segundo_nombre is NULL THEN '' ELSE ' '||segundo_nombre END) ||' '|| primer_apellido || (CASE WHEN segundo_apellido IS NULL THEN '' ELSE ' '|| segundo_apellido END) as nombre_completo
+  ,primer_nombre
+  ,segundo_nombre
+  ,primer_apellido
+  ,segundo_apellido
   ,sexo
   ,fecha_nacimiento
   ,fecha_registro
@@ -17,6 +18,8 @@ INNER JOIN persona per
   ON cli.id_persona = per.id_persona
 ORDER BY id_cliente
 ;
+
+SELECT * FROM VistaClientes
 
 
 SELECT * FROM VistaClientes;

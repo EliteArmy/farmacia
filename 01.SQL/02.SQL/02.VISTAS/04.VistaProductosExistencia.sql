@@ -94,7 +94,8 @@ CREATE OR REPLACE VIEW DescuentosDisponibles AS
   INNER JOIN descuento d
     on desc_lote.id_descuento = d.id_descuento
   WHERE
-    desc_lote.fecha_inicio <= CURDATE() AND desc_lote.fecha_fin > CURDATE()
+    (desc_lote.estado = 'I' AND desc_lote.fecha_inicio <= CURDATE() AND CURDATE() < desc_lote.fecha_fin )
+    OR (desc_lote.estado = 'A' AND desc_lote.fecha_inicio <= CURDATE() )
 ;
 
 -- DROP VIEW InventarioMercaderia;
@@ -147,10 +148,9 @@ ORDER BY p.id_producto, l.id_lote
 ;
 
 
-SELECT
-  id_producto, id_lote, lote, precio_venta_unidad, precio_costo_unidad,
-  existencia, presentacion, nombre, codigo_barra,
-  COALESCE(categoria, '') as categoria,
-  estado_lote
-FROM VistaInventarioMercaderia;
+# SELECT * FROM DescuentosDisponibles;
+
+# SELECT * FROM VistaInventarioMercaderia WHERE tiene_descuento
+
+
 

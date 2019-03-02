@@ -1,6 +1,6 @@
 DELIMITER $$
-DROP FUNCTION IF EXISTS SP_Obtener_Impuesto $$
-CREATE FUNCTION SP_Obtener_Impuesto(
+DROP FUNCTION IF EXISTS FN_Obtener_Impuesto $$
+CREATE FUNCTION FN_Obtener_Impuesto(
   pI_id_lote INT,
   pI_fecha_factura DATE
 ) RETURNS INT
@@ -24,5 +24,4 @@ SELECT id_impuesto INTO var_id_impuesto FROM impuesto
 RETURN var_id_impuesto;
 END $$
 
-DELIMITER ;
 
