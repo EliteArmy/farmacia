@@ -13,6 +13,24 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-factura-id':
+      $idFactura = validarPOST('id_factura');
+      $fact = new Factura();
+      $fact->setIdFactura($idFactura);
+      $res['data']  = $fact->leerPorId($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-factura-fecha':
+      $fechaInicio = validarPOST('fecha_inicio');
+      $fechaFin = validarPOST('fecha_fin');
+      $fact = new Factura();
+      $fact->setFechaInicio($fechaInicio);
+      $fact->setFechaFin($fechaFin);
+      $res['data']  = $fact->leerPorFecha($conexion);
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res["data"]['mensaje']='Accion no reconocida';

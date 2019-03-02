@@ -8,6 +8,8 @@ class Factura{
 	private $idCliente;
 	private $idFormaPago;
 	private $idFarmacia;
+	private $fechaInicio;
+	private $fechaFin;
 
 	public function __construct(
 		$idFactura = null,
@@ -99,7 +101,43 @@ class Factura{
 		$this->idFarmacia = $idFarmacia;
 	}
 
+	public function getFechaInicio(){
+		return $this->fechaInicio;
+	}
+
+	public function setFechaInicio($fechaInicio){
+		$this->fechaInicio = $fechaInicio;
+	}
+	public function getFechaFin(){
+		return $this->fechaFin;
+	}
+
+	public function setFechaFin($fechaFin){
+		$this->fechaFin = $fechaFin;
+	}
+
+
 	public static function leer($conexion){
+		$sql = '
+			SELECT * FROM VistaFacturas
+		';
+		$rows = $conexion->query($sql);
+		return $rows;
+	}
+	public function leerPorFecha($conexion){
+		$sql = '
+			SELECT * FROM VistaFacturas
+			WHERE fecha_factura BETWEEN DATE(\'%s\') AND DATE(\'%s\')
+		';
+		$valores = [
+			$this->getFechaInicio(),
+			$this->getFechaFin()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
+	}
+
+	public function leerPorId($conexion){
 		$sql = '
 			SELECT vista.*, totales.total FROM VistaDetalleFactura vista
 			INNER JOIN (
@@ -109,12 +147,13 @@ class Factura{
 				GROUP BY vdf.id_factura
 			) totales
 			ON vista.id_factura = totales.id_factura
-			ORDER BY vista.fecha_hora
-			;
+			WHERE vista.id_factura = %d
 		';
-		$rows = $conexion->query($sql);
+		$valores = [$this->getIdFactura()];
+		$rows = $conexion->query($sql, $valores);
 		return $rows;
 	}
+
 	public function crear($conexion){
 	}
 	public function actualizar($conexion){

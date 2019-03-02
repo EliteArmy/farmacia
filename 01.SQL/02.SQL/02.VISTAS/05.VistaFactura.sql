@@ -37,9 +37,7 @@ INNER JOIN VistaClientes vcli
 ;
 
 
-# SELECT FN_Obtener_Impuesto(393, CURDATE());
-
-
+-- VistaDetalleConTotales
 SELECT vista.*, totales.total FROM VistaDetalleFactura vista
 INNER JOIN (
   SELECT vdf.id_factura,
@@ -52,6 +50,24 @@ ORDER BY vista.fecha_hora
 ;
 
 
+
+-- Vista Factura con Totales
+CREATE OR REPLACE VIEW VistaFacturas AS
 SELECT
-*
-FROM factura
+f.id_factura
+,f.fecha_hora as fecha_factura
+, totales.total
+,f.id_empleado
+, (SELECT nombre_completo FROM VistaEmpleado WHERE id_empleado = f.id_empleado) as empleado
+,f.id_cliente
+,(SELECT CONCAT(primer_nombre, ' ', primer_apellido) FROM VistaClientes WHERE id_cliente = f.id_cliente) as cliente
+,f.id_forma_pago
+,(SELECT descripcion FROM forma_pago WHERE f.id_forma_pago = id_forma_pago) as forma_pago
+FROM factura f
+INNER JOIN (
+  SELECT vdf.id_factura,
+         ROUND(SUM(vdf.precio_total), 2) as total
+  FROM VistaDetalleFactura vdf
+  GROUP BY vdf.id_factura
+) totales
+ON f.id_factura = totales.id_factura
