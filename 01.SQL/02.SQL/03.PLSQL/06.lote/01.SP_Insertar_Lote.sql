@@ -27,7 +27,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
   SET mensaje='';
   SET error = FALSE;
   SET contador = 0;
-  
+   -- ___________________VALIDACIONES___________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'Identificador de producto vacio, ');
@@ -56,11 +56,10 @@ CREATE PROCEDURE SP_Insertar_Lote(
     IF pI_existencia=''  OR pI_existencia IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'Existencia vacia, ');
     END IF;
-
+    -- Las farmacias en el estado de HN están obligadas a otorgar el 25% de descuento a las personas mayores
     IF pI_id_descuento=''  OR pI_id_descuento IS NULL THEN
       SET mensaje=CONCAT(mensaje,'Descuento vacio');
     END IF;
-
     
    IF mensaje <> '' THEN
         SET mensaje=mensaje;
@@ -70,6 +69,8 @@ CREATE PROCEDURE SP_Insertar_Lote(
         SELECT mensaje,error;
         LEAVE SP;
    END IF;
+
+    -- ___________________CUERPO DEL PL_________________________________
 
    SELECT COUNT(*) INTO contador FROM producto WHERE id_producto = pI_id_producto;
    IF contador = 0 THEN
@@ -85,12 +86,6 @@ CREATE PROCEDURE SP_Insertar_Lote(
     IF contador=0 THEN
       SET mensaje=CONCAT(mensaje,'El descuento no existe');
     END IF;
-
-   -- Nombre del lote no se puede repetir
-   -- SELECT COUNT(*) INTO contador FROM lote WHERE lote=pI_lote;
-   -- IF contador>=1 THEN
-   --    SET mensaje=CONCAT(mensaje, 'nombre del lote no se puede repetir, ')
-   -- END IF;
 
    IF pI_fecha_elaboracion > CURDATE() THEN
      SET mensaje = CONCAT('Fecha de elaboración inválida, fecha mayor que la actual, ');
