@@ -50,3 +50,8 @@ INNER JOIN (
 ON vista.id_factura = totales.id_factura
 ORDER BY vista.fecha_hora
 ;
+
+
+SELECT
+*
+FROM factura
