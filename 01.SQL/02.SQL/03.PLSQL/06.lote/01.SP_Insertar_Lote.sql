@@ -30,11 +30,11 @@ CREATE PROCEDURE SP_Insertar_Lote(
   
    -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'Identificador de producto vacio, ',mensaje);
+        SET mensaje=CONCAT(mensaje, 'Identificador de producto vacio, ');
     END IF;
 
     IF pI_lote='' OR pI_lote IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'Nombre del lote vacio, ',mensaje);
+        SET mensaje=CONCAT(mensaje, 'Nombre del lote vacio, ');
     END IF;
 
     IF pI_precio_costo_unidad='' OR pI_precio_costo_unidad IS NULL THEN 
