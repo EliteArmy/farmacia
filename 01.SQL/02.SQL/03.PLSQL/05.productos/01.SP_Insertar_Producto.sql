@@ -173,9 +173,9 @@ CREATE PROCEDURE SP_Insertar_Producto(
     IF pI_opcion='M' THEN
       SELECT COUNT(*) INTO contador FROM medicamentos m
       INNER JOIN producto p ON p.id_producto=m.id_producto
-      WHERE p.nombre=pI_nombre AND m.id_laboratorio=pI_id_laboratorio;
+      WHERE p.nombre=pI_nombre AND m.id_laboratorio=pI_id_laboratorio AND p.id_presentacion=pI_id_presentacion;
       IF contador>=1 THEN
-          SET mensaje=CONCAT('El medicamento con este laboratorio ya esta registrado');
+          SET mensaje=CONCAT('El medicamento con este laboratorio y presentacion ya esta registrado');
           SET error=TRUE;
           SET pO_mensaje=mensaje;
           SET pO_error=error;
