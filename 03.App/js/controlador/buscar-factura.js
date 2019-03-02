@@ -26,7 +26,7 @@
     },
     columns: [
       { data: "id_factura", title:"Factura"},
-      { data: "fecha_hora", title:"Fecha"},
+      { data: "fecha_factura", title:"Fecha"},
       { data: "cliente", title:"Cliente"},
       { data: "total", title:"Total"},
       
