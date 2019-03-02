@@ -88,12 +88,13 @@ FROM VistaProductosVencidos;
 
 CREATE OR REPLACE VIEW DescuentosDisponibles AS
   SELECT
-    desc_lote.id_lote, d.id_descuento, descripcion, porcentaje, fecha_fin, fecha_inicio
+    desc_lote.id_lote, d.id_descuento, descripcion, porcentaje,
+    desc_lote.fecha_fin, desc_lote.fecha_inicio
   FROM descuento_lote desc_lote
   INNER JOIN descuento d
     on desc_lote.id_descuento = d.id_descuento
   WHERE
-    fecha_inicio <= CURDATE() AND fecha_fin > CURDATE()
+    desc_lote.fecha_inicio <= CURDATE() AND desc_lote.fecha_fin > CURDATE()
 ;
 
 -- DROP VIEW InventarioMercaderia;

@@ -28,9 +28,26 @@
 
         <div class="row">
           <div class="col-12 col-md-6 col-lg-6">
-            <img src="<?php echo $_SESSION["foto_url"] ?>" alt="Foto" width="100% ">
             <div class="row">
-              <input type="file" name="imagen" id="imagen">
+              <div class="col-12 col-lg-12">
+                <img src="<?php echo $_SESSION["foto_url"] ?>" alt="Foto" width="100% ">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupFileAddon">Subir</span>
+                    </div>
+                    
+                    <div class="custom-file">
+                      <label class="custom-file-label" for="inputGroupFile">Elegir una Fotografía</label>
+                      <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

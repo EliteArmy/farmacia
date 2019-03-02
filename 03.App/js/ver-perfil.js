@@ -1,3 +1,4 @@
 $("#imagen").on("change", function () {
-  alert(5);
+  var url = $("#imagen").val();
+  
 })

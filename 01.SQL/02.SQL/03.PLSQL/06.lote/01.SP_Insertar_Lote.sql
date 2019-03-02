@@ -155,7 +155,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
 
     IF isDescuento=TRUE THEN
       SELECT MAX(id_lote) INTO ultimoId FROM lote;
-      CALL SP_Insertar_Descuento_Lote(ultimoId, pI_id_descuento, CURDATE(), DATE(''),'A',@mensajeInsertarLoteDescuento,@errorInsertarLoteDescuento);
+      CALL SP_Insertar_Descuento_Lote(ultimoId, pI_id_descuento, CURDATE(), NULL,'A',@mensajeInsertarLoteDescuento,@errorInsertarLoteDescuento);
       IF @errorInsertarLoteDescuento THEN
         SET mensaje=@mensajeInsertarLoteDescuento;
         SET error=TRUE;
@@ -167,14 +167,14 @@ CREATE PROCEDURE SP_Insertar_Lote(
     END IF;
     
 
-    SET mensaje="Inserción exitosa";
+    SET mensaje := 'Inserción exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
     SELECT mensaje,error;
 END $$
 
-CALL SP_Insertar_Lote(2,'lots01', 6,500 , '2018-02-02','2019-03-02',32,1,@mensaje,@error);
+CALL SP_Insertar_Lote(2,'lo89k6', 6,500 , '2018-02-02','2019-03-02',32,1,@mensaje,@error);
 SELECT @mensaje,@error;
 
 SELECT * FROM lote

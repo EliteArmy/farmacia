@@ -103,11 +103,13 @@ CREATE PROCEDURE SP_Insertar_Descuento_Lote(
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT mensaje,error;
+    # SELECT mensaje,error;
 END $$
 
 CALL SP_Insertar_Descuento_Lote(2,2, '2021-03-03','2018-02-02','7',@mensaje,@error);
 SELECT @mensaje,@error;
+
+
 
 SELECT * FROM descuento_lote
 SHOW COLUMNS FROM descuento_lote
