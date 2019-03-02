@@ -2,7 +2,8 @@ class Forma {
 	constructor(id) {
 		this.id = id;
 		this.inputs = [];
-		this.btn = '';
+		this.btnEnvio = '';
+		this.btnUpdate = '';
 	}
 
 	addInput(id, regexp, required){
@@ -34,24 +35,28 @@ class Forma {
 				this.inputs[id].ready = true;
 			}
 		}
+		this.updateButton(this.btnEnvio);
+		this.updateButton(this.btnUpdate);
+	}
+
+	setButtonEnvio(btnId){
+		this.btnEnvio = btnId;
 		this.updateButton();
 	}
 
-	setButton(btnId){
-		this.btn = btnId;
-		this.updateButton();
+	setButtonUpdate(btnId){
+		this.btnUpdate = btnId;
 	}
 
-	updateButton () {
-		// console.log(`#${this.id} #${this.btn}`);
+	updateButton (btn) {
 		let value = true;
 		for(let key in this.inputs){
 			value = value && this.inputs[key].ready;
 		}
 		if (value){	
-			$(`#${this.id} #${this.btn}`).removeAttr('disabled');
+			$(`#${this.id} #${btn}`).removeAttr('disabled');
 		} else {
-			$(`#${this.id} #${this.btn}`).attr("disabled", "disabled");
+			$(`#${this.id} #${btn}`).attr("disabled", "disabled");
 		}
 	}
 
