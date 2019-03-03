@@ -36,8 +36,10 @@
 
       <div class="container ">
         <div class="row">
-         <div class="col-md-3 ">
+         <div class="container-fluid col-md-12 ">
            <div class="container-fluid will card">
+            <div class="row">
+            <div class="col-md-6">
             <h5>Agregar Descuento</h5>
             <div class="form-group col-md-12">
               <label for="txt-descripcion">Inserte Descripción: </label>
@@ -67,10 +69,18 @@
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
            </div>
+           </div>
+           <div class="col-md-6">
+            <table id="table-info-descuento" >
+              <!-- Informacion generada -->
+             
+            </table>
+          </div>
+          </div>
           </div>
          </div>
 
-         <div class="col-md-3">
+         <div class="col-md-6">
           <div class="container-fluid well card">
             <h5>Agregar Impuesto</h5>
            <div class="form-group col-md-12">
@@ -126,7 +136,7 @@
               <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
             </div>
             <div class="modal-footer">
-             <button type="button" class="btn btn-info" id="">Reset</button>
+             <button type="button" class="btn btn-info" onclick="eo()" id="">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
             </div>
            </div>
@@ -136,11 +146,11 @@
    </div>
 
 
-
+  
   <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/popper.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./js/controlador/info-productos.js"></script>
+  <script type="text/javascript" src="./js/controlador/gestionar-info.js"></script>
  
 </body>
 </html>
