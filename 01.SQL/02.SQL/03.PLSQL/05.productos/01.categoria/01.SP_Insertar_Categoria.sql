@@ -7,26 +7,26 @@ InsertarCategoria:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
   DECLARE contador INT;
-  DECLARE resultado BOOLEAN;
+  DECLARE error BOOLEAN;
   DECLARE ultimoID INT;
 
 -- Inicializaciones
   SET mensaje='';
-  SET resultado = FALSE;
+  SET error = TRUE;
   SET contador=0;
   SET ultimoId = 0;
 
   IF par_categoria = '' OR par_categoria IS NULL THEN
-    SET mensaje = 'Se necesita campo: categoria';
-    SELECT mensaje, resultado;
+    SET mensaje = 'Categoria vacia';
+    SELECT mensaje, error;
     LEAVE InsertarCategoria;
   END IF;
 
   SELECT count(*) INTO contador FROM categoria
   WHERE UPPER(categoria) LIKE UPPER(par_categoria);
   IF contador > 0 THEN
-    SET mensaje = CONCAT('Nombre de categoría duplicado: ', par_categoria);
-    SELECT mensaje, resultado;
+    SET mensaje = CONCAT('La categoria ', par_categoria, ' ya existe');
+    SELECT mensaje, error;
     LEAVE InsertarCategoria;
   END IF;
 
@@ -34,15 +34,13 @@ InsertarCategoria:BEGIN
   START TRANSACTION;
 
   INSERT INTO categoria (categoria) VALUES (par_categoria);
-  SELECT LAST_INSERT_ID() INTO ultimoId;
+  # SELECT LAST_INSERT_ID() INTO ultimoId;
   COMMIT;
 
-  SET mensaje = 'inserción con éxito';
-  SET resultado = TRUE;
+  SET mensaje = 'Inserción exitosa';
+  SET error = FALSE;
   
-  SELECT *, mensaje, resultado
-  FROM categoria
-  WHERE id_categoria = ultimoID;
+  SELECT mensaje, error;
 END $$
 
 DELIMITER ;
