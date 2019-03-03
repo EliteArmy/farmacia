@@ -8,6 +8,7 @@ include_once('../database/Conexion.php');
 include_once('../clases/Producto.php');
 include_once('../clases/Medicamento.php');
 include_once('../clases/Lote.php');
+include_once('../clases/Descuento.php');
 
 if(isset($_POST['accion'])){
   $conexion = new Conexion();
@@ -89,6 +90,17 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'crear-descuento':
+      $descripcion = validarPOST('descripcion');
+      $porcentaje = validarPOST('porcentaje');
+      $fechaFin = validarPOST('fecha_fin');
+      $desc = new Descuento();
+      $desc->setDescripcion($descripcion);
+      $desc->setPorcentaje($porcentaje);
+      $desc->setFechaFin($fechaFin);
+      $res["data"] = $desc->crear($conexion);
+      echo json_encode($res);
+    break;
     case 'crear-impuesto':
       $imp = validarPOST('impuesto');
       $val = validarPOST('valor');
@@ -130,6 +142,7 @@ if(isset($_POST['accion'])){
       $res['data'] = $prod->actualizar($conexion);
       echo json_encode($res);
     break;
+
     case 'crear-producto':
       $idPresentacion = validarPOST('id_presentacion');
       $nombre = validarPOST('nombre');
@@ -183,6 +196,35 @@ if(isset($_POST['accion'])){
       $lot->setIdDescuento($idDescuento);
 
       $res["data"] = $lot->crear($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'actualizar-lote':
+      $idLote = validarPOST('id_lote');
+      $idProducto = validarPOST('id_producto');
+      $lote = validarPOST('lote');
+      $precioCostoUnidad = validarPOST('precio_costo_unidad');
+      $precioVentaUnidad = validarPOST('precio_venta_unidad');
+      $fechaElaboracion = validarPOST('fecha_elaboracion');
+      $fechaVencimiento = validarPOST('fecha_vencimiento');
+      $estado = validarPOST('estado');
+      $existencia = validarPOST('existencia');
+      $idDescuento = validarPOST('id_descuento');
+
+      $lot = new Lote();
+
+      $lot->setIdLote($idLote);
+      $lot->setIdProducto($idProducto);
+      $lot->setLote($lote);
+      $lot->setPrecioCosto($precioCostoUnidad);
+      $lot->setPrecioVenta($precioVentaUnidad);
+      $lot->setFechaElaboracion($fechaElaboracion);
+      $lot->setFechaVencimiento($fechaVencimiento);
+      $lot->setEstado($estado);
+      $lot->setExistencia($existencia);
+      $lot->setIdDescuento($idDescuento);
+
+      $res["data"] = $lot->actualizar($conexion);
       echo json_encode($res);
     break;
 

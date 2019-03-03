@@ -192,5 +192,9 @@ END $$
 CALL SP_Actualizar_Lote(1,2,'sifjisdfjs', 10, 200, DATE('2019-03-02'), DATE('2021-02-02'),"",5,1,@mensaje,@error);
 SELECT @mensaje,@error;
 
-SELECT * FROM lote;
+
+;
+
+
+CALL SP_Actualizar_Lote( 1,1,'LOT8996',25.36,26.80,DATE('2019-02-19'),DATE('2019-03-20'), 'A',1,1 ,@mensaje,@error);
 

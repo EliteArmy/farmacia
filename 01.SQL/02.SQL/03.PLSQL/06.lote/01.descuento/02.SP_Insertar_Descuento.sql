@@ -2,7 +2,8 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Insertar_Descuento $$
 CREATE PROCEDURE SP_Insertar_Descuento(
   pI_descripcion VARCHAR(45),
-  pI_porcentaje INT(11)
+  pI_porcentaje INT(11),
+  pI_fecha_fin DATE
 )
 InsertarImpuesto:BEGIN
 -- Declaraciones
@@ -33,6 +34,12 @@ InsertarImpuesto:BEGIN
     SET mensaje = CONCAT(mensaje, 'El descuento debe ser mayor que cero, ');
   END IF;
 
+
+  IF pI_fecha_fin IS NULL OR pI_fecha_fin <= CURDATE() THEN
+    SET mensaje = 'Fecha de culminación es menor que la fecha actual';
+  END IF;
+
+
   IF mensaje != '' THEN
     SELECT mensaje, error;
     LEAVE InsertarImpuesto;
@@ -43,8 +50,8 @@ InsertarImpuesto:BEGIN
   SET AUTOCOMMIT = 0;
   START TRANSACTION;
 
-  INSERT INTO descuento (descripcion, porcentaje, estado, fecha_inicio) VALUES
-  (par_impuesto, par_valor, 'A', CURDATE());
+  INSERT INTO descuento (descripcion, porcentaje, estado, fecha_inicio, fecha_fin) VALUES
+  (pI_descripcion, pI_porcentaje, 'A', CURDATE(), pI_fecha_fin);
   COMMIT;
 
   SET mensaje = 'Inserción exitosa';
@@ -53,4 +60,9 @@ InsertarImpuesto:BEGIN
 
 END $$
 
-CALL SP_Insertar_Descuento('Descuento de verano 2019', 20);
+SELECT * FROM descuento;
+
+CALL SP_Insertar_Descuento('Descuento de verano 2020', 21, DATE('2018-05-20'));
+
+# CALL SP_Insertar_Descuento('Navidad con Farmacia', 20, DATE(''));
+

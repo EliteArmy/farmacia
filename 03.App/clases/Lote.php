@@ -135,6 +135,23 @@ class Lote extends Producto{
 	}
 
 	public function actualizar($conexion){
+		$sql = "CALL SP_Actualizar_Lote(
+			%s,%s,'%s',%s,%s,DATE('%s'),DATE('%s'), '%s',%s,%s
+			,@mensaje,@error);";
+		$valores = [
+			$this->getIdLote(),
+			$this->getIdProducto(),
+			$this->getLote(),
+			$this->getPrecioCosto(),
+			$this->getPrecioVenta(),
+			$this->getFechaElaboracion(),
+			$this->getFechaVencimiento(),
+			$this->getEstado(),
+			$this->getExistencia(),
+			$this->getIdDescuento()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows[0];
 	}
 	public function borrar($conexion){
 	}
