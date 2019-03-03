@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-$('table-info-descuento').DataTable({
+$('#table-info-descuento').DataTable({
     pageLength: 10,
     searching: true,
     ordering: true,
@@ -40,21 +40,3 @@ $('table-info-descuento').DataTable({
   });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
