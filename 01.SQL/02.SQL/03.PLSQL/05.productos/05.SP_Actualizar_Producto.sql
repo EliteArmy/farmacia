@@ -6,6 +6,12 @@ CREATE PROCEDURE SP_Actualizar_Producto(
         IN pI_nombre VARCHAR(100),
         IN pI_codigo_barra VARCHAR(45),
         IN pI_url_foto VARCHAR(500),
+        -- campos a insertar en tablas intermedias
+        IN pI_ids_categorias VARCHAR(1000),
+        IN pI_id_impuesto INT(11),
+        -- Campo para medicamento
+        IN pI_id_laboratorio INT(11),
+        -- Estado, A=Activo, I=Inactivo
         IN pI_estado VARCHAR(1),
 
         OUT pO_mensaje VARCHAR(1000),
@@ -14,62 +20,116 @@ CREATE PROCEDURE SP_Actualizar_Producto(
 )
   SP:BEGIN
 -- Declaraciones
-  DECLARE mensaje VARCHAR(255);
+  DECLARE mensaje VARCHAR(1000);
   DECLARE contador INTEGER;
   DECLARE error BOOLEAN;
+  DECLARE uEstado VARCHAR(1);
+  DECLARE isMedicamento BOOLEAN;
+  DECLARE cadena VARCHAR(1000);
+  DECLARE iterador INT;
+  DECLARE idCategoria VARCHAR(100);
+  DECLARE contadorDigitos INT;
+
+
 -- Inicializaciones
   SET mensaje='';
   SET contador = 0;
   SET error= FALSE;
+  SET uEstado='A';
+  SET isMedicamento=FALSE;
+  SET cadena='';
+  SET iterador=1;
+  SET contadorDigitos=0;
+  -- Borrar espacios, ids_categoria
+  SET cadena  = REPLACE(pI_ids_categorias,' ','');
 
   -- ____________________VERIFICACIONES_________________________________
-   -- Verificaciones de campos obligatorios que no esten vacios
-    IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'id del producto, ');
-    END IF;
+  IF pI_id_producto='' OR  pI_id_producto IS NULL THEN
+    SET mensaje=CONCAT(mensaje,'Identificador de producto vacio, ');
+  ELSE
+     SELECT COUNT(*) INTO contador
+     FROM producto
+     WHERE id_producto= pI_id_producto;
 
-    IF pI_id_presentacion='' OR pI_id_presentacion IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'id de la presentacion del producto, ');
-    END IF;
-
-    IF pI_nombre='' OR pI_nombre IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'nombre del producto, ');
-    END IF;
-
-    IF pI_codigo_barra='' OR pI_codigo_barra IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'codigo de barra del producto, ');
-    END IF;
-
-    IF pI_estado='' OR pI_estado IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'estado del producto, ');
-    END IF;
-
-    IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
-      SET mensaje=CONCAT(mensaje,'estado invalido, ');
-    END IF;
-	-- el campo de la foto de un producto puede ser null
-   -- IF pI_url_foto='' OR pI_url_foto IS NULL THEN 
-   --     SET mensaje=CONCAT(mensaje, 'foto del producto, ');
-   -- _____________________CUERPO DEL PL________________________________
-   -- validacion de que id_categoria exista
-   SELECT COUNT(*)  INTO contador
-   FROM presentacion    
-   WHERE  id_presentacion= pI_id_presentacion;
+     IF contador =0 THEN
+      SET mensaje = CONCAT(mensaje, 'El produto no existe, ');
+     END IF;
    
-   IF contador =0 THEN
-   SET mensaje = CONCAT(mensaje, 'el identificador de presentaciòn de producto no existe, ');
-   END IF;
+  END IF;
 
-   SELECT COUNT(*) INTO contador
-   FROM producto
-   WHERE id_producto= pI_id_producto;
+  IF pI_id_presentacion='' OR   pI_id_presentacion IS NULL THEN
+    SET mensaje=CONCAT(mensaje,'Identificador de presentacion vacio , ');
+  ELSE
+      SELECT COUNT(*)  INTO contador
+     FROM presentacion    
+     WHERE  id_presentacion= pI_id_presentacion;
+     
+     IF contador =0 THEN
+      SET mensaje = CONCAT(mensaje, 'La presentacion no existe, ');
+     END IF;
+  END IF;
 
-   IF contador =0 THEN
-   SET mensaje = CONCAT(mensaje, 'no hay productos con el id ingresado');
-   END IF;
-   
-   IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ', mensaje);
+  IF pI_nombre='' OR   pI_nombre IS NULL THEN
+    SET mensaje=CONCAT(mensaje,'Nombre del producto vacio, ');
+  END IF;
+
+  IF pI_codigo_barra='' OR   pI_codigo_barra IS NULL THEN
+    SET mensaje=CONCAT(mensaje,'Codigo de barra vacio, ');
+  END IF;
+
+  IF pI_ids_categorias='' OR   pI_ids_categorias IS NULL THEN
+    SET mensaje=CONCAT(mensaje,'Categoria vacia, ');
+  ELSE
+      -- Contar candidad de comas en la cadena, luego sumarle 1 para establecer en numero de ids ingresados
+     SET contadorDigitos = LENGTH(cadena) - LENGTH(REPLACE(cadena, ',', '')) + 1;
+
+     -- FN_Split_Str recibe 3 argumentos(x , del , pos), x=> cadena ,
+     -- del => delimitador(en este caso es ','), pos --> posicion a acceder , pos=1 => 11, pos=2 => 54;
+     -- SELECT FN_Split_Str('11,54,3,4,55,6',  ',' ,7)
+
+     
+     -- Validacion de ids_categorias, todas deben de existir en la db
+      WHILE iterador<=contadorDigitos DO
+          SET idCategoria = FN_Split_Str(cadena, ',', iterador);
+          IF NOT(idCategoria='' OR idCategoria IS NULL) THEN
+           -- verificar que el idCategoria no sea vacio, dado que puede llegar una cadena=>"1,2,3,4,"
+          -- la funcion Fn_SPlit_Str devolvera para el ulitmo elemento una cadena vacia ''
+          -- si este fuera el caso, la consulta devolveria un error
+            SELECT COUNT(*) INTO contador FROM categoria WHERE id_categoria=idCategoria;
+            IF contador=0 THEN
+              SET mensaje=CONCAT(mensaje,'La categoria no existe, ');
+              SET error=TRUE;
+              SET pO_mensaje=mensaje;
+              SET pO_error=error;
+              SELECT mensaje,error;
+              LEAVE SP;
+            END IF;
+          END IF;
+
+          SET iterador= iterador + 1;
+      END WHILE;
+  END IF;
+
+  IF pI_id_impuesto='' OR   pI_id_impuesto IS NULL THEN
+    SET mensaje=CONCAT(mensaje,'Identificador de impuesto vacio, ');
+  ELSE
+    SELECT COUNT(*) INTO contador FROM impuesto WHERE id_impuesto=pI_id_impuesto;
+    IF contador=0 THEN
+      SET mensaje=CONCAT(mensaje,'El impuesto no existe, ');
+    END IF;
+  END IF;
+
+
+  IF NOT(pI_estado='' OR   pI_estado IS NULL) THEN
+    IF NOT(pI_estado='A' OR pI_estado='I') THEN
+      SET mensaje=CONCAT(mensaje, 'Estado Invalido, ');
+    ELSE
+      SET uEstado=pI_estado;
+    END IF;
+  END IF;
+
+  IF mensaje <> '' THEN
+        SET mensaje=mensaje;
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
@@ -78,46 +138,111 @@ CREATE PROCEDURE SP_Actualizar_Producto(
    END IF; 
 
 
+
    SELECT COUNT(*)  INTO contador
    FROM producto    
    WHERE  id_producto= pI_id_producto AND codigo_barra= pI_codigo_barra;
    
   IF contador=0 THEN
-   SELECT COUNT(*)  INTO contador
-   FROM producto    
-   WHERE  id_producto<> pI_id_producto AND codigo_barra= pI_codigo_barra;
-      IF contador>=1 THEN 
-        SET mensaje=CONCAT(mensaje,'Codigo de barra ya asignado, ');
-      END IF;  
+     SELECT COUNT(*)  INTO contador
+     FROM producto    
+     WHERE  id_producto<> pI_id_producto AND codigo_barra= pI_codigo_barra;
+        IF contador>=1 THEN 
+          SET mensaje=CONCAT(mensaje,'El Codigo de barra ya existe, ');
+        END IF;  
   END IF;
 
-   IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ', mensaje);
+  SELECT COUNT(*) INTO contador FROM producto p 
+  INNER JOIN medicamentos m ON p.id_producto=m.id_producto
+  WHERE p.id_producto=pI_id_producto;
+
+  IF contador>=1 THEN
+    IF pI_id_laboratorio='' OR pI_id_laboratorio IS NULL THEN
+      SET mensaje=CONCAT(mensaje, 'Identificador de laboratorio vacio, ');
+    ELSE
+      SELECT COUNT(*) INTO contador FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
+      IF contador=0 THEN
+        SET mensaje=CONCAT(mensaje,'El laboratorio no existe, ');
+      ELSE
+        SET isMedicamento=TRUE;
+      END IF;
+    END IF;
+  END IF;
+
+  IF mensaje <> '' THEN
+        SET mensaje=mensaje;
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
         SELECT mensaje,error;
         LEAVE SP;
-   END IF;  
+  END IF; 
 
-         UPDATE producto 
-         SET
-             producto.id_presentacion=pI_id_presentacion,
-             producto.nombre=pI_nombre,
-             producto.codigo_barra=pI_codigo_barra,
-             producto.url_foto=pI_url_foto,
-             producto.estado = pI_estado
-         WHERE
-             producto.id_producto = pI_id_producto;
-       
-    COMMIT;
-     SET mensaje= 'Actualización exitosa';
-     SET error=FALSE;
-     SET pO_mensaje=mensaje;
-     SELECT mensaje,error;
+  DELETE FROM categoria_producto WHERE id_producto=pI_id_producto;
+
+
+   SET iterador=1;
+   WHILE iterador<=contadorDigitos DO
+        SET idCategoria = FN_Split_Str(cadena, ',', iterador);
+        IF NOT(idCategoria='' OR idCategoria IS NULL) THEN
+           CALL SP_Insertar_Categoria_Producto(idCategoria, pI_id_producto, 'A',@mensajeActualizarCategoriaProducto, @errorActualizarCategoriaProducto);
+             IF @errorActualizarCategoriaProducto THEN
+                SET mensaje=@mensajeActualizarCategoriaProducto;
+                SET error=TRUE;
+                SET pO_mensaje=mensaje;
+                SET pO_error=error;
+                SELECT mensaje,error;
+                LEAVE SP;
+             END IF;
+        END IF;
+
+        SET iterador= iterador + 1;
+    END WHILE;
+
+  
+   SELECT COUNT(*) INTO contador FROM impuesto_producto WHERE id_producto=pI_id_producto AND id_impuesto=pI_id_impuesto;
+   IF contador=0 THEN
+      UPDATE impuesto_producto SET estado='I' WHERE id_producto=pI_id_producto;
+
+    -- Insertar ImpuestoxProducto
+    CALL SP_Insertar_Impuesto_Producto(pI_id_impuesto, pI_id_producto, CURDATE(),NULL, 'A',@mensajeActualizarImpuestoProducto,@errorActualizarImpuestoProducto);
+
+    -- var => pO_error de =>CALL SP_Insertar_Impuesto
+    IF @errorActualizarImpuestoProducto THEN
+        SET mensaje=@mensajeActualizarImpuestoProducto;
+        SET error=TRUE;
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
+        SELECT mensaje,error;
+        LEAVE SP;
+    END IF;
+
+  END IF;
+
+   UPDATE producto
+   SET
+       producto.id_presentacion=pI_id_presentacion,
+       producto.nombre=pI_nombre,
+       producto.codigo_barra=pI_codigo_barra,
+       producto.url_foto=pI_url_foto,
+       producto.estado = uEstado
+   WHERE
+       producto.id_producto = pI_id_producto;
+   COMMIT;
+
+   IF isMedicamento THEN
+      UPDATE medicamentos SET id_laboratorio=pI_id_laboratorio, estado=uEstado WHERE id_producto=pI_id_producto;
+      COMMIT;
+   END IF;
+
+   SET mensaje= 'Actualización exitosa';
+   SET error=FALSE;
+   SET pO_mensaje=mensaje;
+   SELECT mensaje,error;
 END $$
 
-CALL SP_Actualizar_Producto(2,51, "paracetamol", "8407293190368", "https://www.youtube.com/watch?v=oQi28S1Unlo",'A',@mensaje,@error);
+CALL SP_Actualizar_Producto(255,2, "Gazas", "1234rt5678",
+                           "https://foto",'1,2,3',2,1,'',@mensaje,@error);
 SELECT @mensaje, @error;
 
-select * from producto where 
+select * from producto;

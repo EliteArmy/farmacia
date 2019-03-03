@@ -195,16 +195,12 @@ SP:BEGIN
          empleado.fecha_ingreso= pI_fecha_ingreso,           
          empleado.usuario= pI_usuario, 
          -- empleado.contrasena = pI_contrasena, -- no borrar por si se ocupa borrar en un futuro
+         empleado.foto_url= pI_foto_url,
          empleado.estado = uEstado
     WHERE 
          empleado.id_empleado =pI_id_empleado;
     COMMIT;
 
-
-    IF NOT(pI_foto_url='' OR pI_foto_url IS NULL) THEN
-      UPDATE empleado SET empleado.foto_url= pI_foto_url WHERE empleado.id_empleado=pI_id_empleado;
-      COMMIT; 
-    END IF;
     
     SET mensaje='Actualización exitosa';
     SET error=FALSE;
@@ -213,6 +209,7 @@ SP:BEGIN
     SELECT mensaje,error;
 
 END$$
+
 select * from persona where correo_electronico="a_jjjj87@live.com";
 select * from persona where numero_identidad="0801199707186";
 select * from persona where id_persona=570;
