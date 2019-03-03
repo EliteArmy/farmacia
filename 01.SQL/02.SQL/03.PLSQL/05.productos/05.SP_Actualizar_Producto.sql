@@ -241,8 +241,8 @@ CREATE PROCEDURE SP_Actualizar_Producto(
    SELECT mensaje,error;
 END $$
 
-CALL SP_Actualizar_Producto(255,2, "Gazas", "1234rt5678",
-                           "https://foto",'1,2,3',2,1,'',@mensaje,@error);
+CALL SP_Actualizar_Producto(255,2, 'Gazas', '1234rt5678',
+                           'https://foto','1,2,3',2,1,'',@mensaje,@error);
 SELECT @mensaje, @error;
 
 select * from producto;

@@ -107,6 +107,29 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'actualizar-producto':
+      $idProducto = validarPOST('id_producto');
+      $idPresentacion = validarPOST('id_presentacion');
+      $nombre = validarPOST('nombre');
+      $codigoBarra = validarPOST('codigo_barra');
+      $urlFoto = validarPOST('url_foto');
+      $idCategoria = validarPOST('id_categoria');
+      $idImpuesto = validarPOST('id_impuesto');
+      $idLaboratorio = validarPOST('id_laboratorio');
+      $estado = validarPOST('estado');
+      $prod = new Medicamento();
+      $prod->setIdProducto($idProducto);
+      $prod->setIdPresentacion($idPresentacion);
+      $prod->setNombre($nombre);
+      $prod->setCodigoBarra($codigoBarra);
+      $prod->setUrlFoto($urlFoto);
+      $prod->setIdCategoria($idCategoria);
+      $prod->setIdImpuesto($idImpuesto);
+      $prod->setIdLaboratorio($idLaboratorio);
+      $prod->setEstado($estado);
+      $res['data'] = $prod->actualizar($conexion);
+      echo json_encode($res);
+    break;
     case 'crear-producto':
       $idPresentacion = validarPOST('id_presentacion');
       $nombre = validarPOST('nombre');
@@ -173,8 +196,8 @@ if(isset($_POST['accion'])){
 
     case 'leer-producto-id':
       $idProducto = validarPOST('id_producto');
-      $prod = new Lote();
-      $prod->setIdProd($idProducto);
+      $prod = new Producto();
+      $prod->setIdProducto($idProducto);
       $res['data'] = $prod->leerPorId($conexion);
       echo json_encode($res);
     break;

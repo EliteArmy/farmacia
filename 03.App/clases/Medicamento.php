@@ -65,6 +65,20 @@ class Medicamento extends Producto{
 	public function borrar($conexion){
 	}
 	public function actualizar($conexion){
+		$sql = "CALL SP_Actualizar_Producto(%s, %s, '%s', '%s','%s', '%s',%s,%s,'%s',@mensaje,@error);";
+		$valores = [
+			$this->getIdProducto(),
+			$this->getIdPresentacion(),
+			$this->getNombre(),
+			$this->getCodigoBarra(),
+			$this->getUrlFoto(),
+			$this->getIdCategoria(),
+			$this->getIdImpuesto(),
+			$this->getIdLaboratorio(),
+			$this->getEstado()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
   }
 
 	public function crearLaboratorio($conexion){

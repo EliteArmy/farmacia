@@ -5,21 +5,22 @@ class Producto{
 	private $nombre;
 	private $codigoBarra;
   private $urlFoto;
+	private $estado;
 
   private $presentacion;
 
-	private $idCategoria; /*falta set y get */
-  private $categoria; /*falta set y get */
+	private $idCategoria;
+  private $categoria;
 
-  private $idImpuesto; /*falta set y get */
-	private $impuesto; /*falta set y get */
-  private $porcentajeImpuesto; /*falta set y get */
-  private $estadoImpuesto; /*falta set y get */
+  private $idImpuesto;
+	private $impuesto;
+  private $porcentajeImpuesto;
+  private $estadoImpuesto;
 
-  private $idDescuento; /*falta set y get */
-  private $descuento; /*falta set y get */
-  private $porcentajeDescuento; /*falta set y get */
-  private $estadoDescuento; /*falta set y get */
+  private $idDescuento;
+  private $descuento;
+  private $porcentajeDescuento;
+  private $estadoDescuento;
 
 	public function __construct(
 		$idProducto = null,
@@ -128,6 +129,14 @@ class Producto{
 		$this->idCategoria = $idCategoria;
 	}
 
+	public function getEstado(){
+		return $this->estado;
+	}
+
+	public function setEstado($estado){
+		$this->estado = $estado;
+	}
+
 
 	public static function leerLote($conexion){
 		$sql = '
@@ -159,6 +168,22 @@ class Producto{
 			FROM producto pro
 		';
 		return $conexion -> query($sql);
+	}
+
+	public function leerPorId($conexion){
+		$sql = '
+			SELECT
+  			*,
+  			(pro.id_producto IN (SELECT id_producto FROM medicamentos)) as es_medicamento
+  			,(SELECT presentacion FROM presentacion WHERE pro.id_presentacion = id_presentacion) as presentacion
+				,CASE WHEN (pro.id_producto IN (SELECT id_producto FROM medicamentos)) = TRUE
+					THEN (SELECT nombre_laboratorio FROM laboratorio WHERE id_laboratorio = (SELECT id_laboratorio FROM medicamentos WHERE id_producto = pro.id_producto))
+					ELSE \'\' END as laboratorio
+			FROM producto pro
+			WHERE id_producto = \'%s\'
+		';
+		$valores = [$this->getIdProducto()];
+		return $conexion -> query($sql, $valores);
 	}
 
 	public function borrar($conexion){
