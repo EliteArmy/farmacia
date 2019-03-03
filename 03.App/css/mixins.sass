@@ -42,6 +42,8 @@
 =material-button($color)
   &:not([disabled = "disabled"])
     +ripple($color)
+  &[disabled = "disabled"]
+    +ripple(darken($color, 10))
   &:hover:not([disabled = "disabled"])
     +ripple-hover($color)
   &:active:not([disabled = "disabled"])

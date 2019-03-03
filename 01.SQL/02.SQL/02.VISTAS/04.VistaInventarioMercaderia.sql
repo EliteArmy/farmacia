@@ -1,5 +1,5 @@
---- ######################################### BUG #########################################
---- EXISTENCIA CON NUMEROS NEGATIVOS
+-- ######################################### BUG #########################################
+-- EXISTENCIA CON NUMEROS NEGATIVOS
 
 CREATE OR REPLACE VIEW IngresoLote AS (
   SELECT
@@ -126,6 +126,7 @@ SELECT
   ,imp_disp.descripcion as descripcion_impuesto
   ,imp_disp.porcentaje as porcentaje_impuesto
   ,(SELECT COUNT(*) FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as tiene_descuento
+  ,(SELECT desc_disp.id_descuento FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as id_descuento
   ,(SELECT descripcion FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as descripcion_descuento
   ,(SELECT porcentaje FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as porcentaje_descuento
   ,(SELECT fecha_inicio FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as fecha_inicio_descuento
@@ -144,7 +145,7 @@ WHERE
   AND imp_prod.estado='A'
 ) imp_disp
   ON imp_disp.id_producto = p.id_producto
-WHERE p.estado = 'A'
+WHERE l.estado = 'A'
 ORDER BY p.id_producto, l.id_lote
 
 ;

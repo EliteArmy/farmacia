@@ -86,3 +86,4 @@ SELECT * FROM producto where id_producto=201
 select * from medicamentos
 SELECT * FROM medicamentos WHERE id_producto=201;
 
+;

@@ -181,12 +181,19 @@ class Producto{
 					ELSE \'\' END as laboratorio
 			FROM producto pro
 			WHERE id_producto = \'%s\'
+			AND estado = \'A\'
 		';
 		$valores = [$this->getIdProducto()];
 		return $conexion -> query($sql, $valores);
 	}
 
 	public function borrar($conexion){
+		$sql = "
+			CALL SP_Eliminar_Producto(%d, @mensaje,@error);
+		";
+		$valores = [$this->getIdProducto()];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
 	}
 
 	public function leerCategoriaPorId($conexion){

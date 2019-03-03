@@ -174,6 +174,13 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'eliminar-lote':
+      $idLote = validarPOST('id_lote');
+      $lot = new Lote();
+      $lot->setIdLote($idLote);
+      $res['data'] = $lot->borrar($conexion);
+      echo json_encode($res);
+    break;
     case 'crear-lote':
       $idProducto = validarPOST('id_producto');
       $lote = validarPOST('lote');
@@ -241,6 +248,14 @@ if(isset($_POST['accion'])){
       $prod = new Producto();
       $prod->setIdProducto($idProducto);
       $res['data'] = $prod->leerPorId($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'eliminar-producto':
+      $idProducto = validarPOST('id_producto');
+      $prod = new Producto();
+      $prod->setIdProducto($idProducto);
+      $res['data'] = $prod->borrar($conexion);
       echo json_encode($res);
     break;
 

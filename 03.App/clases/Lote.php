@@ -154,6 +154,12 @@ class Lote extends Producto{
 		return $rows[0];
 	}
 	public function borrar($conexion){
+		$sql = "
+			CALL SP_Eliminar_lote(%d, @mensaje,@error);
+		";
+		$valores = [$this->getIdLote()];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
 	}
 
 }
