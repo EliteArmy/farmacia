@@ -57,15 +57,4 @@ $('table-info-descuento').DataTable({
 
 
 
-function eo(){
-
-	console.log("ola")
-}
-
-console.log("hola")
-
-	
-
-
-document.write("tomalasutu")
 }
