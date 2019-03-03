@@ -89,6 +89,9 @@ function funcionBuscar(nomb){
   $("#footer-actualizar").removeClass("d-none");
   $("#tel-nuevo").show();
 
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
+
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -159,7 +162,7 @@ $("#actualizar-empleado").click(function(){
       "telefono": $('#telefono-nuevo').val(),
       "telefono_antiguo": $('#telefono').val(),
       
-      "estado":$('#slc-estado').val(),
+      "estado": $('#slc-estado').val(),
       "fecha_ingreso": $('#fecha-ingreso').val(),
       "usuario": $('#usuario').val(),
       "foto_url": "",

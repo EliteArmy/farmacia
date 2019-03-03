@@ -39,7 +39,7 @@
         <div class="row mt-3 mb-3">
           <!-- Button trigger para el modal -->
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <button id="crear-lote" type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-lote">
+            <button id="crear-lote" type="button" class="btn btn-primary reset" data-toggle="modal" data-target="#agregar-lote">
               Agregar Nuevo Lote
             </button>
           </div>
@@ -121,6 +121,14 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="cantidad">Cantidad</label><br>
               <input id="cantidad" class="form-control" type="number" step="1" min="0" placeholder="0">
+            </div>
+
+            <div id="seleccion-estado" class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-estado">Estado:</label>
+              <select id="slc-estado" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+              <option value="A">Activo</option>  
+              <option value="I">Inactivo</option>
+              </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">

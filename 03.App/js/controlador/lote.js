@@ -161,6 +161,10 @@ function funcionBuscar(nomb){
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
   $("#footer-actualizar").removeClass("d-none");
+  $("#seleccion-estado").removeClass("d-none");
+
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
 
   var settings = {
     "async": true,
@@ -183,23 +187,51 @@ function funcionBuscar(nomb){
 
     $('#id-lote').val(response.data.id_lote);
     $('#nombre-lote').val(response.data.lote);
-    //$('#slc-prod').val(response.data.placeholder);
+    $('#slc-prod').selectpicker('val', response.data.id_producto);
     $('#precio-compra').val(response.data.precio_costo_unidad);
     $('#precio-venta').val(response.data.precio_venta_unidad);
     $('#fecha-elab').val(response.data.fecha_elaboracion);
-    $('#fecha-venc').val(response.data.fecha_vencimiento);
+    $('#fecha-venc').val(response.data.fecha_vecimiento);
     $('#cantidad').val(response.data.existencia);
-    $('#slc-descuento').val(response.data.id_descuento);
+    $('#slc-estado').selectpicker('val', response.data.estado_lote);
+    //$('#slc-descuento').val(response.data.porcentaje_descuento);
 
   });
 
 }
 
 /* CRUD Lote: Update */
-function funcionActualizar(nomb){
-  alert("Actualizando en proceso.. " + nomb);
-  //imprimirMensaje(response);
-}
+$("#actualizar-lote").click(function(){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-lote",
+
+      "id-lote": $("#id-lote").val(),
+      "id_producto": $("#slc-prod").val(),
+      "lote": $("#nombre-lote").val(),
+      "precio_costo_unidad": $("#precio-compra").val(),
+      "precio_venta_unidad": $("#precio-venta").val(),
+      "fecha_elaboracion": $("#fecha-elab").val(),
+      "fecha_vencimiento": $("#fecha-venc").val(),
+      "estado": $('#slc-estado').val(),
+      "existencia": $("#cantidad").val(),
+      "id_descuento": $("#slc-descuento").val()
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response);
+  });
+  
+});
 
 /* CRUD Lote: Delete */
 function funcionBorrar(nomb){
@@ -253,8 +285,9 @@ function imprimirMensaje(response){
 /* Función que se encarga de dejar los campos por defecto */
 $(".reset").click(function(){
   // Se hace el cambio del footer en el Modal
-  $("#footer-actualizar").addClass("d-none");
   $("#footer-guardar").show();
+  $("#footer-actualizar").addClass("d-none");
+  $("#seleccion-estado").addClass("d-none");
 
   $('#cantidad').prop('readonly', false); // Deshabilita los campos
 
