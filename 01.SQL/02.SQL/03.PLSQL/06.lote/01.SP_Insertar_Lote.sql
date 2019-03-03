@@ -20,6 +20,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
   DECLARE error BOOLEAN;
   DECLARE contador INTEGER;
   DECLARE ultimoId INTEGER;
+  DECLARE fechaFin DATE;
 
   SET AUTOCOMMIT=0;
   START TRANSACTION;
@@ -78,11 +79,11 @@ CREATE PROCEDURE SP_Insertar_Lote(
    ELSE
      SELECT COUNT(*) INTO contador FROM lote WHERE id_producto=pI_id_producto AND lote=pI_lote;
      IF contador>=1 THEN 
-        SET mensaje=CONCAT(mensaje,'Ya existe este lote, no se puede repetir el nombre del lote con el mismo producto');
+        SET mensaje=CONCAT(mensaje,'Ya existe este lote, no se puede repetir el nombre del lote con el mismo producto, ');
      END IF;
    END IF;
 
-    SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento;
+    SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento AND estado='A';
     IF contador=0 THEN
       SET mensaje=CONCAT(mensaje,'El descuento no existe');
     END IF;
@@ -146,16 +147,19 @@ CREATE PROCEDURE SP_Insertar_Lote(
                      pI_existencia);
     COMMIT;
 
-      SELECT MAX(id_lote) INTO ultimoId FROM lote;
-      CALL SP_Insertar_Descuento_Lote(ultimoId, pI_id_descuento, CURDATE(), NULL,'A',@mensajeInsertarLoteDescuento,@errorInsertarLoteDescuento);
-      IF @errorInsertarLoteDescuento THEN
-        SET mensaje=@mensajeInsertarLoteDescuento;
-        SET error=TRUE;
-        SET pO_mensaje=mensaje;
-        SET pO_error=error;
-        SELECT mensaje,error;
-          LEAVE SP;
-      END IF;
+ 
+    SELECT fecha_fin INTO fechaFin FROM descuento WHERE id_descuento=pI_id_descuento;
+
+    SELECT MAX(id_lote) INTO ultimoId FROM lote;
+    CALL SP_Insertar_Descuento_Lote(ultimoId, pI_id_descuento, CURDATE(), fechaFin,'A',@mensajeInsertarLoteDescuento,@errorInsertarLoteDescuento);
+    IF @errorInsertarLoteDescuento THEN
+      SET mensaje=@mensajeInsertarLoteDescuento;
+      SET error=TRUE;
+      SET pO_mensaje=mensaje;
+      SET pO_error=error;
+      SELECT mensaje,error;
+      LEAVE SP;
+    END IF;
 
     SET mensaje := 'Inserción exitosa';
     SET error=FALSE;
@@ -164,7 +168,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
     SELECT mensaje,error;
 END $$
 
-CALL SP_Insertar_Lote(2,'lo89k6', 6,500 , '2018-02-02','2019-03-02',32,1,@mensaje,@error);
+CALL SP_Insertar_Lote(2,'lo89k65', 6,500 , '2018-02-02','2019-03-03',32,1,@mensaje,@error);
 SELECT @mensaje,@error;
 
 SELECT * FROM lote
