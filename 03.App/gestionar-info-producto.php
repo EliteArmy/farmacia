@@ -61,12 +61,12 @@
           
             <div class="form-group col-md-8" >
              <label for="fecha-inicio">Fecha Inicio:</label>
-             <input type="date" id="fecha-inicio" name="fecha-inicio" class="form-control" align="left">
+             <input type="date" id="fecha-inicio" name="fecha-inicio" class="form-control" >
              <label for="fecha-final">Fecha  Final: </label>
              <input type="date" id="fecha-final" name="fecha-final" class="form-control">
            </div>
 
-           <div class="modal-footer">
+           <div class="modal-footer col-md-5">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
            </div>
@@ -110,7 +110,7 @@
             <input type="date" id="fecha-final" name="fecha-final" class="form-control">
            </div>
 
-           <div class="modal-footer">
+           <div class="modal-footer col-md-4" align="left">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
             </div>
@@ -132,8 +132,8 @@
               <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
             </div>
               
-            <div class="modal-footer">
-             <button type="button" class="btn btn-info" id="">Reset</button>
+            <div class="modal-footer" align="left">
+             <button type="button" class="btn btn-info" id="" align="left">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
             </div>
             </div>
@@ -141,14 +141,15 @@
             	<table id="table-info-presentacion" class="display table-striped table-bordered w-100">
             		
             	</table>
-            	
-            </div>
+             </div>
            </div>
          </div>
         </div>
 
+
+
+
          <div class="col-md-6 sidebar" >
-           
            <div class="container-fluid well card">
            	<div class="row">
            	<div class="col-md-5">
@@ -177,6 +178,7 @@
         </div>
      </div>
    </div>
+  </div>
 
 
   
