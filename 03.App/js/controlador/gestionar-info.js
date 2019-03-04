@@ -116,7 +116,7 @@ $(document).ready(function() {
     pageLength: 6 ,
     searching: false,
     ordering: true,
-    paging: false,
+    paging: true,
     responsive: true,
     ajax: {
       "async": true,
@@ -128,7 +128,7 @@ $(document).ready(function() {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "leer-categoria"
+        "accion": "leer-presentacion"
       }
     },
     language: {

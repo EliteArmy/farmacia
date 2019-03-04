@@ -121,38 +121,11 @@
            </div>
           </div>
          </div>
-
-
          <div class="col-md-6 sidebar" >
            
            <div class="container-fluid well card">
            	<div class="row">
-           	<div class="col-md-6">
-            <div class="form">
-              <h5>Agregar Categoria</h5>
-              <label for="txt-nombre-categoria">Nombre categoria: </label>
-              <input type="text" class="form-control" id="txt-nombre-categoria" name="txt-nombre-categoria"  placeholder="nombre de la categoria" required autofocus>
-            </div>
-            <div class="modal-footer">
-             <button type="button" class="btn btn-info" id="">Reset</button>
-             <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
-            </div>
-            </div>
-            <div  class="col-md-6">
-            	<table id="table-info-categoria">
-            		
-            	</table>
-            	
-            </div>
-           </div>
-         </div>
-        </div>
-        
-         <div class="col-md-6 sidebar" >
-           
-           <div class="container-fluid well card">
-           	<div class="row">
-           	<div class="col-md-6">
+           	<div class="col-md-5">
             <div class="form">
               <h5>Agregar Presentación</h5>
                             <label for="txt-nombre-presentacion">Presentación: </label>
@@ -164,7 +137,7 @@
              <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
             </div>
             </div>
-            <div  class="col-md-6">
+            <div  class="col-md-7">
             	<table id="table-info-presentacion">
             		
             	</table>
@@ -173,6 +146,33 @@
            </div>
          </div>
         </div>
+
+         <div class="col-md-6 sidebar" >
+           
+           <div class="container-fluid well card">
+           	<div class="row">
+           	<div class="col-md-5">
+            <div class="form">
+              <h5>Agregar Categoria</h5>
+              <label for="txt-nombre-categoria">Nombre categoria: </label>
+              <input type="text" class="form-control" id="txt-nombre-categoria" name="txt-nombre-categoria"  placeholder="nombre de la categoria" required autofocus>
+            </div>
+            <div class="modal-footer">
+             <button type="button" class="btn btn-info" id="">Reset</button>
+             <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
+            </div>
+            </div>
+            <div  class="col-md-7">
+            	<table id="table-info-categoria">
+            		
+            	</table>
+            	
+            </div>
+           </div>
+         </div>
+        </div>
+        
+        
        
         </div>
      </div>
