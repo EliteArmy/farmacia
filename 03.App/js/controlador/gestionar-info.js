@@ -251,8 +251,8 @@ $("#guard-presentacion").click(function(){
       "data": {
         "accion": "crear-presentacion",
 
-        "impuesto": $("#txt-descripcion-imp").val(),
-        "valor": $("#in-impuesto").val(),
+        "presentacion": $("#txt-nombre-presentacion").val(),
+        
         
       }
     }
