@@ -54,19 +54,19 @@
                 <div class="input-group-text">%</div>
                </div>
             
-              <input type="number" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
+              <input type="number" id="txt-porcentaje-desc" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
            
              </div>
             </div>
           
             <div class="form-group col-md-8" >
-             <label for="fecha-inicio">Fecha Inicio:</label>
-             <input type="date" id="fecha-inicio" name="fecha-inicio" class="form-control" >
-             <label for="fecha-final">Fecha  Final: </label>
-             <input type="date" id="fecha-final" name="fecha-final" class="form-control">
+             <label for="fecha-inicio-desc">Fecha Inicio:</label>
+             <input type="date" id="fecha-inicio-desc" name="fecha-inicio" class="form-control" >
+             <label for="fecha-final-desc">Fecha  Final: </label>
+             <input type="date" id="fecha-final-desc" name="fecha-final" class="form-control">
            </div>
 
-           <div class="modal-footer col-md-5">
+           <div class="modal-footer col-md-">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
            </div>

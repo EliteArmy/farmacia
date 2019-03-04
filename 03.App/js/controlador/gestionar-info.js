@@ -147,5 +147,37 @@ $(document).ready(function() {
     ]
   });
   
+
+
+
+
+
+  // CREAR Descuento
+
 });
   
+$("#guard-descuento").click(function(){
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "JSON",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "crear-descuento",
+
+        "descripcion": $("#txt-descripcion").val(),
+        "porcentaje": $("#txt-porcentaje-desc").val(),
+        "fecha_inicio": $("#fecha-inicio-desc").val(),
+        "fecha_final": $("#fecha-final-desc").val()
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      imprimirMensaje(response);
+    });
+
+ });
