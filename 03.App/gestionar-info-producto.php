@@ -134,7 +134,7 @@
               
             <div class="modal-footer" align="left">
              <button type="button" class="btn btn-info" id="" align="left">Reset</button>
-             <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
+             <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
             </div>
             </div>
             <div  class="col-md-7">

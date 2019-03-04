@@ -209,3 +209,56 @@ $("#guard-impuesto").click(function(){
     });
 
  });
+
+
+//CREAR CATEGORIA
+$("#guard-categoria").click(function(){
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "JSON",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "crear-categoria",
+
+        "categoria": $("#txt-nombre-categoria").val(),
+        
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      imprimirMensaje(response);
+    });
+
+ });
+
+
+//Agregar PResentacion
+$("#guard-presentacion").click(function(){
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "JSON",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "crear-presentacion",
+
+        "impuesto": $("#txt-descripcion-imp").val(),
+        "valor": $("#in-impuesto").val(),
+        
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      imprimirMensaje(response);
+    });
+
+ });
