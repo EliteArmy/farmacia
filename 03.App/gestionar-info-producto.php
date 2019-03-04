@@ -42,12 +42,12 @@
             <div class="row">
             <div class="col-md-6">
             <h5>Agregar Descuento</h5>
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-8">
               <label for="txt-descripcion">Inserte Descripción: </label>
               <input class="form-control" id="txt-descripcion" name="txt-descripcion"  rows="3" required autofocus>
             </div>
           
-            <div class="col-md-10">
+            <div class="col-md-8">
              <label for="in-descuento">Ingrese Porcentaje:</label>
              <div class="input-group">
                <div class="input-group-prepend">
@@ -59,7 +59,7 @@
              </div>
             </div>
           
-            <div class="form-group col-md-12" >
+            <div class="form-group col-md-8" >
              <label for="fecha-inicio">Fecha Inicio:</label>
              <input type="date" id="fecha-inicio" name="fecha-inicio" class="form-control" align="left">
              <label for="fecha-final">Fecha  Final: </label>
@@ -86,12 +86,12 @@
           <div class="row">
            <div class="col-md-6">
             <h5>Agregar Impuesto</h5>
-           <div class="form-group col-md-12">
+           <div class="form-group col-md-8">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
             <input class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required autofocus>
            </div>
 
-           <div class="col-md-10">
+           <div class="col-md-8">
             <label for="in-impuesto">Ingrese Porcentaje:</label>
             <div class="input-group">
               <div class="input-group-prepend">
@@ -102,7 +102,7 @@
             </div>
            </div>
           
-           <div class="form-group col-md-12" >
+           <div class="form-group col-md-8" >
             <label for="fecha-inicio">Fecha Inicio:</label>
             <input type="date" id="fecha-inicio" name="fecha-inicio" class="form-control" align="left">
           
