@@ -132,7 +132,7 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-            <label for="slc-descuento">Descuento</label>
+              <label for="slc-descuento">Descuento</label>
               <select id="slc-descuento" class="selectpicker form-control" data-live-search="true" title="Descuentos" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>

@@ -98,24 +98,28 @@
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-categoria">Categoría:</label>
               <select id="slc-categoria" class="selectpicker form-control" data-live-search="true" title="Categorias" data-style="btn-primary" multiple>
                 <!-- Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-impuesto">Impuesto:</label>
               <select id="slc-impuesto" class="selectpicker form-control" data-live-search="true" title="Impuestos" data-style="btn-primary">
                 <!-- Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-presentacion">Presentación:</label>  
               <select id="slc-presentacion" class="selectpicker form-control" data-live-search="true" title="Presentacion" data-style="btn-primary">
                 <!-- Informacion generada -->
               </select>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-tipo">Tipo:</label>
               <select id="slc-tipo" class="selectpicker form-control" title="Tipo de Producto" data-style="btn-primary">
                 <option onclick="showMedicamento(P)" value="P">Producto</option>
                 <option onclick="showMedicamento(M)" value="M">Medicamento</option>
@@ -123,8 +127,17 @@
             </div>
 
             <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
+              <label for="slc-laboratorio">Laboratorio:</label>
               <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
                 <!--Informacion generada -->
+              </select>
+            </div>
+
+            <div id="seleccion-estado" class="form-group col-12 col-sm-6 col-md-6">
+              <label for="slc-estado">Estado:</label>
+              <select id="slc-estado" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+              <option value="A">Activo</option>  
+              <option value="I">Inactivo</option>
               </select>
             </div>
 

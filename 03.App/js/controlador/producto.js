@@ -215,7 +215,12 @@ function funcionBuscar(nomb){
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
   $("#footer-actualizar").removeClass("d-none");
+  
+  $("#seleccion-estado").removeClass("d-none");
   $('#laboratorio').show();
+
+  $('.selectpicker').selectpicker('val', '');
+  $('.selectpicker').selectpicker('refresh');
 
   var settings = {
     "async": true,
@@ -235,14 +240,16 @@ function funcionBuscar(nomb){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     
-    $('#id-producto').val(response.data.id_producto);
-    $('#nombre-producto').val(response.data.nombre);
-    $('#codigo-barra').val(response.data.codigo_barra);
-    $('#slc-categoria').val(response.data.array_categoria);
-    $('#slc-impuesto').val(response.data.id_impuesto);
-    $('#slc-presentacion').val(response.data.presentacion);
-    //$('#foto').val(response.data.url_foto);
-    $('#slc-laboratorio').val(response.data.id_laboratorio);
+    $('#id-producto').val(response.data[0].id_producto);
+    $('#nombre-producto').val(response.data[0].nombre);
+    $('#codigo-barra').val(response.data[0].codigo_barra);
+    //$('#slc-categoria').selectpicker('val', response.data[0].array_categoria);
+    $('#slc-impuesto').selectpicker('val', response.data[0].id_impuesto);
+    $('#slc-presentacion').selectpicker('val', response.data[0].id_presentacion);
+    //$('#foto').val(response.data[0].url_foto);
+    $('#slc-tipo').selectpicker('val', response.data[0].es_medicamento);
+    $('#slc-estado').selectpicker('val', response.data[0].estado);
+    //$('#slc-laboratorio').selectpicker('val', response.data[0].id_laboratorio);
       
   });
 }
@@ -308,6 +315,7 @@ $(".reset").click(function(){
   $("#footer-actualizar").addClass("d-none");
   $("#footer-guardar").show();
   $('#laboratorio').hide();
+  $("#seleccion-estado").addClass("d-none");
 
   $('.selectpicker').selectpicker('val', '');
   $('.selectpicker').selectpicker('refresh');
