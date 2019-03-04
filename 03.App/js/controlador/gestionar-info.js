@@ -153,10 +153,34 @@ $(document).ready(function() {
 
 
 
-
-  // CREAR Descuento
-
+//impuesto
 });
+
+$("#guard-impuesto").click(function(){
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "JSON",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "crear-impuesto",
+
+        "impuesto": $("#txt-descripcion-imp").val(),
+        "valor": $("#in-impuesto").val()
+        
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      imprimirMensaje(response);
+    });
+
+ });
+
 
   //Guardar Descuento
 $("#guard-descuento").click(function(){
@@ -180,37 +204,13 @@ $("#guard-descuento").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      imprimirMensaje(response);
+      imprimirMensaje(response,"-descuento");
     });
 
  });
 
 
 //Guardar Impuesto
-$("#guard-impuesto").click(function(){
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://farma/services/producto.php",
-      "method": "POST",
-      "dataType": "JSON",
-      "headers": {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "accion": "crear-impuesto",
-
-        "impuesto": $("#txt-descripcion-imp").val(),
-        "valor": $("#in-impuesto").val(),
-        
-      }
-    }
-    
-    $.ajax(settings).done(function (response1) {
-      imprimirMensajeI(response1);
-    });
-
- });
 
 
 //CREAR CATEGORIA
@@ -233,7 +233,7 @@ $("#guard-categoria").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      imprimirMensajeC(response);
+      imprimirMensaje(response,"-");
     });
 
  });
@@ -271,28 +271,28 @@ $("#guard-presentacion").click(function(){
 
 
 
-function imprimirMensaje(response){
+function imprimirMensaje(response, tbl){
   if (response.data[0].error == 0) {
     console.log(response.data);
-    $('#table-info-descuento').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    $('#table-info'+tbl).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
     
-    $("#div-exito").html(response.data[0].mensaje);
-    $("#div-exito").removeClass("d-none");
+    $("#div-exito" +tbl).html(response.data[0].mensaje);
+    $("#div-exito"+ tbl).removeClass("d-none");
     
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("");
+    $("#div-exito"+tbl).hide(8000, function(){
+      $('#div-exito'+tbl).addClass("d-none");
+      $("#div-exito"+tbl).show();
+      $("#div-exito"+tbl).html("");
     });
   } else {
     console.log(response);
-    $("#div-error").html(response.data[0].mensaje);
-    $("#div-error").removeClass("d-none");
+    $("#div-error"+tbl).html(response.data[0].mensaje);
+    $("#div-error"+tbl).removeClass("d-none");
    
-    $("#div-error").hide(8000, function(){
-      $('#div-error').show();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html("");
+    $("#div-error"+tbl).hide(8000, function(){
+      $('#div-error'+tbl).show();
+      $('#div-error'+tbl).addClass("d-none");
+      $("#div-error"+tbl).html("");
     });
   }
 }
@@ -300,83 +300,3 @@ function imprimirMensaje(response){
 
 
 
-function imprimirMensajeI(response1){
-  if (response1.data[0].error == 0) {
-    console.log(response.data);
-    $('#table-info-impuesto').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    
-    $("#div-exito").html(response.data[0].mensaje);
-    $("#div-exito").removeClass("d-none");
-    
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("");
-    });
-  } else {
-    console.log(response);
-    $("#div-error").html(response.data[0].mensaje);
-    $("#div-error").removeClass("d-none");
-   
-    $("#div-error").hide(8000, function(){
-      $('#div-error').show();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html("");
-    });
-  }
-}
-
-
-
-function imprimirMensajeC(response){
-  if (response.data[0].error == 0) {
-    console.log(response.data);
-    $('#table-info-categoria').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    
-    $("#div-exito").html(response.data[0].mensaje);
-    $("#div-exito").removeClass("d-none");
-    
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("");
-    });
-  } else {
-    console.log(response);
-    $("#div-error").html(response.data[0].mensaje);
-    $("#div-error").removeClass("d-none");
-   
-    $("#div-error").hide(8000, function(){
-      $('#div-error').show();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html("");
-    });
-  }
-}
-
-
-function imprimirMensajeP(response){
-  if (response.data[0].error == 0) {
-    console.log(response.data);
-    $('#table-info-presentacion').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    
-    $("#div-exito").html(response.data[0].mensaje);
-    $("#div-exito").removeClass("d-none");
-    
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("");
-    });
-  } else {
-    console.log(response);
-    $("#div-error").html(response.data[0].mensaje);
-    $("#div-error").removeClass("d-none");
-   
-    $("#div-error").hide(8000, function(){
-      $('#div-error').show();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html("");
-    });
-  }
-}
