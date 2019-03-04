@@ -251,7 +251,7 @@ function funcionBorrar(nomb){
   }
   
   $.ajax(settings).done(function (response) {
-    imprimirMensaje(response);
+    imprimirMensaje2(response);
   });
 
 }
@@ -272,6 +272,32 @@ function imprimirMensaje(response){
   } else {
     console.log(response);
     $("#div-error").html(response.data.mensaje);
+    $("#div-error").removeClass("d-none");
+   
+    $("#div-error").hide(8000, function(){
+      $('#div-error').show();
+      $('#div-error').addClass("d-none");
+      $("#div-error").html("");
+    });
+  }
+}
+
+function imprimirMensaje2(response){
+  if (response.data[0].error == 0) {
+    console.log(response.data[0]);
+    $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito").html(response.data[0].mensaje);
+    $("#div-exito").removeClass("d-none");
+    
+    $("#div-exito").hide(8000, function(){
+      $('#div-exito').addClass("d-none");
+      $("#div-exito").show();
+      $("#div-exito").html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error").html(response.data[0].mensaje);
     $("#div-error").removeClass("d-none");
    
     $("#div-error").hide(8000, function(){

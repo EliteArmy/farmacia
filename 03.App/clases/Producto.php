@@ -168,6 +168,15 @@ class Producto{
 			FROM producto pro
 		';
 		return $conexion -> query($sql);
+  }
+  
+  public function borrar($conexion){
+		$sql = "
+			CALL SP_Eliminar_Producto(%d, @mensaje,@error);
+		";
+		$valores = [$this->getIdProducto()];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
 	}
 
 	public function leerPorId($conexion){
@@ -185,15 +194,6 @@ class Producto{
 		';
 		$valores = [$this->getIdProducto()];
 		return $conexion -> query($sql, $valores);
-	}
-
-	public function borrar($conexion){
-		$sql = "
-			CALL SP_Eliminar_Producto(%d, @mensaje,@error);
-		";
-		$valores = [$this->getIdProducto()];
-		$rows = $conexion->query($sql, $valores);
-		return $rows;
 	}
 
 	public function leerCategoriaPorId($conexion){

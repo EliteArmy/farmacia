@@ -181,6 +181,7 @@ if(isset($_POST['accion'])){
       $res['data'] = $lot->borrar($conexion);
       echo json_encode($res);
     break;
+    
     case 'crear-lote':
       $idProducto = validarPOST('id_producto');
       $lote = validarPOST('lote');
