@@ -126,6 +126,7 @@
          <div class="col-md-6 sidebar" >
            <div class="row">
            <div class="container-fluid well card">
+           	<div class="col-md-6">
             <div class="form">
               <h5>Agregar Categoria</h5>
               <label for="txt-nombre-categoria">Nombre categoria: </label>
@@ -136,8 +137,15 @@
              <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
             </div>
             </div>
+            <div>
+            	<table id="table-info-categoria">
+            		
+            	</table>
+            	
+            </div>
            </div>
          </div>
+        </div>
           
          <div class="col-md-6"> 
            <div class="container-fluid well card">
