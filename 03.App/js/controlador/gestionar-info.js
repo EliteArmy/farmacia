@@ -155,7 +155,8 @@ $(document).ready(function() {
   // CREAR Descuento
 
 });
-  
+
+  //Guardar Descuento
 $("#guard-descuento").click(function(){
     var settings = {
       "async": true,
@@ -173,6 +174,34 @@ $("#guard-descuento").click(function(){
         "porcentaje": $("#txt-porcentaje-desc").val(),
         "fecha_inicio": $("#fecha-inicio-desc").val(),
         "fecha_fin": $("#fecha-final-desc").val()
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      imprimirMensaje(response);
+    });
+
+ });
+
+
+//Guardar Impuesto
+$("#guard-impuesto").click(function(){
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "JSON",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "crear-impuesto",
+
+        "descripcion": $("#txt-descripcion-imp").val(),
+        "porcentaje": $("#in-impuesto").val(),
+        "fecha_inicio": $("#fecha-inicio-imp").val(),
+        "fecha_fin": $("#fecha-final-imp").val()
       }
     }
     

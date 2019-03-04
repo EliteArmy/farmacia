@@ -103,11 +103,11 @@
            </div>
           
            <div class="form-group col-md-8" >
-            <label for="fecha-inicio">Fecha Inicio:</label>
-            <input type="date" id="fecha-inicio" name="fecha-inicio" class="form-control" align="left">
+            <label for="fecha-inicio-imp">Fecha Inicio:</label>
+            <input type="date" id="fecha-inicio-imp" name="fecha-inicio" class="form-control" align="left">
           
-            <label for="fecha-final">Fecha  Final: </label>
-            <input type="date" id="fecha-final" name="fecha-final" class="form-control">
+            <label for="fecha-final-imp">Fecha  Final: </label>
+            <input type="date" id="fecha-final-imp" name="fecha-final" class="form-control">
            </div>
 
            <div class="modal-footer col-md-4" align="left">
