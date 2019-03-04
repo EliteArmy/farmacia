@@ -40,7 +40,7 @@
          <div class="container-fluid col-md-12 ">
            <div class="container-fluid will card">
             <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
             <h5>Agregar Descuento</h5>
             <div class="form-group col-md-8">
               <label for="txt-descripcion">Inserte Descripción: </label>
@@ -71,8 +71,8 @@
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
            </div>
            </div>
-           <div class="col-md-6">
-            <table id="table-info-descuento">
+           <div class="col-md-7">
+            <table id="table-info-descuento" class="display table-striped table-bordered ">
               <!-- Informacion generada -->
              
             </table>
@@ -116,7 +116,7 @@
             </div>
            </div>
            <div class="col-md-6">
-           	<table id="table-info-impuesto"> </table>
+           	<table id="table-info-impuesto" class="display table-striped table-bordered w-100"> </table>
            	</div>
            </div>
           </div>
@@ -138,7 +138,7 @@
             </div>
             </div>
             <div  class="col-md-7">
-            	<table id="table-info-presentacion">
+            	<table id="table-info-presentacion" class="display table-striped table-bordered w-100">
             		
             	</table>
             	
@@ -163,7 +163,7 @@
             </div>
             </div>
             <div  class="col-md-7">
-            	<table id="table-info-categoria">
+            	<table id="table-info-categoria" class="display table-striped table-bordered w-100">
             		
             	</table>
             	
