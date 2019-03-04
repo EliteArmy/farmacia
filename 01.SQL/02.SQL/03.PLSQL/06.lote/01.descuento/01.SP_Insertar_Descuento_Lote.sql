@@ -73,9 +73,9 @@ CREATE PROCEDURE SP_Insertar_Descuento_Lote(
      SET mensaje = CONCAT(mensaje,'Fecha de inicio inválida, no puede ser menor que la fecha actual, ');
    END IF;
 
-   SELECT COUNT(*) INTO contador FROM descuento_lote WHERE id_lote = pI_id_lote and id_descuento = pI_id_descuento;
+   SELECT COUNT(*) INTO contador FROM descuento_lote WHERE id_lote = pI_id_lote and id_descuento = pI_id_descuento AND estado='A';
    IF contador >0  THEN
-     SET mensaje=CONCAT(mensaje,'Este lote ya tiene este tipo de impuesto,');
+     SET mensaje=CONCAT(mensaje,'Este lote ya tiene este tipo de descuento,');
    END IF;
 
 

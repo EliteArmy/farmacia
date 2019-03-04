@@ -22,6 +22,7 @@ CREATE PROCEDURE SP_Actualizar_Lote(
   DECLARE error BOOLEAN;
   DECLARE contador INTEGER;
   DECLARE uEstado VARCHAR(1);
+  DECLARE fechaFin DATE;
 
   SET AUTOCOMMIT=0;
   START TRANSACTION;
@@ -77,7 +78,7 @@ CREATE PROCEDURE SP_Actualizar_Lote(
     IF pI_id_descuento='' OR pI_id_descuento IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'Descuento vacio, ');
       ELSE
-        SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento;
+        SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento AND estado='A';
         IF contador=0 THEN
           SET mensaje=CONCAT(mensaje,'El descuento no existe');
       END IF;
@@ -154,19 +155,27 @@ CREATE PROCEDURE SP_Actualizar_Lote(
         LEAVE SP;
    END IF;
    
-  DELETE FROM descuento_lote 
-  WHERE id_lote= pI_id_lote;
+   -- Contador=1 El descuento por Actualizar ya existe
+   SELECT COUNT(*) INTO contador FROM descuento_lote 
+   WHERE id_descuento=pI_id_descuento AND id_lote=pI_id_lote AND estado='A';
 
-  CALL SP_Insertar_Descuento_Lote(pI_id_lote,pI_id_descuento, CURDATE(),NULL,'A', @mensajeActualizarDescuentoLote,@errorActualizarDescuentoLote);
-   IF @errorActualizarDescuentoLote THEN
+   IF contador=0 THEN
+      UPDATE descuento_lote SET estado='I' WHERE id_lote=pI_id_lote; 
+      SELECT fecha_fin INTO fechaFin FROM descuento WHERE id_descuento=pI_id_descuento;
+    -- Insertar ImpuestoxProducto
+    CALL SP_Insertar_Descuento_Lote(pI_id_lote, pI_id_descuento, CURDATE(),fechaFin, 'A',@mensajeActualizarDescuentoLote,@errorActualizarDescuentoLote);
+
+    -- var => pO_error de =>CALL SP_Insertar_Impuesto
+    IF @errorActualizarDescuentoLote THEN
         SET mensaje=@mensajeActualizarDescuentoLote;
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
         SELECT mensaje,error;
-		LEAVE SP;
-   END IF;
+        LEAVE SP;
+    END IF;
 
+  END IF;
 
    UPDATE lote SET id_producto =pI_id_producto,
 				           lote = pI_lote ,
@@ -191,9 +200,6 @@ END $$
 
 CALL SP_Actualizar_Lote(1,2,'sifjisdfjs', 10, 200, DATE('2019-03-02'), DATE('2021-02-02'),"",5,1,@mensaje,@error);
 SELECT @mensaje,@error;
-
-
-;
 
 
 CALL SP_Actualizar_Lote( 1,1,'LOT8996',25.36,26.80,DATE('2019-02-19'),DATE('2019-03-20'), 'A',1,1 ,@mensaje,@error);

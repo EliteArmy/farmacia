@@ -69,7 +69,7 @@ CREATE PROCEDURE SP_Insertar_Impuesto_Producto(
      SET mensaje=CONCAT('El producto no existe  ,', mensaje);
    END IF;
 
-   SELECT COUNT(*) INTO contador FROM impuesto_producto WHERE id_impuesto = pI_id_impuesto and id_producto = pI_id_producto;
+   SELECT COUNT(*) INTO contador FROM impuesto_producto WHERE id_impuesto = pI_id_impuesto and id_producto = pI_id_producto AND estado='A';
    IF contador >0  THEN
      SET mensaje=CONCAT('Este producto ya posee este tipo de impuesto ,', mensaje);
    END IF;

@@ -200,7 +200,7 @@ CREATE PROCEDURE SP_Actualizar_Producto(
     END WHILE;
 
   
-   SELECT COUNT(*) INTO contador FROM impuesto_producto WHERE id_producto=pI_id_producto AND id_impuesto=pI_id_impuesto;
+   SELECT COUNT(*) INTO contador FROM impuesto_producto WHERE id_producto=pI_id_producto AND id_impuesto=pI_id_impuesto AND estado='A';
    IF contador=0 THEN
       UPDATE impuesto_producto SET estado='I' WHERE id_producto=pI_id_producto;
 
