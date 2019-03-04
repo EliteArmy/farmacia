@@ -149,6 +149,12 @@
              <button type="button" class="btn btn-info" id="" align="left">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
             </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
+            </div>
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
+            </div>            
+          </div>
             </div>
             <div  class="col-md-7">
             	<table id="table-info-presentacion" class="display table-striped table-bordered w-100">
@@ -175,6 +181,12 @@
              <button type="button" class="btn btn-info" id="">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
             </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
+            </div>
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
+            </div>            
+          </div>
             </div>
             <div  class="col-md-7">
             	<table id="table-info-categoria" class="display table-striped table-bordered w-100">
