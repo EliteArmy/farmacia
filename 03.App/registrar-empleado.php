@@ -95,11 +95,14 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="contrasena">Contraseña</label>
               <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
+              <div class="invalid-feedback">
+                <span></span>: La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="primer-nombre">Primer Nombre:</label>
-              <input type="text" class="form-control" id="primer-nombre" name="primer-nombre"  placeholder="Primer Nombre" required autofocus>
+              <input type="text" class="form-control" id="primer-nombre" name="primer-nombre"  placeholder="Primer Nombre">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">

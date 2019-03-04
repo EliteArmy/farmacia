@@ -19,15 +19,19 @@ class Forma {
     	let flag = this.inputs[id].mandatory;
 			if (value == '' && flag === true){
 				$("#" + id).removeClass('is-valid');
-				$("#" + id).addClass('is-invalid');
-				this.inputs[id].ready = false;
-				$("#" + id).next('.invalid-feedback').html("Campo requerido");
+				if (flag){	
+					$("#" + id).addClass('is-invalid');
+				}
+				this.inputs[id].ready = false || !flag;
+				$("#" + id).next('.invalid-feedback').children('span').html("Campo requerido");
 			}
 			else if (!regexp.exec(value)) {
 				$("#" + id).removeClass('is-valid');
-				$("#" + id).addClass('is-invalid');
-				this.inputs[id].ready = false;
-				$("#" + id).next('.invalid-feedback').html("El valor del campo no es válido");
+				if (flag){
+					$("#" + id).addClass('is-invalid');
+				}
+				this.inputs[id].ready = false || !flag;
+				$("#" + id).next('.invalid-feedback').children('span').html("El valor del campo no es válido");
 			} else {
 				$("#" + id).addClass('is-valid');
 				$("#" + id).removeClass('is-invalid');
@@ -61,7 +65,19 @@ class Forma {
 	}
 
 	static addTrigger(form){
+		
+		$(`#${form.id}`).on('shown.bs.modal',function(){
+	    for(let key in form.inputs){
+	  		form.validate(key);
+	  	}
+	  });
+
 	  $(`#${form.id} .form-control`).on('input',function(){
+	    let id = this.id;
+	    form.validate(id);
+	  });
+
+	  $(`#${form.id} .selectpicker`).on('change',function(){
 	    let id = this.id;
 	    form.validate(id);
 	  });

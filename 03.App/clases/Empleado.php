@@ -183,7 +183,7 @@ class Empleado extends Persona{
 		);
 		";
 
-    //$this->contrasena = hash('sha512', $this->contrasena);
+    $this->contrasena = hash('sha512', $this->contrasena);
 
     $valores = [
 			$this->getIdEmpleado(),

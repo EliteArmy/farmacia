@@ -1,3 +1,26 @@
+//  FORMAS
+let formaEmpleado = new Forma('agregarempleado');
+formaEmpleado.addInput('usuario', /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/, true);
+formaEmpleado.addInput('contrasena', /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/, true);
+formaEmpleado.addInput('primer-nombre', /^[A-Z]+[A-Za-záéíóúñ]+$/, true);
+formaEmpleado.addInput('segundo-nombre', /^[A-Z]+[A-Za-záéíóúñ]+$/, false);
+formaEmpleado.addInput('primer-apellido', /^[A-Z]+[A-Za-záéíóúñ]+$/, true);
+formaEmpleado.addInput('segundo-apellido', /^[A-Z]+[A-Za-záéíóúñ]+$/, false);
+formaEmpleado.addInput('numero-identidad', /^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$/, true)
+formaEmpleado.addInput('correo-electronico', /^[a-zA-Z0-9\._-]+@([_a-zA-Z0-9])+(\.[a-zA-Z]+)+$/, true);
+formaEmpleado.addInput('telefono',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
+formaEmpleado.addInput('telefono-nuevo',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
+formaEmpleado.addInput('fecha-ingreso');
+formaEmpleado.addInput('fecha-nacimiento');
+formaEmpleado.addInput('slc-tipo-usuario');
+formaEmpleado.addInput('slc-estado');
+formaEmpleado.addInput('direccion', /.+/, true);
+formaEmpleado.addInput('slc-sexo');
+
+formaEmpleado.setButtonEnvio('guard-empleado');
+formaEmpleado.setButtonUpdate('actualizar-empleado');
+Forma.addTrigger(formaEmpleado);
+
 $(document).ready(function() {
   
   /* CRUD Empleado: Read */
@@ -110,9 +133,9 @@ function funcionBuscar(nomb){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     
-    $('#telefono-nuevo').val("");
-    $('#telefono').prop('readonly', true);
-    $('#contrasena').prop('readonly', true);
+    //$('#telefono-nuevo').val("");
+    //$('#telefono').prop('readonly', true);
+    //$('#contrasena').prop('readonly', true);
 
     $('#id-empleado').val(response.data.id_empleado);
     $('#primer-nombre').val(response.data.primer_nombre);
@@ -123,8 +146,8 @@ function funcionBuscar(nomb){
     $('#direccion').val(response.data.direccion);
     $('#correo-electronico').val(response.data.correo_electronico);
     $('#numero-identidad').val(response.data.numero_identidad);
-    $('#telefono').val(response.data.telefono);
-    $('#telefono-nuevo').val(response.data.telefono);
+    $('#telefono').val(response.data.telefono.split(',')[0]);
+    $('#telefono-nuevo').val(response.data.telefono.split(',')[0]);
     $('#fecha-nacimiento').val(response.data.fecha_nacimiento);
     $('#fecha-ingreso').val(response.data.fecha_ingreso);
     $('#usuario').val(response.data.usuario);
