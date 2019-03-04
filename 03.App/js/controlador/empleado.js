@@ -133,9 +133,9 @@ function funcionBuscar(nomb){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     
-    $('#telefono-nuevo').val("");
-    $('#telefono').prop('readonly', true);
-    $('#contrasena').prop('readonly', true);
+    //$('#telefono-nuevo').val("");
+    //$('#telefono').prop('readonly', true);
+    //$('#contrasena').prop('readonly', true);
 
     $('#id-empleado').val(response.data.id_empleado);
     $('#primer-nombre').val(response.data.primer_nombre);
@@ -211,14 +211,61 @@ function funcionBorrar(nomb){
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "eliminar-empleado",
+      "accion": "leer-empleado-id",
       "id_empleado": nomb
     }
   }
   
   $.ajax(settings).done(function (response) {
-    imprimirMensaje(response);
+       $.confirm({
+       icon: 'fa fa-trash fa-spin',
+       theme: 'modern',
+       closeIcon: true,
+       animation: 'rotate',
+       animationBounce: 1,
+       type: 'blue',
+       title:'Alerta!',
+       content:'¿Esta seguro de eliminar a ' + response.data.nombre_completo + ' ?',
+       buttons:{
+         Eliminar:{
+            text:"Si, seguro!",
+            btnClass:"btn-blue",
+            action:function(){
+              var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://farma/services/empleado.php",
+                "method": "POST",
+                "dataType": "json",
+                "headers": {
+                  "content-type": "application/x-www-form-urlencoded"
+                },
+                "data": {
+                  "accion": "eliminar-empleado",
+                  "id_empleado": nomb
+                }
+              }
+              
+              $.ajax(settings).done(function (response) {
+                $.alert({
+                  title: response.data.mensaje,
+                  icon: 'fa fa-check',
+                  type: 'blue',
+                  content: '',
+              });
+              $('#table-info').DataTable().ajax.reload();
+              })
+            }
+            
+         },
+         Cancelar:function(){
+
+         }
+       }
+     })
   });
+
+
 
 }
 
