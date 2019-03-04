@@ -40,10 +40,10 @@ $(document).ready(function() {
     });
     
   $('#table-info-categoria').DataTable({
-    pageLength: 10,
-    searching: true,
+    pageLength: 6 ,
+    searching: false,
     ordering: true,
-    paging: true,
+    paging: false,
     responsive: true,
     ajax: {
       "async": true,
@@ -65,11 +65,8 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { data: "descripcion", title:"Descripcion"},
-      { data: "porcentaje", title:"Porcentaje"},
-      { data: "estado", title:"Estado"},
-      { data: "fecha_inicio", title:"fecha inicio"},
-      { data: "fecha_fin", title:"Fecha Fin"},
+      { data: "id_categoria", title:"ID"},
+      { data: "categoria", title:"Categoria"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
@@ -80,7 +77,6 @@ $(document).ready(function() {
 
   $('#table-info-impuesto').DataTable({
     pageLength: 10,
-    searching: true,
     ordering: true,
     paging: true,
     responsive: true,
@@ -109,6 +105,41 @@ $(document).ready(function() {
       { data: "estado", title:"Estado"},
       { data: "fecha_inicio", title:"fecha inicio"},
       { data: "fecha_fin", title:"Fecha Fin"},
+      { data: null, title: "Opción",
+      render: function ( data, type, row, meta ) {
+        return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+               '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+      }}
+    ]
+  });
+   $('#table-info-presentacion').DataTable({
+    pageLength: 6 ,
+    searching: false,
+    ordering: true,
+    paging: false,
+    responsive: true,
+    ajax: {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/producto.php",
+      "method": "POST",
+      "dataType": "json",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "leer-categoria"
+      }
+    },
+    language: {
+      oPaginate: {
+          sNext: '<i class="fas fa-forward"></i>',
+          sPrevious: '<i class="fas fa-backward"></i>'
+      }
+    },
+    columns: [
+      { data: "id_presentacion", title:"ID"},
+      { data: "presentacion", title:"Presentación"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+

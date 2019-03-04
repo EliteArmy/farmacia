@@ -124,8 +124,9 @@
 
 
          <div class="col-md-6 sidebar" >
-           <div class="row">
+           
            <div class="container-fluid well card">
+           	<div class="row">
            	<div class="col-md-6">
             <div class="form">
               <h5>Agregar Categoria</h5>
@@ -137,7 +138,7 @@
              <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
             </div>
             </div>
-            <div>
+            <div  class="col-md-6">
             	<table id="table-info-categoria">
             		
             	</table>
@@ -146,20 +147,33 @@
            </div>
          </div>
         </div>
-          
-         <div class="col-md-6"> 
+        
+         <div class="col-md-6 sidebar" >
+           
            <div class="container-fluid well card">
+           	<div class="row">
+           	<div class="col-md-6">
             <div class="form">
-              <h5>Agregar Presentacion</h5>
-              <label for="txt-nombre-presentacion">Presentación: </label>
+              <h5>Agregar Presentación</h5>
+                            <label for="txt-nombre-presentacion">Presentación: </label>
               <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
             </div>
+              
             <div class="modal-footer">
-             <button type="button" class="btn btn-info"  id="">Reset</button>
-             <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
+             <button type="button" class="btn btn-info" id="">Reset</button>
+             <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
+            </div>
+            </div>
+            <div  class="col-md-6">
+            	<table id="table-info-presentacion">
+            		
+            	</table>
+            	
             </div>
            </div>
          </div>
+        </div>
+       
         </div>
      </div>
    </div>
