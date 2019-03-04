@@ -176,7 +176,7 @@ $("#guard-impuesto").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      imprimirMensaje(response);
+      refresh("-impuesto");
     });
 
  });
@@ -232,9 +232,10 @@ $("#guard-categoria").click(function(){
       }
     }
     
-    $.ajax(settings).done(function (response) {
-      imprimirMensaje(response,"-");
+     $.ajax(settings).done(function (response) {
+     refresh("-categoria")
     });
+
 
  });
 
@@ -258,9 +259,16 @@ $("#guard-presentacion").click(function(){
         
       }
     }
+
+
+
+
     
     $.ajax(settings).done(function (response) {
-      imprimirMensajeP(response);
+       $.ajax(settings).done(function (response) {
+     $('#table-info-presentacion').DataTable().ajax.reload(); 
+    });
+
     });
 
  });
@@ -295,8 +303,19 @@ function imprimirMensaje(response, tbl){
       $("#div-error"+tbl).html("");
     });
   }
-}
+};
 
 
-
-
+function refresh(tbl){
+  
+    $('#table-info'+tbl).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito" +tbl).html("Insercion Exitosa");
+    $("#div-exito"+ tbl).removeClass("d-none");
+    
+    $("#div-exito"+tbl).hide(8000, function(){
+      $('#div-exito'+tbl).addClass("d-none");
+      $("#div-exito"+tbl).show();
+      $("#div-exito"+tbl).html("");
+  },
+  )}
