@@ -133,9 +133,9 @@ function funcionBuscar(nomb){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     
-    //$('#telefono-nuevo').val("");
-    //$('#telefono').prop('readonly', true);
-    //$('#contrasena').prop('readonly', true);
+    $('#telefono-nuevo').val("");
+    $('#telefono').prop('readonly', true);
+    $('#contrasena').prop('readonly', true);
 
     $('#id-empleado').val(response.data.id_empleado);
     $('#primer-nombre').val(response.data.primer_nombre);
