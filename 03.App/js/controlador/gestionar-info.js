@@ -172,7 +172,7 @@ $("#guard-descuento").click(function(){
         "descripcion": $("#txt-descripcion").val(),
         "porcentaje": $("#txt-porcentaje-desc").val(),
         "fecha_inicio": $("#fecha-inicio-desc").val(),
-        "fecha_final": $("#fecha-final-desc").val()
+        "fecha_fin": $("#fecha-final-desc").val()
       }
     }
     
