@@ -65,9 +65,9 @@
             <?php if(show_item_if("registro-lote-producto")):?>
             <a class="dropdown-item" href="registro-lote-producto.php">Registrar Lote de Producto</a>
             <?php endif;?>
-            <?php if(show_item_if("registro-lote-medicamento")):?>
-            <a class="dropdown-item" href="registro-lote-medicamento.php">Registrar Lote de Medicamento</a>
-            <?php endif;?>
+            <?php #if(show_item_if("registro-lote-medicamento")):?>
+            <!-- <a class="dropdown-item" href="registro-lote-medicamento.php">Registrar Lote de Medicamento</a> -->
+            <?php #endif;?>
             <?php endif;?>
             <?php if(show_menu_if(["descartar-productos","gestionar-laboratorios"])):?>
             <p class="dropdown-header">Gestiones</p>
@@ -115,7 +115,7 @@
             <a class="dropdown-item" href="registrar-empleado.php">Registrar Empleado</a>
             <?php endif;?>
             <?php if(show_item_if("listado-empleado")):?>
-            <a class="dropdown-item" href="listado-empleado.php">Listado de Empleado</a>
+            <!-- <a class="dropdown-item" href="listado-empleado.php">Listado de Empleado</a> -->
             <?php endif;?>
           </div>
         </li>
