@@ -14,6 +14,7 @@
   
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/jquery-confirm//css/jquery-confirm.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>  
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
@@ -164,7 +165,8 @@
 
   <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
-
+  
+  <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
   

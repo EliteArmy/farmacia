@@ -235,25 +235,52 @@ $("#actualizar-lote").click(function(){
 
 /* CRUD Lote: Delete */
 function funcionBorrar(nomb){
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://farma/services/producto.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "eliminar-lote",
-      "id_lote": nomb
-    }
-  }
-  
-  $.ajax(settings).done(function (response) {
-    imprimirMensaje2(response);
-  });
+  $.confirm({
+    icon: 'fa fa-trash fa-spin',
+    theme: 'modern',
+    closeIcon: true,
+    animation: 'rotate',
+    animationBounce: 1,
+    type: 'blue',
+    title:'Alerta!',
+    content:'¿Esta seguro de eliminar este lote?',
+    buttons:{
+      Eliminar:{
+         text:"Si, seguro!",
+         btnClass:"btn-blue",
+         action:function(){
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "http://farma/services/producto.php",
+              "method": "POST",
+              "dataType": "json",
+              "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+              },
+              "data": {
+                "accion": "eliminar-lote",
+                "id_lote": nomb
+              }
+            }
+           
+           $.ajax(settings).done(function (response) {
+             $.alert({
+               title: response.data[0].mensaje,
+               icon: 'fa fa-check',
+               type: 'blue',
+               content: '',
+           });
+           $('#table-info').DataTable().ajax.reload();
+           })
+         }
+         
+      },
+      Cancelar:function(){
 
+      }
+    }
+  })
 }
 
 function imprimirMensaje(response){
