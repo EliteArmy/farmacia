@@ -23,7 +23,7 @@
   <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
-  <div class="container-fluid ">
+  <div class="container-fluid">
     <div class="row justify-content-md-center ">
       <div class="container well card">
       
@@ -81,8 +81,10 @@
           </div>
          </div>
 
-         <div class="col-md-6">
+         <div class="col-md-12">
           <div class="container-fluid well card">
+          <div class="row">
+           <div class="col-md-6">
             <h5>Agregar Impuesto</h5>
            <div class="form-group col-md-12">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
@@ -111,11 +113,18 @@
            <div class="modal-footer">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
+            </div>
+           </div>
+           <div class="col-md-6">
+           	<table id="table-info-impuesto"> </table>
+           	</div>
            </div>
           </div>
          </div>
 
-         <div class="col-md-3 sidebar" >
+
+         <div class="col-md-6 sidebar" >
+           <div class="row">
            <div class="container-fluid well card">
             <div class="form">
               <h5>Agregar Categoria</h5>
@@ -126,10 +135,11 @@
              <button type="button" class="btn btn-info" id="">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
             </div>
+            </div>
            </div>
          </div>
           
-         <div class="col-md-3"> 
+         <div class="col-md-6"> 
            <div class="container-fluid well card">
             <div class="form">
               <h5>Agregar Presentacion</h5>
@@ -137,7 +147,7 @@
               <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
             </div>
             <div class="modal-footer">
-             <button type="button" class="btn btn-info" onclick="eo()" id="">Reset</button>
+             <button type="button" class="btn btn-info"  id="">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
             </div>
            </div>
