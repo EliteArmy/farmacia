@@ -66,10 +66,17 @@
              <input type="date" id="fecha-final-desc" name="fecha-final" class="form-control">
            </div>
 
-           <div class="modal-footer col-md-">
+           <div class="modal-footer col-md-5">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
+            </div>
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
+            </div>            
+          </div>
+
            </div>
            <div class="col-md-7">
             <table id="table-info-descuento" class="display table-striped table-bordered ">

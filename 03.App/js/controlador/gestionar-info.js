@@ -262,3 +262,35 @@ $("#guard-presentacion").click(function(){
     });
 
  });
+
+
+
+
+
+
+
+function imprimirMensaje(response){
+  if (response.data[0].error == 0) {
+    console.log(response.data);
+    $('#table-info-descuento').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito").html(response.data[0].mensaje);
+    $("#div-exito").removeClass("d-none");
+    
+    $("#div-exito").hide(8000, function(){
+      $('#div-exito').addClass("d-none");
+      $("#div-exito").show();
+      $("#div-exito").html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error").html(response.data[0].mensaje);
+    $("#div-error").removeClass("d-none");
+   
+    $("#div-error").hide(8000, function(){
+      $('#div-error').show();
+      $('#div-error').addClass("d-none");
+      $("#div-error").html("");
+    });
+  }
+}
