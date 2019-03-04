@@ -198,10 +198,9 @@ $("#guard-impuesto").click(function(){
       "data": {
         "accion": "crear-impuesto",
 
-        "descripcion": $("#txt-descripcion-imp").val(),
-        "porcentaje": $("#in-impuesto").val(),
-        "fecha_inicio": $("#fecha-inicio-imp").val(),
-        "fecha_fin": $("#fecha-final-imp").val()
+        "impuesto": $("#txt-descripcion-imp").val(),
+        "valor": $("#in-impuesto").val(),
+        
       }
     }
     
