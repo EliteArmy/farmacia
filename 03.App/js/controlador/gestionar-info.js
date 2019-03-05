@@ -114,7 +114,7 @@ $(document).ready(function() {
 
   //PRESENTACION
    $('#table-info-presentacion').DataTable({
-    pageLength: 10 ,
+    pageLength: 6 ,
     searching: true,
     ordering: true,
     paging: true,
