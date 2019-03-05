@@ -33,7 +33,7 @@
   
          <div class="well card ">
             <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5 col-sm-5 col-8">
             <h5>Agregar Descuento</h5>
             <div class="form-group col-md-8">
               <label for="txt-descripcion">Inserte Descripción: </label>
@@ -41,13 +41,13 @@
             </div>
           
             <div class="col-md-8">
-             <label for="in-descuento">Ingrese Porcentaje:</label>
-              <div class="input-group">
-               <div class="input-group-prepend">
-                <div class="input-group-text">%</div>
-               </div>
-              <input type="number" id="txt-porcentaje-desc" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
-             </div>
+              <label for="in-descuento">Ingrese Porcentaje:</label>
+                <div class="input-group">
+                 <div class="input-group-prepend">
+                   <div class="input-group-text">%</div>
+                  </div>
+                 <input type="number" id="txt-porcentaje-desc" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
+                </div>
             </div>
           
             <div class="form-group col-md-8" >
@@ -57,10 +57,13 @@
              <input type="date" id="fecha-final-desc" name="fecha-final" class="form-control">
            </div>
 
-           <div class="modal-footer col-md-5 col-sm-4">
+          
+	     	 <div class="col-md-8 col-8">
               <button type="button" class="btn btn-info" id="">Reset</button>
+             
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
-           </div>
+             </div>
+           
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div id="div-exito-descuento" class="alert alert-success nuevo-alert d-none" role="alert">
             </div>
@@ -79,7 +82,7 @@
 
          <div class="col-md-12 well card">
           <div class="row">
-           <div class="col-md-6">
+           <div class="col-md-6 col-sm-6">
             <h5>Agregar Impuesto</h5>
            <div class="form-group col-md-8">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
@@ -105,7 +108,7 @@
             <input type="date" id="fecha-final-imp" name="fecha-final" class="form-control">
            </div>
 
-           <div class="modal-footer col-md-4" align="left">
+           <div class="col-md-8 col-4">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
             </div>
