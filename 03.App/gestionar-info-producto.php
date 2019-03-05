@@ -108,7 +108,7 @@
             <input type="date" id="fecha-final-imp" name="fecha-final" class="form-control">
            </div>
 
-           <div class="col-md-8 col-4">
+           <div class="col-md-8 col-8">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
             </div>
@@ -127,17 +127,17 @@
         
 
 
-         <div class="row">
-         <div class="col-md-6 well card">
+          <div class="col-md-12 well card">
            <div class="row">
-           	<div class="col-md-5">
-            <div class="form">
+           	<div class="col-md-5 col-sm-6">
+            <div class="form-group">
               <h5>Agregar Presentación</h5>
               <label for="txt-nombre-presentacion">Presentación: </label>
               <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
             </div>
+            
               
-            <div class="modal-footer" align="left">
+            <div class="col-md-8 col-8" >
              <button type="button" class="btn btn-info" id="" align="left">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
             </div>
@@ -147,25 +147,24 @@
             <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
             </div>            
           </div>
-            </div>
-            <div  class="col-md-7">
+          </div>
+          <div  class="col-md-7">
             	<table id="table-info-presentacion" class="display table-striped table-bordered w-100">
-            		
-            	</table>
+          </table>
              </div>
            </div>
           </div>
 
 
-         <div class="col-md-6 well card">
+         <div class="col-md-12 well card">
            	<div class="row">
            	<div class="col-md-5">
-            <div class="form">
+            <div class="form-group">
               <h5>Agregar Categoria</h5>
               <label for="txt-nombre-categoria">Nombre categoria: </label>
               <input type="text" class="form-control" id="txt-nombre-categoria" name="txt-nombre-categoria"  placeholder="nombre de la categoria" required autofocus>
             </div>
-            <div class="modal-footer">
+            <div class="col-md-8 col-8">
              <button type="button" class="btn btn-info" id="">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
             </div>
@@ -184,9 +183,7 @@
             </div>
            </div>
         </div>
-        </div>
-        
-     </div>
+    </div>
 
 
 
