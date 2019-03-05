@@ -23,7 +23,7 @@
   <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
-  <div class="container-fluid">
+  <div class="container">
     <div class="row justify-content-md-center ">
       <div class="container well card">
       
@@ -35,10 +35,8 @@
         </div>
       </div>
 
-      <div class="container ">
-        <div class="row">
-         <div class="container-fluid col-md-12 ">
-           <div class="container-fluid will card">
+  
+         <div class="col-md-12 well card ">
             <div class="row">
             <div class="col-md-5">
             <h5>Agregar Descuento</h5>
@@ -79,17 +77,15 @@
 
            </div>
            <div class="col-md-7">
-            <table id="table-info-descuento" class="display table-striped table-bordered ">
+            <table id="table-info-descuento" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->
              
             </table>
           </div>
           </div>
-          </div>
          </div>
 
-         <div class="col-md-12">
-          <div class="container-fluid well card">
+         <div class="col-md-12 well card">
           <div class="row">
            <div class="col-md-6">
             <h5>Agregar Impuesto</h5>
@@ -132,7 +128,6 @@
            	<table id="table-info-impuesto" class="display table-striped table-bordered w-100"> </table>
            	</div>
            </div>
-          </div>
          </div>
          <div class="col-md-6 sidebar" >
            
@@ -199,11 +194,9 @@
         </div>
         
         
-       
-        </div>
      </div>
    </div>
-  </div>
+
 
 
   
