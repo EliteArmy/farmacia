@@ -33,7 +33,7 @@
   
          <div class="well card ">
             <div class="row">
-            <div class="col-md-5 col-sm-5 col-8">
+            <div class="col-md-6">
             <h5>Agregar Descuento</h5>
             <div class="form-group col-md-8">
               <label for="txt-descripcion">Inserte Descripción: </label>
@@ -58,7 +58,7 @@
            </div>
 
           
-	     	 <div class="col-md-8 col-8">
+	     	 <div class="col-md-8 col-sm-8 col-8">
               <button type="button" class="btn btn-info" id="">Reset</button>
              
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
@@ -72,7 +72,7 @@
           </div>
 
            </div>
-           <div class="col-md-7">
+           <div class="col-md-6">
             <table id="table-info-descuento" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->
             </table>
@@ -82,7 +82,7 @@
 
          <div class="col-md-12 well card">
           <div class="row">
-           <div class="col-md-6 col-sm-6">
+           <div class="col-md-6">
             <h5>Agregar Impuesto</h5>
            <div class="form-group col-md-8">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
@@ -108,7 +108,7 @@
             <input type="date" id="fecha-final-imp" name="fecha-final" class="form-control">
            </div>
 
-           <div class="col-md-8 col-8">
+           <div class="col-md-8 col-sm-8 col-8">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
             </div>
@@ -129,7 +129,7 @@
 
           <div class="col-md-12 well card">
            <div class="row">
-           	<div class="col-md-5 col-sm-6">
+           	<div class="col-md-5">
             <div class="form-group">
               <h5>Agregar Presentación</h5>
               <label for="txt-nombre-presentacion">Presentación: </label>
@@ -137,7 +137,7 @@
             </div>
             
               
-            <div class="col-md-8 col-8" >
+            <div class="col-md-8 col-sm-8 col-8" >
              <button type="button" class="btn btn-info" id="" align="left">Reset</button>
              <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
             </div>
