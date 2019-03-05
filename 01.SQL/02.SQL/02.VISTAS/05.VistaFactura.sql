@@ -5,7 +5,10 @@ SELECT
   ,f.fecha_hora
   ,f.id_empleado
   ,f.id_cliente
+  ,f.id_forma_pago
+  ,(SELECT descripcion FROM forma_pago WHERE id_forma_pago = f.id_forma_pago) forma_pago
   ,CONCAT(vcli.primer_nombre , ' ', vcli.primer_apellido) as cliente
+  ,vcli.telefonos
   ,vcli.numero_identidad
   ,(SELECT id_producto FROM lote WHERE id_lote = det_fact.id_lote) as id_producto
   ,(SELECT codigo_barra FROM producto WHERE id_producto = (
@@ -36,6 +39,7 @@ INNER JOIN VistaClientes vcli
   ON f.id_cliente = vcli.id_cliente
 ;
 
+SELECT * FROM VistaDetalleFactura
 
 -- VistaDetalleConTotales
 SELECT vista.*, totales.total FROM VistaDetalleFactura vista

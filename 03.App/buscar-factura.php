@@ -65,7 +65,7 @@
   <!-- FIN Contenido -->
 
   <!-- Modal Producto -->
-  <div class="modal fade" id="agregar-producto" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal fade" id="ver-factura" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         
@@ -78,79 +78,55 @@
         
         <div class="modal-body">
           <div class="row">
-
-            <div class="form-group col-12 d-none">
-              <label for="id-producto"></label>
-              <input type="text" class="form-control" id="id-producto" name="id-producto">
-            </div>
             
-            <div class="form-group col-12 col-sm-6 col-md-6">
+            <div class="form-group col-12 col-sm-4 col-md-4">
               <label for="nombre-producto">Nombre del Producto</label>
               <input id="nombre-producto" type="text" class="form-control" name="nombre-producto"  placeholder="Nombre del Producto" autofocus>
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="codigo-barra">Código de Barra</label>
-              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Código de Barra">
+            <div class="form-group col-12 col-sm-4 col-md-4">
+              <label for="codigo-barra">Teléfonos</label>
+              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Teléfonos">
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-categoria" class="selectpicker form-control" data-live-search="true" title="Categorias" data-style="btn-primary" multiple>
-                <!-- Informacion generada -->
-              </select>
+            <div class="form-group col-12 col-sm-4 col-md-4">
+              <label for="codigo-barra">Fecha</label>
+              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Fecha">
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-impuesto" class="selectpicker form-control" data-live-search="true" title="Impuestos" data-style="btn-primary">
-                <!-- Informacion generada -->
-              </select>
+            <div class="form-group col-12 col-sm-12 col-md-12">
+              <label for="codigo-barra">Vendedor</label>
+              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Vendedor">
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-presentacion" class="selectpicker form-control" data-live-search="true" title="Presentacion" data-style="btn-primary">
-                <!-- Informacion generada -->
-              </select>
-            </div>
+            <div class="col-12 col-sm-12 col-md-12">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  
+                  <tr>
+                    <th>Código</th>
+                    <th>Cant.</th>
+                    <th>Descripción</th>
+                    <th>Precio Unitario</th>
+                    <th>Impuesto (ISV)</th>
+                    <th>Sub Total</th>
+                    <th>Descuento (%)</th>
+                    <th>Precio Total</th>
+                  </tr>
+                </thead>
 
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <select id="slc-tipo" class="selectpicker form-control" title="Tipo de Producto" data-style="btn-primary">
-                <option onclick="showMedicamento(P)" value="P">Producto</option>
-                <option onclick="showMedicamento(M)" value="M">Medicamento</option>
-              </select>
-            </div>
+                <tbody id="detaller-factura">
+                </tbody>
+              </table>
 
-            <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
-              <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
-                <!--Informacion generada -->
-              </select>
             </div>
-
+            
           </div>
         </div>
 
         <!-- Solo es para la separación en el Modal -->
-        <div class="modal-footer">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupFileAddon">Subir</span>
-            </div>
-            
-            <div class="custom-file">
-              <label class="custom-file-label" for="inputGroupFile">Elegir una Fotografía</label>
-              <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
-            </div>
-          </div>
-        </div>
 
         <div id="footer-guardar" class="modal-footer">
-          <button type="button" class="btn btn-info reset">Reset</button>
-          <button type="button" class="btn btn-primary" id="btn-guard-producto">Crear Producto</button>
-          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
-        </div>
-
-        <div id="footer-actualizar" class="modal-footer d-none">
-          <button type="button" class="btn btn-info reset">Reset</button>
-          <button type="button" class="btn btn-primary" id="actualizar-producto">Actualizar Cambios</button>
           <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div>
 

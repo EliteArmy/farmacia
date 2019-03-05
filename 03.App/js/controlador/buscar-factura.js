@@ -32,7 +32,7 @@
       
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionBuscar('+ row.id_factura +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="fas fa-list search"></span></button>';//+
+        return '<button type="button" onclick="funcionBuscar('+ row.id_factura +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#ver-factura"><span class="fas fa-list search"></span></button>';//+
                //'<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
@@ -40,5 +40,7 @@
 
 
 function funcionBuscar(id){
-  alert(id);
+  
 }
+
+$("#ver-factura").modal("toggle");
