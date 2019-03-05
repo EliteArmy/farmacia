@@ -46,7 +46,6 @@ SELECT
 FROM persona p
 INNER JOIN empleado e
   on p.id_persona = e.id_persona
-WHERE e.estado = 'A'
 ;
 
 SELECT * FROM VistaEmpleado;

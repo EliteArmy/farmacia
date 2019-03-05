@@ -40,7 +40,49 @@
 
 
 function funcionBuscar(id){
-  
-}
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/factura.php",
+      "method": "POST",
+      "dataType":"JSON",
+      "headers": {
+        "cookie": "PHPSESSID=4ne10q6ll0mriflrq3fjsg7lun",
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "leer-factura-id",
+        "id_factura": id
+      }
+    }
 
-$("#ver-factura").modal("toggle");
+    $.ajax(settings).done(function (response) {
+      $("#cliente").val(response.data[0].cliente);
+      $("#telefonos").val(response.data[0].telefonos);
+      $("#fecha").val(response.data[0].fecha_hora);
+      $("#empleado").val(response.data[0].empleado);
+      $("#detaller-factura").html("");
+      for (var i = 0; i < response.data.length; i++) {
+        let item = response.data[i];
+        var cd = "<tr>"+
+          "<td>" + item.codigo_barra + "</td>"+
+          "<td>" + item.cantidad + "</td>"+
+          "<td>" + item.nombre_producto + "</td>"+
+          "<td>" + item.precio_unitario + "</td>"+
+          "<td>" + item.sub_total + "</td>"+
+          "<td>" + item.impuesto + " (" + item.porcentaje_impuesto + "%)</td>"+ 
+          "<td>" + 0 + "</td>"+
+          "<td>" + item.precio_total + "</td>"+
+        "</tr>";
+        $("#detaller-factura").append(cd);
+      }
+      let item = response.data[0];
+      var tot = "<tr>"+
+        "<td class='text-right'>Total</td>"+
+        "<td colspan='7' class='text-right' >" + item.total + "</td>"+
+      "</tr>";
+      $("#detaller-factura").append(tot);
+
+
+    });
+}

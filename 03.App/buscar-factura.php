@@ -80,23 +80,23 @@
           <div class="row">
             
             <div class="form-group col-12 col-sm-4 col-md-4">
-              <label for="nombre-producto">Nombre del Producto</label>
-              <input id="nombre-producto" type="text" class="form-control" name="nombre-producto"  placeholder="Nombre del Producto" autofocus>
+              <label for="cliente">Cliente</label>
+              <input id="cliente" type="text" class="form-control" name="cliente"  placeholder="Cliente" autofocus>
             </div>
 
             <div class="form-group col-12 col-sm-4 col-md-4">
-              <label for="codigo-barra">Teléfonos</label>
-              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Teléfonos">
+              <label for="telefonos">Teléfonos</label>
+              <input id="telefonos" type="text" class="form-control" name="telefonos" placeholder="Teléfonos">
             </div>
 
             <div class="form-group col-12 col-sm-4 col-md-4">
-              <label for="codigo-barra">Fecha</label>
-              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Fecha">
+              <label for="fecha">Fecha</label>
+              <input id="fecha" type="text" class="form-control" name="fecha" placeholder="Fecha">
             </div>
 
             <div class="form-group col-12 col-sm-12 col-md-12">
-              <label for="codigo-barra">Vendedor</label>
-              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Vendedor">
+              <label for="empleado">Vendedor</label>
+              <input id="empleado" type="text" class="form-control" name="empleado" placeholder="Vendedor">
             </div>
 
             <div class="col-12 col-sm-12 col-md-12">
@@ -108,14 +108,15 @@
                     <th>Cant.</th>
                     <th>Descripción</th>
                     <th>Precio Unitario</th>
-                    <th>Impuesto (ISV)</th>
                     <th>Sub Total</th>
+                    <th>Impuesto (ISV)</th>
                     <th>Descuento (%)</th>
                     <th>Precio Total</th>
                   </tr>
                 </thead>
 
                 <tbody id="detaller-factura">
+                  
                 </tbody>
               </table>
 

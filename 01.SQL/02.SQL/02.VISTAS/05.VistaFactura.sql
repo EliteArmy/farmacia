@@ -4,6 +4,7 @@ SELECT
   ,f.id_factura
   ,f.fecha_hora
   ,f.id_empleado
+  ,(SELECT  nombre_completo FROM VistaEmpleado WHERE id_empleado = f.id_empleado) as empleado
   ,f.id_cliente
   ,f.id_forma_pago
   ,(SELECT descripcion FROM forma_pago WHERE id_forma_pago = f.id_forma_pago) forma_pago
@@ -39,7 +40,7 @@ INNER JOIN VistaClientes vcli
   ON f.id_cliente = vcli.id_cliente
 ;
 
-SELECT * FROM VistaDetalleFactura
+SELECT * FROM VistaDetalleFactura;
 
 -- VistaDetalleConTotales
 SELECT vista.*, totales.total FROM VistaDetalleFactura vista
