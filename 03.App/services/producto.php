@@ -9,6 +9,7 @@ include_once('../clases/Producto.php');
 include_once('../clases/Medicamento.php');
 include_once('../clases/Lote.php');
 include_once('../clases/Descuento.php');
+include_once('../clases/Presentacion.php');
 
 if(isset($_POST['accion'])){
   $conexion = new Conexion();
@@ -89,7 +90,7 @@ if(isset($_POST['accion'])){
       $res['data'] = $prod->crearCategoria($conexion);
       echo json_encode($res);
     break;
-
+    
     case 'crear-descuento':
       $descripcion = validarPOST('descripcion');
       $porcentaje = validarPOST('porcentaje');
@@ -101,6 +102,15 @@ if(isset($_POST['accion'])){
       $res["data"] = $desc->crear($conexion);
       echo json_encode($res);
     break;
+
+    case 'crear-presentacion':
+    $presentacion = validarPOST('presentacion');
+    $pres = new Presentacion();
+    $pres->setPresentacion($presentacion);
+    $res["data"] = $pres->crear($conexion);
+    echo json_encode($res);
+  break;
+
     case 'crear-impuesto':
       $imp = validarPOST('impuesto');
       $val = validarPOST('valor');
