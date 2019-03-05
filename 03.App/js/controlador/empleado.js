@@ -217,12 +217,10 @@ function funcionBorrar(nomb){
   }
   
   $.ajax(settings).done(function (response) {
-       $.confirm({
-       icon: 'fa fa-trash fa-spin',
+      $.confirm({
+       icon: 'fa fa-trash',
        theme: 'modern',
        closeIcon: true,
-       animation: 'rotate',
-       animationBounce: 1,
        type: 'blue',
        title:'Alerta!',
        content:'¿Esta seguro de eliminar a ' + response.data.nombre_completo + ' ?',

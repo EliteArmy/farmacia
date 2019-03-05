@@ -263,11 +263,9 @@ function funcionActualizar(nomb){
 /* CRUD Producto: Delete */
 function funcionBorrar(nomb){
   $.confirm({
-    icon: 'fa fa-trash fa-spin',
+    icon: 'fa fa-trash',
     theme: 'modern',
     closeIcon: true,
-    animation: 'rotate',
-    animationBounce: 1,
     type: 'blue',
     title:'Alerta!',
     content:'¿Esta seguro de eliminar este producto?',
