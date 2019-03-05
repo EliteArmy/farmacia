@@ -19,70 +19,54 @@
   <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
-  <div class="container-fluid">
+  <div class="container">
     <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-11">
+      <div class="col-xs-12 col-md-12 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
         </div>
       </div>
-    </div>
-  </div>
+    
   <!-- FIN Contenido -->
 
-  <div class="row nuevo-producto">
-    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-      <!-- Button trigger para el modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar-laboratorio">
-        Agregar Laboratorio
-      </button>
-    </div>
-  </div>
-
+ 
   <!-- Modal -->
-  <div class="modal fade" id="agregar-laboratorio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
+
+         <div class="col-md-12 well card justify-content-md-center">  
+          <h5>Agregar Laboratorio</h5>
+      
         
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Laboratorio</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
         
-        <div class="modal-body">
           <div class="row">
-            <div class="form-group col-12 col-md-6">
+           <div   class="col-md-6">
+            <div class="form-group col-12 col-md-12">
               <label for="txt-nombre-laboratorio">Nombre Laboratorio: </label>
               <input type="text" class="form-control" id="txt-nombre-laboratorio" name="txt-nombre-laboratorio"  placeholder="nombre del laboratorio" required autofocus>
             </div>
 
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-md-12">
               <label for="txt-direccion">Dirección: </label>
               <input type="text" class="form-control" id="txt-direccion" name="txt-direccion"  placeholder="Dirección" required autofocus>
             </div>
 
-             <div class="form-group col-12 col-md-6">
+             <div class="form-group col-12 col-md-12">
               <label for="txt-telefono-lab">Número de telefono </label>
               <input type="text" class="form-control" id="txt-telefono-lab" name="txt-telefono-lab"  placeholder="2222-0854" required autofocus>
             </div>
-
+            <div class="col-md-8  col-sm-8 col-8">
+              <button type="button" class="btn btn-info" id="">Reset</button>
+              <button type="button" class="btn btn-primary" id="guard-empleado">Guardar</button>
+            </div>
            </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" id="">Reset</button>
-          <button type="button" class="btn btn-primary" id="guard-empleado">Guardar Cambios</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        </div>
-
-      </div>
-    </div>
+          </div>
+      
+   </div>
   </div>
-  <!-- Fin Modal -->
+        
+
+
 
 
   <script src="./js/jquery.min.js"></script>
