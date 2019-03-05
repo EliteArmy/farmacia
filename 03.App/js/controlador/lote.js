@@ -180,7 +180,6 @@ function funcionBuscar(nomb){
       "id_lote": nomb
     }
   }
-  
   $.ajax(settings).done(function (response) {
     console.log(response.data);
 
@@ -222,8 +221,9 @@ $("#actualizar-lote").click(function(){
       "fecha_vencimiento": $("#fecha-venc").val(),
       "estado_lote": $('#slc-estado').val(),
       "existencia": $("#cantidad").val(),
-      "id_descuento": $("#slc-descuento").val()
-    }
+      "id_descuento": $("#slc-descuento").val(),
+      
+    },
   }
   
   $.ajax(settings).done(function (response) {
