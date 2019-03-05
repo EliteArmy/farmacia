@@ -262,9 +262,6 @@ function funcionBorrar(nomb){
        }
      })
   });
-
-
-
 }
 
 function imprimirMensaje(response){

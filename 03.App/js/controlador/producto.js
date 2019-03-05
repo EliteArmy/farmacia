@@ -243,22 +243,48 @@ function funcionBuscar(nomb){
     $('#id-producto').val(response.data[0].id_producto);
     $('#nombre-producto').val(response.data[0].nombre);
     $('#codigo-barra').val(response.data[0].codigo_barra);
-    //$('#slc-categoria').selectpicker('val', response.data[0].array_categoria);
+    $('#slc-categoria').selectpicker('val', response.data[0].array_categoria);
     $('#slc-impuesto').selectpicker('val', response.data[0].id_impuesto);
     $('#slc-presentacion').selectpicker('val', response.data[0].id_presentacion);
-    //$('#foto').val(response.data[0].url_foto);
+    $('#foto').val(response.data[0].url_foto);
     $('#slc-tipo').selectpicker('val', response.data[0].es_medicamento);
     $('#slc-estado').selectpicker('val', response.data[0].estado);
-    //$('#slc-laboratorio').selectpicker('val', response.data[0].id_laboratorio);
+    $('#slc-laboratorio').selectpicker('val', response.data[0].id_laboratorio);
       
   });
 }
 
 /* CRUD Producto: Update */
-function funcionActualizar(nomb){
-  alert("Actualizando en proceso.. " + nomb);
-  //imprimirMensaje(response);
-}
+$("#actualizar-producto").click(function(){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-producto",
+
+      "id-producto": $('#id_producto').val(),
+      "slc-presentacion": $('#id_presentacion').val(),
+      "nombre-producto": $('#nombre').val(),
+      "codigo-barra": $('#codigo_barra').val(), 
+      "url_foto": $('#url_foto').val(""),
+      "slc-categoria": $('#id_categoria').val(),
+      "slc-impuesto": $('#id_impuesto').val(),
+      "slc-laboratorio": $('#id_laboratorio').val(),
+      "slc-estado": $('#estado').val()
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response);
+  });
+  
+});
 
 /* CRUD Producto: Delete */
 function funcionBorrar(nomb){

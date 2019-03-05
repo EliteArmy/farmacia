@@ -183,7 +183,6 @@ function funcionBuscar(nomb){
   
   $.ajax(settings).done(function (response) {
     console.log(response.data);
-    $('#cantidad').prop('readonly', true);
 
     $('#id-lote').val(response.data.id_lote);
     $('#nombre-lote').val(response.data.lote);
@@ -244,38 +243,36 @@ function funcionBorrar(nomb){
     content:'¿Esta seguro de eliminar este lote?',
     buttons:{
       Eliminar:{
-         text:"Si, seguro!",
-         btnClass:"btn-blue",
-         action:function(){
-            var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "http://farma/services/producto.php",
-              "method": "POST",
-              "dataType": "json",
-              "headers": {
-                "content-type": "application/x-www-form-urlencoded"
-              },
-              "data": {
-                "accion": "eliminar-lote",
-                "id_lote": nomb
-              }
+        text: "Si, seguro!",
+        btnClass: "btn-blue",
+        action: function(){
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "http://farma/services/producto.php",
+            "method": "POST",
+            "dataType": "json",
+            "headers": {
+              "content-type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+              "accion": "eliminar-lote",
+              "id_lote": nomb
             }
+          }
            
-           $.ajax(settings).done(function (response) {
-             $.alert({
-               title: response.data[0].mensaje,
-               icon: 'fa fa-check',
-               type: 'blue',
-               content: '',
-           });
-           $('#table-info').DataTable().ajax.reload();
-           })
-         }
-         
+          $.ajax(settings).done(function (response) {
+            $.alert({
+              title: response.data[0].mensaje,
+              icon: 'fa fa-check',
+              type: 'blue',
+              content: '',
+            });
+            $('#table-info').DataTable().ajax.reload();
+          })
+        }
       },
       Cancelar:function(){
-
       }
     }
   })
@@ -339,8 +336,6 @@ $(".reset").click(function(){
   $("#footer-guardar").show();
   $("#footer-actualizar").addClass("d-none");
   $("#seleccion-estado").addClass("d-none");
-
-  $('#cantidad').prop('readonly', false); // Deshabilita los campos
 
   $('.selectpicker').selectpicker('val', '');
   $('.selectpicker').selectpicker('refresh');
