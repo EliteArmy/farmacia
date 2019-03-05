@@ -256,6 +256,7 @@ function funcionBuscar(nomb){
 
 /* CRUD Producto: Update */
 $("#actualizar-producto").click(function(){
+  alert("Actualizar");
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -272,7 +273,7 @@ $("#actualizar-producto").click(function(){
       "slc-presentacion": $('#id_presentacion').val(),
       "nombre-producto": $('#nombre').val(),
       "codigo-barra": $('#codigo_barra').val(), 
-      "url_foto": $('#url_foto').val(""),
+      "url_foto": "",
       "slc-categoria": $('#id_categoria').val(),
       "slc-impuesto": $('#id_impuesto').val(),
       "slc-laboratorio": $('#id_laboratorio').val(),
