@@ -112,7 +112,20 @@ SELECT
       SELECT id_laboratorio FROM medicamentos m
       WHERE m.id_producto = l.id_producto
     )
-  ) as laboratorio,
+  ) as laboratorio
+  ,(
+    SELECT
+    GROUP_CONCAT(id_categoria)
+    FROM categoria_producto
+    WHERE id_producto = l.id_producto
+    GROUP BY id_producto) as id_categoria
+  ,(
+    SELECT id_laboratorio FROM laboratorio
+    WHERE id_laboratorio = (
+      SELECT id_laboratorio FROM medicamentos m
+      WHERE m.id_producto = l.id_producto
+    )
+  ) as id_laboratorio,
   (
     SELECT
       GROUP_CONCAT(categoria, '') as categoria
@@ -153,5 +166,5 @@ ORDER BY p.id_producto, l.id_lote
 
 # SELECT * FROM DescuentosDisponibles;
 
-# SELECT * FROM VistaInventarioMercaderia WHERE tiene_descuento
+SELECT * FROM VistaInventarioMercaderia
 

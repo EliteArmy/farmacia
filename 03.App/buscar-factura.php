@@ -11,8 +11,12 @@
   <title>Buscar Factura</title>
 
   <link rel="icon" href="./img/icon.png">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style.css">
+  
+  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
 <body>
 
@@ -59,6 +63,101 @@
     </div>
   </div>
   <!-- FIN Contenido -->
+
+  <!-- Modal Producto -->
+  <div class="modal fade" id="agregar-producto" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Detalle Factura</h5>
+          <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          <div class="row">
+
+            <div class="form-group col-12 d-none">
+              <label for="id-producto"></label>
+              <input type="text" class="form-control" id="id-producto" name="id-producto">
+            </div>
+            
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="nombre-producto">Nombre del Producto</label>
+              <input id="nombre-producto" type="text" class="form-control" name="nombre-producto"  placeholder="Nombre del Producto" autofocus>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="codigo-barra">Código de Barra</label>
+              <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Código de Barra">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-categoria" class="selectpicker form-control" data-live-search="true" title="Categorias" data-style="btn-primary" multiple>
+                <!-- Informacion generada -->
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-impuesto" class="selectpicker form-control" data-live-search="true" title="Impuestos" data-style="btn-primary">
+                <!-- Informacion generada -->
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-presentacion" class="selectpicker form-control" data-live-search="true" title="Presentacion" data-style="btn-primary">
+                <!-- Informacion generada -->
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <select id="slc-tipo" class="selectpicker form-control" title="Tipo de Producto" data-style="btn-primary">
+                <option onclick="showMedicamento(P)" value="P">Producto</option>
+                <option onclick="showMedicamento(M)" value="M">Medicamento</option>
+              </select>
+            </div>
+
+            <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
+              <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
+                <!--Informacion generada -->
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Solo es para la separación en el Modal -->
+        <div class="modal-footer">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon">Subir</span>
+            </div>
+            
+            <div class="custom-file">
+              <label class="custom-file-label" for="inputGroupFile">Elegir una Fotografía</label>
+              <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+            </div>
+          </div>
+        </div>
+
+        <div id="footer-guardar" class="modal-footer">
+          <button type="button" class="btn btn-info reset">Reset</button>
+          <button type="button" class="btn btn-primary" id="btn-guard-producto">Crear Producto</button>
+          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
+        </div>
+
+        <div id="footer-actualizar" class="modal-footer d-none">
+          <button type="button" class="btn btn-info reset">Reset</button>
+          <button type="button" class="btn btn-primary" id="actualizar-producto">Actualizar Cambios</button>
+          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- FIN Modal Producto -->
 
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
