@@ -64,7 +64,7 @@
              <input type="date" id="fecha-final-desc" name="fecha-final" class="form-control">
            </div>
 
-           <div class="modal-footer col-md-5">
+           <div class="modal-footer col-md-5 col-sm-4">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
            </div>
@@ -79,7 +79,6 @@
            <div class="col-md-7">
             <table id="table-info-descuento" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->
-             
             </table>
           </div>
           </div>
@@ -129,14 +128,16 @@
            	</div>
            </div>
          </div>
-         <div class="col-md-6 sidebar" >
-           
-           <div class="container-fluid well card">
-           	<div class="row">
+        
+
+
+         <div class="row">
+         <div class="col-md-6 well card">
+           <div class="row">
            	<div class="col-md-5">
             <div class="form">
               <h5>Agregar Presentación</h5>
-                            <label for="txt-nombre-presentacion">Presentación: </label>
+              <label for="txt-nombre-presentacion">Presentación: </label>
               <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
             </div>
               
@@ -157,14 +158,10 @@
             	</table>
              </div>
            </div>
-         </div>
-        </div>
+          </div>
 
 
-
-
-         <div class="col-md-6 sidebar" >
-           <div class="container-fluid well card">
+         <div class="col-md-6 well card">
            	<div class="row">
            	<div class="col-md-5">
             <div class="form">
@@ -190,9 +187,8 @@
             	
             </div>
            </div>
-         </div>
         </div>
-        
+        </div>
         
      </div>
    </div>
