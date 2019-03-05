@@ -269,15 +269,15 @@ $("#actualizar-producto").click(function(){
     "data": {
       "accion": "actualizar-producto",
 
-      "id-producto": $('#id_producto').val(),
-      "slc-presentacion": $('#id_presentacion').val(),
-      "nombre-producto": $('#nombre').val(),
-      "codigo-barra": $('#codigo_barra').val(), 
+      "id_producto": $('#id-producto').val(),
+      "id_presentacion": $('#slc-presentacion').val(),
+      "nombre": $('#nombre-producto').val(),
+      "codigo_barra": $('#codigo-barra').val(), 
       "url_foto": "",
-      "slc-categoria": $('#id_categoria').val(),
-      "slc-impuesto": $('#id_impuesto').val(),
-      "slc-laboratorio": $('#id_laboratorio').val(),
-      "slc-estado": $('#estado').val()
+      "id_categoria": $('#slc-categoria').val().join(),
+      "id_impuesto": $('#slc-impuesto').val(),
+      "id_laboratorio": $('#slc-laboratorio').val() || 0,
+      "estado": $('#slc-estado').val()
     }
   }
   

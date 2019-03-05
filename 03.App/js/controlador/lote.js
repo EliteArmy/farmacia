@@ -213,14 +213,14 @@ $("#actualizar-lote").click(function(){
     "data": {
       "accion": "actualizar-lote",
 
-      "id-lote": $("#id-lote").val(),
+      "id_lote": $("#id-lote").val(),
       "id_producto": $("#slc-prod").val(),
       "lote": $("#nombre-lote").val(),
       "precio_costo_unidad": $("#precio-compra").val(),
       "precio_venta_unidad": $("#precio-venta").val(),
       "fecha_elaboracion": $("#fecha-elab").val(),
       "fecha_vencimiento": $("#fecha-venc").val(),
-      "estado": $('#slc-estado').val(),
+      "estado_lote": $('#slc-estado').val(),
       "existencia": $("#cantidad").val(),
       "id_descuento": $("#slc-descuento").val()
     }
