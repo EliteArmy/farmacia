@@ -39,15 +39,15 @@
     <div class="well card">
       <div class="row">
         
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-5">
           <h5>Agregar Descuento</h5>
 
-          <div class="col-md-10 form-group">
+          <div class="col-md-11 form-group">
             <label for="txt-descripcion">Inserte Descripción: </label>
             <input class="form-control" id="txt-descripcion" name="txt-descripcion"  rows="3" required autofocus>
           </div>
           
-          <div class="col-md-10">
+          <div class="col-md-11">
             <label for="in-descuento">Ingrese Porcentaje:</label>
             <div class="input-group">
               <div class="input-group-prepend">
@@ -57,14 +57,12 @@
             </div>
           </div>
           
-          <div class="col-md-10 form-group">
-            <label for="fecha-inicio-desc">Fecha Inicio:</label>
-            <input type="date" id="fecha-inicio-desc" name="fecha-inicio" class="form-control" >
+          <div class="col-md-11 form-group">
             <label for="fecha-final-desc">Fecha Final: </label>
             <input type="date" id="fecha-final-desc" name="fecha-final" class="form-control">
           </div>
 
-          <div class="col-md-10">
+          <div class="col-md-11">
             <button type="button" class="btn btn-info" id="">Reset</button>   
             <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
           </div>
@@ -75,7 +73,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="mt-4 col-12 col-md-7">
           <table id="table-info-descuento" class="display table-striped table-bordered w-100">
             <!-- Informacion generada -->
           </table>
@@ -89,15 +87,15 @@
     <div class="well card">
       <div class="row">
       
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-5">
           <h5>Agregar Impuesto</h5>
 
-          <div class="form-group col-md-8">
+          <div class="form-group col-md-11">
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
             <input class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required>
           </div>
 
-          <div class="col-md-10">
+          <div class="col-md-11">
             <label for="in-impuesto">Ingrese Porcentaje:</label>
             <div class="input-group">
               <div class="input-group-prepend">
@@ -106,16 +104,8 @@
               <input type="number" class="form-control" min="1" max="100" id="in-impuesto" name="in-impuesto">
             </div>
           </div>
-                
-          <div class=" col-md-10 form-group" >
-            <label for="fecha-inicio-imp">Fecha Inicio:</label>
-            <input type="date" id="fecha-inicio-imp" name="fecha-inicio" class="form-control" align="left">
-          
-            <label for="fecha-final-imp">Fecha  Final: </label>
-            <input type="date" id="fecha-final-imp" name="fecha-final" class="form-control">
-          </div>
 
-          <div class="col-md-10 col-8">
+          <div class="mt-2 col-md-11 col-8">
             <button type="button" class="btn btn-info" id="">Reset</button>
             <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
           </div>
@@ -126,7 +116,7 @@
           </div>
         </div>
     
-        <div class="col-12 col-md-6">
+        <div class="mt-4 col-12 col-md-7">
           <table id="table-info-impuesto" class="display table-striped table-bordered w-100">
             <!-- Informacion generada -->
           </table>
@@ -143,23 +133,23 @@
         <div class="col-md-5">
           <h5>Agregar Presentación</h5>
           
-          <div class="col-md-10 form-group">
+          <div class="col-md-11 form-group">
             <label for="txt-nombre-presentacion">Presentación: </label>
             <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
           </div>
             
-          <div class="col-12 col-md-10" >
+          <div class="col-12 col-md-11" >
             <button type="button" class="btn btn-info" id="" align="left">Reset</button>
             <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
           </div>
           
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert"></div>
-            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert"></div>            
+            <div id="div-exito-presentacion" class="alert alert-success nuevo-alert d-none" role="alert"></div>
+            <div id="div-error-presentacion" class="alert alert-danger nuevo-alert d-none" role="alert"></div>            
           </div>
         </div>
       
-        <div class="col-md-7">
+        <div class="mt-4 col-12 col-md-7">
           <table id="table-info-presentacion" class="display table-striped table-bordered w-100">
             <!-- Informacion generada -->
           </table>
@@ -174,13 +164,14 @@
       <div class="row">
 
         <div class="col-md-5">
-          <div class="col-10 col-md-10 form-group">
-            <h5>Agregar Categoria</h5>
+          <h5>Agregar Categoria</h5>
+          
+          <div class="col-12 col-md-11 form-group">
             <label for="txt-nombre-categoria">Nombre categoria: </label>
             <input type="text" class="form-control" id="txt-nombre-categoria" name="txt-nombre-categoria"  placeholder="nombre de la categoria" required autofocus>
           </div>
 
-          <div class="col-10 col-md-10">
+          <div class="col-10 col-md-11">
             <button type="button" class="btn btn-info" id="">Reset</button>
             <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
           </div>
@@ -191,7 +182,7 @@
           </div>
         </div>
         
-        <div class="col-md-7">
+        <div class="mt-4 col-12 col-md-7">
           <table id="table-info-categoria" class="display table-striped table-bordered w-100">
             <!-- Informacion generada -->
           </table>

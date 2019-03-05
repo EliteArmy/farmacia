@@ -1,5 +1,5 @@
 //  FORMAS
-let formaEmpleado = new Forma('agregarempleado');
+/*let formaEmpleado = new Forma('agregarempleado');
 formaEmpleado.addInput('usuario', /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/, true);
 formaEmpleado.addInput('contrasena', /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/, true);
 formaEmpleado.addInput('primer-nombre', /^[A-Z]+[A-Za-záéíóúñ]+$/, true);
@@ -19,7 +19,7 @@ formaEmpleado.addInput('slc-sexo');
 
 formaEmpleado.setButtonEnvio('guard-empleado');
 formaEmpleado.setButtonUpdate('actualizar-empleado');
-Forma.addTrigger(formaEmpleado);
+Forma.addTrigger(formaEmpleado);*/
 
 $(document).ready(function() {
   

@@ -204,7 +204,7 @@ $("#guard-descuento").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      imprimirMensaje(response,"-descuento");
+      imprimirMensaje(response);
     });
 
  });
@@ -260,9 +260,6 @@ $("#guard-presentacion").click(function(){
       }
     }
 
-
-
-
     
     $.ajax(settings).done(function (response) {
        $.ajax(settings).done(function (response) {
@@ -273,34 +270,28 @@ $("#guard-presentacion").click(function(){
 
  });
 
-
-
-
-
-
-
-function imprimirMensaje(response, tbl){
+function imprimirMensaje(response){
   if (response.data[0].error == 0) {
     console.log(response.data);
-    $('#table-info'+tbl).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    $('#table-info-descuento').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
     
-    $("#div-exito" +tbl).html(response.data[0].mensaje);
-    $("#div-exito"+ tbl).removeClass("d-none");
+    $("#div-exito").html(response.data[0].mensaje);
+    $("#div-exito").removeClass("d-none");
     
-    $("#div-exito"+tbl).hide(8000, function(){
-      $('#div-exito'+tbl).addClass("d-none");
-      $("#div-exito"+tbl).show();
-      $("#div-exito"+tbl).html("");
+    $("#div-exito").hide(8000, function(){
+      $('#div-exito').addClass("d-none");
+      $("#div-exito").show();
+      $("#div-exito").html("");
     });
   } else {
     console.log(response);
-    $("#div-error"+tbl).html(response.data[0].mensaje);
-    $("#div-error"+tbl).removeClass("d-none");
+    $("#div-error").html(response.data[0].mensaje);
+    $("#div-error").removeClass("d-none");
    
-    $("#div-error"+tbl).hide(8000, function(){
-      $('#div-error'+tbl).show();
-      $('#div-error'+tbl).addClass("d-none");
-      $("#div-error"+tbl).html("");
+    $("#div-error").hide(8000, function(){
+      $('#div-error').show();
+      $('#div-error').addClass("d-none");
+      $("#div-error").html("");
     });
   }
 };
@@ -310,8 +301,8 @@ function refresh(tbl){
   
     $('#table-info'+tbl).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
     
-    $("#div-exito" +tbl).html("Insercion Exitosa");
-    $("#div-exito"+ tbl).removeClass("d-none");
+    $("#div-exito"+tbl).html("Insercion Exitosa");
+    $("#div-exito"+tbl).removeClass("d-none");
     
     $("#div-exito"+tbl).hide(8000, function(){
       $('#div-exito'+tbl).addClass("d-none");

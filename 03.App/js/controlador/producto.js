@@ -1,5 +1,5 @@
 //  FORMAS
-let formaProducto = new Forma('agregar-producto');
+/*let formaProducto = new Forma('agregar-producto');
 formaProducto.addInput('nombre-producto', /^.+$/, true);
 formaProducto.addInput('codigo-barra', /^.+$/, true);
 formaProducto.addInput('slc-categoria');
@@ -9,7 +9,7 @@ formaProducto.addInput('slc-tipo');
 
 formaProducto.setButtonEnvio('btn-guard-producto');
 formaProducto.setButtonUpdate('actualizar-producto');
-Forma.addTrigger(formaProducto);
+Forma.addTrigger(formaProducto);*/
 
 $(document).ready(function() {
 
