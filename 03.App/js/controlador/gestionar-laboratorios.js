@@ -39,45 +39,40 @@ $(document).ready(function() {
     });
 });
 
-
 $("#guard-laboratorio").click(function(){
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://farma/services/producto.php",
-      "method": "POST",
-      "dataType": "JSON",
-      "headers": {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "accion": "crear-laboratorio",
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "crear-laboratorio",
 
-        "nombre_laboratorio": $("#txt-nombre-laboratorio").val()
-        
-      }
+      "nombre_laboratorio": $("#txt-nombre-laboratorio").val()
     }
-    
-    $.ajax(settings).done(function (response) {
-      imprimirMensaje(response);
-    });
+  }
+  
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response);
+  });
 
  });
 
 
-
 function imprimirMensaje(response){
   
-    $('#data-table-lab').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    
-
-    $("#div-exito").removeClass("d-none");
-    
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("Inserccion Exitosa");
+  $('#data-table-lab').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
   
- 
-  })
+  $("#div-exito").removeClass("d-none");
+  $("#div-exito").html("Inserccion Exitosa");
+  
+  $("#div-exito").hide(8000, function(){
+    $('#div-exito').addClass("d-none");
+    $("#div-exito").show();
+    
+  });
 }
