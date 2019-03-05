@@ -41,7 +41,7 @@ $(document).ready(function() {
     
   $('#table-info-categoria').DataTable({
     pageLength: 6 ,
-    searching: false,
+    searching: true,
     ordering: true,
     paging: true,
     responsive: true,
@@ -114,8 +114,8 @@ $(document).ready(function() {
 
   //PRESENTACION
    $('#table-info-presentacion').DataTable({
-    pageLength: 6 ,
-    searching: false,
+    pageLength: 10 ,
+    searching: true,
     ordering: true,
     paging: true,
     responsive: true,

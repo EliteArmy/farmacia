@@ -24,19 +24,14 @@
 
   <!-- Contenido -->
   <div class="container">
-    <div class="row justify-content-md-center ">
-      <div class="container well card">
-      
-        <div class="text-center ">
+        <div class="text-center well card">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
           <h4>Gestión de Productos</h4>
         </div>
-      </div>
-
   
-         <div class="col-md-12 well card ">
+         <div class="well card ">
             <div class="row">
             <div class="col-md-5">
             <h5>Agregar Descuento</h5>
@@ -47,13 +42,11 @@
           
             <div class="col-md-8">
              <label for="in-descuento">Ingrese Porcentaje:</label>
-             <div class="input-group">
+              <div class="input-group">
                <div class="input-group-prepend">
                 <div class="input-group-text">%</div>
                </div>
-            
               <input type="number" id="txt-porcentaje-desc" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
-           
              </div>
             </div>
           
@@ -191,7 +184,6 @@
         </div>
         
      </div>
-   </div>
 
 
 
