@@ -175,7 +175,7 @@ $("#guard-impuesto").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      refresh("-impuesto");
+      imprimirMensajeSinCorchete(response,"-impuesto");
     });
 
  });
@@ -202,7 +202,7 @@ $("#guard-descuento").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
-      imprimirMensaje(response);
+      imprimirMensaje(response, "-descuento");
     });
 
  });
@@ -224,7 +224,7 @@ $("#guard-categoria").click(function(){
       }
     }
      $.ajax(settings).done(function (response) {
-     refresh("-categoria")
+     imprimirMensajeSinCorchete(response,"-categoria")
     });
 
  });
@@ -248,6 +248,8 @@ $("#guard-presentacion").click(function(){
     
     $.ajax(settings).done(function (response) {
       $('#table-info-presentacion').DataTable().ajax.reload(); 
+
+      imprimirMensaje(response,"-presentacion")
     });
 
  });
@@ -274,6 +276,58 @@ function imprimirMensaje(response){
       $('#div-error').show();
       $('#div-error').addClass("d-none");
       $("#div-error").html("");
+    });
+  }
+}
+
+function imprimirMensaje(response,tbl2){
+  if (response.data[0].error == 0) {
+    console.log(response.data);
+    $('#table-info'+tbl2).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito"+tbl2).html(response.data[0].mensaje);
+    $("#div-exito"+tbl2).removeClass("d-none");
+    
+    $("#div-exito"+tbl2).hide(8000, function(){
+      $('#div-exito'+tbl2).addClass("d-none");
+      $("#div-exito"+tbl2).show();
+      $("#div-exito"+tbl2).html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error"+tbl2).html(response.data[0].mensaje);
+    $("#div-error"+tbl2).removeClass("d-none");
+   
+    $("#div-error"+tbl2).hide(8000, function(){
+      $('#div-error'+tbl2).show();
+      $('#div-error'+tbl2).addClass("d-none");
+      $("#div-error"+tbl2).html("");
+    });
+  }
+}
+
+function imprimirMensajeSinCorchete(response,tbl){
+  if (response.data.error == 0) {
+    console.log(response.data);
+    $('#table-info'+tbl).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito"+tbl).html(response.data.mensaje);
+    $("#div-exito"+tbl).removeClass("d-none");
+    
+    $("#div-exito"+tbl).hide(8000, function(){
+      $('#div-exito'+tbl).addClass("d-none");
+      $("#div-exito"+tbl).show();
+      $("#div-exito"+tbl).html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error"+tbl).html(response.data.mensaje);
+    $("#div-error"+tbl).removeClass("d-none");
+   
+    $("#div-error"+tbl).hide(8000, function(){
+      $('#div-error'+tbl).show();
+      $('#div-error'+tbl).addClass("d-none");
+      $("#div-error"+tbl).html("");
     });
   }
 }
