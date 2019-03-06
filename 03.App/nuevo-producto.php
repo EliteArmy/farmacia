@@ -167,7 +167,7 @@
 
         <div id="footer-actualizar" class="modal-footer d-none">
           <button type="button" class="btn btn-info reset">Reset</button>
-          <button type="button" class="btn btn-primary" id="actualizar-producto">Actualizar Cambios</button>
+          <button type="button" class="btn btn-primary" id="actualizar-producto" data-dismiss="modal">Actualizar Cambios</button>
           <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div>
 

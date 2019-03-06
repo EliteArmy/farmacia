@@ -1,5 +1,5 @@
 //  FORMAS
-/*let formaProducto = new Forma('agregar-producto');
+let formaProducto = new Forma('agregar-producto');
 formaProducto.addInput('nombre-producto', /^.+$/, true);
 formaProducto.addInput('codigo-barra', /^.+$/, true);
 formaProducto.addInput('slc-categoria');
@@ -9,7 +9,7 @@ formaProducto.addInput('slc-tipo');
 
 formaProducto.setButtonEnvio('btn-guard-producto');
 formaProducto.setButtonUpdate('actualizar-producto');
-Forma.addTrigger(formaProducto);*/
+Forma.addTrigger(formaProducto);
 
 $(document).ready(function() {
 
@@ -239,6 +239,8 @@ function funcionBuscar(nomb){
   
   $.ajax(settings).done(function (response) {
     console.log(response.data);
+    $('.selectpicker').selectpicker('val', '');
+    $('.selectpicker').selectpicker('refresh');
     
     $('#id-producto').val(response.data[0].id_producto);
     $('#nombre-producto').val(response.data[0].nombre);
@@ -250,13 +252,13 @@ function funcionBuscar(nomb){
     $('#slc-tipo').selectpicker('val', response.data[0].es_medicamento);
     $('#slc-estado').selectpicker('val', response.data[0].estado);
     $('#slc-laboratorio').selectpicker('val', response.data[0].id_laboratorio);
-      
+    formaProducto.validateAll();
   });
 }
 
 /* CRUD Producto: Update */
 $("#actualizar-producto").click(function(){
-  alert("Actualizar");
+  // alert("Actualizar");
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -360,6 +362,33 @@ function imprimirMensaje(response){
     });
   }
 }
+
+function imprimirMensaje2(response){
+  if (response.data.error == 0) {
+    console.log(response.data);
+    $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito").html(response.data.mensaje);
+    $("#div-exito").removeClass("d-none");
+    
+    $("#div-exito").hide(8000, function(){
+      $('#div-exito').addClass("d-none");
+      $("#div-exito").show();
+      $("#div-exito").html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error").html(response.data.mensaje);
+    $("#div-error").removeClass("d-none");
+   
+    $("#div-error").hide(8000, function(){
+      $('#div-error').show();
+      $('#div-error').addClass("d-none");
+      $("#div-error").html("");
+    });
+  }
+}
+
 
 /* Función que se encarga de dejar los campos por defecto */
 $(".reset").click(function(){

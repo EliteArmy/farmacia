@@ -1,5 +1,5 @@
 //  FORMAS
-/*let formaLote = new Forma('agregar-lote');
+let formaLote = new Forma('agregar-lote');
 formaLote.addInput('nombre-lote', /^.+$/, true);
 formaLote.addInput('precio-compra', /^(\$?\d{1,3}(?:,?\d{3})*(?:\.\d{2})?|\.\d{2})?$/, true);
 formaLote.addInput('precio-venta', /^(\$?\d{1,3}(?:,?\d{3})*(?:\.\d{2})?|\.\d{2})?$/, true);
@@ -10,7 +10,7 @@ formaLote.addInput('slc-prod');
 
 formaLote.setButtonEnvio('guard-lote');
 formaLote.setButtonUpdate('actualizar-lote');
-Forma.addTrigger(formaLote);*/
+Forma.addTrigger(formaLote);
 
 /* Hay un bug con el reset: no valida bien luego de usar el boton de reset*/
 /* El mensaje no deberia de aparecer en rojo inicialmente */
@@ -182,6 +182,8 @@ function funcionBuscar(nomb){
   }
   $.ajax(settings).done(function (response) {
     console.log(response.data);
+    $('.selectpicker').selectpicker('val', '');
+    $('.selectpicker').selectpicker('refresh');
 
     $('#id-lote').val(response.data.id_lote);
     $('#nombre-lote').val(response.data.lote);
@@ -193,7 +195,7 @@ function funcionBuscar(nomb){
     $('#cantidad').val(response.data.existencia);
     $('#slc-estado').selectpicker('val', response.data.estado_lote);
     //$('#slc-descuento').val(response.data.porcentaje_descuento);
-
+    formaLote.validateAll();
   });
 
 }

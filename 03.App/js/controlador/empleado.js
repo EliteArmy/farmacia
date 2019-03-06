@@ -1,15 +1,15 @@
 //  FORMAS
-/*let formaEmpleado = new Forma('agregarempleado');
+let formaEmpleado = new Forma('agregarempleado');
 formaEmpleado.addInput('usuario', /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/, true);
-formaEmpleado.addInput('contrasena', /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/, true);
+// formaEmpleado.addInput('contrasena', /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/, true);
 formaEmpleado.addInput('primer-nombre', /^[A-Z]+[A-Za-záéíóúñ]+$/, true);
 formaEmpleado.addInput('segundo-nombre', /^[A-Z]+[A-Za-záéíóúñ]+$/, false);
 formaEmpleado.addInput('primer-apellido', /^[A-Z]+[A-Za-záéíóúñ]+$/, true);
 formaEmpleado.addInput('segundo-apellido', /^[A-Z]+[A-Za-záéíóúñ]+$/, false);
 formaEmpleado.addInput('numero-identidad', /^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$/, true)
 formaEmpleado.addInput('correo-electronico', /^[a-zA-Z0-9\._-]+@([_a-zA-Z0-9])+(\.[a-zA-Z]+)+$/, true);
-formaEmpleado.addInput('telefono',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
-formaEmpleado.addInput('telefono-nuevo',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
+// formaEmpleado.addInput('telefono',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
+// formaEmpleado.addInput('telefono-nuevo',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
 formaEmpleado.addInput('fecha-ingreso');
 formaEmpleado.addInput('fecha-nacimiento');
 formaEmpleado.addInput('slc-tipo-usuario');
@@ -19,7 +19,7 @@ formaEmpleado.addInput('slc-sexo');
 
 formaEmpleado.setButtonEnvio('guard-empleado');
 formaEmpleado.setButtonUpdate('actualizar-empleado');
-Forma.addTrigger(formaEmpleado);*/
+Forma.addTrigger(formaEmpleado);
 
 $(document).ready(function() {
   
@@ -135,7 +135,7 @@ function funcionBuscar(nomb){
     
     //$('#telefono-nuevo').val("");
     //$('#telefono').prop('readonly', true);
-    //$('#contrasena').prop('readonly', true);
+    $('#contrasena').prop('readonly', true);
 
     $('#id-empleado').val(response.data.id_empleado);
     $('#primer-nombre').val(response.data.primer_nombre);
@@ -154,7 +154,7 @@ function funcionBuscar(nomb){
     $('#contrasena').val("");
     $('#slc-estado').selectpicker('val', response.data.estado);
     $('#slc-tipo-usuario').selectpicker('val', response.data.id_tipo_usuario);
-      
+    formaEmpleado.validateAll();
   });
 }
 
