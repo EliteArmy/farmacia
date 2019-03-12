@@ -48,7 +48,7 @@
             <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
             </div>
             <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
-            </div>            
+            </div>
           </div>
         </div>
 
@@ -71,14 +71,14 @@
   <div class="modal fade" id="agregarempleado" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
-        
+
         <div class="modal-header">
           <h5 class="modal-title" id="ModalLabel">Agregar Nuevo Empleado</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        
+
         <div class="modal-body">
           <div class="row">
 
@@ -122,7 +122,7 @@
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="numero-identidad">Número de identidad:</label>
-              <input type="text" class="form-control" id="numero-identidad" name="numero-identidad" placeholder="0102199912345"> 
+              <input type="text" class="form-control" id="numero-identidad" name="numero-identidad" placeholder="0102199912345">
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -140,7 +140,7 @@
               <input id="telefono-nuevo" class="form-control" type="text" placeholder="1234-5678">
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6"> 
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="fecha-ingreso">Fecha Ingreso:</label>
               <input type="date" id="fecha-ingreso" class="form-control" placeholder="1999-12-31">
             </div>
@@ -150,7 +150,7 @@
               <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6"> 
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="fecha-nacimiento">Fecha Nacimiento:</label>
               <input type="date" id="fecha-nacimiento" class="form-control" placeholder="1999-12-31">
             </div>
@@ -162,11 +162,11 @@
                 <option value="2">Cajero</option>
               </select>
             </div>
-        
+
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-estado">Estado:</label>
               <select id="slc-estado" class="selectpicker form-control" title="Estado" data-style="btn-primary">
-              <option value="A">Activo</option>  
+              <option value="A">Activo</option>
               <option value="I">Inactivo</option>
               </select>
             </div>
@@ -174,11 +174,13 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-sexo">Sexo:</label>
               <select id="slc-sexo" class="selectpicker form-control" title="Sexo" data-style="btn-primary">
-              <option value="F">Femenino</option>  
+              <option value="F">Femenino</option>
               <option value="M">Masculino</option>
               </select>
             </div>
+            
 
+            <input type="hidden" name="foto-empleado" id="foto-empleado" value="">
             <div class="form-group col-12">
               <label for="inputGroupFile01">Fotografía:<br></label>
               <div class="input-group mb-3">
@@ -223,7 +225,7 @@
   <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
-  
+
   <script type="text/javascript" src="./js/validate.js"></script>
   <script type="text/javascript" src="./js/controlador/empleado.js"></script>
 

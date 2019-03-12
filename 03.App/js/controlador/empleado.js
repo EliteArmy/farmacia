@@ -22,7 +22,7 @@ formaEmpleado.setButtonUpdate('actualizar-empleado');
 Forma.addTrigger(formaEmpleado);
 
 $(document).ready(function() {
-  
+
   /* CRUD Empleado: Read */
   $('#table-info').DataTable({
     pageLength: 10,
@@ -94,11 +94,11 @@ $('#guard-empleado').click(function(){
       "fecha_ingreso": $('#fecha-ingreso').val(),
       "usuario": $('#usuario').val(),
       "contrasena": $('#contrasena').val(),
-      "foto_url": "",
+      "foto_url": $("#foto-empleado").val(),
       "id_tipo_usuario": $('#slc-tipo-usuario').val()
     }
   }
-  
+
   $.ajax(settings).done(function (response) {
     imprimirMensaje(response);
   });
@@ -129,10 +129,10 @@ function funcionBuscar(nomb){
       "id_empleado": nomb
     }
   }
-  
+
   $.ajax(settings).done(function (response) {
     console.log(response.data);
-    
+
     //$('#telefono-nuevo').val("");
     //$('#telefono').prop('readonly', true);
     $('#contrasena').prop('readonly', true);
@@ -170,7 +170,7 @@ $("#actualizar-empleado").click(function(){
     },
     "data": {
       "accion": "actualizar-empleado",
-      
+
       "id_empleado": $('#id-empleado').val(),
       "primer_nombre": $('#primer-nombre').val(),
       "segundo_nombre": $('#segundo-nombre').val(),
@@ -181,22 +181,22 @@ $("#actualizar-empleado").click(function(){
       "correo_electronico": $('#correo-electronico').val(),
       "numero_identidad": $('#numero-identidad').val(),
       "fecha_nacimiento": $('#fecha-nacimiento').val(),
-      
+
       "telefono": $('#telefono-nuevo').val(),
       "telefono_antiguo": $('#telefono').val(),
-      
+
       "estado": $('#slc-estado').val(),
       "fecha_ingreso": $('#fecha-ingreso').val(),
       "usuario": $('#usuario').val(),
-      "foto_url": "",
+      "foto_url": $("#foto-empleado").val(),
       "id_tipo_usuario": $('#slc-tipo-usuario').val()
     }
   }
-  
+
   $.ajax(settings).done(function (response) {
     imprimirMensaje(response);
   });
-  
+
 });
 
 /* CRUD Empleado: Delete */
@@ -215,7 +215,7 @@ function funcionBorrar(nomb){
       "id_empleado": nomb
     }
   }
-  
+
   $.ajax(settings).done(function (response) {
       $.confirm({
        icon: 'fa fa-trash',
@@ -243,7 +243,7 @@ function funcionBorrar(nomb){
                   "id_empleado": nomb
                 }
               }
-              
+
               $.ajax(settings).done(function (response) {
                 $.alert({
                   title: response.data.mensaje,
@@ -254,7 +254,7 @@ function funcionBorrar(nomb){
               $('#table-info').DataTable().ajax.reload();
               })
             }
-            
+
          },
          Cancelar:function(){
 
@@ -268,10 +268,10 @@ function imprimirMensaje(response){
   if (response.data.error == 0) {
     console.log(response.data);
     $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    
+
     $("#div-exito").html(response.data.mensaje);
     $("#div-exito").removeClass("d-none");
-    
+
     $("#div-exito").hide(8000, function(){
       $('#div-exito').addClass("d-none");
       $("#div-exito").show();
@@ -281,7 +281,7 @@ function imprimirMensaje(response){
     console.log(response);
     $("#div-error").html(response.data.mensaje);
     $("#div-error").removeClass("d-none");
-   
+
     $("#div-error").hide(8000, function(){
       $('#div-error').show();
       $('#div-error').addClass("d-none");
@@ -319,6 +319,29 @@ $(".reset").click(function(){
   $('#contrasena').val("");
   //$('#slc-estado').val("");
   //$('#slc-tipo-usuario').val("");
-  
+
 });
 
+// Subir imagen de usuario
+$("#inputGroupFile").on("change", function(){
+  //var form = new FormData($("#forma-empleado")[0]);
+  var form = new FormData();
+  form.append("file", $("#inputGroupFile")[0].files[0]);
+  console.log($("#inputGroupFile")[0].files);
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/img/subir-imagen.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "processData": false,
+    "contentType": false,
+    //"mimeType": "multipart/form-data",
+    "data": form
+  }
+
+  $.ajax(settings).done(function (response) {
+    $("#foto-empleado").val(response.ruta);
+  });
+});

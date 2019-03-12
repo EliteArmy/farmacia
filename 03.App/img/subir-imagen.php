@@ -9,8 +9,8 @@ if (isset($_FILES["file"])){
     $dimensiones = getimagesize($ruta_provisional);
     $width = $dimensiones[0];
     $height = $dimensiones[1];
-    $carpeta = "../img/";
-    
+    $carpeta = "./";
+
     if ($tipo != 'image/jpg' && $tipo != 'image/jpeg' && $tipo != 'image/png' && $tipo != 'image/gif'){
       $respuesta["mensaje"]="Error, el archivo no es una imagen";
       $respuesta["status"] = false;

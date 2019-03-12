@@ -30,7 +30,7 @@
           <div class="col-12 col-md-6 col-lg-6">
             <div class="row">
               <div class="col-12 col-lg-12">
-                <img src="<?php echo $_SESSION["foto_url"] ?>" alt="Foto" width="100% ">
+                <img src="./img/<?php echo $_SESSION["foto_url"] ?>" alt="Foto" width="100% ">
               </div>
             </div>
             <div class="row">
