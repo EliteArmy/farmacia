@@ -158,50 +158,14 @@ class Producto{
   }
   public static function leer($conexion){
     $sql = "
-      SELECT
-        *,
-        (pro.id_producto IN (SELECT id_producto FROM medicamentos)) as es_medicamento
-        ,(SELECT presentacion FROM presentacion WHERE pro.id_presentacion = id_presentacion) as presentacion
-        ,CASE WHEN (pro.id_producto IN (SELECT id_producto FROM medicamentos)) = TRUE
-          THEN (SELECT nombre_laboratorio FROM laboratorio WHERE id_laboratorio = (SELECT id_laboratorio FROM medicamentos WHERE id_producto = pro.id_producto))
-          ELSE '' END as laboratorio
-        ,CASE WHEN (pro.id_producto IN (SELECT id_producto FROM medicamentos)) = TRUE
-        THEN (SELECT id_laboratorio FROM laboratorio WHERE id_laboratorio = (SELECT id_laboratorio FROM medicamentos WHERE id_producto = pro.id_producto))
-        ELSE '' END as id_laboratorio,
-        (
-          SELECT
-            GROUP_CONCAT(cat_prod.id_categoria, '') as categoria
-          FROM categoria_producto cat_prod
-          WHERE cat_prod.id_producto = pro.id_producto
-          GROUP BY id_producto
-        ) as categoria
-      FROM producto pro
+      SELECT * FROM VistaProducto;
     ";
     return $conexion -> query($sql);
   }
 
   public function leerPorId($conexion){
     $sql = "
-      SELECT
-        *,
-        (pro.id_producto IN (SELECT id_producto FROM medicamentos)) as es_medicamento
-        ,(SELECT presentacion FROM presentacion WHERE pro.id_presentacion = id_presentacion) as presentacion
-        ,CASE WHEN (pro.id_producto IN (SELECT id_producto FROM medicamentos)) = TRUE
-          THEN (SELECT nombre_laboratorio FROM laboratorio WHERE id_laboratorio = (SELECT id_laboratorio FROM medicamentos WHERE id_producto = pro.id_producto))
-          ELSE '' END as laboratorio
-        ,CASE WHEN (pro.id_producto IN (SELECT id_producto FROM medicamentos)) = TRUE
-        THEN (SELECT id_laboratorio FROM laboratorio WHERE id_laboratorio = (SELECT id_laboratorio FROM medicamentos WHERE id_producto = pro.id_producto))
-        ELSE '' END as id_laboratorio,
-        (
-          SELECT
-            GROUP_CONCAT(cat_prod.id_categoria, '') as categoria
-          FROM categoria_producto cat_prod
-          WHERE cat_prod.id_producto = pro.id_producto
-          GROUP BY id_producto
-        ) as categoria
-      FROM producto pro
-      WHERE id_producto = %s
-      AND estado = 'A'
+      SELECT * FROM VistaProducto WHERE id_producto = %s
     ";
     $valores = [$this->getIdProducto()];
     return $conexion -> query($sql, $valores);
