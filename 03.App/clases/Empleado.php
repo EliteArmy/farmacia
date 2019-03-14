@@ -223,7 +223,6 @@ class Empleado extends Persona{
 			$rows[0]["permisos"] = explode(",",$rows[0]["permisos"]);
 
       session_start();
-
       $_SESSION["usuario"] = $rows[0]["usuario"];
 			$_SESSION["foto_url"] = $rows[0]["foto_url"];
 			$_SESSION["id_empleado"] = $rows[0]["id_empleado"];

@@ -87,6 +87,12 @@
               <input type="text" class="form-control" id="id-empleado" name="id-empleado">
             </div>
 
+            <div class="col-12" class="text-center">
+              <div class="row">
+                <img src="img/icon.png" alt="Foto" align="center">
+              </div>
+            </div>
+
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="usuario">Usuario:</label>
               <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
@@ -180,7 +186,7 @@
             </div>
             
 
-            <input type="hidden" name="foto-empleado" id="foto-empleado" value="">
+            <input type="hidden" name="foto-inputGroupFile" id="foto-inputGroupFile" value="">
             <div class="form-group col-12">
               <label for="inputGroupFile01">Fotografía:<br></label>
               <div class="input-group mb-3">

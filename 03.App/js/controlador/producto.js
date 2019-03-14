@@ -198,10 +198,10 @@ $("#btn-guard-producto").click(function(){
         "id_presentacion": $("#slc-presentacion").val(),
         "nombre": $("#nombre-producto").val(),
         "codigo_barra": $("#codigo-barra").val(),
-        "url_foto": "",
+        "url_foto": $("#foto-inputGroupFile").val(),
         "array_categoria": $("#slc-categoria").val().join(),
         "id_impuesto": $("#slc-impuesto").val(),
-        "id_laboratorio": $("#slc-laboratorio").val() || 0,
+        "id_laboratorio": $("#slc-tipo").val() == 'M' ? $('#slc-laboratorio').val() : 0,
         "opcion": $("#slc-tipo").val()
       }
     }
@@ -214,6 +214,7 @@ $("#btn-guard-producto").click(function(){
 
 // ======= Buscar un Producto =======
 function funcionBuscar(nomb){
+  $("#inputGroupFile").removeClass('is-valid');
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
   $("#footer-actualizar").removeClass("d-none");
@@ -240,7 +241,7 @@ function funcionBuscar(nomb){
   
   $.ajax(settings).done(function (response) {
     console.log(response.data);
-    var categorias = response.data[0].categoria;
+    var categorias = response.data[0].categoria || '';
     var separador = categorias.split(",");
     
     $('#id-producto').val(response.data[0].id_producto);
@@ -278,10 +279,10 @@ $("#actualizar-producto").click(function(){
       "id_presentacion": $('#slc-presentacion').val(),
       "nombre": $('#nombre-producto').val(),
       "codigo_barra": $('#codigo-barra').val(), 
-      "url_foto": "",
+      "url_foto": $("#foto-inputGroupFile").val(),
       "id_categoria": $('#slc-categoria').val().join(),
       "id_impuesto": $('#slc-impuesto').val(),
-      "id_laboratorio": $('#slc-laboratorio').val() || 0,
+      "id_laboratorio": $("#slc-tipo").val() == 'M' ? $('#slc-laboratorio').val() : 0,
       "estado": $('#slc-estado').val()
     }
   }
@@ -436,3 +437,40 @@ function resetCampos(){
   $('#slc-tipo').val("");
   $('#slc-laboratorio').val("");
 }
+
+// Subir imagen de producto
+$("#inputGroupFile").on("change", function(){
+  $("#inputGroupFile").removeClass('is-valid');
+  //var form = new FormData($("#forma-empleado")[0]);
+  var form = new FormData();
+  form.append("file", $("#inputGroupFile")[0].files[0]);
+  console.log($("#inputGroupFile")[0].files);
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/img/subir-imagen.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "processData": false,
+    "contentType": false,
+    //"mimeType": "multipart/form-data",
+    "data": form
+  }
+
+  $.ajax(settings).done(function (response) {
+    if(response.status){
+      $("#foto-inputGroupFile").val(response.ruta);
+      $("#inputGroupFile").removeClass('is-invalid');
+      $("#inputGroupFile").addClass('is-valid');
+    }else{
+      $("#inputGroupFile").addClass('is-invalid');
+    }
+    $.alert({
+        title: response.mensaje,
+        icon: 'fa fa-check',
+        type: 'blue',
+        content: '',
+    });
+  });
+});

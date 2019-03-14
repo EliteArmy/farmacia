@@ -11,8 +11,12 @@
   <title>Perfil</title>
 
   <link rel="icon" href="./img/icon.png">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/jquery-confirm//css/jquery-confirm.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
 <body>
 
@@ -31,22 +35,6 @@
             <div class="row">
               <div class="col-12 col-lg-12">
                 <img src="./img/<?php echo $_SESSION["foto_url"] ?>" alt="Foto" width="100% ">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-lg-12">
-                <div>
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroupFileAddon">Subir</span>
-                    </div>
-                    
-                    <div class="custom-file">
-                      <label class="custom-file-label" for="inputGroupFile">Elegir una Fotografía</label>
-                      <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -112,6 +100,23 @@
 
         <div class="modal-body">
           <div class="row">
+            <input type="hidden" name="foto-inputGroupFile" id="foto-inputGroupFile" value="">
+            <div class="form-group col-12">
+              <label for="inputGroupFile01">Fotografía:<br></label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                </div>
+
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon01" lang="es">
+                  <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
             <div class="col-lg-12">
               <table class="table">
                 <tr><td>Primer Nombre: </td>
@@ -130,6 +135,15 @@
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
-  <script src="./js/ver-perfil.js"></script>
+
+  <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
+
+  <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
+  <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
+
+  <script type="text/javascript" src="./js/validate.js"></script>
+  <script src="./js/controlador/ver-perfil.js"></script>
 </body>
 </html>

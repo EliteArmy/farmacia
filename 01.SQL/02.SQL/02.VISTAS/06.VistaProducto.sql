@@ -16,8 +16,22 @@ SELECT
     GROUP BY id_producto
   ) as categoria
   ,(CASE WHEN (SELECT id_producto FROM medicamentos WHERE id_producto = pro.id_producto) THEN 'M' ELSE 'P' END) as es_medicamento
-FROM producto pro;
+  ,imp_disp.descripcion as descripcion_impuesto
+  ,imp_disp.porcentaje as porcentaje_impuesto
+FROM producto pro
+INNER JOIN (
+  SELECT
+  i.id_impuesto,descripcion,porcentaje, id_producto as producto
+FROM impuesto_producto imp_prod
+INNER JOIN impuesto i
+  on imp_prod.id_impuesto = i.id_impuesto
+WHERE
+  imp_prod.fecha_inicio <= CURDATE()
+  AND imp_prod.estado='A'
+) imp_disp
+  ON imp_disp.producto = pro.id_producto
+;
 
 
 
--- SELECT * FROM VistaProducto
+SELECT * FROM VistaProducto

@@ -94,7 +94,7 @@ $('#guard-empleado').click(function(){
       "fecha_ingreso": $('#fecha-ingreso').val(),
       "usuario": $('#usuario').val(),
       "contrasena": $('#contrasena').val(),
-      "foto_url": $("#foto-empleado").val(),
+      "foto_url": $("#foto-inputGroupFile").val();,
       "id_tipo_usuario": $('#slc-tipo-usuario').val()
     }
   }
@@ -107,6 +107,7 @@ $('#guard-empleado').click(function(){
 
 /* Buscar un Empleado */
 function funcionBuscar(nomb){
+  $("#inputGroupFile").removeClass('is-valid');
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
   $("#footer-actualizar").removeClass("d-none");
@@ -188,7 +189,7 @@ $("#actualizar-empleado").click(function(){
       "estado": $('#slc-estado').val(),
       "fecha_ingreso": $('#fecha-ingreso').val(),
       "usuario": $('#usuario').val(),
-      "foto_url": $("#foto-empleado").val(),
+      "foto_url": $("#foto-inputGroupFile").val();,
       "id_tipo_usuario": $('#slc-tipo-usuario').val()
     }
   }
@@ -250,7 +251,8 @@ function funcionBorrar(nomb){
                   icon: 'fa fa-check',
                   type: 'blue',
                   content: '',
-              });
+                });
+
               $('#table-info').DataTable().ajax.reload();
               })
             }
@@ -324,6 +326,7 @@ $(".reset").click(function(){
 
 // Subir imagen de usuario
 $("#inputGroupFile").on("change", function(){
+  $("#inputGroupFile").removeClass('is-valid');
   //var form = new FormData($("#forma-empleado")[0]);
   var form = new FormData();
   form.append("file", $("#inputGroupFile")[0].files[0]);
@@ -342,6 +345,18 @@ $("#inputGroupFile").on("change", function(){
   }
 
   $.ajax(settings).done(function (response) {
-    $("#foto-empleado").val(response.ruta);
+    if(response.status){
+      $("#foto-inputGroupFile").val(response.ruta);
+      $("#inputGroupFile").removeClass('is-invalid');
+      $("#inputGroupFile").addClass('is-valid');
+    }else{
+      $("#inputGroupFile").addClass('is-invalid');
+    }
+    $.alert({
+        title: response.mensaje,
+        icon: 'fa fa-check',
+        type: 'blue',
+        content: '',
+    });
   });
 });

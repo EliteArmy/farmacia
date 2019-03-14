@@ -147,14 +147,18 @@
 
         <!-- Solo es para la separación en el Modal -->
         <div class="modal-footer">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupFileAddon">Subir</span>
-            </div>
-            
-            <div class="custom-file">
-              <label class="custom-file-label" for="inputGroupFile">Elegir una Fotografía</label>
-              <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+          <input type="hidden" name="foto-inputGroupFile" id="foto-inputGroupFile" value="">
+          <div class="form-group col-12">
+            <label for="inputGroupFile01">Fotografía:<br></label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+              </div>
+
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon01" lang="es">
+                <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
+              </div>
             </div>
           </div>
         </div>
