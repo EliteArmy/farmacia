@@ -99,34 +99,66 @@
         </div>
 
         <div class="modal-body">
+          
           <div class="row">
+            <div class="form-group col-12 col-12 col-sm-6 col-md-6">
+              <div class="row">
+                <img src="./img/<?php echo $_SESSION["foto_url"] ?>" alt="Foto" class="img rounded foto-usuario mx-auto d-block" align="middle">
+              </div>
+            </div>
+
             <input type="hidden" name="foto-inputGroupFile" id="foto-inputGroupFile" value="">
-            <div class="form-group col-12">
+            <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="inputGroupFile01">Fotografía:<br></label>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
                 </div>
-
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon01" lang="es">
                   <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
                 </div>
               </div>
             </div>
+
+          </div>
+          
+          <div class="row">
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="usuario">Email :</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+            </div>
           </div>
 
           <div class="row">
-            <div class="col-lg-12">
-              <table class="table">
-                <tr><td>Primer Nombre: </td>
-                <td><input type="text" name="primer-nombre" value="" placeholder=""></td>
-              </tr>
-              </table>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="usuario">Contraseña:</label>
+              <input type="password" class="form-control" id="usuario" name="usuario" placeholder="Contraseña">
             </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="usuario">Confirmar contraseña:</label>
+              <input type="password" class="form-control" id="usuario" name="usuario" placeholder="Contraseña">
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="usuario">Telefono Antiguo:</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Telefono">
+            </div>
+
+            <div class="form-group col-13 col-sm-6 col-md-6">
+              <label for="usuario">Telefono Nuevo:</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Telefono">
+            </div>
+
+          </div>
+
+          <div id="footer-actualizar" class="modal-footer">
+            <button type="button" class="btn btn-info reset">Reset</button>
+            <button type="button" class="btn btn-primary" id="actualizar-empleado" data-dismiss="modal">Actualizar Cambios</button>
+            <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
-
       </div>
     </div>
   </div>

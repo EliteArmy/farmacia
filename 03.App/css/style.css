@@ -234,4 +234,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   content: "+";
   background-color: #45AFE4 !important; }
 
+.foto-empleado, .foto-usuario {
+  height: 100px;
+  width: 100px; }
+
 /*# sourceMappingURL=style.css.map */

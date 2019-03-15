@@ -66,7 +66,7 @@
 
   <!-- Modal Producto -->
   <div class="modal fade" id="ver-factura" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         
         <div class="modal-header">
@@ -115,7 +115,7 @@
                   </tr>
                 </thead>
 
-                <tbody id="detaller-factura">
+                <tbody id="detalle-factura">
                   
                 </tbody>
               </table>

@@ -94,7 +94,7 @@ $('#guard-empleado').click(function(){
       "fecha_ingreso": $('#fecha-ingreso').val(),
       "usuario": $('#usuario').val(),
       "contrasena": $('#contrasena').val(),
-      "foto_url": $("#foto-inputGroupFile").val();,
+      "foto_url": $("#foto-inputGroupFile").val(),
       "id_tipo_usuario": $('#slc-tipo-usuario').val()
     }
   }
@@ -153,6 +153,7 @@ function funcionBuscar(nomb){
     $('#fecha-ingreso').val(response.data.fecha_ingreso);
     $('#usuario').val(response.data.usuario);
     $('#contrasena').val("");
+    $(".foto-empleado").attr('src', 'img/' + response.data.foto_url);
     $('#slc-estado').selectpicker('val', response.data.estado);
     $('#slc-tipo-usuario').selectpicker('val', response.data.id_tipo_usuario);
     formaEmpleado.validateAll();
@@ -189,7 +190,7 @@ $("#actualizar-empleado").click(function(){
       "estado": $('#slc-estado').val(),
       "fecha_ingreso": $('#fecha-ingreso').val(),
       "usuario": $('#usuario').val(),
-      "foto_url": $("#foto-inputGroupFile").val();,
+      "foto_url": $("#foto-inputGroupFile").val(),
       "id_tipo_usuario": $('#slc-tipo-usuario').val()
     }
   }
@@ -347,6 +348,7 @@ $("#inputGroupFile").on("change", function(){
   $.ajax(settings).done(function (response) {
     if(response.status){
       $("#foto-inputGroupFile").val(response.ruta);
+      $(".foto-empleado").attr('src', 'img/' + response.ruta);
       $("#inputGroupFile").removeClass('is-invalid');
       $("#inputGroupFile").addClass('is-valid');
     }else{

@@ -28,7 +28,7 @@
       { data: "id_factura", title:"Factura"},
       { data: "fecha_factura", title:"Fecha"},
       { data: "cliente", title:"Cliente"},
-      { data: "total", title:"Total"},
+      { data: "total", title:"Total", render: $.fn.dataTable.render.number( ',', '.', 2, 'L. ' )},
       
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
@@ -61,27 +61,27 @@ function funcionBuscar(id){
       $("#telefonos").val(response.data[0].telefonos);
       $("#fecha").val(response.data[0].fecha_hora);
       $("#empleado").val(response.data[0].empleado);
-      $("#detaller-factura").html("");
+      $("#detalle-factura").html("");
       for (var i = 0; i < response.data.length; i++) {
         let item = response.data[i];
         var cd = "<tr>"+
           "<td>" + item.codigo_barra + "</td>"+
           "<td>" + item.cantidad + "</td>"+
           "<td>" + item.nombre_producto + "</td>"+
-          "<td>" + item.precio_unitario + "</td>"+
-          "<td>" + item.sub_total + "</td>"+
-          "<td>" + item.impuesto + " (" + item.porcentaje_impuesto + "%)</td>"+ 
+          "<td>" + "L. " + formatMoney(item.precio_unitario,2,'.', ',') + "</td>"+
+          "<td>" + "L. " + formatMoney(item.sub_total,2,'.', ',') + "</td>"+
+          "<td>" + "L. " + formatMoney(item.impuesto,2,'.', ',') + " (" + item.porcentaje_impuesto + "%)</td>"+ 
           "<td>" + 0 + "</td>"+
-          "<td>" + item.precio_total + "</td>"+
+          "<td>" + "L. " + formatMoney(item.precio_total,2,'.', ',') + "</td>"+
         "</tr>";
-        $("#detaller-factura").append(cd);
+        $("#detalle-factura").append(cd);
       }
       let item = response.data[0];
       var tot = "<tr>"+
         "<td class='text-right'>Total</td>"+
-        "<td colspan='7' class='text-right' >" + item.total + "</td>"+
+        "<td colspan='7' class='text-right' >" + "L. " + formatMoney(item.total ,2,'.', ',') + "</td>"+
       "</tr>";
-      $("#detaller-factura").append(tot);
+      $("#detalle-factura").append(tot);
 
 
     });

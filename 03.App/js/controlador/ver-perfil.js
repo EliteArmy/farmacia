@@ -21,6 +21,7 @@ $("#inputGroupFile").on("change", function(){
   $.ajax(settings).done(function (response) {
     if(response.status){
       $("#foto-inputGroupFile").val(response.ruta);
+      $(".foto-usuario").attr('src', 'img/' + response.ruta);
       $("#inputGroupFile").removeClass('is-invalid');
       $("#inputGroupFile").addClass('is-valid');
     }else{
