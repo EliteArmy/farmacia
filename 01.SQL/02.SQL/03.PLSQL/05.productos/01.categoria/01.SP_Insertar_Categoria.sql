@@ -44,4 +44,4 @@ InsertarCategoria:BEGIN
 END $$
 
 DELIMITER ;
-# CALL SP_Insertar_Categoria('Analgésicos');
+ #CALL SP_Insertar_Categoria('Antiflamatorios');
