@@ -34,7 +34,6 @@ $(document).ready(function() {
   });
 
   function imprimirCategoria(response){
-    //alert("categorias"+response);
     
     $("#slc-categoria").empty();
     for (var i=0; i < response.length; i++){   
@@ -183,6 +182,16 @@ $(document).ready(function() {
 
 // ======= CRUD Producto: Create =======
 $("#btn-guard-producto").click(function(){
+  console.log(
+  " id-presentacion: ",$("#slc-presentacion").val(),
+  " nombre-producto: ",$("#nombre-producto").val(),
+  " codigo-barra: ",$("#codigo-barra").val(),
+  " foto: ",$("#foto-inputGroupFile").val(),
+  " categorias: ",$("#slc-categoria").val().join(),
+  " id_impuesto: ",$("#slc-impuesto").val(),
+  " id_lab: ",$("#slc-laboratorio").val(),
+  " opcion: ",$("#slc-tipo").val())
+  
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -201,7 +210,7 @@ $("#btn-guard-producto").click(function(){
         "url_foto": $("#foto-inputGroupFile").val(),
         "array_categoria": $("#slc-categoria").val().join(),
         "id_impuesto": $("#slc-impuesto").val(),
-        "id_laboratorio": $("#slc-tipo").val() == 'M' ? $('#slc-laboratorio').val() : 0,
+        "id_laboratorio": $("#slc-laboratorio").val(),
         "opcion": $("#slc-tipo").val()
       }
     }
@@ -220,7 +229,7 @@ function funcionBuscar(nomb){
   $("#footer-actualizar").removeClass("d-none");
   
   $("#seleccion-estado").removeClass("d-none");
-  $('#laboratorio').show();
+  //$('#laboratorio').show();
   
   resetCampos();
 
@@ -282,7 +291,7 @@ $("#actualizar-producto").click(function(){
       "url_foto": $("#foto-inputGroupFile").val(),
       "id_categoria": $('#slc-categoria').val().join(),
       "id_impuesto": $('#slc-impuesto').val(),
-      "id_laboratorio": $("#slc-tipo").val() == 'M' ? $('#slc-laboratorio').val() : 0,
+      "id_laboratorio": $("#slc-laboratorio").val(),
       "estado": $('#slc-estado').val()
     }
   }
@@ -398,7 +407,7 @@ function imprimirMensaje(response){
 $(".reset").click(function(){
   $("#footer-actualizar").addClass("d-none");
   $("#footer-guardar").show();
-  $('#laboratorio').hide();
+  //$('#laboratorio').hide();
   $("#seleccion-estado").addClass("d-none");
 
   $('.selectpicker').selectpicker('val', '');
@@ -414,16 +423,16 @@ $(".reset").click(function(){
 });
 
 /* Función de ocultar y mostrar Laboratorio */
-$("#slc-tipo").change(function(){
+/*$("#slc-tipo").change(function(){
   var selected = $('#slc-tipo option:selected').val();
   if (selected == "M"){
-    $('#slc-laboratorio').val("");
+    //$('#slc-laboratorio').val("");
     $('#laboratorio').show();
   } else {
     $('#laboratorio').hide();
-    $('#slc-laboratorio').val("");
+    //$('#slc-laboratorio').val("");
   }        
-});
+});*/
 
 function resetCampos(){
   $('.selectpicker').selectpicker('val', '');

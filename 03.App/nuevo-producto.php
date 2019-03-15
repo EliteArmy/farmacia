@@ -122,12 +122,14 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-tipo">Tipo:</label>
               <select id="slc-tipo" class="selectpicker form-control" title="Tipo de Producto" data-style="btn-primary">
-                <option onclick="showMedicamento(P)" value="P">Producto</option>
-                <option onclick="showMedicamento(M)" value="M">Medicamento</option>
+                <option value="P">Producto</option>
+                <option value="M">Medicamento</option>
+                <!--<option onclick="showMedicamento(P)" value="P">Producto</option>
+                <option onclick="showMedicamento(M)" value="M">Medicamento</option>-->
               </select>
             </div>
 
-            <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
+            <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6" >
               <label for="slc-laboratorio">Laboratorio:</label>
               <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
                 <!--Informacion generada -->
@@ -137,8 +139,8 @@
             <div id="seleccion-estado" class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-estado">Estado:</label>
               <select id="slc-estado" class="selectpicker form-control" title="Estado" data-style="btn-primary">
-              <option value="A">Activo</option>  
-              <option value="I">Inactivo</option>
+                <option value="A">Activo</option>  
+                <option value="I">Inactivo</option>
               </select>
             </div>
 
