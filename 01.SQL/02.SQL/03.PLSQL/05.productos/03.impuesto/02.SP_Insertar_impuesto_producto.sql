@@ -53,7 +53,7 @@ CREATE PROCEDURE SP_Insertar_Impuesto_Producto(
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
-        SELECT mensaje,error;
+        -- SELECT mensaje,error;
         LEAVE SP;
    END IF;
   -- _________________________CUERPO DEL PL_______________________________-
@@ -83,7 +83,7 @@ CREATE PROCEDURE SP_Insertar_Impuesto_Producto(
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
-        SELECT mensaje,error;
+        -- SELECT mensaje,error;
         LEAVE SP;
    END IF;
 
@@ -102,7 +102,7 @@ CREATE PROCEDURE SP_Insertar_Impuesto_Producto(
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT mensaje,error;
+    -- SELECT mensaje,error;
 END $$
 
 CALL SP_Insertar_Impuesto_Producto(10,2, '2019-03-03','2018-02-02','I',@mensaje,@error);

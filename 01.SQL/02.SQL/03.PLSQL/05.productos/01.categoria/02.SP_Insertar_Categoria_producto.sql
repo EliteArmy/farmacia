@@ -47,7 +47,7 @@ CREATE PROCEDURE SP_Insertar_Categoria_Producto(
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
-        SELECT mensaje,error;
+        -- SELECT mensaje,error;
         LEAVE SP;
    END IF;
   -- _________________________CUERPO DEL PL_______________________________-
@@ -73,7 +73,7 @@ CREATE PROCEDURE SP_Insertar_Categoria_Producto(
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
-        SELECT mensaje,error;
+        -- SELECT mensaje,error;
         LEAVE SP;
    END IF;
 
@@ -88,7 +88,7 @@ CREATE PROCEDURE SP_Insertar_Categoria_Producto(
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT mensaje,error;
+    -- SELECT mensaje,error;
     
 END $$
 

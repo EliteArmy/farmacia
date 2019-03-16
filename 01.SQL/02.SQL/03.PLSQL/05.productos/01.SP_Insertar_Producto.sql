@@ -198,17 +198,17 @@ CREATE PROCEDURE SP_Insertar_Producto(
                       pI_codigo_barra,
                       pI_url_foto,
                       'A');
-    COMMIT;
+    
 
    -- Insertar categoriaxproducto
-   SELECT MAX(id_producto) INTO ultimoId FROM producto;
+   SET ultimoId=LAST_INSERT_ID();
    SET iterador=1;
    WHILE iterador<=contadorDigitos DO
         SET idCategoria = FN_Split_Str(cadena, ',', iterador);
         IF NOT(idCategoria='' OR idCategoria IS NULL) THEN
       		 CALL SP_Insertar_Categoria_Producto(idCategoria, ultimoId, 'A',@mensajeInsertarCategoriaProducto, @errorInsertarCategoriaProducto);
              IF @errorInsertarCategoriaProducto THEN
-				        SET mensaje=@mensajeInsertarCategoriaProducto;
+				SET mensaje=@mensajeInsertarCategoriaProducto;
                 SET error=TRUE;
                 SET pO_mensaje=mensaje;
                 SET pO_error=error;
@@ -240,7 +240,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
            VALUES(pI_id_laboratorio,ultimoId,'A');
     END IF;
 
-   
+   COMMIT;
   -- Mensaje de salida, proceso exitoso
    SET mensaje='Inserción exitosa';
    SET error=FALSE;
@@ -250,7 +250,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
 
 END $$
 
-CALL SP_Insertar_Producto(2,"paradsedta", "1adDd9Ddddd4d1", "http://foto","1,2,3",1,9,"M", @mensaje,@error);
+CALL SP_Insertar_Producto(2,"paradsedta", "1adadddd4d1", "http://foto","1,2,3",1,9,"P", @mensaje,@error);
 SELECT @mensaje, @error;
 
 select * from categoria_producto
