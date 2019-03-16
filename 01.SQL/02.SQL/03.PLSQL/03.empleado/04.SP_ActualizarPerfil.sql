@@ -20,9 +20,12 @@ SP:BEGIN
     DECLARE idTelefono INT;
     DECLARE idPersona INT;
 
-     DECLARE exit HANDLER FOR SQLEXCEPTION
+     DECLARE EXIT HANDLER FOR SQLEXCEPTION
      BEGIN
 		    ROLLBACK ;
+		    SET mensaje = 'Error';
+		    SET error = 1;
+		    SELECT mensaje, error;
      END;
 
     -- Inicializaciones
@@ -57,14 +60,6 @@ SP:BEGIN
         SET mensaje=CONCAT(mensaje, 'Contraseña vacío, ');
     END IF;
 
-    IF pI_telefono_antiguo = '' OR pI_telefono_antiguo IS NULL THEN
-        SET mensaje=CONCAT(mensaje, 'Telefono antiguo vacío, ');
-    END IF;
-
-    IF pI_telefono_nuevo = '' OR pI_telefono_nuevo IS NULL THEN
-        SET mensaje=CONCAT(mensaje, 'Telefono nuevo vacío, ');
-    END IF;
-
     IF mensaje <> '' THEN
         SET mensaje=mensaje;
         SET error=TRUE;
@@ -83,10 +78,14 @@ SP:BEGIN
     IF pI_foto_url != '' THEN
         UPDATE empleado SET
         foto_url = pI_foto_url
-        WHERE id_empleado = pI_id_empleado;
+        WHERE
+        id_empleado = pI_id_empleado
+        AND estado = 'A'
+        ;
+
     END IF;
 
-    SELECT id_telefono INTO idTelefono FROM telefono WHERE telefono=pI_telefono_antiguo;
+    SELECT id_telefono INTO idTelefono FROM telefono WHERE telefono=pI_telefono_antiguo LIMIT 1;
     UPDATE telefono SET telefono= pI_telefono_nuevo WHERE id_telefono=idTelefono;
 
     SELECT id_persona INTO idPersona FROM empleado WHERE id_empleado = pI_id_empleado;
@@ -95,12 +94,19 @@ SP:BEGIN
     COMMIT;
 
     SET mensaje = 'Actualización de perfil correcta';
-    SELECT mensaje, error;
+    SELECT
+    *
+    ,mensaje, error
+    FROM VistaEmpleado
+    WHERE id_empleado = pI_id_empleado;
+
     LEAVE SP;
 END$$
 
 
 # CALL SP_Actualizar_Perfil(
-#   1, 'jaguilar992@gmail.com', 1, SHA2('ambrosia', 512), '9764-1370', '9764-1370', ''
+#   1, 'jaguilar992@gmail.com', 1, SHA2('1234', 512), '9764-1370', '9764-1370', ''
 #   ,@mensaje, @error
 # );
+
+# CALL SP_Actualizar_Perfil(1, 'aleja@gmail.com.net', 0, '9b1daa940e84689fa9001d569fe58352c48670d2878f897fba413b406765ead922baa219ce283d0fffb54c7989fa6587aaac91a87fa75ac3a0a494c0187f70c6', '9764-1396', '9764-1396', '' ,@mensaje, @error );

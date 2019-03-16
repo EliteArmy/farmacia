@@ -84,7 +84,7 @@ $("#actualizar-perfil").click(function(){
   var c2 = $("#contrasena2").val();
   if (c1==c2){
     var cambiar_contrasena = (c1 != '1234');
-    
+    console.log(cambiar_contrasena);
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -107,13 +107,24 @@ $("#actualizar-perfil").click(function(){
     }
 
     $.ajax(settings).done(function (response) {
-      console.log(response);
-      if (data.response == 0) {
-        $("#div-exito").html(response.mensaje);
+      if (response.data.error == '0') {
+        $("#div-exito").html(response.data.mensaje);
+        $("#div-exito").removeClass('d-none');
+        $("#div-exito").hide(8000, function(){
+              $('#div-exito').addClass("d-none");
+              $("#div-exito").show();
+              $("#div-exito").html("");
+          $("#editarPerfil").modal("toggle");
+        });
       }else{
-        $("#div-error").html(response.mensaje);
+        $("#div-error").html(response.data.mensaje);
+        $("#div-error").removeClass('d-none');
+        $("#div-error").hide(8000, function(){
+              $('#div-error').addClass("d-none");
+              $("#div-error").show();
+              $("#div-error").html("");
+        });
       }
-      $("#editarPerfil").modal("toggle");
     });
 
   }else {

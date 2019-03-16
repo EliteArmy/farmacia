@@ -1,7 +1,6 @@
 <?php
   $idPagina = "ver-perfil";
   include("autenticacion.php");
-  var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,6 +63,11 @@
               <tr>
                 <td>Sexo: </td>
                 <td><?php echo $_SESSION["sexo"] ?></td>
+              </tr>
+
+              <tr>
+                <td>Teléfonos: </td>
+                <td><?php echo str_replace(',', ' | ', $_SESSION["telefono"]) ?></td>
               </tr>
 
               <tr>
@@ -161,7 +165,7 @@
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="usuario">Telefono Antiguo:</label>
-              <input type="text" class="form-control" id="telefono-antiguo" placeholder="Telefono">
+              <input type="text" class="form-control"  disabled="disabled" id="telefono-antiguo" placeholder="Telefono">
             </div>
 
             <div class="form-group col-13 col-sm-6 col-md-6">
