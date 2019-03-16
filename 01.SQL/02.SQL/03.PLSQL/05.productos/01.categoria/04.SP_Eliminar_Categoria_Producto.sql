@@ -25,35 +25,25 @@ CREATE PROCEDURE SP_Eliminar_Categoria_Producto(
     END IF;
 
  -- ______________________CUERPO__________________________________________
-   SELECT COUNT(*)  INTO contador
-   FROM categoria_producto
-   WHERE  id_categoria = pI_id_categoria and estado="I";
-
-   IF contador >0  THEN
-        SET mensaje=CONCAT(mensaje, 'no existe relacion entre categoria y producto, ');
-   END IF;
 
    IF mensaje <> '' THEN
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
-        SELECT mensaje,error;
         LEAVE SP;
    END IF;   
 
-   IF contador =0 THEN
      UPDATE categoria_producto 
          SET
              categoria_producto.estado = "I"
          WHERE
              categoria_producto.id_categoria= pI_id_categoria;
-    END IF;
+
    
      COMMIT;
      SET mensaje= 'Eliminación exitosa';
      SET error=FALSE;
      SET pO_mensaje=mensaje;
-     SELECT mensaje,error;
 END $$
 
 

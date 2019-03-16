@@ -31,7 +31,8 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
    WHERE  id_categoria = pI_id_categoria and estado="I";
 
    IF contador >0  THEN
-   SET mensaje = CONCAT(mensaje, 'el identificador no esta asignado a ninguna categoria, ');
+      SET mensaje = CONCAT(mensaje, 'La categoria está inhabilitada, no se puede eliminar., ');
+  
    END IF;
 
    SELECT COUNT(*)  INTO contador
@@ -39,11 +40,10 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
    WHERE  id_categoria = pI_id_categoria;
    
    IF contador =0 THEN
-   SET mensaje = CONCAT(mensaje, 'el identificador no esta asignado a ninguna categoria, ');
+	 SET mensaje = CONCAT(mensaje, 'La categoria no existe, ');
    END IF;
 
    IF mensaje <> '' THEN
-        SET mensaje=CONCAT('resultado: ', mensaje);
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
@@ -58,7 +58,7 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
          WHERE
              categoria.id_categoria= pI_id_categoria;
    
-   CALL SP_Eliminar_Categoria_Producto(pI_id_categoria,@mensajeEliminarCategoriaProducto, @errorEliminarCategoriaProducto)
+   CALL SP_Eliminar_Categoria_Producto(pI_id_categoria,@mensajeEliminarCategoriaProducto, @errorEliminarCategoriaProducto);
 
    IF @errorEliminarCategoriaProducto THEN
        SET mensaje=@mensajeEliminarCategoriaProducto;
@@ -80,7 +80,7 @@ END $$
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Eliminar_Categoria(1, @mensaje,@error);
+CALL SP_Eliminar_Categoria(31, @mensaje,@error);
 SELECT @mensaje, @error;
 
 SELECT * FROM categoria;
