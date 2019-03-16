@@ -18,12 +18,37 @@ function funcionBuscarCliente(identidad){
 
   $.ajax(settings).done(function (response) {
     console.log(response.data);
-    $('#nombre-cliente').val(response.data.nombre_persona);
+    //$('#nombre-cliente').val(response.data.nombre_persona);
     
   });
 }
 
+// ======= Buscar un Producto =======
+function funcionBuscarProducto(codigo){
+  
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "buscar-producto",
+      "codigo_barra": codigo
+    }
+  }
 
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+    //$('#').val(response.data.codigo_barra);
+    
+  });
+}
+
+// ======= Guardar una Factura =======
 $("#guardar-Factura").click(function(){
   
   /* 
