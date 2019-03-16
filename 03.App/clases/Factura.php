@@ -125,10 +125,9 @@ class Factura{
 		return $rows;
 	}
 	public function leerPorFecha($conexion){
-		$sql = '
-			SELECT * FROM VistaFacturas
-			WHERE fecha_factura BETWEEN DATE(\'%s\') AND DATE(\'%s\')
-		';
+		$sql = "SELECT * FROM VistaFacturas
+		WHERE DATE(fecha_factura) >= DATE('%s')
+		AND DATE(fecha_factura)<= DATE('%s');";
 		$valores = [
 			$this->getFechaInicio(),
 			$this->getFechaFin()

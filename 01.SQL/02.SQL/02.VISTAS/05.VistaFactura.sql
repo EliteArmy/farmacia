@@ -76,3 +76,5 @@ INNER JOIN (
   GROUP BY vdf.id_factura
 ) totales
 ON f.id_factura = totales.id_factura
+ORDER BY fecha_factura DESC
+;
