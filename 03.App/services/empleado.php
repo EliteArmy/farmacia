@@ -124,6 +124,27 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'actualizar-perfil':
+      $idEmpleado = validarPOST('id_empleado');
+      $correoElectronico = validarPOST('correo_electronico');
+      $cambiarContrasena = validarPOST('cambiar_contrasena');
+      $contrasena = validarPOST('contrasena');
+      $telefono = validarPOST('telefono_antiguo');
+      $telefonoNuevo = validarPOST('telefono_nuevo');
+      $fotoUrl = validarPOST('foto_url');
+      $empleado = new Empleado();
+      $empleado->setIdEmpleado($idEmpleado);
+      $empleado->setCorreoElectronico($correoElectronico);
+      $empleado->setContrasena($contrasena);
+      $empleado->setTelefonoAntiguo($telefono);
+      $empleado->setTelefono($telefonoNuevo);
+      $empleado->setFotoUrl($fotoUrl);
+      $empleado->setEstado($cambiarContrasena);
+      $res['data'] = $empleado->actualizarPerfil($conexion);
+
+      echo json_encode($res);
+    break;
+
     case 'eliminar-empleado':
       $idEmpleado = validarPOST('id_empleado');
       $empleado = new Empleado();

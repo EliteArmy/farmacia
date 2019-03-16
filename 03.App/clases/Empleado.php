@@ -238,5 +238,37 @@ class Empleado extends Persona{
 		return $rows[0];
 	}
 
+	public function actualizarPerfil($conexion){
+		$this->setContrasena(hash('sha512', $this->getContrasena()));
+		$sql = "
+		CALL SP_Actualizar_Perfil(%d, '%s', %d, '%s', '%s', '%s', '%s'
+  		,@mensaje, @error
+		);
+		";
+		$valores = [
+			$this->getIdEmpleado(),
+			$this->getCorreoElectronico(),
+			$this->getEstado(),
+			$this->getContrasena(),
+			$this->getTelefonoAntiguo(),
+			$this->getTelefono(),
+			$this->getFotoUrl(),
+		];
+		$rows = $conexion->query($sql, $valores);
+
+		$user = $conexion->query('SELECT * FROM VistaEmpleado WHERE id_empleado = %s', [$this->getIdEmpleado()]);
+      $_SESSION["usuario"] = $user[0]["usuario"];
+			$_SESSION["foto_url"] = $user[0]["foto_url"];
+			$_SESSION["id_empleado"] = $user[0]["id_empleado"];
+			$_SESSION["tipo_usuario"] = $user[0]["tipo_usuario"];
+			$_SESSION["nombre_completo"] = $user[0]["nombre_completo"];
+			$_SESSION["sexo"] = $user[0]["sexo"];
+			$_SESSION["correo_electronico"] = $user[0]["correo_electronico"];
+			$_SESSION["fecha_ingreso"] = $user[0]["fecha_ingreso"];
+			$_SESSION["telefono"] = $user[0]["telefono"];
+			$_SESSION["permisos"] = $user[0]["permisos"];
+		return $rows[0];
+	}
+
 }
 ?>

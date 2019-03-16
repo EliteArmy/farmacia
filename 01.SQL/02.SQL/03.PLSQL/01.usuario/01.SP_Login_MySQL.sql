@@ -40,7 +40,8 @@ Login:BEGIN
     INNER JOIN empleado e
       ON ve.id_empleado = e.id_empleado
     WHERE e.usuario = par_usuario
-    AND   e.contrasena = par_contrasena;
+    AND   e.contrasena = par_contrasena
+    AND e.estado = 'A';
     LEAVE Login;
   ELSE
     SET mensaje = 'Contraseña o usuario incorrecto';

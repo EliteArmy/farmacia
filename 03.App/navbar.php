@@ -86,8 +86,8 @@
         <?php endif;?>
 
         <!--Item Clientes-->
-        <?php if(show_menu_if(["registrar-cliente","listado-cliente"])):?>
-        <li class="nav-item dropdown" id="nav-cliente">
+        <?php if(!show_menu_if(["registrar-cliente","listado-cliente"])):?>
+<!--         <li class="nav-item dropdown" id="nav-cliente">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Clientes
           </a>
@@ -100,7 +100,7 @@
             <a class="dropdown-item" href="listado-cliente.php">Listado de Clientes</a>
             <?php endif;?>
           </div>
-        </li>
+        </li> -->
         <?php endif;?>
 
         <!--Item Empleados-->

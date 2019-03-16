@@ -75,6 +75,12 @@ class Forma {
       let id = this.id;
       form.validate(id);
     });
+
+    $('button[data-toggle="modal"].btn-primary').click(function(event) {
+      $("input.form-control").removeClass('is-valid');
+      $("input.form-control").removeClass('is-invalid');
+    });
+
   }
 
   validateAll(){

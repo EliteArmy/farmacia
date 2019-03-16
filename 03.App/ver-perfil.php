@@ -1,6 +1,7 @@
 <?php
   $idPagina = "ver-perfil";
   include("autenticacion.php");
+  var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,6 +40,8 @@
             </div>
           </div>
 
+          <input type="hidden" id = "id_empleado" value="<?php echo $_SESSION['id_empleado']; ?>">
+
           <div class="col-12 col-md-6 col-lg-6">
 
             <h4>Datos: </h4>
@@ -74,7 +77,7 @@
               </tr>
               <tr>
                 <td colspan="2">
-                  <button type="button" data-toggle="modal" data-target="#editarPerfil" class="btn btn-primary btn-block">Editar perfil</button>
+                  <button type="button" data-toggle="modal" data-target="#editarPerfil" class="btn btn-primary btn-block" id="editar">Editar perfil</button>
                 </td>
               </tr>
             </table>
@@ -99,6 +102,15 @@
         </div>
 
         <div class="modal-body">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+              <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
+              </div>
+              <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
+              </div>
+            </div>
+          </div>
           
           <div class="row">
             <div class="form-group col-12 col-12 col-sm-6 col-md-6">
@@ -126,36 +138,42 @@
           <div class="row">
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="usuario">Email :</label>
-              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+              <input type="text" class="form-control" id="email" placeholder="Correo Electrónico" >
             </div>
           </div>
 
           <div class="row">
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="usuario">Contraseña:</label>
-              <input type="password" class="form-control" id="usuario" name="usuario" placeholder="Contraseña">
+              <input type="password" class="form-control" id="contrasena1" value="1234" placeholder="Contraseña">
+              <div class="invalid-feedback">
+                <span></span>: La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="usuario">Confirmar contraseña:</label>
-              <input type="password" class="form-control" id="usuario" name="usuario" placeholder="Contraseña">
+              <input type="password" class="form-control" id="contrasena2" value="1234" placeholder="Contraseña">
+              <div class="invalid-feedback">
+                <span></span>: La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="usuario">Telefono Antiguo:</label>
-              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Telefono">
+              <input type="text" class="form-control" id="telefono-antiguo" placeholder="Telefono">
             </div>
 
             <div class="form-group col-13 col-sm-6 col-md-6">
               <label for="usuario">Telefono Nuevo:</label>
-              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Telefono">
+              <input type="text" class="form-control" id="telefono-nuevo" placeholder="Telefono">
             </div>
 
           </div>
 
           <div id="footer-actualizar" class="modal-footer">
             <button type="button" class="btn btn-info reset">Reset</button>
-            <button type="button" class="btn btn-primary" id="actualizar-empleado" data-dismiss="modal">Actualizar Cambios</button>
+            <button type="button" class="btn btn-primary" id="actualizar-perfil">Actualizar Cambios</button>
             <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
