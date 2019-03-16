@@ -58,6 +58,17 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
          WHERE
              categoria.id_categoria= pI_id_categoria;
    
+   CALL SP_Eliminar_Categoria_Producto(pI_id_categoria,@mensajeEliminarCategoriaProducto, @errorEliminarCategoriaProducto)
+
+   IF @errorEliminarCategoriaProducto THEN
+       SET mensaje=@mensajeEliminarCategoriaProducto;
+       SET error=TRUE;
+       SET pO_mensaje=mensaje;
+       SET pO_error=error;
+       SELECT mensaje,error;
+       LEAVE SP;
+   END IF;
+ 
      COMMIT;
      SET mensaje= 'Eliminación exitosa';
      SET error=FALSE;
