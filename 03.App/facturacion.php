@@ -10,10 +10,15 @@
 
   <title>Facturación</title>
 
-  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href=".plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
-  <link rel="stylesheet" href=".plugin/data-tables/css/datatables.css" type="text/css"/>
+  <link rel="icon" href="./img/icon.png">
+
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>  
+  <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
+
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
   
 </head>
 
@@ -22,137 +27,93 @@
  <?php include("./navbar.php"); ?>
 
   <!-- Contenido -->
-  <div class="container-fluid" >
+  <div class="container-fluid">
+    
     <div class="row justify-content-center">
-      <div class="col-11 col-md-11 col-lg-11 col-xl-11 well card">
+      <div class="col-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
-          <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
+          <h4>Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
+          <h4>Telefono: 9898-1010</h4>
+          <h4>correo: correo@gmail.com</h4>
+          <h4>Factura Original: 000-000-00-00000001</h4>
+          <h4>C.A.I.: 000000-000000-000000-000000-000000-00</h4>
+          <h4>Rango Autorizado: 00000000 a 00000000</h4>
+          <h4>Fecha Limite Emisión: 20/20/2019</h4>
         </div>
 
-        <div class="row justify-content-center">
-          <div class="col-11 col-sm-6 col-lg-4 texto">
+        <div class="row mt-3 mb-3" id="content">
+          <div class="col-12 col-sm-6 col-lg-4 texto" >
 
             <label for="nombre-cliente">Cliente:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="nombre-cliente" placeholder="Nombre del Cliente" aria-describedby="basic-addon3">
+              <input type="text" class="form-control" id="nombre-cliente" placeholder="Identidad del Cliente">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">Buscar</button>
               </div>
             </div>
 
-            <label for="nombre-vendedor">Vendedor:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="nombre-vendedor" placeholder="Nombre del Vendedor" aria-describedby="basic-addon3">
-            </div>
           </div>
 
-          <div class="col-11 col-sm-6 col-lg-4 texto">
-            <label for="teléfono">Teléfono:</label>
+          <div class="col-12 col-sm-6 col-lg-4 texto">
+          <label for="nombre-vendedor">Vendedor:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="teléfono" placeholder="Teléfono" aria-describedby="basic-addon3">
+              <input type="text" class="form-control" id="nombre-vendedor" placeholder="Nombre del Vendedor">
             </div>
-
+          </div>
+          <!--
+          <div class="col-12 col-sm-6 col-lg-4 texto">
+          <label for="teléfono">Teléfono:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="teléfono" placeholder="Teléfono">
+            </div>
+          </div>
+          -->
+          <div class="col-12 col-sm-6 col-lg-4 texto">
+          <label for="RTN">RTN:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="RTN" placeholder="RTN">
+            </div>
+          </div>
+          <!--
+          <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="fecha">Fecha:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="fecha" placeholder="Fecha" aria-describedby="basic-addon3">
+              <input type="text" class="form-control" id="fecha" placeholder="Fecha">
+            </div>
+          </div>
+          -->
+          <div id="seleccion-estado" class="form-group col-12 col-sm-6 col-lg-4 texto">
+            <label for="slc-estado">Estado:</label>
+            <select id="slc-estado" class="selectpicker form-control" title="Forma de Pago" data-style="btn-primary">
+            <option value="efectivo">Efectivo</option>  
+            <option value="tarjeta">Tarjeta</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="row mt-3 mb-3">
+          <div class="col-12 col-sm-12 col-lg-12 texto">
+            <div class="text-center">
+              <h3>Detalles de la Factura</h3>
             </div>
           </div>
 
-          <div class="col-11 col-sm-6 col-lg-4 texto">
-            <label for="RTN">RTN:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="RTN" placeholder="RTN" aria-describedby="basic-addon3">
-            </div>
-
-            <label for="dropdownFormaPago">Forma de Pago:</label>
-            <div class="dropdown">
-              <button class="btn dropdown-toggle btn-primary" type="button" id="dropdownFormaPago" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Forma de Pago
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownFormaPago">
-                <a class="dropdown-item" href="#">Efectivo</a>
-                <a class="dropdown-item" href="#">Tarjeta</a>
-              </div>
-            </div>
+          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
+            <table id="table-info" class="display table-striped table-bordered w-100">
+              <!-- Informacion generada -->
+            </table>
           </div>
 
-          <div class="col-11 col-sm-6 col-lg-4 texto">
-            <!-- Solo es para que se vea bien el RTN con respecto a los demas -->
+          <div class="col-11 col-sm-6 col-md-6 col-lg-6">
+            <button type="button" id="guardar-Factura" class="btn btn-primary">
+              Guardar Factura
+            </button>
           </div>
         </div>
 
-        <div class="text-center">
-          <h3>Detalles de la Factura</h3>
-        </div>
-
-        <table class="table table-striped table-bordered">
-          <thead>
-            
-            <tr>
-              <th>Código</th>
-              <th>Cant.</th>
-              <th>Descripción</th>
-              <th>Precio Unitario</th>
-              <th>Impuesto (ISV)</th>
-              <th>Sub Total</th>
-              <th>Descuento (%)</th>
-              <th>Precio Total</th>
-              <th>Opción</th>
-            </tr>
-          </thead>
-
-          <tbody id="">
-            <!--Informacion generada por la Base -->
-            <tr>
-              <th scope="row">1</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>
-                <span class="far fa-edit edit"></span>
-                <span class="far fa-trash-alt trash"></span>
-              </td>
-            </tr>
-
-            <!--Informacion generada por la Base -->
-            <tr>
-              <th scope="row">2</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>
-                <span class="far fa-edit edit"></span>
-                <span class="far fa-trash-alt trash"></span>
-              </td>
-            </tr>
-
-            <!--Informacion generada por la Base -->
-            <tr>
-              <th scope="row">3</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>
-                <span class="far fa-edit edit"></span>
-                <span class="far fa-trash-alt trash"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
 
         <!-- Button trigger para el modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarproducto">
@@ -170,7 +131,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                ...
+                Información
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -193,7 +154,14 @@
   <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/popper.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+
+  <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
+  
+  <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
+
+  <script type="text/javascript" src="./js/controlador/facturacion.js"></script>
 
 </body>
 </html>
