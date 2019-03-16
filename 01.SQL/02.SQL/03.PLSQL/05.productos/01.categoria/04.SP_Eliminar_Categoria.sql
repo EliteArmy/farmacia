@@ -26,21 +26,20 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
 
  -- ______________________CUERPO__________________________________________
 -- una categoria ya borrada no puede reincidirse.
-   SELECT COUNT(*)  INTO contador
+   /*SELECT COUNT(*)  INTO contador
    FROM categoria    
    WHERE  id_categoria = pI_id_categoria and estado="I";
 
    IF contador >0  THEN
-      SET mensaje = CONCAT(mensaje, 'La categoria está inhabilitada, no se puede eliminar., ');
-  
-   END IF;
+   SET mensaje = CONCAT(mensaje, 'el identificador no esta asignado a ninguna categoria, ');
+   END IF;*/
 
    SELECT COUNT(*)  INTO contador
    FROM categoria    
    WHERE  id_categoria = pI_id_categoria;
    
    IF contador =0 THEN
-	 SET mensaje = CONCAT(mensaje, 'La categoria no existe, ');
+   SET mensaje = CONCAT(mensaje, 'La categoria no existe, ');
    END IF;
 
    IF mensaje <> '' THEN
@@ -51,14 +50,7 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
         LEAVE SP;
    END IF;   
 
-
-     UPDATE categoria 
-         SET
-             categoria.estado = "I"
-         WHERE
-             categoria.id_categoria= pI_id_categoria;
-   
-   CALL SP_Eliminar_Categoria_Producto(pI_id_categoria,@mensajeEliminarCategoriaProducto, @errorEliminarCategoriaProducto);
+   CALL SP_Eliminar_Categoria_Producto(pI_id_categoria,@mensajeEliminarCategoriaProducto, @errorEliminarCategoriaProducto)
 
    IF @errorEliminarCategoriaProducto THEN
        SET mensaje=@mensajeEliminarCategoriaProducto;
@@ -68,6 +60,14 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
        SELECT mensaje,error;
        LEAVE SP;
    END IF;
+
+  UPDATE categoria 
+      SET
+          categoria.estado = "I"
+      WHERE
+          categoria.id_categoria= pI_id_categoria;
+   
+  
  
      COMMIT;
      SET mensaje= 'Eliminación exitosa';
@@ -80,7 +80,7 @@ END $$
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Eliminar_Categoria(31, @mensaje,@error);
+CALL SP_Eliminar_Categoria(1, @mensaje,@error);
 SELECT @mensaje, @error;
 
 SELECT * FROM categoria;
