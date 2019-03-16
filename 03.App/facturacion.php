@@ -31,7 +31,7 @@
     
     <div class="row justify-content-center">
       <div class="col-12 col-md-11 well card">
-        <div class="text-center">
+        <div id="titulo-factura" class="text-center">
           <h4>Farmacia Esperanza</h4>
           <h4>Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras</h4>
           <h4>RTN: 08011980123456</h4>
@@ -40,7 +40,7 @@
           <h4>Factura Original: 000-000-00-00000001</h4>
           <h4>C.A.I.: 000000-000000-000000-000000-000000-00</h4>
           <h4>Rango Autorizado: 00000000 a 00000000</h4>
-          <h4>Fecha Limite Emisión: 20/20/2019</h4>
+          <h4>Fecha Limite Emisión: 12/12/2019</h4>
         </div>
 
         <div class="row mt-3 mb-3" id="content">

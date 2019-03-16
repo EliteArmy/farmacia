@@ -36,10 +36,12 @@ $("#guardar-Factura").click(function(){
   */
 
   var doc = new jsPDF('p', 'mm', 'letter');
-  doc.setFontSize(22);
+  var titulo = $("#titulo-factura").text()
+  doc.setFontSize(12);
   doc.setFont("courier");
-  
+
   //doc.text(text, x, y);
+  doc.text(titulo, 90, 15 , {align:"center"});
   //doc.setFontStyle(style)
   doc.save('factura.pdf');
 });
