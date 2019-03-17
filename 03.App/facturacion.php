@@ -46,8 +46,8 @@
           <h4>Le Atendio:
             <?php echo $_SESSION["nombre_completo"]; ?>
           </h4>
-          <h4>Fecha:</h4>
-          <h4>Hora:</h4>
+          <h4 id="fecha">Fecha:</h4>
+          <h4 id="hora">Hora:</h4>
           <h4 id="cliente">Cliente:</h4>
         </div>
 
@@ -103,11 +103,10 @@
           <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="nombre-producto">Producto:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="nombre-producto" placeholder="Código barra del Producto">
+              <input type="text" class="form-control" id="nombre-producto" oninput="BuscarProducto()" placeholder="Código barra del Producto">
               <div class="input-group-append">
-              
               <!-- Button trigger para el modal -->
-              <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#agregarproducto">Buscar</button>
+              <button class="btn btn-primary" type="button" onclick="BuscarProducto()" data-toggle="modal" data-target="#agregarproducto">Buscar</button>
               </div>
             </div>
           </div>
@@ -117,7 +116,7 @@
         <div class="row">
           <div class="col-11 col-sm-6 col-md-6 col-lg-6">
             <button type="button" id="guardar-Factura" class="btn btn-primary">
-              Guardar Factura
+              Guardar Factura como PDF
             </button>
           
           </div>
@@ -142,9 +141,9 @@
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <div id="pie-factura" class="text-center">
               <h4>Gracias por su visita</h4>
-              <h4>Original: Cliente</h4>
               <h4>correo: correo@gmail.com</h4>
               <h4>Telefono: 9898-9898</h4>
+              <h4>Original: Cliente</h4>
               <h4>-- Cuenta Cerrada --</h4>
               <h4></h4>
             </div>
@@ -177,7 +176,7 @@
                     </tr>
                   </thead>
 
-                  <tbody id="">
+                  <tbody>
                     <!--Informacion generada por la Base -->
                     <tr>
                       <th scope="row">1</th>
@@ -188,7 +187,7 @@
                       <td>L. 200</td>
                       <td>
                         <div class="input-group">
-                          <input type="text" class="form-control" id="cantidad-producto" placeholder="Cant">
+                          <input type="text" class="form-control" id="cantidad-producto1" placeholder="Cant">
                         </div>
                         <!--<span class="far fa-edit edit"></span>-->
                         <!--<span class="far fa-trash-alt trash"></span>-->
@@ -205,7 +204,7 @@
                       <td>L. 200</td>
                       <td>
                         <div class="input-group">
-                          <input type="text" class="form-control" id="cantidad-producto" placeholder="Cant">
+                          <input type="text" class="form-control" id="cantidad-producto2" placeholder="Cant">
                         </div>
                         <!--<span class="far fa-edit edit"></span>-->
                         <!--<span class="far fa-trash-alt trash"></span>-->
@@ -222,7 +221,7 @@
                       <td>L. 200</td>
                       <td>
                         <div class="input-group">
-                          <input type="text" class="form-control" id="cantidad-producto" placeholder="Cant">
+                          <input type="text" class="form-control" id="cantidad-producto3" placeholder="Cant">
                         </div>
                         <!--<span class="far fa-edit edit"></span>-->
                         <!--<span class="far fa-trash-alt trash"></span>-->
@@ -234,7 +233,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="inicializarTabla()">Agregar</button>
+                <button type="button" class="btn btn-primary" onclick="agregarProducto()">Agregar</button>
               </div>
             </div>
           </div>

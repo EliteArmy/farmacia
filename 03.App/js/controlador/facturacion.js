@@ -11,6 +11,16 @@ $(document).ready(function() {
                 '<button type="button" onclick="funcionBorrar('+ 2 +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
       }]
   });
+
+  n =  new Date();
+  y = n.getFullYear();
+  me = n.getMonth() + 1;
+  d = n.getDate();
+  h = n.getHours() - 1;
+  min = n.getMinutes();
+
+  document.getElementById("fecha").innerHTML = "Fecha: " + d + "/" + me + "/" + y;
+  document.getElementById("hora").innerHTML = "Hora: " + h + ":" + min;
 });
 
 var dataSet = [];
@@ -46,8 +56,13 @@ function buscarCliente(){
 }
 
 // ======= Buscar un Producto =======
-function funcionBuscarProducto(codigoBarra){
+function BuscarProducto(){
   
+  var codigoBarra = $("#nombre-producto1").val();
+  console.log(codigoBarra);
+  $("#agregarproducto").modal('show');
+
+/*
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -67,7 +82,7 @@ function funcionBuscarProducto(codigoBarra){
     console.log(response.data);
     //$('#').val(response.data.codigo_barra);
     
-  });
+  });*/
 }
 
 // ======= CRUD Lote: Read =======
@@ -110,15 +125,19 @@ $('#table-info').DataTable({
 });
 */
 
-function inicializarTabla(){
+function agregarProducto(){
   
+  var cantidad = $("#cantidad-producto1").val();
+
   dataSet = [
-    [ "Parecetamol", "Lorem Ipsum", "300"],
-    [ "Parecetamol", "Lorem Ipsum", "200"],
-    [ "Parecetamol", "Lorem Ipsum", "100"],
-    [ "Parecetamol", "Lorem Ipsum", "500"],
-    [ "Parecetamol", "Lorem Ipsum", "100"]
+    [ "1", "Lorem Ipsum", "300"],
+    [ "1", "Lorem Ipsum", "200"],
+    [ "1", "Lorem Ipsum", "100"],
+    [ "1", "Lorem Ipsum", "500"],
+    [ "2", "Lorem Ipsum", "100"]
   ];
+    
+  dataSet.push([cantidad,'Lorem','200']);
 
   $('#table-info').DataTable().clear();
   $('#table-info').DataTable().rows.add(dataSet);
