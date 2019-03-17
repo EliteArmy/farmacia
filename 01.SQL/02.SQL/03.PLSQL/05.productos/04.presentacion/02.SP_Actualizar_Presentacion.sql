@@ -28,38 +28,54 @@ CREATE PROCEDURE SP_Actualizar_Presentacion(
    -- _______________Validaciones__________________
 
    IF pI_id_presentacion='' OR pI_id_presentacion IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"identificador de presentacion vacio, ");
+     SET mensaje=CONCAT(mensaje,"Identificador de presentacion vacio, ");
+   ELSE
+     SELECT COUNT(*) INTO contador
+     FROM presentacion
+     WHERE id_presentacion = pI_id_presentacion;
+
+     IF contador=0 THEN
+       SET mensaje=CONCAT(mensaje,"Esta presentacion no existe, "); 
+     END IF;
    END IF;
 
    IF pI_presentacion='' OR pI_presentacion IS NULL THEN
      SET mensaje=CONCAT(mensaje,"Presentacion vacia, ");
    END IF;
    
-   -- _________Cuerpo del SP__________
-  SELECT COUNT(*) INTO contador
-  FROM presentacion
-  WHERE id_presentacion = pI_id_presentacion;
+ 
+   -- ____________Mensaje de resultado____________
+   IF mensaje <> '' THEN
+     SET error=TRUE;
+     SET pO_mensaje=mensaje;
+     SET pO_error=error;
+     SELECT mensaje,error;
+     LEAVE SP;
+   END IF;
 
-  IF contador=0 THEN
-     SET mensaje=CONCAT(mensaje,"El codigo de presentación No existe, ");
-  ELSE
-     SELECT COUNT(*) INTO contador
-     FROM presentacion
-     WHERE presentacion = pI_presentacion;
-     IF contador>0 THEN
-     SET mensaje=CONCAT(mensaje,"Esta presentacion ya existe, ");
-     END IF;
-  END IF;
-
+   -- _________Cuerpo del SP_________
    IF NOT(pI_estado='' OR   pI_estado IS NULL) THEN
      IF NOT(pI_estado='A' OR pI_estado='I') THEN
        SET mensaje=CONCAT(mensaje, 'Estado Invalido, ');
      ELSE
        SET uEstado=pI_estado;
-     END IF;
+	   END IF;
+   ELSE
+       SELECT estado INTO uEstado FROM presentacion WHERE id_presentacion=pI_id_presentacion;
    END IF;
 
-   -- ____________Mensaje de resultado____________
+      -- verificar presentacion valida para actualizacion
+    SELECT COUNT(*) INTO contador FROM presentacion
+    WHERE id_presentacion=pI_id_presentacion AND pI_presentacion = presentacion; 
+    IF contador=0 THEN
+      SELECT COUNT(*) INTO contador FROM presentacion
+      WHERE id_presentacion<>pI_id_presentacion AND pI_presentacion = presentacion; 
+      IF contador>=1 THEN 
+        SET mensaje=CONCAT(mensaje,'La presentacio a actualizar ya existe, ');
+      END IF;  
+    END IF;
+
+      -- ____________Mensaje de resultado____________
    IF mensaje <> '' THEN
      SET error=TRUE;
      SET pO_mensaje=mensaje;
@@ -73,7 +89,7 @@ CREATE PROCEDURE SP_Actualizar_Presentacion(
       SET
          id_presentacion = pI_id_presentacion,
          presentacion = pI_presentacion,
-         estado = pI_estado
+         estado = uEstado
       WHERE
          id_presentacion = pI_id_presentacion ;
    COMMIT;
@@ -86,6 +102,6 @@ CREATE PROCEDURE SP_Actualizar_Presentacion(
 
 END$$
 
-CALL SP_Actualizar_Presentacion(51,"X 6000 CMPR.","I",@mesaje,@error);
+CALL SP_Actualizar_Presentacion(2,"0,01% LOC X 60 ML","A",@mesaje,@error);
 SELECT * FROM presentacion;
 -- SELECT @mesaje, @error
