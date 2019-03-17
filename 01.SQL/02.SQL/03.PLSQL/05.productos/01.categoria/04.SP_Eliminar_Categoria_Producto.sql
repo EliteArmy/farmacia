@@ -21,7 +21,7 @@ CREATE PROCEDURE SP_Eliminar_Categoria_Producto(
    -- Verificaciones de campos obligatorios que no esten vacios
 
     IF pI_id_categoria='' OR pI_id_categoria IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'identificador de categoria vacio, ');
+        SET mensaje=CONCAT(mensaje, 'Identificador de categoria vacio, ');
     END IF;
 
  -- ______________________CUERPO__________________________________________

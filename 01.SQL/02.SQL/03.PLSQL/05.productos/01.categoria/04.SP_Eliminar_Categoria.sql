@@ -21,7 +21,15 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
    -- Verificaciones de campos obligatorios que no esten vacios
 
     IF pI_id_categoria='' OR pI_id_categoria IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'identificador de categoria vacio, ');
+        SET mensaje=CONCAT(mensaje, 'Identificador de categoria vacio, ');
+    ELSE
+       SELECT COUNT(*)  INTO contador
+       FROM categoria    
+       WHERE  id_categoria = pI_id_categoria;
+      
+       IF contador =0 THEN
+         SET mensaje = CONCAT(mensaje, 'La categoria no existe, ');
+       END IF;
     END IF;
 
  -- ______________________CUERPO__________________________________________
@@ -34,23 +42,15 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
    SET mensaje = CONCAT(mensaje, 'el identificador no esta asignado a ninguna categoria, ');
    END IF;*/
 
-   SELECT COUNT(*)  INTO contador
-   FROM categoria    
-   WHERE  id_categoria = pI_id_categoria;
-   
-   IF contador =0 THEN
-   SET mensaje = CONCAT(mensaje, 'La categoria no existe, ');
-   END IF;
-
    IF mensaje <> '' THEN
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
         SELECT mensaje,error;
         LEAVE SP;
-   END IF;   
-
-   CALL SP_Eliminar_Categoria_Producto(pI_id_categoria,@mensajeEliminarCategoriaProducto, @errorEliminarCategoriaProducto)
+   END IF;  
+   
+   CALL SP_Eliminar_Categoria_Producto(pI_id_categoria,@mensajeEliminarCategoriaProducto, @errorEliminarCategoriaProducto);
 
    IF @errorEliminarCategoriaProducto THEN
        SET mensaje=@mensajeEliminarCategoriaProducto;
@@ -76,12 +76,9 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
      SELECT mensaje,error;
 
 END $$
-
-
-
 -- ___________________LLAMADO_____________________
 CALL SP_Eliminar_Categoria(1, @mensaje,@error);
 SELECT @mensaje, @error;
 
 SELECT * FROM categoria;
-
+SELECT * FROM categoria_producto;
