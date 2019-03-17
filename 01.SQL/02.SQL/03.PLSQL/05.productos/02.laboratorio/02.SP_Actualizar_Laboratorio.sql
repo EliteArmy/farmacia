@@ -2,10 +2,10 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Actualizar_Laboratorio$$
 CREATE PROCEDURE SP_Actualizar_Laboratorio(
    pI_id_laboratorio INTEGER(11),
-   pI_nombre_laboratorio VARCHAR(11),
-   pI_estado VARCHAR(100),
-   pI_direccion VARCHAR(45),
-   pI_telefono_laboratorio VARCHAR(500),
+   pI_nombre_laboratorio VARCHAR(45),
+   pI_estado VARCHAR(1),
+   pI_direccion VARCHAR(200),
+   pI_telefono_laboratorio VARCHAR(50),
 
    pO_mensaje VARCHAR(1000),
    pO_error BOOLEAN
@@ -68,6 +68,8 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
 
    IF pI_direccion='' OR pI_direccion IS NULL THEN
      SELECT direccion INTO uDireccion FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
+   ELSE
+     SET uDireccion=pI_direccion;
    END IF;
 
 
@@ -132,9 +134,7 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
 
 END$$
 
-CALL SP_Actualizar_Laboratorio(666,'La Santé','I','Col.Sagastume','2222-3333',@mesaje,@error);
-
+CALL SP_Actualizar_Laboratorio(666,'La Sante','A','Col. El Matadero','2222-3303',@mesaje,@error);
 -- SELECT @mesaje, @error
-
-SELECT * FROM laboratorio
+SELECT * FROM laboratorio WHERE id_laboratorio=666;
 
