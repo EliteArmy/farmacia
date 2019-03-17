@@ -103,12 +103,14 @@ class Descuento{
 		return $rows;
 	}
 
-	public function leerPorId($conexion){
+	public function leerDescuentoPorId($conexion){
 		$sql = "
 		  SELECT * FROM descuento WHERE id_descuento = %s
 		";
 		$valores = [$this->getIdDescuento()];
-		return $conexion -> query($sql, $valores);
+		$rows = $conexion -> query($sql, $valores);
+		if (count($rows)) return $rows[0];
+   		else return null;
 	  }
 	  
 }

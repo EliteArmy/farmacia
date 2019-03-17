@@ -274,7 +274,7 @@ if(isset($_POST['accion'])){
       $idDescuento = validarPOST('id_descuento');
       $desc = new Descuento();
       $desc->setIdDescuento($idDescuento);
-      $res['data'] = $desc->leerPorId($conexion);
+      $res['data'] = $desc->leerDescuentoPorId($conexion);
       echo json_encode($res);
     break;
 
@@ -301,6 +301,32 @@ if(isset($_POST['accion'])){
       $desc = new Descuento();
       $desc->setIdDescuento($idDescuento);
       $res['data'] = $desc->borrar($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'actualizar-impuesto':
+      $idImpuesto = validarPOST('id_impuesto');
+      $descripcion = validarPOST('descripcion');
+      $porcentaje = validarPOST('porcentaje');
+      $estado = validarPOST('estado');
+      $fechaInicio = validarPOST('fecha_inicio');
+      $fechaFin = validarPOST('fecha_fin');
+      $imp = new Producto();
+      $imp->setIdImpuesto($idImpuesto);
+      $imp->setImpuesto($descripcion);
+      $imp->setPorcentajeImpuesto($porcentaje);
+      $imp->setEstado($estado);
+      $imp->setFechaInicioImpuesto($fechaInicio);
+      $imp->setFechaFinImpuesto($fechaFin);
+      $res['data'] = $imp->actualizarImpuesto($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'eliminar-impuesto':
+      $idImpuesto = validarPOST('id_impuesto');
+      $imp = new Producto();
+      $imp->setIdImpuesto($idImpuesto);
+      $res['data'] = $imp->borrarImpuesto($conexion);
       echo json_encode($res);
     break;
 
