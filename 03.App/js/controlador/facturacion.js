@@ -58,31 +58,30 @@ function buscarCliente(){
 // ======= Buscar un Producto =======
 function BuscarProducto(){
   
-  var codigoBarra = $("#nombre-producto1").val();
+  var codigoBarra = $("#codigo-producto").val();
   console.log(codigoBarra);
-  $("#agregarproducto").modal('show');
 
-/*
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/placeholder.php",
+    "url": "http://farma/services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "buscar-producto-lote",
+      "accion": "leer-lote-codigo",
       "codigo_barra": codigoBarra
     }
   }
 
   $.ajax(settings).done(function (response) {
     console.log(response.data);
+    $("#agregarproducto").modal('show');
     //$('#').val(response.data.codigo_barra);
     
-  });*/
+  });
 }
 
 // ======= CRUD Lote: Read =======
