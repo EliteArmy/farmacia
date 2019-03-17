@@ -18,7 +18,8 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
    DECLARE error BOOLEAN;
    DECLARE contador INT;
    DECLARE uEstado VARCHAR(1);
-   DECLARE isTelefono BOOLEAN;
+   DECLARE uDireccion VARCHAR(200);
+   DECLARE uTelefonoLaboratorio VARCHAR(50);
 
    -- Inicializaciones
    SET AUTOCOMMIT=0;
@@ -26,25 +27,47 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
    SET mensaje = '';
    SET contador=0;
    SET error=FALSE;
-   SET uEstado='A';
 
    -- _______________Validaciones__________________
 
    IF pI_id_laboratorio='' OR pI_id_laboratorio IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"identificador de laboratorio vacio, ");
+     SET mensaje=CONCAT(mensaje,"Identificador de laboratorio vacio, ");
+   ELSE
+    SELECT COUNT(*) INTO contador 
+      FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
+      
+      IF contador =0 THEN
+          SET mensaje=CONCAT(mensaje,"Este laboratorio no existe, ");
+      END IF;
    END IF;
 
    IF pI_nombre_laboratorio='' OR pI_nombre_laboratorio IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"nombre del laboratorio vacio, ");
+     SET mensaje=CONCAT(mensaje,"Nombre del laboratorio vacio, ");
    END IF;
 
+     -- ____________Mensaje de resultado____________
+   IF mensaje <> '' THEN
+     SET error=TRUE;
+     SET pO_mensaje=mensaje;
+     SET pO_error=error;
+     SELECT mensaje,error;
+     LEAVE SP;
+   END IF;
+
+   -- _________Cuerpo del SP__________
+    -- verificar laboratorio valido para actualizacion
+    SELECT COUNT(*) INTO contador FROM laboratorio
+    WHERE id_laboratorio=pI_id_laboratorio AND pI_nombre_laboratorio = nombre_laboratorio; 
+    IF contador=0 THEN
+      SELECT COUNT(*) INTO contador FROM laboratorio
+      WHERE id_laboratorio<>pI_id_laboratorio AND pI_nombre_laboratorio = nombre_laboratorio; 
+      IF contador>=1 THEN 
+        SET mensaje=CONCAT(mensaje,'El laboratorio a actualizar ya existe, ');
+      END IF;  
+    END IF;
 
    IF pI_direccion='' OR pI_direccion IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"direccion vacia, ");
-   END IF;
-
-   IF pI_telefono_laboratorio='' OR pI_telefono_laboratorio IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"direccion vacia, ");
+     SELECT direccion INTO uDireccion FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
    END IF;
 
 
@@ -53,38 +76,31 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
      IF( pI_telefono_laboratorio REGEXP'^(2|3|6|7|8|9){1}[0-9]{3}-[0-9]{4}$')=0 THEN
           SET mensaje=CONCAT('Formato de telefono invalido, ');
       ELSE
-        SET isTelefono=TRUE;
-        SELECT COUNT(*) INTO contador FROM telefono WHERE telefono=pI_telefono_laboratorio;
-        IF contador>=1 THEN
-          SET mensaje=CONCAT(mensaje,"El telefono ya existe, ");
-        END IF;
-       END IF;
-     END IF;
+          SET uTelefonoLaboratorio=pI_telefono_laboratorio;
+          -- verificar telefono valido para actualizacion
+          SELECT COUNT(*) INTO contador FROM laboratorio
+          WHERE id_laboratorio=pI_id_laboratorio AND pI_telefono_laboratorio = telefono_laboratorio; 
+          IF contador=0 THEN
+            SELECT COUNT(*) INTO contador FROM laboratorio
+            WHERE id_laboratorio<>pI_id_laboratorio AND pI_telefono_laboratorio = telefono_laboratorio; 
+            IF contador>=1 THEN 
+              SET mensaje=CONCAT(mensaje,'El telefono de laboratorio a actualizar ya existe, ');
+            END IF;  
+          END IF;
+      END IF;
+   ELSE
+     SELECT telefono_laboratorio INTO uTelefonoLaboratorio FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
+   END IF;
 
-
-   -- _________Cuerpo del SP__________
-    SELECT COUNT(*) INTO contador 
-    FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
-    
-    IF contador =0 THEN
-        SET mensaje=CONCAT(mensaje,"No existe identificador de laboratorio , ");
-    END IF;
-
-    SELECT  COUNT(*) INTO contador 
-    FROM laboratorio WHERE nombre_laboratorio =pI_nombre_laboratorio;
-
-    IF contador>0 THEN
-        SET mensaje=CONCAT(mensaje,"El laboratorio ya existe , ");
-    END IF;
-  
-    IF NOT(pI_estado='' OR   pI_estado IS NULL) THEN
+   IF NOT(pI_estado='' OR   pI_estado IS NULL) THEN
      IF NOT(pI_estado='A' OR pI_estado='I') THEN
        SET mensaje=CONCAT(mensaje, 'Estado Invalido, ');
      ELSE
        SET uEstado=pI_estado;
-     END IF;
+	   END IF;
+   ELSE
+       SELECT estado INTO uEstado FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
    END IF;
-
 
     
    -- ____________Mensaje de resultado____________
@@ -96,17 +112,14 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
      LEAVE SP;
    END IF;
 
-
-
-
    -- _______________SQL Statements_______________
    UPDATE laboratorio
       SET
          id_laboratorio = pI_id_laboratorio,
          nombre_laboratorio = pI_nombre_laboratorio,
-         estado = pI_estado,
-         direccion = pI_direccion,
-         telefono_laboratorio = pI_telefono_laboratorio
+         estado = uEstado,
+         direccion = uDireccion,
+         telefono_laboratorio = uTelefonoLaboratorio
       WHERE
          id_laboratorio=pI_id_laboratorio;
    COMMIT;
