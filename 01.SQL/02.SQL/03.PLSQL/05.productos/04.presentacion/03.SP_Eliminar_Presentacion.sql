@@ -24,22 +24,20 @@ CREATE PROCEDURE SP_Eliminar_Presentacion(
    -- _______________Validaciones__________________
 
    IF pI_id_presentacion='' OR pI_id_presentacion IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"id_presentacion",", ");
+     SET mensaje=CONCAT(mensaje,"Identificador de presentaicon vacio, ");
+   ELSE
+     SELECT COUNT(*) INTO contador
+     FROM presentacion
+     WHERE id_presentacion = pI_id_presentacion;
+   
+     IF contador=0 THEN
+       SET mensaje=CONCAT(mensaje,"Esta presentación no existe, ");
+     END IF;
    END IF;
 
-
-   -- _________Cuerpo del SP__________
-   SELECT COUNT(*) INTO contador
-   FROM presentacion
-   WHERE id_presentacion = pI_id_presentacion;
- 
-   IF contador=0 THEN
-     SET mensaje=CONCAT(mensaje,"No existe identificador de presentación, ");
-   END IF;
 
    -- ____________Mensaje de resultado____________
    IF mensaje <> '' THEN
-     SET mensaje=CONCAT('resultado: ', mensaje);
      SET error=TRUE;
      SET pO_mensaje=mensaje;
      SET pO_error=error;
@@ -63,6 +61,6 @@ CREATE PROCEDURE SP_Eliminar_Presentacion(
 
 END$$
 
-CALL SP_Eliminar_Presentacion(100,@mesaje,@error);
+CALL SP_Eliminar_Presentacion(2,@mesaje,@error);
 SELECT * FROM presentacion;
 -- SELECT @mesaje, @error
