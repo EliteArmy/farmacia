@@ -24,12 +24,12 @@ CREATE PROCEDURE SP_Eliminar_Laboratorio(
    -- _______________Validaciones__________________
 
    IF pI_id_laboratorio='' OR pI_id_laboratorio IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"identificador de laboratorio vacio, ");
+     SET mensaje=CONCAT(mensaje,"Identificador de laboratorio vacio, ");
    ELSE
        SELECT COUNT(*) INTO contador FROM laboratorio
        WHERE id_laboratorio= pI_id_laboratorio;
        IF contador=0 THEN
-           SET mensaje=CONCAT(mensaje,'Identificador de laboratorio no existe, ');
+           SET mensaje=CONCAT(mensaje,'Este laboratorio no existe, ');
        END IF;
    END IF;
 
