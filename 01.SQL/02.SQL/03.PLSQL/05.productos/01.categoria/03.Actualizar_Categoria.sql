@@ -5,10 +5,8 @@ CREATE PROCEDURE SP_Actualizar_Categoria(
         IN pI_categoria VARCHAR(45),
         IN pI_estado VARCHAR(1),
 
-
         OUT pO_mensaje VARCHAR(1000),
         OUT pO_error BOOLEAN
-
 )
 SP:BEGIN
     -- Declaraciones
@@ -69,7 +67,6 @@ SP:BEGIN
        SELECT estado INTO uEstado FROM categoria WHERE id_categoria=pI_id_categoria;
    END IF;
 
-
     IF mensaje <> '' THEN
       SET error=TRUE;
       SET pO_mensaje=mensaje;
@@ -84,20 +81,19 @@ SP:BEGIN
             estado =uEstado
         WHERE 
             id_categoria= pI_id_categoria;
-      
+
+    UPDATE categoria_producto SET estado=uEstado WHERE id_categoria=pI_id_categoria;
     COMMIT;
     SET mensaje= 'Actualización exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
+    SET pO_error=error;
     SELECT mensaje,error;
 END $$
-
-
-
 -- ___________________LLAMADO_____________________
-CALL SP_Actualizar_Categoria(100,"antihisteria","I", @mensaje,@error);
-SELECT @mensaje, @error;
-
+CALL SP_Actualizar_Categoria(1,"Anti-Histeria","A", @mensaje,@error);
+-- SELECT @mensaje, @error;
 SELECT * FROM categoria;
+SELECT * FROM categoria_producto WHERE id_categoria=1;
 
 
