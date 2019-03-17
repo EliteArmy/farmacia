@@ -78,7 +78,7 @@ case 'leer-lote-codigo':
   $lote = new Lote();
   $lote->setCodigoBarra($codigoBarra);
   $res['data'] = $lote->leerPorCodigoBarra();
-  echó json_encode($res);
+  echo json_encode($res);
 break;
     
     case 'leer-producto':
