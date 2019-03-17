@@ -77,7 +77,7 @@ if(isset($_POST['accion'])){
       $codigoBarra = validarPOST('codigo_barra');
       $lote = new Lote();
       $lote->setCodigoBarra($codigoBarra);
-      $res['data'] = $lote->leerPorCodigoBarra();
+      $res['data'] = $lote->leerPorCodigoBarra($conexion);
       echo json_encode($res);
     break;
     
