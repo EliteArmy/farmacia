@@ -72,7 +72,15 @@ if(isset($_POST['accion'])){
       $res['data'] = $medic->leerLaboratorioPorId($conexion);
       echo json_encode($res);
     break;
-
+      
+case 'leer-lote-codigo':
+  $codigoBarra = validarPOST('codigo_barra');
+  $lote = new Lote();
+  $lote->setCodigoBarra($codigoBarra);
+  $res['data'] = $lote->leerPorCodigoBarra();
+  echó json_encode($res);
+break;
+    
     case 'leer-producto':
       $res['data'] = Producto::leer($conexion);
       echo json_encode($res);
