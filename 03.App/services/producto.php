@@ -270,6 +270,32 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'actualizar-descuento':
+      $idDescuento = validarPOST('id_descuento');
+      $descripcion = validarPOST('descripcion');
+      $porcentaje = validarPOST('porcentaje');
+      $estado = validarPOST('estado');
+      $fechaInicio = validarPOST('fecha_inicio');
+      $fechaFin = validarPOST('fecha_fin');
+      $desc = new Descuento();
+      $desc->setIdDescuento($idDescuento);
+      $desc->setDescripcion($descripcion);
+      $desc->setPorcentaje($porcentaje);
+      $desc->setEstado($estado);
+      $desc->setFechaInicio($fechaInicio);
+      $desc->setFechaFin($fechaFin);
+      $res['data'] = $desc->actualizar($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'eliminar-descuento':
+      $idDescuento = validarPOST('id_descuento');
+      $desc = new Descuento();
+      $desc->setIdDescuento($idDescuento);
+      $res['data'] = $desc->borrar($conexion);
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res['data']['mensaje']='Accion no reconocida';

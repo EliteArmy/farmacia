@@ -27,7 +27,7 @@ SP:BEGIN
    ELSE
       SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento;
       IF contador=0 THEN
-         SET mensaje=CONCAT(mensaje,'El identificador de descuento no existe, ');
+         SET mensaje=CONCAT(mensaje,'Este descuento no existe, ');
       END IF;
    END IF;
 
@@ -49,8 +49,8 @@ SP:BEGIN
          id_descuento=pI_id_descuento;
    COMMIT;
 
-   SET mensaje= 'Actualización Exitosa';
-   SET error=TRUE;
+   SET mensaje= 'Eliminación Exitosa';
+   SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
    SELECT mensaje,error;
