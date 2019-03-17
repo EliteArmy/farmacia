@@ -34,18 +34,14 @@ CREATE PROCEDURE SP_Actualizar_Presentacion(
    IF pI_presentacion='' OR pI_presentacion IS NULL THEN
      SET mensaje=CONCAT(mensaje,"Presentacion vacia, ");
    END IF;
-
-   IF pI_estado='' OR pI_estado IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"estado vacio, ");
-   END IF;
-
+   
    -- _________Cuerpo del SP__________
   SELECT COUNT(*) INTO contador
   FROM presentacion
   WHERE id_presentacion = pI_id_presentacion;
 
   IF contador=0 THEN
-     SET mensaje=CONCAT(mensaje,"No existe identificador de presentación, ");
+     SET mensaje=CONCAT(mensaje,"El codigo de presentación No existe, ");
   ELSE
      SELECT COUNT(*) INTO contador
      FROM presentacion
@@ -55,7 +51,6 @@ CREATE PROCEDURE SP_Actualizar_Presentacion(
      END IF;
   END IF;
 
-  
    IF NOT(pI_estado='' OR   pI_estado IS NULL) THEN
      IF NOT(pI_estado='A' OR pI_estado='I') THEN
        SET mensaje=CONCAT(mensaje, 'Estado Invalido, ');
@@ -63,8 +58,6 @@ CREATE PROCEDURE SP_Actualizar_Presentacion(
        SET uEstado=pI_estado;
      END IF;
    END IF;
-
-
 
    -- ____________Mensaje de resultado____________
    IF mensaje <> '' THEN

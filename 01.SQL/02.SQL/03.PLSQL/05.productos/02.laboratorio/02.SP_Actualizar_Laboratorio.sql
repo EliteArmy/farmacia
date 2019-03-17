@@ -38,9 +38,6 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
      SET mensaje=CONCAT(mensaje,"nombre del laboratorio vacio, ");
    END IF;
 
-   IF pI_estado='' OR pI_estado IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"estado vacio, ");
-   END IF;
 
    IF pI_direccion='' OR pI_direccion IS NULL THEN
      SET mensaje=CONCAT(mensaje,"direccion vacia, ");
