@@ -31,6 +31,23 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'buscar-cliente':
+      $identidad = validarPOST('numero_identidad');
+      
+      $fact = new Factura();
+      $fact->setIdCliente($identidad);
+      
+      $res['data'] = $fact->leerClientePorId($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'buscar-producto-lote':
+      $codigoBarra = validarPOST('codigo_barra');
+      $fact = new Factura();
+      // Buscar los lotes de productos que tengan ese codigo de barra
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res["data"]['mensaje']='Accion no reconocida';

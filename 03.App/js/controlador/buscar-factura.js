@@ -1,4 +1,4 @@
-  /* CRUD Producto: Read */
+  /* CRUD Factura: Read */
   $('#table-info').DataTable({
     pageLength: 10,
     searching: true,
