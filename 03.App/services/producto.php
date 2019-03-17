@@ -270,6 +270,14 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-descuento-id':
+      $idDescuento = validarPOST('id_descuento');
+      $desc = new Descuento();
+      $desc->setIdDescuento($idDescuento);
+      $res['data'] = $desc->leerPorId($conexion);
+      echo json_encode($res);
+    break;
+
     case 'actualizar-descuento':
       $idDescuento = validarPOST('id_descuento');
       $descripcion = validarPOST('descripcion');
