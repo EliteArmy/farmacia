@@ -5,9 +5,8 @@ CREATE PROCEDURE SP_Eliminar_Descuento(
 
    pO_mensaje VARCHAR(1000),
    pO_error BOOLEAN
-
 )
-   SP:BEGIN
+SP:BEGIN
 
    -- Declaraciones
    DECLARE mensaje VARCHAR(1000);
@@ -24,19 +23,16 @@ CREATE PROCEDURE SP_Eliminar_Descuento(
    -- _______________Validaciones__________________
 
    IF pI_id_descuento='' OR pI_id_descuento IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"id_descuento",", ");
+     SET mensaje=CONCAT(mensaje,"Identificador de descuento vacio, ");
+   ELSE
+      SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento;
+      IF contador=0 THEN
+         SET mensaje=CONCAT(mensaje,'El identificador de descuento no existe, ');
+      END IF;
    END IF;
-
-
-   -- _________Cuerpo del SP__________
-
-
-
-
 
    -- ____________Mensaje de resultado____________
    IF mensaje <> '' THEN
-     SET mensaje=CONCAT('resultado: ', mensaje);
      SET error=TRUE;
      SET pO_mensaje=mensaje;
      SET pO_error=error;
@@ -45,17 +41,15 @@ CREATE PROCEDURE SP_Eliminar_Descuento(
    END IF;
 
 
-
-
    -- _______________SQL Statements_______________
-   UPDATE table_name
+   UPDATE descuento
       SET
-         column1 = value1
+         estado = 'I'
       WHERE
-         id_condition=pI_id_condition;
+         id_descuento=pI_id_descuento;
    COMMIT;
 
-   SET mensaje= '<statement> exitosa';
+   SET mensaje= 'Actualización Exitosa';
    SET error=TRUE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
@@ -63,6 +57,6 @@ CREATE PROCEDURE SP_Eliminar_Descuento(
 
 END$$
 
-CALL SP_Eliminar_Descuento("id_descuento",@mesaje,@error);
-
+CALL SP_Eliminar_Descuento(1,@mesaje,@error);
+SELECT * FROM descuento;
 -- SELECT @mesaje, @error
