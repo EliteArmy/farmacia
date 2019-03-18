@@ -185,7 +185,6 @@ if(isset($_POST['accion'])){
       $telefono = validarPOST('telefono_laboratorio');
       $lab = new Medicamento();
       $lab->setLaboratorio($laboratorio);
-      $lab->setEstado($estado);
       $lab->setDireccionLaboratorio($direccion);
       $lab->setTelefonoLaboratorio($telefono);
       $res['data'] = $lab->crearLaboratorio($conexion);
