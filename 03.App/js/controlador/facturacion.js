@@ -1,5 +1,11 @@
 $(document).ready(function() {
+
   $('#table-info').DataTable({
+    pageLength: 20,
+    searching: true,
+    ordering: true,
+    paging: true,
+    responsive: true,
     data: dataSet,
     columns: [
       { title: "Unidad" },
@@ -11,7 +17,30 @@ $(document).ready(function() {
                 '<button type="button" onclick="funcionBorrar('+ 2 +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
       }]
   });
+/*
+  $('#table-info-producto').DataTable({
+    pageLength: 10,
+    searching: true,
+    ordering: true,
+    paging: true,
+    responsive: true,
+    columns: [
+      { data: "lote", title: "Lote" },
+      { data: "existencia", title: "Cant." },
+      { data: "precio_costo_unidad", title: "Pre. Unitario" },
+      { data: "porcentaje_impuesto", title: "Impuesto (%)" },
+      { data: "porcentaje_descuento", title: "Descuento (%)" },
+      { data: "precio_venta_unidad", title: "Pre. Final" },
+      { data: "precio_venta_unidad", title: "Valor" },
+      { data: "", title: "Opción", 
+      render: function ( data, type, row, meta ) {
+        return '<button type="button" onclick="funcion('+ 1 +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+                '<button type="button" onclick="funcionBorrar('+ 2 +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
+      }]
+  });
 
+  //$('#table-info-producto').DataTable();
+*/
   n =  new Date();
   y = n.getFullYear();
   me = n.getMonth() + 1;
@@ -24,11 +53,11 @@ $(document).ready(function() {
 });
 
 var dataSet = [];
+var dataSetProducto = [];
 
 // ======= Buscar un Cliente =======
 function buscarCliente(){
   var identidad = $("#identidad-cliente").val();
-  //alert(identidad);
   
   var settings = {
     "async": true,
@@ -47,16 +76,89 @@ function buscarCliente(){
 
   $.ajax(settings).done(function (response) {
     console.log(response.data);
-    //$('#nombre-cliente').val(response.data.nombre_persona);
     $("#cliente").html(
       `Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}`
     );
-    
   });
 }
 
 // ======= Buscar un Producto =======
 function BuscarProducto(){
+  /*
+  var codigoBarra = $("#codigo-producto").val();
+  console.log(codigoBarra);
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-lote-codigo",
+      "codigo_barra": codigoBarra
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    //$("#agregarproducto").modal('show');
+    var datos = [];
+    var fila = {};
+    
+    for (var i=0; i < response.data.length; i++){  
+      datos = response.data[i];
+      //console.log("for filas:", fila);
+      fila.push(
+        "lote:"+datos.lote+
+        "existencia:"+datos.existencia+
+        "precio_costo_unidad:"+datos.precio_costo_unidad+
+        "porcentaje_impuesto:"+datos.porcentaje_impuesto+
+        "porcentaje_descuento:"+datos.porcentaje_descuento+
+        "precio_venta_unidad:"+datos.precio_venta_unidad);
+    }
+    console.log("filas:", fila);*/
+/*
+    $('#table-info-producto').DataTable().clear();
+    //$('#table-info-producto').DataTable().rows.add(response);
+    //$('#table-info-producto').DataTable().draw();
+    
+    $('#table-info-producto').DataTable({
+      pageLength: 10,
+      searching: true,
+      ordering: true,
+      paging: true,
+      responsive: true,
+      data: response.data,
+      columns: [
+        { data: "lote", title: "Lote" },
+        { data: "existencia", title: "Cant." },
+        { data: "precio_costo_unidad", title: "Pre. Unitario" },
+        { data: "porcentaje_impuesto", title: "Impuesto (%)" },
+        { data: "porcentaje_descuento", title: "Descuento (%)" },
+        { data: "precio_venta_unidad", title: "Pre. Final" },
+        { data: "precio_venta_unidad", title: "Valor" },
+        { data: "", title: "Opción", 
+        render: function ( data, type, row, meta ) {
+          return '<button type="button" onclick="funcion('+ 1 +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+                  '<button type="button" onclick="funcionBorrar('+ 2 +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
+        }]
+    }).rows.add(response.data).draw();
+    
+    $('#table-info-producto').DataTable().rows.add().draw();
+
+
+    //$('#table-info').DataTable().rows.add(dataSet);
+    $('#table-info').DataTable().draw();
+    */
+  /*});*/
+}
+
+// ======= Buscar un Producto =======
+function BuscarProducto2(){
   
   var codigoBarra = $("#codigo-producto").val();
   console.log(codigoBarra);
@@ -79,8 +181,27 @@ function BuscarProducto(){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     $("#agregarproducto").modal('show');
-    //$('#').val(response.data.codigo_barra);
     
+    var datos = [];
+    document.getElementById('table-body').innerHTML = '';
+
+    for (var i=0; i < response.data.length; i++){
+      datos = response.data[i];
+      document.getElementById('table-body').innerHTML += 
+        `<tr>
+        <th scope="row">${datos.lote}</th>
+        <td>${datos.existencia}</td>
+        <td>L. ${datos.precio_costo_unidad}</td>
+        <td>${datos.porcentaje_impuesto}</td>
+        <td>${datos.porcentaje_descuento}</td>
+        <td>L. ${datos.precio_venta_unidad}</td>
+        <td>
+          <div >
+            <input type="text" placeholder="Cant">
+          </div>
+        </td>
+      </tr>`;
+    }
   });
 }
 
@@ -126,8 +247,6 @@ $('#table-info').DataTable({
 
 function agregarProducto(){
   
-  var cantidad = $("#cantidad-producto1").val();
-
   dataSet = [
     [ "1", "Lorem Ipsum", "300"],
     [ "1", "Lorem Ipsum", "200"],

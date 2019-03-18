@@ -103,10 +103,10 @@
           <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="codigo-producto">Producto:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="codigo-producto" oninput="BuscarProducto()" placeholder="Código barra del Producto">
+              <input type="text" class="form-control" id="codigo-producto" value="7504800172101" oninput="BuscarProducto2()" placeholder="Código barra del Producto">
               <div class="input-group-append">
               <!-- Button trigger para el modal -->
-              <button class="btn btn-primary" type="button" onclick="BuscarProducto()" data-toggle="modal" data-target="#agregarproducto">Buscar</button>
+              <button class="btn btn-primary" type="button" onclick="BuscarProducto2()" data-toggle="modal" data-target="#agregarproducto">Buscar</button>
               </div>
             </div>
           </div>
@@ -162,7 +162,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <table class="table table-striped table-bordered">
+                <table id="table-info-producto" class="table table-striped table-bordered w-100">
                   <thead>
                     
                     <tr>
@@ -176,7 +176,7 @@
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody id="table-body">
                     <!--Informacion generada por la Base -->
                     <tr>
                       <th scope="row">1</th>

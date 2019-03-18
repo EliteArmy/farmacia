@@ -1,0 +1,4 @@
+.modal-body table.table-bordered.dataTable th, .modal-body table.table-bordered.dataTable td {
+  /* padding-left: 10px; */
+  height: 20px;
+}
