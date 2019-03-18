@@ -38,6 +38,27 @@
     ]
   });
 
+$("#reset").click(function(){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/factura.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-factura"
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    $('#table-info').DataTable().clear();
+    $('#table-info').DataTable().rows.add(response.data);
+    $('#table-info').DataTable().draw();
+  });
+});
 
 function funcionBuscar(id){
     var settings = {
