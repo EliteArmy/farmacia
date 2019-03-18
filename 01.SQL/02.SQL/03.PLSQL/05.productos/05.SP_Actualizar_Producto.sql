@@ -36,7 +36,6 @@ CREATE PROCEDURE SP_Actualizar_Producto(
   SET mensaje='';
   SET contador = 0;
   SET error= FALSE;
-  SET uEstado='A';
   SET isMedicamento=FALSE;
   SET isProducto=FALSE;
   SET cadena='';
@@ -128,6 +127,8 @@ CREATE PROCEDURE SP_Actualizar_Producto(
     ELSE
       SET uEstado=pI_estado;
     END IF;
+  ELSE
+    SELECT estado INTO uEstado FROM producto WHERE id_producto=pI_id_producto;
   END IF;
 
   IF mensaje <> '' THEN
@@ -242,7 +243,17 @@ CREATE PROCEDURE SP_Actualizar_Producto(
    END IF;
 
    IF isProducto THEN
-     INSERT INTO medicamentos (
+     IF NOT(pI_id_laboratorio='' OR pI_id_laboratorio IS NULL) THEN
+        SELECT COUNT(*) INTO contador FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
+        IF contador=0 THEN
+          SET mensaje='El laboratorio no existe';
+          SET error=TRUE;
+          SET pO_mensaje=mensaje;
+          SET pO_error=error;
+          SELECT mensaje,error;
+          LEAVE SP;
+        ELSE
+          INSERT INTO medicamentos (
                       id_laboratorio,
                       id_producto,
                       estado
@@ -250,20 +261,22 @@ CREATE PROCEDURE SP_Actualizar_Producto(
                  VALUES (
                       pI_id_laboratorio,
                       pI_id_producto,
-                      'A'
+                      uEstado
                       );
-   END IF;
-
+        END IF;
+      END IF;
+     END IF;
    COMMIT;
 
-   SET mensaje= 'Actualización exitosa';
+   SET mensaje='Actualización exitosa';
    SET error=FALSE;
    SET pO_mensaje=mensaje;
+   SET pO_error=error;
    SELECT mensaje,error;
 END $$
 
-CALL SP_Actualizar_Producto(275,30, 'Gazas', '1234rt5678',
-                           'https://foto','1,2,3',2,1,'',@mensaje,@error);
-SELECT @mensaje, @error;
-
-select * from producto;
+CALL SP_Actualizar_Producto(278,30, 'Gazas', '1234rt5678',
+                           'https://foto','1,2,3',2,1,'A',@mensaje,@error);
+-- SELECT @mensaje, @error;
+select * from producto where id_producto=278;
+select * from medicamentos where id_producto=278;
