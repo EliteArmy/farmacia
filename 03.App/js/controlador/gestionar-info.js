@@ -288,6 +288,8 @@ $("#guard-descuento").click(function(){
   var z =  $.ajax(settings).done(function (response) {
     console.log(response.data);
     $('#txt-id-desc').val(response.data.id_descuento);
+    $('#txt-estado').val(response.data.estado);
+
     $('#txt-descripcion').val(response.data.descripcion);
     $('#txt-porcentaje-desc').val(response.data.porcentaje);
     $('#fecha-final-desc').val(response.data.fecha_fin);
@@ -347,8 +349,8 @@ $("#guard-descuento").click(function(){
 }
 
 //ACtualizarDescuento
-$("#act-desc").click(function(z){
-  console.log(z + "aqui dentro");
+$("#act-desc").click(function(){
+  console.log("aqui dentro");
 
   var settings = {
     "async": true,
@@ -361,14 +363,16 @@ $("#act-desc").click(function(z){
     },
     "data": {
       "accion": "actualizar-descuento",
-      "id_descuento": $("#txt-id-desc"),
+      "id_descuento": $("#txt-id-desc").val(),
       "descripcion": $("#txt-descripcion").val(),
       "porcentaje": $("#txt-porcentaje-desc").val(),
+      "estado": $("#txt-estado").val(),
       "fecha_fin": $("#fecha-final-desc").val()
 
     }
+    
   }
-  
+   console.log($("#txt-id-desc").val());
   $.ajax(settings).done(function (response) {
     imprimirMensaje(response,"-descuento");
   });
