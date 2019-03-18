@@ -60,7 +60,7 @@
             <a class="dropdown-item" href="nuevo-producto.php">Nuevo Producto</a>
             <?php endif;?>
             <?php if(show_item_if("gestionar-info-producto")):?>
-            <a class="dropdown-item" href="gestionar-info-producto.php">Gestionar información de Productos</a>
+            <a class="dropdown-item" href="gestionar-info-producto.php">Gestionar Información de Productos</a>
             <?php endif;?>
             <?php if(show_item_if("registro-lote-producto")):?>
             <a class="dropdown-item" href="registro-lote-producto.php">Registrar Lote de Producto</a>

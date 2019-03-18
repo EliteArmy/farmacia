@@ -106,6 +106,7 @@ SELECT
   ,fecha_elaboracion,fecha_vecimiento,l.estado as estado_lote,existencia ,id_presentacion
   ,(SELECT presentacion FROM presentacion pre WHERE p.id_presentacion = pre.id_presentacion) as presentacion
   ,p.nombre ,p.codigo_barra,p.url_foto
+  #,p.estado as estado_producto
   ,(
     SELECT nombre_laboratorio FROM laboratorio
     WHERE id_laboratorio = (
@@ -167,4 +168,3 @@ ORDER BY p.id_producto, l.id_lote
 # SELECT * FROM DescuentosDisponibles;
 
 SELECT * FROM VistaInventarioMercaderia
-

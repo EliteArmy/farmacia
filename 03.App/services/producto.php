@@ -16,8 +16,21 @@ if(isset($_POST['accion'])){
 
   switch ($_POST['accion']) {
 
+    case 'crear-categoria':
+      $cat = validarPOST('categoria');
+      $prod = new Producto();
+      $prod->setCategoria($cat);
+      $res['data'] = $prod->crearCategoria($conexion);
+      echo json_encode($res);
+    break;
+
     case 'leer-categoria':
       $res['data'] = Producto::leerCategoria($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-categoria-todo':
+      $res['data'] = Producto::leerCategoriaTodo($conexion);
       echo json_encode($res);
     break;
 
@@ -29,8 +42,33 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'actualizar-categoria':
+      $idCategoria = validarPOST('id_categoria');
+      $categoria = validarPOST('categoria');
+      $estado = validarPOST('estado');
+      $cat = new Producto();
+      $cat->setIdCategoria($idCategoria);
+      $cat->setCategoria($categoria);
+      $cat->setEstado($estado);
+      $res['data'] = $cat->actualizarCategoria($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'eliminar-categoria':
+      $idCategoria = validarPOST('id_categoria');
+      $cat = new Producto();
+      $cat->setIdCategoria($idCategoria);
+      $res['data'] = $cat->borrarCategoria($conexion);
+      echo json_encode($res);
+    break;
+
     case 'leer-impuesto':
       $res['data'] = Producto::leerImpuesto($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-impuesto-todo':
+      $res['data'] = Producto::leerImpuestoTodo($conexion);
       echo json_encode($res);
     break;
 
@@ -47,6 +85,11 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-descuento-todo':
+      $res['data'] = Producto::leerDescuentoTodo($conexion);
+      echo json_encode($res);
+    break;
+
     case 'leer-descuento-id':
       $idDescuento = validarPOST('id_descuento');
       $lote = new Lote();
@@ -60,8 +103,18 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-presentacion-todo':
+      $res['data'] = Producto::leerPresentacionTodo($conexion);
+      echo json_encode($res);
+    break;
+
     case 'leer-laboratorio':
       $res['data'] = Medicamento::leerLaboratorio($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-laboratorio-todo':
+      $res['data'] = Medicamento::leerLaboratorioTodo($conexion);
       echo json_encode($res);
     break;
 
@@ -96,14 +149,6 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'crear-categoria':
-      $cat = validarPOST('categoria');
-      $prod = new Producto();
-      $prod->setCategoria($cat);
-      $res['data'] = $prod->crearCategoria($conexion);
-      echo json_encode($res);
-    break;
-
     case 'crear-descuento':
       $descripcion = validarPOST('descripcion');
       $porcentaje = validarPOST('porcentaje');
@@ -117,12 +162,12 @@ if(isset($_POST['accion'])){
     break;
 
     case 'crear-presentacion':
-    $presentacion = validarPOST('presentacion');
-    $pres = new Presentacion();
-    $pres->setPresentacion($presentacion);
-    $res["data"] = $pres->crear($conexion);
-    echo json_encode($res);
-  break;
+      $presentacion = validarPOST('presentacion');
+      $pres = new Presentacion();
+      $pres->setPresentacion($presentacion);
+      $res["data"] = $pres->crear($conexion);
+      echo json_encode($res);
+    break;
 
     case 'crear-impuesto':
       $imp = validarPOST('impuesto');
@@ -397,26 +442,6 @@ if(isset($_POST['accion'])){
       $lab = new Medicamento();
       $lab->setIdLaboratorio($idLaboratorio);
       $res['data'] = $lab->borrarLaboratorio($conexion);
-      echo json_encode($res);
-    break;
-
-    case 'actualizar-categoria':
-      $idCategoria = validarPOST('id_categoria');
-      $categoria = validarPOST('categoria');
-      $estado = validarPOST('estado');
-      $cat = new Producto();
-      $cat->setIdCategoria($idCategoria);
-      $cat->setCategoria($categoria);
-      $cat->setEstado($estado);
-      $res['data'] = $cat->actualizarCategoria($conexion);
-      echo json_encode($res);
-    break;
-
-    case 'eliminar-categoria':
-      $idCategoria = validarPOST('id_categoria');
-      $cat = new Producto();
-      $cat->setIdCategoria($idCategoria);
-      $res['data'] = $cat->borrarCategoria($conexion);
       echo json_encode($res);
     break;
 

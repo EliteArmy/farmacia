@@ -127,6 +127,11 @@ class Medicamento extends Producto{
 		return $rows;
 	}
 	public static function leerLaboratorio($conexion){
+		$sql = "SELECT * FROM laboratorio WHERE estado = 'A'";
+		return $conexion -> query($sql);
+	}
+
+	public static function leerLaboratorioTodo($conexion){
 		$sql = "SELECT * FROM laboratorio";
 		return $conexion -> query($sql);
 	}

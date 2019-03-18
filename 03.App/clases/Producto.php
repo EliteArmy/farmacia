@@ -238,10 +238,15 @@ class Producto{
   }
 
   public static function leerCategoria($conexion){
+    $sql = "SELECT * FROM categoria WHERE estado = 'A'";
+    return $conexion -> query($sql);
+  }
+
+  public static function leerCategoriaTodo($conexion){
     $sql = "SELECT * FROM categoria";
     return $conexion -> query($sql);
   }
-  
+
   public function borrarCategoria($conexion){
       $sql = "CALL SP_Eliminar_Categoria(%s,@mensaje,@error)";
       $valores = [
@@ -271,6 +276,11 @@ class Producto{
     return $rows;
   }
   public static function leerImpuesto($conexion){
+    $sql = "SELECT * FROM impuesto WHERE estado='A'";
+    return $conexion -> query($sql);
+  }
+
+  public static function leerImpuestoTodo($conexion){
     $sql = "SELECT * FROM impuesto";
     return $conexion -> query($sql);
   }
@@ -289,6 +299,10 @@ class Producto{
   public function actualizarDescuento($conexion){
   }
   public static function leerDescuento($conexion){
+    $sql = "SELECT * FROM descuento  WHERE estado='A'";
+    return $conexion -> query($sql);
+  }
+  public static function leerDescuentoTodo($conexion){
     $sql = "SELECT * FROM descuento";
     return $conexion -> query($sql);
   }
@@ -301,6 +315,11 @@ class Producto{
   public function actualizarPresentacion($conexion){
   }
   public static function leerPresentacion($conexion){
+    $sql = "SELECT * FROM presentacion WHERE estado ='A'";
+    return $conexion -> query($sql);
+  }
+
+  public static function leerPresentacionTodo($conexion){
     $sql = "SELECT * FROM presentacion";
     return $conexion -> query($sql);
   }
