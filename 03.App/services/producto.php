@@ -338,6 +338,34 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-presentacion-id':
+      $idPresentacion = validarPOST('id_presentacion');
+      $pres = new Presentacion();
+      $pres->setIdPresentacion($idPresentacion);
+      $res['data'] = $pres->leerPresentacionPorId($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'actualizar-presentacion':
+      $idPresentacion = validarPOST('id_presentacion');
+      $presentacion = validarPOST('presentacion');
+      $estado = validarPOST('estado');
+      $pres = new Presentacion();
+      $pres->setIdPresentacion($idPresentacion);
+      $pres->setPresentacion($presentacion);
+      $pres->setEstado($estado);
+      $res['data'] = $pres->actualizar($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'eliminar-presentacion':
+      $idPresentacion = validarPOST('id_presentacion');
+      $pres = new Presentacion();
+      $pres->setIdPresentacion($idPresentacion);
+      $res['data'] = $pres->borrar($conexion);
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res['data']['mensaje']='Accion no reconocida';
