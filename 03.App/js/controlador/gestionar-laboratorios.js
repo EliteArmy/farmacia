@@ -33,7 +33,7 @@ $(document).ready(function() {
         { data: null, title: "Opción",
         render: function ( data, type, row, meta ) {
           return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
-                 '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+                 '<button type="button" onclick="funcionBorrarLab('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
         }}
       ]
     });
@@ -61,7 +61,52 @@ $("#guard-laboratorio").click(function(){
   });
 
  });
+//Eliminar laboraratorio
+function funcionBorrarLab(nomb){
+  $.confirm({
+    icon: 'fa fa-trash',
+    theme: 'modern',
+    closeIcon: true,
+    type: 'blue',
+    title:'Alerta!',
+    content:'¿Esta seguro de eliminar este elemento?',
+    buttons:{
+      Eliminar:{
+         text:"Si, seguro!",
+         btnClass:"btn-blue",
+         action:function(){
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "http://farma/services/producto.php",
+              "method": "POST",
+              "dataType": "json",
+              "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+              },
+              "data": {
+                "accion": "eliminar-laboratorio",
+                "id_laboratorio": nomb
+              }
+            }
+           
+           $.ajax(settings).done(function (response) {
+             $.alert({
+               title: response.data[0].mensaje,
+               icon: 'fa fa-check',
+               type: 'blue',
+               content: '',
+           });
+           $('#data-tabla-lab').DataTable().ajax.reload();
+           })
+         }
+      },
+      Cancelar:function(){
 
+      }
+    }
+  })
+}
 
 function imprimirMensaje(response){
   
