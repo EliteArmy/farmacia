@@ -263,13 +263,13 @@ class Producto{
     if (count($rows) == 1) return $rows[0];
   }
   public function actualizarImpuesto($conexion){
-    $sql = "CALL SP_Actualizar_Impuesto(%s,'%s',%s,'%s',DATE('%s'),DATE('%s'),@mensaje,@error)";
+    $sql = "CALL SP_Actualizar_Impuesto(%s,'%s',%s,'%s',DATE('%s'),@mensaje,@error)";
 		$valores = [
 			$this->getIdImpuesto(),
 			$this->getImpuesto(),
 			$this->getPorcentajeImpuesto(),
 			$this->getEstado(),
-			$this->getFechaInicioImpuesto(),
+			// $this->getFechaInicioImpuesto(),
 			$this->getFechaFinImpuesto()
 		];
     $rows = $conexion->query($sql, $valores);

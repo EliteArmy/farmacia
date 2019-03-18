@@ -88,6 +88,7 @@ class Descuento{
 			$this->getDescripcion(),
 			$this->getPorcentaje(),
 			$this->getEstado(),
+			// $this->getFechaInicio(),
 			$this->getFechaFin()
 		];
 		$rows = $conexion->query($sql, $valores);

@@ -5,7 +5,7 @@ CREATE PROCEDURE SP_Actualizar_Impuesto(
    pI_descripcion VARCHAR(45),
    pI_porcentaje INT(11),
    pI_estado VARCHAR(1),
-   pI_fecha_inicio DATE,
+  --  pI_fecha_inicio DATE,
    pI_fecha_fin DATE,
 
    pO_mensaje VARCHAR(1000),
@@ -19,6 +19,7 @@ SP:BEGIN
    DECLARE error BOOLEAN;
    DECLARE contador INT;
    DECLARE uEstado VARCHAR(1);
+   DECLARE uFechaFin DATE;
 
    -- Inicializaciones
    SET AUTOCOMMIT=0;
@@ -46,9 +47,9 @@ SP:BEGIN
      SET mensaje=CONCAT(mensaje,"Porcentaje vacio, ");
    END IF;
 
-   IF pI_fecha_inicio='' OR pI_fecha_inicio IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"Fecha de inicio vacia, ");
-   END IF;
+  --  IF pI_fecha_inicio='' OR pI_fecha_inicio IS NULL THEN
+  --    SET mensaje=CONCAT(mensaje,"Fecha de inicio vacia, ");
+  --  END IF;
   
     -- ____________Mensaje de resultado____________
    IF mensaje <> '' THEN
@@ -74,16 +75,19 @@ SP:BEGIN
   IF NOT(pI_fecha_fin='' OR pI_fecha_fin IS NULL) THEN
      IF pI_fecha_fin <= CURDATE() THEN
          SET mensaje=CONCAT(mensaje,'Fecha de fin invalida, fecha menor o igual que la actual, ');
+     ELSE
+       SET uFechaFin=pI_fecha_fin;
      END IF;
-
-     IF pI_fecha_inicio >= pI_fecha_fin THEN
-      SET mensaje = CONCAT(mensaje, 'Fecha de fin inválida, fecha inicio de impuesto mayor o igual que fecha de inicio, ');
-     END IF;
+    --  IF pI_fecha_inicio >= pI_fecha_fin THEN
+    --   SET mensaje = CONCAT(mensaje, 'Fecha de fin inválida, fecha inicio de impuesto mayor o igual que fecha de inicio, ');
+    --  END IF;
+   ELSE
+     SElECT fecha_fin INTO uFechaFin FROM impuesto WHERE id_impuesto=pI_id_impuesto;
    END IF;
   
-   IF pI_fecha_inicio < CURDATE() THEN
-      SET mensaje=CONCAT(mensaje,'Fecha de inicio invalida, fecha menor que la actual, ');
-   END IF;
+  --  IF pI_fecha_inicio < CURDATE() THEN
+  --     SET mensaje=CONCAT(mensaje,'Fecha de inicio invalida, fecha menor que la actual, ');
+  --  END IF;
    
    -- verificar impuesto valido para actualizacion
     SELECT COUNT(*) INTO contador FROM impuesto
@@ -111,8 +115,8 @@ SP:BEGIN
          descripcion = pI_descripcion,
          porcentaje = pI_porcentaje,
          estado = uEstado,
-         fecha_inicio = pI_fecha_inicio,
-         fecha_fin = pI_fecha_fin
+        --  fecha_inicio = pI_fecha_inicio,
+         fecha_fin = uFechaFin
       WHERE 
          id_impuesto= pI_id_impuesto;
 
@@ -126,6 +130,6 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Actualizar_Impuesto(42,"ISV21",21,"A",DATE('2019-03-18'),DATE(''),@mesaje,@error);
+CALL SP_Actualizar_Impuesto(42,"ISV21",21,"A",DATE('2019-03-19'),@mesaje,@error);
 -- SELECT @mesaje, @error
 SELECT * FROM impuesto;
