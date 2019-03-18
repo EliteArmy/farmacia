@@ -111,7 +111,7 @@ $(document).ready(function() {
       { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionBuscar('+ row.id_impuesto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+        return '<button type="button" onclick="funcionBuscarImp('+ row.id_impuesto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
                '<button type="button" onclick="funcionBorrarImp('+ row.id_impuesto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
@@ -182,6 +182,46 @@ $("#guard-impuesto").click(function(){
     });
 
  });
+ //BuscarIMPUESTO
+ function funcionBuscarImp(nomb){
+  //$("#inputGroupFile").removeClass('is-valid');
+  // Se hace el cambio del footer en el Modal
+  $("#guard-impuesto").hide();
+  $("#act-imp").removeClass("d-none");
+  
+  //$("#seleccion-estado").removeClass("d-none");
+  //$('#laboratorio').show();
+  
+  //resetCampos();
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-impuesto-id",
+      "id_descuento": nomb
+    }
+  }
+  
+  var z =  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+    $('#txt-id-desc').val(response.data.id_descuento);
+    $('#txt-estado').val(response.data.estado);
+
+    $('#txt-descripcion').val(response.data.descripcion);
+    $('#txt-porcentaje-desc').val(response.data.porcentaje);
+    $('#fecha-final-desc').val(response.data.fecha_fin);
+    
+  
+
+  });
+}
 //ELIMINAR IMPUESTO
 function funcionBorrarImp(nomb){
   $.confirm({

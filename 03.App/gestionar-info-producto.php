@@ -61,6 +61,7 @@
               </div>
               <input type="number" id="txt-porcentaje-desc" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
             </div>
+
           </div>
           
           <div class="col-md-11 form-group">
@@ -101,6 +102,11 @@
             <label for="txt-descripcion-imp">Inserte Descripción: </label>
             <input class="form-control" id="txt-descripcion-imp" name="txt-descripcion-imp"  rows="3" required>
           </div>
+          <div class="form-group col-12 d-none">
+            <input class="form-control " id="txt-id-imp" name="txt-id-desc" >     
+            <input class="form-control " id="txt-estado-imp" name="txt-id-desc" >                 
+            
+          </div>
 
           <div class="col-md-11">
             <label for="in-impuesto">Ingrese Porcentaje:</label>
@@ -114,6 +120,7 @@
 
           <div class="mt-2 col-md-11 col-8">
             <button type="button" class="btn btn-info" id="">Reset</button>
+            <button type="button" class="btn btn-primary d-none" id="act-imp" data-dismiss="modal">Actualizar Cambios</button>   
             <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
           </div>
 

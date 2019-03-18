@@ -32,8 +32,8 @@ $(document).ready(function() {
         { data: "estado", title:"Estado"},
         { data: null, title: "Opción",
         render: function ( data, type, row, meta ) {
-          return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
-                 '<button type="button" onclick="funcionBorrarLab('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+          return '<button type="button" onclick="funcionBuscar('+ row.id_laboratorio +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+                 '<button type="button" onclick="funcionBorrarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
         }}
       ]
     });
@@ -97,7 +97,7 @@ function funcionBorrarLab(nomb){
                type: 'blue',
                content: '',
            });
-           $('#data-tabla-lab').DataTable().ajax.reload();
+           $('#data-table-lab').DataTable().ajax.reload();
            })
          }
       },
