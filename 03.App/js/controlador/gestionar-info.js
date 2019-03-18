@@ -34,7 +34,7 @@ $(document).ready(function() {
         { data: "estado", title:"Estado"},
         { data: null, title: "Opción",
         render: function ( data, type, row, meta ) {
-          return '<button type="button" onclick="funcionBuscar('+ row.id_descuento +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+          return '<button type="button" onclick="funcionBuscarDesc('+ row.id_descuento +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
                  '<button type="button" onclick="funcionBorrarDesc('+ row.id_descuento +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
         }}
       ]
@@ -254,6 +254,50 @@ $("#guard-descuento").click(function(){
     });
 
  });
+
+
+ //buscarDescuento
+
+
+ function funcionBuscarDesc(nomb){
+  //$("#inputGroupFile").removeClass('is-valid');
+  // Se hace el cambio del footer en el Modal
+  //$("#footer-guardar").hide();
+  //$("#footer-actualizar").removeClass("d-none");
+  
+  //$("#seleccion-estado").removeClass("d-none");
+  //$('#laboratorio').show();
+  
+  //resetCampos();
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-descuento-id",
+      "id_descuento": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+ 
+    $('#txt-descripcion').val(response.data.descripcion);
+    $('#txt-porcentaje-desc').val(response.data.porcentaje);
+    $('#fecha-final-desc').val(response.data.fecha_fin);
+    
+    
+  
+
+  });
+}
+
 
  //Eliminar Descuento
  function funcionBorrarDesc(nomb){
