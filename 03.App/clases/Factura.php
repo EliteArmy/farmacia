@@ -47,75 +47,73 @@ class Factura{
 	public function getIdFactura(){
 		return $this->idFactura;
 	}
-
 	public function setIdFactura($idFactura){
 		$this->idFactura = $idFactura;
-	}
+  }
+  
 	public function getFechaHora(){
 		return $this->fechaHora;
 	}
-
 	public function setFechaHora($fechaHora){
 		$this->fechaHora = $fechaHora;
-	}
+  }
+  
 	public function getCosteTotal(){
 		return $this->costeTotal;
 	}
-
 	public function setCosteTotal($costeTotal){
 		$this->costeTotal = $costeTotal;
-	}
+  }
+  
 	public function getObservacion(){
 		return $this->observacion;
 	}
-
 	public function setObservacion($observacion){
 		$this->observacion = $observacion;
-	}
+  }
+  
 	public function getIdEmpleado(){
 		return $this->idEmpleado;
 	}
-
 	public function setIdEmpleado($idEmpleado){
 		$this->idEmpleado = $idEmpleado;
-	}
+  }
+  
 	public function getIdCliente(){
 		return $this->idCliente;
 	}
-
 	public function setIdCliente($idCliente){
 		$this->idCliente = $idCliente;
-	}
+  }
+  
 	public function getIdFormaPago(){
 		return $this->idFormaPago;
 	}
-
 	public function setIdFormaPago($idFormaPago){
 		$this->idFormaPago = $idFormaPago;
-	}
+  }
+  
 	public function getIdFarmacia(){
 		return $this->idFarmacia;
 	}
-
 	public function setIdFarmacia($idFarmacia){
 		$this->idFarmacia = $idFarmacia;
-	}
-
+  }
+  
 	public function getFechaInicio(){
 		return $this->fechaInicio;
 	}
-
 	public function setFechaInicio($fechaInicio){
 		$this->fechaInicio = $fechaInicio;
-	}
+  }
+  
 	public function getFechaFin(){
 		return $this->fechaFin;
 	}
-
 	public function setFechaFin($fechaFin){
 		$this->fechaFin = $fechaFin;
-	}
-
+  }
+  
 
 	public static function leer($conexion){
 		$sql = '
@@ -125,10 +123,9 @@ class Factura{
 		return $rows;
 	}
 	public function leerPorFecha($conexion){
-		$sql = '
-			SELECT * FROM VistaFacturas
-			WHERE fecha_factura BETWEEN DATE(\'%s\') AND DATE(\'%s\')
-		';
+		$sql = "SELECT * FROM VistaFacturas
+		WHERE DATE(fecha_factura) >= DATE('%s')
+		AND DATE(fecha_factura)<= DATE('%s');";
 		$valores = [
 			$this->getFechaInicio(),
 			$this->getFechaFin()
@@ -159,7 +156,19 @@ class Factura{
 	public function actualizar($conexion){
 	}
 	public function borrar($conexion){
-	}
+  }
+  
+  public function leerClientePorId($conexion){
+	  $sql = '
+			SELECT * FROM persona
+			WHERE numero_identidad = %s
+    ';
+    
+		$valores = [$this->getIdCliente()];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows)) return $rows[0];
+		else return null;
+  }
 
 }
 ?>

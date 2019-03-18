@@ -1,13 +1,12 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS SP_Eliminar_Laboratorio$$
-CREATE PROCEDURE SP_Eliminar_Laboratorio(
-   pI_id_laboratorio INTEGER(11),
+DROP PROCEDURE IF EXISTS SP_Eliminar_Descuento$$
+CREATE PROCEDURE SP_Eliminar_Descuento(
+   pI_id_descuento INTEGER(11),
 
    pO_mensaje VARCHAR(1000),
    pO_error BOOLEAN
-
 )
-   SP:BEGIN
+SP:BEGIN
 
    -- Declaraciones
    DECLARE mensaje VARCHAR(1000);
@@ -23,16 +22,14 @@ CREATE PROCEDURE SP_Eliminar_Laboratorio(
 
    -- _______________Validaciones__________________
 
-   IF pI_id_laboratorio='' OR pI_id_laboratorio IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"identificador de laboratorio vacio, ");
+   IF pI_id_descuento='' OR pI_id_descuento IS NULL THEN
+     SET mensaje=CONCAT(mensaje,"Identificador de descuento vacio, ");
    ELSE
-       SELECT COUNT(*) INTO contador FROM laboratorio
-       WHERE id_laboratorio= pI_id_laboratorio;
-       IF contador=0 THEN
-           SET mensaje=CONCAT(mensaje,'Identificador de laboratorio no existe, ');
-       END IF;
+      SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento;
+      IF contador=0 THEN
+         SET mensaje=CONCAT(mensaje,'Este descuento no existe, ');
+      END IF;
    END IF;
-
 
    -- ____________Mensaje de resultado____________
    IF mensaje <> '' THEN
@@ -45,14 +42,14 @@ CREATE PROCEDURE SP_Eliminar_Laboratorio(
 
 
    -- _______________SQL Statements_______________
-   UPDATE laboratorio
+   UPDATE descuento
       SET
-         estado = "I"
+         estado = 'I'
       WHERE
-         id_laboratorio=pI_id_laboratorio;
+         id_descuento=pI_id_descuento;
    COMMIT;
 
-   SET mensaje= 'Eliminación exitosa';
+   SET mensaje= 'Eliminación Exitosa';
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
@@ -60,8 +57,6 @@ CREATE PROCEDURE SP_Eliminar_Laboratorio(
 
 END$$
 
-CALL SP_Eliminar_Laboratorio(2,@mesaje,@error);
-
-select * from laboratorio;
-
+CALL SP_Eliminar_Descuento(1,@mesaje,@error);
+SELECT * FROM descuento;
 -- SELECT @mesaje, @error

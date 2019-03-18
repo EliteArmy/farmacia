@@ -1,7 +1,10 @@
 <?php
 class Descuento{
+	private $idDescuento;
 	private $descripcion;
 	private $porcentaje;
+	private $estado;
+	private $fechaInicio;
 	private $fechaFin;
 
 	public function __construct(
@@ -17,6 +20,14 @@ class Descuento{
 		."descripcion: ".$this->descripcion." , "
 		."porcentaje: ".$this->porcentaje;
 		return $var."}";
+	}
+
+	public function getIdDescuento(){
+		return $this->idDescuento;
+	}
+
+	public function setIdDescuento($idDescuento){
+		$this->idDescuento = $idDescuento;
 	}
 
 	public function getDescripcion(){
@@ -42,6 +53,22 @@ class Descuento{
 		$this->fechaFin = $fechaFin;
 	}
 
+	public function setEstado($estado){
+		$this->estado = $estado;
+	}
+
+	public function getEstado(){
+		return $this->estado;
+	}
+
+	public function setFechaInicio($fechaInicio){
+		$this->fechaInicio = $fechaInicio;
+	}
+
+	public function getFechaInicio(){
+		return $this->fechaInicio;
+	}
+
 	public function leer($conexion){
 	}
 	public function crear($conexion){
@@ -55,9 +82,36 @@ class Descuento{
 		return $rows;
 	}
 	public function actualizar($conexion){
+		$sql = "CALL SP_Actualizar_Descuento(%s,'%s',%s,'%s',DATE('%s'),DATE('%s'),@mensaje,@error)";
+		$valores = [
+			$this->getIdDescuento(),
+			$this->getDescripcion(),
+			$this->getPorcentaje(),
+			$this->getEstado(),
+			$this->getFechaInicio(),
+			$this->getFechaFin()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
 	}
-	public function eliminar($conexion){
+	public function borrar($conexion){
+		$sql = "CALL SP_Eliminar_Descuento(%s,@mensaje,@error)";
+		$valores = [
+			$this->getIdDescuento()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
 	}
 
+	public function leerDescuentoPorId($conexion){
+		$sql = "
+		  SELECT * FROM descuento WHERE id_descuento = %s
+		";
+		$valores = [$this->getIdDescuento()];
+		$rows = $conexion -> query($sql, $valores);
+		if (count($rows)) return $rows[0];
+   		else return null;
+	  }
+	  
 }
 ?>

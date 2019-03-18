@@ -127,7 +127,7 @@ if(isset($_POST['accion'])){
     case 'actualizar-perfil':
       $idEmpleado = validarPOST('id_empleado');
       $correoElectronico = validarPOST('correo_electronico');
-      $cambiarContrasena = validarPOST('cambiar_contrasena');
+      $cambiarContrasena = validarPOST('cambiar_contrasena') == 'true';
       $contrasena = validarPOST('contrasena');
       $telefono = validarPOST('telefono_antiguo');
       $telefonoNuevo = validarPOST('telefono_nuevo');

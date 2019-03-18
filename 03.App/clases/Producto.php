@@ -16,6 +16,8 @@ class Producto{
   private $impuesto;
   private $porcentajeImpuesto;
   private $estadoImpuesto;
+  private $fechaInicioImpuesto;
+  private $fechaFinImpuesto;
 
   private $idDescuento;
   private $descuento;
@@ -50,6 +52,26 @@ class Producto{
     ."urlFoto: ".$this->urlFoto." , "
     ."idImpuesto: ".$this->idImpuesto;
     return $var."}";
+  }
+
+  public function getPorcentajeImpuesto(){
+    return $this->porcentajeImpuesto;
+  }
+  public function setPorcentajeImpuesto($porcentajeImpuesto){
+    $this->porcentajeImpuesto = $porcentajeImpuesto;
+  }
+
+  public function getFechaInicioImpuesto(){
+    return $this->fechaInicioImpuesto;
+  }
+  public function setFechaInicioImpuesto($fechaInicioImpuesto){
+    $this->fechaInicioImpuesto = $fechaInicioImpuesto;
+  }
+  public function getFechaFinImpuesto(){
+    return $this->fechaFinImpuesto;
+  }
+  public function setFechaFinImpuesto($fechaFinImpuesto){
+    $this->fechaFinImpuesto = $fechaFinImpuesto;
   }
 
   public function getIdProducto(){
@@ -213,12 +235,29 @@ class Producto{
     if (count($rows) == 1) return $rows[0];
   }
   public function actualizarImpuesto($conexion){
+    $sql = "CALL SP_Actualizar_Impuesto(%s,'%s',%s,'%s',DATE('%s'),DATE('%s'),@mensaje,@error)";
+		$valores = [
+			$this->getIdImpuesto(),
+			$this->getImpuesto(),
+			$this->getPorcentajeImpuesto(),
+			$this->getEstado(),
+			$this->getFechaInicioImpuesto(),
+			$this->getFechaFinImpuesto()
+		];
+    $rows = $conexion->query($sql, $valores);
+    return $rows;
   }
   public static function leerImpuesto($conexion){
     $sql = "SELECT * FROM impuesto";
     return $conexion -> query($sql);
   }
   public function borrarImpuesto($conexion){
+    $sql = "CALL SP_Eliminar_Impuesto(%s,@mensaje,@error)";
+		$valores = [
+			$this->getIdImpuesto()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
   }
 
 

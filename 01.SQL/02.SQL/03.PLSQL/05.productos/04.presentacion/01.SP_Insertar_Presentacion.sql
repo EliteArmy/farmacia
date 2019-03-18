@@ -38,8 +38,8 @@ InsertarImpuesto:BEGIN
   SET AUTOCOMMIT = 0;
   START TRANSACTION;
 
-  INSERT INTO presentacion (presentacion) VALUES
-  (pI_presentacion);
+  INSERT INTO presentacion (presentacion,estado) VALUES
+  (pI_presentacion,'A');
   COMMIT;
 
   SET mensaje = 'Inserción exitosa';

@@ -29,9 +29,9 @@ $(document).ready(function() {
       columns: [
         { data: "descripcion", title:"Descripcion"},
         { data: "porcentaje", title:"Porcentaje"},
-        { data: "estado", title:"Estado"},
-        { data: "fecha_inicio", title:"fecha inicio"},
+        { data: "fecha_inicio", title:"Fecha inicio"},
         { data: "fecha_fin", title:"Fecha Fin"},
+        { data: "estado", title:"Estado"},
         { data: null, title: "Opción",
         render: function ( data, type, row, meta ) {
           return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
@@ -69,6 +69,7 @@ $(document).ready(function() {
     columns: [
       { data: "id_categoria", title:"ID"},
       { data: "categoria", title:"Categoria"},
+      { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
@@ -105,8 +106,9 @@ $(document).ready(function() {
     columns: [
       { data: "descripcion", title:"Descripcion"},
       { data: "porcentaje", title:"Porcentaje"},
+      { data: "fecha_inicio", title:"Fecha Inicio"},
+      { data: "fecha_fin", title:"Fecha Fin"},
       { data: "estado", title:"Estado"},
-      { data: "fecha_inicio", title:"fecha inicio"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
@@ -144,6 +146,7 @@ $(document).ready(function() {
     columns: [
       { data: "id_presentacion", title:"ID"},
       { data: "presentacion", title:"Presentación"},
+      { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
         return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+

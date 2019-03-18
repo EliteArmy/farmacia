@@ -126,6 +126,17 @@ class Lote extends Producto{
 		else return null;
 	}
 
+	
+	public function leerPorCodigoBarra($conexion){		
+           $sql = "			SELECT *	FROM VistaInventarioMercaderia			
+           WHERE codigo_barra = '%s'		
+   ";		
+  $valores = [$this->getCodigoBarra()];		
+  $rows = $conexion->query($sql, $valores);		
+  if (count($rows)) return $rows[0];		
+  else return null;	
+}
+	
 	public function leerDescuentoPorId($conexion){
 		$sql = "SELECT * FROM descuento WHERE id_descuento = %d";
 		$valores = [$this->getIdDescuento()];
