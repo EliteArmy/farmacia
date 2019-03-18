@@ -82,13 +82,12 @@ class Descuento{
 		return $rows;
 	}
 	public function actualizar($conexion){
-		$sql = "CALL SP_Actualizar_Descuento(%s,'%s',%s,'%s',DATE('%s'),DATE('%s'),@mensaje,@error)";
+		$sql = "CALL SP_Actualizar_Descuento(%s,'%s',%s,'%s',DATE('%s'),@mensaje,@error)";
 		$valores = [
 			$this->getIdDescuento(),
 			$this->getDescripcion(),
 			$this->getPorcentaje(),
 			$this->getEstado(),
-			$this->getFechaInicio(),
 			$this->getFechaFin()
 		];
 		$rows = $conexion->query($sql, $valores);

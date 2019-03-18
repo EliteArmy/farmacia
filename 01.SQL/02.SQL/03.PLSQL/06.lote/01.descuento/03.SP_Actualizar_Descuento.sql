@@ -5,7 +5,7 @@ CREATE PROCEDURE SP_Actualizar_Descuento(
    pI_descripcion VARCHAR(45),
    pI_porcentaje INTEGER(11),
    pI_estado VARCHAR(1),
-   pI_fecha_inicio DATE,
+   -- pI_fecha_inicio DATE,
    pI_fecha_fin DATE,
 
    pO_mensaje VARCHAR(1000),
@@ -48,9 +48,9 @@ CREATE PROCEDURE SP_Actualizar_Descuento(
      SET mensaje=CONCAT(mensaje,"Porcentaje de descuento Vacio",", ");
    END IF;
 
-   IF pI_fecha_inicio='' OR pI_fecha_inicio IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"Fecha de inicio Vacia, ");
-   END IF;
+  --  IF pI_fecha_inicio='' OR pI_fecha_inicio IS NULL THEN
+  --    SET mensaje=CONCAT(mensaje,"Fecha de inicio Vacia, ");
+  --  END IF;
 
    IF pI_fecha_fin='' OR pI_fecha_fin IS NULL THEN
      SET mensaje=CONCAT(mensaje,"Fecha fin vacia, ");
@@ -81,13 +81,13 @@ CREATE PROCEDURE SP_Actualizar_Descuento(
       SET mensaje=CONCAT(mensaje,'Fecha de fin invalida, fecha menor o igual que la actual, ');
    END IF;
 
-   IF pI_fecha_inicio < CURDATE() THEN
-      SET mensaje=CONCAT(mensaje,'Fecha de inicio invalida, fecha menor que la actual, ');
-   END IF;
+  --  IF pI_fecha_inicio < CURDATE() THEN
+  --     SET mensaje=CONCAT(mensaje,'Fecha de inicio invalida, fecha menor que la actual, ');
+  --  END IF;
 
-   IF pI_fecha_inicio >= pI_fecha_fin THEN
-     SET mensaje = CONCAT(mensaje, 'Fecha de fin inválida, fecha inicio descuento mayor o igual que fecha de inicio, ');
-   END IF;
+  --  IF pI_fecha_inicio >= pI_fecha_fin THEN
+  --    SET mensaje = CONCAT(mensaje, 'Fecha de fin inválida, fecha inicio descuento mayor o igual que fecha de inicio, ');
+  --  END IF;
 
    -- verificar descuento valido para actualizacion
     SELECT COUNT(*) INTO contador FROM descuento
@@ -115,7 +115,7 @@ CREATE PROCEDURE SP_Actualizar_Descuento(
          descripcion = pI_descripcion,
          porcentaje = pI_porcentaje,
          estado = uEstado,
-         fecha_inicio = pI_fecha_inicio,
+        --  fecha_inicio = pI_fecha_inicio,
          fecha_fin = pI_fecha_fin
       WHERE
          id_descuento=pI_id_descuento;
@@ -129,7 +129,7 @@ CREATE PROCEDURE SP_Actualizar_Descuento(
 
 END$$
 
-CALL SP_Actualizar_Descuento(1,"Descuento Liquidacion",75,"A",DATE('2019-03-17'),DATE('2019-03-18'),@mesaje,@error);
+CALL SP_Actualizar_Descuento(1,"Descuento Liquidacion",75,"A",DATE('2019-03-19'),@mesaje,@error);
 SELECT * FROM descuento
 
 -- SELECT @mesaje, @error
