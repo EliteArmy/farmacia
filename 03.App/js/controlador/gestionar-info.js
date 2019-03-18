@@ -205,18 +205,18 @@ $("#guard-impuesto").click(function(){
     },
     "data": {
       "accion": "leer-impuesto-id",
-      "id_descuento": nomb
+      "id_impuesto": nomb
     }
   }
   
-  var z =  $.ajax(settings).done(function (response) {
+  $.ajax(settings).done(function (response) {
     console.log(response.data);
-    $('#txt-id-desc').val(response.data.id_descuento);
-    $('#txt-estado').val(response.data.estado);
+    $('#txt-id-imp').val(response.data.id_impuesto);
+    $('#txt-estado-imp').val(response.data.estado);
 
-    $('#txt-descripcion').val(response.data.descripcion);
-    $('#txt-porcentaje-desc').val(response.data.porcentaje);
-    $('#fecha-final-desc').val(response.data.fecha_fin);
+    $('#txt-descripcion-imp').val(response.data.descripcion);
+    $('#in-impuesto').val(response.data.porcentaje);
+    $('#fecha-final-imp').val(response.data.fecha_fin);
     
   
 
@@ -268,6 +268,39 @@ function funcionBorrarImp(nomb){
     }
   })
 }
+
+//actualizar impuesto
+$("#act-imp").click(function(){
+  console.log("aqui dentro");
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-impuesto",
+      "id_impuesto": $("#txt-id-imp").val(),
+      "descripcion": $("#txt-descripcion-imp").val(),
+      "porcentaje": $("#in-impuesto").val(),
+      "estado": $("#txt-estado-imp").val(),
+      "fecha_fin": $("#fecha-final-imp").val()
+
+    }
+    
+  }
+   console.log($("#txt-id-imp").val());
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response,"-impuesto");
+  });
+  
+});
+
+
 //Guardar Descuento
 $("#guard-descuento").click(function(){
     var settings = {
