@@ -169,7 +169,6 @@
                       <th>Lote</th>
                       <th>Cant.</th>
                       <th>Pre. Unitario</th>
-                      <th>Impuesto (%)</th>
                       <th>Descuento (%)</th>
                       <th>Pre. Final</th>
                       <th>Opción</th>

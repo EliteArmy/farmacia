@@ -54,6 +54,7 @@ $(document).ready(function() {
 
 var dataSet = [];
 var dataSetProducto = [];
+var contadorLotes;
 
 // ======= Buscar un Cliente =======
 function buscarCliente(){
@@ -161,7 +162,7 @@ function BuscarProducto(){
 function BuscarProducto2(){
   
   var codigoBarra = $("#codigo-producto").val();
-  console.log(codigoBarra);
+  //console.log(codigoBarra);
 
   var settings = {
     "async": true,
@@ -183,25 +184,26 @@ function BuscarProducto2(){
     $("#agregarproducto").modal('show');
     
     var datos = [];
+    contadorLotes = 0;
     document.getElementById('table-body').innerHTML = '';
 
     for (var i=0; i < response.data.length; i++){
+      contadorLotes += 1
       datos = response.data[i];
+      
       document.getElementById('table-body').innerHTML += 
         `<tr>
-        <th scope="row">${datos.lote}</th>
+        <th id="lote${i+1}" scope="row">${datos.lote}</th>
         <td>${datos.existencia}</td>
         <td>L. ${datos.precio_costo_unidad}</td>
-        <td>${datos.porcentaje_impuesto}</td>
         <td>${datos.porcentaje_descuento}</td>
-        <td>L. ${datos.precio_venta_unidad}</td>
+        <td id="precio${i+1}">L. ${datos.precio_venta_unidad}</td>
         <td>
-          <div >
-            <input type="text" placeholder="Cant">
-          </div>
+          <input type="text" placeholder="Cant" id="cant${i+1}">
         </td>
       </tr>`;
     }
+    //console.log("contador:" + contadorLotes);
   });
 }
 
@@ -245,24 +247,46 @@ $('#table-info').DataTable({
 });
 */
 
+
 function agregarProducto(){
+  var codigoBarra = $("#codigo-producto").val();
+  console.log(codigoBarra);
   
-  dataSet = [
-    [ "1", "Lorem Ipsum", "300"],
-    [ "1", "Lorem Ipsum", "200"],
-    [ "1", "Lorem Ipsum", "100"],
-    [ "1", "Lorem Ipsum", "500"],
-    [ "2", "Lorem Ipsum", "100"]
-  ];
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-lote-codigo",
+      "codigo_barra": codigoBarra
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+  
+    var datos = [];
     
-  dataSet.push([cantidad,'Lorem','200']);
+    for (var i=0; i < response.data.length; i++){
+      if (document.getElementById('cant'+[i+1]) > 0 && document.getElementById('cant'+[i+1]) != ""){
+        datos = response.data[i];
+        dataSet.push([datos.cantidad, datos.lote, datos.precio_venta_unidad]);
+      }
+    }
+      
+    //$('#table-info').DataTable().clear();
+    $('#table-info').DataTable().rows.add(dataSet);
+    $('#table-info').DataTable().draw();
 
-  $('#table-info').DataTable().clear();
-  $('#table-info').DataTable().rows.add(dataSet);
-  $('#table-info').DataTable().draw();
+    //table.buttons().container().appendTo( $('#botones', table.table().container()));
+    //$('#table-info').DataTable().reload();
 
-  //table.buttons().container().appendTo( $('#botones', table.table().container()));
-  //$('#table-info').DataTable().reload();
+  });
 }
 
 // ======= Guardar una Factura =======

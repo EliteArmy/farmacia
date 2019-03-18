@@ -381,4 +381,32 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   height: 100px;
   width: 100px;
 }
+
+@media (max-width: 960px) {
+  .modal-dialog {
+    max-width: 70%;
+    margin: 1.75rem auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-dialog {
+    max-width: 80%;
+    margin: 1.75rem auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 90%;
+    margin: 1.75rem auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .modal-dialog {
+    max-width: 95%;
+    margin: 1.75rem auto;
+  }
+}
 /*# sourceMappingURL=style.css.map */
