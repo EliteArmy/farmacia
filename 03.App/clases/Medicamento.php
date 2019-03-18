@@ -3,6 +3,9 @@ class Medicamento extends Producto{
 	private $idLaboratorio;
 	private $laboratorio;
 	private $esMedicamento;
+	private $estado;
+	private $direccionLaboratorio;
+	private $telefonoLaboratorio;
 
 	public function __construct(
 		$idLaboratorio = null,
@@ -17,6 +20,26 @@ class Medicamento extends Producto{
 		."idLaboratorio: ".$this->idLaboratorio." , "
 		."laboratorio: ".$this->laboratorio;
 		return $var."}";
+	}
+
+	public function getDireccionLaboratorio(){
+		return $this->direccionLaboratorio;
+	}
+	public function setDireccionLaboratorio($direccionLaboratorio){
+		$this->direccionLaboratorio = $direccionLaboratorio;
+	}
+	public function getTelefonoLaboratorio(){
+		return $this->telefonoLaboratorio;
+	}
+	public function setTelefonoLaboratorio($telefonoLaboratorio){
+		$this->telefonoLaboratorio = $telefonoLaboratorio;
+	}
+
+	public function getEstado(){
+		return $this->estado;
+	}
+	public function setEstado($estado){
+		$this->estado = $estado;
 	}
 
 	public function getIdLaboratorio(){
@@ -88,6 +111,16 @@ class Medicamento extends Producto{
 		if (count($rows) == 1) return $rows[0];
 	}
 	public function actualizarLaboratorio($conexion){
+		$sql = "CALL SP_Actualizar_Laboratorio(%s,'%s','%s','%s','%s',@mensaje,@error)";
+		$valores = [
+			$this->getIdLaboratorio(),
+			$this->getLaboratorio(),
+			$this->getEstado(),
+			$this->getDireccionLaboratorio(),
+			$this->getTelefonoLaboratorio()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
 	}
 	public static function leerLaboratorio($conexion){
 		$sql = "SELECT * FROM laboratorio";
@@ -102,6 +135,12 @@ class Medicamento extends Producto{
 		else return null;
 	}
 	public function borrarLaboratorio($conexion){
+		$sql = "CALL SP_Eliminar_Laboratorio(%s,@mensaje,@error)";
+		$valores = [
+			$this->getIdLaboratorio()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
   }
 
 }

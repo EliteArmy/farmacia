@@ -371,6 +371,30 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'actualizar-laboratorio':
+      $idLaboratorio = validarPOST('id_laboratorio');
+      $laboratorio = validarPOST('nombre_laboratorio');
+      $estado = validarPOST('estado');
+      $direccion = validarPOST('direccion');
+      $telefono = validarPOST('telefono_laboratorio');
+      $lab = new Medicamento();
+      $lab->setIdLaboratorio($idLaboratorio);
+      $lab->setLaboratorio($laboratorio);
+      $lab->setEstado($estado);
+      $lab->setDireccionLaboratorio($direccion);
+      $lab->setTelefonoLaboratorio($telefono);
+      $res['data'] = $lab->actualizarLaboratorio($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'eliminar-laboratorio':
+      $idLaboratorio = validarPOST('id_laboratorio');
+      $lab = new Medicamento();
+      $lab->setIdLaboratorio($idLaboratorio);
+      $res['data'] = $lab->borrarLaboratorio($conexion);
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res['data']['mensaje']='Accion no reconocida';
