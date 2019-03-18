@@ -103,7 +103,7 @@
           <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="codigo-producto">Producto:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="codigo-producto" value="5998444444" oninput="BuscarProducto()" placeholder="Código barra del Producto">
+              <input type="text" class="form-control" id="codigo-producto" oninput="BuscarProducto()" placeholder="Código barra del Producto">
               <div class="input-group-append">
               <!-- Button trigger para el modal -->
               <button class="btn btn-primary" type="button" onclick="BuscarProducto()" data-toggle="modal" data-target="#agregarproducto">Buscar</button>

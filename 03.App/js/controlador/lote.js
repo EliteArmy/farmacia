@@ -70,7 +70,7 @@ $(document).ready(function() {
     for (var i=0; i < response.length; i++){  
       var prod = response[i];
       var fila = 
-      '<option value="' + prod.id_producto + '">' + prod.nombre + '</option>';
+      '<option value="' + prod.id_producto + '">' + prod.nombre + ", " + prod.codigo_barra + '</option>';
         $("#slc-prod").append(fila);
     }
     $('.selectpicker').selectpicker('refresh');
