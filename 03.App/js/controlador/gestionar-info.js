@@ -262,8 +262,8 @@ $("#guard-descuento").click(function(){
  function funcionBuscarDesc(nomb){
   //$("#inputGroupFile").removeClass('is-valid');
   // Se hace el cambio del footer en el Modal
-  //$("#footer-guardar").hide();
-  //$("#footer-actualizar").removeClass("d-none");
+  $("#guard-descuento").hide();
+  $("#act-desc").removeClass("d-none");
   
   //$("#seleccion-estado").removeClass("d-none");
   //$('#laboratorio').show();

@@ -64,7 +64,8 @@
           </div>
 
           <div class="col-md-11">
-            <button type="button" class="btn btn-info" id="">Reset</button>   
+            <button type="button" class="btn btn-info" id="">Reset</button>
+            <button type="button" class="btn btn-primary d-none" id="act-desc" data-dismiss="modal">Actualizar Cambios</button>   
             <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
           </div>
           
