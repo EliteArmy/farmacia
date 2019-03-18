@@ -395,6 +395,26 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'actualizar-categoria':
+      $idCategoria = validarPOST('id_categoria');
+      $categoria = validarPOST('categoria');
+      $estado = validarPOST('estado');
+      $cat = new Producto();
+      $cat->setIdCategoria($idCategoria);
+      $cat->setCategoria($categoria);
+      $cat->setEstado($estado);
+      $res['data'] = $cat->actualizarCategoria($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'eliminar-categoria':
+      $idCategoria = validarPOST('id_categoria');
+      $cat = new Producto();
+      $cat->setIdCategoria($idCategoria);
+      $res['data'] = $cat->borrarCategoria($conexion);
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res['data']['mensaje']='Accion no reconocida';

@@ -225,15 +225,31 @@ class Producto{
     $rows = $conexion->query($sql, $valores);
     if (count($rows) == 1) return $rows[0];
   }
+
   public function actualizarCategoria($conexion){
+    $sql = "CALL SP_Actualizar_Categoria(%s,'%s','%s',@mensaje,@error)";
+		$valores = [
+			$this->getIdCategoria(),
+			$this->getCategoria(),
+			$this->getEstado(),
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
   }
+
   public static function leerCategoria($conexion){
     $sql = "SELECT * FROM categoria";
     return $conexion -> query($sql);
   }
+  
   public function borrarCategoria($conexion){
-  }
-
+      $sql = "CALL SP_Eliminar_Categoria(%s,@mensaje,@error)";
+      $valores = [
+        $this->getIdCategoria()
+      ];
+      $rows = $conexion->query($sql, $valores);
+      return $rows;
+    }
 
   public function crearImpuesto($conexion){
     $sql = "CALL SP_Insertar_Impuesto('%s', %s)";
