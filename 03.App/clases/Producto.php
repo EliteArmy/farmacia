@@ -180,7 +180,7 @@ class Producto{
   }
   public static function leer($conexion){
     $sql = "
-      SELECT * FROM VistaProducto;
+      SELECT * FROM VistaProducto WHERE estado = 'A';
     ";
     return $conexion -> query($sql);
   }
