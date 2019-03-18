@@ -135,10 +135,15 @@ if(isset($_POST['accion'])){
     break;
 
     case 'crear-laboratorio':
-      $lab = validarPOST('nombre_laboratorio');
-      $med = new Medicamento();
-      $med->setLaboratorio($lab);
-      $res['data'] = $med->crearLaboratorio($conexion);
+      $laboratorio = validarPOST('nombre_laboratorio');
+      $direccion = validarPOST('direccion');
+      $telefono = validarPOST('telefono_laboratorio');
+      $lab = new Medicamento();
+      $lab->setLaboratorio($laboratorio);
+      $lab->setEstado($estado);
+      $lab->setDireccionLaboratorio($direccion);
+      $lab->setTelefonoLaboratorio($telefono);
+      $res['data'] = $lab->crearLaboratorio($conexion);
       echo json_encode($res);
     break;
 

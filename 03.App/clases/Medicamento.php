@@ -105,8 +105,12 @@ class Medicamento extends Producto{
   }
 
 	public function crearLaboratorio($conexion){
-		$sql = "CALL SP_Insertar_Laboratorio('%s');";
-		$valores = [$this->laboratorio];
+		$sql = "CALL SP_Insertar_Laboratorio('%s','%s','%s');";
+		$valores = [
+			$this->getLaboratorio(),
+			$this->getDireccionLaboratorio(),
+			$this->getTelefonoLaboratorio()
+		];
 		$rows = $conexion->query($sql, $valores);
 		if (count($rows) == 1) return $rows[0];
 	}
