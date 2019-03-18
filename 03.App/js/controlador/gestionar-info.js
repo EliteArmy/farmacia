@@ -361,7 +361,7 @@ $("#act-desc").click(function(z){
     },
     "data": {
       "accion": "actualizar-descuento",
-      "id_descuento": z,
+      "id_descuento": $("#txt-id-desc"),
       "descripcion": $("#txt-descripcion").val(),
       "porcentaje": $("#txt-porcentaje-desc").val(),
       "fecha_fin": $("#fecha-final-desc").val()
