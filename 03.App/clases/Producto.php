@@ -178,9 +178,16 @@ class Producto{
   }
   public function actualizar($conexion){
   }
+
   public static function leer($conexion){
     $sql = "
       SELECT * FROM VistaProducto WHERE estado = 'A';
+    ";
+    return $conexion -> query($sql);
+  }
+  public static function leerTodo($conexion){
+    $sql = "
+      SELECT * FROM VistaProducto;
     ";
     return $conexion -> query($sql);
   }

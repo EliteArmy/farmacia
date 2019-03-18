@@ -72,7 +72,7 @@ if(isset($_POST['accion'])){
       $res['data'] = $medic->leerLaboratorioPorId($conexion);
       echo json_encode($res);
     break;
-      
+
     case 'leer-lote-codigo':
       $codigoBarra = validarPOST('codigo_barra');
       $lote = new Lote();
@@ -80,9 +80,14 @@ if(isset($_POST['accion'])){
       $res['data'] = $lote->leerPorCodigoBarra($conexion);
       echo json_encode($res);
     break;
-    
+
     case 'leer-producto':
       $res['data'] = Producto::leer($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'leer-producto-todo':
+      $res['data'] = Producto::leerTodo($conexion);
       echo json_encode($res);
     break;
 
@@ -98,7 +103,7 @@ if(isset($_POST['accion'])){
       $res['data'] = $prod->crearCategoria($conexion);
       echo json_encode($res);
     break;
-    
+
     case 'crear-descuento':
       $descripcion = validarPOST('descripcion');
       $porcentaje = validarPOST('porcentaje');
@@ -199,7 +204,7 @@ if(isset($_POST['accion'])){
       $res['data'] = $lot->borrar($conexion);
       echo json_encode($res);
     break;
-    
+
     case 'crear-lote':
       $idProducto = validarPOST('id_producto');
       $lote = validarPOST('lote');

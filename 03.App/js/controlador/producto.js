@@ -155,7 +155,7 @@ $(document).ready(function() {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "leer-producto"
+        "accion": "leer-producto-todo"
       }
     },
     language: {
