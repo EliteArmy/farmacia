@@ -285,13 +285,12 @@ $("#guard-descuento").click(function(){
     }
   }
   
-  $.ajax(settings).done(function (response) {
+  var z =  $.ajax(settings).done(function (response) {
     console.log(response.data);
- 
+    $('#txt-id-desc').val(response.data.id_descuento);
     $('#txt-descripcion').val(response.data.descripcion);
     $('#txt-porcentaje-desc').val(response.data.porcentaje);
     $('#fecha-final-desc').val(response.data.fecha_fin);
-    
     
   
 
@@ -346,6 +345,36 @@ $("#guard-descuento").click(function(){
   })
   console.log(nomb)
 }
+
+//ACtualizarDescuento
+$("#act-desc").click(function(z){
+  console.log(z + "aqui dentro");
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-descuento",
+      "id_descuento": z,
+      "descripcion": $("#txt-descripcion").val(),
+      "porcentaje": $("#txt-porcentaje-desc").val(),
+      "fecha_fin": $("#fecha-final-desc").val()
+
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response,"-descuento");
+  });
+  
+});
+
 
 //Guardar CATEGORIA
 $("#guard-categoria").click(function(){

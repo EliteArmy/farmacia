@@ -45,6 +45,7 @@
 
           <div class="col-md-11 form-group">
             <label for="txt-descripcion">Inserte Descripción: </label>
+            <input class="form-control d-none" id="txt-id-desc" name="txt-id-desc" >           
             <input class="form-control" id="txt-descripcion" name="txt-descripcion"  rows="3" required autofocus>
           </div>
           
