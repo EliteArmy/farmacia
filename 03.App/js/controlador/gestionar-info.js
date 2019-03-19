@@ -14,8 +14,19 @@ formaImp.setButtonUpdate('act-imp');
 Forma.addTrigger(formaImp);
 
 
+let formaCat = new Forma('agregar-categoria');
+formaCat.addInput('txt-nombre-categoria', /^.+$/, true);
 
+formaCat.setButtonEnvio('guard-categoria');
+formaCat.setButtonUpdate('act-cat');
+Forma.addTrigger(formaCat);
 
+let formaPre = new Forma('agregar-presentacion');
+formaPre.addInput('txt-nombre-presentacion', /^.+$/, true);
+
+formaPre.setButtonEnvio('guard-presentacion');
+formaPre.setButtonUpdate('act-Pre');
+Forma.addTrigger(formaPre);
 
 
 
@@ -495,7 +506,8 @@ $("#guard-categoria").click(function(){
       }
     }
      $.ajax(settings).done(function (response) {
-     imprimirMensajeSinCorchete(response,"-categoria")
+      formaCat.validateAll()
+      imprimirMensajeSinCorchete(response,"-categoria")
     });
 
  });
@@ -645,7 +657,7 @@ $("#guard-presentacion").click(function(){
     
     $.ajax(settings).done(function (response) {
       $('#table-info-presentacion').DataTable().ajax.reload(); 
-
+      formaPre.validateAll()
       imprimirMensaje(response,"-presentacion")
     });
 
