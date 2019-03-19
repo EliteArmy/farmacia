@@ -41,6 +41,8 @@
           <h4>Rango Autorizado: 00000000 a 00000000</h4>
           <h4>Fecha Limite Emisión: 12/12/2019</h4>
         </div>
+        
+        <input type="hidden" id="id-empleado" value="<?php echo $_SESSION["id_empleado"] ?>">
 
         <div id="subtitulo-factura" class="text-left">
           <h4>Le Atendio:

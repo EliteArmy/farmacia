@@ -43,8 +43,11 @@ $(document).ready(function() {
       { data: "precio_venta_unidad", title: "Pre. Final" },
       { data: "", title: "Opción", 
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcion()" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-                '<button type="button" onclick="funcionBorrar()" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
+        return '<input type="number" id="txt-cantidad'+ row.id_lote +'"  class="form-control" value="1" min="1" max = "'+ row.existencia +'" />'+
+               '<button type="button" onclick="funcionAgregarDetalle('+row.id_lote+')" class="btn btn-primary btn-sm btn-block" data-dismiss="modal"><i class="fas fa-cart-plus"></i></button>'+
+               '<input type="hidden" id="txt-existencia'+ row.id_lote +'" value = "'+row.existencia+'" />'
+        ;
+              }
       }]
   });
 
@@ -218,3 +221,26 @@ $("#guardar-Factura").click(function(){
 
 });
 
+
+
+function funcionAgregarDetalle(id_lote){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/factura.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "detalle-factura",
+      "id_empleado": $("#id-empleado").val(),
+      "cantidad": $("#txt-cantidad"+id_lote).val(),
+      "id_lote": id_lote
+    }
+  }
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+}
