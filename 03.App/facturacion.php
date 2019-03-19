@@ -45,12 +45,10 @@
         <input type="hidden" id="id-empleado" value="<?php echo $_SESSION["id_empleado"] ?>">
 
         <div id="subtitulo-factura" class="text-left">
-          <h4>Le Atendio:
-            <?php echo $_SESSION["nombre_completo"]; ?>
-          </h4>
-          <h4 id="fecha">Fecha:</h4>
-          <h4 id="hora">Hora:</h4>
+          <h4>Le Atendio: <?php echo $_SESSION["nombre_completo"];?></h4>
           <h4 id="cliente">Consumidor Final:</h4>
+          <h4 class="text-right" id="fecha">Fecha:</h4>
+          <h4 class="text-right" id="hora">Hora:</h4>
         </div>
 
         <div class="row mt-2 mb-1" id="content">
@@ -98,17 +96,16 @@
             </div>
           </div>
 
-          <div class="col-12 col-sm-6 col-lg-4 texto">
-            <button type="button" id="crear-factura" class="btn btn-primary">
-              Guardar Factura como PDF
+          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
+            <label for="crear-factura">Cerrar Factura:</label>
+            <button type="button" id="crear-factura" class="form-control btn btn-primary">
+              Cerrar Factura
             </button>
           </div>
 
-        </div>
-
-        <div class="row">
-          <div class="col-11 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" id="guardar-factura" class="btn btn-primary">
+          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
+            <label for="guardar-factura-pdf">Guardar Factura:</label>
+            <button type="button" id="guardar-factura-pdf" class="form-control btn btn-primary">
             <!--
             ======= Guardar una Factura en PDF =======
             ======= *** SIN TERMINAR **** =======
@@ -116,6 +113,11 @@
               Guardar Factura como PDF
             </button>
           </div>
+
+        </div>
+
+        <div class="row">
+
         </div>
 
         <div class="row mt-3 mb-3">

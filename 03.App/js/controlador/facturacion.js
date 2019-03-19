@@ -240,7 +240,7 @@ function placeholder(){
 
 // ======= Guardar una Factura en PDF =======
 // ======= *** SIN TERMINAR **** =======
-$("#guardar-Factura").click(function(){
+$("#guardar-factura-pdf").click(function(){
   
   /* 
   Syntax: fromHTML(HTML, x, y, settings, callback, margins)
