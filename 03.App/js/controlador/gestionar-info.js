@@ -117,7 +117,8 @@ $(document).ready(function() {
     ]
   });
 
-  //Leer Presentación
+ 
+ //Leer Presentación
   $('#table-info-presentacion').DataTable({
     pageLength: 6 ,
     searching: true,
@@ -156,6 +157,7 @@ $(document).ready(function() {
   });
   
 });
+
 
 // Guardar Impuesto
 $("#guard-impuesto").click(function(){
@@ -796,5 +798,4 @@ function imprimirMensajeSinCorchete(response,tbl){
     });
   }
 }
-
 
