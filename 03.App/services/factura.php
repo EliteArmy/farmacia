@@ -58,16 +58,16 @@ if(isset($_POST['accion'])){
 
     case 'cerrar-detalle-factura':
       $idEmpleado = validarPOST('id_empleado');
-      $idCliente = ('id_cliente');
-      $idFarmacia = ('id_farmacia');
-      $idFormaPago = ('id_forma_pago');
+      $idCliente = $_POST['id_cliente'];
+      $idFarmacia = $_POST['id_farmacia'];
+      $idFormaPago = $_POST['id_forma_pago'];
       
       $fact = new Factura();
       
       $fact->setIdEmpleado($idEmpleado);
-      $fact->setIdCliente($idEmpleado);
-      $fact->setIdFarmacia($idEmpleado);
-      $fact->setIdFormaPago($idEmpleado);
+      $fact->setIdCliente($idCliente);
+      $fact->setIdFarmacia($idFarmacia);
+      $fact->setIdFormaPago($idFormaPago);
 
       $res['data'] = $fact->cerrarDetalleFactura($conexion);
       echo json_encode($res);
