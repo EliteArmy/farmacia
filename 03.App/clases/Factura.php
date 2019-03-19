@@ -1,5 +1,6 @@
 <?php
 class Factura {
+
 	private $idFactura;
 	private $fechaHora;
 	private $costeTotal;
@@ -9,7 +10,8 @@ class Factura {
 	private $idFormaPago;
 	private $idFarmacia;
 	private $fechaInicio;
-	private $fechaFin;
+  private $fechaFin;
+  private $idLote;
 
 	public function __construct(
 		$idFactura = null,
@@ -200,13 +202,12 @@ class Factura {
 
   public function eliminarDetalleFactura($conexion){
 		$sql = 'CALL SP_Eliminar_Detalle_Factura(%d, @mensaje, @error)';
-    $valores =[
+    $valores = [
 			$this->getIdFactura()
     ];
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
   }
 
-  
 }
 ?>

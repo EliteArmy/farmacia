@@ -3,6 +3,7 @@ header("Access-Control-Allow-Origin: *");
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
 include_once('../clases/Factura.php');
+
 // Clases Usadas
 if(isset($_POST['accion'])){
   $conexion = new Conexion();
