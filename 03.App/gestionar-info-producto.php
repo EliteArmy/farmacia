@@ -151,9 +151,15 @@
             <label for="txt-nombre-presentacion">Presentación: </label>
             <input type="text" class="form-control" id="txt-nombre-presentacion" name="txt-nombre-presentacion"  placeholder="Nombre de presentación" required autofocus>
           </div>
+          <div class="form-group col-12 d-none">
+            <input class="form-control " id="txt-id-pre" name="txt-id-desc" >     
+            <input class="form-control " id="txt-estado-pre" name="txt-id-desc" >                 
+            
+          </div>
             
           <div class="col-12 col-md-11" >
             <button type="button" class="btn btn-info" id="" align="left">Reset</button>
+            <button type="button" class="btn btn-primary d-none" id="act-pre" data-dismiss="modal">Actualizar Cambios</button>  
             <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
           </div>
           
@@ -184,9 +190,15 @@
             <label for="txt-nombre-categoria">Nombre categoria: </label>
             <input type="text" class="form-control" id="txt-nombre-categoria" name="txt-nombre-categoria"  placeholder="nombre de la categoria" required autofocus>
           </div>
+          <div class="form-group col-12 d-none">
+            <input class="form-control " id="txt-id-cat" name="txt-id-desc" >     
+            <input class="form-control " id="txt-estado-cat" name="txt-id-desc" >                 
+            
+          </div>
 
           <div class="col-10 col-md-11">
             <button type="button" class="btn btn-info" id="">Reset</button>
+            <button type="button" class="btn btn-primary d-none" id="act-cat" data-dismiss="modal">Actualizar Cambios</button>
             <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
           </div>
         

@@ -72,7 +72,7 @@ $(document).ready(function() {
       { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionBuscar('+ row.id_categoria +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+        return '<button type="button" onclick="funcionBuscarCat('+ row.id_categoria +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
                '<button type="button" onclick="funcionBorrarCat('+ row.id_categoria +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
@@ -149,7 +149,7 @@ $(document).ready(function() {
       { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionBuscar('+ row.id_presentacion +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+        return '<button type="button" onclick="funcionBuscarPre('+ row.id_presentacion +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
                 '<button type="button" onclick="funcionBorrarPre('+ row.id_presentacion +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
@@ -520,6 +520,87 @@ function funcionBorrarCat(nomb){
     }
   })
 }
+
+
+//Buscar cATEGORIa
+function funcionBuscarCat(nomb){
+  //$("#inputGroupFile").removeClass('is-valid');
+  // Se hace el cambio del footer en el Modal
+  $("#guard-categoria").hide();
+  $("#act-cat").removeClass("d-none");
+  
+  //$("#seleccion-estado").removeClass("d-none");
+  //$('#laboratorio').show();
+  
+  //resetCampos();
+  console.log("Hola")
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-categoria-id",
+      "id_categoria": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+    $('#txt-nombre-categoria').val(response.data.categoria);
+    $('#txt-estado-cat').val(response.data.estado);
+
+    $('#txt-id-cat').val(response.data.id_categoria);
+   
+    
+  
+
+  });
+}
+
+//ACtualizar Categoria
+$("#act-cat").click(function(){
+  console.log("aqui dentro");
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-categoria",
+      "id_categoria": $("#txt-id-cat").val(),
+       "categoria": $("#txt-nombre-categoria").val(),
+     
+      "estado": $("#txt-estado-cat").val(),
+   
+
+    }
+    
+  }
+   console.log($("#txt-nombre-categoria").val()),
+  $.ajax(settings).done(function (response) {
+  imprimirMensaje(response,"-categoria");
+  });
+  
+});
+
+
+
+
+
+
+
+
+
 //Guardar PResentacion
 $("#guard-presentacion").click(function(){
     var settings = {
@@ -591,6 +672,78 @@ function funcionBorrarPre(nomb){
     }
   })
 }
+
+//Buscar presentacion
+function funcionBuscarPre(nomb){
+  //$("#inputGroupFile").removeClass('is-valid');
+  // Se hace el cambio del footer en el Modal
+  $("#guard-presentacion").hide();
+  $("#act-pre").removeClass("d-none");
+  
+  //$("#seleccion-estado").removeClass("d-none");
+  //$('#laboratorio').show();
+  
+  //resetCampos();
+  console.log("Hola")
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-presentacion-id",
+      "id_presentacion": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+    $('#txt-nombre-presentacion').val(response.data.presentacion);
+    $('#txt-estado-pre').val(response.data.estado);
+
+    $('#txt-id-pre').val(response.data.id_presentacion);
+   
+    
+  
+
+  });
+}
+
+//ACtualizar Presentacion
+$("#act-pre").click(function(){
+  console.log("aqui dentro");
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-presentacion",
+      "id_presentacion": $("#txt-id-pre").val(),
+       "presentacion": $("#txt-nombre-presentacion").val(),
+     
+      "estado": $("#txt-estado-pre").val(),
+   
+
+    }
+    
+  }
+   console.log($("#txt-nombre-presentacion").val()),
+  $.ajax(settings).done(function (response) {
+  imprimirMensaje(response,"-presentacion");
+  });
+  
+});
+
 
 function imprimirMensaje(response,tbl2){
   if (response.data[0].error == 0) {
