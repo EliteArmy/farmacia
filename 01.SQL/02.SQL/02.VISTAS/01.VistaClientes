@@ -19,7 +19,7 @@ INNER JOIN persona per
 ORDER BY id_cliente
 ;
 
-SELECT * FROM VistaClientes
+SELECT * FROM VistaClientes;
 
 
 SELECT * FROM VistaClientes;

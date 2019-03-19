@@ -31,12 +31,27 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'detalle-factura':
+      $idEmpleado = validarPOST('id_empleado');
+      $cantidad = validarPOST('cantidad');
+      $idLote = validarPOST('id_lote');
+      $fact = new Factura();
+      $fact->setIdEmpleado($idEmpleado);
+      $fact->setCantidad($cantidad);
+      $fact->setIdLote($idLote);
+      $res['data'] = $fact->detalleFactura($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'cerrar-factura':
+    break;
+
     case 'buscar-cliente':
       $identidad = validarPOST('numero_identidad');
-      
+
       $fact = new Factura();
       $fact->setIdCliente($identidad);
-      
+
       $res['data'] = $fact->leerClientePorId($conexion);
       echo json_encode($res);
     break;

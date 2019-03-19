@@ -117,8 +117,8 @@
                     <th>Descripción</th>
                     <th>Precio Unitario</th>
                     <th>Sub Total</th>
-                    <th>Impuesto (ISV)</th>
                     <th>Descuento (%)</th>
+                    <th>Impuesto (ISV)</th>
                     <th>Precio Total</th>
                   </tr>
                 </thead>

@@ -50,70 +50,86 @@ class Factura{
 	public function setIdFactura($idFactura){
 		$this->idFactura = $idFactura;
   }
-  
+
 	public function getFechaHora(){
 		return $this->fechaHora;
 	}
 	public function setFechaHora($fechaHora){
 		$this->fechaHora = $fechaHora;
   }
-  
+
 	public function getCosteTotal(){
 		return $this->costeTotal;
 	}
 	public function setCosteTotal($costeTotal){
 		$this->costeTotal = $costeTotal;
   }
-  
+
 	public function getObservacion(){
 		return $this->observacion;
 	}
 	public function setObservacion($observacion){
 		$this->observacion = $observacion;
   }
-  
+
 	public function getIdEmpleado(){
 		return $this->idEmpleado;
 	}
 	public function setIdEmpleado($idEmpleado){
 		$this->idEmpleado = $idEmpleado;
   }
-  
+
 	public function getIdCliente(){
 		return $this->idCliente;
 	}
 	public function setIdCliente($idCliente){
 		$this->idCliente = $idCliente;
   }
-  
+
 	public function getIdFormaPago(){
 		return $this->idFormaPago;
 	}
 	public function setIdFormaPago($idFormaPago){
 		$this->idFormaPago = $idFormaPago;
   }
-  
+
 	public function getIdFarmacia(){
 		return $this->idFarmacia;
 	}
 	public function setIdFarmacia($idFarmacia){
 		$this->idFarmacia = $idFarmacia;
   }
-  
+
 	public function getFechaInicio(){
 		return $this->fechaInicio;
 	}
 	public function setFechaInicio($fechaInicio){
 		$this->fechaInicio = $fechaInicio;
   }
-  
+
 	public function getFechaFin(){
 		return $this->fechaFin;
 	}
 	public function setFechaFin($fechaFin){
 		$this->fechaFin = $fechaFin;
-  }
-  
+	}
+
+	public function getCantidad(){
+		return $this->cantidad;
+	}
+
+	public function setCantidad($cantidad){
+		$this->cantidad = $cantidad;
+	}
+
+	public function getIdLote(){
+		return $this->idLote;
+	}
+
+	public function setIdLote($idLote){
+		$this->idLote = $idLote;
+	}
+
 
 	public static function leer($conexion){
 		$sql = '
@@ -153,17 +169,28 @@ class Factura{
 
 	public function crear($conexion){
 	}
+
+	public function detalleFactura($conexion){
+		$sql = 'CALL SP_Insertar_Detalle_Factura(%d, %d, %d)';
+		$valores =[
+			$this->getIdEmpleado(),
+			$this->getCantidad(),
+			$this->getIdLote()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
+	}
 	public function actualizar($conexion){
 	}
 	public function borrar($conexion){
   }
-  
+
   public function leerClientePorId($conexion){
 	  $sql = '
 			SELECT * FROM persona
 			WHERE numero_identidad = %s
     ';
-    
+
 		$valores = [$this->getIdCliente()];
 		$rows = $conexion->query($sql, $valores);
 		if (count($rows)) return $rows[0];

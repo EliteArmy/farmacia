@@ -29,8 +29,15 @@ SELECT
   ,l.precio_venta_unidad as precio_unitario
   ,ROUND(det_fact.cantidad * l.precio_venta_unidad * (SELECT porcentaje / 100 FROM impuesto WHERE id_impuesto =  (SELECT FN_Obtener_Impuesto(det_fact.id_lote, f.fecha_hora))), 2) as impuesto
   ,(SELECT porcentaje FROM impuesto WHERE id_impuesto =  (SELECT FN_Obtener_Impuesto(det_fact.id_lote, f.fecha_hora))) as porcentaje_impuesto
-  ,ROUND((det_fact.cantidad * l.precio_venta_unidad) *  (SELECT 1 - (porcentaje / 100) FROM impuesto WHERE id_impuesto =  (SELECT FN_Obtener_Impuesto(det_fact.id_lote, f.fecha_hora))), 2) as sub_total
-  ,ROUND(det_fact.cantidad * l.precio_venta_unidad, 2) as precio_total
+  ,ROUND(det_fact.cantidad * l.precio_venta_unidad, 2) as sub_total
+  #,ROUND((det_fact.cantidad * l.precio_venta_unidad) *  (SELECT 1 + (porcentaje / 100) FROM impuesto WHERE id_impuesto =  (SELECT FN_Obtener_Impuesto(det_fact.id_lote, f.fecha_hora))), 2) as precio_total
+  ,det_fact.id_descuento
+  ,COALESCE((SELECT porcentaje FROM descuento WHERE id_descuento = det_fact.id_descuento ), 0) as porcentaje_descuento
+  ,ROUND((det_fact.cantidad * l.precio_venta_unidad) *
+         (SELECT 1 + (porcentaje / 100) FROM impuesto WHERE id_impuesto =  (SELECT FN_Obtener_Impuesto(det_fact.id_lote, f.fecha_hora))) *
+         (100 - COALESCE((SELECT porcentaje FROM descuento WHERE id_descuento = det_fact.id_descuento), 0)) / 100 , 2) as precio_total
+  ,ROUND((det_fact.cantidad * l.precio_venta_unidad) *
+         (COALESCE((SELECT porcentaje FROM descuento WHERE id_descuento = det_fact.id_descuento), 0)) / 100 , 2) as descuento
 FROM detalle_factura det_fact
 INNER JOIN factura f
   ON det_fact.id_factura = f.id_factura

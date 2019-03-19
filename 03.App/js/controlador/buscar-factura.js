@@ -91,8 +91,8 @@ function funcionBuscar(id){
           "<td>" + item.nombre_producto + "</td>"+
           "<td>" + "L. " + formatMoney(item.precio_unitario,2,'.', ',') + "</td>"+
           "<td>" + "L. " + formatMoney(item.sub_total,2,'.', ',') + "</td>"+
+          "<td>" + "L. " + formatMoney(item.descuento, 2 ,'.', ',') + " (" + item.porcentaje_descuento + "%)" + "</td>"+
           "<td>" + "L. " + formatMoney(item.impuesto,2,'.', ',') + " (" + item.porcentaje_impuesto + "%)</td>"+ 
-          "<td>" + 0 + "</td>"+
           "<td>" + "L. " + formatMoney(item.precio_total,2,'.', ',') + "</td>"+
         "</tr>";
         $("#detalle-factura").append(cd);
