@@ -128,6 +128,18 @@
             </div>
           </div>
 
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 texto">
+            <label for="div-sub-total">Sub-Total:</label>
+            <div id="div-sub-total" class="alert alert-success nuevo-alert" role="alert">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 texto">
+            <label for="div-total">Total:</label>
+            <div id="div-total" class="alert alert-success nuevo-alert" role="alert">
+            </div>
+          </div>
+
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
             </div>

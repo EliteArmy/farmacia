@@ -144,6 +144,35 @@ function funcionAgregarDetalle(id_lote){
     $('#table-info').DataTable().clear();
     $('#table-info').DataTable().rows.add(response.data);
     $('#table-info').DataTable().draw();
+
+    $("#div-sub-total").html(response.data[0].subTotalFactura);
+    $("#div-total").html(response.data[0].totalFactura);
+
+    if (response.data[0].error == 0) {
+
+      /*
+      $("#div-exito").html(response.data[0].mensaje);
+      $("#div-exito").removeClass("d-none");
+  
+      $("#div-exito").hide(8000, function(){
+        $('#div-exito').addClass("d-none");
+        $("#div-exito").show();
+        $("#div-exito").html("");
+      });*/
+    } else {
+      //$("#div-sub-total").html("");
+      //$("#div-total").html("");
+      /*
+      $("#div-error").html(response.data[0].mensaje);
+      $("#div-error").removeClass("d-none");
+  
+      $("#div-error").hide(8000, function(){
+        $('#div-error').show();
+        $('#div-error').addClass("d-none");
+        $("#div-error").html("");
+      });*/
+    }
+
   });
 }
 
@@ -171,8 +200,11 @@ function borrarProducto(id_temporal){
     $('#table-info').DataTable().rows.add(response.data);
     $('#table-info').DataTable().draw();
 
-    if (response.data.error == 0) {
-      $("#div-exito").html(response.data.mensaje);
+    if (response.data[0].error == 0) {
+      $("#div-sub-total").html(response.data[0].subTotalFactura);
+      $("#div-total").html(response.data[0].totalFactura);
+
+      $("#div-exito").html(response.data[0].mensaje);
       $("#div-exito").removeClass("d-none");
   
       $("#div-exito").hide(8000, function(){
@@ -181,7 +213,10 @@ function borrarProducto(id_temporal){
         $("#div-exito").html("");
       });
     } else {
-      $("#div-error").html(response.data.mensaje);
+      $("#div-sub-total").html("");
+      $("#div-total").html("");
+
+      $("#div-error").html(response.data[0].mensaje);
       $("#div-error").removeClass("d-none");
   
       $("#div-error").hide(8000, function(){
@@ -218,8 +253,11 @@ function cerrarFactura(){
     console.log(response.data);
 
     $('#table-info').DataTable().clear();
-    //$('#table-info').DataTable().rows.add(response.data);
+    $('#table-info').DataTable().rows.add(response.data);
     $('#table-info').DataTable().draw();
+
+    $("#div-sub-total").html("");
+    $("#div-total").html("");
 
     if (response.data[0].error == 0) {
       $("#div-exito").html(response.data[0].mensaje);
@@ -243,45 +281,6 @@ function cerrarFactura(){
 
   });
 }
-
-function placeholder(){
-  var codigoBarra = $("#codigo-producto").val();
-  console.log(codigoBarra);
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://farma/services/producto.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "leer-lote-codigo",
-      "codigo_barra": codigoBarra
-    }
-  }
-
-  $.ajax(settings).done(function (response) {
-    console.log(response.data);
-  
-    var datos = [];
-    
-    for (var i=0; i < response.data.length; i++){
-      if (document.getElementById('cant'+[i+1]) > 0 && document.getElementById('cant'+[i+1]) != ""){
-        datos = response.data[i];
-        dataSet.push([datos.cantidad, datos.lote, datos.precio_venta_unidad]);
-      }
-    }
-      
-    $('#table-info').DataTable().clear();
-    $('#table-info').DataTable().rows.add(dataSet);
-    $('#table-info').DataTable().draw();
-
-  });
-}
-
 
 // ======= Guardar una Factura en PDF =======
 // ======= *** SIN TERMINAR **** =======
