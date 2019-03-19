@@ -124,8 +124,6 @@
               <select id="slc-tipo" class="selectpicker form-control" title="Tipo de Producto" data-style="btn-primary">
                 <option value="P">Producto</option>
                 <option value="M">Medicamento</option>
-                <!--<option onclick="showMedicamento(P)" value="P">Producto</option>
-                <option onclick="showMedicamento(M)" value="M">Medicamento</option>-->
               </select>
             </div>
 
