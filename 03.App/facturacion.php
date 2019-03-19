@@ -128,7 +128,14 @@
             </div>
           </div>
 
-          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
+            </div>
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
+            </div>
+          </div>
+
+          <div class="col-11 col-sm-12 col-md-12 col-lg-12 mt-2">
             <table id="table-info" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->
             </table>

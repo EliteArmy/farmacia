@@ -22,7 +22,11 @@ class Factura {
 		$idEmpleado = null,
 		$idCliente = null,
 		$idFormaPago = null,
-		$idFarmacia = null
+    $idFarmacia = null,
+    $fechaInicio = null,
+    $fechaFin = null,
+    $idLote = null,
+    $cantidad = null
 	){
 		$this->idFactura = $idFactura;
 		$this->fechaHora = $fechaHora;
@@ -31,7 +35,11 @@ class Factura {
 		$this->idEmpleado = $idEmpleado;
 		$this->idCliente = $idCliente;
 		$this->idFormaPago = $idFormaPago;
-		$this->idFarmacia = $idFarmacia;
+    $this->idFarmacia = $idFarmacia;
+    $this->$fechaInicio = $fechaInicio;
+    $this->$fechaFin = $fechaFin;
+    $this->$idLote = $idLote;
+    $this->$cantidad = $cantidad;
 	}
 
 	public function __toString(){
@@ -211,14 +219,13 @@ class Factura {
   }
 
   public function cerrarDetalleFactura($conexion){
-    $sql = 'SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
+    $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
     $valores = [
 			$this->getIdEmpleado(),
 			$this->getIdCliente(),
       $this->getIdFarmacia(),
       $this->getIdFormaPago()
     ];
-    
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
   }
