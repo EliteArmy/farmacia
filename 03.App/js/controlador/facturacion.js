@@ -173,6 +173,32 @@ function borrarProducto(id_temporal){
   });
 }
 
+// ======= Cerrar la Factura actual =======
+function borrarProducto(id_temporal){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/factura.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "eliminar-detalle-factura",
+      "id_temporal": id_temporal
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+
+    $('#table-info').DataTable().clear();
+    $('#table-info').DataTable().rows.add(response.data);
+    $('#table-info').DataTable().draw();
+  });
+}
+
 function placeholder(){
   var codigoBarra = $("#codigo-producto").val();
   console.log(codigoBarra);

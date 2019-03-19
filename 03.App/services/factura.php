@@ -56,8 +56,13 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'cerrar-factura':
-      /*Muchas cosas wuuuu */
+    /* Falta Editar Este */
+    case 'cerrar-detalle-factura':
+      
+      $fact = new Factura();
+
+      $res['data'] = $fact->cerrarDetalleFactura($conexion);
+      echo json_encode($res);
     break;
 
     case 'buscar-cliente':

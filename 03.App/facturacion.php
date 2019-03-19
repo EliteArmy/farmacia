@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
 
-  <!--<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>-->
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
   
 </head>
 
@@ -98,11 +98,17 @@
             </div>
           </div>
 
+          <div class="col-12 col-sm-6 col-lg-4 texto">
+            <button type="button" id="crear-factura" class="btn btn-primary">
+              Guardar Factura como PDF
+            </button>
+          </div>
+
         </div>
 
         <div class="row">
           <div class="col-11 col-sm-6 col-md-6 col-lg-6">
-            <button type="button" id="guardar-Factura" class="btn btn-primary">
+            <button type="button" id="guardar-factura" class="btn btn-primary">
             <!--
             ======= Guardar una Factura en PDF =======
             ======= *** SIN TERMINAR **** =======

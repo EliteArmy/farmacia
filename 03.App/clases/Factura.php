@@ -209,5 +209,15 @@ class Factura {
 		return $rows;
   }
 
+  /* Falta Editar Este */
+  public function cerrarDetalleFactura($conexion){
+		$sql = 'CALL SP_Eliminar_Detalle_Factura(%d, @mensaje, @error)';
+    $valores = [
+			$this->getIdFactura()
+    ];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
+  }
+
 }
 ?>
