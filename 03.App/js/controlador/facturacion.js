@@ -20,9 +20,15 @@ $(document).ready(function() {
     responsive: true,
     data: "",
     columns: [
-      { data: "", title: "Unidad" },
-      { data: "", title: "Descripción" },
-      { data: "", title: "Valor" },
+      { data: "cantidad", title: "Unidad" },
+      { data: "descripcion", title: "Descripción" },
+      { data: "sub_total", title: "Valor" },
+      { data: "total", title: "Total" },
+      { data: "", title: "Opción",
+        render: function ( data, type, row, meta ) {
+          return '<button type="button" onclick="borrarProducto(\''+row.id_temporal+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        }  
+      },
     ]
   });
 
@@ -42,13 +48,13 @@ $(document).ready(function() {
       { data: "porcentaje_descuento", title: "Descuento (%)" },
       { data: "precio_venta_unidad", title: "Pre. Final" },
       { data: "", title: "Opción", 
-      render: function ( data, type, row, meta ) {
-        return '<input type="number" id="txt-cantidad'+ row.id_lote +'"  class="form-control" value="1" min="1" max = "'+ row.existencia +'" />'+
-               '<button type="button" onclick="funcionAgregarDetalle('+row.id_lote+')" class="btn btn-primary btn-sm btn-block" data-dismiss="modal"><i class="fas fa-cart-plus"></i></button>'+
-               '<input type="hidden" id="txt-existencia'+ row.id_lote +'" value = "'+row.existencia+'" />'
-        ;
-              }
-      }]
+        render: function ( data, type, row, meta ) {
+          return '<input type="number" id="txt-cantidad'+ row.id_lote +'" class="form-control" value="1" min="1" max = "'+ row.existencia +'"/>'+
+                 '<button type="button" onclick="funcionAgregarDetalle('+row.id_lote+')" class="btn btn-primary btn-sm btn-block" data-dismiss="modal"><i class="fas fa-cart-plus"></i></button>'+
+                 '<input type="hidden" id="txt-existencia'+ row.id_lote +'" value = "'+row.existencia+'"/>';
+        }
+      }
+    ]
   });
 
 });
@@ -109,51 +115,67 @@ function BuscarProducto(){
   });
 }
 
-function placeholder(){
-  var codigoBarra = $("#codigo-producto").val();
-  console.log(codigoBarra);
-
+// ======= Agregar un producto a la Factura =======
+function funcionAgregarDetalle(id_lote){
+  //console.log("Lote:" + id_lote);
+  //console.log("Empleado:" + $("#id-empleado").val());
+  //console.log("Cantidad:" + $("#txt-cantidad"+id_lote).val());
+  
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "http://farma/services/factura.php",
     "method": "POST",
-    "dataType": "json",
+    "dataType": "JSON",
     "headers": {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "leer-lote-codigo",
-      "codigo_barra": codigoBarra
+      "accion": "detalle-factura",
+      "id_empleado": $("#id-empleado").val(),
+      "cantidad": $("#txt-cantidad"+id_lote).val(),
+      "id_lote": id_lote
     }
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
-  
-    var datos = [];
-    
-    for (var i=0; i < response.data.length; i++){
-      if (document.getElementById('cant'+[i+1]) > 0 && document.getElementById('cant'+[i+1]) != ""){
-        datos = response.data[i];
-        dataSet.push([datos.cantidad, datos.lote, datos.precio_venta_unidad]);
-      }
-    }
-      
-    $('#table-info').DataTable().clear();
-    $('#table-info').DataTable().rows.add(dataSet);
-    $('#table-info').DataTable().draw();
+    console.log(response);
 
+    $('#table-info').DataTable().clear();
+    $('#table-info').DataTable().rows.add(response.data);
+    $('#table-info').DataTable().draw();
+  });
+}
+
+// ======= Borrar un producto a la Factura =======
+function borrarProducto(id_temporal){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/factura.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "eliminar-detalle-factura",
+      "id_temporal": id_temporal
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+
+    $('#table-info').DataTable().clear();
+    $('#table-info').DataTable().rows.add(response.data);
+    $('#table-info').DataTable().draw();
   });
 }
 
 function placeholder(){
   var codigoBarra = $("#codigo-producto").val();
   console.log(codigoBarra);
-
-  Id_lote
-  Id_empleado
-  cantidad
 
   var settings = {
     "async": true,
@@ -221,26 +243,3 @@ $("#guardar-Factura").click(function(){
 
 });
 
-
-
-function funcionAgregarDetalle(id_lote){
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://farma/services/factura.php",
-    "method": "POST",
-    "dataType": "JSON",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "detalle-factura",
-      "id_empleado": $("#id-empleado").val(),
-      "cantidad": $("#txt-cantidad"+id_lote).val(),
-      "id_lote": id_lote
-    }
-  }
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
-}

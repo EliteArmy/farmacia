@@ -1,5 +1,5 @@
 <?php
-class Factura{
+class Factura {
 	private $idFactura;
 	private $fechaHora;
 	private $costeTotal;
@@ -129,15 +129,7 @@ class Factura{
 	public function setIdLote($idLote){
 		$this->idLote = $idLote;
 	}
-
-
-	public static function leer($conexion){
-		$sql = '
-			SELECT * FROM VistaFacturas
-		';
-		$rows = $conexion->query($sql);
-		return $rows;
-	}
+  
 	public function leerPorFecha($conexion){
 		$sql = "SELECT * FROM VistaFacturas
 		WHERE DATE(fecha_factura) >= DATE('%s')
@@ -166,20 +158,18 @@ class Factura{
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
 	}
+  
+  public static function leer($conexion){
+		$sql = '
+			SELECT * FROM VistaFacturas
+		';
+		$rows = $conexion->query($sql);
+		return $rows;
+  }
 
 	public function crear($conexion){
-	}
-
-	public function detalleFactura($conexion){
-		$sql = 'CALL SP_Insertar_Detalle_Factura(%d, %d, %d)';
-		$valores =[
-			$this->getIdEmpleado(),
-			$this->getCantidad(),
-			$this->getIdLote()
-		];
-		$rows = $conexion->query($sql, $valores);
-		return $rows;
-	}
+  
+  }
 	public function actualizar($conexion){
 	}
 	public function borrar($conexion){
@@ -197,5 +187,26 @@ class Factura{
 		else return null;
   }
 
+  public function detalleFactura($conexion){
+		$sql = 'CALL SP_Insertar_Detalle_Factura(%d, %d, %d, @mensaje, @error)';
+		$valores = [
+			$this->getIdEmpleado(),
+			$this->getCantidad(),
+			$this->getIdLote()
+		];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
+  }
+
+  public function eliminarDetalleFactura($conexion){
+		$sql = 'CALL SP_Eliminar_Detalle_Factura(%d, @mensaje, @error)';
+    $valores =[
+			$this->getIdFactura()
+    ];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
+  }
+
+  
 }
 ?>

@@ -27,7 +27,7 @@ if(isset($_POST['accion'])){
       $fact = new Factura();
       $fact->setFechaInicio($fechaInicio);
       $fact->setFechaFin($fechaFin);
-      $res['data']  = $fact->leerPorFecha($conexion);
+      $res['data'] = $fact->leerPorFecha($conexion);
       echo json_encode($res);
     break;
 
@@ -35,15 +35,28 @@ if(isset($_POST['accion'])){
       $idEmpleado = validarPOST('id_empleado');
       $cantidad = validarPOST('cantidad');
       $idLote = validarPOST('id_lote');
+      
       $fact = new Factura();
+      
       $fact->setIdEmpleado($idEmpleado);
       $fact->setCantidad($cantidad);
       $fact->setIdLote($idLote);
+      
       $res['data'] = $fact->detalleFactura($conexion);
       echo json_encode($res);
     break;
 
+    case 'eliminar-detalle-factura':
+      $idTemporal = validarPOST('id_temporal');
+      $fact = new Factura();
+      $fact->setIdFactura($idTemporal);
+      
+      $res['data'] = $fact->eliminarDetalleFactura($conexion);
+      echo json_encode($res);
+    break;
+
     case 'cerrar-factura':
+      /*Muchas cosas wuuuu */
     break;
 
     case 'buscar-cliente':
@@ -70,8 +83,10 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
   }
+
   $conexion->cerrar();
   $conexion = null;
+
 } else {
   $res["data"]['mensaje']='Accion no especificada';
   $res["data"]['resultado']=false;
