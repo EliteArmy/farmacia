@@ -142,7 +142,7 @@ SELECT
   ,(SELECT COUNT(*) FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as tiene_descuento
   ,(SELECT desc_disp.id_descuento FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as id_descuento
   ,(SELECT descripcion FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as descripcion_descuento
-  ,(SELECT porcentaje FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as porcentaje_descuento
+  ,COALESCE((SELECT porcentaje FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote), 0) as porcentaje_descuento
   ,(SELECT fecha_inicio FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as fecha_inicio_descuento
   ,(SELECT fecha_fin FROM DescuentosDisponibles desc_disp WHERE desc_disp.id_lote=l.id_lote) as fecha_fin_descuento
 FROM lote l
