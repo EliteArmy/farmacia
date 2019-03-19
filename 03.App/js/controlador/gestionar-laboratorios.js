@@ -1,3 +1,17 @@
+let formaLab = new Forma('agregar-laboratorio');
+formaLab.addInput('txt-nombre-laboratorio', /^.+$/, true);
+formaLab.addInput('txt-direccion', /^.+$/, true);
+formaLab.addInput('txt-telefono-lab');
+
+
+formaLab.setButtonEnvio('guard-producto');
+formaLab.setButtonUpdate('act-lab');
+Forma.addTrigger(formaLab);
+
+
+
+
+
 $(document).ready(function() {
 
   $('#data-table-lab').DataTable({
@@ -60,6 +74,7 @@ $("#guard-laboratorio").click(function(){
   
   $.ajax(settings).done(function (response) {
     imprimirMensaje(response);
+    formaLab.validateAll()
   });
 
  });
@@ -153,7 +168,7 @@ function funcionBuscarLab(nomb){
   });
 }
 
-//ACtualizar Categoria
+//ACtualizar Laboratorios
 $("#act-lab").click(function(){
   console.log("aqui dentro");
 
