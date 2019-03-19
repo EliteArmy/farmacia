@@ -173,5 +173,14 @@ DELETE FROM detalle_factura_temp WHERE id_empleado=1;
 
 
 
+KILL '426545';
+KILL '426561';
+KILL '426562';
+KILL '426621';
+KILL '426656';
+KILL '426670';
+KILL '426671';
+KILL '426952';
 
+show processlist
 
