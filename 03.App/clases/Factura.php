@@ -10,8 +10,9 @@ class Factura {
 	private $idFormaPago;
 	private $idFarmacia;
 	private $fechaInicio;
-  private $fechaFin;
-  private $idLote;
+  	private $fechaFin;
+  	private $idLote;
+  	private $cantidad;
 
 	public function __construct(
 		$idFactura = null,
