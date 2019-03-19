@@ -1,3 +1,5 @@
+$(".btn.btn-info").hide();
+
 let formaDes = new Forma('agregar-descuento');
 formaDes.addInput('txt-descripcion', /^.+$/, true);
 formaDes.addInput('txt-porcentaje-desc');
@@ -49,7 +51,7 @@ $(document).ready(function() {
           "content-type": "application/x-www-form-urlencoded"
         },
         "data": {
-          "accion": "leer-descuento"
+          "accion": "leer-descuento-todo"
         }
       },
       language: {
@@ -89,7 +91,7 @@ $(document).ready(function() {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "leer-categoria"
+        "accion": "leer-categoria-todo"
       }
     },
     language: {
@@ -126,7 +128,7 @@ $(document).ready(function() {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "leer-impuesto"
+        "accion": "leer-impuesto-todo"
       }
     },
     language: {
@@ -167,7 +169,7 @@ $(document).ready(function() {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "leer-presentacion"
+        "accion": "leer-presentacion-todo"
       }
     },
     language: {
