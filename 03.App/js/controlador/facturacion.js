@@ -253,7 +253,7 @@ function cerrarFactura(){
     console.log(response.data);
 
     $('#table-info').DataTable().clear();
-    $('#table-info').DataTable().rows.add(response.data);
+    //$('#table-info').DataTable().rows.add(response.data);
     $('#table-info').DataTable().draw();
 
     $("#div-sub-total").html("");
