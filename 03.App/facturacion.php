@@ -47,6 +47,7 @@
         <div id="subtitulo-factura" class="text-left">
           <h4>Le Atendio: <?php echo $_SESSION["nombre_completo"];?></h4>
           <h4 id="cliente">Consumidor Final:</h4>
+          <input type="hidden" id="id-cliente" value="">
           <h4 class="text-right" id="fecha">Fecha:</h4>
           <h4 class="text-right" id="hora">Hora:</h4>
         </div>
@@ -98,7 +99,7 @@
 
           <div class="form-group col-12 col-sm-6 col-lg-4 texto">
             <label for="crear-factura">Cerrar Factura:</label>
-            <button type="button" id="crear-factura" class="form-control btn btn-primary">
+            <button type="button" id="crear-factura" onclick="cerrarFactura()" class="form-control btn btn-primary">
               Cerrar Factura
             </button>
           </div>

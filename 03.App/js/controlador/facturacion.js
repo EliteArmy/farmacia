@@ -173,8 +173,8 @@ function borrarProducto(id_temporal){
   });
 }
 
-// ======= Cerrar la Factura actual =======
-function borrarProducto(id_temporal){
+// ======= Cerrar la Factura actual para entregar al Cliente =======
+function cerrarFactura(){
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -185,8 +185,11 @@ function borrarProducto(id_temporal){
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "eliminar-detalle-factura",
-      "id_temporal": id_temporal
+      "accion": "cerrar-detalle-factura",
+      "id_empleado": $("#id-empleado").val(),
+      "id_cliente": "",
+      "id_farmacia": "",
+      "id_forma_pago": ""
     }
   }
 
@@ -194,8 +197,8 @@ function borrarProducto(id_temporal){
     console.log(response);
 
     $('#table-info').DataTable().clear();
-    $('#table-info').DataTable().rows.add(response.data);
-    $('#table-info').DataTable().draw();
+    //$('#table-info').DataTable().rows.add(response.data);
+    //$('#table-info').DataTable().draw();
   });
 }
 

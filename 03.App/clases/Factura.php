@@ -10,9 +10,9 @@ class Factura {
 	private $idFormaPago;
 	private $idFarmacia;
 	private $fechaInicio;
-  	private $fechaFin;
-  	private $idLote;
-  	private $cantidad;
+  private $fechaFin;
+  private $idLote;
+  private $cantidad;
 
 	public function __construct(
 		$idFactura = null,
@@ -210,12 +210,15 @@ class Factura {
 		return $rows;
   }
 
-  /* Falta Editar Este */
   public function cerrarDetalleFactura($conexion){
-		$sql = 'CALL SP_Eliminar_Detalle_Factura(%d, @mensaje, @error)';
+    $sql = 'SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
     $valores = [
-			$this->getIdFactura()
+			$this->getIdEmpleado(),
+			$this->getIdCliente(),
+      $this->getIdFarmacia(),
+      $this->getIdFormaPago()
     ];
+    
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
   }
