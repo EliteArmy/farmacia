@@ -20,15 +20,18 @@ SP:BEGIN
     DECLARE idImpuesto INT;
     DECLARE porcentajeDescuento INT;
     DECLARE porcentajeImpuesto INT;
-    DECLARE precioVentaUnidad FLOAT;
-    DECLARE subTotalRow FLOAT;
-    DECLARE totalRow FLOAT;
-    DECLARE totalFactura FLOAT;
-    DECLARE subTotalFactura FLOAT;
-    DECLARE totalImpuestoFactura FLOAT;
-    DECLARE totalDescuentoFactura FLOAT;
-    DECLARE totalDescuentoRow FLOAT;
-    DECLARE totalImpuestoRow FLOAT;
+    DECLARE precioVentaUnidad DOUBLE;
+    DECLARE subTotalRow DOUBLE;
+    DECLARE totalRow DOUBLE;
+    DECLARE totalFactura DOUBLE;
+    DECLARE subTotalFactura DOUBLE;
+    DECLARE totalImpuestoFactura DOUBLE;
+    DECLARE totalDescuentoFactura DOUBLE;
+    DECLARE totalDescuentoRow DOUBLE;
+    DECLARE totalImpuestoRow DOUBLE;
+    DECLARE codigoBarraProducto VARCHAR(45);
+    DECLARE descripcionProducto VARCHAR(100);
+
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
@@ -77,6 +80,11 @@ SP:BEGIN
     SELECT porcentaje INTO porcentajeImpuesto FROM impuesto WHERE id_impuesto=idImpuesto AND estado='A';
     SELECT precio_venta_unidad INTO precioVentaUnidad FROM lote WHERE id_lote=pI_id_lote AND estado='A';
 
+    SELECT p.codigo_barra,p.nombre INTO codigoBarraProducto, descripcionProducto
+    FROM lote l
+    INNER JOIN producto p on l.id_producto = p.id_producto
+    WHERE id_lote=pI_id_lote;
+
     IF porcentajeDescuento IS NULL THEN
     SET porcentajeDescuento=0;
     END IF;
@@ -101,28 +109,35 @@ SP:BEGIN
     SET totalImpuestoRow=subTotalRow*(porcentajeImpuesto/100);
     SET totalRow=subTotalRow-totalDescuentoRow + totalImpuestoRow;
 
+    SET subTotalRow=ROUND(subTotalRow,2);
+    SET totalDescuentoRow=ROUND(totalDescuentoRow,2);
+    SET totalImpuestoRow=ROUND(totalImpuestoRow,2);
+    SET totalRow=ROUND(totalRow,2);
+
     --  -- _______________SQL Statements_______________
     INSERT INTO detalle_factura_temp(
                             id_empleado,
-                            cantidad,
                             id_lote,
                             id_descuento,
                             id_impuesto,
+                            codigo_barra,
+                            cantidad,
+                            descripcion,
                             total_descuento,
                             total_impuesto,
                             sub_total,
-                            total,
-                            estado)
+                            total)
                     VALUES (pI_id_empleado,
-                            pI_cantidad,
                             pI_id_lote,
                             idDescuento,
                             idImpuesto,
+                            codigoBarraProducto,
+                            pI_cantidad,
+                            descripcionProducto,
                             totalDescuentoRow,
                             totalImpuestoRow,
                             subTotalRow,
-                            totalRow,
-                            'A');
+                            totalRow);
     COMMIT;
 
     UPDATE lote SET existencia=(existencia-pI_cantidad) WHERE id_lote=pI_id_lote;
@@ -132,6 +147,10 @@ SP:BEGIN
     SELECT SUM(total_impuesto) INTO totalImpuestoFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
     SELECT SUM(total_descuento) INTO totalDescuentoFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
 
+    SET totalFactura=ROUND(totalFactura,2);
+    SET subTotalFactura=ROUND(subTotalFactura,2);
+    SET totalImpuestoFactura=ROUND(totalImpuestoFactura,2);
+    SET totalDescuentoFactura=ROUND(totalDescuentoFactura,2);
 
     SET mensaje= 'Inserción exitosa';
     SET error=FALSE;
@@ -151,3 +170,8 @@ SELECT * FROM lote WHERE id_lote=1;
 select * from detalle_factura_temp
 select *,NOW() from descuento
 DELETE FROM detalle_factura_temp WHERE id_empleado=1;
+
+
+
+
+
