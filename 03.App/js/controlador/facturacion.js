@@ -1,46 +1,6 @@
 $(document).ready(function() {
-
-  $('#table-info').DataTable({
-    pageLength: 20,
-    searching: true,
-    ordering: true,
-    paging: true,
-    responsive: true,
-    data: dataSet,
-    columns: [
-      { title: "Unidad" },
-      { title: "Descripción" },
-      { title: "Valor" },
-      { title: "Opción", 
-      render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcion('+ 1 +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-                '<button type="button" onclick="funcionBorrar('+ 2 +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
-      }]
-  });
-/*
-  $('#table-info-producto').DataTable({
-    pageLength: 10,
-    searching: true,
-    ordering: true,
-    paging: true,
-    responsive: true,
-    columns: [
-      { data: "lote", title: "Lote" },
-      { data: "existencia", title: "Cant." },
-      { data: "precio_costo_unidad", title: "Pre. Unitario" },
-      { data: "porcentaje_impuesto", title: "Impuesto (%)" },
-      { data: "porcentaje_descuento", title: "Descuento (%)" },
-      { data: "precio_venta_unidad", title: "Pre. Final" },
-      { data: "precio_venta_unidad", title: "Valor" },
-      { data: "", title: "Opción", 
-      render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcion('+ 1 +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-                '<button type="button" onclick="funcionBorrar('+ 2 +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
-      }]
-  });
-
-  //$('#table-info-producto').DataTable();
-*/
+  
+  // ======= Hora y Fecha de la factura =======
   n =  new Date();
   y = n.getFullYear();
   me = n.getMonth() + 1;
@@ -50,13 +10,47 @@ $(document).ready(function() {
 
   document.getElementById("fecha").innerHTML = "Fecha: " + d + "/" + me + "/" + y;
   document.getElementById("hora").innerHTML = "Hora: " + h + ":" + min;
+
+  // ======= Creación de Factura =======
+  $('#table-info').DataTable({
+    pageLength: 50,
+    searching: true,
+    ordering: true,
+    paging: true,
+    responsive: true,
+    data: "",
+    columns: [
+      { data: "", title: "Unidad" },
+      { data: "", title: "Descripción" },
+      { data: "", title: "Valor" },
+    ]
+  });
+
+  // ======= Buscar diferentes lotes de un Producto =======
+  $('#table-info-producto').DataTable({
+    pageLength: 10,
+    searching: true,
+    ordering: true,
+    paging: true,
+    responsive: true,
+    data: "",
+    columns: [
+      { data: "lote", title: "Lote" },
+      { data: "existencia", title: "Cant." },
+      { data: "precio_costo_unidad", title: "Pre. Unitario" },
+      { data: "porcentaje_impuesto", title: "Impuesto (%)" },
+      { data: "porcentaje_descuento", title: "Descuento (%)" },
+      { data: "precio_venta_unidad", title: "Pre. Final" },
+      { data: "", title: "Opción", 
+      render: function ( data, type, row, meta ) {
+        return '<button type="button" onclick="funcion()" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+                '<button type="button" onclick="funcionBorrar()" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
+      }]
+  });
+
 });
 
-var dataSet = [];
-var dataSetProducto = [];
-var contadorLotes;
-
-// ======= Buscar un Cliente =======
+// ======= Buscar un Cliente para la Factura =======
 function buscarCliente(){
   var identidad = $("#identidad-cliente").val();
   
@@ -77,92 +71,15 @@ function buscarCliente(){
 
   $.ajax(settings).done(function (response) {
     console.log(response.data);
-    $("#cliente").html(
-      `Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}`
-    );
+    $("#cliente").html(`Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}`);
   });
 }
 
 // ======= Buscar un Producto =======
 function BuscarProducto(){
-  /*
+
   var codigoBarra = $("#codigo-producto").val();
-  console.log(codigoBarra);
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://farma/services/producto.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "leer-lote-codigo",
-      "codigo_barra": codigoBarra
-    }
-  }
-
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-    //$("#agregarproducto").modal('show');
-    var datos = [];
-    var fila = {};
-    
-    for (var i=0; i < response.data.length; i++){  
-      datos = response.data[i];
-      //console.log("for filas:", fila);
-      fila.push(
-        "lote:"+datos.lote+
-        "existencia:"+datos.existencia+
-        "precio_costo_unidad:"+datos.precio_costo_unidad+
-        "porcentaje_impuesto:"+datos.porcentaje_impuesto+
-        "porcentaje_descuento:"+datos.porcentaje_descuento+
-        "precio_venta_unidad:"+datos.precio_venta_unidad);
-    }
-    console.log("filas:", fila);*/
-/*
-    $('#table-info-producto').DataTable().clear();
-    //$('#table-info-producto').DataTable().rows.add(response);
-    //$('#table-info-producto').DataTable().draw();
-    
-    $('#table-info-producto').DataTable({
-      pageLength: 10,
-      searching: true,
-      ordering: true,
-      paging: true,
-      responsive: true,
-      data: response.data,
-      columns: [
-        { data: "lote", title: "Lote" },
-        { data: "existencia", title: "Cant." },
-        { data: "precio_costo_unidad", title: "Pre. Unitario" },
-        { data: "porcentaje_impuesto", title: "Impuesto (%)" },
-        { data: "porcentaje_descuento", title: "Descuento (%)" },
-        { data: "precio_venta_unidad", title: "Pre. Final" },
-        { data: "precio_venta_unidad", title: "Valor" },
-        { data: "", title: "Opción", 
-        render: function ( data, type, row, meta ) {
-          return '<button type="button" onclick="funcion('+ 1 +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-                  '<button type="button" onclick="funcionBorrar('+ 2 +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';}
-        }]
-    }).rows.add(response.data).draw();
-    
-    $('#table-info-producto').DataTable().rows.add().draw();
-
-
-    //$('#table-info').DataTable().rows.add(dataSet);
-    $('#table-info').DataTable().draw();
-    */
-  /*});*/
-}
-
-// ======= Buscar un Producto =======
-function BuscarProducto2(){
-  
-  var codigoBarra = $("#codigo-producto").val();
-  //console.log(codigoBarra);
+  console.log("codigo:" + codigoBarra);
 
   var settings = {
     "async": true,
@@ -183,75 +100,16 @@ function BuscarProducto2(){
     console.log(response.data);
     $("#agregarproducto").modal('show');
     
-    var datos = [];
-    contadorLotes = 0;
-    document.getElementById('table-body').innerHTML = '';
-
-    for (var i=0; i < response.data.length; i++){
-      contadorLotes += 1
-      datos = response.data[i];
-      
-      document.getElementById('table-body').innerHTML += 
-        `<tr>
-        <th id="lote${i+1}" scope="row">${datos.lote}</th>
-        <td>${datos.existencia}</td>
-        <td>L. ${datos.precio_costo_unidad}</td>
-        <td>${datos.porcentaje_descuento}</td>
-        <td id="precio${i+1}">L. ${datos.precio_venta_unidad}</td>
-        <td>
-          <input type="text" placeholder="Cant" id="cant${i+1}">
-        </td>
-      </tr>`;
-    }
-    //console.log("contador:" + contadorLotes);
+    $('#table-info-producto').DataTable().clear();
+    $('#table-info-producto').DataTable().rows.add(response.data);
+    $('#table-info-producto').DataTable().draw();
   });
 }
 
-// ======= CRUD Lote: Read =======
-/*
-$('#table-info').DataTable({
-  pageLength: 20,
-  searching: true,
-  ordering: true,
-  paging: true,
-  responsive: true,
-  ajax: {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://farma/services/placeholder.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "nueva-factura"
-    }
-  },
-  language: {
-    oPaginate: {
-        sNext: '<i class="fas fa-forward"></i>',
-        sPrevious: '<i class="fas fa-backward"></i>'
-    }
-  },
-  columns: [
-    { data: "", title: "Unidad"},
-    { data: "", title: "Descripción"},
-    { data: "", title: "Valor"},
-    { data: null, title: "Opción",
-    render: function ( data, type, row, meta ) {
-      return '<button type="button" onclick="funcion('+ 1 +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-              '<button type="button" onclick="funcionBorrar('+ 2 +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
-    }}
-  ]
-});
-*/
-
-
-function agregarProducto(){
+function placeholder(){
   var codigoBarra = $("#codigo-producto").val();
   console.log(codigoBarra);
-  
+
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -279,17 +137,58 @@ function agregarProducto(){
       }
     }
       
-    //$('#table-info').DataTable().clear();
+    $('#table-info').DataTable().clear();
     $('#table-info').DataTable().rows.add(dataSet);
     $('#table-info').DataTable().draw();
-
-    //table.buttons().container().appendTo( $('#botones', table.table().container()));
-    //$('#table-info').DataTable().reload();
 
   });
 }
 
-// ======= Guardar una Factura =======
+function placeholder(){
+  var codigoBarra = $("#codigo-producto").val();
+  console.log(codigoBarra);
+
+  Id_lote
+  Id_empleado
+  cantidad
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-lote-codigo",
+      "codigo_barra": codigoBarra
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+  
+    var datos = [];
+    
+    for (var i=0; i < response.data.length; i++){
+      if (document.getElementById('cant'+[i+1]) > 0 && document.getElementById('cant'+[i+1]) != ""){
+        datos = response.data[i];
+        dataSet.push([datos.cantidad, datos.lote, datos.precio_venta_unidad]);
+      }
+    }
+      
+    $('#table-info').DataTable().clear();
+    $('#table-info').DataTable().rows.add(dataSet);
+    $('#table-info').DataTable().draw();
+
+  });
+}
+
+
+// ======= Guardar una Factura en PDF =======
+// ======= *** SIN TERMINAR **** =======
 $("#guardar-Factura").click(function(){
   
   /* 
@@ -318,3 +217,4 @@ $("#guardar-Factura").click(function(){
   doc.save('factura.pdf');
 
 });
+

@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
 
-  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+  <!--<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>-->
   
 </head>
 
@@ -48,7 +48,7 @@
           </h4>
           <h4 id="fecha">Fecha:</h4>
           <h4 id="hora">Hora:</h4>
-          <h4 id="cliente">Cliente:</h4>
+          <h4 id="cliente">Consumidor Final:</h4>
         </div>
 
         <div class="row mt-2 mb-1" id="content">
@@ -64,14 +64,6 @@
           </div>
           <!--
           <div class="col-12 col-sm-6 col-lg-4 texto">
-            <label for="nombre-vendedor">Vendedor:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="nombre-vendedor" placeholder="Nombre del Vendedor">
-            </div>
-          </div>
-          -->
-          <!--
-          <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="teléfono">Teléfono:</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="teléfono" placeholder="Teléfono">
@@ -84,14 +76,7 @@
               <input type="text" class="form-control" id="RTN" placeholder="RTN">
             </div>
           </div>
-          <!--
-          <div class="col-12 col-sm-6 col-lg-4 texto">
-            <label for="fecha">Fecha:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="fecha" placeholder="Fecha">
-            </div>
-          </div>
-          -->
+
           <div id="seleccion-pago" class="form-group col-12 col-sm-6 col-lg-4 texto">
             <label for="slc-pago">Pago:</label>
             <select id="slc-pago" class="selectpicker form-control" title="Forma de Pago" data-style="btn-primary">
@@ -103,10 +88,10 @@
           <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="codigo-producto">Producto:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="codigo-producto" value="7504800172101" oninput="BuscarProducto2()" placeholder="Código barra del Producto">
+              <input type="text" class="form-control" id="codigo-producto" value="7504800172101" oninput="BuscarProducto()" placeholder="Código barra del Producto">
               <div class="input-group-append">
               <!-- Button trigger para el modal -->
-              <button class="btn btn-primary" type="button" onclick="BuscarProducto2()" data-toggle="modal" data-target="#agregarproducto">Buscar</button>
+              <button class="btn btn-primary" type="button" onclick="BuscarProducto()" data-toggle="modal" data-target="#agregarproducto">Buscar</button>
               </div>
             </div>
           </div>
@@ -116,9 +101,12 @@
         <div class="row">
           <div class="col-11 col-sm-6 col-md-6 col-lg-6">
             <button type="button" id="guardar-Factura" class="btn btn-primary">
+            <!--
+            ======= Guardar una Factura en PDF =======
+            ======= *** SIN TERMINAR **** =======
+            -->
               Guardar Factura como PDF
             </button>
-          
           </div>
         </div>
 
@@ -127,9 +115,6 @@
             <div class="text-center">
               <h3>Detalles de la Factura</h3>
             </div>
-          </div>
-
-          <div class="col-11 col-sm-6 col-md-6 col-lg-6">
           </div>
 
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
@@ -152,88 +137,27 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="agregarproducto" tabindex="-1" role="dialog" aria-labelledby="modal-buscar-producto" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                <h5 class="modal-title" id="modal-buscar-producto">Agregar Producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <table id="table-info-producto" class="table table-striped table-bordered w-100">
-                  <thead>
-                    
-                    <tr>
-                      <th>Lote</th>
-                      <th>Cant.</th>
-                      <th>Pre. Unitario</th>
-                      <th>Descuento (%)</th>
-                      <th>Pre. Final</th>
-                      <th>Opción</th>
-                    </tr>
-                  </thead>
-
-                  <tbody id="table-body">
-                    <!--Informacion generada por la Base -->
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>10</td>
-                      <td>L. 100</td>
-                      <td>10</td>
-                      <td>0</td>
-                      <td>L. 200</td>
-                      <td>
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="cantidad-producto1" placeholder="Cant">
-                        </div>
-                        <!--<span class="far fa-edit edit"></span>-->
-                        <!--<span class="far fa-trash-alt trash"></span>-->
-                      </td>
-                    </tr>
-
-                    <!--Informacion generada por la Base -->
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>200</td>
-                      <td>L. 100</td>
-                      <td>10</td>
-                      <td>0</td>
-                      <td>L. 200</td>
-                      <td>
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="cantidad-producto2" placeholder="Cant">
-                        </div>
-                        <!--<span class="far fa-edit edit"></span>-->
-                        <!--<span class="far fa-trash-alt trash"></span>-->
-                      </td>
-                    </tr>
-
-                    <!--Informacion generada por la Base -->
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>300</td>
-                      <td>L. 100</td>
-                      <td>10</td>
-                      <td>0</td>
-                      <td>L. 200</td>
-                      <td>
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="cantidad-producto3" placeholder="Cant">
-                        </div>
-                        <!--<span class="far fa-edit edit"></span>-->
-                        <!--<span class="far fa-trash-alt trash"></span>-->
-                      </td>
-                    </tr>
-                  </tbody>
+                  <!-- Informacion generada -->
                 </table>
 
               </div>
+              <!--
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" onclick="agregarProducto()">Agregar</button>
               </div>
+              -->
             </div>
           </div>
         </div>
