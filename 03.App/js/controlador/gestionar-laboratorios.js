@@ -1,7 +1,7 @@
 let formaLab = new Forma('agregar-laboratorio');
 formaLab.addInput('txt-nombre-laboratorio', /^.+$/, true);
 formaLab.addInput('txt-direccion', /^.+$/, true);
-formaLab.addInput('txt-telefono-lab');
+formaLab.addInput('txt-telefono-lab',/^[1-9][0-9]{3}\-[0-9]{4}$/,true );
 
 
 formaLab.setButtonEnvio('guard-producto');
@@ -68,6 +68,8 @@ $("#guard-laboratorio").click(function(){
     "data": {
       "accion": "crear-laboratorio",
 
+      "direccion": $("#txt-direccion").val(),
+      "telefono_laboratorio": $("#txt-telefono-lab").val(),
       "nombre_laboratorio": $("#txt-nombre-laboratorio").val()
     }
   }
@@ -195,6 +197,7 @@ $("#act-lab").click(function(){
   }
    console.log($("#txt-telefono-lab").val()),
   $.ajax(settings).done(function (response) {
+    formaLab.validateAll()
   imprimirMensaje(response,"-laboratorio");
   });
   

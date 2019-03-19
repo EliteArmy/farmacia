@@ -1,3 +1,24 @@
+let formaDes = new Forma('agregar-descuento');
+formaDes.addInput('txt-descripcion', /^.+$/, true);
+formaDes.addInput('txt-porcentaje-desc');
+formaDes.setButtonEnvio('guard-descuento');
+formaDes.setButtonUpdate('act-des');
+Forma.addTrigger(formaDes);
+
+
+let formaImp = new Forma('agregar-impuesto');
+formaImp.addInput('txt-descripcion-imp', /^.+$/, true);
+formaImp.addInput('in-impuesto');
+formaImp.setButtonEnvio('guard-impuesto');
+formaImp.setButtonUpdate('act-imp');
+Forma.addTrigger(formaImp);
+
+
+
+
+
+
+
 $(document).ready(function() {
 
   // Leer Descuento
@@ -180,6 +201,7 @@ $("#guard-impuesto").click(function(){
     }
     
     $.ajax(settings).done(function (response) {
+      formaImp.validateAll()
       imprimirMensajeSinCorchete(response,"-impuesto");
     });
 
@@ -319,12 +341,13 @@ $("#guard-descuento").click(function(){
 
         "descripcion": $("#txt-descripcion").val(),
         "porcentaje": $("#txt-porcentaje-desc").val(),
-        "fecha_inicio": $("#fecha-inicio-desc").val(),
+       // "fecha_inicio": $("#fecha-inicio-desc").val(),
         "fecha_fin": $("#fecha-final-desc").val()
       }
     }
     
     $.ajax(settings).done(function (response) {
+      formaDes.validateAll()
       imprimirMensaje(response, "-descuento");
     });
 
