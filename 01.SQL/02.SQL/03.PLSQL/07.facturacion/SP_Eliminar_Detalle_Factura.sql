@@ -15,7 +15,12 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
    DECLARE contador INT;
    DECLARE cant INT;
    DECLARE lote INT;
-
+   DECLARE total DOUBLE;
+   DECLARE totalDescuentoFactura DOUBLE;
+   DECLARE totalFactura DOUBLE;
+   DECLARE totalImpuestoFactura DOUBLE;
+   DECLARE subTotalFactura DOUBLE;
+   
    -- Inicializaciones
    SET AUTOCOMMIT=0;
    START TRANSACTION;
@@ -24,8 +29,15 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
    SET error=FALSE;
    SET cant =0;
    SET lote=0;
+   SET total =0;
+   SET totalFactura=0;
+   SET subTotalFactura=0;
+   SET totalDescuentoFactura=0;
+   SET totalImpuestoFactura =0;
+      
+   
 
-   -- _______________Validaciones__________________
+-- _______________Validaciones__________________
 
    IF pI_id_temporal='' OR pI_id_temporal IS NULL THEN
      
@@ -55,17 +67,36 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
    SELECT cantidad INTO cant FROM detalle_factura_temp WHERE id_temporal= pI_id_temporal;
    SELECT id_lote INTO lote FROM detalle_factura_temp WHERE id_temporal= pI_id_temporal;
 
-   UPDATE loteexistencia
+   UPDATE lote
       SET
-         loteexistencia.existencia = (loteexistencia.existencia + cant)
+         existencia = (existencia + cant)
    WHERE
-         lote= id_lote;
+         id_lote= lote;
 
    DELETE 
    FROM detalle_factura_temp
    WHERE id_temporal= pI_id_temporal;
+
    
    COMMIT;
+
+    SELECT SUM(total) INTO totalFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+    SELECT SUM(sub_total) INTO subTotalFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+    SELECT SUM(total_impuesto) INTO totalImpuestoFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+    SELECT SUM(total_descuento) INTO totalDescuentoFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+
+    SET totalFactura=ROUND(totalFactura,2);
+    SET subTotalFactura=ROUND(subTotalFactura,2);
+    SET totalImpuestoFactura=ROUND(totalImpuestoFactura,2);
+    SET totalDescuentoFactura=ROUND(totalDescuentoFactura,2);
+
+    SET mensaje= 'Inserción exitosa';
+    SET error=FALSE;
+    SET pO_mensaje=mensaje;
+    SET pO_error=error;
+    SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura 
+    FROM detalle_factura_temp
+    WHERE id_empleado=pI_id_empleado;
 
    SET mensaje= 'Eliminación exitosa';
    SET error=FALSE;
@@ -75,7 +106,7 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
 
 END$$
 
-CALL SP_Eliminar_Detalle_Factura(32,@mesaje,@error);
+CALL SP_Eliminar_Detalle_Factura(39,@mesaje,@error);
 -- SELECT @mesaje, @error
 -- SELECT * FROM detalle_factura_temp
-SELECT * FROM loteexistencia where id_lote=1;
+select * from lote where id_lote=1;
