@@ -32,13 +32,15 @@ $(document).ready(function() {
         { data: "estado", title:"Estado"},
         { data: null, title: "Opción",
         render: function ( data, type, row, meta ) {
-          return '<button type="button" onclick="funcionBuscar('+ row.id_laboratorio +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+          return '<button type="button" onclick="funcionBuscarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
                  '<button type="button" onclick="funcionBorrarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
         }}
       ]
     });
 });
 
+
+//GUARDAR LABORATORIO
 $("#guard-laboratorio").click(function(){
   var settings = {
     "async": true,
@@ -107,6 +109,90 @@ function funcionBorrarLab(nomb){
     }
   })
 }
+
+//Buscar lABORATORIO
+function funcionBuscarLab(nomb){
+  //$("#inputGroupFile").removeClass('is-valid');
+  // Se hace el cambio del footer en el Modal
+  $("#guard-laboratorio").hide();
+  $("#act-lab").removeClass("d-none");
+  
+  //$("#seleccion-estado").removeClass("d-none");
+  //$('#laboratorio').show();
+  
+  //resetCampos();
+  console.log("Hola")
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-laboratorio-id",
+      "id_laboratorio": nomb
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+    $('#txt-nombre-laboratorio').val(response.data.nombre_laboratorio);
+    $('#txt-estado-lab').val(response.data.estado);
+
+    $('#txt-id-lab').val(response.data.id_laboratorio);
+    $('#txt-telefono-lab').val(response.data.telefono_laboratorio);
+    $('#txt-direccion').val(response.data.direccion);
+    
+   
+    
+  
+
+  });
+}
+
+//ACtualizar Categoria
+$("#act-lab").click(function(){
+  console.log("aqui dentro");
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-laboratorio",
+      "id_laboratorio": $("#txt-id-lab").val(),
+      "nombre_laboratorio": $("#txt-nombre-laboratorio").val(),
+      "direccion": $("#txt-direccion").val(),
+      "telefono_laboratorio": $("#txt-telefono-lab").val(),
+      "estado": $("#txt-estado-lab").val(),
+   
+
+    }
+    
+  }
+   console.log($("#txt-telefono-lab").val()),
+  $.ajax(settings).done(function (response) {
+  imprimirMensaje(response,"-laboratorio");
+  });
+  
+});
+
+
+
+
+
+
+
+
+
 
 function imprimirMensaje(response){
   

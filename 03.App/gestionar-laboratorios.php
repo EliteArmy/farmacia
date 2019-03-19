@@ -55,8 +55,14 @@
               <label for="txt-telefono-lab">Número de telefono </label>
               <input type="text" class="form-control" id="txt-telefono-lab" name="txt-telefono-lab"  placeholder="2222-0854" required autofocus>
             </div>
+            <div class="form-group col-12 d-none">
+            <input class="form-control " id="txt-id-lab" name="txt-id-desc" >     
+            <input class="form-control " id="txt-estado-lab" name="txt-id-desc" >                 
+            
+          </div>
             <div class="col-md-8  col-sm-8 col-8">
               <button type="button" class="btn btn-info" id="">Reset</button>
+              <button type="button" class="btn btn-primary d-none" id="act-lab" data-dismiss="modal">Actualizar Cambios</button>
               <button type="button" class="btn btn-primary" id="guard-laboratorio">Guardar</button>
             </div>
              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
