@@ -167,20 +167,9 @@ CALL SP_Insertar_Detalle_Factura(1,4,1,@mesaje,@error);
 SELECT codigo_barra FROM producto WHERE id_producto=1
 SELECT * FROM empleado
 SELECT * FROM lote WHERE id_lote=1;
-select * from detalle_factura_temp
+select * from detalle_factura_temp where id_empleado=80
 select *,NOW() from descuento
 DELETE FROM detalle_factura_temp WHERE id_empleado=1;
 
-
-
-KILL '426545';
-KILL '426561';
-KILL '426562';
-KILL '426621';
-KILL '426656';
-KILL '426670';
-KILL '426671';
-KILL '426952';
-
-show processlist
-
+SELECT * FROM detalle_factura_temp;
+SELECT * FROM lote WHERE id_lote=1;
