@@ -90,7 +90,7 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
    SET pO_mensaje=mensaje;
    SET pO_error=error;
 
-   SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,cantidadProducto,idLote
+   SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,cantidadProducto,idLote,mensaje,error
    FROM detalle_factura_temp
    WHERE id_empleado=idEmpleado;
 

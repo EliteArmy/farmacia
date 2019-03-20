@@ -34,18 +34,18 @@ SP:BEGIN
     -- _______________Validaciones__________________
 
     IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
-      SET mensaje=CONCAT(mensaje,"Codigo de empleado vacio, ");
+      SET mensaje=CONCAT(mensaje,'Codigo de empleado vacio, ');
     ELSE
       SELECT COUNT(*) INTO contador FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
       IF contador=0 THEN
-        SET mensaje=CONCAT(mensaje,"Este empleado no ha facturado productos");
+        SET mensaje=CONCAT(mensaje,'Este empleado no ha facturado productos');
       END IF;
     END IF;
 
     IF NOT(pI_id_cliente='' OR pI_id_cliente IS NULL) THEN
       SELECT COUNT(*) INTO contador FROM cliente WHERE id_cliente=pI_id_cliente;
       IF contador=0 THEN
-        SET mensaje=CONCAT(mensaje,"Este cliente no existe");
+        SET mensaje=CONCAT(mensaje,'Este cliente no existe');
       ELSE
         SELECT id_cliente INTO idCliente FROM cliente WHERE idCliente=pI_id_cliente AND estado='A';
       END IF;
@@ -117,7 +117,14 @@ SP:BEGIN
     WHERE id_empleado=pI_id_empleado;
 
     -- Vaciar la factura temporal realizada por un empleado
-    DELETE FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+    CREATE TEMPORARY TABLE temp
+    SELECT id_temporal FROM detalle_factura_temp 
+    WHERE id_empleado=pI_id_empleado;
+
+    DELETE FROM detalle_factura_temp 
+    WHERE id_temporal IN (SELECT id_temporal FROM temp);
+
+    DROP TEMPORARY TABLE temp;
  
     SET mensaje= 'Facturación exitosa';
     SET error=FALSE;
@@ -135,3 +142,5 @@ select * from detalle_factura where id_factura=58;
 SELECT * FROM detalle_factura_temp;
 SELECT * from movimiento_producto where id_movimiento>=97;
 SELECT * from detalle_movimiento where id_movimiento>=100;
+delete from detalle_factura_temp where id_empleado=81;
+CALL SP_Insertar_Detalle_Factura(81,4,1,@mesaje,@error);
