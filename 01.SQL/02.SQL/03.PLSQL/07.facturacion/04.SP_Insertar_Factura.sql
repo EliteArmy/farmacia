@@ -116,15 +116,16 @@ SP:BEGIN
     FROM detalle_factura_temp
     WHERE id_empleado=pI_id_empleado;
 
-    -- Vaciar la factura temporal realizada por un empleado
-    CREATE TEMPORARY TABLE temp
-    SELECT id_temporal FROM detalle_factura_temp 
-    WHERE id_empleado=pI_id_empleado;
+    CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFilas,@errorEliminarFilas);
+    IF @errorEliminarFilas THEN
+      SET mensaje=@mensajeEliminarFilas;
+      SET error=@errorEliminarFilas;
+      SET pO_mensaje=mensaje;
+      SET pO_error=error;
+      SELECT mensaje,error;
+      LEAVE SP;
+    END IF;
 
-    DELETE FROM detalle_factura_temp 
-    WHERE id_temporal IN (SELECT id_temporal FROM temp);
-
-    DROP TEMPORARY TABLE temp;
  
     SET mensaje= 'Facturación exitosa';
     SET error=FALSE;
