@@ -32,7 +32,8 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'detalle-factura':
+    // Modulo de facturacion
+    case 'insertar-producto': 
       $idEmpleado = validarPOST('id_empleado');
       $cantidad = validarPOST('cantidad');
       $idLote = validarPOST('id_lote');
@@ -43,20 +44,20 @@ if(isset($_POST['accion'])){
       $fact->setCantidad($cantidad);
       $fact->setIdLote($idLote);
       
-      $res['data'] = $fact->detalleFactura($conexion);
+      $res['data'] = $fact->insertarProducto($conexion);
       echo json_encode($res);
     break;
 
-    case 'eliminar-detalle-factura':
+    case 'eliminar-producto':
       $idTemporal = validarPOST('id_temporal');
       $fact = new Factura();
       $fact->setIdFactura($idTemporal);
       
-      $res['data'] = $fact->eliminarDetalleFactura($conexion);
+      $res['data'] = $fact->eliminarProducto($conexion);
       echo json_encode($res);
     break;
 
-    case 'cerrar-detalle-factura':    
+    case 'cerrar-factura':    
       $idEmpleado=validarPOST('id_empleado');
       $fact = new Factura();
       
@@ -65,13 +66,16 @@ if(isset($_POST['accion'])){
       $fact->setIdFarmacia('');
       $fact->setIdFormaPago('');
 
-      $res['data'] = $fact->cerrarDetalleFactura($conexion);
+      $res['data'] = $fact->cerrarFactura($conexion);
       echo json_encode($res);
     break;
 
-    case 'test':    
+    case 'cancelar-factura':    
+      $idEmpleado=validarPOST('id_empleado');
       $fact = new Factura();
-      $res['data'] = $fact->test($conexion);
+      
+      $fact->setIdEmpleado($idEmpleado);
+      $res['data'] = $fact->cancelarFactura($conexion);
       echo json_encode($res);
     break;
 

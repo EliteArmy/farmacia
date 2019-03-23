@@ -50,7 +50,7 @@ $(document).ready(function() {
       { data: "", title: "Opción", 
         render: function ( data, type, row, meta ) {
           return '<input type="number" id="txt-cantidad'+ row.id_lote +'" class="form-control" value="1" min="1" max = "'+ row.existencia +'"/>'+
-                 '<button type="button" onclick="funcionAgregarDetalle('+row.id_lote+')" class="btn btn-primary btn-sm btn-block" data-dismiss="modal"><i class="fas fa-cart-plus"></i></button>'+
+                 '<button type="button" onclick="funcionAgregarProducto('+row.id_lote+')" class="btn btn-primary btn-sm btn-block" data-dismiss="modal"><i class="fas fa-cart-plus"></i></button>'+
                  '<input type="hidden" id="txt-existencia'+ row.id_lote +'" value = "'+row.existencia+'"/>';
         }
       }
@@ -116,7 +116,7 @@ function BuscarProducto(){
 }
 
 // ======= Agregar un producto a la Factura =======
-function funcionAgregarDetalle(id_lote){
+function funcionAgregarProducto(id_lote){
   //console.log("Lote:" + id_lote);
   //console.log("Empleado:" + $("#id-empleado").val());
   //console.log("Cantidad:" + $("#txt-cantidad"+id_lote).val());
@@ -131,7 +131,7 @@ function funcionAgregarDetalle(id_lote){
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "detalle-factura",
+      "accion": "insertar-producto",
       "id_empleado": $("#id-empleado").val(),
       "cantidad": $("#txt-cantidad"+id_lote).val(),
       "id_lote": id_lote
@@ -188,7 +188,7 @@ function borrarProducto(id_temporal){
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "eliminar-detalle-factura",
+      "accion": "eliminar-producto",
       "id_temporal": id_temporal
     }
   }
@@ -241,7 +241,7 @@ function cerrarFactura(){
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "cerrar-detalle-factura",
+      "accion": "cerrar-factura",
       "id_empleado": $("#id-empleado").val(),
       "id_cliente": "",
       "id_farmacia": "",

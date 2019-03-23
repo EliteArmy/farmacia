@@ -198,7 +198,7 @@ class Factura {
 		else return null;
   }
 
-  public function detalleFactura($conexion){
+  public function insertarProducto($conexion){
 		$sql = 'CALL SP_Insertar_Detalle_Factura(%d, %d, %d, @mensaje, @error)';
 		$valores = [
 			$this->getIdEmpleado(),
@@ -209,7 +209,7 @@ class Factura {
 		return $rows;
   }
 
-  public function eliminarDetalleFactura($conexion){
+  public function eliminarProducto($conexion){
 		$sql = 'CALL SP_Eliminar_Detalle_Factura(%d, @mensaje, @error)';
     $valores = [
 			$this->getIdFactura()
@@ -218,7 +218,7 @@ class Factura {
 		return $rows;
   }
 
-  public function cerrarDetalleFactura($conexion){
+  public function cerrarFactura($conexion){
     $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
     $valores = [
 			$this->getIdEmpleado(),
@@ -230,9 +230,9 @@ class Factura {
 		return $rows;
 	}
 	
-	public function test($conexion){
-    $sql = 'CALL SP_Test(%d)';
-    $valores = [81];
+	public function cancelarFactura($conexion){
+    $sql = 'CALL SP_Eliminar_factura(%d,@mensaje,@error)';
+    $valores = [$this->getIdEmpleado()];
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
   }
