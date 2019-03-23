@@ -57,7 +57,7 @@ SP:BEGIN
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
-   SELECT *,mensaje,error FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+   SELECT mensaje,error;
 
 END$$
 
