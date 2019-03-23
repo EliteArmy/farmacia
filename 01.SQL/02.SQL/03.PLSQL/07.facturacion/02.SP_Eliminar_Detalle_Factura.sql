@@ -58,15 +58,7 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
    END IF;
 
    -- _______________SQL Statements_______________
-   SELECT cantidad INTO cantidadProducto FROM detalle_factura_temp WHERE id_temporal= pI_id_temporal;
-   SELECT id_lote INTO idLote FROM detalle_factura_temp WHERE id_temporal= pI_id_temporal;
    SELECT id_empleado INTO idEmpleado FROM detalle_factura_temp WHERE id_temporal=pI_id_temporal;
-
-   UPDATE lote
-      SET
-         existencia = (existencia + cantidadProducto)
-   WHERE
-         id_lote= idLote;
 
    DELETE 
    FROM detalle_factura_temp
@@ -96,7 +88,7 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
 
 END$$
 
-CALL SP_Eliminar_Detalle_Factura(73,@mesaje,@error);
+CALL SP_Eliminar_Detalle_Factura(354,@mesaje,@error);
 -- SELECT @mesaje, @error
 -- SELECT * FROM detalle_factura_temp
 select * from lote where id_lote=1;
