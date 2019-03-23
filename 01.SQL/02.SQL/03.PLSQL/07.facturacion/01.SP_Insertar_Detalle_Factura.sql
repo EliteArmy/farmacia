@@ -29,6 +29,8 @@ SP:BEGIN
     DECLARE totalDescuentoFactura DOUBLE;
     DECLARE totalDescuentoRow DOUBLE;
     DECLARE totalImpuestoRow DOUBLE;
+    DECLARE cantidadExistencia INT;
+    DECLARE cantidadLote INT;
     DECLARE codigoBarraProducto VARCHAR(45);
     DECLARE descripcionProducto VARCHAR(100);
 
@@ -90,12 +92,19 @@ SP:BEGIN
     END IF;
 
     IF porcentajeImpuesto IS NULL THEN 
-    SET idImpuesto=1; -- Exento de impuesto
-    SET porcentajeImpuesto=0;
+      SET idImpuesto=1; -- Exento de impuesto
+      SET porcentajeImpuesto=0;
     END IF;
 
+    -- Verificaciones de existencia lote
     SELECT existencia INTO contador FROM lote WHERE id_lote=pI_id_lote;
-    IF contador<pI_cantidad THEN
+    SELECT SUM(cantidad) INTO cantidadExistencia FROM detalle_factura_temp 
+    WHERE id_lote=pI_id_lote;
+    
+    SET cantidadLote=contador-cantidadExistencia; -- Restar lote.existencia - SUM(cantidad) WHERE id_lote=pI_idlote
+                                              -- Resultado los productos disponibles de ese lote
+
+    IF cantidadLote<pI_cantidad THEN
       SET mensaje='Este lote no tiene suficiente existencia de productos para la venta';
       SET error=TRUE;
       SET pO_mensaje=mensaje;
@@ -140,8 +149,6 @@ SP:BEGIN
                             totalRow);
     COMMIT;
 
-    UPDATE lote SET existencia=(existencia-pI_cantidad) WHERE id_lote=pI_id_lote;
-
     SELECT SUM(total) INTO totalFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
     SELECT SUM(sub_total) INTO subTotalFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
     SELECT SUM(total_impuesto) INTO totalImpuestoFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
@@ -156,20 +163,16 @@ SP:BEGIN
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura 
+    SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura
     FROM detalle_factura_temp
     WHERE id_empleado=pI_id_empleado;
 
 END$$
 
-CALL SP_Insertar_Detalle_Factura(1,4,1,@mesaje,@error);
+CALL SP_Insertar_Detalle_Factura(2,2,1,@mesaje,@error);
 
-SELECT codigo_barra FROM producto WHERE id_producto=1
-SELECT * FROM empleado
-SELECT * FROM lote WHERE id_lote=1;
-select * from detalle_factura_temp where id_empleado=80
-select *,NOW() from descuento
-DELETE FROM detalle_factura_temp WHERE id_empleado=1;
+-- Consultas de prueba
+SELECT * FROM detalle_factura_temp WHERE id_lote=1;
+SELECT SUM(cantidad) as cantidad, id_lote FROM detalle_factura_temp WHERE id_lote=1;
 
-SELECT * FROM detalle_factura_temp;
 SELECT * FROM lote WHERE id_lote=1;

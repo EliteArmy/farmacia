@@ -24,6 +24,7 @@ SP:BEGIN
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
+    SET SQL_SAFE_UPDATES = 0;
     START TRANSACTION;
     SET mensaje = '';
     SET contador=0;
@@ -116,6 +117,12 @@ SP:BEGIN
     FROM detalle_factura_temp
     WHERE id_empleado=pI_id_empleado;
 
+    UPDATE (SELECT id_lote,SUM(cantidad) as cantidad FROM detalle_factura_temp 
+    WHERE id_empleado=pI_id_empleado
+    GROUP BY id_lote) as origen, lote as destino
+    SET destino.existencia=destino.existencia-origen.cantidad
+    WHERE destino.id_lote=origen.id_lote;
+
     CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFilas,@errorEliminarFilas);
     IF @errorEliminarFilas THEN
       SET mensaje=@mensajeEliminarFilas;
@@ -139,9 +146,16 @@ CALL SP_Insertar_Factura(81,'','','',@mesaje,@error);
 -- SELECT @mesaje, @error
 
 select * from factura where id_factura=58;
+
 select * from detalle_factura where id_factura=58;
 SELECT * FROM detalle_factura_temp;
+SELECT * FROM detalle_factura_temp WHERE id_empleado=81;
+SELECT id_lote,SUM(cantidad) as cantidad FROM detalle_factura_temp 
+WHERE id_empleado=81
+GROUP BY id_lote;
+SELECT existencia FROM lote WHERE id_lote IN(1,2,3,4)
+    
 SELECT * from movimiento_producto where id_movimiento>=97;
 SELECT * from detalle_movimiento where id_movimiento>=100;
 delete from detalle_factura_temp where id_empleado=81;
-CALL SP_Insertar_Detalle_Factura(81,4,1,@mesaje,@error);
+CALL SP_Insertar_Detalle_Factura(81,2,4,@mesaje,@error);

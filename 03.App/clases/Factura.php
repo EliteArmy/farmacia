@@ -228,6 +228,13 @@ class Factura {
     ];
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
+	}
+	
+	public function test($conexion){
+    $sql = 'CALL SP_Test(%d)';
+    $valores = [81];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
   }
 
 }

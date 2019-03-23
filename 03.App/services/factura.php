@@ -69,6 +69,12 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'test':    
+      $fact = new Factura();
+      $res['data'] = $fact->test($conexion);
+      echo json_encode($res);
+    break;
+
     case 'buscar-cliente':
       $identidad = validarPOST('numero_identidad');
 
@@ -85,6 +91,7 @@ if(isset($_POST['accion'])){
       // Buscar los lotes de productos que tengan ese codigo de barra
       echo json_encode($res);
     break;
+    
 
     // DEFAULT
     default:
