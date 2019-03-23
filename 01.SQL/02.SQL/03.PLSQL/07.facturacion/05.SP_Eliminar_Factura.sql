@@ -16,6 +16,7 @@ SP:BEGIN
 
    -- Inicializaciones
    SET AUTOCOMMIT=0;
+   SET SQL_SAFE_UPDATES = 0;
    START TRANSACTION;
    SET mensaje = '';
    SET contador=0;
@@ -41,25 +42,25 @@ SP:BEGIN
      LEAVE SP;
    END IF;
 
-
-
-
    -- _______________SQL Statements_______________
-   UPDATE table_name
-      SET
-         column1 = value1
-      WHERE
-         id_condition=pI_id_condition;
-   COMMIT;
+    CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFactura,@errorEliminarFactura);
+    IF @errorEliminarFilas THEN
+      SET mensaje=@mensajeEliminarFilas;
+      SET error=@errorEliminarFilas;
+      SET pO_mensaje=mensaje;
+      SET pO_error=error;
+      SELECT mensaje,error;
+      LEAVE SP;
+    END IF;
 
    SET mensaje= 'Cancelación de factura exitosa';
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
-   SELECT mensaje,error;
+   SELECT *,mensaje,error FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
 
 END$$
 
-CALL SP_Eliminar_Factura("id_empleado",@mesaje,@error);
+CALL SP_Eliminar_Factura(81,@mesaje,@error);
 
--- SELECT @mesaje, @error
+SELECT * FROM detalle_factura_temp;
