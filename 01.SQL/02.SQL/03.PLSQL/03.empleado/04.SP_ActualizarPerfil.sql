@@ -7,7 +7,7 @@ CREATE PROCEDURE `SP_Actualizar_Perfil`(
     ,IN pI_contrasena VARCHAR(128)
     ,IN pI_telefono_antiguo VARCHAR(50)
     ,IN pI_telefono_nuevo VARCHAR(50)
-    ,IN pI_foto_url VARCHAR(50)
+    ,IN pI_foto_url VARCHAR(500)
 
     ,OUT pO_mensaje VARCHAR(1000)
     ,OUT pO_error BOOLEAN

@@ -115,6 +115,7 @@ $("#actualizar-perfil").click(function(){
               $("#div-exito").show();
               $("#div-exito").html("");
           $("#editarPerfil").modal("toggle");
+          window.location.reload()
         });
       }else{
         $("#div-error").html(response.data.mensaje);
