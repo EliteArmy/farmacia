@@ -1,13 +1,29 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
 include_once('../clases/Factura.php');
 
+require '../plugin/fpdf/fpdf.php';
+
 // Clases Usadas
 if(isset($_POST['accion'])){
+  
   $conexion = new Conexion();
+
   switch ($_POST['accion']) {
+
+    case 'crear-pdf':
+      $pdf = new FPDF('P','mm','A4');
+      $pdf->AddPage();
+      $pdf->SetFont('helvetica','B',16);
+      $pdf->Cell(40,10,'Hello World!');
+      $pdf->Output();
+
+      $res['data']  = "PDF Completado";
+      echo json_encode($res);
+    break;
 
     case 'leer-factura':
       $res['data']  = Factura::leer($conexion);
@@ -96,7 +112,6 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
     
-
     // DEFAULT
     default:
       $res["data"]['mensaje']='Accion no reconocida';

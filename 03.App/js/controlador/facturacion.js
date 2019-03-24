@@ -229,6 +229,27 @@ function borrarProducto(id_temporal){
   });
 }
 
+function imprimirPDF(){  
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/factura.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "crear-pdf"
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+    $("#cliente").html(`Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}`);
+  });
+}
+
 // ======= Cerrar la Factura actual para entregar al Cliente =======
 function cerrarFactura(){
   var settings = {
@@ -285,6 +306,7 @@ function cerrarFactura(){
 // ======= Guardar una Factura en PDF =======
 // ======= *** SIN TERMINAR **** =======
 $("#guardar-factura-pdf").click(function(){
+  console.log("capturar pdf");
   
   /* 
   Syntax: fromHTML(HTML, x, y, settings, callback, margins)
@@ -294,7 +316,7 @@ $("#guardar-factura-pdf").click(function(){
   y-axis (Number): coordinate starting from y (i.e. from top)
   settings (Object): Optional/Additional variables.
   */
-
+  /*
   var doc = new jsPDF('p', 'mm', 'letter');
   var titulo = $("#titulo-factura").text()
   var subTitulo = $("#subtitulo-factura").text()
@@ -310,6 +332,26 @@ $("#guardar-factura-pdf").click(function(){
   doc.text(pie, 90, 85, {align:"center"});
   
   doc.save('factura.pdf');
+*/
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/factura.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "crear-pdf"
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+    console.log("retorno exitoso");
+  });
 
 });
 

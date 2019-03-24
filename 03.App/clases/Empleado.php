@@ -1,4 +1,5 @@
 <?php
+
 class Empleado extends Persona{
 	private $idEmpleado;
 	private $fechaIngreso;
