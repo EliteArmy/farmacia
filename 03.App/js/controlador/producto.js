@@ -182,7 +182,7 @@ $(document).ready(function() {
 
 // ======= CRUD Producto: Create =======
 $("#btn-guard-producto").click(function(){
-  console.log(
+  /*console.log(
   " id-presentacion: ",$("#slc-presentacion").val(),
   " nombre-producto: ",$("#nombre-producto").val(),
   " codigo-barra: ",$("#codigo-barra").val(),
@@ -190,7 +190,7 @@ $("#btn-guard-producto").click(function(){
   " categorias: ",$("#slc-categoria").val().join(),
   " id_impuesto: ",$("#slc-impuesto").val(),
   " id_lab: ",$("#slc-laboratorio").val(),
-  " opcion: ",$("#slc-tipo").val())
+  " opcion: ",$("#slc-tipo").val())*/
   
     var settings = {
       "async": true,
@@ -224,6 +224,7 @@ $("#btn-guard-producto").click(function(){
 // ======= Buscar un Producto =======
 function funcionBuscar(nomb){
   $("#inputGroupFile").removeClass('is-valid');
+  
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
   $("#footer-actualizar").removeClass("d-none");
@@ -349,10 +350,12 @@ function funcionBorrar(nomb){
   })
 }
 
-// ======= Impresión =======
+// ======= Impresión de mensajes por Array =======
 function imprimirMensajeArray(response){
   if (response.data[0].error == 0) {
+    
     console.log(response.data);
+    
     $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
     
     $("#div-exito").html(response.data[0].mensaje);
@@ -376,7 +379,7 @@ function imprimirMensajeArray(response){
   }
 }
 
-// ======= Impresión =======
+// ======= Impresión de mensajes =======
 function imprimirMensaje(response){
   if (response.data.error == 0) {
     console.log(response.data);
@@ -422,8 +425,8 @@ $(".reset").click(function(){
   $('#slc-laboratorio').val("");
 });
 
-/* Función de ocultar y mostrar Laboratorio */
-/*$("#slc-tipo").change(function(){
+// ======= Función de ocultar y mostrar Laboratorio =======
+$("#slc-tipo").change(function(){
   var selected = $('#slc-tipo option:selected').val();
   if (selected == "M"){
     //$('#slc-laboratorio').val("");
@@ -432,14 +435,15 @@ $(".reset").click(function(){
     $('#laboratorio').hide();
     //$('#slc-laboratorio').val("");
   }        
-});*/
+});
 
+// ======= Se Encarga de dejar los campos por default =======
 function resetCampos(){
   $('.selectpicker').selectpicker('val', '');
-  $('.selectpicker').selectpicker('refresh');
+  //$('.selectpicker').selectpicker('refresh');
 
-  $("#nombre-producto").val("");
-  $("#codigo-barra").val("");
+  $('#nombre-producto').val("");
+  $('#codigo-barra').val("");
   $('#slc-categoria').val("");
   $('#slc-impuesto').val("");
   $('#slc-presentacion').val("");
@@ -447,7 +451,7 @@ function resetCampos(){
   $('#slc-laboratorio').val("");
 }
 
-// Subir imagen de producto
+// ======= Subir imagen de producto =======
 $("#inputGroupFile").on("change", function(){
   $("#inputGroupFile").removeClass('is-valid');
   //var form = new FormData($("#forma-empleado")[0]);
