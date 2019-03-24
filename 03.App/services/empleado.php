@@ -13,8 +13,8 @@ if(isset($_POST['accion'])){
   switch ($_POST['accion']) {
 
     case 'login':
-      $usuario = validarPOST('usuario');
-      $contrasena = validarPOST('contrasena');
+      $usuario = ValidarPost::varchar('usuario');
+      $contrasena = ValidarPost::varchar('contrasena');
 
       $empleado= new Empleado();
 
@@ -26,7 +26,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-empleado-id':
-      $idEmpleado = validarPOST('id_empleado');
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
       $empleado = new Empleado();
       $empleado->setIdEmpleado($idEmpleado);
       $res['data'] = $empleado->leerPorId($conexion);
@@ -39,21 +39,21 @@ if(isset($_POST['accion'])){
     break;
 
     case 'insertar-empleado':
-      $primerNombre = validarPOST('primer_nombre');
-      $segundoNombre = validarPOST('segundo_nombre');
-      $primerApellido = validarPOST('primer_apellido');
-      $segundoApellido = validarPOST('segundo_apellido');
-      $sexo = validarPOST('sexo');
-      $direccion = validarPOST('direccion');
-      $correoElectronico = validarPOST('correo_electronico');
-      $numeroIdentidad = validarPOST('numero_identidad');
-      $telefono = validarPOST('telefono');
-      $fechaNacimiento = validarPOST('fecha_nacimiento');
-      $fechaIngreso = validarPOST('fecha_ingreso');
-      $usuario = validarPOST('usuario');
-      $contrasena = validarPOST('contrasena');
-      $fotoUrl = validarPOST('foto_url');
-      $idTipoUsuario = validarPOST('id_tipo_usuario');
+      $primerNombre = ValidarPost::varchar('primer_nombre');
+      $segundoNombre = ValidarPost::varchar('segundo_nombre');
+      $primerApellido = ValidarPost::varchar('primer_apellido');
+      $segundoApellido = ValidarPost::varchar('segundo_apellido');
+      $sexo = ValidarPost::varchar('sexo');
+      $direccion = ValidarPost::varchar('direccion');
+      $correoElectronico = ValidarPost::varchar('correo_electronico');
+      $numeroIdentidad = ValidarPost::varchar('numero_identidad');
+      $telefono = ValidarPost::varchar('telefono');
+      $fechaNacimiento = ValidarPost::date('fecha_nacimiento');
+      $fechaIngreso = ValidarPost::date('fecha_ingreso');
+      $usuario = ValidarPost::varchar('usuario');
+      $contrasena = ValidarPost::varchar('contrasena');
+      $fotoUrl = ValidarPost::varchar('foto_url');
+      $idTipoUsuario = ValidarPost::varchar('id_tipo_usuario');
 
       $empleado = new Empleado();
 
@@ -78,25 +78,25 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-empleado':
-      $idEmpleado = validarPOST('id_empleado');
-      $primerNombre = validarPOST('primer_nombre');
-      $segundoNombre = validarPOST('segundo_nombre');
-      $primerApellido = validarPOST('primer_apellido');
-      $segundoApellido = validarPOST('segundo_apellido');
-      $sexo = validarPOST('sexo');
-      $direccion = validarPOST('direccion');
-      $correoElectronico = validarPOST('correo_electronico');
-      $numeroIdentidad = validarPOST('numero_identidad');
-      $fechaNacimiento = validarPOST('fecha_nacimiento');
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
+      $primerNombre = ValidarPost::varchar('primer_nombre');
+      $segundoNombre = ValidarPost::varchar('segundo_nombre');
+      $primerApellido = ValidarPost::varchar('primer_apellido');
+      $segundoApellido = ValidarPost::varchar('segundo_apellido');
+      $sexo = ValidarPost::varchar('sexo');
+      $direccion = ValidarPost::varchar('direccion');
+      $correoElectronico = ValidarPost::varchar('correo_electronico');
+      $numeroIdentidad = ValidarPost::varchar('numero_identidad');
+      $fechaNacimiento = ValidarPost::date('fecha_nacimiento');
 
-      $telefono = validarPOST('telefono');
-      $telefonoAntiguo = validarPOST('telefono_antiguo');
+      $telefono = ValidarPost::varchar('telefono');
+      $telefonoAntiguo = ValidarPost::varchar('telefono_antiguo');
 
-      $fechaIngreso = validarPOST('fecha_ingreso');
-      $usuario = validarPOST('usuario');
-      $fotoUrl = validarPOST('foto_url');
-      $estado = validarPOST('estado');
-      $idTipoUsuario = validarPOST('id_tipo_usuario');
+      $fechaIngreso = ValidarPost::date('fecha_ingreso');
+      $usuario = ValidarPost::varchar('usuario');
+      $fotoUrl = ValidarPost::varchar('foto_url');
+      $estado = ValidarPost::varchar('estado');
+      $idTipoUsuario = ValidarPost::varchar('id_tipo_usuario');
 
       $empleado = new Empleado();
 
@@ -125,13 +125,13 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-perfil':
-      $idEmpleado = validarPOST('id_empleado');
-      $correoElectronico = validarPOST('correo_electronico');
-      $cambiarContrasena = validarPOST('cambiar_contrasena') == 'true';
-      $contrasena = validarPOST('contrasena');
-      $telefono = validarPOST('telefono_antiguo');
-      $telefonoNuevo = validarPOST('telefono_nuevo');
-      $fotoUrl = validarPOST('foto_url');
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
+      $correoElectronico = ValidarPost::varchar('correo_electronico');
+      $cambiarContrasena = ValidarPost::boolean('cambiar_contrasena') == 'true';
+      $contrasena = ValidarPost::varchar('contrasena');
+      $telefono = ValidarPost::varchar('telefono_antiguo');
+      $telefonoNuevo = ValidarPost::varchar('telefono_nuevo');
+      $fotoUrl = ValidarPost::varchar('foto_url');
       $empleado = new Empleado();
       $empleado->setIdEmpleado($idEmpleado);
       $empleado->setCorreoElectronico($correoElectronico);
@@ -146,7 +146,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'eliminar-empleado':
-      $idEmpleado = validarPOST('id_empleado');
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
       $empleado = new Empleado();
       $empleado->setIdEmpleado($idEmpleado);
       $res['data'] = $empleado->borrar($conexion);

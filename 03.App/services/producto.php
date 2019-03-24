@@ -17,7 +17,7 @@ if(isset($_POST['accion'])){
   switch ($_POST['accion']) {
 
     case 'crear-categoria':
-      $cat = validarPOST('categoria');
+      $cat = ValidarPost::varchar('categoria');
       $prod = new Producto();
       $prod->setCategoria($cat);
       $res['data'] = $prod->crearCategoria($conexion);
@@ -35,7 +35,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-categoria-id':
-      $idCategoria = validarPOST('id_categoria');
+      $idCategoria = ValidarPost::unsigned('id_categoria');
       $producto = new Producto();
       $producto->setIdCategoria($idCategoria);
       $res['data'] = $producto->leerCategoriaPorId($conexion);
@@ -43,9 +43,9 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-categoria':
-      $idCategoria = validarPOST('id_categoria');
-      $categoria = validarPOST('categoria');
-      $estado = validarPOST('estado');
+      $idCategoria = ValidarPost::unsigned('id_categoria');
+      $categoria = ValidarPost::varchar('categoria');
+      $estado = ValidarPost::varchar('estado');
       $cat = new Producto();
       $cat->setIdCategoria($idCategoria);
       $cat->setCategoria($categoria);
@@ -55,7 +55,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'eliminar-categoria':
-      $idCategoria = validarPOST('id_categoria');
+      $idCategoria = ValidarPost::unsigned('id_categoria');
       $cat = new Producto();
       $cat->setIdCategoria($idCategoria);
       $res['data'] = $cat->borrarCategoria($conexion);
@@ -73,7 +73,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-impuesto-id':
-      $idImpuesto = validarPOST('id_impuesto');
+      $idImpuesto = ValidarPost::unsigned('id_impuesto');
       $producto = new Producto();
       $producto->setIdImpuesto($idImpuesto);
       $res['data'] = $producto->leerImpuestoPorId($conexion);
@@ -91,7 +91,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-descuento-id':
-      $idDescuento = validarPOST('id_descuento');
+      $idDescuento = ValidarPost::unsigned('id_descuento');
       $lote = new Lote();
       $lote->setIdDescuento($idDescuento);
       $res['data'] = $lote->leerDescuentoPorId($conexion);
@@ -119,7 +119,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-laboratorio-id':
-      $idLaboratorio = validarPOST('id_laboratorio');
+      $idLaboratorio = ValidarPost::unsigned('id_laboratorio');
       $medic = new Medicamento();
       $medic->setIdLaboratorio($idLaboratorio);
       $res['data'] = $medic->leerLaboratorioPorId($conexion);
@@ -127,7 +127,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-lote-codigo':
-      $codigoBarra = validarPOST('codigo_barra');
+      $codigoBarra = ValidarPost::varchar('codigo_barra');
       $lote = new Lote();
       $lote->setCodigoBarra($codigoBarra);
       $res['data'] = $lote->leerPorCodigoBarra($conexion);
@@ -150,9 +150,9 @@ if(isset($_POST['accion'])){
     break;
 
     case 'crear-descuento':
-      $descripcion = validarPOST('descripcion');
-      $porcentaje = validarPOST('porcentaje');
-      $fechaFin = validarPOST('fecha_fin');
+      $descripcion = ValidarPost::varchar('descripcion');
+      $porcentaje = ValidarPost::unsigned('porcentaje');
+      $fechaFin = ValidarPost::date('fecha_fin');
       $desc = new Descuento();
       $desc->setDescripcion($descripcion);
       $desc->setPorcentaje($porcentaje);
@@ -162,7 +162,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'crear-presentacion':
-      $presentacion = validarPOST('presentacion');
+      $presentacion = ValidarPost::varchar('presentacion');
       $pres = new Presentacion();
       $pres->setPresentacion($presentacion);
       $res["data"] = $pres->crear($conexion);
@@ -170,8 +170,8 @@ if(isset($_POST['accion'])){
     break;
 
     case 'crear-impuesto':
-      $imp = validarPOST('impuesto');
-      $val = validarPOST('valor');
+      $imp = ValidarPost::varchar('impuesto');
+      $val = ValidarPost::unsigned('valor');
       $prod = new Producto();
       $prod->setImpuesto($imp);
       $prod->setValorImpuesto($val);
@@ -180,9 +180,9 @@ if(isset($_POST['accion'])){
     break;
 
     case 'crear-laboratorio':
-      $laboratorio = validarPOST('nombre_laboratorio');
-      $direccion = validarPOST('direccion');
-      $telefono = validarPOST('telefono_laboratorio');
+      $laboratorio = ValidarPost::varchar('nombre_laboratorio');
+      $direccion = ValidarPost::varchar('direccion');
+      $telefono = ValidarPost::varchar('telefono_laboratorio');
       $lab = new Medicamento();
       $lab->setLaboratorio($laboratorio);
       $lab->setDireccionLaboratorio($direccion);
@@ -192,15 +192,15 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-producto':
-      $idProducto = validarPOST('id_producto');
-      $idPresentacion = validarPOST('id_presentacion');
-      $nombre = validarPOST('nombre');
-      $codigoBarra = validarPOST('codigo_barra');
-      $urlFoto = validarPOST('url_foto');
-      $idCategoria = validarPOST('id_categoria');
-      $idImpuesto = validarPOST('id_impuesto');
-      $idLaboratorio = validarPOST('id_laboratorio');
-      $estado = validarPOST('estado');
+      $idProducto = ValidarPost::unsigned('id_producto');
+      $idPresentacion = ValidarPost::unsigned('id_presentacion');
+      $nombre = ValidarPost::varchar('nombre');
+      $codigoBarra = ValidarPost::varchar('codigo_barra');
+      $urlFoto = ValidarPost::varchar('url_foto');
+      $idCategoria = ValidarPost::unsigned('id_categoria');
+      $idImpuesto = ValidarPost::unsigned('id_impuesto');
+      $idLaboratorio = ValidarPost::unsigned('id_laboratorio');
+      $estado = ValidarPost::varchar('estado');
       $prod = new Medicamento();
       $prod->setIdProducto($idProducto);
       $prod->setIdPresentacion($idPresentacion);
@@ -216,14 +216,14 @@ if(isset($_POST['accion'])){
     break;
 
     case 'crear-producto':
-      $idPresentacion = validarPOST('id_presentacion');
-      $nombre = validarPOST('nombre');
-      $codigoBarra = validarPOST('codigo_barra');
-      $urlFoto = validarPOST('url_foto');
-      $idCategoria = validarPOST('array_categoria');
-      $idImpuesto = validarPOST('id_impuesto');
-      $idLaboratorio = validarPOST('id_laboratorio');
-      $opcion = validarPOST('opcion');
+      $idPresentacion = ValidarPost::unsigned('id_presentacion');
+      $nombre = ValidarPost::varchar('nombre');
+      $codigoBarra = ValidarPost::varchar('codigo_barra');
+      $urlFoto = ValidarPost::varchar('url_foto');
+      $idCategoria = ValidarPost::varchar('array_categoria');
+      $idImpuesto = ValidarPost::unsigned('id_impuesto');
+      $idLaboratorio = ValidarPost::unsigned('id_laboratorio');
+      $opcion = ValidarPost::varchar('opcion');
 
       $prod  = new Medicamento();
 
@@ -247,7 +247,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'eliminar-lote':
-      $idLote = validarPOST('id_lote');
+      $idLote = ValidarPost::unsigned('id_lote');
       $lot = new Lote();
       $lot->setIdLote($idLote);
       $res['data'] = $lot->borrar($conexion);
@@ -255,14 +255,14 @@ if(isset($_POST['accion'])){
     break;
 
     case 'crear-lote':
-      $idProducto = validarPOST('id_producto');
-      $lote = validarPOST('lote');
-      $precioCostoUnidad = validarPOST('precio_costo_unidad');
-      $precioVentaUnidad = validarPOST('precio_venta_unidad');
-      $fechaElaboracion = validarPOST('fecha_elaboracion');
-      $fechaVencimiento = validarPOST('fecha_vencimiento');
-      $existencia = validarPOST('existencia');
-      $idDescuento = validarPOST('id_descuento');
+      $idProducto = ValidarPost::unsigned('id_producto');
+      $lote = ValidarPost::varchar('lote');
+      $precioCostoUnidad = ValidarPost::currency('precio_costo_unidad');
+      $precioVentaUnidad = ValidarPost::currency('precio_venta_unidad');
+      $fechaElaboracion = ValidarPost::date('fecha_elaboracion');
+      $fechaVencimiento = ValidarPost::date('fecha_vencimiento');
+      $existencia = ValidarPost::unsigned('existencia');
+      $idDescuento = ValidarPost::unsigned('id_descuento');
 
       $lot = new Lote();
 
@@ -280,16 +280,16 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-lote':
-      $idLote = validarPOST('id_lote');
-      $idProducto = validarPOST('id_producto');
-      $lote = validarPOST('lote');
-      $precioCostoUnidad = validarPOST('precio_costo_unidad');
-      $precioVentaUnidad = validarPOST('precio_venta_unidad');
-      $fechaElaboracion = validarPOST('fecha_elaboracion');
-      $fechaVencimiento = validarPOST('fecha_vencimiento');
-      $estado = validarPOST('estado');
-      $existencia = validarPOST('existencia');
-      $idDescuento = validarPOST('id_descuento');
+      $idLote = ValidarPost::unsigned('id_lote');
+      $idProducto = ValidarPost::unsigned('id_producto');
+      $lote = ValidarPost::varchar('lote');
+      $precioCostoUnidad = ValidarPost::currency('precio_costo_unidad');
+      $precioVentaUnidad = ValidarPost::currency('precio_venta_unidad');
+      $fechaElaboracion = ValidarPost::date('fecha_elaboracion');
+      $fechaVencimiento = ValidarPost::date('fecha_vencimiento');
+      $estado = ValidarPost::varchar('estado');
+      $existencia = ValidarPost::unsigned('existencia');
+      $idDescuento = ValidarPost::unsigned('id_descuento');
 
       $lot = new Lote();
 
@@ -309,7 +309,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-lote-id':
-      $idLote = validarPOST('id_lote');
+      $idLote = ValidarPost::unsigned('id_lote');
       $lot = new Lote();
       $lot->setIdLote($idLote);
       $res['data'] = $lot->leerPorId($conexion);
@@ -317,7 +317,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-producto-id':
-      $idProducto = validarPOST('id_producto');
+      $idProducto = ValidarPost::unsigned('id_producto');
       $prod = new Producto();
       $prod->setIdProducto($idProducto);
       $res['data'] = $prod->leerPorId($conexion);
@@ -325,7 +325,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'eliminar-producto':
-      $idProducto = validarPOST('id_producto');
+      $idProducto = ValidarPost::unsigned('id_producto');
       $prod = new Producto();
       $prod->setIdProducto($idProducto);
       $res['data'] = $prod->borrar($conexion);
@@ -333,7 +333,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-descuento-id':
-      $idDescuento = validarPOST('id_descuento');
+      $idDescuento = ValidarPost::unsigned('id_descuento');
       $desc = new Descuento();
       $desc->setIdDescuento($idDescuento);
       $res['data'] = $desc->leerDescuentoPorId($conexion);
@@ -341,12 +341,12 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-descuento':
-      $idDescuento = validarPOST('id_descuento');
-      $descripcion = validarPOST('descripcion');
-      $porcentaje = validarPOST('porcentaje');
-      $estado = validarPOST('estado');
-      // $fechaInicio = validarPOST('fecha_inicio');
-      $fechaFin = validarPOST('fecha_fin');
+      $idDescuento = ValidarPost::unsigned('id_descuento');
+      $descripcion = ValidarPost::varchar('descripcion');
+      $porcentaje = ValidarPost::unsigned('porcentaje');
+      $estado = ValidarPost::varchar('estado');
+      // $fechaInicio = ValidarPost::date('fecha_inicio');
+      $fechaFin = ValidarPost::date('fecha_fin');
       $desc = new Descuento();
       $desc->setIdDescuento($idDescuento);
       $desc->setDescripcion($descripcion);
@@ -359,7 +359,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'eliminar-descuento':
-      $idDescuento = validarPOST('id_descuento');
+      $idDescuento = ValidarPost::unsigned('id_descuento');
       $desc = new Descuento();
       $desc->setIdDescuento($idDescuento);
       $res['data'] = $desc->borrar($conexion);
@@ -367,12 +367,12 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-impuesto':
-      $idImpuesto = validarPOST('id_impuesto');
-      $descripcion = validarPOST('descripcion');
-      $porcentaje = validarPOST('porcentaje');
-      $estado = validarPOST('estado');
-      // $fechaInicio = validarPOST('fecha_inicio');
-      $fechaFin = validarPOST('fecha_fin');
+      $idImpuesto = ValidarPost::unsigned('id_impuesto');
+      $descripcion = ValidarPost::varchar('descripcion');
+      $porcentaje = ValidarPost::unsigned('porcentaje');
+      $estado = ValidarPost::varchar('estado');
+      // $fechaInicio = ValidarPost::date('fecha_inicio');
+      $fechaFin = ValidarPost::date('fecha_fin');
       $imp = new Producto();
       $imp->setIdImpuesto($idImpuesto);
       $imp->setImpuesto($descripcion);
@@ -385,7 +385,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'eliminar-impuesto':
-      $idImpuesto = validarPOST('id_impuesto');
+      $idImpuesto = ValidarPost::unsigned('id_impuesto');
       $imp = new Producto();
       $imp->setIdImpuesto($idImpuesto);
       $res['data'] = $imp->borrarImpuesto($conexion);
@@ -393,7 +393,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-presentacion-id':
-      $idPresentacion = validarPOST('id_presentacion');
+      $idPresentacion = ValidarPost::unsigned('id_presentacion');
       $pres = new Presentacion();
       $pres->setIdPresentacion($idPresentacion);
       $res['data'] = $pres->leerPresentacionPorId($conexion);
@@ -401,9 +401,9 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-presentacion':
-      $idPresentacion = validarPOST('id_presentacion');
-      $presentacion = validarPOST('presentacion');
-      $estado = validarPOST('estado');
+      $idPresentacion = ValidarPost::unsigned('id_presentacion');
+      $presentacion = ValidarPost::varchar('presentacion');
+      $estado = ValidarPost::varchar('estado');
       $pres = new Presentacion();
       $pres->setIdPresentacion($idPresentacion);
       $pres->setPresentacion($presentacion);
@@ -413,7 +413,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'eliminar-presentacion':
-      $idPresentacion = validarPOST('id_presentacion');
+      $idPresentacion = ValidarPost::unsigned('id_presentacion');
       $pres = new Presentacion();
       $pres->setIdPresentacion($idPresentacion);
       $res['data'] = $pres->borrar($conexion);
@@ -421,11 +421,11 @@ if(isset($_POST['accion'])){
     break;
 
     case 'actualizar-laboratorio':
-      $idLaboratorio = validarPOST('id_laboratorio');
-      $laboratorio = validarPOST('nombre_laboratorio');
-      $estado = validarPOST('estado');
-      $direccion = validarPOST('direccion');
-      $telefono = validarPOST('telefono_laboratorio');
+      $idLaboratorio = ValidarPost::unsigned('id_laboratorio');
+      $laboratorio = ValidarPost::varchar('nombre_laboratorio');
+      $estado = ValidarPost::varchar('estado');
+      $direccion = ValidarPost::varchar('direccion');
+      $telefono = ValidarPost::varchar('telefono_laboratorio');
       $lab = new Medicamento();
       $lab->setIdLaboratorio($idLaboratorio);
       $lab->setLaboratorio($laboratorio);
@@ -437,7 +437,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'eliminar-laboratorio':
-      $idLaboratorio = validarPOST('id_laboratorio');
+      $idLaboratorio = ValidarPost::unsigned('id_laboratorio');
       $lab = new Medicamento();
       $lab->setIdLaboratorio($idLaboratorio);
       $res['data'] = $lab->borrarLaboratorio($conexion);

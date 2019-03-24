@@ -9,7 +9,7 @@ require '../plugin/fpdf/fpdf.php';
 
 // Clases Usadas
 if(isset($_POST['accion'])){
-  
+
   $conexion = new Conexion();
 
   switch ($_POST['accion']) {
@@ -31,7 +31,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-factura-id':
-      $idFactura = validarPOST('id_factura');
+      $idFactura = ValidarPost::unsigned('id_factura');
       $fact = new Factura();
       $fact->setIdFactura($idFactura);
       $res['data']  = $fact->leerPorId($conexion);
@@ -39,8 +39,8 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-factura-fecha':
-      $fechaInicio = validarPOST('fecha_inicio');
-      $fechaFin = validarPOST('fecha_fin');
+      $fechaInicio = ValidarPost::date('fecha_inicio');
+      $fechaFin = ValidarPost::date('fecha_fin');
       $fact = new Factura();
       $fact->setFechaInicio($fechaInicio);
       $fact->setFechaFin($fechaFin);
@@ -49,34 +49,34 @@ if(isset($_POST['accion'])){
     break;
 
     // Modulo de facturacion
-    case 'insertar-producto': 
-      $idEmpleado = validarPOST('id_empleado');
-      $cantidad = validarPOST('cantidad');
-      $idLote = validarPOST('id_lote');
-      
+    case 'insertar-producto':
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
+      $cantidad = ValidarPost::unsigned('cantidad');
+      $idLote = ValidarPost::unsigned('id_lote');
+
       $fact = new Factura();
-      
+
       $fact->setIdEmpleado($idEmpleado);
       $fact->setCantidad($cantidad);
       $fact->setIdLote($idLote);
-      
+
       $res['data'] = $fact->insertarProducto($conexion);
       echo json_encode($res);
     break;
 
     case 'eliminar-producto':
-      $idTemporal = validarPOST('id_temporal');
+      $idTemporal = ValidarPost::unsigned('id_temporal');
       $fact = new Factura();
       $fact->setIdFactura($idTemporal);
-      
+
       $res['data'] = $fact->eliminarProducto($conexion);
       echo json_encode($res);
     break;
 
-    case 'cerrar-factura':    
-      $idEmpleado=validarPOST('id_empleado');
+    case 'cerrar-factura':
+      $idEmpleado=ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
-      
+
       $fact->setIdEmpleado($idEmpleado);
       $fact->setIdCliente('');
       $fact->setIdFarmacia('');
@@ -86,17 +86,17 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'cancelar-factura':    
-      $idEmpleado=validarPOST('id_empleado');
+    case 'cancelar-factura':
+      $idEmpleado=ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
-      
+
       $fact->setIdEmpleado($idEmpleado);
       $res['data'] = $fact->cancelarFactura($conexion);
       echo json_encode($res);
     break;
 
     case 'buscar-cliente':
-      $identidad = validarPOST('numero_identidad');
+      $identidad = ValidarPost::unsigned('numero_identidad');
 
       $fact = new Factura();
       $fact->setIdCliente($identidad);
@@ -106,12 +106,12 @@ if(isset($_POST['accion'])){
     break;
 
     case 'buscar-producto-lote':
-      $codigoBarra = validarPOST('codigo_barra');
+      $codigoBarra = ValidarPost::unsigned('codigo_barra');
       $fact = new Factura();
       // Buscar los lotes de productos que tengan ese codigo de barra
       echo json_encode($res);
     break;
-    
+
     // DEFAULT
     default:
       $res["data"]['mensaje']='Accion no reconocida';

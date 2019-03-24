@@ -10,8 +10,8 @@ if(isset($_POST['accion'])){
   switch ($_POST['accion']) {
 
     case 'login':
-      $usuario = validarPOST('usuario');
-      $contrasena = validarPOST('contrasena');
+      $usuario = ValidarPost::('usuario');
+      $contrasena = ValidarPost::('contrasena');
 
       $empleado= new Empleado();
       $empleado -> setUsuario($usuario);
