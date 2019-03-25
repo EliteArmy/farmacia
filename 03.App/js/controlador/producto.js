@@ -210,7 +210,7 @@ $("#btn-guard-producto").click(function(){
         "url_foto": $("#foto-inputGroupFile").val(),
         "array_categoria": $("#slc-categoria").val().join(),
         "id_impuesto": $("#slc-impuesto").val(),
-        "id_laboratorio": $("#slc-laboratorio").val(),
+        "id_laboratorio": $("#slc-tipo").val() == 'M' ? $("#slc-laboratorio").val() : 0,
         "opcion": $("#slc-tipo").val()
       }
     }
@@ -292,7 +292,7 @@ $("#actualizar-producto").click(function(){
       "url_foto": $("#foto-inputGroupFile").val(),
       "id_categoria": $('#slc-categoria').val().join(),
       "id_impuesto": $('#slc-impuesto').val(),
-      "id_laboratorio": $("#slc-laboratorio").val(),
+      "id_laboratorio": $("#slc-tipo").val() == 'M' ? $("#slc-laboratorio").val() : 0,
       "estado": $('#slc-estado').val()
     }
   }

@@ -161,20 +161,10 @@ CREATE PROCEDURE SP_Actualizar_Producto(
 
   IF contador>=1 THEN
     -- isMedicamento
-    IF pI_id_laboratorio='' OR pI_id_laboratorio IS NULL THEN
-      SET mensaje=CONCAT(mensaje, 'Identificador de laboratorio vacio, ');
-    ELSE
-      SELECT COUNT(*) INTO contador FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
-      IF contador=0 THEN
-        SET mensaje=CONCAT(mensaje,'El laboratorio no existe, ');
-      ELSE
-        SET isMedicamento=TRUE;
-      END IF;
-    END IF;
+    SET isMedicamento=TRUE;
   ELSE
   -- isProducto
     SET isProducto=TRUE;
-
   END IF;
 
   IF mensaje <> '' THEN
@@ -236,36 +226,23 @@ CREATE PROCEDURE SP_Actualizar_Producto(
        producto.estado = uEstado
    WHERE
        producto.id_producto = pI_id_producto;
-  
 
-   IF isMedicamento THEN
-      UPDATE medicamentos SET id_laboratorio=pI_id_laboratorio, estado=uEstado WHERE id_producto=pI_id_producto;
-   END IF;
 
-   IF isProducto THEN
-     IF NOT(pI_id_laboratorio='' OR pI_id_laboratorio IS NULL) THEN
-        SELECT COUNT(*) INTO contador FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
-        IF contador=0 THEN
-          SET mensaje='El laboratorio no existe';
-          SET error=TRUE;
-          SET pO_mensaje=mensaje;
-          SET pO_error=error;
-          SELECT mensaje,error;
-          LEAVE SP;
-        ELSE
-          INSERT INTO medicamentos (
-                      id_laboratorio,
-                      id_producto,
-                      estado
-                      )
-                 VALUES (
-                      pI_id_laboratorio,
-                      pI_id_producto,
-                      uEstado
-                      );
-        END IF;
+    IF pI_id_laboratorio!=0 THEN
+      SELECT COUNT(*) INTO contador FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
+      IF isMedicamento AND contador>=1 THEN
+        UPDATE medicamentos SET id_laboratorio=pI_id_laboratorio, estado=uEstado WHERE id_producto=pI_id_producto;
+      ELSE IF isProducto AND contador>=1 THEN
+        INSERT INTO medicamentos (id_laboratorio, id_producto, estado)
+        VALUES (pI_id_laboratorio, pI_id_producto, uEstado);
+      ELSE
+        SET mensaje=CONCAT(mensaje, 'Laboratorio no existe ');
+      END IF;END IF;
+    ELSE
+      IF isMedicamento THEN
+        DELETE FROM medicamentos WHERE id_producto = pI_id_producto;
       END IF;
-     END IF;
+    END IF;
    COMMIT;
 
    SET mensaje='Actualización exitosa';
