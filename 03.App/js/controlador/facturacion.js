@@ -306,7 +306,6 @@ function cerrarFactura(){
 // ======= Guardar una Factura en PDF =======
 // ======= *** SIN TERMINAR **** =======
 $("#guardar-factura-pdf").click(function(){
-  console.log("capturar pdf");
   
   /* 
   Syntax: fromHTML(HTML, x, y, settings, callback, margins)
@@ -337,20 +336,20 @@ $("#guardar-factura-pdf").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/factura.php",
+    "url": "http://farma/services/printPDF.php",
     "method": "POST",
-    "dataType": "json",
-    "headers": {
+    //"dataType": "json",
+    /*"headers": {
       "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
+    },*/
+    /*"data": {
       "accion": "crear-pdf"
-    }
+    }*/
   }
 
-  $.ajax(settings).done(function (response) {
-    console.log(response.data);
-    console.log("retorno exitoso");
+  $.ajax(settings).done(function (url) {
+    console.log(url);
+    window.open(url, '_blank');
   });
 
 });

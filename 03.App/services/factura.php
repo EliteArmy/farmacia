@@ -1,5 +1,6 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+//header("Access-Control-Allow-Origin: *");
+header("Content-type: application/PDF");
 
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
@@ -13,14 +14,16 @@ if(isset($_POST['accion'])){
   $conexion = new Conexion();
 
   switch ($_POST['accion']) {
-
     case 'crear-pdf':
       $pdf = new FPDF('P','mm','A4');
       $pdf->AddPage();
       $pdf->SetFont('helvetica','B',16);
       $pdf->Cell(40,10,'Hello World!');
-      $pdf->Output();
+      ob_get_clean();
+      $pdf->Output('file.pdf','I');
+      exit;
 
+      //$res['data']  =$pdf->Output("F","file");
       $res['data']  = "PDF Completado";
       echo json_encode($res);
     break;

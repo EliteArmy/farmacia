@@ -107,10 +107,12 @@
           <div class="form-group col-12 col-sm-6 col-lg-4 texto">
             <label for="guardar-factura-pdf">Guardar Factura:</label>
             <button type="button" id="guardar-factura-pdf" class="form-control btn btn-primary">
-            <!--
-            ======= Guardar una Factura en PDF =======
-            ======= *** SIN TERMINAR **** =======
+            <!--<iframe src="../services/printPDF.php?data" target="_blank"></iframe>
             -->
+            <!--<a href="prueba.php?data" target="_blank">click me to download the file</a>
+              -->
+              <!--======= Guardar una Factura en PDF =======
+              ======= *** En Proceso **** =======-->
               Guardar Factura como PDF
             </button>
           </div>
