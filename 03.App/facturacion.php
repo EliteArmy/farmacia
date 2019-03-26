@@ -42,7 +42,7 @@
           <h4>Fecha Limite Emisión: 12/12/2019</h4>
         </div>
         
-        <div class="mt-2 " id="subtitulo-factura">
+        <div class="mt-2">
           <h4 class="float-left">Le Atendio: <?php echo $_SESSION["nombre_completo"];?></h4>
           <h4 class="float-right" id="fecha">Fecha:</h4>
 
@@ -50,7 +50,7 @@
           <input type="hidden" id="id-empleado" value="<?php echo $_SESSION["id_empleado"] ?>">
         </div>
 
-        <div id="subtitulo-factura">
+        <div>
           <h4 class="float-left" id="cliente">Consumidor Final:</h4>
           <h4 class="float-right" id="hora">Hora:</h4>
         </div>
@@ -162,7 +162,7 @@
             <div id="pie-factura" class="text-center">
               <h4>Gracias por su visita</h4>
               <h4>correo: correo@gmail.com</h4>
-              <h4>Telefono: 9898-9898</h4>
+              <h4>Teléfono: (+504) 2222-0000</h4>
               <h4>Original: Cliente</h4>
               <h4>--- Cuenta Cerrada ---</h4>
             </div>

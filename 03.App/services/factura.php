@@ -6,7 +6,7 @@ include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
 include_once('../clases/Factura.php');
 
-require '../plugin/fpdf/fpdf.php';
+include_once('../plugin/fpdf/fpdf.php');
 
 // Clases Usadas
 if(isset($_POST['accion'])){
@@ -19,11 +19,8 @@ if(isset($_POST['accion'])){
       $pdf->AddPage();
       $pdf->SetFont('helvetica','B',16);
       $pdf->Cell(40,10,'Hello World!');
-      ob_get_clean();
       $pdf->Output('file.pdf','I');
-      exit;
 
-      //$res['data']  =$pdf->Output("F","file");
       $res['data']  = "PDF Completado";
       echo json_encode($res);
     break;
