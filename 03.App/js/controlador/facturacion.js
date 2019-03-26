@@ -15,16 +15,17 @@ $(document).ready(function() {
   $('#table-info').DataTable({
     pageLength: 50,
     searching: true,
-    ordering: true,
+    ordering: false,
     paging: true,
     responsive: true,
     data: "",
     columns: [
-      { data: "cantidad", title: "Unidad", width: "20px" },
-      { data: "descripcion", title: "Descripción" },
+      { data: "cantidad", title: "Unidad", width: "8%" },
+      { data: "descripcion", title: "Descripción", width: "40%" },
+      { data: "precioVentaUnidad", title: "Precio Unitario" },
       { data: "sub_total", title: "Sub Total" },
       { data: "total", title: "Total Producto" },
-      { data: "", title: "Opción", width: "20px",
+      { data: "", title: "Opción", width: "8%",
         render: function ( data, type, row, meta ) {
           return '<button type="button" onclick="borrarProducto(\''+row.id_temporal+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
         }  
