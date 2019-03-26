@@ -43,7 +43,7 @@
   $pdf->SetFont('Arial','B', 12);
   $pdf->SetX(18);  
   $pdf->SetTextColor(5, 47, 53);
-  $pdf->SetFillColor(11, 104, 116);
+  $pdf->SetFillColor(10, 105, 116);
 
   $pdf->Cell(35, 8, "Cantidad", 0, 0, 'C');
   $pdf->Cell(60, 8, "Descripcion", 0, 0, 'C');
@@ -51,7 +51,7 @@
   $pdf->Cell(45, 8, "Precio Unitario", 0, 0, 'C');
   $pdf->Ln();
   
-  $pdf->SetDrawColor(77, 173, 38);
+  $pdf->SetDrawColor(76, 174, 40);
   $pdf->SetLineWidth(1);
   $pdf->Line(20, 55, 190, 55);
 
