@@ -20,11 +20,11 @@ $(document).ready(function() {
     responsive: true,
     data: "",
     columns: [
-      { data: "cantidad", title: "Unidad" },
+      { data: "cantidad", title: "Unidad", width: "20px" },
       { data: "descripcion", title: "Descripción" },
-      { data: "sub_total", title: "Valor" },
+      { data: "sub_total", title: "Sub Total" },
       { data: "total", title: "Total" },
-      { data: "", title: "Opción",
+      { data: "", title: "Opción", width: "20px",
         render: function ( data, type, row, meta ) {
           return '<button type="button" onclick="borrarProducto(\''+row.id_temporal+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
         }  

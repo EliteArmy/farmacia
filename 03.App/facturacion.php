@@ -42,14 +42,17 @@
           <h4>Fecha Limite Emisión: 12/12/2019</h4>
         </div>
         
-        <input type="hidden" id="id-empleado" value="<?php echo $_SESSION["id_empleado"] ?>">
+        <div class="mt-2 " id="subtitulo-factura">
+          <h4 class="float-left">Le Atendio: <?php echo $_SESSION["nombre_completo"];?></h4>
+          <h4 class="float-right" id="fecha">Fecha:</h4>
 
-        <div id="subtitulo-factura" class="text-left">
-          <h4>Le Atendio: <?php echo $_SESSION["nombre_completo"];?></h4>
-          <h4 id="cliente">Consumidor Final:</h4>
           <input type="hidden" id="id-cliente" value="">
-          <h4 class="text-right" id="fecha">Fecha:</h4>
-          <h4 class="text-right" id="hora">Hora:</h4>
+          <input type="hidden" id="id-empleado" value="<?php echo $_SESSION["id_empleado"] ?>">
+        </div>
+
+        <div id="subtitulo-factura">
+          <h4 class="float-left" id="cliente">Consumidor Final:</h4>
+          <h4 class="float-right" id="hora">Hora:</h4>
         </div>
 
         <div class="row mt-2 mb-1" id="content">
@@ -123,22 +126,22 @@
 
         </div>
 
-        <div class="row mt-3 mb-3">
-          <div class="col-12 col-sm-12 col-lg-12 texto">
-            <div class="text-center">
-              <h3>Detalles de la Factura</h3>
+        <div class="row mt-3 mb-1">
+          <div class="col-12 col-sm-12 col-lg-12 mb-2 texto">
+            <div class="text-center h5 font-weight-bold">
+              Detalles de la Factura
             </div>
           </div>
 
           <div class="col-12 col-sm-6 col-md-6 col-lg-6 texto">
-            <label for="div-sub-total">Sub-Total:</label>
-            <div id="div-sub-total" class="alert alert-success nuevo-alert" role="alert">
+            <label class="h5 font-weight-bold" for="div-sub-total">Sub-Total:</label>
+            <div class="h5 font-weight-bold d-inline" id="div-sub-total">
             </div>
           </div>
 
           <div class="col-12 col-sm-6 col-md-6 col-lg-6 texto">
-            <label for="div-total">Total:</label>
-            <div id="div-total" class="alert alert-success nuevo-alert" role="alert">
+            <label class="h5 font-weight-bold" for="div-total">Total:</label>
+            <div class="h5 font-weight-bold d-inline" id="div-total">
             </div>
           </div>
 
@@ -149,20 +152,19 @@
             </div>
           </div>
 
-          <div class="col-11 col-sm-12 col-md-12 col-lg-12 mt-2">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
             <table id="table-info" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->
             </table>
           </div>
 
-          <div class="col-11 col-sm-12 col-md-12 col-lg-12">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
             <div id="pie-factura" class="text-center">
               <h4>Gracias por su visita</h4>
               <h4>correo: correo@gmail.com</h4>
               <h4>Telefono: 9898-9898</h4>
               <h4>Original: Cliente</h4>
-              <h4>-- Cuenta Cerrada --</h4>
-              <h4></h4>
+              <h4>--- Cuenta Cerrada ---</h4>
             </div>
           </div>
         </div>
