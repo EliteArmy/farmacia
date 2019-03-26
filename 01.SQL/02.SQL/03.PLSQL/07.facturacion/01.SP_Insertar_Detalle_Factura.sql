@@ -163,7 +163,7 @@ SP:BEGIN
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura
+    SELECT *,precioVentaUnidad,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura
     FROM detalle_factura_temp
     WHERE id_empleado=pI_id_empleado;
 
