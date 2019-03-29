@@ -57,18 +57,25 @@
             </div>
             <div class="form-group col-12 d-none">
             <input class="form-control " id="txt-id-lab" name="txt-id-desc" >     
-            <input class="form-control " id="txt-estado-lab" name="txt-id-desc" >                 
-            
-          </div>
+            <input class="form-control " id="txt-estado-lab" name="txt-id-desc" >  
+           </div>
+                
+           <div id="seleccion-estado-lab" class="col-md-11 form-group d-none">
+              <label for="slc-estado-lab">Estado:</label>
+              <select id="slc-estado-lab" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+                <option value="A">Activo</option>  
+                <option value="I">Inactivo</option>
+              </select>
+            </div>
             <div class="col-md-8  col-sm-8 col-8">
               <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary d-none" id="act-lab" data-dismiss="modal">Actualizar Cambios</button>
               <button type="button" class="btn btn-primary" id="guard-laboratorio">Guardar</button>
             </div>
              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
+            <div id="div-exito-lab" class="alert alert-success nuevo-alert d-none" role="alert">
             </div>
-            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
+            <div id="div-error-lab" class="alert alert-danger nuevo-alert d-none" role="alert">
             </div>            
           </div>
 

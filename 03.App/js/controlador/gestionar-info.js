@@ -101,7 +101,7 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { data: "id_categoria", title:"ID"},
+
       { data: "categoria", title:"Categoria"},
       { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
@@ -179,7 +179,7 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { data: "id_presentacion", title:"ID"},
+     
       { data: "presentacion", title:"Presentación"},
       { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
@@ -568,7 +568,7 @@ function funcionBuscarCat(nomb){
   // Se hace el cambio del footer en el Modal
   $("#guard-categoria").hide();
   $("#act-cat").removeClass("d-none");
-  
+  $("#seleccion-estado-cat").removeClass("d-none"); 
   //$("#seleccion-estado").removeClass("d-none");
   //$('#laboratorio').show();
   
@@ -620,12 +620,13 @@ $("#act-cat").click(function(){
       "id_categoria": $("#txt-id-cat").val(),
        "categoria": $("#txt-nombre-categoria").val(),
      
-      "estado": $("#txt-estado-cat").val(),
-   
+      "estado": $("#slc-estado-cat").val(),
+     
 
     }
     
   }
+  console.log($("#slc-estado-cat").val()),
    console.log($("#txt-nombre-categoria").val()),
   $.ajax(settings).done(function (response) {
   imprimirMensaje(response,"-categoria");
@@ -713,17 +714,15 @@ function funcionBorrarPre(nomb){
   })
 }
 
-//Buscar presentacion
+
 function funcionBuscarPre(nomb){
-  //$("#inputGroupFile").removeClass('is-valid');
-  // Se hace el cambio del footer en el Modal
+
   $("#guard-presentacion").hide();
   $("#act-pre").removeClass("d-none");
+  $("#seleccion-estado-pre").removeClass("d-none");
   
-  //$("#seleccion-estado").removeClass("d-none");
-  //$('#laboratorio').show();
   
-  //resetCampos();
+ 
   console.log("Hola")
   var settings = {
     "async": true,
@@ -771,7 +770,7 @@ $("#act-pre").click(function(){
       "id_presentacion": $("#txt-id-pre").val(),
        "presentacion": $("#txt-nombre-presentacion").val(),
      
-      "estado": $("#txt-estado-pre").val(),
+      "estado": $("#slc-estado-pre").val(),
    
 
     }

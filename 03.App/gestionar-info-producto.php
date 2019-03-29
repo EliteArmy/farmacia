@@ -170,7 +170,13 @@
             <input class="form-control " id="txt-estado-pre" name="txt-id-desc" >                 
             
           </div>
-            
+          <div id="seleccion-estado-pre" class="col-md-11 form-group d-none">
+              <label for="slc-estado-pre">Estado:</label>
+              <select id="slc-estado-pre" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+                <option value="A">Activo</option>  
+                <option value="I">Inactivo</option>
+              </select>
+          </div>
           <div class="col-12 col-md-11" >
             <button type="button" class="btn btn-info" id="" align="left">Reset</button>
             <button type="button" class="btn btn-primary d-none" id="act-pre" data-dismiss="modal">Actualizar Cambios</button>  
@@ -209,7 +215,13 @@
             <input class="form-control " id="txt-estado-cat" name="txt-id-desc" >                 
             
           </div>
-
+          <div id="seleccion-estado-cat" class="col-md-11 form-group d-none">
+              <label for="slc-estado-cat">Estado:</label>
+              <select id="slc-estado-cat" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+                <option value="A">Activo</option>  
+                <option value="I">Inactivo</option>
+              </select>
+          </div>
           <div class="col-10 col-md-11">
             <button type="button" class="btn btn-info" id="">Reset</button>
             <button type="button" class="btn btn-primary d-none" id="act-cat" data-dismiss="modal">Actualizar Cambios</button>

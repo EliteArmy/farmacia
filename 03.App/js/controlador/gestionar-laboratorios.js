@@ -30,7 +30,7 @@ $(document).ready(function() {
           "content-type": "application/x-www-form-urlencoded"
         },
         "data": {
-          "accion": "leer-laboratorio"
+          "accion": "leer-laboratorio-todo"
         }
       },
       language: {
@@ -75,7 +75,7 @@ $("#guard-laboratorio").click(function(){
   }
   
   $.ajax(settings).done(function (response) {
-    imprimirMensaje(response);
+    imprimirMensajeSinCorchete(response,"-lab");
     formaLab.validateAll()
   });
 
@@ -133,11 +133,7 @@ function funcionBuscarLab(nomb){
   // Se hace el cambio del footer en el Modal
   $("#guard-laboratorio").hide();
   $("#act-lab").removeClass("d-none");
-  
-  //$("#seleccion-estado").removeClass("d-none");
-  //$('#laboratorio').show();
-  
-  //resetCampos();
+  $("#seleccion-estado-lab").removeClass("d-none");
   console.log("Hola")
   var settings = {
     "async": true,
@@ -189,7 +185,7 @@ $("#act-lab").click(function(){
       "nombre_laboratorio": $("#txt-nombre-laboratorio").val(),
       "direccion": $("#txt-direccion").val(),
       "telefono_laboratorio": $("#txt-telefono-lab").val(),
-      "estado": $("#txt-estado-lab").val(),
+      "estado": $("#slc-estado-lab").val(),
    
 
     }
@@ -198,30 +194,59 @@ $("#act-lab").click(function(){
    console.log($("#txt-telefono-lab").val()),
   $.ajax(settings).done(function (response) {
     formaLab.validateAll()
-  imprimirMensaje(response,"-laboratorio");
+  imprimirMensaje(response,"-lab");
   });
   
 });
 
-
-
-
-
-
-
-
-
-
-function imprimirMensaje(response){
-  
-  $('#data-table-lab').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-  
-  $("#div-exito").removeClass("d-none");
-  $("#div-exito").html("Inserccion Exitosa");
-  
-  $("#div-exito").hide(8000, function(){
-    $('#div-exito').addClass("d-none");
-    $("#div-exito").show();
+function imprimirMensaje(response,tbl2){
+  if (response.data[0].error == 0) {
+    console.log(response.data);
+    $('#data-table-lab').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
     
-  });
+    $("#div-exito"+tbl2).html(response.data[0].mensaje);
+    $("#div-exito"+tbl2).removeClass("d-none");
+    
+    $("#div-exito"+tbl2).hide(8000, function(){
+      $('#div-exito'+tbl2).addClass("d-none");
+      $("#div-exito"+tbl2).show();
+      $("#div-exito"+tbl2).html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error"+tbl2).html(response.data[0].mensaje);
+    $("#div-error"+tbl2).removeClass("d-none");
+   
+    $("#div-error"+tbl2).hide(8000, function(){
+      $('#div-error'+tbl2).show();
+      $('#div-error'+tbl2).addClass("d-none");
+      $("#div-error"+tbl2).html("");
+    });
+  }
 }
+function imprimirMensajeSinCorchete(response,tbl){
+  if (response.data.error == 0) {
+    console.log(response.data);
+    $('#data-table'+tbl).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    
+    $("#div-exito"+tbl).html(response.data.mensaje);
+    $("#div-exito"+tbl).removeClass("d-none");
+    
+    $("#div-exito"+tbl).hide(8000, function(){
+      $('#div-exito'+tbl).addClass("d-none");
+      $("#div-exito"+tbl).show();
+      $("#div-exito"+tbl).html("");
+    });
+  } else {
+    console.log(response);
+    $("#div-error"+tbl).html(response.data.mensaje);
+    $("#div-error"+tbl).removeClass("d-none");
+   
+    $("#div-error"+tbl).hide(8000, function(){
+      $('#div-error'+tbl).show();
+      $('#div-error'+tbl).addClass("d-none");
+      $("#div-error"+tbl).html("");
+    });
+  }
+}
+
