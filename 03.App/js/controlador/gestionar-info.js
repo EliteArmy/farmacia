@@ -225,7 +225,7 @@ $("#guard-impuesto").click(function(){
   // Se hace el cambio del footer en el Modal
   $("#guard-impuesto").hide();
   $("#act-imp").removeClass("d-none");
-  
+  $("#seleccion-estado-imp").removeClass("d-none");
   //$("#seleccion-estado").removeClass("d-none");
   //$('#laboratorio').show();
   
@@ -324,7 +324,7 @@ $("#act-imp").click(function(){
       "id_impuesto": $("#txt-id-imp").val(),
       "descripcion": $("#txt-descripcion-imp").val(),
       "porcentaje": $("#in-impuesto").val(),
-      "estado": $("#txt-estado-imp").val(),
+      "estado": $("#slc-estado-imp").val(),
       "fecha_fin": $("#fecha-final-imp").val()
 
     }

@@ -124,6 +124,13 @@
               <input type="number" class="form-control" min="1" max="100" id="in-impuesto" name="in-impuesto">
             </div>
           </div>
+          <div id="seleccion-estado-imp" class="col-md-11 form-group d-none">
+              <label for="slc-estado-imp">Estado:</label>
+              <select id="slc-estado-imp" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+                <option value="A">Activo</option>  
+                <option value="I">Inactivo</option>
+              </select>
+          </div>
 
           <div class="mt-2 col-md-11 col-8">
             <button type="button" class="btn btn-info" id="">Reset</button>
