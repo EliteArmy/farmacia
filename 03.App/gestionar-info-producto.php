@@ -63,7 +63,14 @@
             </div>
 
           </div>
-          
+          <div id="seleccion-estado-desc" class="col-md-11 form-group d-none">
+              <label for="slc-estado-desc">Estado:</label>
+              <select id="slc-estado-desc" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+                <option value="A">Activo</option>  
+                <option value="I">Inactivo</option>
+              </select>
+          </div>
+
           <div class="col-md-11 form-group">
             <label for="fecha-final-desc">Fecha Final: </label>
             <input type="date" id="fecha-final-desc" name="fecha-final" class="form-control">

@@ -375,6 +375,7 @@ $("#guard-descuento").click(function(){
   // Se hace el cambio del footer en el Modal
   $("#guard-descuento").hide();
   $("#act-desc").removeClass("d-none");
+  $("#seleccion-estado-desc").removeClass("d-none");
   
   //$("#seleccion-estado").removeClass("d-none");
   //$('#laboratorio').show();
@@ -477,7 +478,7 @@ $("#act-desc").click(function(){
       "id_descuento": $("#txt-id-desc").val(),
       "descripcion": $("#txt-descripcion").val(),
       "porcentaje": $("#txt-porcentaje-desc").val(),
-      "estado": $("#txt-estado").val(),
+      "estado": $("#slc-estado-desc").val(),
       "fecha_fin": $("#fecha-final-desc").val()
 
     }
