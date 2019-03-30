@@ -2,6 +2,7 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Eliminar_Lote$$
 CREATE PROCEDURE SP_Eliminar_Lote(
         IN pI_id_lote INTEGER(11),
+        IN pI_id_empleado INTEGER(11),
   
         OUT pO_mensaje VARCHAR(1000),
         OUT pO_error BOOLEAN
@@ -12,10 +13,12 @@ CREATE PROCEDURE SP_Eliminar_Lote(
   DECLARE mensaje VARCHAR(255);
   DECLARE contador INTEGER;
   DECLARE error BOOLEAN;
+  DECLARE ultimoIdMovimiento INTEGER;
 -- Inicializaciones
   SET mensaje='';
   SET contador = 0;
   SET error= FALSE;
+  SET ultimoIdMovimiento=0;
 
   -- _______________________VALIDACION_____________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
@@ -32,6 +35,19 @@ CREATE PROCEDURE SP_Eliminar_Lote(
         END IF;
     END IF;
 
+    IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
+        SET mensaje=CONCAT(mensaje, 'Codigo de empleado Vacio, ');
+    ELSE
+        SELECT COUNT(*) INTO contador 
+        FROM empleado 
+        WHERE id_empleado=pI_id_empleado;
+
+        IF contador=0 THEN
+          SET mensaje=CONCAT(mensaje, 'Este empleado no está registrado, ');
+        END IF;
+    END IF;
+    
+
 
  -- ______________________CUERPO__________________________________________
    
@@ -45,12 +61,16 @@ CREATE PROCEDURE SP_Eliminar_Lote(
         LEAVE SP;
    END IF;   
 
-
-     UPDATE lote 
-         SET
-             estado = "I"
-         WHERE
-             lote.id_lote= pI_id_lote;
+  SELECT existencia INTO contador FROM lote WHERE id_lote=pI_id_lote;
+   INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'R'); -- R-->Retiro.
+   SET ultimoIdMovimiento=LAST_INSERT_ID();
+   INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES (ultimoIdMovimiento, contador, pI_id_lote);
+  
+  UPDATE lote 
+      SET
+          estado = "I"
+      WHERE
+          lote.id_lote= pI_id_lote;
    
      COMMIT;
      SET mensaje= 'Eliminación exitosa';
@@ -64,8 +84,11 @@ END $$
 
 
 -- ___________________LLAMADO_____________________
-CALL SP_Eliminar_lote(8, @mensaje,@error);
+
+CALL SP_Eliminar_lote(2,81, @mensaje,@error);
 SELECT @mensaje, @error;
 
-SELECT * FROM lote
+SELECT * FROM lote;
+SELECT * FROM movimiento_producto;
+SELECT * FROM detalle_movimiento WHERE id_lote=2;
 
