@@ -131,6 +131,7 @@ SP:BEGIN
                             id_impuesto,
                             codigo_barra,
                             cantidad,
+                            precio_venta_unidad,
                             descripcion,
                             total_descuento,
                             total_impuesto,
@@ -142,6 +143,7 @@ SP:BEGIN
                             idImpuesto,
                             codigoBarraProducto,
                             pI_cantidad,
+                            precioVentaUnidad,
                             descripcionProducto,
                             totalDescuentoRow,
                             totalImpuestoRow,
@@ -163,7 +165,7 @@ SP:BEGIN
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT *,precioVentaUnidad,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura
+    SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
     FROM detalle_factura_temp
     WHERE id_empleado=pI_id_empleado;
 
