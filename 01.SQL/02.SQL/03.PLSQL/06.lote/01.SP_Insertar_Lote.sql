@@ -2,6 +2,7 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Insertar_Lote$$
 CREATE PROCEDURE SP_Insertar_Lote(
         IN pI_id_producto INT(11),
+        IN pI_id_empleado INT(11),
         IN pI_lote VARCHAR(100),
         IN pI_precio_costo_unidad DOUBLE,
         IN pI_precio_venta_unidad DOUBLE,
@@ -19,8 +20,10 @@ CREATE PROCEDURE SP_Insertar_Lote(
   DECLARE mensaje VARCHAR(1000);
   DECLARE error BOOLEAN;
   DECLARE contador INTEGER;
-  DECLARE ultimoId INTEGER;
+  DECLARE ultimoIdLote INTEGER;
+  DECLARE ultimoIdMovimiento INTEGER;
   DECLARE fechaFin DATE;
+  DECLARE isDescuento BOOLEAN;
 
   SET AUTOCOMMIT=0;
   START TRANSACTION;
@@ -28,10 +31,11 @@ CREATE PROCEDURE SP_Insertar_Lote(
   SET mensaje='';
   SET error = FALSE;
   SET contador = 0;
+  SET isDescuento=FALSE;
    -- ___________________VALIDACIONES___________________________________
    -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'Identificador de producto vacio, ');
+        SET mensaje=CONCAT(mensaje, 'Codigo de producto vacio, ');
     END IF;
 
     IF pI_lote='' OR pI_lote IS NULL THEN 
@@ -57,9 +61,17 @@ CREATE PROCEDURE SP_Insertar_Lote(
     IF pI_existencia=''  OR pI_existencia IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'Existencia vacia, ');
     END IF;
-    -- Las farmacias en el estado de HN están obligadas a otorgar el 25% de descuento a las personas mayores
-    IF pI_id_descuento=''  OR pI_id_descuento IS NULL THEN
-      SET mensaje=CONCAT(mensaje,'Descuento vacio');
+
+    IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
+        SET mensaje=CONCAT(mensaje, 'Codigo de empleado Vacio, ');
+    ELSE
+        SELECT COUNT(*) INTO contador 
+        FROM empleado 
+        WHERE id_empleado=pI_id_empleado;
+
+        IF contador=0 THEN
+          SET mensaje=CONCAT(mensaje, 'Este empleado no está registrado, ');
+        END IF;
     END IF;
     
    IF mensaje <> '' THEN
@@ -72,7 +84,6 @@ CREATE PROCEDURE SP_Insertar_Lote(
    END IF;
 
     -- ___________________CUERPO DEL PL_________________________________
-
    SELECT COUNT(*) INTO contador FROM producto WHERE id_producto = pI_id_producto;
    IF contador = 0 THEN
      SET mensaje=CONCAT(mensaje, 'EL producto no existe, ');
@@ -83,9 +94,14 @@ CREATE PROCEDURE SP_Insertar_Lote(
      END IF;
    END IF;
 
-    SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento AND estado='A';
-    IF contador=0 THEN
-      SET mensaje=CONCAT(mensaje,'El descuento no existe');
+    -- Las farmacias en el estado de HN están obligadas a otorgar el 25% de descuento a las personas mayores
+    IF NOT(pI_id_descuento=''  OR pI_id_descuento IS NULL) THEN
+        SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento AND estado='A';
+        IF contador=0 THEN
+          SET mensaje=CONCAT(mensaje,'El descuento no existe');
+        ELSE 
+          SET isDescuento=TRUE;
+        END IF;
     END IF;
 
    IF pI_fecha_elaboracion > CURDATE() THEN
@@ -127,8 +143,6 @@ CREATE PROCEDURE SP_Insertar_Lote(
         LEAVE SP;
    END IF;
 
-
-
    INSERT INTO lote (id_producto, 
           					lote, 
           					precio_costo_unidad,
@@ -145,35 +159,41 @@ CREATE PROCEDURE SP_Insertar_Lote(
           					 pI_fecha_vencimiento,
                      'A',
                      pI_existencia);
-    COMMIT;
 
- 
-    SELECT fecha_fin INTO fechaFin FROM descuento WHERE id_descuento=pI_id_descuento;
+    SET ultimoIdLote=LAST_INSERT_ID();
+    IF isDescuento THEN
+      SELECT fecha_fin INTO fechaFin FROM descuento WHERE id_descuento=pI_id_descuento;
 
-    SELECT MAX(id_lote) INTO ultimoId FROM lote;
-    CALL SP_Insertar_Descuento_Lote(ultimoId, pI_id_descuento, CURDATE(), fechaFin,'A',@mensajeInsertarLoteDescuento,@errorInsertarLoteDescuento);
-    IF @errorInsertarLoteDescuento THEN
-      SET mensaje=@mensajeInsertarLoteDescuento;
-      SET error=TRUE;
-      SET pO_mensaje=mensaje;
-      SET pO_error=error;
-      SELECT mensaje,error;
-      LEAVE SP;
+
+      
+      CALL SP_Insertar_Descuento_Lote(ultimoIdLote, pI_id_descuento, CURDATE(), fechaFin,'A',@mensajeInsertarLoteDescuento,@errorInsertarLoteDescuento);
+      IF @errorInsertarLoteDescuento THEN
+        SET mensaje=@mensajeInsertarLoteDescuento;
+        SET error=TRUE;
+        SET pO_mensaje=mensaje;
+        SET pO_error=error;
+        SELECT mensaje,error;
+        LEAVE SP;
+      END IF;   
     END IF;
 
-    SET mensaje := 'Inserción exitosa';
+    INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'A'); -- A-->Adquisicion.
+    SET ultimoIdMovimiento=LAST_INSERT_ID();
+    INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES (ultimoIdMovimiento, pI_existencia, ultimoIdLote);
+
+    COMMIT;
+    SET mensaje = 'Inserción exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
     SELECT mensaje,error;
 END $$
 
-CALL SP_Insertar_Lote(2,'lo89k65', 6,500 , '2018-02-02','2019-03-03',32,1,@mensaje,@error);
-SELECT @mensaje,@error;
-
-SELECT * FROM lote
-select * from producto
-select * from descuento
-select * from descuento_lote
+CALL SP_Insertar_Lote(1,81,'LOT89969079', 6,500 , '2018-02-02','2019-03-30',32,0,@mensaje,@error);
+SELECT * FROM lote;
+SELECT * FROM empleado;
+SELECT * FROM movimiento_producto;
+SELECT * FROM detalle_movimiento WHERE id_movimiento>190;
+SELECT * FROM descuento_lote;
 
 
