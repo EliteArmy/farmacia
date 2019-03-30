@@ -9,7 +9,8 @@ if(isset($_POST['accion'])){
   switch ($_POST['accion']) {
 
     case 'estadisticas':
-      $res['data'] = $conexion->query('SELECT * FROM VistaEstadisticas');
+      $rows= $conexion->query('SELECT * FROM VistaEstadisticas');
+      $res['data'] = $rows[0];
       echo json_encode($res);
     break;
 
