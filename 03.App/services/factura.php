@@ -95,6 +95,16 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+
+    case 'obtener-detalle-factura':
+      $idEmpleado=ValidarPost::unsigned('id_empleado');
+      $fact = new Factura();
+
+      $fact->setIdEmpleado($idEmpleado);
+      $res['data'] = $fact->obtenerDetalleFactura($conexion);
+      echo json_encode($res);
+    break;
+
     case 'buscar-cliente':
       $identidad = ValidarPost::unsigned('numero_identidad');
 

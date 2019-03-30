@@ -235,6 +235,13 @@ class Factura {
     $valores = [$this->getIdEmpleado()];
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
+	}
+	
+	public function obtenerDetalleFactura($conexion){
+    $sql = 'CALL SP_Obtener_Detalle_Factura(%d,@mensaje,@error)';
+    $valores = [$this->getIdEmpleado()];
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
   }
 
 }
