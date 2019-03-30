@@ -174,7 +174,7 @@ CREATE PROCEDURE SP_Actualizar_Lote(
    END IF;
    
    -- Contador=1 El descuento por Actualizar ya existe
-   SELECT COUNT(*) INTO contador FROM descuento_lote 
+   SELECT COUNT(*) INTO contador FROM descuento_lote
    WHERE id_descuento=pI_id_descuento AND id_lote=pI_id_lote AND estado='A';
 
    IF contador=0 THEN
@@ -230,12 +230,12 @@ CREATE PROCEDURE SP_Actualizar_Lote(
     SELECT mensaje,error;
 END $$
 
-CALL SP_Actualizar_Lote(1,2,'sifjisdfjs', 10, 200, DATE('2019-03-02'), DATE('2021-02-02'),"",5,1,@mensaje,@error);
-SELECT @mensaje,@error;
-
-
-CALL SP_Actualizar_Lote( 1,1,81,'LOT8996',25.36,26.80,DATE('2019-02-19'),DATE('2019-03-31'), 'A',1000,1 ,@mensaje,@error);
-
-SELECT * FROM lote;
-SELECT * FROM detalle_movimiento where id_lote=1;
-SELECT * FROM movimiento_producto ;
+# CALL SP_Actualizar_Lote(1,2,'sifjisdfjs', 10, 200, DATE('2019-03-02'), DATE('2021-02-02'),"",5,1,@mensaje,@error);
+# SELECT @mensaje,@error;
+#
+#
+# CALL SP_Actualizar_Lote( 1,1,81,'LOT8996',25.36,26.80,DATE('2019-02-19'),DATE('2019-03-31'), 'A',1000,1 ,@mensaje,@error);
+#
+# SELECT * FROM lote;
+# SELECT * FROM detalle_movimiento where id_lote=1;
+# SELECT * FROM movimiento_producto ;

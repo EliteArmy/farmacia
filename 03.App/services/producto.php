@@ -256,6 +256,7 @@ if(isset($_POST['accion'])){
 
     case 'crear-lote':
       $idProducto = ValidarPost::unsigned('id_producto');
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
       $lote = ValidarPost::varchar('lote');
       $precioCostoUnidad = ValidarPost::currency('precio_costo_unidad');
       $precioVentaUnidad = ValidarPost::currency('precio_venta_unidad');
@@ -268,6 +269,7 @@ if(isset($_POST['accion'])){
 
       $lot->setIdProducto($idProducto);
       $lot->setLote($lote);
+      $lot->setIdEmpleado($idEmpleado);
       $lot->setPrecioCosto($precioCostoUnidad);
       $lot->setPrecioVenta($precioVentaUnidad);
       $lot->setFechaElaboracion($fechaElaboracion);
@@ -295,6 +297,8 @@ if(isset($_POST['accion'])){
 
       $lot->setIdLote($idLote);
       $lot->setIdProducto($idProducto);
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
+      $lot->setIdEmpleado($idEmpleado);
       $lot->setLote($lote);
       $lot->setPrecioCosto($precioCostoUnidad);
       $lot->setPrecioVenta($precioVentaUnidad);

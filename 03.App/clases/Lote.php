@@ -8,6 +8,8 @@ class Lote extends Producto{
 	private $fechaVencimiento;
 	private $idDescuento;
 	private $existencia;
+	private $idEmpleado;
+
 
 	public function __construct(
 		$idLote = null,
@@ -94,12 +96,22 @@ class Lote extends Producto{
 		$this->existencia = $existencia;
 	}
 
+
+	public function getIdEmpleado(){
+		return $this->idEmpleado;
+	}
+
+	public function setIdEmpleado($idEmpleado){
+		$this->idEmpleado = $idEmpleado;
+	}
+
 	public function crear($conexion){
 		$sql = "CALL SP_Insertar_Lote(
-			%s,'%s',%s,%s,DATE('%s'),DATE('%s'),%s,%s
+			%s,%s,'%s',%s,%s,DATE('%s'),DATE('%s'),%s,%s
 			,@mensaje,@error);";
 		$valores = [
 			$this->getIdProducto(),
+			$this->getIdEmpleado(),
 			$this->getLote(),
 			$this->getPrecioCosto(),
 			$this->getPrecioVenta(),
@@ -146,11 +158,12 @@ class Lote extends Producto{
 
 	public function actualizar($conexion){
 		$sql = "CALL SP_Actualizar_Lote(
-			%s,%s,'%s',%s,%s,DATE('%s'),DATE('%s'), '%s',%s,%s
+			%s,%s,%s,'%s',%s,%s,DATE('%s'),DATE('%s'), '%s',%s,%s
 			,@mensaje,@error);";
 		$valores = [
 			$this->getIdLote(),
 			$this->getIdProducto(),
+			$this->getIdEmpleado(),
 			$this->getLote(),
 			$this->getPrecioCosto(),
 			$this->getPrecioVenta(),

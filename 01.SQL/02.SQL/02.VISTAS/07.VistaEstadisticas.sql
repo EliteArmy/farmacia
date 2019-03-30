@@ -15,4 +15,6 @@ WHERE id_producto IN (
   SELECT id_producto FROM VistaInventarioMercaderia
 )) as total_productos_activos;
 
-SELECT * FROM VistaEstadisticas
+SELECT * FROM VistaEstadisticas;
+
+SELECT * FROM VistaInventarioMercaderia
