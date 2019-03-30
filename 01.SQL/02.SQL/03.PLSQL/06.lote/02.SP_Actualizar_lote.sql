@@ -24,6 +24,8 @@ CREATE PROCEDURE SP_Actualizar_Lote(
   DECLARE contador INTEGER;
   DECLARE uEstado VARCHAR(1);
   DECLARE fechaFin DATE;
+  DECLARE diferencia INTEGER;
+  DECLARE ultimoIdMovimiento INTEGER;
 
   SET AUTOCOMMIT=0;
   START TRANSACTION;
@@ -32,6 +34,8 @@ CREATE PROCEDURE SP_Actualizar_Lote(
   SET error = FALSE;
   SET contador = 0;
   SET uEstado= 'A';
+  SET diferencia=0;
+  SET ultimoIdMovimiento=0;
   
    -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
@@ -190,6 +194,8 @@ CREATE PROCEDURE SP_Actualizar_Lote(
     END IF;
 
   END IF;
+   SELECT existencia INTO contador FROM lote
+   WHERE id_lote= pI_id_lote;
 
    UPDATE lote SET id_producto =pI_id_producto,
 				           lote = pI_lote ,
@@ -201,11 +207,23 @@ CREATE PROCEDURE SP_Actualizar_Lote(
                    existencia = pI_existencia
                    WHERE 
                    id_lote=pI_id_lote;
-			   
 
+    SET diferencia= contador - pI_existencia;
+    IF NOT (diferencia= 0) THEN
+      IF diferencia > 0 THEN
+        SET diferencia = diferencia*(-1);
+         INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'R'); -- R-->Retiro.
+         SET ultimoIdMovimiento=LAST_INSERT_ID();
+         INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES (ultimoIdMovimiento, diferencia, pI_id_lote);
+      ELSE
+         INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'A'); -- A-->Adquisicion.
+         SET ultimoIdMovimiento=LAST_INSERT_ID();
+         INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES      (ultimoIdMovimiento, diferencia, pI_id_lote);
+      END IF;
+    END IF;
 
-    COMMIT;
-     SET mensaje='Actualización exitosa';
+    COMMIT; 
+     SET mensaje= 'Actualización exitosa';
      SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
@@ -216,5 +234,8 @@ CALL SP_Actualizar_Lote(1,2,'sifjisdfjs', 10, 200, DATE('2019-03-02'), DATE('202
 SELECT @mensaje,@error;
 
 
-CALL SP_Actualizar_Lote( 1,1,'LOT8996',25.36,26.80,DATE('2019-02-19'),DATE('2019-03-20'), 'A',1,1 ,@mensaje,@error);
+CALL SP_Actualizar_Lote( 1,1,81,'LOT8996',25.36,26.80,DATE('2019-02-19'),DATE('2019-03-31'), 'A',1000,1 ,@mensaje,@error);
 
+SELECT * FROM lote;
+SELECT * FROM detalle_movimiento where id_lote=1;
+SELECT * FROM movimiento_producto ;
