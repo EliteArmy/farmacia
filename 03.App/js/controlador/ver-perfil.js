@@ -1,13 +1,17 @@
 let formaPerfil = new Forma('editarPerfil');
+
 formaPerfil.addInput('email', /^[a-zA-Z0-9\._-]+@([_a-zA-Z0-9])+(\.[a-zA-Z]+)+$/, true);
-formaPerfil.addInput('telefono-nuevo',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
-formaPerfil.addInput('telefono-antiguo',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
+
+formaPerfil.addInput('telefono-nuevo',/^[1-9][0-9]{3}\-[0-9]{4}$/, true);
+formaPerfil.addInput('telefono-antiguo',/^[1-9][0-9]{3}\-[0-9]{4}$/, true);
+
 formaPerfil.addInput('contrasena1', /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/, false);
 formaPerfil.addInput('contrasena2', /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/, false);
+
 formaPerfil.setButtonEnvio('actualizar-perfil');
 formaPerfil.setButtonUpdate('actualizar-perfil');
-Forma.addTrigger(formaPerfil);
 
+Forma.addTrigger(formaPerfil);
 
 // Subir imagen de usuario
 $("#inputGroupFile").on("change", function(){

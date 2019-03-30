@@ -27,7 +27,7 @@
 
   <!-- Contenido -->
   <div class="container-fluid">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-center">
       <div class="col-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
@@ -84,7 +84,7 @@
 
             <div class="form-group col-12 d-none">
               <label for="id-empleado"></label>
-              <input type="text" class="form-control" id="id-empleado" name="id-empleado">
+              <input type="hidden" class="form-control" id="id-empleado" name="id-empleado">
             </div>
 
             <div class="form-group col-12 col-12 col-sm-6 col-md-6">
@@ -110,69 +110,105 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="usuario">Usuario:</label>
               <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="contrasena">Contraseña</label>
               <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña">
               <div class="invalid-feedback">
-                <span></span>: La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+                <span></span>: 
               </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="primer-nombre">Primer Nombre:</label>
               <input type="text" class="form-control" id="primer-nombre" name="primer-nombre"  placeholder="Primer Nombre">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="segundo-nombre">Segundo Nombre:</label>
               <input type="text" class="form-control" id="segundo-nombre" name="segundo-nombre" placeholder="Segundo Nombre">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="primer-apellido">Primer Apellido:</label>
               <input type="text" class="form-control" id="primer-apellido" name="primer-apellido" placeholder="Primer Apellido">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="segundo-apellido">Segundo Apellido:</label>
               <input type="text" class="form-control" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo Apellido">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="numero-identidad">Número de identidad:</label>
               <input type="text" class="form-control" id="numero-identidad" name="numero-identidad" placeholder="0102199912345">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="correo-electronico">Correo Electrónico:</label>
               <input type="text" class="form-control" id="correo-electronico" name="correo-electronico" placeholder="correo@gmail.com">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="telefono">Teléfono</label>
               <input id="telefono" class="form-control" type="text" placeholder="1234-5678">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div id="tel-nuevo" class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
               <label for="telefono-nuevo">Teléfono Nuevo</label>
               <input id="telefono-nuevo" class="form-control" type="text" placeholder="1234-5678">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="fecha-ingreso">Fecha Ingreso:</label>
               <input type="date" id="fecha-ingreso" class="form-control" placeholder="1999-12-31">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="direccion">Dirección:</label>
               <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="fecha-nacimiento">Fecha Nacimiento:</label>
               <input type="date" id="fecha-nacimiento" class="form-control" placeholder="1999-12-31">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">

@@ -91,11 +91,17 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="nombre-producto">Nombre del Producto</label>
               <input id="nombre-producto" type="text" class="form-control" name="nombre-producto"  placeholder="Nombre del Producto" autofocus>
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="codigo-barra">Código de Barra</label>
               <input id="codigo-barra" type="text" class="form-control" name="codigo-barra" placeholder="Código de Barra">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -103,6 +109,9 @@
               <select id="slc-categoria" class="selectpicker form-control" data-live-search="true" title="Categorias" data-style="btn-primary" multiple>
                 <!-- Informacion generada -->
               </select>
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -110,6 +119,9 @@
               <select id="slc-impuesto" class="selectpicker form-control" data-live-search="true" title="Impuestos" data-style="btn-primary">
                 <!-- Informacion generada -->
               </select>
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -125,6 +137,9 @@
                 <option value="P">Producto</option>
                 <option value="M">Medicamento</option>
               </select>
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div id="laboratorio" class="form-group col-12 col-sm-6 col-md-6" >
@@ -132,6 +147,9 @@
               <select id="slc-laboratorio" class="selectpicker form-control" data-live-search="true" title="Laboratorio" data-style="btn-primary">
                 <!--Informacion generada -->
               </select>
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div id="seleccion-estado" class="form-group col-12 col-sm-6 col-md-6">

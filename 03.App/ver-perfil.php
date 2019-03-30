@@ -11,12 +11,14 @@
   <title>Perfil</title>
 
   <link rel="icon" href="./img/icon.png">
+
   <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/jquery-confirm//css/jquery-confirm.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
+
 </head>
 <body>
 
@@ -24,8 +26,8 @@
 
   <!-- Contenido -->
   <div class="container well card">
-    <div class="row justify-content-md-center">
-      <div class="col-xs-12 col-md-11">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-11">
         <div class="text-center">
           <h4>Perfil del Empleado</h4>
         </div>
@@ -136,7 +138,6 @@
                 </div>
               </div>
             </div>
-
           </div>
           
           <div class="row">

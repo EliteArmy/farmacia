@@ -17,6 +17,8 @@ class Forma {
       let value = $("#" + id).val();
       let regexp = this.inputs[id].pattern;
       let flag = this.inputs[id].mandatory;
+      
+      // Comprobación de Campo Vacio o Nulo siendo obligatorio
       if (value == '' && flag === true){
         $("#" + id).removeClass('is-valid');
         if (flag){  
@@ -89,7 +91,6 @@ class Forma {
       }
   }
 }
-
 
 
 function formatMoney(n, c, d, t) {

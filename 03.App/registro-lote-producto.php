@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
 
-
 </head>
 
 <body>
@@ -28,7 +27,7 @@
 
   <!-- Contenido -->
   <div class="container-fluid">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-center">
       <div class="col-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>
@@ -90,6 +89,9 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="nombre-lote">Nombre del Lote</label>
               <input id="nombre-lote" type="text" class="form-control" placeholder="Nombre del Lote">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
@@ -102,26 +104,41 @@
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="precio-compra">Precio de Compra</label><br>
               <input id="precio-compra" class="form-control" type="text" placeholder="0.00">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="precio-venta">Precio de Venta</label><br>
               <input id="precio-venta" class="form-control" type="text" placeholder="0.00">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="fecha-elab">Fecha de Elaboración</label><br>
               <input id="fecha-elab" class="form-control" type="date" placeholder="2000-12-31">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="fecha-venc">Fecha de Vencimiento</label><br>
               <input id="fecha-venc" class="form-control" type="date" placeholder="2000-12-31">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="cantidad">Cantidad</label><br>
               <input id="cantidad" class="form-control" type="number" step="1" min="0" placeholder="0">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
             <div id="seleccion-estado" class="form-group col-12 col-sm-6 col-md-6">
