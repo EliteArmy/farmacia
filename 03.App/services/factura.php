@@ -34,7 +34,7 @@ if(isset($_POST['accion'])){
       $idFactura = ValidarPost::unsigned('id_factura');
       $fact = new Factura();
       $fact->setIdFactura($idFactura);
-      $res['data']  = $fact->leerPorId($conexion);
+      $res['data'] = $fact->leerPorId($conexion);
       echo json_encode($res);
     break;
 

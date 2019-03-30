@@ -43,7 +43,7 @@
               </div>
               <a class="text-decoration-none" href="#">
               <div id="factura" class="card-body text-center">
-                numero
+                <!-- Informacion generada -->
               </div>
               </a>
             </div>
@@ -58,7 +58,7 @@
               </div>
               <a class="text-decoration-none" href="/registrar-empleado.php">
               <div id="empleado" class="card-body text-center">
-                numero
+                <!-- Informacion generada -->
               </div>
               </a>
             </div>
@@ -73,7 +73,7 @@
               </div>
               <a class="text-decoration-none" href="/gestionar-info-producto.php">
               <div id="categoria" class="card-body text-center">
-                numero
+                <!-- Informacion generada -->
               </div>
               </a>
             </div>
@@ -88,7 +88,7 @@
               </div>
               <a class="text-decoration-none" href="/gestionar-laboratorios.php">
               <div id="laboratorio" class="card-body text-center">
-                numero
+                <!-- Informacion generada -->
               </div>
               </a>
             </div>
@@ -103,7 +103,7 @@
               </div>
               <a class="text-decoration-none" href="/registro-lote-producto.php">
               <div id="lote" class="card-body text-center">
-                numero
+                <!-- Informacion generada -->
               </div>
               </a>
             </div>
@@ -118,7 +118,7 @@
               </div>
               <a class="text-decoration-none" href="/nuevo-producto.php">
               <div id="producto" class="card-body text-center">
-                numero
+                <!-- Informacion generada -->
               </div>
               </a>
             </div>

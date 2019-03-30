@@ -10,8 +10,12 @@
   //header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
   require '../plugin/fpdf/fpdf.php';
+  include_once('../database/Conexion.php');
+
+  $conexion = new Conexion();
+  $resultado = $conexion->query('SELECT * FROM ');
   
-  // ======= Instacia =======
+  // ======= Instacia del PDF =======
   $pdf = new FPDF('P','mm','A4');
   $pdf->AddPage();
 
@@ -55,10 +59,25 @@
   $pdf->SetLineWidth(1);
   $pdf->Line(20, 55, 190, 55);
 
+  /*while($row = $conexion->getFila($resultado)){
+    $fpdf-> SetX(18); 
+    $fpdf->Cell(35,12,utf8_decode($row["idMaterial"]),1,0,'C');
+    $fpdf->Cell(60,12,utf8_decode($row["nombre"]),1,0,'C');
+    $fpdf->Cell(35,12,utf8_decode($row["cantidad"]),1,0,'C');
+    $fpdf->Cell(45,12,number_format($row["precio"], 2, '.', ','),1,0,'C');
+
+    //$fpdf->Cell(50,12,number_format($row["subtotal"], 2, '.', ','),1,0,'C');
+    $fpdf->Ln();
+  }*/
+
   // ======= Pie de Página del PDF =======
 
 
   //$pdf->Output('D','file2.pdf'); // Guarda en descargas
   $pdf->Output('F','../facturas/file2.pdf', true); // Guarda En el servidor
+  
+  $conexion->cerrar();
+  $conexion = null;
+  
   echo "facturas/file2.pdf"; 
 ?>
