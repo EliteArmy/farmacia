@@ -42,28 +42,26 @@
                 </strong>
               </div>
               <a class="text-decoration-none" href="#">
-              <div class="card-body text-center">
+              <div id="factura" class="card-body text-center">
                 numero
               </div>
               </a>
             </div>
-            
           </div>  
 
           <div class="col-10 col-sm-6 col-md-3">
             <div class="card card-padding">
               <div class="card-header text-info">
                 <strong>
-                  Total Usuarios
+                  Total Empleados
                 </strong>
               </div>
-              <a class="text-decoration-none" href="#">
-              <div class="card-body text-center">
+              <a class="text-decoration-none" href="/registrar-empleado.php">
+              <div id="empleado" class="card-body text-center">
                 numero
               </div>
               </a>
             </div>
-            
           </div>
 
           <div class="col-10 col-sm-6 col-md-3">
@@ -73,13 +71,12 @@
                   Total Categorías
                 </strong>
               </div>
-              <a class="text-decoration-none" href="#">
-              <div class="card-body text-center">
+              <a class="text-decoration-none" href="/gestionar-info-producto.php">
+              <div id="categoria" class="card-body text-center">
                 numero
               </div>
               </a>
             </div>
-            
           </div>
 
           <div class="col-10 col-sm-6 col-md-3">
@@ -89,13 +86,12 @@
                   Total Laboratorios
                 </strong>
               </div>
-              <a class="text-decoration-none" href="#">
-              <div class="card-body text-center">
+              <a class="text-decoration-none" href="/gestionar-laboratorios.php">
+              <div id="laboratorio" class="card-body text-center">
                 numero
               </div>
               </a>
             </div>
-            
           </div>
 
           <div class="col-10 col-sm-6 col-md-3">
@@ -105,13 +101,12 @@
                   Total Lotes Activos
                 </strong>
               </div>
-              <a class="text-decoration-none" href="#">
-              <div class="card-body text-center">
+              <a class="text-decoration-none" href="/registro-lote-producto.php">
+              <div id="lote" class="card-body text-center">
                 numero
               </div>
               </a>
             </div>
-            
           </div>
 
           <div class="col-10 col-sm-6 col-md-3">
@@ -121,13 +116,12 @@
                   Total Productos Activos
                 </strong>
               </div>
-              <a class="text-decoration-none" href="#">
-              <div class="card-body text-center">
+              <a class="text-decoration-none" href="/nuevo-producto.php">
+              <div id="producto" class="card-body text-center">
                 numero
               </div>
               </a>
             </div>
-            
           </div>
 
         </div>

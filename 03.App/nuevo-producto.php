@@ -28,7 +28,7 @@
 
   <!-- Contenido -->
   <div class="container-fluid">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-center">
       <div class="col-12 col-md-11 well card">
         <div class="text-center">
           <h4>Farmacia Esperanza</h4>

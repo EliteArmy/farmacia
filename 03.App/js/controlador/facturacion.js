@@ -305,35 +305,8 @@ function cerrarFactura(){
 }
 
 // ======= Guardar una Factura en PDF =======
-// ======= *** SIN TERMINAR **** =======
 $("#guardar-factura-pdf").click(function(){
   
-  /* 
-  Syntax: fromHTML(HTML, x, y, settings, callback, margins)
-
-  HTML: HTML formatted text that is to be rendered into PDF.
-  x-axis (Number): coordinate starting from x (i.e. from left)
-  y-axis (Number): coordinate starting from y (i.e. from top)
-  settings (Object): Optional/Additional variables.
-  */
-  /*
-  var doc = new jsPDF('p', 'mm', 'letter');
-  var titulo = $("#titulo-factura").text()
-  var subTitulo = $("#subtitulo-factura").text()
-  var pie = $("#pie-factura").text()
-  
-  doc.setFontSize(12);
-  doc.setFont("courier");
-
-  //doc.text(text, x, y);
-
-  doc.text(titulo, 90, 15, {align:"center"});
-  doc.text(subTitulo, 10, 60, {align:"left"});
-  doc.text(pie, 90, 85, {align:"center"});
-  
-  doc.save('factura.pdf');
-*/
-
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -350,6 +323,8 @@ $("#guardar-factura-pdf").click(function(){
 
   $.ajax(settings).done(function (url) {
     console.log(url);
+    
+    // Abre la factura en una nueva pestaña
     window.open(url, '_blank');
   });
 
