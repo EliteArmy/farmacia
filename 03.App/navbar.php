@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a href="#" class="navbar-brand">
+      <a href="/index.php" class="navbar-brand">
         <img src="./img/icon.png" class="img img-responsive logo" alt="logo" height="40px">
       </a>
     </div>

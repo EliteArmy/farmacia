@@ -17,8 +17,6 @@
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>  
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
-
-  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
   
 </head>
 
