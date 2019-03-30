@@ -15,7 +15,6 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
    DECLARE contador INT;
    DECLARE cantidadProducto INT;
    DECLARE idEmpleado INT;
-   DECLARE idLote INT;
    DECLARE totalImpuestoFactura DOUBLE;
    DECLARE totalDescuentoFactura DOUBLE;
    DECLARE subTotalFactura DOUBLE;
@@ -59,7 +58,6 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
 
    -- _______________SQL Statements_______________
    SELECT id_empleado INTO idEmpleado FROM detalle_factura_temp WHERE id_temporal=pI_id_temporal;
-   SELECT id_lote INTO idLote FROM detalle_factura_temp WHERE id_temporal=pI_id_temporal;
 
    DELETE 
    FROM detalle_factura_temp
@@ -84,7 +82,7 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
    SET pO_mensaje=mensaje;
    SET pO_error=error;
 
-   SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,cantidadProducto,idLote,mensaje,error
+   SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,cantidadProducto,mensaje,error
    FROM detalle_factura_temp
    WHERE id_empleado=idEmpleado;
 
