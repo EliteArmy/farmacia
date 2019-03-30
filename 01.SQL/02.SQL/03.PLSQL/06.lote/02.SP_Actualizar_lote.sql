@@ -3,6 +3,7 @@ DROP PROCEDURE IF EXISTS SP_Actualizar_Lote$$
 CREATE PROCEDURE SP_Actualizar_Lote(
         IN pI_id_lote INTEGER(11),
         IN pI_id_producto INTEGER(11),
+        IN pI_id_empleado INTEGER(11),
         IN pI_lote VARCHAR(100),
         IN pI_precio_costo_unidad DOUBLE,
         IN pI_precio_venta_unidad DOUBLE,
@@ -83,6 +84,19 @@ CREATE PROCEDURE SP_Actualizar_Lote(
           SET mensaje=CONCAT(mensaje,'El descuento no existe');
       END IF;
     END IF;
+
+    IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
+        SET mensaje=CONCAT(mensaje, 'Codigo de empleado Vacio, ');
+    ELSE
+        SELECT COUNT(*) INTO contador 
+        FROM empleado 
+        WHERE id_empleado=pI_id_empleado;
+
+        IF contador=0 THEN
+          SET mensaje=CONCAT(mensaje, 'Este empleado no está registrado, ');
+        END IF;
+    END IF;
+    
 
     IF NOT(pI_estado='' OR pI_estado IS NULL) THEN 
         IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
