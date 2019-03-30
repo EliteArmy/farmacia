@@ -70,7 +70,7 @@ INNER JOIN producto p
   ON l.id_producto = p.id_producto
 INNER JOIN presentacion p2
   ON p.id_presentacion = p2.id_presentacion
-WHERE l.fecha_vecimiento <= CURRENT_DATE
+WHERE l.fecha_vecimiento <= CURRENT_DATE()
 AND le.id_lote NOT IN (
   SELECT id_lote
   FROM detalle_movimiento dm
@@ -103,7 +103,7 @@ CREATE OR REPLACE VIEW VistaInventarioMercaderia AS
 SELECT
   l.id_lote,l.id_producto,lote
   ,precio_costo_unidad,precio_venta_unidad
-  ,fecha_elaboracion,fecha_vecimiento,l.estado as estado_lote,existencia ,id_presentacion
+  ,fecha_elaboracion,fecha_vecimiento,l.estado as estado_lote, l.existencia ,id_presentacion
   ,(SELECT presentacion FROM presentacion pre WHERE p.id_presentacion = pre.id_presentacion) as presentacion
   ,p.nombre ,p.codigo_barra,p.url_foto
   #,p.estado as estado_producto
@@ -160,6 +160,7 @@ WHERE
 ) imp_disp
   ON imp_disp.id_producto = p.id_producto
 WHERE l.estado = 'A'
+AND fecha_vecimiento>CURDATE()
 ORDER BY p.id_producto, l.id_lote
 
 ;
