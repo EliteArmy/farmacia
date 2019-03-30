@@ -192,6 +192,12 @@ class Producto{
     return $conexion -> query($sql);
   }
 
+  public static function leerAlerta($conexion){
+    $sql = "SELECT * FROM VistaProductoAlerta";
+    $rows = $conexion->query($sql);
+    return $rows;
+  }
+
   public function leerPorId($conexion){
     $sql = "
       SELECT * FROM VistaProducto WHERE id_producto = %s

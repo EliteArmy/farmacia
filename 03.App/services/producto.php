@@ -444,6 +444,11 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'leer-producto-alerta':
+      $res['data'] = Producto::leerAlerta($conexion);
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res['data']['mensaje']='Accion no reconocida';

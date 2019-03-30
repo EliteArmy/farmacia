@@ -69,11 +69,14 @@
             <!-- <a class="dropdown-item" href="registro-lote-medicamento.php">Registrar Lote de Medicamento</a> -->
             <?php #endif;?>
             <?php endif;?>
-            <?php if(show_menu_if(["descartar-productos","gestionar-laboratorios"])):?>
-            <p class="dropdown-header">Gestiones</p>
-            <?php if(show_item_if("descartar-productos")):?>
-            <a class="dropdown-item" href="descartar-productos.php">Descartar Productos</a>
-            <?php endif;?>
+            <?php if(show_menu_if(["descartar-productos","gestionar-laboratorios", "alerta-productos"])):?>
+              <p class="dropdown-header">Gestiones</p>
+              <?php if(show_item_if("descartar-productos")):?>
+                <a class="dropdown-item" href="descartar-productos.php">Descartar Productos</a>
+              <?php endif;?>
+              <?php if(show_item_if("alerta-productos")):?>
+                <a class="dropdown-item" href="alerta-productos.php">Alerta Productos</a>
+              <?php endif;?>
             <?php endif;?>
             <?php if(show_menu_if(["gestionar-laboratorios"])):?>
             <p class="dropdown-header">Laboratorios</p>
