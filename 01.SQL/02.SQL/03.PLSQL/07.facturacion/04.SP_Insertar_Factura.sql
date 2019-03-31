@@ -123,17 +123,21 @@ SP:BEGIN
     SET destino.existencia=destino.existencia-origen.cantidad
     WHERE destino.id_lote=origen.id_lote;
 
-    CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFilas,@errorEliminarFilas);
-    IF @errorEliminarFilas THEN
-      SET mensaje=@mensajeEliminarFilas;
-      SET error=@errorEliminarFilas;
-      SET pO_mensaje=mensaje;
-      SET pO_error=error;
-      SELECT mensaje,error;
-      LEAVE SP;
-    END IF;
+    -- La logica de eliminar la tabla temporal aplicarala desde el back end llamando a este procedimiento
+    -- CALL SP_Eliminar_Filas_Detalle_Factura_Temp
+    -- CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFilas,@errorEliminarFilas);
+    -- IF @errorEliminarFilas THEN
+    --   SET mensaje=@mensajeEliminarFilas;
+    --   SET error=@errorEliminarFilas;
+    --   SET pO_mensaje=mensaje;
+    --   SET pO_error=error;
+    --   SELECT mensaje,error;
+    --   LEAVE SP;
+    -- END IF;
 
- 
+    UPDATE detalle_factura_temp SET id_factura=idFactura WHERE id_empleado=pI_id_empleado;
+
+    COMMIT;
     SET mensaje= 'Facturación exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
@@ -145,17 +149,15 @@ END$$
 CALL SP_Insertar_Factura(81,'','','',@mesaje,@error);
 -- SELECT @mesaje, @error
 
-select * from factura where id_factura=58;
+select * from factura;
 
-select * from detalle_factura where id_factura=58;
+select * from detalle_factura where id_factura=223;
 SELECT * FROM detalle_factura_temp;
 SELECT * FROM detalle_factura_temp WHERE id_empleado=81;
-SELECT id_lote,SUM(cantidad) as cantidad FROM detalle_factura_temp 
+
+SELECT id_lote,SUM(cantidad) as cantidad FROM detalle_factura_temp
 WHERE id_empleado=81
 GROUP BY id_lote;
 SELECT existencia FROM lote WHERE id_lote IN(1,2,3,4)
-    
-SELECT * from movimiento_producto where id_movimiento>=97;
-SELECT * from detalle_movimiento where id_movimiento>=100;
-delete from detalle_factura_temp where id_empleado=81;
-CALL SP_Insertar_Detalle_Factura(81,2,4,@mesaje,@error);
+
+
