@@ -808,10 +808,12 @@ function imprimirMensaje(response,tbl2){
    case "-impuesto":
       $("#txt-descripcion-imp").val("")
       $("#in-impuesto").val("")
-      $("#guard-categoria").show()
-      $("#act-cat").addClass("d-none");
+      $("#guard-impuesto").show()
+      $("#act-imp").addClass("d-none")
+      $("#seleccion-estado-imp").addClass("d-none")
       
       break;
+   case "-descuento":
     }
   } else {
     console.log(response);
