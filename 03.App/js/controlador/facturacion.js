@@ -312,13 +312,14 @@ $("#guardar-factura-pdf").click(function(){
     "crossDomain": true,
     "url": "http://farma/services/printPDF.php",
     "method": "POST",
-    //"dataType": "json",
-    /*"headers": {
+    "dataType": "json",
+    "headers": {
       "content-type": "application/x-www-form-urlencoded"
-    },*/
-    /*"data": {
-      "accion": "crear-pdf"
-    }*/
+    },
+    "data": {
+      "accion": "obtener-detalle-factura",
+      "id_empleado": $("#id-empleado").val()
+    }
   }
 
   $.ajax(settings).done(function (url) {

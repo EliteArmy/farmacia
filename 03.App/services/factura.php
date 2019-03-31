@@ -87,7 +87,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'cancelar-factura':
-      $idEmpleado=ValidarPost::unsigned('id_empleado');
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
 
       $fact->setIdEmpleado($idEmpleado);
@@ -97,13 +97,15 @@ if(isset($_POST['accion'])){
 
 
     case 'obtener-detalle-factura':
-      $idEmpleado=ValidarPost::unsigned('id_empleado');
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
+      
       $fact = new Factura();
-
       $fact->setIdEmpleado($idEmpleado);
-      $res['data'] = $fact->obtenerDetalleFactura($conexion);
+
+      $res['data'] = $fact->imprimirPDF($conexion);
       echo json_encode($res);
     break;
+
 
     case 'buscar-cliente':
       $identidad = ValidarPost::unsigned('numero_identidad');

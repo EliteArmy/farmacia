@@ -13,7 +13,7 @@
   include_once('../database/Conexion.php');
 
   $conexion = new Conexion();
-  $resultado = $conexion->query('SELECT * FROM ');
+  $resultado = $conexion->query('CALL SP_Obtener_Detalle_Factura(%d, @mensaje, @error)');
   
   // ======= Instacia del PDF =======
   $pdf = new FPDF('P','mm','A4');
