@@ -30,9 +30,9 @@ SP:BEGIN
     IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
       SET mensaje=CONCAT(mensaje,"Codigo de empleado vacio, ");
     ELSE
-      SELECT COUNT(*) INTO contador FROM empleado WHERE id_empleado=pI_id_empleado;
+      SELECT COUNT(*) INTO contador FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
       IF contador=0 THEN
-        SET mensaje=CONCAT(mensaje,"Este empleado no existe, ");
+        SET mensaje=CONCAT(mensaje,"Usted no ha facturado ningun producto, ");
       END IF;
     END IF;
 
@@ -64,6 +64,16 @@ SP:BEGIN
     SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
     FROM detalle_factura_temp
     WHERE id_empleado=pI_id_empleado;
+
+    CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFilas,@errorEliminarFilas);
+    IF @errorEliminarFilas THEN
+      SET mensaje=@mensajeEliminarFilas;
+      SET error=@errorEliminarFilas;
+      SET pO_mensaje=mensaje;
+      SET pO_error=error;
+      SELECT mensaje,error;
+      LEAVE SP;
+    END IF;
 
 END$$
 

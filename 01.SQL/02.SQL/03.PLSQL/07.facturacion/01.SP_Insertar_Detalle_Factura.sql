@@ -167,7 +167,7 @@ SP:BEGIN
     SET pO_error=error;
     SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
     FROM detalle_factura_temp
-    WHERE id_empleado=pI_id_empleado;
+    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
 
 END$$
 
