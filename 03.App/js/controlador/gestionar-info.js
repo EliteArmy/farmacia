@@ -813,7 +813,22 @@ function imprimirMensaje(response,tbl2){
       $("#seleccion-estado-imp").addClass("d-none")
       
       break;
-   case "-descuento":
+   case "-descuento":  
+    $("#txt-descripcion").val("")
+    $("#txt-porcentaje-desc").val("")
+    $("#fecha-final-desc").val("")
+    $("#guard-descuento").show()
+    $("#act-desc").addClass("d-none")
+    $("#seleccion-estado-desc").addClass("d-none")
+    break;
+   case "-presentacion":  
+    $("#txt-nombre-presentacion").val("")
+    $("#guard-presentacion").show()
+    $("#act-pre").addClass("d-none")
+    $("#seleccion-estado-pre").addClass("d-none")
+    console.log("presentaciones")
+   
+    break; 
     }
   } else {
     console.log(response);
