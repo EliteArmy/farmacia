@@ -68,7 +68,7 @@ class Conexion{
   }
 
   // Retorna los registros asociados a una consulta SQL
-  // en la base de datos
+  // en la base de datos en forma de arreglo
   public function query($sql, $valores = []){
     if($this->esConectado){
       $registros = [];
@@ -91,10 +91,6 @@ class Conexion{
 
   public function ejecutarConsulta($sql){
     return mysqli_query ($this->link, $sql);
-  }
-
-  public function obtenerFila($resultado){
-    return mysqli_fetch_array ($resultado);
   }
 
   public function cerrar(){

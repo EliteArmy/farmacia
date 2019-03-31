@@ -22,7 +22,7 @@ $(document).ready(function() {
     columns: [
       { data: "cantidad", title: "Unidad", width: "8%" },
       { data: "descripcion", title: "Descripción", width: "40%" },
-      { data: "precioVentaUnidad", title: "Precio Unitario" },
+      { data: "precio_venta_unidad", title: "Precio Unitario" },
       { data: "sub_total", title: "Sub Total" },
       { data: "total", title: "Total Producto" },
       { data: "", title: "Opción", width: "8%",
@@ -310,7 +310,7 @@ $("#guardar-factura-pdf").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/printPDF.php",
+    "url": "http://farma/services/factura.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -323,10 +323,10 @@ $("#guardar-factura-pdf").click(function(){
   }
 
   $.ajax(settings).done(function (url) {
-    console.log(url);
+    console.log("Link:"+url.data);
     
     // Abre la factura en una nueva pestaña
-    window.open(url, '_blank');
+    window.open(url.data, '_blank');
   });
 
 });

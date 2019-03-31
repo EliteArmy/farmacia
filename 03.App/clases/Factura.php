@@ -247,7 +247,8 @@ class Factura {
   public function imprimirPDF($conexion){
     $sql = 'CALL SP_Obtener_Detalle_Factura(%d, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
-    $resultado = $conexion->query($sql, $valores);
+    
+    $resultado = $conexion->getResultadoQuery($sql, $valores);
     
     header('Content-type: application/force-download');
     include_once('../plugin/fpdf/fpdf.php');
@@ -296,13 +297,13 @@ class Factura {
     $pdf->SetLineWidth(1);
     $pdf->Line(20, 55, 190, 55);
 
-    while($row = $conexion->getFila($resultado)){
-      $fpdf->SetX(18); 
-      $fpdf->Cell(35, 12, utf8_decode($row["cantidad"]), 1, 0, 'C');
-      $fpdf->Cell(60, 12, utf8_decode($row["descripcion"]), 1, 0, 'C');
-      $fpdf->Cell(45, 12, utf8_decode($row["precio_venta_unidad"]), 1, 0, 'C');
-      $fpdf->Cell(35, 12, utf8_decode($row["sub_total"]), 1, 0, 'C');
-      $fpdf->Ln();
+    while ($row = $conexion->getFila($resultado)){
+      $pdf->SetX(18); 
+      $pdf->Cell(35, 12, utf8_decode($row['cantidad']), 1, 0, 'C');
+      $pdf->Cell(60, 12, utf8_decode($row['descripcion']), 1, 0, 'C');
+      $pdf->Cell(45, 12, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
+      $pdf->Cell(35, 12, utf8_decode($row['total']), 1, 0, 'C');
+      $pdf->Ln();
     }
 
     // ======= Pie de Página del PDF =======
