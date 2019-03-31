@@ -1,9 +1,17 @@
 var loading = $('#loadingDiv').hide();
 var loadingBackgound = $('#loadingOverlay').hide();
 
-$(document).ready(function() {
+$(document).ajaxStart(function() {
   loading.show();
   loadingBackgound.show();
+});
+
+$( document ).ajaxStop(function() {
+  loading.hide();
+  loadingBackgound.hide();
+});
+
+$(document).ready(function() {
 
   var settings = {
     "async": true,
@@ -28,9 +36,7 @@ $(document).ready(function() {
     $('#laboratorio').html(response.data.total_laboratorios);
     $('#lote').html(response.data.total_lotes_activos);
     $('#producto').html(response.data.total_productos_activos);
-    
-    loading.hide();
-    loadingBackgound.hide();
+
   });
 
 });
