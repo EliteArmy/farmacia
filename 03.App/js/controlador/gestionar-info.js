@@ -141,7 +141,6 @@ $(document).ready(function() {
       { data: "descripcion", title:"Descripcion"},
       { data: "porcentaje", title:"Porcentaje"},
       { data: "fecha_inicio", title:"Fecha Inicio"},
-      { data: "fecha_fin", title:"Fecha Fin"},
       { data: "estado", title:"Estado"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
@@ -249,7 +248,7 @@ $("#guard-impuesto").click(function(){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     $('#txt-id-imp').val(response.data.id_impuesto);
-    $('#txt-estado-imp').val(response.data.estado);
+    $('#slc-estado-imp').selectpicker('val',response.data.estado);
 
     $('#txt-descripcion-imp').val(response.data.descripcion);
     $('#in-impuesto').val(response.data.porcentaje);
@@ -400,7 +399,7 @@ $("#guard-descuento").click(function(){
   var z =  $.ajax(settings).done(function (response) {
     console.log(response.data);
     $('#txt-id-desc').val(response.data.id_descuento);
-    $('#txt-estado').val(response.data.estado);
+    $('#slc-estado-desc').selectpicker('val',response.data.estado);
 
     $('#txt-descripcion').val(response.data.descripcion);
     $('#txt-porcentaje-desc').val(response.data.porcentaje);
@@ -592,7 +591,7 @@ function funcionBuscarCat(nomb){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     $('#txt-nombre-categoria').val(response.data.categoria);
-    $('#txt-estado-cat').val(response.data.estado);
+    $('#slc-estado-cat').selectpicker('val',response.data.estado);
 
     $('#txt-id-cat').val(response.data.id_categoria);
    
@@ -742,7 +741,7 @@ function funcionBuscarPre(nomb){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     $('#txt-nombre-presentacion').val(response.data.presentacion);
-    $('#txt-estado-pre').val(response.data.estado);
+    $('#slc-estado-pre').selectpicker('val',response.data.estado);
 
     $('#txt-id-pre').val(response.data.id_presentacion);
    
