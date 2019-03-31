@@ -6,7 +6,7 @@ $(document).ajaxStart(function() {
   loadingBackgound.show();
 });
 
-$( document ).ajaxStop(function() {
+$(document).ajaxStop(function() {
   loading.hide();
   loadingBackgound.hide();
 });

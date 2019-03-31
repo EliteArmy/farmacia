@@ -41,7 +41,7 @@
       right: 0;
       bottom: 0;
       left: 0;
-      z-index: 998;
+      z-index: 990;
       background: #000;
       opacity: .3;
       /*display: none;*/
@@ -76,10 +76,11 @@
 
         <!--<div class="ldBar label-center" id="loading-heart">
         </div>-->
+
         <div class="overlay" id="loadingOverlay"></div>
 
         <div class="spinner" id="loadingDiv">
-          <img src="img/Heart-1s-200px.svg">
+          <img src="img/Heart-200px.svg" alt="Cargando">
         </div>
 
         <div class="row mt-3 justify-content-center">
