@@ -42,7 +42,7 @@ SP:BEGIN
     -- Tabla temporal donde se guardaran los ids a eliminar
     CREATE TEMPORARY TABLE temp
 	SELECT id_temporal,id_empleado FROM detalle_factura_temp 
-	WHERE id_empleado=pI_id_empleado;
+	WHERE id_empleado=pI_id_empleado AND id_factura IS NOT NULL;
     
     -- Seleccionar el id_temporal maximo y minimo para eliminar por rangos
     SELECT MAX(id_temporal),MIN(id_temporal) INTO idMax,idMin FROM temp;

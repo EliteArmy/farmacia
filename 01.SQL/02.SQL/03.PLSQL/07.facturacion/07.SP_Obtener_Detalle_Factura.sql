@@ -63,7 +63,7 @@ SP:BEGIN
 
     SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
     FROM detalle_factura_temp
-    WHERE id_empleado=pI_id_empleado;
+    WHERE id_empleado=pI_id_empleado AND id_factura IS NOT NULL;
 
     CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFilas,@errorEliminarFilas);
     IF @errorEliminarFilas THEN
