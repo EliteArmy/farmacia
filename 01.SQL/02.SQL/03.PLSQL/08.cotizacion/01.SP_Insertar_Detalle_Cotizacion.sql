@@ -166,15 +166,15 @@ SP:BEGIN
     SET pO_mensaje=mensaje;
     SET pO_error=error;
     SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
-    FROM detalle_factura_temp
+    FROM detalle_cotizacion_temp
     WHERE id_empleado=pI_id_empleado;
 
 END$$
 
-CALL SP_Insertar_Detalle_Cotizacion(2,2,1,@mesaje,@error);
+CALL SP_Insertar_Detalle_Cotizacion(81,100,1000,@mesaje,@error);
 
 -- Consultas de prueba
 SELECT * FROM detalle_cotizacion_temp WHERE id_lote=1;
 SELECT SUM(cantidad) as cantidad, id_lote FROM detalle_cotizacion_temp WHERE id_lote=1;
 
-SELECT * FROM lote WHERE id_lote=1;
+SELECT * FROM lote WHERE id_lote=1000;
