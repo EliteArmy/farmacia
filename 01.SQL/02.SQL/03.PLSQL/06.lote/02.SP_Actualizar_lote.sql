@@ -26,6 +26,7 @@ CREATE PROCEDURE SP_Actualizar_Lote(
   DECLARE fechaFin DATE;
   DECLARE diferencia INTEGER;
   DECLARE ultimoIdMovimiento INTEGER;
+  DECLARE isDescuento BOOLEAN;
 
   SET AUTOCOMMIT=0;
   START TRANSACTION;
@@ -36,6 +37,7 @@ CREATE PROCEDURE SP_Actualizar_Lote(
   SET uEstado= 'A';
   SET diferencia=0;
   SET ultimoIdMovimiento=0;
+  SET isDescuento=FALSE;
   
    -- Verificaciones de campos obligatorios que no esten vacios
     IF pI_id_producto='' OR pI_id_producto IS NULL THEN 
@@ -79,15 +81,6 @@ CREATE PROCEDURE SP_Actualizar_Lote(
     IF pI_existencia='' OR pI_existencia IS NULL THEN 
         SET mensaje=CONCAT(mensaje, 'Existencia vacia, ');
     END IF;
-    
-    IF pI_id_descuento='' OR pI_id_descuento IS NULL THEN 
-        SET mensaje=CONCAT(mensaje, 'Descuento vacio, ');
-      ELSE
-        SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento AND estado='A';
-        IF contador=0 THEN
-          SET mensaje=CONCAT(mensaje,'El descuento no existe');
-      END IF;
-    END IF;
 
     IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
         SET mensaje=CONCAT(mensaje, 'Codigo de empleado Vacio, ');
@@ -100,7 +93,6 @@ CREATE PROCEDURE SP_Actualizar_Lote(
           SET mensaje=CONCAT(mensaje, 'Este empleado no está registrado, ');
         END IF;
     END IF;
-    
 
     IF NOT(pI_estado='' OR pI_estado IS NULL) THEN 
         IF NOT( pI_estado = 'A' OR pI_estado = 'I' ) THEN
@@ -164,6 +156,20 @@ CREATE PROCEDURE SP_Actualizar_Lote(
       END IF;
    END IF;
 
+    IF NOT(pI_id_descuento=''  OR pI_id_descuento IS NULL) THEN
+      SELECT COUNT(*) INTO contador FROM descuento WHERE id_descuento=pI_id_descuento AND estado='A';
+      IF contador=0 THEN
+        SET mensaje=CONCAT(mensaje,'El descuento no existe');
+      ELSE 
+        -- Contador=1 El descuento para este lote por Actualizar ya existe
+        SELECT COUNT(*) INTO contador FROM descuento_lote 
+        WHERE id_descuento=pI_id_descuento AND id_lote=pI_id_lote AND estado='A';
+        IF contador=0 THEN
+          SET isDescuento=TRUE;
+        END IF;
+      END IF;
+    END IF;
+
   IF mensaje <> '' THEN
         SET mensaje=mensaje;
         SET error=TRUE;
@@ -174,68 +180,70 @@ CREATE PROCEDURE SP_Actualizar_Lote(
    END IF;
    
    -- Contador=1 El descuento por Actualizar ya existe
-   SELECT COUNT(*) INTO contador FROM descuento_lote
+   SELECT COUNT(*) INTO contador FROM descuento_lote 
    WHERE id_descuento=pI_id_descuento AND id_lote=pI_id_lote AND estado='A';
 
-   IF contador=0 THEN
+   IF isDescuento THEN
       UPDATE descuento_lote SET estado='I' WHERE id_lote=pI_id_lote; 
       SELECT fecha_fin INTO fechaFin FROM descuento WHERE id_descuento=pI_id_descuento;
-    -- Insertar ImpuestoxProducto
-    CALL SP_Insertar_Descuento_Lote(pI_id_lote, pI_id_descuento, CURDATE(),fechaFin, 'A',@mensajeActualizarDescuentoLote,@errorActualizarDescuentoLote);
 
-    -- var => pO_error de =>CALL SP_Insertar_Impuesto
-    IF @errorActualizarDescuentoLote THEN
-        SET mensaje=@mensajeActualizarDescuentoLote;
-        SET error=TRUE;
-        SET pO_mensaje=mensaje;
-        SET pO_error=error;
-        SELECT mensaje,error;
-        LEAVE SP;
-    END IF;
+      -- Insertar ImpuestoxProducto
+      CALL SP_Insertar_Descuento_Lote(pI_id_lote, pI_id_descuento, CURDATE(),fechaFin, 'A',@mensajeActualizarDescuentoLote,@errorActualizarDescuentoLote);
+
+      -- var => pO_error de =>CALL SP_Insertar_Impuesto
+      IF @errorActualizarDescuentoLote THEN
+          SET mensaje=@mensajeActualizarDescuentoLote;
+          SET error=TRUE;
+          SET pO_mensaje=mensaje;
+          SET pO_error=error;
+          SELECT mensaje,error;
+          LEAVE SP;
+      END IF;
 
   END IF;
-   SELECT existencia INTO contador FROM lote
-   WHERE id_lote= pI_id_lote;
 
-   UPDATE lote SET id_producto =pI_id_producto,
-				           lote = pI_lote ,
-				           precio_costo_unidad = pI_precio_costo_unidad ,
-				           precio_venta_unidad =  pI_precio_venta_unidad ,
-				           fecha_elaboracion = pI_fecha_elaboracion, 
-				           fecha_vecimiento = pI_fecha_vencimiento ,
-                   estado = uEstado ,
-                   existencia = pI_existencia
-                   WHERE 
-                   id_lote=pI_id_lote;
+  SELECT existencia INTO contador FROM lote
+  WHERE id_lote= pI_id_lote;
 
-    SET diferencia= contador - pI_existencia;
-    IF NOT (diferencia= 0) THEN
-      IF diferencia > 0 THEN
+  UPDATE lote SET id_producto =pI_id_producto,
+                  lote = pI_lote ,
+                  precio_costo_unidad = pI_precio_costo_unidad ,
+                  precio_venta_unidad =  pI_precio_venta_unidad ,
+                  fecha_elaboracion = pI_fecha_elaboracion, 
+                  fecha_vecimiento = pI_fecha_vencimiento ,
+                  estado = uEstado ,
+                  existencia = pI_existencia
+                  WHERE 
+                  id_lote=pI_id_lote;
+
+  SET diferencia= contador - pI_existencia;
+  IF NOT (diferencia= 0) THEN
+    IF diferencia > 0 THEN
+        INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'R'); -- R-->Retiro.
+        SET ultimoIdMovimiento=LAST_INSERT_ID();
+        INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES (ultimoIdMovimiento, diferencia, pI_id_lote);
+    ELSE
         SET diferencia = diferencia*(-1);
-         INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'R'); -- R-->Retiro.
-         SET ultimoIdMovimiento=LAST_INSERT_ID();
-         INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES (ultimoIdMovimiento, diferencia, pI_id_lote);
-      ELSE
-         INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'A'); -- A-->Adquisicion.
-         SET ultimoIdMovimiento=LAST_INSERT_ID();
-         INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES      (ultimoIdMovimiento, diferencia, pI_id_lote);
-      END IF;
+        INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'A'); -- A-->Adquisicion.
+        SET ultimoIdMovimiento=LAST_INSERT_ID();
+        INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES      (ultimoIdMovimiento, diferencia, pI_id_lote);
     END IF;
+  END IF;
 
-    COMMIT; 
-     SET mensaje= 'Actualización exitosa';
-     SET error=FALSE;
-    SET pO_mensaje=mensaje;
-    SET pO_error=error;
-    SELECT mensaje,error;
+  COMMIT; 
+  SET mensaje= 'Actualización exitosa';
+  SET error=FALSE;
+  SET pO_mensaje=mensaje;
+  SET pO_error=error;
+  SELECT mensaje,error;
 END $$
 
-# CALL SP_Actualizar_Lote(1,2,'sifjisdfjs', 10, 200, DATE('2019-03-02'), DATE('2021-02-02'),"",5,1,@mensaje,@error);
-# SELECT @mensaje,@error;
-#
-#
-# CALL SP_Actualizar_Lote( 1,1,81,'LOT8996',25.36,26.80,DATE('2019-02-19'),DATE('2019-03-31'), 'A',1000,1 ,@mensaje,@error);
-#
-# SELECT * FROM lote;
-# SELECT * FROM detalle_movimiento where id_lote=1;
-# SELECT * FROM movimiento_producto ;
+CALL SP_Actualizar_Lote( 1,1,81,'LOT8996',25.36,26.80,DATE('2019-02-19'),DATE('2019-03-31'), 'A',900,42 ,@mensaje,@error);
+
+SELECT * FROM lote WHERE id_lote=1;
+SELECT * FROM detalle_movimiento WHERE id_movimiento>=196;
+SELECT * FROM movimiento_producto WHERE id_movimiento>=190;
+SELECT * FROM descuento_lote where id_lote=1;
+select * from descuento
+
+SELECT -87*(-1)
