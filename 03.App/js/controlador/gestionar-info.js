@@ -797,10 +797,26 @@ function imprimirMensaje(response,tbl2){
       $("#div-exito"+tbl2).show();
       $("#div-exito"+tbl2).html("");
     });
+    switch (tbl2){
+      case "-categoria":
+      $("#txt-nombre-categoria").val("")
+      $("#seleccion-estado-cat").addClass("d-none")
+      $("#guard-categoria").show()
+      $("#act-cat").addClass("d-none");
+      
+      break;
+   case "-impuesto":
+      $("#txt-descripcion-imp").val("")
+      $("#in-impuesto").val("")
+      $("#guard-categoria").show()
+      $("#act-cat").addClass("d-none");
+      
+      break;
+    }
   } else {
     console.log(response);
     $("#div-error"+tbl2).html(response.data[0].mensaje);
-    $("#div-error"+tbl2).removeClass("d-none");
+    $("#div-error"+tbl2).s("d-none");
    
     $("#div-error"+tbl2).hide(8000, function(){
       $('#div-error'+tbl2).show();
@@ -822,7 +838,24 @@ function imprimirMensajeSinCorchete(response,tbl){
       $('#div-exito'+tbl).addClass("d-none");
       $("#div-exito"+tbl).show();
       $("#div-exito"+tbl).html("");
-    });
+    
+
+    }
+    
+    
+    );
+    switch(tbl){
+        case "-categoria":
+           $("#txt-nombre-categoria").val("")
+           
+           break;
+        case "-impuesto":
+           $("#txt-descripcion-imp").val("")
+           $("#in-impuesto").val("")
+           break;
+       
+
+    }
   } else {
     console.log(response);
     $("#div-error"+tbl).html(response.data.mensaje);
