@@ -37,7 +37,7 @@ SP:BEGIN
     IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
       SET mensaje=CONCAT(mensaje,'Codigo de empleado vacio, ');
     ELSE
-      SELECT COUNT(*) INTO contador FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+      SELECT COUNT(*) INTO contador FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
       IF contador=0 THEN
         SET mensaje=CONCAT(mensaje,'Este empleado no ha facturado productos');
       END IF;
@@ -83,7 +83,7 @@ SP:BEGIN
             idFormaPago as id_forma_pago,
             idFarmacia as id_farmacia
     FROM detalle_factura_temp 
-    WHERE id_empleado=pI_id_empleado;
+    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
 
     SET idFactura=LAST_INSERT_ID();  -- Ultimo id de factura ingresado
 
@@ -100,7 +100,7 @@ SP:BEGIN
                     id_descuento,
                     id_impuesto
     FROM detalle_factura_temp
-    WHERE id_empleado=pI_id_empleado;
+    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
 
     -- Insertar en movimiento_producto
     INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento)
@@ -115,10 +115,10 @@ SP:BEGIN
                           cantidad,
                           id_lote
     FROM detalle_factura_temp
-    WHERE id_empleado=pI_id_empleado;
+    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
 
     UPDATE (SELECT id_lote,SUM(cantidad) as cantidad FROM detalle_factura_temp 
-    WHERE id_empleado=pI_id_empleado
+    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL
     GROUP BY id_lote) as origen, lote as destino
     SET destino.existencia=destino.existencia-origen.cantidad
     WHERE destino.id_lote=origen.id_lote;
@@ -135,7 +135,7 @@ SP:BEGIN
     --   LEAVE SP;
     -- END IF;
 
-    UPDATE detalle_factura_temp SET id_factura=idFactura WHERE id_empleado=pI_id_empleado;
+    UPDATE detalle_factura_temp SET id_factura=idFactura WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
 
     COMMIT;
     SET mensaje= 'Facturación exitosa';
@@ -149,15 +149,19 @@ END$$
 CALL SP_Insertar_Factura(81,'','','',@mesaje,@error);
 -- SELECT @mesaje, @error
 
-select * from factura;
-
-select * from detalle_factura where id_factura=223;
+select * from factura where id_factura=229;
+select * from detalle_factura where id_factura=229;
 SELECT * FROM detalle_factura_temp;
 SELECT * FROM detalle_factura_temp WHERE id_empleado=81;
+
+select * from movimiento_producto where id_movimiento>=200;
+select * from detalle_movimiento where id_movimiento>=200;
 
 SELECT id_lote,SUM(cantidad) as cantidad FROM detalle_factura_temp
 WHERE id_empleado=81
 GROUP BY id_lote;
 SELECT existencia FROM lote WHERE id_lote IN(1,2,3,4)
+
+UPDATE detalle_factura_temp SET id_factura=null where id_empleado=81;
 
 

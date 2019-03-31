@@ -171,7 +171,7 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Insertar_Detalle_Factura(2,2,1,@mesaje,@error);
+CALL SP_Insertar_Detalle_Factura(81,2,1,@mesaje,@error);
 
 -- Consultas de prueba
 SELECT * FROM detalle_factura_temp WHERE id_lote=1;
