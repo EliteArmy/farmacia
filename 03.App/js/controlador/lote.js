@@ -1,3 +1,16 @@
+var loading = $('#loadingDiv').hide();
+var loadingBackgound = $('#loadingOverlay').hide();
+
+$(document).ajaxStart(function() {
+  loading.show();
+  loadingBackgound.show();
+});
+
+$(document).ajaxStop(function() {
+  loading.hide();
+  loadingBackgound.hide();
+});
+
 //  FORMAS
 let formaLote = new Forma('agregar-lote');
 
@@ -137,6 +150,7 @@ $("#guard-lote").click(function(){
         "accion": "crear-lote",
 
         "id_producto": $("#slc-prod").val(),
+        "id_empleado": $("#id-empleado").val(),
         "lote": $("#nombre-lote").val(),
         "precio_costo_unidad": $("#precio-compra").val(),
         "precio_venta_unidad": $("#precio-venta").val(),
@@ -212,6 +226,7 @@ $("#actualizar-lote").click(function(){
 
       "id_lote": $("#id-lote").val(),
       "id_producto": $("#slc-prod").val(),
+      "id_empleado": $("#id-empleado").val(),
       "lote": $("#nombre-lote").val(),
       "precio_costo_unidad": $("#precio-compra").val(),
       "precio_venta_unidad": $("#precio-venta").val(),

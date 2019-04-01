@@ -1,3 +1,16 @@
+var loading = $('#loadingDiv').hide();
+var loadingBackgound = $('#loadingOverlay').hide();
+
+$(document).ajaxStart(function() {
+  loading.show();
+  loadingBackgound.show();
+});
+
+$(document).ajaxStop(function() {
+  loading.hide();
+  loadingBackgound.hide();
+});
+
 $(document).ready(function() {
   
   // ======= Hora y Fecha de la factura =======
@@ -22,7 +35,7 @@ $(document).ready(function() {
     columns: [
       { data: "cantidad", title: "Unidad", width: "8%" },
       { data: "descripcion", title: "Descripción", width: "40%" },
-      { data: "precioVentaUnidad", title: "Precio Unitario" },
+      { data: "precio_venta_unidad", title: "Precio Unitario" },
       { data: "sub_total", title: "Sub Total" },
       { data: "total", title: "Total Producto" },
       { data: "", title: "Opción", width: "8%",
@@ -252,7 +265,8 @@ function imprimirPDF(){
 }
 
 // ======= Cerrar la Factura actual para entregar al Cliente =======
-function cerrarFactura(){
+/* Aun sin terminar al 100% */
+function insertarFactura(){
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -263,7 +277,7 @@ function cerrarFactura(){
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "cerrar-factura",
+      "accion": "insertar-factura",
       "id_empleado": $("#id-empleado").val(),
       "id_cliente": "",
       "id_farmacia": "",
@@ -285,6 +299,8 @@ function cerrarFactura(){
       $("#div-exito").html(response.data[0].mensaje);
       $("#div-exito").removeClass("d-none");
   
+      window.open(response.pdf, '_blank');
+
       $("#div-exito").hide(8000, function(){
         $('#div-exito').addClass("d-none");
         $("#div-exito").show();
@@ -310,22 +326,23 @@ $("#guardar-factura-pdf").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/printPDF.php",
+    "url": "http://farma/services/factura.php",
     "method": "POST",
-    //"dataType": "json",
-    /*"headers": {
+    "dataType": "json",
+    "headers": {
       "content-type": "application/x-www-form-urlencoded"
-    },*/
-    /*"data": {
-      "accion": "crear-pdf"
-    }*/
+    },
+    "data": {
+      "accion": "obtener-detalle-factura",
+      "id_empleado": $("#id-empleado").val()
+    }
   }
 
   $.ajax(settings).done(function (url) {
-    console.log(url);
+    console.log("Link:"+url.data);
     
     // Abre la factura en una nueva pestaña
-    window.open(url, '_blank');
+    window.open(url.data, '_blank');
   });
 
 });

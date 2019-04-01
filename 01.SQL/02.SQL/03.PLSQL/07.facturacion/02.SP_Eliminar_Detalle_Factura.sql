@@ -88,7 +88,7 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
 
 END$$
 
-CALL SP_Eliminar_Detalle_Factura(354,@mesaje,@error);
+CALL SP_Eliminar_Detalle_Factura(457,@mesaje,@error);
 -- SELECT @mesaje, @error
 -- SELECT * FROM detalle_factura_temp
 select * from lote where id_lote=1;

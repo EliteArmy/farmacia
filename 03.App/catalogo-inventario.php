@@ -22,6 +22,10 @@
 <body>
 
   <?php include("./navbar.php"); ?>
+  <div class="overlay" id="loadingOverlay"></div>
+  <div class="spinner" id="loadingDiv">
+    <img src="img/spinner.svg" alt="Cargando">
+  </div>
 
   <!-- Contenido -->
   <div class="container-fluid">

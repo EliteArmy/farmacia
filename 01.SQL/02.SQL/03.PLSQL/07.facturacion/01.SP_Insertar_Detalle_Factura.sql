@@ -88,7 +88,7 @@ SP:BEGIN
     WHERE id_lote=pI_id_lote;
 
     IF porcentajeDescuento IS NULL THEN
-    SET porcentajeDescuento=0;
+     SET porcentajeDescuento=0;
     END IF;
 
     IF porcentajeImpuesto IS NULL THEN 
@@ -171,7 +171,7 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Insertar_Detalle_Factura(2,2,1,@mesaje,@error);
+CALL SP_Insertar_Detalle_Factura(81,2,1,@mesaje,@error);
 
 -- Consultas de prueba
 SELECT * FROM detalle_factura_temp WHERE id_lote=1;

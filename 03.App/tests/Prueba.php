@@ -3,7 +3,9 @@
   $fecha = date('Y-m-d');
   $con = new Conexion();
   $rows = $con->query("SELECT DATE('$fecha')");
+  $rows1 = $con->query("SELECT CURDATE()");
   var_dump($rows);
+  var_dump($rows1);
 
 ?>
 

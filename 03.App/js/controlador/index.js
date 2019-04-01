@@ -1,3 +1,16 @@
+var loading = $('#loadingDiv').hide();
+var loadingBackgound = $('#loadingOverlay').hide();
+
+$(document).ajaxStart(function() {
+  loading.show();
+  loadingBackgound.show();
+});
+
+$(document).ajaxStop(function() {
+  loading.hide();
+  loadingBackgound.hide();
+});
+
 $(document).ready(function() {
 
   var settings = {
@@ -23,6 +36,23 @@ $(document).ready(function() {
     $('#laboratorio').html(response.data.total_laboratorios);
     $('#lote').html(response.data.total_lotes_activos);
     $('#producto').html(response.data.total_productos_activos);
+
   });
 
 });
+
+
+function loading(){
+  $('#loading-heart').show();
+}
+
+function loadingHeart(){
+  var bar = new ldBar("#loading-heart", {
+    //"stroke": '#f00',
+    //"stroke-width": 10,
+    "img": "img/Heart-1s-200px.svg",
+    "img-size": "100,100"
+   });
+
+   bar.set(100);
+}

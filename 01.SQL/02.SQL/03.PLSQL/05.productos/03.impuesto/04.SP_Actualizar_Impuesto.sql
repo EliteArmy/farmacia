@@ -44,7 +44,7 @@ SP:BEGIN
    END IF;
 
    IF pI_porcentaje='' OR pI_porcentaje IS NULL THEN
-     SET mensaje=CONCAT(mensaje,"Porcentaje vacio, ");
+     SET mensaje=CONCAT(mensaje,"EL impuesto debe ser mayor que cero, ");
    END IF;
 
   --  IF pI_fecha_inicio='' OR pI_fecha_inicio IS NULL THEN

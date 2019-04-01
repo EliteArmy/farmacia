@@ -14,8 +14,10 @@
   <link rel="icon" href="./img/icon.png">
 
   <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
+  
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/jquery-confirm//css/jquery-confirm.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/loading/loading-bar.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">  
   <link rel="stylesheet" href="./css/style.css" type="text/css">
@@ -25,6 +27,10 @@
 <body>
 
   <?php include("./navbar.php"); ?>
+  <div class="overlay" id="loadingOverlay"></div>
+  <div class="spinner" id="loadingDiv">
+    <img src="img/spinner.svg" alt="Cargando">
+  </div>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -208,6 +214,8 @@
   <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
+
+  <script type="text/javascript" src="./plugin/loading/loading-bar.js"></script>
   
   <script type="text/javascript" src="./js/validate.js"></script>
   <script type="text/javascript" src="./js/controlador/producto.js"></script>

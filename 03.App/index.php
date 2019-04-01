@@ -13,15 +13,22 @@
   <link rel="icon" href="./img/icon.png">
 
   <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="./plugin/loading/loading-bar.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>  
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   
   <link rel="stylesheet" href="./css/style.css">
+
 </head>
 <body>
 
   <?php include("./navbar.php"); ?>
+  <div class="overlay" id="loadingOverlay"></div>
+  <div class="spinner" id="loadingDiv">
+    <img src="img/spinner.svg" alt="Cargando">
+  </div>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -33,7 +40,8 @@
           <h4>RTN: 08011980123456</h4>
         </div>
 
-        <div class="row mt-3">
+
+        <div class="row mt-3 justify-content-center">
           <div class="col-10 col-sm-6 col-md-3">
             <div class="card card-padding">
               <div class="card-header text-info">
@@ -41,7 +49,7 @@
                   Total Facturas de Hoy
                 </strong>
               </div>
-              <a class="text-decoration-none" href="#">
+              <a class="text-decoration-none" href="/buscar-factura.php">
               <div id="factura" class="card-body text-center">
                 <!-- Informacion generada -->
               </div>
@@ -141,7 +149,7 @@
   <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
-  
+
   <script type="text/javascript" src="./js/controlador/index.js"></script>
 </body>
 </html>

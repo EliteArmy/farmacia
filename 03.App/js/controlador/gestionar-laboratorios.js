@@ -1,3 +1,16 @@
+var loading = $('#loadingDiv').hide();
+var loadingBackgound = $('#loadingOverlay').hide();
+
+$(document).ajaxStart(function() {
+  loading.show();
+  loadingBackgound.show();
+});
+
+$(document).ajaxStop(function() {
+  loading.hide();
+  loadingBackgound.hide();
+});
+
 let formaLab = new Forma('agregar-laboratorio');
 formaLab.addInput('txt-nombre-laboratorio',true);
 formaLab.addInput('txt-direccion',true);

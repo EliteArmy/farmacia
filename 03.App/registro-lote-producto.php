@@ -24,6 +24,10 @@
 <body>
 
   <?php include("./navbar.php"); ?>
+  <div class="overlay" id="loadingOverlay"></div>
+  <div class="spinner" id="loadingDiv">
+    <img src="img/spinner.svg" alt="Cargando">
+  </div>
 
   <!-- Contenido -->
   <div class="container-fluid">
@@ -35,6 +39,8 @@
           <h4>RTN: 08011980123456</h4>
           <h4>Registro de Lotes</h4>
         </div>
+
+        <input type="hidden" value="<?php echo $_SESSION['id_empleado'] ?>" id="id-empleado">
 
         <div class="row mt-3 mb-3">
           <!-- Button trigger para el modal -->

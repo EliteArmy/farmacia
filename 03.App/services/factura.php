@@ -1,6 +1,6 @@
 <?php
-//header("Access-Control-Allow-Origin: *");
-header("Content-type: application/PDF");
+// header("Access-Control-Allow-Origin: *");
+// header("Content-type: application/PDF");
 
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
@@ -14,17 +14,6 @@ if(isset($_POST['accion'])){
   $conexion = new Conexion();
 
   switch ($_POST['accion']) {
-    case 'crear-pdf':
-      $pdf = new FPDF('P','mm','A4');
-      $pdf->AddPage();
-      $pdf->SetFont('helvetica','B',16);
-      $pdf->Cell(40,10,'Hello World!');
-      $pdf->Output('file.pdf','I');
-
-      $res['data']  = "PDF Completado";
-      echo json_encode($res);
-    break;
-
     case 'leer-factura':
       $res['data']  = Factura::leer($conexion);
       echo json_encode($res);
@@ -73,8 +62,13 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'cerrar-factura':
-      $idEmpleado=ValidarPost::unsigned('id_empleado');
+
+    case 'insertar-factura':
+      // header('Content-type: application/force-download');
+      $con1 = new Conexion();
+      $con2 = new Conexion();
+      
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
 
       $fact->setIdEmpleado($idEmpleado);
@@ -82,26 +76,38 @@ if(isset($_POST['accion'])){
       $fact->setIdFarmacia('');
       $fact->setIdFormaPago('');
 
-      $res['data'] = $fact->cerrarFactura($conexion);
+      $res['data'] = $fact->insertarFactura($con1);
+      
+      $idFactura = $res['data'][0]['idFactura'];
+      //var_dump($res);
+
+      $res['pdf'] = $fact->imprimirPDF($con2, $idFactura);
+
+      $con1->cerrar();
+      $con2->cerrar();
+      $con1 = null;
+      $con2 = null;
+
       echo json_encode($res);
     break;
 
+    case 'obtener-detalle-factura':
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
+
+      $fact = new Factura();
+      $fact->setIdEmpleado($idEmpleado);
+
+      $res['data'] = $fact->imprimirPDF($conexion);
+      echo json_encode($res);
+    break;
+
+
     case 'cancelar-factura':
-      $idEmpleado=ValidarPost::unsigned('id_empleado');
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
 
       $fact->setIdEmpleado($idEmpleado);
       $res['data'] = $fact->cancelarFactura($conexion);
-      echo json_encode($res);
-    break;
-
-
-    case 'obtener-detalle-factura':
-      $idEmpleado=ValidarPost::unsigned('id_empleado');
-      $fact = new Factura();
-
-      $fact->setIdEmpleado($idEmpleado);
-      $res['data'] = $fact->obtenerDetalleFactura($conexion);
       echo json_encode($res);
     break;
 
