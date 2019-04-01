@@ -248,24 +248,34 @@ class Factura {
     $pdf->SetFont('helvetica','B', 12);
     $pdf->SetTextColor(135, 138, 134);
 
+    // Logo de la Factura
+    $pdf->Image('../img/icon.png', 182, 12, 15, 15, 'png');
+
     $pdf->SetXY(18, 16);
-    $pdf->Cell(0, 4, 'Farmacia Esperanza', 0, 1, '');
+    $pdf->Cell(0, 4, 'Farmacia Esperanza', 0, 1, 'C');
 
     $pdf->SetXY(18, 20);
-    $pdf->Cell(0, 4, 'Col. Villa Olímpica', 0, 1, '');
+    $pdf->Cell(0, 4, 'Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras', 0, 1, 'C');
 
     $pdf->SetXY(18, 24);
-    $pdf->Cell(0, 4, 'Tel: (+504) 2222-0000', 0, 1 , '');
+    $pdf->Cell(0, 4, 'RTN: 08011980123456', 0, 1, 'C');
 
     $pdf->SetXY(18, 28);
-    $pdf->Cell(0, 4, 'correo: correo@gmail.com', 0, 1 , '');
+    $pdf->Cell(0, 4, 'Factura Original: 000-000-00-00000'.$idFactura.'', 0, 1 , 'C');
 
-    $pdf->Image('../img/icon.png', 182, 12, 15, 15, 'png');
+    $pdf->SetXY(18, 32);
+    $pdf->Cell(0, 4, 'C.A.I.: 000000-000000-000000-000000-000000-00', 0, 1 , 'C');
+
+    $pdf->SetXY(18, 36);
+    $pdf->Cell(0, 4, 'Tel: (+504) 2222-0000', 0, 1 , 'C');
+
+    $pdf->SetXY(18, 40);
+    $pdf->Cell(0, 4, 'Correo: correo@gmail.com', 0, 1 , 'C');
 
     $pdf->SetFont('Arial','B', 16);
     $pdf->SetTextColor(85, 84, 82);
 
-    $pdf->SetXY(8, 40);
+    $pdf->SetXY(8, 48);
     $pdf->Cell(0, 8, 'DETALLES DE LA COMPRA', 0, 1, 'C'); // C, center
 
     // ======= Cuerpo del PDF =======
@@ -282,7 +292,7 @@ class Factura {
 
     $pdf->SetDrawColor(70, 175, 40);
     $pdf->SetLineWidth(0.5);
-    $pdf->Line(20, 56, 190, 56);
+    //$pdf->Line(20, 56, 190, 56);
 
     // while ($row = $conexion->getFila($resultado)){
     //   $pdf->SetX(18);

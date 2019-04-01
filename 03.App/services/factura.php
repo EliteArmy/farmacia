@@ -77,11 +77,15 @@ if(isset($_POST['accion'])){
       $fact->setIdFormaPago('');
 
       $res['data'] = $fact->insertarFactura($con1);
+      $error = $res['data'][0]['error'];
       
-      $idFactura = $res['data'][0]['idFactura'];
+      // Si al cerrar la Factura, no existe Error (error == 0), Imprime el PDF
+      if($error == 0){
+        $idFactura = $res['data'][0]['idFactura'];
+        $res['pdf'] = $fact->imprimirPDF($con2, $idFactura);
+      }
+      
       //var_dump($res);
-
-      $res['pdf'] = $fact->imprimirPDF($con2, $idFactura);
 
       $con1->cerrar();
       $con2->cerrar();
