@@ -62,6 +62,7 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+
     case 'insertar-factura':
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
@@ -85,6 +86,7 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    
     case 'cancelar-factura':
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();

@@ -242,8 +242,9 @@ class Factura {
       $this->getIdFormaPago()
     ];
 
-		$rows = $conexion->query($sql, $valores);
-		return $rows;
+		$rows = $conexion->query($sql, $valores); // {data: [{idFactura: "231", mensaje: "Facturación exitosa", error: "0"}]}   
+    
+    return imprimirPDF($conexion);
 	}
 
   public static function imprimirPDF($conexion){
