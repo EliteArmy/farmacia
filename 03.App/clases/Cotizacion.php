@@ -104,14 +104,21 @@ class Cotizacion {
     $valores = [$this->getIdEmpleado()];
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
-	}
-
-	public function obtenerDetalleFactura($conexion){
-    $sql = 'CALL SP_Obtener_Detalle_Factura(%d, @mensaje, @error)';
-    $valores = [$this->getIdEmpleado()];
-		$rows = $conexion->query($sql, $valores);
-		return $rows;
   }
+  
+  public function insertarCotizacion($conexion){
+    $sql = 'CALL SP_Insertar_Cotizacion(%d, %d, %d, @mensaje, @error)';
+
+    $valores = [
+			$this->getIdEmpleado(),
+			$this->getIdCliente(),
+      $this->getIdFarmacia()
+    ];
+
+		$rows = $conexion->query($sql, $valores);
+
+    return $rows;
+	}
 
   public function imprimirPDF($conexion, $idFactura){
     // $sql = 'CALL SP_Obtener_Detalle_Factura(%s, @mensaje, @error)';

@@ -50,10 +50,11 @@ if(isset($_POST['accion'])){
       $cot->setIdEmpleado($idEmpleado);
       $cot->setIdCliente('');
       $cot->setIdFarmacia('');
-      $cot->setIdFormaPago('');
 
       $res['data'] = $cot->insertarCotizacion($con1);
-      $res['pdf'] = $cot->imprimirPDF($con2);
+
+      // $idCotizacion = $res['data'][0]['idCotizacion'];
+      // $res['pdf'] = $cot->imprimirPDF($con2,$idCotizacion);
 
       $con1->cerrar();
       $con2->cerrar();
