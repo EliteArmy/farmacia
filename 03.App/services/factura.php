@@ -1,6 +1,6 @@
 <?php
-//header("Access-Control-Allow-Origin: *");
-header("Content-type: application/PDF");
+// header("Access-Control-Allow-Origin: *");
+// header("Content-type: application/PDF");
 
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
@@ -64,6 +64,9 @@ if(isset($_POST['accion'])){
 
 
     case 'insertar-factura':
+      // header('Content-type: application/force-download');
+      $con1 = new Conexion();
+      $con2 = new Conexion();
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
 
@@ -72,13 +75,20 @@ if(isset($_POST['accion'])){
       $fact->setIdFarmacia('');
       $fact->setIdFormaPago('');
 
-      $res['data'] = $fact->insertarFactura($conexion);
+      $res['data'] = $fact->insertarFactura($con1);
+      $res['pdf'] = $fact->imprimirPDF($con2);
+      // $pdf =  $fact->imprimirPDF($con2);
+
+      $con1->cerrar();
+      $con2->cerrar();
+      $con1 = null;
+      $con2 = null;
       echo json_encode($res);
     break;
 
     case 'obtener-detalle-factura':
       $idEmpleado = ValidarPost::unsigned('id_empleado');
-      
+
       $fact = new Factura();
       $fact->setIdEmpleado($idEmpleado);
 
@@ -86,7 +96,7 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    
+
     case 'cancelar-factura':
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();

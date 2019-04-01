@@ -298,6 +298,7 @@ function insertarFactura(){
       $("#div-exito").html(response.data[0].mensaje);
       $("#div-exito").removeClass("d-none");
   
+      window.open(response.pdf, '_blank');
       $("#div-exito").hide(8000, function(){
         $('#div-exito').addClass("d-none");
         $("#div-exito").show();
