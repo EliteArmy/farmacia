@@ -84,7 +84,7 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
 
    SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
    FROM detalle_factura_temp
-   WHERE id_empleado=idEmpleado AND id_factura IS NULL;
+   WHERE id_empleado=idEmpleado;
 
 END$$
 

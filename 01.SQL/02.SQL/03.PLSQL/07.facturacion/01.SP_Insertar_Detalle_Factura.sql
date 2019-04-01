@@ -88,7 +88,7 @@ SP:BEGIN
     WHERE id_lote=pI_id_lote;
 
     IF porcentajeDescuento IS NULL THEN
-    SET porcentajeDescuento=0;
+     SET porcentajeDescuento=0;
     END IF;
 
     IF porcentajeImpuesto IS NULL THEN 
@@ -167,7 +167,7 @@ SP:BEGIN
     SET pO_error=error;
     SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
     FROM detalle_factura_temp
-    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
+    WHERE id_empleado=pI_id_empleado;
 
 END$$
 

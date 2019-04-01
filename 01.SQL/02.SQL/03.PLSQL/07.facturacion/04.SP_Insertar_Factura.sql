@@ -37,7 +37,7 @@ SP:BEGIN
     IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
       SET mensaje=CONCAT(mensaje,'Codigo de empleado vacio, ');
     ELSE
-      SELECT COUNT(*) INTO contador FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
+      SELECT COUNT(*) INTO contador FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
       IF contador=0 THEN
         SET mensaje=CONCAT(mensaje,'Este empleado no ha facturado productos');
       END IF;
@@ -83,7 +83,7 @@ SP:BEGIN
             idFormaPago as id_forma_pago,
             idFarmacia as id_farmacia
     FROM detalle_factura_temp 
-    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
+    WHERE id_empleado=pI_id_empleado;
 
     SET idFactura=LAST_INSERT_ID();  -- Ultimo id de factura ingresado
 
@@ -100,7 +100,7 @@ SP:BEGIN
                     id_descuento,
                     id_impuesto
     FROM detalle_factura_temp
-    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
+    WHERE id_empleado=pI_id_empleado;
 
     -- Insertar en movimiento_producto
     INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento)
@@ -115,10 +115,10 @@ SP:BEGIN
                           cantidad,
                           id_lote
     FROM detalle_factura_temp
-    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
+    WHERE id_empleado=pI_id_empleado;
 
     UPDATE (SELECT id_lote,SUM(cantidad) as cantidad FROM detalle_factura_temp 
-    WHERE id_empleado=pI_id_empleado AND id_factura IS NULL
+    WHERE id_empleado=pI_id_empleado
     GROUP BY id_lote) as origen, lote as destino
     SET destino.existencia=destino.existencia-origen.cantidad
     WHERE destino.id_lote=origen.id_lote;
@@ -135,7 +135,7 @@ SP:BEGIN
     --   LEAVE SP;
     -- END IF;
 
-    UPDATE detalle_factura_temp SET id_factura=idFactura WHERE id_empleado=pI_id_empleado AND id_factura IS NULL;
+    UPDATE detalle_factura_temp SET id_factura=idFactura WHERE id_empleado=pI_id_empleado;
 
     COMMIT;
     SET mensaje= 'Facturación exitosa';
