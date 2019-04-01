@@ -47,6 +47,7 @@ SP:BEGIN
 
    SELECT MAX(id_temporal) INTO idCotizacion FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
    UPDATE detalle_cotizacion_temp SET id_cotizacion=idCotizacion WHERE id_empleado=pI_id_empleado;
+   COMMIT;
    
    SET mensaje= 'Cotización exitosa';
    SET error=FALSE;
