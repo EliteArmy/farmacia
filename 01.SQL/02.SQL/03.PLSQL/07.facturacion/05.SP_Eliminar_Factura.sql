@@ -44,9 +44,9 @@ SP:BEGIN
 
    -- _______________SQL Statements_______________
     CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFactura,@errorEliminarFactura);
-    IF @errorEliminarFilas THEN
-      SET mensaje=@mensajeEliminarFilas;
-      SET error=@errorEliminarFilas;
+    IF @errorEliminarFactura THEN
+      SET mensaje=@mensajeEliminarFactura;
+      SET error=@errorEliminarFactura;
       SET pO_mensaje=mensaje;
       SET pO_error=error;
       SELECT mensaje,error;
