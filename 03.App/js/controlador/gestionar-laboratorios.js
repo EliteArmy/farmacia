@@ -59,8 +59,13 @@ $(document).ready(function() {
         { data: "estado", title:"Estado"},
         { data: null, title: "Opción",
         render: function ( data, type, row, meta ) {
-          return '<button type="button" onclick="funcionBuscarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
-                 '<button type="button" onclick="funcionBorrarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+          if(row.estado=='I'){
+              return '<button type="button" onclick="funcionBuscarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+                    '<button type="button" disabled class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>'
+          }else{
+              return '<button type="button" onclick="funcionBuscarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+                     '<button type="button" onclick="funcionBorrarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>'
+          }
         }}
       ]
     });
