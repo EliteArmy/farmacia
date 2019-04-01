@@ -14,6 +14,7 @@ CREATE PROCEDURE SP_Eliminar_Lote(
   DECLARE contador INTEGER;
   DECLARE error BOOLEAN;
   DECLARE ultimoIdMovimiento INTEGER;
+  DECLARE uEstado VARCHAR(1);
 -- Inicializaciones
   SET mensaje='';
   SET contador = 0;
@@ -31,7 +32,9 @@ CREATE PROCEDURE SP_Eliminar_Lote(
         WHERE  id_lote= pI_id_lote;
         
         IF contador =0 THEN
-        SET mensaje = CONCAT(mensaje, 'EL lote a eliminar no existe, ');
+          SET mensaje = CONCAT(mensaje, 'EL lote a eliminar no existe, ');
+        ELSE
+          SELECT estado INTO uEstado FROM lote WHERE id_lote=pI_id_lote;
         END IF;
     END IF;
 
@@ -61,23 +64,26 @@ CREATE PROCEDURE SP_Eliminar_Lote(
         LEAVE SP;
    END IF;   
 
-  SELECT existencia INTO contador FROM lote WHERE id_lote=pI_id_lote;
-   INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'R'); -- R-->Retiro.
-   SET ultimoIdMovimiento=LAST_INSERT_ID();
-   INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES (ultimoIdMovimiento, contador, pI_id_lote);
-  
-  UPDATE lote 
-      SET
-          estado = "I"
-      WHERE
-          lote.id_lote= pI_id_lote;
-   
-     COMMIT;
-     SET mensaje= 'Eliminación exitosa';
-     SET error=FALSE;
-     SET pO_mensaje=mensaje;
-     SET pO_error=error;
-     SELECT mensaje,error;
+    IF uEstado='A' THEN
+        SELECT existencia INTO contador FROM lote WHERE id_lote=pI_id_lote;
+        INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'R'); -- R-->Retiro.
+        SET ultimoIdMovimiento=LAST_INSERT_ID();
+        INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES (ultimoIdMovimiento, contador, pI_id_lote);
+
+        UPDATE lote 
+            SET
+                estado = "I"
+            WHERE
+                lote.id_lote= pI_id_lote;
+        
+          COMMIT;
+    END IF;
+ 
+    SET mensaje= 'Eliminación exitosa';
+    SET error=FALSE;
+    SET pO_mensaje=mensaje;
+    SET pO_error=error;
+    SELECT mensaje,error;
 
 END $$
 
