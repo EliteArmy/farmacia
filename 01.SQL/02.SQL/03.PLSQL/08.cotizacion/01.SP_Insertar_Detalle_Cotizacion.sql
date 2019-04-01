@@ -23,10 +23,10 @@ SP:BEGIN
     DECLARE precioVentaUnidad DOUBLE;
     DECLARE subTotalRow DOUBLE;
     DECLARE totalRow DOUBLE;
-    DECLARE totalFactura DOUBLE;
-    DECLARE subTotalFactura DOUBLE;
-    DECLARE totalImpuestoFactura DOUBLE;
-    DECLARE totalDescuentoFactura DOUBLE;
+    DECLARE totalCotizacion DOUBLE;
+    DECLARE subTotalCotizacion DOUBLE;
+    DECLARE totalImpuestoCotizacion DOUBLE;
+    DECLARE totalDescuentoCotizacion DOUBLE;
     DECLARE totalDescuentoRow DOUBLE;
     DECLARE totalImpuestoRow DOUBLE;
     DECLARE cantidadExistencia INT;
@@ -98,7 +98,7 @@ SP:BEGIN
 
     -- Verificaciones de existencia lote
     SELECT existencia INTO contador FROM lote WHERE id_lote=pI_id_lote;
-    SELECT SUM(cantidad) INTO cantidadExistencia FROM detalle_factura_temp 
+    SELECT SUM(cantidad) INTO cantidadExistencia FROM detalle_cotizacion_temp 
     WHERE id_lote=pI_id_lote;
     
     SET cantidadLote=contador-cantidadExistencia; -- Restar lote.existencia - SUM(cantidad) WHERE id_lote=pI_idlote
@@ -151,21 +151,21 @@ SP:BEGIN
                             totalRow);
     COMMIT;
 
-    SELECT SUM(total) INTO totalFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
-    SELECT SUM(sub_total) INTO subTotalFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
-    SELECT SUM(total_impuesto) INTO totalImpuestoFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
-    SELECT SUM(total_descuento) INTO totalDescuentoFactura FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+    SELECT SUM(total) INTO totalCotizacion FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
+    SELECT SUM(sub_total) INTO subTotalCotizacion FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
+    SELECT SUM(total_impuesto) INTO totalImpuestoCotizacion FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
+    SELECT SUM(total_descuento) INTO totalDescuentoCotizacion FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
 
-    SET totalFactura=ROUND(totalFactura,2);
-    SET subTotalFactura=ROUND(subTotalFactura,2);
-    SET totalImpuestoFactura=ROUND(totalImpuestoFactura,2);
-    SET totalDescuentoFactura=ROUND(totalDescuentoFactura,2);
+    SET totalCotizacion=ROUND(totalCotizacion,2);
+    SET subTotalCotizacion=ROUND(subTotalCotizacion,2);
+    SET totalImpuestoCotizacion=ROUND(totalImpuestoCotizacion,2);
+    SET totalDescuentoCotizacion=ROUND(totalDescuentoCotizacion,2);
 
     SET mensaje= 'Inserción exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
+    SELECT *,subTotalCotizacion,totalCotizacion,totalImpuestoCotizacion,totalDescuentoCotizacion,mensaje,error
     FROM detalle_cotizacion_temp
     WHERE id_empleado=pI_id_empleado;
 
