@@ -9,7 +9,10 @@ if(isset($_POST['accion'])){
   switch ($_POST['accion']) {
 
     case 'estadisticas':
-      $rows= $conexion->query('SELECT * FROM VistaEstadisticas');
+      $idEmpleado = ValidarPOST::unsigned('id_empleado');
+      $sql = 'CALL SP_Estadisticas(%d)';
+      $valores = [$idEmpleado];
+      $rows= $conexion->query($sql, $valores);
       $res['data'] = $rows[0];
       echo json_encode($res);
     break;
