@@ -279,43 +279,92 @@ class Factura {
     $pdf->SetTextColor(85, 84, 82);
     
     $pdf->SetXY(8, 40);
-    $pdf->Cell(0, 7, 'DETALLES DE LA COMPRA', 0, 1, 'C'); // C, center
-
+    $pdf->Cell(0, 8, 'DETALLES DE LA COMPRA', 0, 1, 'C'); // C, center
+    
     // ======= Cuerpo del PDF =======
     $pdf->SetFont('Arial','B', 12);
-    $pdf->SetX(18);  
-    $pdf->SetTextColor(5, 47, 53);
+    $pdf->SetX(18, 48);  
+    $pdf->SetTextColor(6, 48, 54);
     $pdf->SetFillColor(10, 105, 116);
 
-    $pdf->Cell(35, 8, "Cantidad", 0, 0, 'C');
-    $pdf->Cell(60, 8, "Descripcion", 0, 0, 'C');
-    $pdf->Cell(45, 8, "Precio Unitario", 0, 0, 'C');
+    $pdf->Cell(25, 8, "Cantidad", 0, 0, 'C'); //cell(width, height, txt, border, ln, align)
+    $pdf->Cell(75, 8, "Descripcion", 0, 0, 'C');
+    $pdf->Cell(40, 8, "Precio Unidad", 0, 0, 'C');
     $pdf->Cell(35, 8, "Sub Total", 0, 0, 'C');
     $pdf->Ln();
     
-    $pdf->SetDrawColor(76, 174, 40);
-    $pdf->SetLineWidth(1);
-    $pdf->Line(20, 55, 190, 55);
+    $pdf->SetDrawColor(70, 175, 40);
+    $pdf->SetLineWidth(0.5);
+    $pdf->Line(20, 56, 190, 56);
 
     while ($row = $conexion->getFila($resultado)){
       $pdf->SetX(18); 
-      $pdf->Cell(35, 12, utf8_decode($row['cantidad']), 1, 0, 'C');
-      $pdf->Cell(60, 12, utf8_decode($row['descripcion']), 1, 0, 'C');
-      $pdf->Cell(45, 12, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
-      $pdf->Cell(35, 12, utf8_decode($row['total']), 1, 0, 'C');
+      $pdf->Cell(25, 10, utf8_decode($row['cantidad']), 1, 0, 'C');
+      $pdf->Cell(75, 10, utf8_decode($row['descripcion']), 1, 0, 'R');
+      $pdf->Cell(40, 10, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
+      $pdf->Cell(35, 10, utf8_decode($row['total']), 1, 0, 'C');
       $pdf->Ln();
     }
 
-    // ======= Pie de Página del PDF =======
+    // ======= Resultados de la Factura ======= 
+    $pdf->SetFont('Arial', '', 12);
 
-    // ======= Devuelve el PDF =======
+    $pdf->SetX(115);
+    $pdf->Cell(32, 10, "Sub-Total", 1, 0, 'C'); //cell(width, height, txt, border, ln, align)
+    
+    $pdf->SetX(147);
+    $pdf->Cell(50, 10, number_format($row['subTotalFactura'], 2, '.', ',')." Lps.",1,0,'R', false);
+    
+    $pdf->Ln(); //Salto de Linea
+    
+    $pdf->SetX(115);
+    $pdf->Cell(32, 10, "Impuestos", 1, 0, 'C'); //cell(width, height, txt, border, ln, align)
+    
+    $pdf->SetX(147);
+    $pdf->Cell(50, 10, number_format($row['totalImpuestoFactura'], 2 ,'.', ',')." Lps.", 1, 0, 'R', false);
+    
+    $pdf->Ln(); //Salto de Linea
+    
+    $pdf->SetX(115);
+    $pdf->Cell(32, 10, "Total", 1, 0,'C'); //cell(width, height, txt, border, ln, align)
+    
+    $pdf->SetX(147);
+    $pdf->Cell(50, 10, number_format($row['totalFactura'], 2, '.', ',')." Lps.", 1, 0, 'R', false);
+
+    // ======= Pie de Página del PDF =======
+    $pdf->SetFont('Arial','B', 10);
+    $pdf->SetXY(20, -35);
+    $pdf->Write(5, "Encargado de Venta: ");
+    
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Write(5, "Cajero");
+
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->SetXY(120, -35);
+    $pdf->Cell(35, 2, "Fecha de Emisión: ", 0, 0); //cell(width, height, txt, border, ln, align)
+    
+    $pdf->SetFont('Courier', '', 10);
+    $pdf->Cell(40, 2, date('Y-m-d H:i:s'), 0, 0);
+    
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->SetXY(-25, -25); //x The value of the abscissa, y The value of the ordinate.
+    $pdf->Cell(30, 2, $pdf->PageNo(), 0, 0); //cell(width, height, txt, border, ln, align)
+    
+    $pdf->Ln();
+    
+    $pdf->SetFont('Arial', '', 6);
+    $pdf->SetXY(8, -25);
+    $pdf->Cell(0, 4, utf8_decode("Farmacia Esperanza, 2018-2019"), 0, 0, 'C');
+
+    // ======= Devuelve el PDF y Guarda el PDF =======
     //$pdf->Output('D','file2.pdf'); // Guarda en descargas
     $pdf->Output('F', '../facturas/factura.pdf', true); // Guarda En el servidor
     
-    //echo "facturas/file2.pdf";
-
 		return "facturas/factura.pdf";
   }
 
 }
+
 ?>
+
+
