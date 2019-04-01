@@ -43,17 +43,17 @@ SP:BEGIN
    END IF;
 
    -- _______________SQL Statements_______________
-    CALL SP_Eliminar_Filas_Detalle_Cotizacion_Temp(pI_id_empleado,@mensajeEliminarFactura,@errorEliminarFactura);
-    IF @errorEliminarFilas THEN
-      SET mensaje=@mensajeEliminarFilas;
-      SET error=@errorEliminarFilas;
+    CALL SP_Eliminar_Filas_Detalle_Cotizacion_Temp(pI_id_empleado,@mensajeEliminarFilaCotizacion,@errorEliminarFilaCotizacion);
+    IF @errorEliminarFilaCotizacion THEN
+      SET mensaje=@mensajeEliminarFilaCotizacion;
+      SET error=@errorEliminarFilaCotizacion;
       SET pO_mensaje=mensaje;
       SET pO_error=error;
       SELECT mensaje,error;
       LEAVE SP;
     END IF;
 
-   SET mensaje= 'Cancelación de factura exitosa';
+   SET mensaje= 'Cancelación de cotizacion exitosa';
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
