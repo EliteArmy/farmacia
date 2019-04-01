@@ -82,7 +82,7 @@
 
           <div class="col-md-11">
             <button type="button" class="btn btn-info" id="">Reset</button>
-            <button type="button" class="btn btn-primary d-none" id="act-desc" data-dismiss="modal">Actualizar Cambios</button>   
+            <button type="button" class="btn btn-primary d-none" id="act-desc">Actualizar Cambios</button>   
             <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
           </div>
           
@@ -138,7 +138,7 @@
 
           <div class="mt-2 col-md-11 col-8">
             <button type="button" class="btn btn-info" id="">Reset</button>
-            <button type="button" class="btn btn-primary d-none" id="act-imp" data-dismiss="modal">Actualizar Cambios</button>   
+            <button type="button" class="btn btn-primary d-none" id="act-imp">Actualizar Cambios</button>   
             <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
           </div>
 
@@ -183,7 +183,7 @@
           </div>
           <div class="col-12 col-md-11" >
             <button type="button" class="btn btn-info" id="" align="left">Reset</button>
-            <button type="button" class="btn btn-primary d-none" id="act-pre" data-dismiss="modal">Actualizar Cambios</button>  
+            <button type="button" class="btn btn-primary d-none" id="act-pre">Actualizar Cambios</button>  
             <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
           </div>
           
@@ -228,7 +228,7 @@
           </div>
           <div class="col-10 col-md-11">
             <button type="button" class="btn btn-info" id="">Reset</button>
-            <button type="button" class="btn btn-primary d-none" id="act-cat" data-dismiss="modal">Actualizar Cambios</button>
+            <button type="button" class="btn btn-primary d-none" id="act-cat">Actualizar Cambios</button>
             <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
           </div>
         

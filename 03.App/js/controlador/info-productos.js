@@ -46,7 +46,7 @@ $(document).ready(function() {
       { data: "fecha_fin", title:"Fecha Fin"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+        return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
                '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
@@ -85,7 +85,7 @@ $(document).ready(function() {
       { data: "fecha_fin", title:"Fecha Fin"},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+        return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm><span class="far fa-edit edit"></span></button>'+
                '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
       }}
     ]
