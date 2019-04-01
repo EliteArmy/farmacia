@@ -265,6 +265,7 @@ function imprimirPDF(){
 }
 
 // ======= Cerrar la Factura actual para entregar al Cliente =======
+/* Aun sin terminar al 100% */
 function insertarFactura(){
   var settings = {
     "async": true,
@@ -299,6 +300,7 @@ function insertarFactura(){
       $("#div-exito").removeClass("d-none");
   
       window.open(response.pdf, '_blank');
+
       $("#div-exito").hide(8000, function(){
         $('#div-exito').addClass("d-none");
         $("#div-exito").show();

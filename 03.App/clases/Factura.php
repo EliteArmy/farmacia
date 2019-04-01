@@ -232,10 +232,9 @@ class Factura {
 		return $rows;
   }
 
-  public function imprimirPDF($conexion){
+  public function imprimirPDF($conexion, $idFactura){
     $sql = 'CALL SP_Obtener_Detalle_Factura(%s, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
-		// echo $this->getIdEmpleado();
 		// $resultado = $conexion->getResultadoQuery($sql, $valores);
 		$rows = $conexion->query($sql, $valores);
 
@@ -362,9 +361,9 @@ class Factura {
 
     // ======= Devuelve el PDF y Guarda el PDF =======
     //$pdf->Output('D','file2.pdf'); // Guarda en descargas
-    $pdf->Output('F', '../facturas/factura.pdf', true); // Guarda En el servidor
+    $pdf->Output('F', '../facturas/factura'.$idFactura.'.pdf', true); // Guarda En el servidor
 
-		return "facturas/factura.pdf";
+		return "facturas/factura".$idFactura.".pdf";
   }
 
   public function insertarFactura($conexion){

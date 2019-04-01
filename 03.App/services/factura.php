@@ -67,6 +67,7 @@ if(isset($_POST['accion'])){
       // header('Content-type: application/force-download');
       $con1 = new Conexion();
       $con2 = new Conexion();
+      
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
 
@@ -76,13 +77,17 @@ if(isset($_POST['accion'])){
       $fact->setIdFormaPago('');
 
       $res['data'] = $fact->insertarFactura($con1);
-      $res['pdf'] = $fact->imprimirPDF($con2);
-      // $pdf =  $fact->imprimirPDF($con2);
+      
+      $idFactura = $res['data'][0]['idFactura'];
+      //var_dump($res);
+
+      $res['pdf'] = $fact->imprimirPDF($con2, $idFactura);
 
       $con1->cerrar();
       $con2->cerrar();
       $con1 = null;
       $con2 = null;
+
       echo json_encode($res);
     break;
 
