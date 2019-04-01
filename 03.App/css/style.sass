@@ -65,7 +65,7 @@ body
   +material-button(adjust-hue($primary, 180))
 
 .modal-body table.table-bordered.dataTable th, .modal-body table.table-bordered.dataTable td
-  /* padding-left: 10px; */
+  /* padding-left: 10px */
   height: 20px !important
 
 
@@ -138,3 +138,25 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   margin-top: -.1rem
   margin-bottom: .1rem
   box-shadow: 0.1rem 0.1rem 0.75rem 0 rgba(10, 150, 200, 0.3)
+
+.spinner 
+  position: fixed
+  top: 45%
+  left: 50%
+  margin-left: -100px /* half width of the spinner gif */
+  margin-top: -101px /* half height of the spinner gif */
+  width: 200px /* width of the spinner gif */
+  height: 202px /* hight of the spinner gif +2px to fix IE8 issue */
+  z-index: 1000
+  overflow: auto
+
+
+.overlay 
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  z-index: 990
+  background: #fff
+  opacity: .5
