@@ -71,20 +71,8 @@ class Cotizacion {
 	}
 
 
-  public function leerClientePorId($conexion){
-	  $sql = '
-			SELECT * FROM persona
-			WHERE numero_identidad = %s
-    ';
-
-		$valores = [$this->getIdCliente()];
-		$rows = $conexion->query($sql, $valores);
-		if (count($rows)) return $rows[0];
-		else return null;
-  }
-
   public function insertarProducto($conexion){
-		$sql = 'CALL SP_Insertar_Detalle_Factura(%d, %d, %d, @mensaje, @error)';
+		$sql = 'CALL SP_Insertar_Detalle_Cotizacion(%d, %d, %d, @mensaje, @error)';
 		$valores = [
 			$this->getIdEmpleado(),
 			$this->getCantidad(),
@@ -264,7 +252,19 @@ class Cotizacion {
 		$rows = $conexion->query($sql, $valores);
 
     return $rows;
-	}
+  }
+  
+  public function leerClientePorId($conexion){
+	  $sql = '
+			SELECT * FROM persona
+			WHERE numero_identidad = %s
+    ';
+
+		$valores = [$this->getIdCliente()];
+		$rows = $conexion->query($sql, $valores);
+		if (count($rows)) return $rows[0];
+		else return null;
+  }
 
 }
 
