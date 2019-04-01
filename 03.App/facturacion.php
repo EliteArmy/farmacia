@@ -109,7 +109,7 @@
             </button>
           </div>
 
-          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
+          <div class="form-group col-12 col-sm-6 col-lg-4 texto d-none">
             <label for="guardar-factura-pdf">Guardar Factura:</label>
             <button type="button" id="guardar-factura-pdf" class="form-control btn btn-primary">
             <!--<iframe src="../services/printPDF.php?data" target="_blank"></iframe>
