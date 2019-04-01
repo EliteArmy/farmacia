@@ -285,57 +285,57 @@ class Factura {
     $pdf->SetLineWidth(0.5);
     $pdf->Line(20, 56, 190, 56);
 
-    // // while ($row = $conexion->getFila($resultado)){
-    // //   $pdf->SetX(18);
-    // //   $pdf->Cell(25, 10, utf8_decode($row['cantidad']), 1, 0, 'C');
-    // //   $pdf->Cell(75, 10, utf8_decode($row['descripcion']), 1, 0, 'R');
-    // //   $pdf->Cell(40, 10, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
-    // //   $pdf->Cell(35, 10, utf8_decode($row['total']), 1, 0, 'C');
-    // //   $pdf->Ln();
-		// // }
+    // while ($row = $conexion->getFila($resultado)){
+    //   $pdf->SetX(18);
+    //   $pdf->Cell(25, 10, utf8_decode($row['cantidad']), 1, 0, 'C');
+    //   $pdf->Cell(75, 10, utf8_decode($row['descripcion']), 1, 0, 'R');
+    //   $pdf->Cell(40, 10, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
+    //   $pdf->Cell(35, 10, utf8_decode($row['total']), 1, 0, 'C');
+    //   $pdf->Ln();
+		// }
 
 		foreach ($rows as $row) {
 			if(isset($row['cantidad'])){
 				$pdf->SetX(18);
 				$pdf->Cell(25, 10, utf8_decode($row['cantidad']), 1, 0, 'C');
-				$pdf->Cell(75, 10, utf8_decode($row['descripcion']), 1, 0, 'R');
+				$pdf->Cell(75, 10, utf8_decode($row['descripcion']), 1, 0, 'L');
 				$pdf->Cell(40, 10, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
 				$pdf->Cell(35, 10, utf8_decode($row['total']), 1, 0, 'C');
 				$pdf->Ln();
 			}
 		}
 
-		if (count($rows)>=1) {
+		if (count($rows) >= 1) {
 			// ======= Resultados de la Factura =======
 			if(isset($row['cantidad'])){
 
 				$pdf->SetFont('Arial', '', 12);
 
-				$pdf->SetX(115);
+				$pdf->SetX(111);
 				$pdf->Cell(32, 10, "Sub-Total", 1, 0, 'C'); //cell(width, height, txt, border, ln, align)
 
-				$pdf->SetX(147);
-    		$pdf->Cell(50, 10, number_format($rows[0]['subTotalFactura'], 2, '.', ',')." Lps.",1,0,'R', false);
+				$pdf->SetX(143);
+    		$pdf->Cell(50, 10, " Lps. ".number_format($rows[0]['subTotalFactura'], 2, '.', ','), 1, 0, 'R', false);
 
 		    $pdf->Ln(); //Salto de Linea
 
-		    $pdf->SetX(115);
+		    $pdf->SetX(111);
 		    $pdf->Cell(32, 10, "Impuestos", 1, 0, 'C'); //cell(width, height, txt, border, ln, align)
 
-		    $pdf->SetX(147);
-		    $pdf->Cell(50, 10, number_format($rows[0]['totalImpuestoFactura'], 2 ,'.', ',')." Lps.", 1, 0, 'R', false);
+		    $pdf->SetX(143);
+		    $pdf->Cell(50, 10, " Lps. ".number_format($rows[0]['totalImpuestoFactura'], 2 ,'.', ','), 1, 0, 'R', false);
 
 		    $pdf->Ln(); //Salto de Linea
 
-		    $pdf->SetX(115);
+		    $pdf->SetX(111);
 		    $pdf->Cell(32, 10, "Total", 1, 0,'C'); //cell(width, height, txt, border, ln, align)
 
-    		$pdf->SetX(147);
-    		$pdf->Cell(50, 10, number_format($rows[0]['totalFactura'], 2, '.', ',')." Lps.", 1, 0, 'R', false);
+    		$pdf->SetX(143);
+    		$pdf->Cell(50, 10, " Lps. ".number_format($rows[0]['totalFactura'], 2, '.', ','), 1, 0, 'R', false);
 			}
 		}
 
-	// ======= Pie de Página del PDF =======
+	  // ======= Pie de Página del PDF =======
     $pdf->SetFont('Arial','B', 10);
     $pdf->SetXY(20, -35);
     $pdf->Write(5, "Encargado de Venta: ");
@@ -377,10 +377,7 @@ class Factura {
       $this->getIdFormaPago()
     ];
 
-		$rows = $conexion->query($sql, $valores); // {data: [{idFactura: "231", mensaje: "Facturación exitosa", error: "0"}]}
-
-    // $pdf = $this->imprimirPDF($conexion);
-		// $rows[0]['pdf'] = $pdf;
+		$rows = $conexion->query($sql, $valores);
 
     return $rows;
 	}

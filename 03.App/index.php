@@ -49,7 +49,7 @@
                   Total Facturas de Hoy
                 </strong>
               </div>
-              <a class="text-decoration-none" href="#">
+              <a class="text-decoration-none" href="/buscar-factura.php">
               <div id="factura" class="card-body text-center">
                 <!-- Informacion generada -->
               </div>
