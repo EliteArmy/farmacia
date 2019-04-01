@@ -99,8 +99,8 @@ class Cotizacion {
 		return $rows;
   }
 
-	public function cancelarFactura($conexion){
-    $sql = 'CALL SP_Eliminar_factura(%d, @mensaje, @error)';
+	public function cancelarCotizacion($conexion){
+    $sql = 'CALL SP_Eliminar_Cotizacion(%d, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
 		$rows = $conexion->query($sql, $valores);
 		return $rows;

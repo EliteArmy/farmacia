@@ -219,7 +219,7 @@ class Factura {
   }
 
 	public function cancelarFactura($conexion){
-    $sql = 'CALL SP_Eliminar_factura(%d, @mensaje, @error)';
+    $sql = 'CALL SP_Eliminar_Factura(%d, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
