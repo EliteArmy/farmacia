@@ -28,7 +28,7 @@ SP:BEGIN
 	ELSE
 		SELECT COUNT(*) INTO contador FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
         IF contador=0 THEN
-			SET mensaje='Este empleado no tiene facturas';
+			SET mensaje='Este empleado no tiene cotizaciones';
 		END IF;
     END IF;
     -- ____________Mensaje de resultado____________

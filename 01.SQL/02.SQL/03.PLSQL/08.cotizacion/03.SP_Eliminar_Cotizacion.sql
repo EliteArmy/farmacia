@@ -29,7 +29,7 @@ SP:BEGIN
    ELSE
      SELECT COUNT(*) INTO contador FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
      IF contador=0 THEN
-        SET mensaje=CONCAT(mensaje,"Usted no ha realizado ninguna factura");
+        SET mensaje=CONCAT(mensaje,"Usted no ha realizado ninguna cotización");
      END IF;
    END IF;
 
