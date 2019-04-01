@@ -1,6 +1,6 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS SP_ELSP_Eliminar_Filas_Detalle_Cotizacion_Temp$$
-CREATE PROCEDURE SP_ELSP_Eliminar_Filas_Detalle_Cotizacion_Temp(
+DROP PROCEDURE IF EXISTS SP_Eliminar_Filas_Detalle_Cotizacion_Temp$$
+CREATE PROCEDURE SP_Eliminar_Filas_Detalle_Cotizacion_Temp(
 	pI_id_empleado INT,
     
     pO_mensaje VARCHAR(1000),
@@ -56,7 +56,7 @@ SP:BEGIN
     LIMIT contador;
     
     -- Eliminar Tabla Temporal
-    DROP TEMPORARY TABLE temp;
+    DROP TEMPORARY TABLE temp_cotizacion;
     
     COMMIT;
     
@@ -66,11 +66,10 @@ SP:BEGIN
     SET pO_error=error;
 END$$
 
-CALL SP_ELSP_Eliminar_Filas_Detalle_Cotizacion_Temp(81,@mensaje,@error);
+CALL SP_Eliminar_Filas_Detalle_Cotizacion_Temp(81,@mensaje,@error);
 
 SELECT * FROM detalle_cotizacion_temp WHERE id_empleado=81
 
-CALL SP_Insertar_Detalle_Factura(81,1,1,@mesaje,@error);
 
 /* 
  -- Agrupar ids separados por comas
