@@ -53,8 +53,8 @@ if(isset($_POST['accion'])){
 
       $res['data'] = $cot->insertarCotizacion($con1);
 
-      // $idCotizacion = $res['data'][0]['idCotizacion'];
-      // $res['pdf'] = $cot->imprimirPDF($con2,$idCotizacion);
+      $idCotizacion = $res['data'][0]['idCotizacion'];
+      $res['pdf'] = $cot->imprimirPDF($con2,$idCotizacion);
 
       $con1->cerrar();
       $con2->cerrar();
