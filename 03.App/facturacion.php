@@ -25,7 +25,7 @@
  <?php include("./navbar.php"); ?>
  <div class="overlay" id="loadingOverlay"></div>
  <div class="spinner" id="loadingDiv">
-   <img src="img/Heart-200px.svg" alt="Cargando">
+   <img src="img/spinner.svg" alt="Cargando">
  </div>
 
   <!-- Contenido -->
