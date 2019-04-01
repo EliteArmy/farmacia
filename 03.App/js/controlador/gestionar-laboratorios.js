@@ -12,8 +12,8 @@ $(document).ajaxStop(function() {
 });
 
 let formaLab = new Forma('agregar-laboratorio');
-formaLab.addInput('txt-nombre-laboratorio', /^.+$/, true);
-formaLab.addInput('txt-direccion', /^.+$/, true);
+formaLab.addInput('txt-nombre-laboratorio',true);
+formaLab.addInput('txt-direccion',true);
 formaLab.addInput('txt-telefono-lab',/^[1-9][0-9]{3}\-[0-9]{4}$/,true );
 
 
@@ -166,7 +166,7 @@ function funcionBuscarLab(nomb){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
     $('#txt-nombre-laboratorio').val(response.data.nombre_laboratorio);
-    $('#txt-estado-lab').val(response.data.estado);
+    $('#slc-estado-lab').selectpicker('val',response.data.estado);
 
     $('#txt-id-lab').val(response.data.id_laboratorio);
     $('#txt-telefono-lab').val(response.data.telefono_laboratorio);
@@ -206,7 +206,7 @@ $("#act-lab").click(function(){
   }
    console.log($("#txt-telefono-lab").val()),
   $.ajax(settings).done(function (response) {
-    formaLab.validateAll()
+   // formaLab.validateAll() -->
   imprimirMensaje(response,"-lab");
   });
   
@@ -225,6 +225,14 @@ function imprimirMensaje(response,tbl2){
       $("#div-exito"+tbl2).show();
       $("#div-exito"+tbl2).html("");
     });
+
+    $('#txt-nombre-laboratorio').val("");
+    $('#txt-id-lab').val("");
+    $('#txt-telefono-lab').val("");
+    $('#txt-direccion').val("");
+    $('#act-lab').addClass("d-none");
+    $('#guard-laboratorio').show();
+    $("#seleccion-estado-lab").addClass("d-none");
   } else {
     console.log(response);
     $("#div-error"+tbl2).html(response.data[0].mensaje);
@@ -250,6 +258,10 @@ function imprimirMensajeSinCorchete(response,tbl){
       $("#div-exito"+tbl).show();
       $("#div-exito"+tbl).html("");
     });
+    $("#txt-direccion").val("")
+    $("#txt-telefono-lab").val("")
+    $("#txt-nombre-laboratorio").val("")
+
   } else {
     console.log(response);
     $("#div-error"+tbl).html(response.data.mensaje);
