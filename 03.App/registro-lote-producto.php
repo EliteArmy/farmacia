@@ -36,6 +36,8 @@
           <h4>Registro de Lotes</h4>
         </div>
 
+        <input type="hidden" value="<?php echo $_SESSION['id_empleado'] ?>" id="id-empleado">
+
         <div class="row mt-3 mb-3">
           <!-- Button trigger para el modal -->
           <div class="col-12 col-sm-6 col-md-6 col-lg-6">
