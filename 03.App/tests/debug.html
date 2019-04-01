@@ -1,12 +1,15 @@
 
 
 <br />
-<font size='1'><table class='xdebug-error xe-uncaught-exception' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Fatal error: Uncaught Error: Using $this when not in object context in C:\wamp64\www\farmacia\03.App\clases\Factura.php on line <i>252</i></th></tr>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Error: Using $this when not in object context in C:\wamp64\www\farmacia\03.App\clases\Factura.php on line <i>252</i></th></tr>
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in C:\wamp64\www\farmacia\03.App\database\Conexion.php on line <i>67</i></th></tr>
 <tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
 <tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0002</td><td bgcolor='#eeeeec' align='right'>407152</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\farmacia\03.App\services\factura.php' bgcolor='#eeeeec'>...\factura.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.6931</td><td bgcolor='#eeeeec' align='right'>440784</td><td bgcolor='#eeeeec'>Factura->insertarFactura(  )</td><td title='C:\wamp64\www\farmacia\03.App\services\factura.php' bgcolor='#eeeeec'>...\factura.php<b>:</b>75</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.8643</td><td bgcolor='#eeeeec' align='right'>442096</td><td bgcolor='#eeeeec'>Factura::imprimirPDF(  )</td><td title='C:\wamp64\www\farmacia\03.App\clases\Factura.php' bgcolor='#eeeeec'>...\Factura.php<b>:</b>247</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0001</td><td bgcolor='#eeeeec' align='right'>407152</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp64\www\farmacia\03.App\services\factura.php' bgcolor='#eeeeec'>...\factura.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.6786</td><td bgcolor='#eeeeec' align='right'>440784</td><td bgcolor='#eeeeec'>Factura->insertarFactura(  )</td><td title='C:\wamp64\www\farmacia\03.App\services\factura.php' bgcolor='#eeeeec'>...\factura.php<b>:</b>75</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.8514</td><td bgcolor='#eeeeec' align='right'>442096</td><td bgcolor='#eeeeec'>Factura->imprimirPDF(  )</td><td title='C:\wamp64\www\farmacia\03.App\clases\Factura.php' bgcolor='#eeeeec'>...\Factura.php<b>:</b>366</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.9414</td><td bgcolor='#eeeeec' align='right'>498640</td><td bgcolor='#eeeeec'>Conexion->getFila(  )</td><td title='C:\wamp64\www\farmacia\03.App\clases\Factura.php' bgcolor='#eeeeec'>...\Factura.php<b>:</b>288</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.9414</td><td bgcolor='#eeeeec' align='right'>498640</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mysqli-fetch-array' target='_new'>mysqli_fetch_array</a>
+(  )</td><td title='C:\wamp64\www\farmacia\03.App\database\Conexion.php' bgcolor='#eeeeec'>...\Conexion.php<b>:</b>67</td></tr>
 </table></font>
+{"data":[{"idFactura":"242","mensaje":"Facturaci\u00f3n exitosa","error":"0"}]}

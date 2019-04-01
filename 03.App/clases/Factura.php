@@ -232,22 +232,7 @@ class Factura {
 		return $rows;
   }
 
-  public function insertarFactura($conexion){
-    $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
-    
-    $valores = [
-			$this->getIdEmpleado(),
-			$this->getIdCliente(),
-      $this->getIdFarmacia(),
-      $this->getIdFormaPago()
-    ];
-
-		$rows = $conexion->query($sql, $valores); // {data: [{idFactura: "231", mensaje: "Facturación exitosa", error: "0"}]}   
-    
-    return imprimirPDF($conexion);
-	}
-
-  public static function imprimirPDF($conexion){
+  public function imprimirPDF($conexion){
     $sql = 'CALL SP_Obtener_Detalle_Factura(%d, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
     
@@ -365,6 +350,23 @@ class Factura {
     
 		return "facturas/factura.pdf";
   }
+
+  public function insertarFactura($conexion){
+    $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
+    
+    $valores = [
+			$this->getIdEmpleado(),
+			$this->getIdCliente(),
+      $this->getIdFarmacia(),
+      $this->getIdFormaPago()
+    ];
+
+		$rows = $conexion->query($sql, $valores); // {data: [{idFactura: "231", mensaje: "Facturación exitosa", error: "0"}]}   
+    
+    $pdf = $this->imprimirPDF($conexion);
+    
+    return $rows;
+	}
 
 }
 

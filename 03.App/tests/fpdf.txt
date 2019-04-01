@@ -1,0 +1,34 @@
+
+Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
+
+-- Parameters: --
+
+w - Cell width. If 0, the cell extends up to the right margin.
+
+h - Cell height. Default value: 0.
+
+txt - String to print. Default value: empty string.
+
+border - Indicates if borders must be drawn around the cell. The value can be either a number:
+0: no border
+1: frame
+or a string containing some or all of the following characters (in any order):
+L: left, T: top, R: right, B: bottom, Default value: 0.
+
+ln -  Indicates where the current position should go after the call. Possible values are:
+0: to the right
+1: to the beginning of the next line
+2: below
+Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value: 0.
+
+align - Allows to center or align the text. Possible values are:
+L or empty string: left align (default value)
+C: center
+R: right align
+
+fill - Indicates if the cell background must be painted (true) or transparent (false). Default value: false.
+
+link - URL or identifier returned by AddLink().
+
+
+
