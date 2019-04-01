@@ -2,6 +2,7 @@
 class Cotizacion {
 
   private $idEmpleado;
+  private $idTemporal;
   private $idCliente;
   private $idFarmacia;
   private $idLote;
@@ -31,6 +32,13 @@ class Cotizacion {
 		return $var."}";
 	}
 
+
+  public function getIdTemporal(){
+		return $this->idTemporal;
+	}
+	public function setIdTemporal($idTemporal){
+		$this->idTemporal = $idTemporal;
+  }
 
 	public function getIdEmpleado(){
 		return $this->idEmpleado;
@@ -83,9 +91,9 @@ class Cotizacion {
   }
 
   public function eliminarProducto($conexion){
-		$sql = 'CALL SP_Eliminar_Detalle_Factura(%d, @mensaje, @error)';
+		$sql = 'CALL SP_Eliminar_Detalle_Cotizacion(%d, @mensaje, @error)';
     $valores = [
-			$this->getIdFactura()
+			$this->getIdTemporal()
     ];
 		$rows = $conexion->query($sql, $valores);
 		return $rows;

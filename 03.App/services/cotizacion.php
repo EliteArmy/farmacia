@@ -32,7 +32,7 @@ if(isset($_POST['accion'])){
     case 'eliminar-producto':
       $idTemporal = ValidarPost::unsigned('id_temporal');
       $cot = new Cotizacion();
-      $cot->setIdFactura($idTemporal);
+      $cot->setIdTemporal($idTemporal);
 
       $res['data'] = $cot->eliminarProducto($conexion);
       echo json_encode($res);
