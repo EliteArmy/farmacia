@@ -68,7 +68,6 @@
               </select>
             </div>
             <div class="col-md-8  col-sm-8 col-8">
-              <button type="button" class="btn btn-info" id="">Reset</button>
               <button type="button" class="btn btn-primary d-none" id="act-lab" data-dismiss="modal">Actualizar Cambios</button>
               <button type="button" class="btn btn-primary" id="guard-laboratorio">Guardar</button>
             </div>
