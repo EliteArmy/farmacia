@@ -27,7 +27,7 @@ SP:BEGIN
    IF pI_id_empleado='' OR pI_id_empleado IS NULL THEN
      SET mensaje=CONCAT(mensaje,"Codigigo de empleado vacio, ");
    ELSE
-     SELECT COUNT(*) INTO contador FROM detalle_factura_temp WHERE id_empleado=pI_id_empleado;
+     SELECT COUNT(*) INTO contador FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
      IF contador=0 THEN
         SET mensaje=CONCAT(mensaje,"Usted no ha realizado ninguna factura");
      END IF;
@@ -43,7 +43,7 @@ SP:BEGIN
    END IF;
 
    -- _______________SQL Statements_______________
-    CALL SP_Eliminar_Filas_Detalle_Factura_Temp(pI_id_empleado,@mensajeEliminarFactura,@errorEliminarFactura);
+    CALL SP_Eliminar_Filas_Detalle_Cotizacion_Temp(pI_id_empleado,@mensajeEliminarFactura,@errorEliminarFactura);
     IF @errorEliminarFilas THEN
       SET mensaje=@mensajeEliminarFilas;
       SET error=@errorEliminarFilas;
@@ -63,4 +63,4 @@ END$$
 
 CALL SP_ELiminar_Cotizacion(81,@mesaje,@error);
 
-SELECT * FROM detalle_factura_temp;
+SELECT * FROM detalle_cotizacion_temp;
