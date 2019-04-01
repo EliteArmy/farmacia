@@ -14,17 +14,6 @@ if(isset($_POST['accion'])){
   $conexion = new Conexion();
 
   switch ($_POST['accion']) {
-    case 'crear-pdf':
-      $pdf = new FPDF('P','mm','A4');
-      $pdf->AddPage();
-      $pdf->SetFont('helvetica','B',16);
-      $pdf->Cell(40,10,'Hello World!');
-      $pdf->Output('file.pdf','I');
-
-      $res['data']  = "PDF Completado";
-      echo json_encode($res);
-    break;
-
     case 'leer-factura':
       $res['data']  = Factura::leer($conexion);
       echo json_encode($res);
@@ -73,8 +62,8 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-    case 'cerrar-factura':
-      $idEmpleado=ValidarPost::unsigned('id_empleado');
+    case 'insertar-factura':
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
       $fact = new Factura();
 
       $fact->setIdEmpleado($idEmpleado);
@@ -82,16 +71,7 @@ if(isset($_POST['accion'])){
       $fact->setIdFarmacia('');
       $fact->setIdFormaPago('');
 
-      $res['data'] = $fact->cerrarFactura($conexion);
-      echo json_encode($res);
-    break;
-
-    case 'cancelar-factura':
-      $idEmpleado = ValidarPost::unsigned('id_empleado');
-      $fact = new Factura();
-
-      $fact->setIdEmpleado($idEmpleado);
-      $res['data'] = $fact->cancelarFactura($conexion);
+      $res['data'] = $fact->insertarFactura($conexion);
       echo json_encode($res);
     break;
 
@@ -102,6 +82,15 @@ if(isset($_POST['accion'])){
       $fact->setIdEmpleado($idEmpleado);
 
       $res['data'] = $fact->imprimirPDF($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'cancelar-factura':
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
+      $fact = new Factura();
+
+      $fact->setIdEmpleado($idEmpleado);
+      $res['data'] = $fact->cancelarFactura($conexion);
       echo json_encode($res);
     break;
 

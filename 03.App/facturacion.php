@@ -100,7 +100,7 @@
 
           <div class="form-group col-12 col-sm-6 col-lg-4 texto">
             <label for="crear-factura">Cerrar Factura:</label>
-            <button type="button" id="crear-factura" onclick="cerrarFactura()" class="form-control btn btn-primary">
+            <button type="button" id="crear-factura" onclick="insertarFactura()" class="form-control btn btn-primary">
               Cerrar Factura
             </button>
           </div>

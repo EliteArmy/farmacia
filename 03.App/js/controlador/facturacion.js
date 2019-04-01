@@ -252,7 +252,7 @@ function imprimirPDF(){
 }
 
 // ======= Cerrar la Factura actual para entregar al Cliente =======
-function cerrarFactura(){
+function insertarFactura(){
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -263,7 +263,7 @@ function cerrarFactura(){
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "cerrar-factura",
+      "accion": "insertar-factura",
       "id_empleado": $("#id-empleado").val(),
       "id_cliente": "",
       "id_farmacia": "",

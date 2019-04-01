@@ -217,18 +217,6 @@ class Factura {
 		$rows = $conexion->query($sql, $valores);
 		return $rows;
   }
-
-  public function cerrarFactura($conexion){
-    $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
-    $valores = [
-			$this->getIdEmpleado(),
-			$this->getIdCliente(),
-      $this->getIdFarmacia(),
-      $this->getIdFormaPago()
-    ];
-		$rows = $conexion->query($sql, $valores);
-		return $rows;
-	}
 	
 	public function cancelarFactura($conexion){
     $sql = 'CALL SP_Eliminar_factura(%d, @mensaje, @error)';
@@ -244,7 +232,21 @@ class Factura {
 		return $rows;
   }
 
-  public function imprimirPDF($conexion){
+  public function insertarFactura($conexion){
+    $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
+    
+    $valores = [
+			$this->getIdEmpleado(),
+			$this->getIdCliente(),
+      $this->getIdFarmacia(),
+      $this->getIdFormaPago()
+    ];
+
+		$rows = $conexion->query($sql, $valores);
+		return $rows;
+	}
+
+  public static function imprimirPDF($conexion){
     $sql = 'CALL SP_Obtener_Detalle_Factura(%d, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
     

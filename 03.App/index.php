@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   
   <link rel="stylesheet" href="./css/style.css">
+  
   <style type="text/css">
     .spinner {
       position: fixed;
