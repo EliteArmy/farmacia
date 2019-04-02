@@ -120,7 +120,7 @@ function BuscarProducto(){
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response.data.length);
+    //console.log(response.data.length);
     if(response.data.length > 0){
       $("#agregarproducto").modal('show');
     
