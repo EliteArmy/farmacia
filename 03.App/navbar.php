@@ -25,6 +25,9 @@
             <?php if(show_item_if("nueva-factura")):?>
             <a class="dropdown-item" href="facturacion.php">Nueva Factura</a>
             <?php endif;?>
+            <?php if(show_item_if("cotizacion")):?>
+            <a class="dropdown-item" href="cotizacion.php">Nueva Cotización</a>
+            <?php endif;?>
           </div>
         </li>
         <?php endif;?>

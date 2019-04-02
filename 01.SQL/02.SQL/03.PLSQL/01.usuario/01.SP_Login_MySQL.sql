@@ -14,6 +14,7 @@ Login:BEGIN
   SET mensaje='';
   SET resultado = FALSE;
   SET contador=0;
+  SET SESSION group_concat_max_len = 2048;
 
   IF par_usuario = '' OR par_usuario IS NULL THEN
     SET mensaje = CONCAT('[usuario]',mensaje);

@@ -287,4 +287,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   background: #fff;
   opacity: 0.5; }
 
+.card-body {
+  color: #45AFE4;
+  font-size: 20px;
+  font-weight: 900; }
+
 /*# sourceMappingURL=style.css.map */

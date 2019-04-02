@@ -16,9 +16,9 @@
 
   <link rel="stylesheet" href="./plugin/loading/loading-bar.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
-  <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>  
+  <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
-  
+
   <link rel="stylesheet" href="./css/style.css">
 
 </head>
@@ -40,6 +40,7 @@
           <h4>RTN: 08011980123456</h4>
         </div>
 
+        <input type="hidden" id="id-empleado" value="<?php echo $_SESSION['id_empleado']?>">
 
         <div class="row mt-3 justify-content-center">
           <div class="col-10 col-sm-6 col-md-3">
@@ -55,7 +56,7 @@
               </div>
               </a>
             </div>
-          </div>  
+          </div>
 
           <div class="col-10 col-sm-6 col-md-3">
             <div class="card card-padding">
@@ -132,6 +133,36 @@
             </div>
           </div>
 
+          <div class="col-10 col-sm-6 col-md-3">
+            <div class="card card-padding">
+              <div class="card-header text-info">
+                <strong>
+                  Total Facturas Empleado
+                </strong>
+              </div>
+              <a class="text-decoration-none" href="#">
+              <div id="total-facturas-empleado" class="card-body text-center">
+                <!-- Informacion generada -->
+              </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-10 col-sm-6 col-md-3">
+            <div class="card card-padding">
+              <div class="card-header text-info">
+                <strong>
+                  Total Vendido
+                </strong>
+              </div>
+              <a class="text-decoration-none" href="#">
+              <div id="total-facturas-vendido" class="card-body text-center">
+                <!-- Informacion generada -->
+              </div>
+              </a>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -150,6 +181,7 @@
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
 
+  <script type="text/javascript" src="./js/validate.js"></script>
   <script type="text/javascript" src="./js/controlador/index.js"></script>
 </body>
 </html>

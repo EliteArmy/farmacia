@@ -23,7 +23,8 @@ $(document).ready(function() {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "estadisticas"
+      "accion": "estadisticas",
+      "id_empleado": $("#id-empleado").val()
     }
   }
 
@@ -36,7 +37,10 @@ $(document).ready(function() {
     $('#laboratorio').html(response.data.total_laboratorios);
     $('#lote').html(response.data.total_lotes_activos);
     $('#producto').html(response.data.total_productos_activos);
-
+    $("#total-facturas-empleado").html(response.data.total_factura_empleado_hoy);
+    $("#total-facturas-vendido").html(
+      "L " + formatMoney(response.data.vendido_empleado_hoy, '2', '.', ',')
+    );
   });
 
 });
