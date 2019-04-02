@@ -236,7 +236,8 @@ class Factura {
     $sql = 'CALL SP_Obtener_Detalle_Factura(%s, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
 		// $resultado = $conexion->getResultadoQuery($sql, $valores);
-		$rows = $conexion->query($sql, $valores);
+    $rows = $conexion->query($sql, $valores);
+    $date = date('d-m-Y'); // Forma temporal de una fecha de Emisión
 
     include_once('../plugin/fpdf/fpdf.php');
 
@@ -245,41 +246,29 @@ class Factura {
     $pdf->AddPage();
 
     // ======= Encabezado =======
-    $pdf->SetFont('helvetica','B', 12);
-    $pdf->SetTextColor(135, 138, 134);
-
     // Logo de la Factura
     $pdf->Image('../img/icon.png', 182, 12, 15, 15, 'png');
 
-    $pdf->SetXY(18, 16);
-    $pdf->Cell(0, 4, 'Farmacia Esperanza', 0, 1, 'C');
+    $pdf->SetFont('helvetica','B', 12);
+    $pdf->SetTextColor(135, 138, 134);
 
-    $pdf->SetXY(18, 20);
+    $pdf->Cell(0, 4, 'Farmacia Esperanza', 0, 1, 'C'); //cell(width, height, txt, border, ln, align)
     $pdf->Cell(0, 4, 'Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras', 0, 1, 'C');
-
-    $pdf->SetXY(18, 24);
     $pdf->Cell(0, 4, 'RTN: 08011980123456', 0, 1, 'C');
-
-    $pdf->SetXY(18, 28);
     $pdf->Cell(0, 4, 'Factura Original: 000-000-00-00000'.$idFactura.'', 0, 1 , 'C');
-
-    $pdf->SetXY(18, 32);
     $pdf->Cell(0, 4, 'C.A.I.: 000000-000000-000000-000000-000000-00', 0, 1 , 'C');
-
-    $pdf->SetXY(18, 36);
+    $pdf->Cell(0, 4, 'Rango Autorizado: 00009000 a 00000'.$idFactura.'', 0, 1 , 'C');
+    $pdf->Cell(0, 4, 'Fecha Limite Emisión: '.$date.'', 0, 1 , 'C');
     $pdf->Cell(0, 4, 'Tel: (+504) 2222-0000', 0, 1 , 'C');
-
-    $pdf->SetXY(18, 40);
-    $pdf->Cell(0, 4, 'Correo: correo@gmail.com', 0, 1 , 'C');
-
-    $pdf->SetFont('Arial','B', 16);
-    $pdf->SetTextColor(85, 84, 82);
-
-    $pdf->SetXY(8, 48);
-    $pdf->Cell(0, 8, 'DETALLES DE LA COMPRA', 0, 1, 'C'); // C, center
+    $pdf->Cell(0, 4, 'Correo: farmacia_esperanza@gmail.com', 0, 1 , 'C');
 
     // ======= Cuerpo del PDF =======
-    $pdf->SetFont('Arial','B', 12);
+    $pdf->SetFont('Arial','B', 16);
+    $pdf->SetTextColor(85, 84, 82);
+    
+    $pdf->Cell(0, 8, 'DETALLES DE LA COMPRA', 0, 1, 'C'); // C, center
+
+    $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetX(18, 48);
     $pdf->SetTextColor(6, 48, 54);
     $pdf->SetFillColor(10, 105, 116);
@@ -287,8 +276,8 @@ class Factura {
     $pdf->Cell(25, 8, "Cantidad", 0, 0, 'C'); //cell(width, height, txt, border, ln, align)
     $pdf->Cell(75, 8, "Descripcion", 0, 0, 'C');
     $pdf->Cell(40, 8, "Precio Unidad", 0, 0, 'C');
-    $pdf->Cell(35, 8, "Sub Total", 0, 0, 'C');
-    $pdf->Ln();
+    $pdf->Cell(35, 8, "Sub Total", 0, 1, 'C');
+    //$pdf->Ln();
 
     $pdf->SetDrawColor(70, 175, 40);
     $pdf->SetLineWidth(0.5);
@@ -309,13 +298,13 @@ class Factura {
 				$pdf->Cell(25, 10, utf8_decode($row['cantidad']), 1, 0, 'C');
 				$pdf->Cell(75, 10, utf8_decode($row['descripcion']), 1, 0, 'L');
 				$pdf->Cell(40, 10, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
-				$pdf->Cell(35, 10, utf8_decode($row['total']), 1, 0, 'C');
-				$pdf->Ln();
+				$pdf->Cell(35, 10, utf8_decode($row['total']), 1, 1, 'C');
+				//$pdf->Ln();
 			}
-		}
-
-		if (count($rows) >= 1) {
-			// ======= Resultados de la Factura =======
+    }
+    
+    // ======= Resultados de la Factura =======
+		if (count($rows) >= 1) {	
 			if(isset($row['cantidad'])){
 
 				$pdf->SetFont('Arial', '', 12);
