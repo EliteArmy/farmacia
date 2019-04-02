@@ -23,11 +23,11 @@
 <body>
 
  <?php include("./navbar.php"); ?>
- <div class="overlay" id="loadingOverlay"></div>
+ <!--<div class="overlay" id="loadingOverlay"></div>
  <div class="spinner" id="loadingDiv">
    <img src="img/spinner.svg" alt="Cargando">
- </div>
 
+ </div>*/-->
   <!-- Contenido -->
   <div class="container-fluid">
     
@@ -74,14 +74,6 @@
               Cerrar Cotización
             </button>
           </div>
-
-          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
-            <label for="guardar-cotizacion-pdf">Guardar Cotización PDF:</label>
-            <button type="button" id="guardar-cotizacion-pdf" class="form-control btn btn-primary">
-              Guardar Cotización como PDF
-            </button>
-          </div>
-
 
         </div>
 
@@ -147,21 +139,15 @@
                 </table>
 
               </div>
-              <!--
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="agregarProducto()">Agregar</button>
-              </div>
-              -->
+           
             </div>
           </div>
         </div>
-        <!-- FIN Modal -->
-
+       
       </div>
     </div>
   </div>
-  <!-- FIN Contenido -->
+
 
   <footer>
 
@@ -177,7 +163,7 @@
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
 
-  <script type="text/javascript" src="./js/controlador/facturacion.js"></script>
 
+  <script type="text/javascript" src="./js/controlador/cotizacion.js"></script>
 </body>
 </html>
