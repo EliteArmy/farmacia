@@ -154,6 +154,17 @@ END$$
 CALL SP_Insertar_Factura(81,'','','',@mesaje,@error);
 -- SELECT @mesaje, @error
 
+-- CAMBIOS DE ZONA HORARIA
+-- Cambios de fecha y fecha hora actual, retrasar 6 horas
+-- porque en aws la zona horaria es utc y en Hondras es utc-6
+
+-- Reemplazar CURDATE() por DATE(SUBDATE(NOW(), INTERVAL 6 HOUR))
+SELECT DATE(SUBDATE(NOW(), INTERVAL 6 HOUR)); -- Fecha
+
+-- Reemplazar NOW() por SUBDATE(NOW(), INTERVAL 6 HOUR) 
+SELECT SUBDATE(NOW(), INTERVAL 6 HOUR); -- Fecha Hora
+
+/*
 select * from factura where id_factura=229;
 select * from detalle_factura where id_factura=229;
 SELECT * FROM detalle_factura_temp;
@@ -168,5 +179,5 @@ GROUP BY id_lote;
 SELECT existencia FROM lote WHERE id_lote IN(1,2,3,4)
 
 UPDATE detalle_factura_temp SET id_factura=null where id_empleado=81;
-
+*/
 
