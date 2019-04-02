@@ -13,6 +13,48 @@ $(document).ajaxStop(function() {
 
 $(document).ready(function() {
 
+  $('#table-info-ventas').DataTable({
+    pageLength: 10,
+    searching: true,
+    ordering: true,
+    paging: true,
+    responsive: true,
+    ajax: {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://farma/services/reporte.php",
+      "method": "POST",
+      "dataType": "json",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "ventas-empleado-dia"
+      }
+    },
+    language: {
+      oPaginate: {
+          sNext: '<i class="fas fa-forward"></i>',
+          sPrevious: '<i class="fas fa-backward"></i>'
+      }
+    },
+    columns: [
+      { data: "id_empleado", title:"ID"},
+      { data: "primer_nombre", title:"Nombre"},
+      { data: "primer_apellido", title:"Apellido"},
+      { data: "total_vendido_diario", title:"Ventas Hoy"}
+      
+    ]
+  });
+
+
+
+
+
+
+
+
+
   var settings = {
     "async": true,
     "crossDomain": true,
