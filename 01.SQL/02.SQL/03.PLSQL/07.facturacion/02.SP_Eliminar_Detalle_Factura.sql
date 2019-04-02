@@ -82,6 +82,12 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Factura(
    SET pO_mensaje=mensaje;
    SET pO_error=error;
 
+   SELECT COUNT(*) INTO contador FROM detalle_factura_temp WHERE id_empleado=idEmpleado;
+   IF contador=0 THEN
+      SELECT 2 as error;  -- Error en caso de que la tabla detalle_factura_temp quede vacia, dado que de lo contrario no se devuelve nada
+      LEAVE SP;
+   END IF;
+
    SELECT *,subTotalFactura,totalFactura,totalImpuestoFactura,totalDescuentoFactura,mensaje,error
    FROM detalle_factura_temp
    WHERE id_empleado=idEmpleado;
