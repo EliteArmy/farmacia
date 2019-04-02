@@ -47,14 +47,6 @@ $(document).ready(function() {
     ]
   });
 
-
-
-
-
-
-
-
-
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -81,7 +73,7 @@ $(document).ready(function() {
     $('#producto').html(response.data.total_productos_activos);
     $("#total-facturas-empleado").html(response.data.total_factura_empleado_hoy);
     $("#total-facturas-vendido").html(
-      "L " + formatMoney(response.data.vendido_empleado_hoy, '2', '.', ',')
+      "L " + formatMoney(response.data.ventas_totales, '2', '.', ',')
     );
   });
 
