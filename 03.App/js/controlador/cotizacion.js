@@ -160,14 +160,14 @@ $(document).ajaxStart(function() {
   
     $.ajax(settings).done(function (response) {
       console.log(response);
-  
-      $('#table-info').DataTable().clear();
-      $('#table-info').DataTable().rows.add(response.data);
-      $('#table-info').DataTable().draw();
-  
+    
       if (response.data[0].error == 0) {
-        $("#div-sub-total").html(response.data[0].subTotalFactura);
-        $("#div-total").html(response.data[0].totalFactura);
+        $('#table-info').DataTable().clear();
+        $('#table-info').DataTable().rows.add(response.data);
+        $('#table-info').DataTable().draw();
+
+        $("#div-sub-total").html(response.data[0].subTotalCotizacion);
+        $("#div-total").html(response.data[0].totalCotizacion);
   
         $("#div-exito").html(response.data[0].mensaje);
         $("#div-exito").removeClass("d-none");
@@ -177,11 +177,15 @@ $(document).ajaxStart(function() {
           $("#div-exito").show();
           $("#div-exito").html("");
         });
-      } else {
+      } else if (response.data[0].error == 2) {
+        // Caso especifico (error == 2 d onde la tabla temporal se quede sin datos
+        $('#table-info').DataTable().clear();
+        $('#table-info').DataTable().draw();
+
         $("#div-sub-total").html("");
         $("#div-total").html("");
   
-        $("#div-error").html(response.data[0].mensaje);
+        $("#div-error").html("No hay datos");
         $("#div-error").removeClass("d-none");
     
         $("#div-error").hide(8000, function(){
@@ -189,10 +193,22 @@ $(document).ajaxStart(function() {
           $('#div-error').addClass("d-none");
           $("#div-error").html("");
         });
-      }
+
+      }else{
+        $("#div-sub-total").html("");
+        $("#div-total").html("");
   
-    });
+        $("#div-error").html(response.data[0].mensaje);
+        $("#div-error").removeClass("d-none");
+    
+        $("#div-error").hide(8000, function(){
+        $('#div-error').show();
+        $('#div-error').addClass("d-none");
+        $("#div-error").html(""); 
+      });
   }
+ });
+}
   
   function imprimirPDF(){  
     var settings = {
