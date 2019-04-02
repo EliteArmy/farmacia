@@ -21,6 +21,8 @@ SP:BEGIN
     DECLARE idFormaPago INT;
     DECLARE idFactura INT;
     DECLARE idMovimiento INT;
+    DECLARE nombreEmpleado VARCHAR(50);
+    DECLARE fechaHora DATETIME;
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
@@ -137,12 +139,15 @@ SP:BEGIN
 
     UPDATE detalle_factura_temp SET id_factura=idFactura WHERE id_empleado=pI_id_empleado;
 
+    SELECT primer_nombre INTO nombreEmpleado FROM persona WHERE id_persona IN (SELECT id_persona FROM empleado WHERE id_empleado=pI_id_empleado);
+    SELECT SUBDATE(NOW(), INTERVAL 6 HOUR) INTO fechaHora;
+
     COMMIT;
     SET mensaje= 'Facturación exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT idFactura,mensaje,error;
+    SELECT idFactura,nombreEmpleado,fechaHora,mensaje,error;
 
 END$$
 
