@@ -355,3 +355,11 @@ $("#guardar-factura-pdf").click(function(){
 
 });
 
+var input = document.getElementById("codigo-producto");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("buscar-codigo-producto").click();
+  }
+});
+

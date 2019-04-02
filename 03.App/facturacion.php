@@ -99,7 +99,7 @@
               <div class="input-group-append">
               <!-- Button trigger para el modal -->
               <!--data-toggle="modal" -->
-              <button class="btn btn-primary" type="button" onclick="BuscarProducto()" data-target="#agregarproducto">Buscar</button>
+              <button id="buscar-codigo-producto" class="btn btn-primary" type="button" onclick="BuscarProducto()" data-target="#agregarproducto">Buscar</button>
               </div>
             </div>
           </div>

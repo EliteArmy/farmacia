@@ -232,7 +232,6 @@ $(document).ajaxStart(function() {
   }
   
   // ======= Cerrar la Factura actual para entregar al Cliente =======
-  /* Aun sin terminar al 100% */
   function insertarCotizacion(){
     var settings = {
       "async": true,
@@ -288,32 +287,36 @@ $(document).ajaxStart(function() {
   }
   
 
-
-  // ======= Guardar una Factura en PDF =======
+// ======= Guardar una Factura en PDF =======
+/* SIN FUNCIONAR */
 $("#guardar-factura-pdf").click(function(){
-  
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://farma/services/factura.php",
-      "method": "POST",
-      "dataType": "json",
-      "headers": {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "accion": "obtener-detalle-factura",
-        "id_empleado": $("#id-empleado").val()
-      }
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/factura.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "obtener-detalle-factura",
+      "id_empleado": $("#id-empleado").val()
     }
-  
-    $.ajax(settings).done(function (url) {
-      console.log("Link:"+url.data);
-      
-      // Abre la factura en una nueva pestaña
-      window.open(url.data, '_blank');
-    });
-  
+  }
+
+  $.ajax(settings).done(function (url) {
+    console.log("Link:"+url.data);
+    
+    // Abre la factura en una nueva pestaña
+    window.open(url.data, '_blank');
   });
+});
   
-  
+var input = document.getElementById("codigo-producto");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("buscar-codigo-producto").click();
+  }
+});
