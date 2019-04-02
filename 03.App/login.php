@@ -2,7 +2,12 @@
   session_start();
 
   if (isset($_SESSION["usuario"])){
-    header("Location: index.php");
+    if ($_SESSION["tipo_usuario"] == "Administrador") {
+      header("Location: index.php");
+    }
+    else if ($_SESSION["tipo_usuario"] == "Cajero") {
+      header("Location: facturacion.php");
+    }
   }
 ?>
 

@@ -41,7 +41,9 @@ $(document).ready(function() {
     columns: [
       { data: "primer_nombre", title:"Nombre"},
       { data: "primer_apellido", title:"Apellido"},
-      { data: "total_vendido_diario", title:"Ventas Hoy"}
+      { data: null, title:"Ventas Hoy", render: function(row, data, type, meta){
+        return "L. " + formatMoney(row.total_vendido_diario, 2, ',', '.')
+      }}
       
     ]
   });
