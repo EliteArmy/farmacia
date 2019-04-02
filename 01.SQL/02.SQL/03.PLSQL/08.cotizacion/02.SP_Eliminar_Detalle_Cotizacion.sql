@@ -77,6 +77,12 @@ CREATE PROCEDURE SP_Eliminar_Detalle_Cotizacion(
    SET pO_mensaje=mensaje;
    SET pO_error=error;
 
+   SELECT COUNT(*) INTO contador FROM detalle_cotizacion_temp WHERE id_empleado=idEmpleado;
+   IF contador=0 THEN
+      SELECT 2 as error;  -- Error en caso de que la tabla detalle_cotizacion_temp quede vacia, dado que de lo contrario no se devuelve nada
+      LEAVE SP;
+   END IF;
+
    SELECT *,subTotalCotizacion,totalCotizacion,totalImpuestoCotizacion,totalDescuentoCotizacion,mensaje,error
    FROM detalle_cotizacion_temp
    WHERE id_empleado=idEmpleado;
