@@ -124,118 +124,115 @@ class Cotizacion {
     $sql = 'CALL SP_Obtener_Detalle_Cotizacion(%s, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
     $rows = $conexion->query($sql, $valores);
-    
+
+    $date = date('d-m-Y'); // Forma temporal de una fecha de Emisión
     include_once('../plugin/fpdf/fpdf.php');
 
     // ======= Instacia del PDF =======
     $pdf = new FPDF('P','mm','A4');
     $pdf->AddPage();
 
-    // ======= Encabezado =======
+    // ======= Encabezado del PDF =======
+    $pdf->Image('../img/icon.png', 182, 12, 15, 15, 'png'); // Logo de la Factura
+
+    $pdf->SetFont('helvetica','B', 18);
+    $pdf->SetTextColor(31, 154, 215); // Color Azul
+    $pdf->Cell(0, 8, 'Farmacia Esperanza', 0, 1, 'C'); //cell(width, height, txt, border, ln, align)
+
     $pdf->SetFont('helvetica','B', 12);
     $pdf->SetTextColor(135, 138, 134);
+    $pdf->Cell(0, 5, 'Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras', 0, 1, 'C');
+    $pdf->Cell(0, 5, 'RTN: 08011980123456', 0, 1, 'C');
+    $pdf->Cell(0, 5, 'Factura No Valida, Solo Cotización', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Fecha Limite Emisión: '.$date.'', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Teléfono: (+504) 2222-0000', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Correo: farmacia_esperanza@gmail.com', 0, 1 , 'C');
 
-    $pdf->SetXY(18, 16);
-    $pdf->Cell(0, 4, 'Farmacia Esperanza', 0, 1, '');
+    $pdf->Ln(); //Salto de Linea
 
-    $pdf->SetXY(18, 20);
-    $pdf->Cell(0, 4, 'Col. Villa Olímpica', 0, 1, '');
+    $pdf->SetX(18, 48);
+    $pdf->SetFont('Arial','B', 12);
+    $pdf->Cell(44, 5, 'Encargado de Venta: ', 0, 0 , 'L'); //cell(width, height, txt, border, ln, align)
 
-    $pdf->SetXY(18, 24);
-    $pdf->Cell(0, 4, 'Tel: (+504) 2222-0000', 0, 1 , '');
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->Cell(38, 5, 'Cajero', 0, 0, 'L');
 
-    $pdf->SetXY(18, 28);
-    $pdf->Cell(0, 4, 'correo: correo@gmail.com', 0, 1 , '');
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L'); 
 
-    $pdf->Image('../img/icon.png', 182, 12, 15, 15, 'png');
-
-    $pdf->SetFont('Arial','B', 16);
-    $pdf->SetTextColor(85, 84, 82);
-
-    $pdf->SetXY(8, 40);
-    $pdf->Cell(0, 8, 'DETALLES DE LA COTIZACION', 0, 1, 'C'); // C, center
+    $pdf->SetFont('Courier', '', 12);
+    $pdf->Cell(54, 5, date('Y-m-d H:i:s'), 0, 1, 'L');
 
     // ======= Cuerpo del PDF =======
-    $pdf->SetFont('Arial','B', 12);
+    $pdf->SetFont('Arial','B', 16);
+    $pdf->SetTextColor(85, 84, 82);
+    $pdf->Ln(); //Salto de Linea
+    $pdf->Cell(0, 8, 'DETALLES DE LA COTIZACIÓN', 0, 1, 'C'); // C, center
+
+    $pdf->SetFont('Arial', 'B', 12);
     $pdf->SetX(18, 48);
-    $pdf->SetTextColor(6, 48, 54);
-    $pdf->SetFillColor(10, 105, 116);
+    $pdf->SetTextColor(255, 255, 255); // Color Blanco
+    $pdf->SetFillColor(31, 154, 215); // Color Azul
 
-    $pdf->Cell(25, 8, "Cantidad", 0, 0, 'C'); //cell(width, height, txt, border, ln, align)
-    $pdf->Cell(75, 8, "Descripcion", 0, 0, 'C');
-    $pdf->Cell(40, 8, "Precio Unidad", 0, 0, 'C');
-    $pdf->Cell(35, 8, "Sub Total", 0, 0, 'C');
-    $pdf->Ln();
-
-    $pdf->SetDrawColor(70, 175, 40);
+    $pdf->SetDrawColor(130, 130, 130); // Color del borde de las celdas
     $pdf->SetLineWidth(0.5);
-    $pdf->Line(20, 56, 190, 56);
+    //$pdf->Line(20, 56, 190, 56); // Dibuja una Linea
 
-    // // while ($row = $conexion->getFila($resultado)){
-    // //   $pdf->SetX(18);
-    // //   $pdf->Cell(25, 10, utf8_decode($row['cantidad']), 1, 0, 'C');
-    // //   $pdf->Cell(75, 10, utf8_decode($row['descripcion']), 1, 0, 'R');
-    // //   $pdf->Cell(40, 10, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
-    // //   $pdf->Cell(35, 10, utf8_decode($row['total']), 1, 0, 'C');
-    // //   $pdf->Ln();
-		// // }
+    $pdf->Cell(20, 8, "Cant.", 1, 0, 'C', true); //cell(width, height, txt, border, ln, align, fill)
+    $pdf->Cell(80, 8, "Descripción", 1, 0, 'C', true);
+    $pdf->Cell(35, 8, "Precio Unidad", 1, 0, 'C', true);
+    $pdf->Cell(40, 8, "Sub Total", 1, 1, 'C', true);
 
+    $pdf->SetFont('Arial', '', 12); // Quitar el Bold de la lista de Productos
+    $pdf->SetTextColor(6, 48, 54); // Volver a Dejar el color del texto como antes
+    
 		foreach ($rows as $row) {
 			if(isset($row['cantidad'])){
 				$pdf->SetX(18);
-				$pdf->Cell(25, 10, utf8_decode($row['cantidad']), 1, 0, 'C');
-				$pdf->Cell(75, 10, utf8_decode($row['descripcion']), 1, 0, 'L');
-				$pdf->Cell(40, 10, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
-				$pdf->Cell(35, 10, utf8_decode($row['total']), 1, 0, 'C');
-				$pdf->Ln();
+				$pdf->Cell(20, 10, utf8_decode($row['cantidad']), 1, 0, 'C'); //cell(width, height, txt, border, ln, align, fill)
+				$pdf->Cell(80, 10, utf8_decode($row['descripcion']), 1, 0, 'L');
+				$pdf->Cell(35, 10, utf8_decode($row['precio_venta_unidad']), 1, 0, 'C');
+				$pdf->Cell(40, 10, utf8_decode($row['total']), 1, 1, 'C');
 			}
-		}
-
-		if (count($rows) >= 1) {
-			// ======= Resultados de la Factura =======
+    }
+    
+    // ======= Resultados de la Factura =======
+		if (count($rows) >= 1) {	
 			if(isset($row['cantidad'])){
 
 				$pdf->SetFont('Arial', '', 12);
 
-				$pdf->SetX(111);
-				$pdf->Cell(32, 10, "Sub-Total", 1, 0, 'C'); //cell(width, height, txt, border, ln, align)
+				$pdf->SetX(118);
+				$pdf->Cell(28, 8, "Sub Total:", 0, 0, 'R'); //cell(width, height, txt, border, ln, align)
 
-				$pdf->SetX(143);
-    		$pdf->Cell(50, 10, " Lps. ".number_format($rows[0]['subTotalCotizacion'], 2, '.', ','), 1, 0, 'R', false);
+				$pdf->SetX(146);
+    		$pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['subTotalCotizacion'], 2, '.', ','), 0, 1, 'R', false);
 
-		    $pdf->Ln(); //Salto de Linea
+		    $pdf->SetX(118);
+		    $pdf->Cell(28, 8, "Impuestos:", 0, 0, 'R'); //cell(width, height, txt, border, ln, align)
 
-		    $pdf->SetX(111);
-		    $pdf->Cell(32, 10, "Impuestos", 1, 0, 'C'); //cell(width, height, txt, border, ln, align)
+		    $pdf->SetX(146);
+		    $pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['totalImpuestoCotizacion'], 2 ,'.', ','), 0, 1, 'R', false);
 
-		    $pdf->SetX(143);
-		    $pdf->Cell(50, 10, " Lps. ".number_format($rows[0]['totalImpuestoCotizacion'], 2 ,'.', ','), 1, 0, 'R', false);
+        $pdf->SetX(118);
+		    $pdf->Cell(28, 8, "Descuentos:", 0, 0, 'R'); //cell(width, height, txt, border, ln, align)
 
-		    $pdf->Ln(); //Salto de Linea
+		    $pdf->SetX(146);
+		    $pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['totalDescuentoCotizacion'], 2 ,'.', ','), 0, 1, 'R', false);
 
-		    $pdf->SetX(111);
-		    $pdf->Cell(32, 10, "Total", 1, 0,'C'); //cell(width, height, txt, border, ln, align)
 
-    		$pdf->SetX(143);
-    		$pdf->Cell(50, 10, " Lps. ".number_format($rows[0]['totalCotizacion'], 2, '.', ','), 1, 0, 'R', false);
+        $pdf->SetFont('Arial', 'B', 12);
+
+		    $pdf->SetX(118);
+		    $pdf->Cell(28, 8, "Total:", 0, 0,'R'); //cell(width, height, txt, border, ln, align)
+
+    		$pdf->SetX(146);
+    		$pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['totalCotizacion'], 2, '.', ','), 0, 1, 'R', false);
 			}
 		}
 
-	  // ======= Pie de Página del PDF =======
-    $pdf->SetFont('Arial','B', 10);
-    $pdf->SetXY(20, -35);
-    $pdf->Write(5, "Encargado de Venta: ");
-
-    $pdf->SetFont('Arial', '', 10);
-    $pdf->Write(5, "Cajero");
-
-    $pdf->SetFont('Arial', 'B', 10);
-    $pdf->SetXY(120, -35);
-    $pdf->Cell(35, 2, "Fecha de Emisión: ", 0, 0); //cell(width, height, txt, border, ln, align)
-
-    $pdf->SetFont('Courier', '', 10);
-    $pdf->Cell(40, 2, date('Y-m-d H:i:s'), 0, 0);
-
+    // ======= Pie de Página del PDF =======
+    /*
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->SetXY(-25, -25); //x The value of the abscissa, y The value of the ordinate.
     $pdf->Cell(30, 2, $pdf->PageNo(), 0, 0); //cell(width, height, txt, border, ln, align)
@@ -245,12 +242,15 @@ class Cotizacion {
     $pdf->SetFont('Arial', '', 6);
     $pdf->SetXY(8, -25);
     $pdf->Cell(0, 4, utf8_decode("Farmacia Esperanza, 2018-2019"), 0, 0, 'C');
-
+    
+    */
     // ======= Devuelve el PDF y Guarda el PDF =======
     //$pdf->Output('D','file2.pdf'); // Guarda en descargas
     $pdf->Output('F', '../facturas/cotizacion'.$idCotizacion.'.pdf', true); // Guarda En el servidor
+    //$pdf->Output('F', '../facturas/factura.pdf', true); // Guarda En el servidor
 
 		return "facturas/cotizacion".$idCotizacion.".pdf";
+    //return "facturas/factura.pdf";
   }
 
   public function leerClientePorId($conexion){
