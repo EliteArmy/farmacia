@@ -258,13 +258,13 @@ class Factura {
     $pdf->Cell(0, 5, 'RTN: 08011980123456', 0, 1, 'C');
     $pdf->Cell(0, 5, 'Factura Original: 000-000-00-00000'.$idFactura.'', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'C.A.I.: 000000-000000-000000-000000-000000-00', 0, 1 , 'C');
-    $pdf->Cell(0, 5, 'Rango Autorizado: 00009000 a 00000'.$idFactura.'', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Rango Autorizado: 00000000 a 00009000', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'Fecha Limite Emisión: '.$date.'', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'Teléfono: (+504) 2222-0000', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'Correo: farmacia_esperanza@gmail.com', 0, 1 , 'C');
 
     $pdf->Ln(); //Salto de Linea
-    
+
     $pdf->SetX(18, 48);
     $pdf->SetFont('Arial','B', 12);
     $pdf->Cell(44, 5, 'Encargado de Venta: ', 0, 0 , 'L'); //cell(width, height, txt, border, ln, align)
