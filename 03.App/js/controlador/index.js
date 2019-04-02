@@ -39,7 +39,6 @@ $(document).ready(function() {
       }
     },
     columns: [
-      { data: "id_empleado", title:"ID"},
       { data: "primer_nombre", title:"Nombre"},
       { data: "primer_apellido", title:"Apellido"},
       { data: "total_vendido_diario", title:"Ventas Hoy"}
