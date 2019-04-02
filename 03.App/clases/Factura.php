@@ -324,12 +324,18 @@ class Factura {
     		$pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['subTotalFactura'], 2, '.', ','), 0, 1, 'R', false);
 
 		    $pdf->SetX(118);
-		    $pdf->Cell(28, 8, "Impuestos:", 0, 0, 'R'); //cell(width, height, txt, border, ln, align)
+        $pdf->Cell(28, 8, "Impuestos:", 0, 0, 'R'); //cell(width, height, txt, border, ln, align)
+        
+        $pdf->SetX(146);
+    		$pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['subTotalFactura'], 2, '.', ','), 0, 1, 'R', false);
+
+		    $pdf->SetX(118);
+		    $pdf->Cell(28, 8, "Descuento:", 0, 0, 'R'); //cell(width, height, txt, border, ln, align)
 
 		    $pdf->SetX(146);
-		    $pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['totalImpuestoFactura'], 2 ,'.', ','), 0, 1, 'R', false);
+		    $pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['totalDescuentoFactura'], 2 ,'.', ','), 0, 1, 'R', false);
 
-        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->SetFont('Arial', 'B', 12); // Muestra el Total en negritas
 
 		    $pdf->SetX(118);
 		    $pdf->Cell(28, 8, "Total:", 0, 0,'R'); //cell(width, height, txt, border, ln, align)
