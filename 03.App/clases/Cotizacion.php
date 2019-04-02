@@ -126,6 +126,17 @@ class Cotizacion {
     $rows = $conexion->query($sql, $valores);
 
     $date = date('d-m-Y'); // Forma temporal de una fecha de Emisión
+
+    // Current date and time
+    $datetime = date("d-m-Y H:i:s");
+    // Convert datetime to Unix timestamp
+    $timestamp = strtotime($datetime);
+    // Subtract time from datetime
+    $time = $timestamp - (6 * 60 * 60); // Resta la Hora de la Base
+    // Date and time after subtraction
+    $datetime = date("d-m-Y H:i:s", $time);
+
+
     include_once('../plugin/fpdf/fpdf.php');
 
     // ======= Instacia del PDF =======
@@ -161,7 +172,7 @@ class Cotizacion {
     $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L'); 
 
     $pdf->SetFont('Courier', '', 12);
-    $pdf->Cell(54, 5, date('Y-m-d H:i:s'), 0, 1, 'L');
+    $pdf->Cell(54, 5, $datetime, 0, 1, 'L');
 
     // ======= Cuerpo del PDF =======
     $pdf->SetFont('Arial','B', 16);
