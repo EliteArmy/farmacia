@@ -217,7 +217,7 @@ $(document).ajaxStart(function() {
   
   // ======= Cerrar la Factura actual para entregar al Cliente =======
   /* Aun sin terminar al 100% */
-  function insertarFactura(){
+  function insertarCotizacion(){
     var settings = {
       "async": true,
       "crossDomain": true,
