@@ -41,6 +41,9 @@ Stats:BEGIN
     WHERE id_empleado = pIN_id_empleado
     AND DATE(fecha_factura) = CURDATE()
   ) as vendido_empleado_hoy
+  ,(
+    SELECT SUM(total_vendido_diario) as total_vendido FROM VistaVentasEmpleadoDia
+  ) as ventas_totales
   ;
 END$$
 
