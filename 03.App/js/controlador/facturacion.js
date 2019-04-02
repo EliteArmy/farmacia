@@ -155,6 +155,7 @@ function funcionAgregarProducto(id_lote){
   $.ajax(settings).done(function (response) {
     console.log(response);
 
+    // Las tablas se actualizan con la información
     $('#table-info').DataTable().clear();
     $('#table-info').DataTable().rows.add(response.data);
     $('#table-info').DataTable().draw();
@@ -163,7 +164,6 @@ function funcionAgregarProducto(id_lote){
     $("#div-total").html(response.data[0].totalFactura);
 
     if (response.data[0].error == 0) {
-
       /*
       $("#div-exito").html(response.data[0].mensaje);
       $("#div-exito").removeClass("d-none");
@@ -190,7 +190,7 @@ function funcionAgregarProducto(id_lote){
   });
 }
 
-// ======= Borrar un producto a la Factura =======
+// ======= Borrar un producto de la Factura =======
 function borrarProducto(id_temporal){
   var settings = {
     "async": true,
@@ -210,11 +210,11 @@ function borrarProducto(id_temporal){
   $.ajax(settings).done(function (response) {
     console.log(response);
 
-    $('#table-info').DataTable().clear();
-    $('#table-info').DataTable().rows.add(response.data);
-    $('#table-info').DataTable().draw();
-
     if (response.data[0].error == 0) {
+      $('#table-info').DataTable().clear();
+      $('#table-info').DataTable().rows.add(response.data);
+      $('#table-info').DataTable().draw();
+
       $("#div-sub-total").html(response.data[0].subTotalFactura);
       $("#div-total").html(response.data[0].totalFactura);
 
@@ -225,6 +225,22 @@ function borrarProducto(id_temporal){
         $('#div-exito').addClass("d-none");
         $("#div-exito").show();
         $("#div-exito").html("");
+      });
+    } else if (response.data[0].error == 2) {
+      // Caso especifico (error == 2 d onde la tabla temporal se quede sin datos
+      $('#table-info').DataTable().clear();
+      $('#table-info').DataTable().draw();
+      
+      $("#div-sub-total").html("");
+      $("#div-total").html("");
+
+      $("#div-error").html("No hay Datos");
+      $("#div-error").removeClass("d-none");
+  
+      $("#div-error").hide(8000, function(){
+        $('#div-error').show();
+        $('#div-error').addClass("d-none");
+        $("#div-error").html("");
       });
     } else {
       $("#div-sub-total").html("");
@@ -243,29 +259,7 @@ function borrarProducto(id_temporal){
   });
 }
 
-function imprimirPDF(){  
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://farma/services/factura.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "crear-pdf"
-    }
-  }
-
-  $.ajax(settings).done(function (response) {
-    console.log(response.data);
-    $("#cliente").html(`Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}`);
-  });
-}
-
 // ======= Cerrar la Factura actual para entregar al Cliente =======
-/* Aun sin terminar al 100% */
 function insertarFactura(){
   var settings = {
     "async": true,
@@ -298,7 +292,8 @@ function insertarFactura(){
     if (response.data[0].error == 0) {
       $("#div-exito").html(response.data[0].mensaje);
       $("#div-exito").removeClass("d-none");
-  
+      
+      // Se encarga de abrir el pdf en una nueva ventana
       window.open(response.pdf, '_blank');
 
       $("#div-exito").hide(8000, function(){
@@ -321,6 +316,7 @@ function insertarFactura(){
 }
 
 // ======= Guardar una Factura en PDF =======
+/* SIN FUNCIONAR */
 $("#guardar-factura-pdf").click(function(){
   
   var settings = {
