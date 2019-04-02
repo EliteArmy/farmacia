@@ -72,25 +72,9 @@ $(document).ready(function() {
     $('#lote').html(response.data.total_lotes_activos);
     $('#producto').html(response.data.total_productos_activos);
     $("#total-facturas-empleado").html(response.data.total_factura_empleado_hoy);
-    $("#total-facturas-vendido").html(
-      "L " + formatMoney(response.data.ventas_totales, '2', '.', ',')
+    $("#total-facturas-vendido").html("L " + formatMoney(response.data.ventas_totales, '2', '.', ',')
     );
   });
 
 });
 
-
-function loading(){
-  $('#loading-heart').show();
-}
-
-function loadingHeart(){
-  var bar = new ldBar("#loading-heart", {
-    //"stroke": '#f00',
-    //"stroke-width": 10,
-    "img": "img/Heart-1s-200px.svg",
-    "img-size": "100,100"
-   });
-
-   bar.set(100);
-}

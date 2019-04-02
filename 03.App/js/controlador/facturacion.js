@@ -120,12 +120,24 @@ function BuscarProducto(){
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
-    $("#agregarproducto").modal('show');
+    console.log(response.data.length);
+    if(response.data.length > 0){
+      $("#agregarproducto").modal('show');
     
-    $('#table-info-producto').DataTable().clear();
-    $('#table-info-producto').DataTable().rows.add(response.data);
-    $('#table-info-producto').DataTable().draw();
+      $('#table-info-producto').DataTable().clear();
+      $('#table-info-producto').DataTable().rows.add(response.data);
+      $('#table-info-producto').DataTable().draw();
+    } else {
+      $("#div-error").html("No se encontro un Producto");
+      $("#div-error").removeClass("d-none");
+  
+      $("#div-error").fadeOut(2000, function(){
+        $('#div-error').addClass("d-none");
+        $("#div-error").fadeIn();
+        $("#div-error").html("");
+      });
+    }
+
   });
 }
 

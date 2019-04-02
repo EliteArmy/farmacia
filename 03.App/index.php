@@ -162,11 +162,12 @@
               </a>
             </div>
           </div>
+
           <h3>Ventas Diarias Por Empleado</h3>
-          <div class="col-12 col-md-11">
-          <table id="table-info-ventas" class="display table-striped table-bordered w-100">
-            <!-- Informacion generada -->
-          </table>
+          <div class="col-12">
+            <table id="table-info-ventas" class="display table-striped table-bordered w-100">
+              <!-- Informacion generada -->
+            </table>
           </div>
 
         </div>
