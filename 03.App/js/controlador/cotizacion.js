@@ -133,8 +133,8 @@ $(document).ajaxStart(function() {
       $('#table-info').DataTable().rows.add(response.data);
       $('#table-info').DataTable().draw();
   
-      $("#div-sub-total").html(response.data[0].subTotalFactura);
-      $("#div-total").html(response.data[0].totalFactura);
+      $("#div-sub-total").html(response.data[0].subTotalCotizacion);
+      $("#div-total").html(response.data[0].totalCotizacion);
   
       
   
