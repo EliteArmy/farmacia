@@ -332,6 +332,61 @@ function insertarFactura(){
   });
 }
 
+// ======= Cancelar la Factura =======
+function cancelarFactura(id_lote){
+  
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://farma/services/factura.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "cancelar-factura",
+      "id_empleado": $("#id-empleado").val()
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+
+    if (response.data[0].error == 0) {
+      // Se Limpia la tabla
+      $('#table-info').DataTable().clear();
+      $('#table-info').DataTable().draw();
+  
+      $("#div-sub-total").html("");
+      $("#div-total").html("");
+
+      $("#div-exito").html(response.data[0].mensaje);
+      $("#div-exito").removeClass("d-none");
+
+      $("#codigo-producto").val('');
+      $("#codigo-producto").focus();
+
+      $("#div-exito").fadeOut(5000, function(){
+        $('#div-exito').addClass("d-none");
+        $("#div-exito").fadeIn();
+        $("#div-exito").html("");
+      });
+
+    } else {      
+      $("#div-error").html(response.data[0].mensaje);
+      $("#div-error").removeClass("d-none");
+  
+      $("#div-error").fadeOut(5000, function(){
+        $('#div-error').addClass("d-none");
+        $('#div-error').fadeIn();
+        $("#div-error").html("");
+      });
+    }
+
+  });
+}
+
 // ======= Guardar una Factura en PDF =======
 /* SIN FUNCIONAR TODAVÍA */
 $("#guardar-factura-pdf").click(function(){

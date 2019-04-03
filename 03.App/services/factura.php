@@ -84,6 +84,7 @@ if(isset($_POST['accion'])){
         $nombreCliente = $res['data'][0]['nombreCliente'];
         $formaPago = $res['data'][0]['formaPago'];
         $fechaHora = $res['data'][0]['fechaHora'];
+
         $res['pdf'] = $fact->imprimirPDF($con2, $idFactura, $nombreEmpleado, $nombreCliente, $formaPago, $fechaHora);
       }
       
@@ -106,7 +107,6 @@ if(isset($_POST['accion'])){
       $res['data'] = $fact->imprimirPDF($conexion);
       echo json_encode($res);
     break;
-
 
     case 'cancelar-factura':
       $idEmpleado = ValidarPost::unsigned('id_empleado');

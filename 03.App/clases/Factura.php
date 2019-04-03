@@ -232,24 +232,36 @@ class Factura {
 		return $rows;
   }
 
+  public function insertarFactura($conexion){
+    $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
+    $valores = [
+			$this->getIdEmpleado(),
+			$this->getIdCliente(),
+      $this->getIdFarmacia(),
+      $this->getIdFormaPago()
+    ];
+
+		$rows = $conexion->query($sql, $valores);
+    return $rows;
+	}
+
   public function imprimirPDF($conexion, $idFactura, $nombreEmpleado, $nombreCliente, $formaPago, $fechaHora){
     $sql = 'CALL SP_Obtener_Detalle_Factura(%s, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
 		// $resultado = $conexion->getResultadoQuery($sql, $valores);
     $rows = $conexion->query($sql, $valores);
     
-    // // Current date and time
+    // Current date and time
     // $datetime = date("d-m-Y H:i:s");
-    // // Convert datetime to Unix timestamp
+    // Convert datetime to Unix timestamp
     // $timestamp = strtotime($datetime);
-    // // Subtract time from datetime
+    // Subtract time from datetime
     // $time = $timestamp - (6 * 60 * 60); // Resta la Hora de la Base
-    // // Date and time after subtraction
+    // Date and time after subtraction
 		// $datetime = date("d-m-Y H:i:s", $time);
 
 		$date = date('d-m-Y',strtotime($fechaHora));
 		$datetime = date("d-m-Y H:i:s", strtotime($fechaHora));
-
 
     include_once('../plugin/fpdf/fpdf.php');
 
@@ -278,17 +290,27 @@ class Factura {
     $pdf->Ln(); //Salto de Linea
 
     $pdf->SetX(18, 48);
+    
+    // Imprime el nombre del empleado en la factura
     $pdf->SetFont('Arial','B', 12);
     $pdf->Cell(44, 5, 'Encargado de Venta: ', 0, 0 , 'L'); //cell(width, height, txt, border, ln, align)
 
     $pdf->SetFont('Arial', '', 12);
     $pdf->Cell(38, 5, $nombreEmpleado, 0, 0, 'L');
 
+    // Imprime la Fecha en la factura
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L'); 
 
     $pdf->SetFont('Courier', '', 12);
-		$pdf->Cell(54, 5, $datetime, 0, 1, 'L');
+    $pdf->Cell(54, 5, $datetime, 0, 1, 'L');
+    
+    // Imprime el nombre del cliente en la factura
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L'); 
+
+    $pdf->SetFont('Arial', '', 12);
+		$pdf->Cell(54, 5, $nombreCliente, 0, 1, 'L');
 
     // ======= Cuerpo del PDF =======
     $pdf->SetFont('Arial','B', 16);
@@ -378,21 +400,6 @@ class Factura {
 	  return "facturas/factura".$idFactura.".pdf";
     //return "facturas/factura.pdf";
   }
-
-  public function insertarFactura($conexion){
-    $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
-
-    $valores = [
-			$this->getIdEmpleado(),
-			$this->getIdCliente(),
-      $this->getIdFarmacia(),
-      $this->getIdFormaPago()
-    ];
-
-		$rows = $conexion->query($sql, $valores);
-
-    return $rows;
-	}
 
 }
 

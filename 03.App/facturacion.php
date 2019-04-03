@@ -84,8 +84,9 @@
           </div>
 
           <div id="seleccion-pago" class="form-group col-12 col-sm-6 col-lg-4 texto">
-            <label for="slc-pago">Pago:</label>
-            <select id="slc-pago" class="selectpicker form-control" title="Forma de Pago" data-style="btn-primary">
+            <label for="slc-pago">Forma de Pago:</label>
+            <!-- title="Forma de Pago" -->
+            <select id="slc-pago" class="selectpicker form-control" data-style="btn-primary">
             <option value="efectivo">Efectivo</option>  
             <option value="tarjeta">Tarjeta</option>
             </select>
@@ -111,22 +112,22 @@
             </button>
           </div>
 
-          <div class="form-group col-12 col-sm-6 col-lg-4 texto d-none">
-            <label for="guardar-factura-pdf">Guardar Factura:</label>
-            <button type="button" id="guardar-factura-pdf" class="form-control btn btn-primary">
-            <!--<iframe src="../services/printPDF.php?data" target="_blank"></iframe>
-            -->
-            <!--<a href="prueba.php?data" target="_blank">click me to download the file</a>
-              -->
-              <!--======= Guardar una Factura en PDF =======
-              ======= *** En Proceso **** =======-->
-              Guardar Factura como PDF
+          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
+            <label for="cancelar-factura">Cancelar Factura:</label>
+            <button type="button" id="cancelar-factura" onclick="cancelarFactura()" class="form-control btn btn-primary">
+              Cancelar Factura
             </button>
           </div>
 
-        </div>
-
-        <div class="row">
+          <div class="form-group col-12 col-sm-6 col-lg-4 texto d-none">
+            <label for="guardar-factura-pdf">Guardar Factura:</label>
+            <button type="button" id="guardar-factura-pdf" class="form-control btn btn-primary">
+            <!--<iframe src="../services/printPDF.php?data" target="_blank"></iframe>-->
+            <!--<a href="prueba.php?data" target="_blank">click me to download the file</a>-->
+              <!--======= Guardar una Factura en PDF =======-->
+              Guardar Factura como PDF
+            </button>
+          </div>
 
         </div>
 
@@ -165,7 +166,7 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
             <div id="pie-factura" class="text-center">
               <h4>Gracias por su visita</h4>
-              <h4>correo: correo@gmail.com</h4>
+              <h4>Correo: farmacia_esperanza@gmail.com</h4>
               <h4>Teléfono: (+504) 2222-0000</h4>
               <h4>Original: Cliente</h4>
               <h4>--- Cuenta Cerrada ---</h4>
