@@ -1,3 +1,4 @@
+// ======= Animación de Carga =======
 loading = $('#loadingDiv').hide();
 loadingBackgound = $('#loadingOverlay').hide();
 
@@ -10,7 +11,17 @@ $(document).ajaxStop(function() {
   loading.hide();
   loadingBackgound.hide();
 });
-  
+
+// Permite que la Busqueda se ejecute a traves de una enter al tener seleccionado el input
+var input = document.getElementById("codigo-producto");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("buscar-codigo-producto").click();
+  }
+});
+
+// ======= Carga los Datos al cargar todo el html =======
 $(document).ready(function() {
   
   // ======= Hora y Fecha de la factura =======
@@ -75,9 +86,7 @@ $(document).ready(function() {
 
 // ======= Buscar un Producto =======
 function BuscarProducto(){
-
-  var codigoBarra = $("#codigo-producto").val();
-  console.log("codigo:" + codigoBarra);
+  console.log("Codigo: " + $("#codigo-producto").val());
 
   var settings = {
     "async": true,
@@ -96,7 +105,6 @@ function BuscarProducto(){
 
   $.ajax(settings).done(function (response) {
     //console.log(response.data.length);
-
     if(response.data.length > 0){
       $("#agregarproducto").modal('show');
     
@@ -107,7 +115,7 @@ function BuscarProducto(){
       $("#div-error").html("No se encontro un Producto");
       $("#div-error").removeClass("d-none");
   
-      $("#div-error").fadeOut(2000, function(){
+      $("#div-error").fadeOut(3000, function(){
         $('#div-error').addClass("d-none");
         $("#div-error").fadeIn();
         $("#div-error").html("");
@@ -117,7 +125,7 @@ function BuscarProducto(){
   });
 }
 
-// ======= Agregar un producto a la Factura =======
+// ======= Agregar un producto a la Cotización =======
 function funcionAgregarProducto(id_lote){
   //console.log("Lote:" + id_lote);
   //console.log("Empleado:" + $("#id-empleado").val());
@@ -143,17 +151,36 @@ function funcionAgregarProducto(id_lote){
   $.ajax(settings).done(function (response) {
     console.log(response);
 
-    $('#table-info').DataTable().clear();
-    $('#table-info').DataTable().rows.add(response.data);
-    $('#table-info').DataTable().draw();
+    if (response.data[0].error == 0) {
+      // Las tablas se actualizan con la información
+      $('#table-info').DataTable().clear();
+      $('#table-info').DataTable().rows.add(response.data);
+      $('#table-info').DataTable().draw();
 
-    $("#div-sub-total").html(response.data[0].subTotalCotizacion);
-    $("#div-total").html(response.data[0].totalCotizacion);
+      $("#codigo-producto").val('');
+      $("#codigo-producto").focus();
+
+      $("#div-sub-total").html(response.data[0].subTotalFactura);
+      $("#div-total").html(response.data[0].totalFactura);
+
+    } else {
+      //$("#div-sub-total").html("");
+      //$("#div-total").html("");
+      
+      $("#div-error").html(response.data[0].mensaje);
+      $("#div-error").removeClass("d-none");
+  
+      $("#div-error").fadeOut(5000, function(){
+        $('#div-error').addClass("d-none");
+        $('#div-error').fadeIn();
+        $("#div-error").html("");
+      });
+    }
 
   });
 }
 
-// ======= Borrar un producto de la Factura =======
+// ======= Borrar un producto de la Cotización =======
 function borrarProducto(id_temporal){
   var settings = {
     "async": true,
@@ -184,13 +211,13 @@ function borrarProducto(id_temporal){
       $("#div-exito").html(response.data[0].mensaje);
       $("#div-exito").removeClass("d-none");
   
-      $("#div-exito").hide(8000, function(){
+      $("#div-exito").fadeOut(5000, function(){
         $('#div-exito').addClass("d-none");
-        $("#div-exito").show();
+        $("#div-exito").fadeIn();
         $("#div-exito").html("");
       });
     } else if (response.data[0].error == 2) {
-      // Caso especifico (error == 2 d onde la tabla temporal se quede sin datos
+      // Caso especifico (error == 2) donde la tabla temporal se quede sin datos
       $('#table-info').DataTable().clear();
       $('#table-info').DataTable().draw();
 
@@ -200,8 +227,8 @@ function borrarProducto(id_temporal){
       $("#div-error").html("No hay datos");
       $("#div-error").removeClass("d-none");
   
-      $("#div-error").hide(8000, function(){
-        $('#div-error').show();
+      $("#div-error").fadeOut(5000, function(){
+        $('#div-error').fadeIn();
         $('#div-error').addClass("d-none");
         $("#div-error").html("");
       });
@@ -212,8 +239,8 @@ function borrarProducto(id_temporal){
       $("#div-error").html(response.data[0].mensaje);
       $("#div-error").removeClass("d-none");
   
-      $("#div-error").hide(8000, function(){
-      $('#div-error').show();
+      $("#div-error").fadeOut(5000, function(){
+      $('#div-error').fadeIn();
       $('#div-error').addClass("d-none");
       $("#div-error").html(""); 
       });
@@ -221,7 +248,7 @@ function borrarProducto(id_temporal){
   });
 }
   
-// ======= Cerrar la Factura actual para entregar al Cliente =======
+// ======= Cerrar la Cotización actual para entregar al Cliente =======
 function insertarCotizacion(){
   var settings = {
     "async": true,
@@ -244,41 +271,41 @@ function insertarCotizacion(){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
 
-    $('#table-info').DataTable().clear();
-    //$('#table-info').DataTable().rows.add(response.data);
-    $('#table-info').DataTable().draw();
-
-    $("#div-sub-total").html("");
-    $("#div-total").html("");
-
     if (response.data[0].error == 0) {
+      // Se Limpia la tabla
+      $('#table-info').DataTable().clear();
+      $('#table-info').DataTable().draw();
+  
+      $("#div-sub-total").html("");
+      $("#div-total").html("");
+
       $("#div-exito").html(response.data[0].mensaje);
       $("#div-exito").removeClass("d-none");
   
+      // Se encarga de abrir el pdf en una nueva ventana
       window.open(response.pdf, '_blank');
 
-      $("#div-exito").hide(8000, function(){
+      $("#div-exito").fadeOut(8000, function(){
+        $("#div-exito").fadeIn();
         $('#div-exito').addClass("d-none");
-        $("#div-exito").show();
         $("#div-exito").html("");
       });
     } else {
       $("#div-error").html(response.data[0].mensaje);
       $("#div-error").removeClass("d-none");
   
-      $("#div-error").hide(8000, function(){
-        $('#div-error').show();
+      $("#div-error").fadeOut(8000, function(){
         $('#div-error').addClass("d-none");
+        $('#div-error').fadeIn();
         $("#div-error").html("");
       });
     }
 
   });
 }
-  
 
 // ======= Guardar una Factura en PDF =======
-/* SIN FUNCIONAR */
+/* SIN FUNCIONAR TODAVÍA*/
 $("#guardar-factura-pdf").click(function(){
   var settings = {
     "async": true,
@@ -296,17 +323,11 @@ $("#guardar-factura-pdf").click(function(){
   }
 
   $.ajax(settings).done(function (url) {
-    console.log("Link:"+url.data);
+    console.log("Link: " + url.data);
     
-    // Abre la factura en una nueva pestaña
+    // Abre la cotizacion en una nueva pestaña
     window.open(url.data, '_blank');
   });
 });
-  
-var input = document.getElementById("codigo-producto");
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("buscar-codigo-producto").click();
-  }
-});
+
+
