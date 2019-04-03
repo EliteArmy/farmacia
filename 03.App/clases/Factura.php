@@ -291,26 +291,35 @@ class Factura {
 
     $pdf->SetX(18, 48);
     
-    // Imprime el nombre del empleado en la factura
+    // ======= Imprime el nombre del empleado en la factura
     $pdf->SetFont('Arial','B', 12);
     $pdf->Cell(44, 5, 'Encargado de Venta: ', 0, 0 , 'L'); //cell(width, height, txt, border, ln, align)
 
     $pdf->SetFont('Arial', '', 12);
     $pdf->Cell(38, 5, $nombreEmpleado, 0, 0, 'L');
 
-    // Imprime la Fecha en la factura
+    // ======= Imprime la Fecha en la factura
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L'); 
 
     $pdf->SetFont('Courier', '', 12);
     $pdf->Cell(54, 5, $datetime, 0, 1, 'L');
     
-    // Imprime el nombre del cliente en la factura
+    $pdf->SetX(18, 48);
+
+    // ======= Imprime el nombre del cliente en la factura
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L'); 
+    $pdf->Cell(18, 5, "Cliente: ", 0, 0, 'L'); 
 
     $pdf->SetFont('Arial', '', 12);
-		$pdf->Cell(54, 5, $nombreCliente, 0, 1, 'L');
+    $pdf->Cell(64, 5, $nombreCliente, 0, 0, 'L');
+
+    // ======= Imprime el Pago en la factura
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(30, 5, "Forma Pago: ", 0, 0, 'L'); 
+
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->Cell(52, 5, $formaPago, 0, 1, 'L');
 
     // ======= Cuerpo del PDF =======
     $pdf->SetFont('Arial','B', 16);

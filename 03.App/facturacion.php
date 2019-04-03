@@ -87,8 +87,8 @@
             <label for="slc-pago">Forma de Pago:</label>
             <!-- title="Forma de Pago" -->
             <select id="slc-pago" class="selectpicker form-control" data-style="btn-primary">
-            <option value="efectivo">Efectivo</option>  
-            <option value="tarjeta">Tarjeta</option>
+            <option value="1">Efectivo</option>  
+            <option value="2">Tarjeta</option>
             </select>
           </div>
 

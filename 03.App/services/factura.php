@@ -66,12 +66,15 @@ if(isset($_POST['accion'])){
       $con2 = new Conexion();
       
       $idEmpleado = ValidarPost::unsigned('id_empleado');
+      $idCliente = ValidarPost::unsigned('id_cliente');
+      $idFormaPago = ValidarPost::unsigned('id_forma_pago');
+
       $fact = new Factura();
 
       $fact->setIdEmpleado($idEmpleado);
-      $fact->setIdCliente('');
+      $fact->setIdCliente($idCliente);
       $fact->setIdFarmacia('');
-      $fact->setIdFormaPago('');
+      $fact->setIdFormaPago($idFormaPago);
 
       $res['data'] = $fact->insertarFactura($con1);
       $error = $res['data'][0]['error'];
