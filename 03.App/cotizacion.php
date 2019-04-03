@@ -50,13 +50,11 @@
         </div>
 
         <div>
-         
           <h4 class="float-right" id="hora">Hora:</h4>
         </div>
 
         <div class="row mt-2 mb-1" id="content">
 
- 
           <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="codigo-producto">Producto:</label>
             <div class="input-group mb-3">
@@ -77,9 +75,12 @@
             </button>
           </div>
 
-        </div>
-
-        <div class="row">
+          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
+            <label for="cancelar-cotizacion">Cancelar Cotización:</label>
+            <button type="button" id="cancelar-cotizacion" onclick="cancelarCotizacion()" class="form-control btn btn-primary">
+              Cancelar Cotización
+            </button>
+          </div>
 
         </div>
 
@@ -117,7 +118,7 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
             <div id="pie-factura" class="text-center">
               <h4>Gracias por su visita</h4>
-              <h4>correo: correo@gmail.com</h4>
+              <h4>Correo: farmacia_esperanza@gmail.com<</h4>
               <h4>Teléfono: (+504) 2222-0000</h4>
               <h4>Original: Cliente</h4>
               <h4>--- Cuenta Cerrada ---</h4>

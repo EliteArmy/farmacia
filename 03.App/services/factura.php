@@ -60,7 +60,6 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
-
     case 'insertar-factura':
       // header('Content-type: application/force-download');
       $con1 = new Conexion();

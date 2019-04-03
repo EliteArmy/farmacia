@@ -333,7 +333,7 @@ function insertarFactura(){
 }
 
 // ======= Cancelar la Factura =======
-function cancelarFactura(id_lote){
+function cancelarFactura(){
   
   var settings = {
     "async": true,
