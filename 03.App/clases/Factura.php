@@ -232,23 +232,23 @@ class Factura {
 		return $rows;
   }
 
-  public function imprimirPDF($conexion, $idFactura){
+  public function imprimirPDF($conexion, $idFactura, $nombreEmpleado, $nombreCliente, $formaPago, $fechaHora){
     $sql = 'CALL SP_Obtener_Detalle_Factura(%s, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
 		// $resultado = $conexion->getResultadoQuery($sql, $valores);
     $rows = $conexion->query($sql, $valores);
     
-    $date = date('d-m-Y'); // Forma temporal de una fecha de Emisión
+    // // Current date and time
+    // $datetime = date("d-m-Y H:i:s");
+    // // Convert datetime to Unix timestamp
+    // $timestamp = strtotime($datetime);
+    // // Subtract time from datetime
+    // $time = $timestamp - (6 * 60 * 60); // Resta la Hora de la Base
+    // // Date and time after subtraction
+		// $datetime = date("d-m-Y H:i:s", $time);
 
-
-    // Current date and time
-    $datetime = date("d-m-Y H:i:s");
-    // Convert datetime to Unix timestamp
-    $timestamp = strtotime($datetime);
-    // Subtract time from datetime
-    $time = $timestamp - (6 * 60 * 60); // Resta la Hora de la Base
-    // Date and time after subtraction
-    $datetime = date("d-m-Y H:i:s", $time);
+		$date = date('d-m-Y',strtotime($fechaHora));
+		$datetime = date("d-m-Y H:i:s", strtotime($fechaHora));
 
 
     include_once('../plugin/fpdf/fpdf.php');
@@ -282,13 +282,13 @@ class Factura {
     $pdf->Cell(44, 5, 'Encargado de Venta: ', 0, 0 , 'L'); //cell(width, height, txt, border, ln, align)
 
     $pdf->SetFont('Arial', '', 12);
-    $pdf->Cell(38, 5, 'Cajero', 0, 0, 'L');
+    $pdf->Cell(38, 5, $nombreEmpleado, 0, 0, 'L');
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L'); 
 
     $pdf->SetFont('Courier', '', 12);
-    $pdf->Cell(54, 5, $datetime, 0, 1, 'L');
+		$pdf->Cell(54, 5, $datetime, 0, 1, 'L');
 
     // ======= Cuerpo del PDF =======
     $pdf->SetFont('Arial','B', 16);
@@ -375,7 +375,7 @@ class Factura {
     $pdf->Output('F', '../facturas/factura'.$idFactura.'.pdf', true); // Guarda En el servidor
     //$pdf->Output('F', '../facturas/factura.pdf', true); // Guarda En el servidor
 
-		return "facturas/factura".$idFactura.".pdf";
+	  return "facturas/factura".$idFactura.".pdf";
     //return "facturas/factura.pdf";
   }
 

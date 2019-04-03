@@ -80,7 +80,11 @@ if(isset($_POST['accion'])){
       // Si al cerrar la Factura, no existe Error (error == 0), Imprime el PDF
       if($error == 0){
         $idFactura = $res['data'][0]['idFactura'];
-        $res['pdf'] = $fact->imprimirPDF($con2, $idFactura);
+        $nombreEmpleado = $res['data'][0]['nombreEmpleado'];
+        $nombreCliente = $res['data'][0]['nombreCliente'];
+        $formaPago = $res['data'][0]['formaPago'];
+        $fechaHora = $res['data'][0]['fechaHora'];
+        $res['pdf'] = $fact->imprimirPDF($con2, $idFactura, $nombreEmpleado, $nombreCliente, $formaPago, $fechaHora);
       }
       
       //var_dump($res);

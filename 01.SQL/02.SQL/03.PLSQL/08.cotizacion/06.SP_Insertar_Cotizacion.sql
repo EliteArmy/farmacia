@@ -64,7 +64,7 @@ SP:BEGIN
    COMMIT;
 
     
-   SELECT SUBDATE(NOW(), INTERVAL 6 HOUR) INTO fechaHora;
+   SELECT FN_Fecha_Hora() INTO fechaHora;
    SELECT CONCAT(primer_nombre," ", primer_apellido) INTO nombreCliente FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=idCliente);
    
    SET mensaje= 'Cotización exitosa';
