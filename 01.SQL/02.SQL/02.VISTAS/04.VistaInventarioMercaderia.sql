@@ -179,4 +179,7 @@ ORDER BY p.id_producto, l.id_lote
 SELECT * FROM DescuentosDisponibles;
 
 SELECT * FROM VistaInventarioMercaderia
-WHERE lote = 'LOT-2017-02-03'
+WHERE codigo_barra = '7504800172101';
+
+SELECT * FROM lote
+WHERE id_lote = 475;

@@ -210,6 +210,7 @@ $("#actualizar-lote").click(function(){
       "id_lote": $("#id-lote").val(),
       "id_producto": $("#slc-prod").val(),
       "lote": $("#nombre-lote").val(),
+      "id_empleado": $("#id-empleado").val(),
       "precio_costo_unidad": $("#precio-compra").val(),
       "precio_venta_unidad": $("#precio-venta").val(),
       "fecha_elaboracion": $("#fecha-elab").val(),

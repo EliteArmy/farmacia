@@ -142,6 +142,7 @@ class Lote extends Producto{
 	public function leerPorCodigoBarra($conexion){
            $sql = "			SELECT *	FROM VistaInventarioMercaderia
            WHERE codigo_barra = '%s'
+					 AND existencia != 0
    ";
   $valores = [$this->getCodigoBarra()];
   $rows = $conexion->query($sql, $valores);

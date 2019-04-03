@@ -28,6 +28,8 @@
   <div class="spinner" id="loadingDiv">
     <img src="img/spinner.svg" alt="Cargando">
   </div>
+  
+  <input type="hidden" id="id-empleado" value="<?php echo $_SESSION['id_empleado'] ?>">
 
   <!-- Contenido -->
   <div class="container-fluid">
