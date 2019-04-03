@@ -100,6 +100,10 @@ SP:BEGIN
     SELECT existencia INTO contador FROM lote WHERE id_lote=pI_id_lote;
     SELECT SUM(cantidad) INTO cantidadExistencia FROM detalle_factura_temp 
     WHERE id_lote=pI_id_lote;
+
+    IF cantidadExistencia IS NULL THEN
+      SET cantidadExistencia=0;
+    END IF;
     
     SET cantidadLote=contador-cantidadExistencia; -- Restar lote.existencia - SUM(cantidad) WHERE id_lote=pI_idlote
                                               -- Resultado los productos disponibles de ese lote
