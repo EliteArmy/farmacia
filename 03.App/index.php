@@ -43,82 +43,8 @@
         <input type="hidden" id="id-empleado" value="<?php echo $_SESSION['id_empleado']?>">
 
         <div class="row mt-3 justify-content-center">
-          <div class="col-10 col-sm-6 col-md-3">
-            <div class="card card-padding">
-              <div class="card-header text-info">
-                <strong>
-                  Total Facturas de Hoy
-                </strong>
-              </div>
-              <a class="text-decoration-none" href="/buscar-factura.php">
-              <div id="factura" class="card-body text-center">
-                <!-- Informacion generada -->
-              </div>
-              </a>
-            </div>
-          </div>
 
-          <div class="col-10 col-sm-6 col-md-3">
-            <div class="card card-padding">
-              <div class="card-header text-info">
-                <strong>
-                  Total Empleados
-                </strong>
-              </div>
-              <a class="text-decoration-none" href="/registrar-empleado.php">
-              <div id="empleado" class="card-body text-center">
-                <!-- Informacion generada -->
-              </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-10 col-sm-6 col-md-3">
-            <div class="card card-padding">
-              <div class="card-header text-info">
-                <strong>
-                  Total Categorías
-                </strong>
-              </div>
-              <a class="text-decoration-none" href="/gestionar-info-producto.php">
-              <div id="categoria" class="card-body text-center">
-                <!-- Informacion generada -->
-              </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-10 col-sm-6 col-md-3">
-            <div class="card card-padding">
-              <div class="card-header text-info">
-                <strong>
-                  Total Laboratorios
-                </strong>
-              </div>
-              <a class="text-decoration-none" href="/gestionar-laboratorios.php">
-              <div id="laboratorio" class="card-body text-center">
-                <!-- Informacion generada -->
-              </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-10 col-sm-6 col-md-3">
-            <div class="card card-padding">
-              <div class="card-header text-info">
-                <strong>
-                  Total Lotes Activos
-                </strong>
-              </div>
-              <a class="text-decoration-none" href="/registro-lote-producto.php">
-              <div id="lote" class="card-body text-center">
-                <!-- Informacion generada -->
-              </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-10 col-sm-6 col-md-3">
+          <div class="col-10 col-sm-6 col-md-4 col-lg-3">
             <div class="card card-padding">
               <div class="card-header text-info">
                 <strong>
@@ -133,14 +59,74 @@
             </div>
           </div>
 
-          <div class="col-10 col-sm-6 col-md-3">
+          <div class="col-10 col-sm-6 col-md-4 col-lg-3">
             <div class="card card-padding">
               <div class="card-header text-info">
                 <strong>
-                  Total Facturas Empleado
+                  Total Lotes Activos
                 </strong>
               </div>
-              <a class="text-decoration-none" href="#">
+              <a class="text-decoration-none" href="/registro-lote-producto.php">
+              <div id="lote" class="card-body text-center">
+                <!-- Informacion generada -->
+              </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-padding">
+              <div class="card-header text-info">
+                <strong>
+                  Total Categorías Activas
+                </strong>
+              </div>
+              <a class="text-decoration-none" href="/gestionar-info-producto.php">
+              <div id="categoria" class="card-body text-center">
+                <!-- Informacion generada -->
+              </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-padding">
+              <div class="card-header text-info">
+                <strong>
+                  Total Laboratorios Activos
+                </strong>
+              </div>
+              <a class="text-decoration-none" href="/gestionar-laboratorios.php">
+              <div id="laboratorio" class="card-body text-center">
+                <!-- Informacion generada -->
+              </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-padding">
+              <div class="card-header text-info">
+                <strong>
+                  Total Empleados Activos
+                </strong>
+              </div>
+              <a class="text-decoration-none" href="/registrar-empleado.php">
+              <div id="empleado" class="card-body text-center">
+                <!-- Informacion generada -->
+              </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-padding">
+              <div class="card-header text-info">
+                <strong>
+                  Total Facturas de Hoy
+                </strong>
+              </div>
+              <a class="text-decoration-none" href="/buscar-factura.php">
               <div id="total-facturas-empleado" class="card-body text-center">
                 <!-- Informacion generada -->
               </div>
@@ -148,11 +134,26 @@
             </div>
           </div>
 
-          <div class="col-10 col-sm-6 col-md-3">
+          <div class="col-10 col-sm-6 col-md-4 col-lg-3">
             <div class="card card-padding">
               <div class="card-header text-info">
                 <strong>
-                  Total Vendido
+                  Total Facturas de Todos los Empleados
+                </strong>
+              </div>
+              <a class="text-decoration-none" href="/buscar-factura.php">
+              <div id="factura" class="card-body text-center">
+                <!-- Informacion generada -->
+              </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+            <div class="card card-padding">
+              <div class="card-header text-info">
+                <strong>
+                  Total Vendido Hoy
                 </strong>
               </div>
               <a class="text-decoration-none" href="#">
@@ -163,7 +164,7 @@
             </div>
           </div>
 
-          <h3>Ventas Diarias Por Empleado</h3>
+          <h3>Ventas Diarias Por cada Empleado</h3>
           <div class="col-12">
             <table id="table-info-ventas" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->
