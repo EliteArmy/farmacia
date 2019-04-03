@@ -16,6 +16,7 @@ SP:BEGIN
    DECLARE error BOOLEAN;
    DECLARE contador INT;
    DECLARE idCotizacion INT;
+   DECLARE nombreEmpleado VARCHAR(50);
    DECLARE nombreCliente VARCHAR(100);
    DECLARE fechaHora DATETIME;
    DECLARE idCliente INT;
@@ -65,13 +66,14 @@ SP:BEGIN
 
     
    SELECT FN_Fecha_Hora() INTO fechaHora;
+       SELECT primer_nombre INTO nombreEmpleado FROM persona WHERE id_persona IN (SELECT id_persona FROM empleado WHERE id_empleado=pI_id_empleado);
    SELECT CONCAT(primer_nombre," ", primer_apellido) INTO nombreCliente FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=idCliente);
    
    SET mensaje= 'Cotización exitosa';
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
-   SELECT idCotizacion,nombreCliente,fechaHora,mensaje,error;
+   SELECT idCotizacion,nombreEmpleado,nombreCliente,fechaHora,mensaje,error;
 
 END$$
 

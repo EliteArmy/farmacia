@@ -55,7 +55,10 @@ if(isset($_POST['accion'])){
 
       if($res['data'][0]['error']==0){
         $idCotizacion = $res['data'][0]['idCotizacion'];
-        $res['pdf'] = $cot->imprimirPDF($con2,$idCotizacion);
+        $nombreEmpleado = $res['data'][0]['nombreEmpleado'];
+        $nombreCliente = $res['data'][0]['nombreCliente'];
+        $fechaHora = $res['data'][0]['fechaHora'];
+        $res['pdf'] = $cot->imprimirPDF($con2, $idCotizacion, $nombreEmpleado, $nombreCliente, $fechaHora);
       }
      
 
