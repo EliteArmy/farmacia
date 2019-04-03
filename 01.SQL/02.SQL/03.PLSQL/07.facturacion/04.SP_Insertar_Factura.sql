@@ -22,7 +22,9 @@ SP:BEGIN
     DECLARE idFactura INT;
     DECLARE idMovimiento INT;
     DECLARE nombreEmpleado VARCHAR(50);
+    DECLARE nombreCliente VARCHAR(100);
     DECLARE fechaHora DATETIME;
+    DECLARE formaPago VARCHAR(45);
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
@@ -32,7 +34,6 @@ SP:BEGIN
     SET contador=0;
     SET error=FALSE;
     SET idFarmacia=1; -- Farmacia por defecto
-    SET idFormaPago=1; -- Forma de pago por defecto (Efectivo)
 
     -- _______________Validaciones__________________
 
@@ -50,10 +51,21 @@ SP:BEGIN
       IF contador=0 THEN
         SET mensaje=CONCAT(mensaje,'Este cliente no existe');
       ELSE
-        SELECT id_cliente INTO idCliente FROM cliente WHERE idCliente=pI_id_cliente AND estado='A';
+        SET idCliente=pI_id_cliente;
       END IF;
     ELSE
       SET idCliente=471;  -- id_cliente --> consumidor final
+    END IF;
+
+    IF NOT(pI_id_forma_pago='' OR pI_id_forma_pago IS NULL) THEN
+      SELECT COUNT(*) INTO contador FROM forma_pago WHERE id_forma_pago=pI_id_forma_pago;
+      IF contador=0 THEN
+        SET mensaje=CONCAT(mensaje,'Esta forma de pago no existe');
+      ELSE
+       SET idFormaPago=pI_id_forma_pago;
+      END IF;
+    ELSE
+      SET idFormaPago=1; -- Forma de pago por defecto (Efectivo)
     END IF;
 
     -- ____________Mensaje de resultado____________
@@ -141,13 +153,15 @@ SP:BEGIN
 
     SELECT primer_nombre INTO nombreEmpleado FROM persona WHERE id_persona IN (SELECT id_persona FROM empleado WHERE id_empleado=pI_id_empleado);
     SELECT SUBDATE(NOW(), INTERVAL 6 HOUR) INTO fechaHora;
+    SELECT CONCAT(primer_nombre, " ",primer_apellido) INTO nombreCliente FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=idCliente);
+    SELECT descripcion INTO formaPago FROM forma_pago WHERE id_forma_pago=idFormaPago;
 
     COMMIT;
     SET mensaje= 'Facturación exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT idFactura,nombreEmpleado,fechaHora,mensaje,error;
+    SELECT idFactura,nombreEmpleado,nombreCliente,formaPago,fechaHora,mensaje,error;
 
 END$$
 
