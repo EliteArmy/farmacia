@@ -94,7 +94,7 @@
       <div class="row justify-content-center">
         <div class="col-10 col-sm-9 col-md-7 col-lg-5 col-xl-4">
           <h4>
-            <p class="mt-3 mb-3 text-center">
+            <p class="mb-3 text-center">
               Copyright © 2019 Esperanza
             </p>
           </h4>
