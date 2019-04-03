@@ -87,6 +87,7 @@ $(document).ready(function() {
 // ======= Buscar un Producto =======
 function BuscarProducto(){
   console.log("Codigo: " + $("#codigo-producto").val());
+  var codigoBarra = $("#codigo-producto").val();
 
   var settings = {
     "async": true,
@@ -160,8 +161,8 @@ function funcionAgregarProducto(id_lote){
       $("#codigo-producto").val('');
       $("#codigo-producto").focus();
 
-      $("#div-sub-total").html(response.data[0].subTotalFactura);
-      $("#div-total").html(response.data[0].totalFactura);
+      $("#div-sub-total").html(response.data[0].subTotalCotizacion);
+      $("#div-total").html(response.data[0].totalCotizacion);
 
     } else {
       //$("#div-sub-total").html("");
