@@ -47,6 +47,14 @@
         </div>
 
         <div class="row mt-3 mb-3">
+
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
+            </div>
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
+            </div>
+          </div>
+
           <div class="col-12 col-sm-4 col-md-4 col-lg-5">
             Fecha Inicio:
             <input type="date" name="" value="" placeholder="" class="form-control" id="fecha-inicio">

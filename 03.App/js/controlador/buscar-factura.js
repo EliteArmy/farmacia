@@ -140,8 +140,28 @@ $("#filtro").click(function(){
   }
 
   $.ajax(settings).done(function (response) {
-    $('#table-info').DataTable().clear();
-    $('#table-info').DataTable().rows.add(response.data);
-    $('#table-info').DataTable().draw();
+    if (response.data[0].error!=1){
+      $('#table-info').DataTable().clear();
+      $('#table-info').DataTable().rows.add(response.data);
+      $('#table-info').DataTable().draw();
+
+      $("#div-exito").html(response.data[0].mensaje);
+      $("#div-exito").removeClass("d-none");
+
+      $("#div-exito").fadeOut(5000, function(){
+        $('#div-exito').addClass("d-none");
+        $("#div-exito").fadeIn();
+        $("#div-exito").html("");
+      });
+    }else{
+      $("#div-error").html(response.data[0].mensaje);
+      $("#div-error").removeClass("d-none");
+  
+      $("#div-error").fadeOut(5000, function(){
+        $('#div-error').addClass("d-none");
+        $('#div-error').fadeIn();
+        $("#div-error").html("");
+      });
+    }
   });
 });

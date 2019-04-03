@@ -141,17 +141,17 @@ class Factura {
 		$this->idLote = $idLote;
 	}
 
-	public function leerPorFecha($conexion){
-		$sql = "SELECT * FROM VistaFacturas
-		WHERE DATE(fecha_factura) >= DATE('%s')
-		AND DATE(fecha_factura)<= DATE('%s');";
-		$valores = [
-			$this->getFechaInicio(),
-			$this->getFechaFin()
-		];
-		$rows = $conexion->query($sql, $valores);
-		return $rows;
-	}
+  public function leerPorFecha($conexion){
+      $sql = "
+        CALL SP_Obtener_Factura_Fecha(DATE('%s'), DATE('%s'), @mensaje, @error);
+      ";
+      $valores = [
+        $this->getFechaInicio(),
+        $this->getFechaFin()
+      ];
+      $rows = $conexion->query($sql, $valores);
+      return $rows;
+  }
 
 	public function leerPorId($conexion){
 		$sql = '
