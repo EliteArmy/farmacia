@@ -172,7 +172,7 @@ class Factura {
 
   public static function leer($conexion){
 		$sql = '
-			SELECT * FROM VistaFacturas
+			SELECT * FROM VistaFacturas LIMIT 100;
 		';
 		$rows = $conexion->query($sql);
 		return $rows;
@@ -250,7 +250,7 @@ class Factura {
     $valores = [$this->getIdEmpleado()];
 		// $resultado = $conexion->getResultadoQuery($sql, $valores);
     $rows = $conexion->query($sql, $valores);
-    
+
     // Current date and time
     // $datetime = date("d-m-Y H:i:s");
     // Convert datetime to Unix timestamp
@@ -290,7 +290,7 @@ class Factura {
     $pdf->Ln(); //Salto de Linea
 
     $pdf->SetX(18, 48);
-    
+
     // ======= Imprime el nombre del empleado en la factura
     $pdf->SetFont('Arial','B', 12);
     $pdf->Cell(44, 5, 'Encargado de Venta: ', 0, 0 , 'L'); //cell(width, height, txt, border, ln, align)
@@ -300,23 +300,23 @@ class Factura {
 
     // ======= Imprime la Fecha en la factura
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L'); 
+    $pdf->Cell(40, 5, "Fecha de Emisión: ", 0, 0, 'L');
 
     $pdf->SetFont('Courier', '', 12);
     $pdf->Cell(54, 5, $datetime, 0, 1, 'L');
-    
+
     $pdf->SetX(18, 48);
 
     // ======= Imprime el nombre del cliente en la factura
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(18, 5, "Cliente: ", 0, 0, 'L'); 
+    $pdf->Cell(18, 5, "Cliente: ", 0, 0, 'L');
 
     $pdf->SetFont('Arial', '', 12);
     $pdf->Cell(64, 5, $nombreCliente, 0, 0, 'L');
 
     // ======= Imprime el Pago en la factura
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(30, 5, "Forma Pago: ", 0, 0, 'L'); 
+    $pdf->Cell(30, 5, "Forma Pago: ", 0, 0, 'L');
 
     $pdf->SetFont('Arial', '', 12);
     $pdf->Cell(52, 5, $formaPago, 0, 1, 'L');
@@ -343,7 +343,7 @@ class Factura {
 
     $pdf->SetFont('Arial', '', 12); // Quitar el Bold de la lista de Productos
     $pdf->SetTextColor(6, 48, 54); // Volver a Dejar el color del texto como antes
-    
+
 		foreach ($rows as $row) {
 			if(isset($row['cantidad'])){
 				$pdf->SetX(18);
@@ -353,9 +353,9 @@ class Factura {
 				$pdf->Cell(40, 10, utf8_decode($row['total']), 1, 1, 'C');
 			}
     }
-    
+
     // ======= Resultados de la Factura =======
-		if (count($rows) >= 1) {	
+		if (count($rows) >= 1) {
 			if(isset($row['cantidad'])){
 
 				$pdf->SetFont('Arial', '', 12);
@@ -368,7 +368,7 @@ class Factura {
 
 		    $pdf->SetX(118);
         $pdf->Cell(28, 8, "Descuento:", 0, 0, 'R'); //cell(width, height, txt, border, ln, align)
-        
+
         $pdf->SetX(146);
     		$pdf->Cell(47, 8, " Lps. ".number_format($rows[0]['totalDescuentoFactura'], 2, '.', ','), 0, 1, 'R', false);
 
@@ -399,7 +399,7 @@ class Factura {
     $pdf->SetFont('Arial', '', 6);
     $pdf->SetXY(8, -25);
     $pdf->Cell(0, 4, utf8_decode("Farmacia Esperanza, 2018-2019"), 0, 0, 'C');
-    
+
     */
     // ======= Devuelve el PDF y Guarda el PDF =======
     //$pdf->Output('D','file2.pdf'); // Guarda en descargas
