@@ -5,6 +5,6 @@ CREATE OR REPLACE VIEW VistaVentasEmpleadoDia AS (
     factura C
     WHERE A.id_persona = B.id_persona 
     AND A.id_empleado = C.id_empleado
-    AND DATE(C.fecha_hora) = CURDATE()
+    AND DATE(C.fecha_hora) = FN_Fecha()
     GROUP BY A.id_empleado
 );

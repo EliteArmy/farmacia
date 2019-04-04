@@ -17,7 +17,7 @@ Stats:BEGIN
 
   SELECT
   (SELECT COUNT(*)FROM factura
-  WHERE DATE(fecha_hora) = CURDATE()) as total_facturas
+  WHERE DATE(fecha_hora) = FN_Fecha()) as total_facturas
   ,(SELECT COUNT(*)FROM VistaEmpleado
   WHERE estado='A') as total_empleados
   ,(SELECT COUNT(*)
@@ -34,12 +34,12 @@ Stats:BEGIN
   ,(
     SELECT COUNT(*) FROM VistaFacturas
     WHERE id_empleado = pIN_id_empleado
-    AND DATE(fecha_factura) = CURDATE()
+    AND DATE(fecha_factura) = FN_Fecha()
   ) as total_factura_empleado_hoy
   ,(
     SELECT COALESCE(SUM(total), 0) FROM VistaFacturas
     WHERE id_empleado = pIN_id_empleado
-    AND DATE(fecha_factura) = CURDATE()
+    AND DATE(fecha_factura) = FN_Fecha()
   ) as vendido_empleado_hoy
   ,(
     SELECT SUM(total_vendido_diario) as total_vendido FROM VistaVentasEmpleadoDia
