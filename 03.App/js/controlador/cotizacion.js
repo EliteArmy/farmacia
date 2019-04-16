@@ -92,7 +92,7 @@ function BuscarProducto(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -135,7 +135,7 @@ function funcionAgregarProducto(id_lote){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/cotizacion.php",
+    "url": "./services/cotizacion.php",
     "method": "POST",
     "dataType": "JSON",
     "headers": {
@@ -186,7 +186,7 @@ function borrarProducto(id_temporal){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/cotizacion.php",
+    "url": "./services/cotizacion.php",
     "method": "POST",
     "dataType": "JSON",
     "headers": {
@@ -254,7 +254,7 @@ function insertarCotizacion(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/cotizacion.php",
+    "url": "./services/cotizacion.php",
     "method": "POST",
     "dataType": "JSON",
     "headers": {
@@ -311,7 +311,7 @@ function cancelarCotizacion(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/cotizacion.php",
+    "url": "./services/cotizacion.php",
     "method": "POST",
     "dataType": "JSON",
     "headers": {
@@ -366,7 +366,7 @@ $("#guardar-factura-pdf").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/factura.php",
+    "url": "./services/factura.php",
     "method": "POST",
     "dataType": "json",
     "headers": {

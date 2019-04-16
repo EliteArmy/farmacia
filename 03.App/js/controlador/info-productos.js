@@ -22,7 +22,7 @@ $(document).ready(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
@@ -61,7 +61,7 @@ $(document).ready(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "json",
       "headers": {

@@ -51,7 +51,7 @@ $(document).ready(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/empleado.php",
+      "url": "./services/empleado.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
@@ -90,7 +90,7 @@ $('#guard-empleado').click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
+    "url": "./services/empleado.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -137,7 +137,7 @@ function funcionBuscar(nomb){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
+    "url": "./services/empleado.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -182,7 +182,7 @@ $("#actualizar-empleado").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
+    "url": "./services/empleado.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -224,7 +224,7 @@ function funcionBorrar(nomb){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
+    "url": "./services/empleado.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -252,7 +252,7 @@ function funcionBorrar(nomb){
               var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "http://farma/services/empleado.php",
+                "url": "./services/empleado.php",
                 "method": "POST",
                 "dataType": "json",
                 "headers": {
@@ -354,7 +354,7 @@ $("#inputGroupFile").on("change", function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/img/subir-imagen.php",
+    "url": "./img/subir-imagen.php",
     "method": "POST",
     "dataType": "JSON",
     "processData": false,

@@ -57,7 +57,7 @@ $(document).ready(function() {
       ajax: {
         "async": true,
         "crossDomain": true,
-        "url": "http://farma/services/producto.php",
+        "url": "./services/producto.php",
         "method": "POST",
         "dataType": "json",
         "headers": {
@@ -107,7 +107,7 @@ $(document).ready(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
@@ -150,7 +150,7 @@ $(document).ready(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
@@ -201,7 +201,7 @@ $(document).ready(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
@@ -243,7 +243,7 @@ $("#guard-impuesto").click(function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "JSON",
       "headers": {
@@ -279,7 +279,7 @@ $("#guard-impuesto").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -321,7 +321,7 @@ function funcionBorrarImp(nomb){
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "http://farma/services/producto.php",
+              "url": "./services/producto.php",
               "method": "POST",
               "dataType": "json",
               "headers": {
@@ -358,7 +358,7 @@ $("#act-imp").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -388,7 +388,7 @@ $("#guard-descuento").click(function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "JSON",
       "headers": {
@@ -430,7 +430,7 @@ $("#guard-descuento").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -474,7 +474,7 @@ $("#guard-descuento").click(function(){
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "http://farma/services/producto.php",
+              "url": "./services/producto.php",
               "method": "POST",
               "dataType": "json",
               "headers": {
@@ -512,7 +512,7 @@ $("#act-desc").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -542,7 +542,7 @@ $("#guard-categoria").click(function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "JSON",
       "headers": {
@@ -576,7 +576,7 @@ function funcionBorrarCat(nomb){
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "http://farma/services/producto.php",
+              "url": "./services/producto.php",
               "method": "POST",
               "dataType": "json",
               "headers": {
@@ -622,7 +622,7 @@ function funcionBuscarCat(nomb){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -654,7 +654,7 @@ $("#act-cat").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -692,7 +692,7 @@ $("#guard-presentacion").click(function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "JSON",
       "headers": {
@@ -729,7 +729,7 @@ function funcionBorrarPre(nomb){
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "http://farma/services/producto.php",
+              "url": "./services/producto.php",
               "method": "POST",
               "dataType": "json",
               "headers": {
@@ -772,7 +772,7 @@ function funcionBuscarPre(nomb){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -804,7 +804,7 @@ $("#act-pre").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {

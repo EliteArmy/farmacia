@@ -92,21 +92,18 @@
         <?php endif;?>
 
         <!--Item Clientes-->
-        <?php if(!show_menu_if(["registrar-cliente","listado-cliente"])):?>
-<!--         <li class="nav-item dropdown" id="nav-cliente">
+        <?php if(show_menu_if(["registro-clientes"])):?>
+        <li class="nav-item dropdown" id="nav-cliente">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Clientes
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Clientes</p>
-            <?php if(show_item_if("registrar-cliente")):?>
-            <a class="dropdown-item" href="registrar-cliente.php">Registrar Cliente</a>
-            <?php endif;?>
-            <?php if(show_item_if("listado-cliente")):?>
-            <a class="dropdown-item" href="listado-cliente.php">Listado de Clientes</a>
+            <?php if(show_item_if("registro-clientes")):?>
+            <a class="dropdown-item" href="registro-clientes.php">Registrar Cliente</a>
             <?php endif;?>
           </div>
-        </li> -->
+        </li>
         <?php endif;?>
 
         <!--Item Empleados-->

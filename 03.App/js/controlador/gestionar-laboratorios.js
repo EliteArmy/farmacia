@@ -36,7 +36,7 @@ $(document).ready(function() {
       ajax: {
         "async": true,
         "crossDomain": true,
-        "url": "http://farma/services/producto.php",
+        "url": "./services/producto.php",
         "method": "POST",
         "dataType": "json",
         "headers": {
@@ -77,7 +77,7 @@ $("#guard-laboratorio").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "JSON",
     "headers": {
@@ -115,7 +115,7 @@ function funcionBorrarLab(nomb){
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "http://farma/services/producto.php",
+              "url": "./services/producto.php",
               "method": "POST",
               "dataType": "json",
               "headers": {
@@ -156,7 +156,7 @@ function funcionBuscarLab(nomb){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -191,7 +191,7 @@ $("#act-lab").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {

@@ -31,7 +31,7 @@ $(document).ready(function() {
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -63,7 +63,7 @@ $(document).ready(function() {
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -112,7 +112,7 @@ $(document).ready(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/producto.php",
+      "url": "./services/producto.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
@@ -163,7 +163,7 @@ function funcionBuscar(nomb){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {
@@ -198,7 +198,7 @@ $("#actualizar-lote").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/producto.php",
+    "url": "./services/producto.php",
     "method": "POST",
     "dataType": "json",
     "headers": {

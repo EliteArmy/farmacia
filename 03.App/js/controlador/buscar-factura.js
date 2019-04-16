@@ -21,7 +21,7 @@ $(document).ajaxStop(function() {
     ajax: {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/factura.php",
+      "url": "./services/factura.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
@@ -55,7 +55,7 @@ $("#reset").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/factura.php",
+    "url": "./services/factura.php",
     "method": "POST",
     "dataType": "JSON",
     "headers": {
@@ -77,7 +77,7 @@ function funcionBuscar(id){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/factura.php",
+      "url": "./services/factura.php",
       "method": "POST",
       "dataType":"JSON",
       "headers": {
@@ -126,7 +126,7 @@ $("#filtro").click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/factura.php",
+    "url": "./services/factura.php",
     "method": "POST",
     "dataType": "JSON",
     "headers": {

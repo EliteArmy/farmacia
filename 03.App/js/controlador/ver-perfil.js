@@ -37,7 +37,7 @@ $("#inputGroupFile").on("change", function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/img/subir-imagen.php",
+    "url": "./img/subir-imagen.php",
     "method": "POST",
     "dataType": "JSON",
     "processData": false,
@@ -69,7 +69,7 @@ $('#editar').click(function(){
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://farma/services/empleado.php",
+    "url": "./services/empleado.php",
     "method": "POST",
     "dataType": "JSON",
     "headers": {
@@ -105,7 +105,7 @@ $("#actualizar-perfil").click(function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://farma/services/empleado.php",
+      "url": "./services/empleado.php",
       "method": "POST",
       "dataType": "JSON",
       "headers": {

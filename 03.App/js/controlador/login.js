@@ -28,7 +28,7 @@ $(document).ready(function() {
       "async": true,
       "dataType": "json",
       "crossDomain": true,
-      "url": "http://farma/services/empleado.php",
+      "url": "./services/empleado.php",
       "method": "POST",
       "headers": {
         "content-type": "application/x-www-form-urlencoded"
