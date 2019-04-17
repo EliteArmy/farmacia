@@ -89,7 +89,7 @@ SP:BEGIN
             id_cliente,
             id_forma_pago,
             id_farmacia)
-    SELECT  FN_Fecha_Hora() as fecha_hora,
+    SELECT  NOW() as fecha_hora,
             SUM(total) as coste_total,
             'Obs' as observacion,
             id_empleado,
@@ -118,7 +118,7 @@ SP:BEGIN
 
     -- Insertar en movimiento_producto
     INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento)
-           VALUES(FN_Fecha(),pI_id_empleado,'V');   -- > tipo_movimienot: A=Acreditacion, V=Venta, R=Retiro;
+           VALUES(CURDATE(),pI_id_empleado,'V');   -- > tipo_movimienot: A=Acreditacion, V=Venta, R=Retiro;
     
     SET idMovimiento=LAST_INSERT_ID(); -- Ultimo id_movimiento insertado
     INSERT INTO detalle_movimiento(
@@ -152,7 +152,7 @@ SP:BEGIN
     UPDATE detalle_factura_temp SET id_factura=idFactura WHERE id_empleado=pI_id_empleado;
 
     SELECT primer_nombre INTO nombreEmpleado FROM persona WHERE id_persona IN (SELECT id_persona FROM empleado WHERE id_empleado=pI_id_empleado);
-    SELECT FN_Fecha_Hora() INTO fechaHora;
+    SELECT NOW() INTO fechaHora;
     SELECT CONCAT(primer_nombre, " ",primer_apellido) INTO nombreCliente FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=idCliente);
     SELECT descripcion INTO formaPago FROM forma_pago WHERE id_forma_pago=idFormaPago;
 
@@ -172,7 +172,7 @@ CALL SP_Insertar_Factura(81,'','','',@mesaje,@error);
 -- Cambios de fecha y fecha hora actual, retrasar 6 horas
 -- porque en aws la zona horaria es utc y en Hondras es utc-6
 
--- Reemplazar FN_Fecha() por DATE(SUBDATE(NOW(), INTERVAL 6 HOUR))
+-- Reemplazar CURDATE() por DATE(SUBDATE(NOW(), INTERVAL 6 HOUR))
 SELECT DATE(SUBDATE(NOW(), INTERVAL 6 HOUR)); -- Fecha
 
 -- Reemplazar NOW() por SUBDATE(NOW(), INTERVAL 6 HOUR) 
