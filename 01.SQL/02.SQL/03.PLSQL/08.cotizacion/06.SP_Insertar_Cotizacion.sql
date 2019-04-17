@@ -20,7 +20,8 @@ SP:BEGIN
    DECLARE nombreCliente VARCHAR(100);
    DECLARE fechaHora DATETIME;
    DECLARE idCliente INT;
-   
+   DECLARE idFarmacia INT;
+
    -- Inicializaciones
    SET AUTOCOMMIT=0;
    SET SQL_SAFE_UPDATES = 0;
@@ -28,6 +29,8 @@ SP:BEGIN
    SET mensaje = '';
    SET contador=0;
    SET error=FALSE;
+   SET idFarmacia=1;
+   SET nombreCliente='';
 
    -- _______________Validaciones__________________
 
@@ -60,9 +63,53 @@ SP:BEGIN
      LEAVE SP;
    END IF;
 
-   SELECT MAX(id_temporal) INTO idCotizacion FROM detalle_cotizacion_temp WHERE id_empleado=pI_id_empleado;
-   UPDATE detalle_cotizacion_temp SET id_cotizacion=idCotizacion WHERE id_empleado=pI_id_empleado;
-   COMMIT;
+  SELECT CONCAT(p.primer_nombre, p.primer_apellido) INTO nombreCliente
+  FROM cliente c
+  INNER JOIN persona p
+  ON c.id_persona = p.id_persona
+  WHERE id_cliente= idCliente;
+
+   -- _______________SQL Statements_______________
+   -- Consultas para insetar en las tablas de COTIZACION
+   -- > Sintaxis: INSERT INTO Table1 SELECT * FROM Table2
+   -- Insertar en cotizacion
+    INSERT INTO cotizacion(
+            nombre_cliente,
+            fecha_hora,
+            coste_total,
+            observacion,
+            id_empleado,
+            id_cliente,
+            id_farmacia)
+    SELECT  nombreCliente,
+            NOW() as fecha_hora,
+            SUM(total) as coste_total,
+            'Obs' as observacion,
+            id_empleado,
+            idCliente as id_cliente,
+            idFarmacia as id_farmacia
+    FROM detalle_cotizacion_temp 
+    WHERE id_empleado=pI_id_empleado;
+
+    SET idCotizacion=LAST_INSERT_ID();  -- Ultimo id de factura ingresado
+
+
+    -- Insertar en detalle_factura
+    INSERT INTO detalle_cotizacion(
+                    id_cotizacion,
+                    cantidad,
+                    id_lote,
+                    id_descuento,
+                    id_impuesto)
+            SELECT  idCotizacion,
+                    cantidad,
+                    id_lote,
+                    id_descuento,
+                    id_impuesto
+    FROM detalle_cotizacion_temp
+    WHERE id_empleado=pI_id_empleado;
+
+  UPDATE detalle_cotizacion_temp SET id_cotizacion=idCotizacion WHERE id_empleado=pI_id_empleado;
 
     
    SELECT FN_Fecha_Hora() INTO fechaHora;
@@ -74,6 +121,7 @@ SP:BEGIN
    SET pO_mensaje=mensaje;
    SET pO_error=error;
    SELECT idCotizacion,nombreEmpleado,nombreCliente,fechaHora,mensaje,error;
+   COMMIT;
 
 END$$
 
