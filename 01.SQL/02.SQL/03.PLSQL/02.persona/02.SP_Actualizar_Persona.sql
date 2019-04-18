@@ -84,7 +84,7 @@ SP:BEGIN
         SET error=TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
-        -- SELECT mensaje, error;
+        -- SELECT mensaje,error;
         LEAVE SP;
     END IF;
 
@@ -202,7 +202,7 @@ SP:BEGIN
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    --SELECT mensaje, error;
+    -- SELECT mensaje,error;
     
     
 END$$

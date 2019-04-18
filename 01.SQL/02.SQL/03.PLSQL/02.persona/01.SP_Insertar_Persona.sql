@@ -96,7 +96,7 @@ SP:BEGIN
         SET error = TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
-        --SELECT mensaje,error;
+        -- SELECT mensaje,error;
         -- SELECT mensaje, resultado; --Hacer el mismo trabajo que las variables de salida
         -- se llama al procedimiento con call y devuelve los valores de salida mensaje y resultado
         -- siendo mensaje y resultado variable locales declare mensaje varchar(1000); 
