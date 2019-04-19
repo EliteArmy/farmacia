@@ -47,8 +47,4 @@ Stats:BEGIN
   ;
 END$$
 
-DELIMITER ;
-
-CALL SP_Estadisticas(2);
-
-DROP VIEW VistaEstadisticas;
+-- CALL SP_Estadisticas(2);
