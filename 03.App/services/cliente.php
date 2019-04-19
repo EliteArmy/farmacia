@@ -21,7 +21,7 @@ if(isset($_POST['accion'])){
     break;
 
     case 'leer-cliente':
-      $res['data'] = Empleado::leer($conexion);
+      $res['data'] = Cliente::leer($conexion);
       echo json_encode($res);
     break;
 

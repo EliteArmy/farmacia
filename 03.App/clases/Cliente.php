@@ -2,23 +2,23 @@
 
 class Cliente extends Persona{
 	private $idCliente;
-	private $fechaIngreso;
+	private $fechaRegistro;
 	private $estado;
 
 	public function __construct(
 		$idCliente = null,
-		$fechaIngreso = null,
+		$fechaRegistro = null,
 		$estado = null
 	){
 		$this->idCliente = $idCliente;
-		$this->fechaIngreso = $fechaIngreso;
+		$this->fechaRegistro = $fechaRegistro;
 		$this->estado = $estado;
 	}
 
 	public function __toString(){
 		$var = "Empleado{"
 		."idCliente: ".$this->idCliente." , "
-		."fechaIngreso: ".$this->fechaIngreso." , "
+		."fechaIngreso: ".$this->fechaRegistro." , "
 		."estado: ".$this->estado;
 		return $var."}";
 	}
@@ -30,13 +30,12 @@ class Cliente extends Persona{
 		$this->idCliente = $idCliente;
     }
 
-	public function getFechaIngreso(){
-		return $this->fechaIngreso;
+	public function getFechaRegistro(){
+		return $this->fechaRegistro;
 	}
-	public function setFechaIngreso($fechaIngreso){
-		$this->fechaIngreso = $fechaIngreso;
+	public function setFechaRegistro($fechaIngreso){
+		$this->fechaRegistro = $fechaRegistro;
     }
-
 
 	public function getEstado(){
 		return $this->estado;
@@ -47,14 +46,14 @@ class Cliente extends Persona{
 
 
     public static function leer($conexion){
-        $sql = 'SELECT * FROM VistaCliente';
+        $sql = 'SELECT * FROM VistaClientes';
         $rows = $conexion->query($sql);
         return $rows;
     }
 
 	public function leerPorId($conexion){
 	  $sql = '
-			SELECT * FROM VistaCliente
+			SELECT * FROM VistaClientes
 			WHERE id_cliente = %s
 		';
 		$valores = [$this->getIdEmpleado()];
