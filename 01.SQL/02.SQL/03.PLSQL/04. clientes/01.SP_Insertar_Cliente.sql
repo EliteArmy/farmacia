@@ -65,7 +65,7 @@ CREATE PROCEDURE SP_Insertar_Cliente(
                          estado) 
                   VALUES (CURDATE(),
                           ultimoId,
-                          'A',
+                          'A'
                          );
     COMMIT;
 
