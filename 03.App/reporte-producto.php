@@ -46,8 +46,49 @@
     </div>
 
       <div class="row">
-        <div class="col-12 col-lg-12 well card">
-          <canvas id="myChart" width="400" height="400"></canvas>
+        <div class="col-12 col-lg-6">
+          <div class="well card">
+            <div class="col-12 col-md-12 col-lg-12">
+              <h4>Reporte de Ventas Hoy</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <canvas id="chart1"></canvas>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="well card">
+            <div class="col-12 col-md-12 col-lg-12">
+              <h4>Reporte de Ventas: Semana</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <canvas id="chart2"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="well card">
+            <div class="col-12 col-md-12 col-lg-12">
+              <h4>Reporte de Ventas Mensual</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <canvas id="chart3"></canvas>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="well card">
+            <div class="col-12 col-md-12 col-lg-12">
+              <h4>Reporte de Ventas este año</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <canvas id="chart4"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
   </div>

@@ -24,6 +24,34 @@ if(isset($_POST['accion'])){
       echo json_encode($res);
     break;
 
+    case 'ventas-anio':
+      $sql = "SELECT * FROM VistaVentasAnuales;";
+      $rows = $conexion->query($sql);
+      $res['data'] = $rows;
+      echo json_encode($res);
+    break;
+
+    case 'ventas-mes':
+      $sql = "SELECT * FROM VistaVentasMensuales;";
+      $rows = $conexion->query($sql);
+      $res['data'] = $rows;
+      echo json_encode($res);
+    break;
+
+    case 'ventas-semana':
+      $sql = "SELECT * FROM VistaVentasSemanales;";
+      $rows = $conexion->query($sql);
+      $res['data'] = $rows;
+      echo json_encode($res);
+    break;
+
+    case 'ventas-dia':
+      $sql = "SELECT * FROM VistaVentasDiarias;";
+      $rows = $conexion->query($sql);
+      $res['data'] = $rows;
+      echo json_encode($res);
+    break;
+
     // DEFAULT
     default:
       $res["data"]['mensaje']='Accion no reconocida';
