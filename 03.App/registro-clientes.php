@@ -48,12 +48,12 @@
             </button>
           </div>
 
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
             </div>
             <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- Tabla de Clientes-->
@@ -141,7 +141,7 @@
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="telefono">Teléfono</label>
-              <input id="telefono" class="form-control" type="text" placeholder="1234-5678">
+              <input id="telefono" class="form-control" type="text" placeholder="9234-5678">
               <div class="invalid-feedback">
                 <span></span>: 
               </div>
@@ -191,17 +191,22 @@
           </div>
         </div>
 
+        <div class=" col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert"></div>
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert"></div>
+        </div>
+
         <div id="footer-guardar" class="modal-footer">
           <button type="button" class="btn btn-info reset">Reset</button>
           <button type="button" class="btn btn-primary" id="guard-cliente">Crear Cliente</button>
-          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary close" data-dismiss="modal">Cerrar</button>
         </div>
 
-        <!-- <div id="footer-actualizar" class="modal-footer d-none">
+        <div id="footer-actualizar" class="modal-footer d-none">
           <button type="button" class="btn btn-info reset">Reset</button>
-          <button type="button" class="btn btn-primary" id="actualizar-empleado" data-dismiss="modal">Actualizar Cambios</button>
-          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
-        </div> -->
+          <button type="button" class="btn btn-primary" id="actualizar-cliente" data-dismiss="modal">Actualizar Cambios</button>
+          <button type="button" class="btn btn-secondary close" data-dismiss="modal">Cerrar</button>
+        </div> 
 
       </div>
     </div>
