@@ -86,5 +86,5 @@ CALL SP_Insertar_Cliente('aa','WIL','WIL','WIL','M','dir',
                           @mensaje,@error);
 select @mensaje,@error;
 
-select * from persona;
+select * from persona; 
 
