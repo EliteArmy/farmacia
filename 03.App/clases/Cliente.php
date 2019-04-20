@@ -93,7 +93,7 @@ class Cliente extends Persona{
 	public function borrar($conexion){
         $sql = 'CALL SP_Eliminar_Cliente(%s, @mensaje, @error);';
 
-        $valores = [$this->getIdEmpleado()];
+        $valores = [$this->getIdCliente()];
         $rows = $conexion->query($sql, $valores);
 
         return $rows[0];

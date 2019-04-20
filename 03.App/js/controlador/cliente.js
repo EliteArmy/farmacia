@@ -89,7 +89,7 @@ function funcionBorrar(nomb){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "./services/empleado.php",
+      "url": "./services/cliente.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
