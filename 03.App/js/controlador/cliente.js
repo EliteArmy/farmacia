@@ -24,13 +24,13 @@ formaCliente.addInput('correo-electronico', /^[a-zA-Z0-9\._-]+@([_a-zA-Z0-9])+(\
 // formaCliente.addInput('telefono',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
 // formaCliente.addInput('telefono-nuevo',/^[1-9][0-9]{3}\-[0-9]{4}$/,true);
 
-formaCliente.addInput('fecha-registro');
 formaCliente.addInput('fecha-nacimiento');
+// formaCliente.addInput('slc-estado');
 formaCliente.addInput('direccion', /.+/, true);
 formaCliente.addInput('slc-sexo');
 
 formaCliente.setButtonEnvio('guard-cliente');
-// formaCliente.setButtonUpdate('actualizar-cliente');
+formaCliente.setButtonUpdate('actualizar-cliente');
 
 Forma.addTrigger(formaCliente);
 
@@ -179,7 +179,7 @@ $('#guard-cliente').click(function(){
   }
 
   $.ajax(settings).done(function (response) {
-    imprimirMensaje(response);
+    console.log(response);
   });
 
 });

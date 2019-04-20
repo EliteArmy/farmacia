@@ -171,13 +171,13 @@
               </div>
             </div>
 
-            <div class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
+            <!-- <div class="form-group col-12 col-sm-6 col-md-6" style="display:none;">
               <label for="slc-estado">Estado:</label>
               <select id="slc-estado" class="selectpicker form-control" title="Estado" data-style="btn-primary">
               <option value="A">Activo</option>
               <option value="I">Inactivo</option>
               </select>
-            </div>
+            </div> -->
 
             <div class="form-group col-12 col-sm-6 col-md-6">
               <label for="slc-sexo">Sexo:</label>
