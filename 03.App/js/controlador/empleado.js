@@ -289,7 +289,7 @@ function imprimirMensaje(response){
   if (response.data.error == 0) {
     console.log(response.data);
     $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-
+    limpiarFormulario()
     $("#div-exito").html(response.data.mensaje);
     $("#div-exito").removeClass("d-none");
 
@@ -311,8 +311,7 @@ function imprimirMensaje(response){
   }
 }
 
-/* Función que se encarga de dejar los campos por defecto */
-$(".reset").click(function(){
+function limpiarFormulario(){
   $("#footer-actualizar").addClass("d-none");
   $("#footer-guardar").show();
 
@@ -341,7 +340,13 @@ $(".reset").click(function(){
   //$('#slc-estado').val("");
   //$('#slc-tipo-usuario').val("");
 
+}
+
+/* Función que se encarga de dejar los campos por defecto */
+$(".reset").click(function(){
+  limpiarFormulario()
 });
+
 
 // Subir imagen de usuario
 $("#inputGroupFile").on("change", function(){

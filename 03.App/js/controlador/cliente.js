@@ -213,10 +213,6 @@ $(".reset").click(function(){
 });
 
 
-$(".close").click(function(){
-  limpiarFormulario()
- });
-
 function imprimirMensaje(response){
   if (response.data.error == 0) {
     console.log(response.data);

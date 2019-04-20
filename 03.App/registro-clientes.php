@@ -199,13 +199,13 @@
         <div id="footer-guardar" class="modal-footer">
           <button type="button" class="btn btn-info reset">Reset</button>
           <button type="button" class="btn btn-primary" id="guard-cliente">Crear Cliente</button>
-          <button type="button" class="btn btn-secondary close" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div>
 
         <div id="footer-actualizar" class="modal-footer d-none">
           <button type="button" class="btn btn-info reset">Reset</button>
           <button type="button" class="btn btn-primary" id="actualizar-cliente" data-dismiss="modal">Actualizar Cambios</button>
-          <button type="button" class="btn btn-secondary close" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
         </div> 
 
       </div>
