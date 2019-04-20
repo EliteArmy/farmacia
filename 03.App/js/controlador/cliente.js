@@ -30,13 +30,13 @@ formaCliente.addInput('direccion', /.+/, true);
 formaCliente.addInput('slc-sexo');
 
 formaCliente.setButtonEnvio('guard-cliente');
-// formaCliente.setButtonUpdate('actualizar-empleado');
+// formaCliente.setButtonUpdate('actualizar-cliente');
 
 Forma.addTrigger(formaCliente);
 
 $(document).ready(function() {
 
-    /* CRUD Empleado: Read */
+    /* CRUD cliente: Read */
     $('#table-info').DataTable({
       pageLength: 10,
       searching: true,
@@ -84,7 +84,7 @@ $(document).ready(function() {
   
   });
 
-  /* CRUD Empleado: Delete */
+  /* CRUD cliente: Delete */
 function funcionBorrar(nomb){
     var settings = {
       "async": true,
@@ -149,4 +149,38 @@ function funcionBorrar(nomb){
        })
     });
   }
+
+  /* CRUD cliente: Create */
+$('#guard-cliente').click(function(){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/cliente.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "insertar-cliente",
+
+      "primer_nombre": $('#primer-nombre').val(),
+      "segundo_nombre": $('#segundo-nombre').val(),
+      "primer_apellido": $('#primer-apellido').val(),
+      "segundo_apellido": $('#segundo-apellido').val(),
+      "sexo": $('#slc-sexo').val(),
+      "direccion": $('#direccion').val(),
+      "correo_electronico": $('#correo-electronico').val(),
+      "numero_identidad": $('#numero-identidad').val(),
+      "telefono": $('#telefono').val(),
+      "fecha_nacimiento": $('#fecha-nacimiento').val(),
+      "fecha_ingreso": $('#fecha-ingreso').val(),
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response);
+  });
+
+});
 

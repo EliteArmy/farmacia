@@ -4,6 +4,7 @@ class Cliente extends Persona{
 	private $idCliente;
 	private $fechaRegistro;
 	private $estado;
+	private $telefono;
 
 	public function __construct(
 		$idCliente = null,
@@ -44,7 +45,13 @@ class Cliente extends Persona{
 		$this->estado = $estado;
 	}
 
-
+	public function getTelefono(){
+		return $this->telefono;
+	}
+	public function setTelefono($telefono){
+		$this->telefono = $telefono;
+	}
+	
     public static function leer($conexion){
         $sql = 'SELECT * FROM VistaClientes';
         $rows = $conexion->query($sql);
@@ -66,7 +73,7 @@ class Cliente extends Persona{
 		$sql = "
 			CALL SP_Insertar_Cliente(
 				'%s','%s','%s','%s','%s','%s','%s','%s',
-				DATE('%s'),'%s',DATE('%s'),'%s','%s','%s', %s, @mensaje, @error
+				DATE('%s'),'%s', @mensaje, @error
 			);
 		";
 
@@ -81,8 +88,7 @@ class Cliente extends Persona{
 			$this->getCorreoElectronico(),
             $this->getNumeroIdentidad(),
             $this->getFechaNacimiento(),
-            $this->getTelefono(),
-			$this->getFechaIngreso(),
+            $this->getTelefono()
         ];
 
     $rows = $conexion->query($sql, $valores);

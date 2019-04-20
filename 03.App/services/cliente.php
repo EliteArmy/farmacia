@@ -36,8 +36,6 @@ if(isset($_POST['accion'])){
       $numeroIdentidad = ValidarPost::varchar('numero_identidad');
       $telefono = ValidarPost::varchar('telefono');
       $fechaNacimiento = ValidarPost::date('fecha_nacimiento');
-      $fechaIngreso = ValidarPost::date('fecha_ingreso');
-      
 
       $cliente = new Cliente();
 
@@ -50,12 +48,6 @@ if(isset($_POST['accion'])){
       $cliente->setCorreoElectronico($correoElectronico);
       $cliente->setNumeroIdentidad($numeroIdentidad);
       $cliente->setTelefono($telefono);
-      $cliente->setFechaNacimiento($fechaNacimiento);
-      $cliente->setFechaIngreso($fechaIngreso);
-      $cliente->setUsuario($usuario);
-      $cliente->setContrasena($contrasena);
-      $cliente->setFotoUrl($fotoUrl);
-      $cliente->setIdTipoUsuario($idTipoUsuario);
 
       $res['data'] = $cliente->crear($conexion);
       echo json_encode($res);
