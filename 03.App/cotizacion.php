@@ -78,7 +78,7 @@
 
           <div class="form-group col-12 col-sm-6 col-lg-4 texto">
             <label for="enviar-email">Enviar Cotizacion por Correo:</label>
-            <button type="button" id="enviar-email" onclick="insertarCotizacion()" class="form-control btn btn-primary">
+            <button type="button" id="enviar-email" onclick="enviarEmail()" class="form-control btn btn-primary">
               Enviar Cotizacion
             </button>
           </div>
