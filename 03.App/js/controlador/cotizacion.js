@@ -265,19 +265,22 @@ function insertarCotizacion(){
       "id_empleado": $("#id-empleado").val(),
       "id_cliente": "",
       "id_farmacia": "",
-      "id_forma_pago": "",
+      "id_forma_pago": ""
   
-      "nombre_cliente": $("#txt_nombre").val(),
-      "email": $("#txt-email").val(),
-
-    }
+      //"nombre_cliente": $("#txt_nombre").val(),
+      //"email": $("#txt-email").val(),
+      
+     
+      }
   }
 
+ console.log($("#txt-email").val())
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
+    console.log(response.data + "hola");
 
     if (response.data[0].error == 0) {
       // Se Limpia la tabla
+      console.log($("#txt-email").val())
       $('#table-info').DataTable().clear();
       $('#table-info').DataTable().draw();
   

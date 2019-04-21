@@ -3,7 +3,7 @@
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
 include_once('../clases/Cotizacion.php');
-include_once('../../Mail.php');
+//include_once('../../Mail.php');
 // Clases Usadas
 if(isset($_POST['accion'])){
 
@@ -40,12 +40,12 @@ if(isset($_POST['accion'])){
     case 'insertar-cotizacion':
       // header('Content-type: application/force-download');
 
-      if(isset($_POST['email'])){
+   /*   if(isset($_POST['email'])){
         $con1 = new Conexion();
         $con2 = new Conexion();
         $idEmpleado = ValidarPost::unsigned('id_empleado');
-        $email = ValidarPost::varchar('email');
-        $nombre = ValidarPost::varchar('nombre_cliente');
+  //      $email = ValidarPost::varchar('email');
+     //   $nombre = ValidarPost::varchar('nombre_cliente');
         $cot = new Cotizacion();
         $correo = new Mail();
   
@@ -62,9 +62,9 @@ if(isset($_POST['accion'])){
           $fechaHora = $res['data'][0]['fechaHora'];
           $res['pdf'] = $cot->imprimirPDF($con2, $idCotizacion, $nombreEmpleado, $nombreCliente, $fechaHora);
         }
-        $correo->setDireccion($email);
-        $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
-        $correo->setCuerpo('Buenas Tardes Estimado(a), Adjuntamos Cotizaciones.');
+   //     $correo->setDireccion($email);
+     //   $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
+       // $correo->setCuerpo('Buenas Tardes Estimado(a), Adjuntamos Cotizaciones.');
        // $correo->setAdjunto($res['pdf']);
         $correo->enviar();
         
@@ -79,7 +79,7 @@ if(isset($_POST['accion'])){
     
       
       else
-      {
+      {*/
       $con1 = new Conexion();
       $con2 = new Conexion();
       echo "hola";
@@ -105,7 +105,7 @@ if(isset($_POST['accion'])){
       $con1 = null;
       $con2 = null;
 
-      echo json_encode($res);}
+      echo json_encode($res);
     break;
 
     case 'cancelar-cotizacion':
