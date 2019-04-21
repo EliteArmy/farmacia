@@ -1,5 +1,5 @@
 <?php
-  $idPagina = "ver-perfil";
+  $idPagina = "editar-farmacia";
   include("autenticacion.php");
 ?>
 <!DOCTYPE html>
