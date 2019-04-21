@@ -56,6 +56,35 @@
         <div class="row mt-2 mb-1" id="content">
 
           <div class="col-12 col-sm-6 col-lg-4 texto">
+            <label for="txt-nombre">Nombre:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="txt-nombre" value="Cliente" 
+              <div class="input-group-append">
+              <!-- Button trigger para el modal -->
+              <!--data-toggle="modal"-->
+             
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 texto">
+            <label for="txt-email">Correo Electrico:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="txt-email" placeholder="alguien@correo.com" 
+              <div class="input-group-append">
+              <!-- Button trigger para el modal -->
+              <!--data-toggle="modal"-->
+             
+            </div>
+          </div>
+
+
+          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
+            <label for="crear-cotizacion">Cerrar Cotización:</label>
+            <button type="button" id="crear-cotizacion" onclick="insertarCotizacion()" class="form-control btn btn-primary">
+              Cerrar Cotización
+            </button>
+          </div>
+          
+          <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="codigo-producto">Producto:</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="codigo-producto" value="7504800172101" placeholder="Código barra del Producto">
@@ -67,11 +96,12 @@
               </div>
             </div>
           </div>
-
+          
+          
           <div class="form-group col-12 col-sm-6 col-lg-4 texto">
-            <label for="crear-cotizacion">Cerrar Cotización:</label>
-            <button type="button" id="crear-cotizacion" onclick="insertarCotizacion()" class="form-control btn btn-primary">
-              Cerrar Cotización
+            <label for="enviar-email">Enviar Cotizacion por Correo:</label>
+            <button type="button" id="enviar-email" onclick="insertarCotizacion()" class="form-control btn btn-primary">
+              Enviar Cotizacion
             </button>
           </div>
 
