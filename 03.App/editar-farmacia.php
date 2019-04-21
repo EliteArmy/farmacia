@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Perfil</title>
+  <title>Configuración</title>
 
   <link rel="icon" href="./img/icon.png">
 
@@ -33,60 +33,77 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-11">
         <div class="text-center">
-          <h4>Perfil del Empleado</h4>
+          <h3>Farmacia</h3>
+          <h4>Datos: </h4>
         </div>
+
+        <input type="hidden" id = "id_empleado" value="<?php echo $_SESSION['id_empleado']; ?>">
 
         <div class="row">
           <div class="col-12 col-md-6 col-lg-6">
-            <div class="row">
-              <div class="col-12 col-lg-12">
-                <img src="./img/<?php echo $_SESSION["foto_url"] ?>" alt="Foto" width="100% ">
-              </div>
-            </div>
-          </div>
-
-          <input type="hidden" id = "id_empleado" value="<?php echo $_SESSION['id_empleado']; ?>">
-
-          <div class="col-12 col-md-6 col-lg-6">
-
-            <h4>Datos: </h4>
             <table class="table">
               <tr>
-                <td>Nombre: </td>
-                <td><?php echo $_SESSION["nombre_completo"] ?></td>
+                <td>Nombre Farmacia:</td>
+                <td></td>
               </tr>
 
               <tr>
-                <td>Usuario: </td>
-                <td><?php echo $_SESSION["usuario"] ?></td>
+                <td>Propietario(s):</td>
+                <td></td>
               </tr>
 
               <tr>
-                <td>Tipo de usuario: </td>
-                <td><?php echo $_SESSION["tipo_usuario"] ?></td>
+                <td>Dirección:</td>
+                <td></td>
               </tr>
 
               <tr>
-                <td>Sexo: </td>
-                <td><?php echo $_SESSION["sexo"] ?></td>
+                <td>Teléfono:</td>
+                <td></td>
               </tr>
 
               <tr>
-                <td>Teléfonos: </td>
-                <td><?php echo str_replace(',', ' | ', $_SESSION["telefono"]) ?></td>
+                <td>Correo:</td>
+                <td></td>
+              </tr>
+
+            </table>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-6">
+            <table class="table">
+              <tr>
+                <td>RTN:</td>
+                <td></td>
               </tr>
 
               <tr>
-                <td>Correo electrónico: </td>
-                <td><?php echo $_SESSION["correo_electronico"] ?></td>
+                <td>CAI:</td>
+                <td></td>
               </tr>
 
               <tr>
-                <td>Fecha ingreso: </td>
-                <td><?php echo $_SESSION["fecha_ingreso"] ?></td>
+                <td>Fecha Máxima Emisión:</td>
+                <td></td>
               </tr>
+
               <tr>
-                <td colspan="2">
+                <td>Rango Autorizado Inicial:</td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>Rango Autorizado Final:</td>
+                <td></td>
+              </tr>
+
+            </table>
+          </div>
+
+          <div class="col-12 col-md-12 col-lg-12">
+            <table class="table">
+              <tr>
+                <td colspan="1">
                   <button type="button" data-toggle="modal" data-target="#editarPerfil" class="btn btn-primary btn-block" id="editar">Editar perfil</button>
                 </td>
               </tr>
