@@ -12,58 +12,57 @@ $(document).ajaxStop(function() {
   loadingBackgound.hide();
 });
 
-let formaPerfil = new Forma('editarPerfil');
-
-formaPerfil.addInput('email', /^[a-zA-Z0-9\._-]+@([_a-zA-Z0-9])+(\.[a-zA-Z]+)+$/, true);
-
-formaPerfil.addInput('telefono-nuevo',/^[1-9][0-9]{3}\-[0-9]{4}$/, true);
-formaPerfil.addInput('telefono-antiguo',/^[1-9][0-9]{3}\-[0-9]{4}$/, true);
-
-formaPerfil.addInput('contrasena1', /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/, false);
-formaPerfil.addInput('contrasena2', /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/, false);
-
-formaPerfil.setButtonEnvio('actualizar-perfil');
-formaPerfil.setButtonUpdate('actualizar-perfil');
-
-Forma.addTrigger(formaPerfil);
-
-
 // ======= Carga los Datos al cargar todo el html =======
 $(document).ready(function() {
 
-});
-
-
-$('#editar').click(function(){
+  // Buscar los datos de la Farmacia
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "./services/empleado.php",
+    "url": "./services/farmacia.php",
     "method": "POST",
-    "dataType": "JSON",
+    "dataType": "json",
     "headers": {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "leer-empleado-id",
-      "id_empleado": $("#id_empleado").val()
+      "accion": "mostrar-datos",
+      "id_farmacia": 1
     }
   }
 
   $.ajax(settings).done(function (response) {
-    $("#email").val(response.data.correo_electronico);
-    $("#telefono-antiguo").val(response.data.telefono.split(",")[0] || '');
-    $("#telefono-nuevo").val($("#telefono-antiguo").val());
-    formaPerfil.validateAll();
+    console.log(response.data);
+
+    $('#info-nombre_farmacia').html(response.data.nombre_farmacia);
+    $('#info-propietario').html(response.data.propietario);
+    $('#info-direccion').html(response.data.direccion);
+    $('#info-telefono-farmacia').html(response.data.telefono);
+    $('#info-correo-farmacia').html(response.data.correo_electronico);
+    $('#info-rtn-farmacia').html(response.data.rtn);
+    $("#info-cai-farmacia").html(response.data.cai);
+    $('#info-fecha-emision').html(response.data.fecha_maxima_emision);
+    $('#info-rango-inicial').html(response.data.rango_autorizado_inicial);
+    $('#info-rango-final').html(response.data.rango_autorizado_final);
+
   });
+
 });
 
-$(".reset").click(function(){
-  $("#email").val("");
-    $("#telefono-antiguo").val("");
-    $("#telefono-nuevo").val("");
-});
+/*
 
+    $('#nombre_farmacia').val(response.data.nombre_farmacia);
+    $('#propietario').val(response.data.propietario);
+    $('#direccion').val(response.data.direccion);
+    $('#telefono-farmacia').val(response.data.telefono);
+    $('#correo-farmacia').val(response.data.email);
+    $('#rtn-farmacia').val(response.data.rtn);
+    $("#cai-farmacia").val(response.data.cai);
+    $('#fecha-emision').val(response.data.fecha_maxima_emision);
+    $('#rango-inicial').val(response.data.rango_autorizado_inicial);
+    $('#rango-final').val(response.data.rango_autorizado_final);
+
+*/
 
 $("#actualizar-farmacia").click(function(){
   console.log("cambiar farmacia");
@@ -83,8 +82,8 @@ $("#actualizar-farmacia").click(function(){
       "nombre_farmacia": $("#nombre-farmacia").val(),
       "propietario": $("#propietario").val(),
       "direccion": $("#direccion").val(),
-      //"telefono": $("#telefono-farmacia").val(),
-      "email": $("#correo-farmacia").val(),
+      "telefono": $("#telefono-farmacia").val(),
+      "correo_electronico": $("#correo-farmacia").val(),
       "rtn": $("#rtn-farmacia").val(),
       "cai": $("#cai-farmacia").val(),
       "fecha_maxima_emision": $("#fecha-emision").val(),

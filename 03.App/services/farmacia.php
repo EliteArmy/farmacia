@@ -4,35 +4,49 @@ header('Access-Control-Allow-Origin: *');
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
 
+include_once('../clases/Farmacia.php');
+
 if(isset($_POST['accion'])){
   $conexion = new Conexion();
   switch ($_POST['accion']) {
 
     case 'actualizar-farmacia':
-      $nombreFarmacia = ValidarPost::unsigned('nombre_farmacia');
-      $propietario = ValidarPost::unsigned('propietario');
-      $direccion = ValidarPost::unsigned('direccion');
-      $telefono = ValidarPost::unsigned('telefono');
-      $email = ValidarPost::unsigned('email');
-      $rtn = ValidarPost::unsigned('rtn');
-      $cai = ValidarPost::unsigned('cai');
-      $fechaMaximaEmision = ValidarPost::unsigned('fecha_maxima_emision');
-      $rangoAutorizadoInicial = ValidarPost::unsigned('rango_autorizado_inicial');
-      $rangoAutorizadoFinal = ValidarPost::unsigned('rango_autorizado_final');
+      $nombreFarmacia = ValidarPost::varchar('nombre_farmacia');
+      $propietario = ValidarPost::varchar('propietario');
+      $direccion = ValidarPost::varchar('direccion');
+      $telefono = ValidarPost::varchar('telefono');
+      $correo_electronico = ValidarPost::varchar('correo_electronico');
+      $rtn = ValidarPost::varchar('rtn');
+      $cai = ValidarPost::varchar('cai');
+      $fechaMaximaEmision = ValidarPost::varchar('fecha_maxima_emision');
+      $rangoAutorizadoInicial = ValidarPost::varchar('rango_autorizado_inicial');
+      $rangoAutorizadoFinal = ValidarPost::varchar('rango_autorizado_final');
 
       $farmacia = new Farmacia();
+
       $farmacia->setNombreFarmacia($nombreFarmacia);
       $farmacia->setPropietario($propietario);
       $farmacia->setDireccion($direccion);
       $farmacia->setTelefono($telefono);
-      $farmacia->setEmail($email);
+      $farmacia->setcorreo_electronico($correo_electronico);
       $farmacia->setRtn($rtn);
       $farmacia->setCai($cai);
       $farmacia->setFechaMaximaEmision($fechaMaximaEmision);
       $farmacia->setRangoAutorizadoInicial($rangoAutorizadoInicial);
-      $farmacia->setrRangoAutorizadoFinal($rangoAutorizadoFinal);
+      $farmacia->setRangoAutorizadoFinal($rangoAutorizadoFinal);
       
-      $res['data'] = $farmacia->leerFarmacia($conexion);
+      $res['data'] = $farmacia->actualizar($conexion);
+      echo json_encode($res);
+    break;
+
+    case 'mostrar-datos':
+      $idFarmacia = ValidarPost::varchar('id_farmacia');
+
+      $farmacia = new Farmacia();
+
+      $farmacia->setIdFarmacia($idFarmacia);
+      
+      $res['data'] = $farmacia->leer($conexion);
       echo json_encode($res);
     break;
 

@@ -44,27 +44,27 @@
             <table class="table">
               <tr>
                 <td>Nombre Farmacia:</td>
-                <td></td>
+                <td id="info-nombre_farmacia"></td>
               </tr>
 
               <tr>
                 <td>Propietario(s):</td>
-                <td></td>
+                <td id="info-propietario"></td>
               </tr>
 
               <tr>
                 <td>Dirección:</td>
-                <td></td>
+                <td id="info-direccion"></td>
               </tr>
 
               <tr>
                 <td>Teléfono:</td>
-                <td></td>
+                <td id="info-telefono-farmacia"></td>
               </tr>
 
               <tr>
                 <td>Correo:</td>
-                <td></td>
+                <td id="info-correo-farmacia"></td>
               </tr>
 
             </table>
@@ -74,27 +74,27 @@
             <table class="table">
               <tr>
                 <td>RTN:</td>
-                <td></td>
+                <td id="info-rtn-farmacia"></td>
               </tr>
 
               <tr>
                 <td>CAI:</td>
-                <td></td>
+                <td id="info-cai-farmacia"></td>
               </tr>
 
               <tr>
                 <td>Fecha Máxima Emisión:</td>
-                <td></td>
+                <td id="info-fecha-emision"></td>
               </tr>
 
               <tr>
                 <td>Rango Autorizado Inicial:</td>
-                <td></td>
+                <td id="info-rango-inicial"></td>
               </tr>
 
               <tr>
                 <td>Rango Autorizado Final:</td>
-                <td></td>
+                <td id="info-rango-final"></td>
               </tr>
 
             </table>
@@ -104,7 +104,7 @@
             <table class="table">
               <tr>
                 <td colspan="1">
-                  <button type="button" data-toggle="modal" data-target="#editarPerfil" class="btn btn-primary btn-block" id="editar">Editar perfil</button>
+                  <button type="button" data-toggle="modal" data-target="#editarPerfil" class="btn btn-primary btn-block" id="editar-farmacia">Editar Datos Farmacia</button>
                 </td>
               </tr>
             </table>
