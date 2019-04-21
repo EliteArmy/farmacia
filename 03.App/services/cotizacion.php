@@ -75,7 +75,7 @@ if(isset($_POST['accion'])){
         $con1 = null;
         $con2 = null;
   
-        echo json_encode($res);}
+      }
     
       
       else
@@ -104,8 +104,9 @@ if(isset($_POST['accion'])){
       $con1 = null;
       $con2 = null;
 
-      echo json_encode($res);
+      
         }
+        echo json_encode($res);
     break;
 
     case 'cancelar-cotizacion':
