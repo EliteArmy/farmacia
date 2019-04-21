@@ -83,12 +83,7 @@
             </button>
           </div>
 
-          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
-            <label for="crear-cotizacion">Cerrar Cotización:</label>
-            <button type="button" id="crear-cotizacion" onclick="insertarCotizacion()" class="form-control btn btn-primary">
-              Cerrar Cotización
-            </button>
-          </div>
+       
           
           <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="codigo-producto">Producto:</label>
