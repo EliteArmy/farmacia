@@ -122,84 +122,100 @@
       <div class="modal-content">
 
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Editar Farmacia</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
         <div class="modal-body">
-
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-              <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
-              </div>
-              <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
-              </div>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="form-group col-12 col-12 col-sm-6 col-md-6">
-              <div class="row">
-                <img src="./img/<?php echo $_SESSION["foto_url"] ?>" alt="Foto" class="img rounded foto-usuario mx-auto d-block" align="middle">
-              </div>
-            </div>
-
-            <input type="hidden" name="foto-inputGroupFile" id="foto-inputGroupFile" value="">
+            
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="inputGroupFile01">Fotografía:<br></label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
-                </div>
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon01" lang="es">
-                  <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="usuario">Email :</label>
-              <input type="text" class="form-control" id="email" placeholder="Correo Electrónico" >
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="usuario">Contraseña:</label>
-              <input type="password" class="form-control" id="contrasena1" value="1234" placeholder="Contraseña">
+              <label for="nombre-farmacia">Nombre Farmacia</label>
+              <input id="nombre-farmacia" type="text" class="form-control" name="nombre-farmacia" placeholder="Nombre Farmacia">
               <div class="invalid-feedback">
-                <span></span>: La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+                <span></span>:
               </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="usuario">Confirmar contraseña:</label>
-              <input type="password" class="form-control" id="contrasena2" value="1234" placeholder="Contraseña">
+              <label for="propietario">Propietario(s)</label>
+              <input id="propietario" type="text" class="form-control" name="propietario" placeholder="Propietario(s)">
               <div class="invalid-feedback">
-                <span></span>: La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+                <span></span>: 
               </div>
             </div>
 
             <div class="form-group col-12 col-sm-6 col-md-6">
-              <label for="usuario">Telefono Antiguo:</label>
-              <input type="text" class="form-control"  disabled="disabled" id="telefono-antiguo" placeholder="Telefono">
+              <label for="direccion">Dirección</label>
+              <input id="direccion" type="text" class="form-control" name="direccion" placeholder="Dirección">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
-            <div class="form-group col-13 col-sm-6 col-md-6">
-              <label for="usuario">Telefono Nuevo:</label>
-              <input type="text" class="form-control" id="telefono-nuevo" placeholder="Telefono">
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="telefono-farmacia">Teléfono</label>
+              <input id="telefono-farmacia" type="text" class="form-control" name="telefono-farmacia" placeholder="Teléfono">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="correo-farmacia">Correo</label>
+              <input id="correo-farmacia" type="text" class="form-control" name="correo-farmacia" placeholder="Correo">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="rtn-farmacia">RTN</label>
+              <input id="rtn-farmacia" type="text" class="form-control" name="rtn-farmacia" placeholder="RTN">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="cai-farmacia">CAI</label>
+              <input id="cai-farmacia" type="text" class="form-control" name="cai-farmacia" placeholder="CAI">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="fecha-emision">Fecha Máxima Emisión</label>
+              <input id="fecha-emision" type="text" class="form-control" name="fecha-emision" placeholder="Fecha Máxima Emisión">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="rango-inicial">Rango Autorizado Inicial</label>
+              <input id="rango-inicial" type="text" class="form-control" name="rango-inicial" placeholder="Rango Autorizado Inicial">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
+            </div>
+
+            <div class="form-group col-12 col-sm-6 col-md-6">
+              <label for="rango-final">Rango Autorizado Final</label>
+              <input id="rango-final" type="text" class="form-control" name="rango-final" placeholder="Rango Autorizado Final">
+              <div class="invalid-feedback">
+                <span></span>: 
+              </div>
             </div>
 
           </div>
 
           <div id="footer-actualizar" class="modal-footer">
             <button type="button" class="btn btn-info reset">Reset</button>
-            <button type="button" class="btn btn-primary" id="actualizar-perfil">Actualizar Cambios</button>
+            <button type="button" class="btn btn-primary" id="actualizar-farmacia">Actualizar Cambios</button>
             <button type="button" class="btn btn-secondary reset" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
@@ -220,6 +236,6 @@
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
 
   <script type="text/javascript" src="./js/validate.js"></script>
-  <script src="./js/controlador/ver-perfil.js"></script>
+  <script src="./js/controlador/farmacia.js"></script>
 </body>
 </html>
