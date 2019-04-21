@@ -196,8 +196,8 @@ SP:BEGIN
            telefono=pI_telefono, 
            cai=pI_cai,
            fecha_maxima_emision=pI_fecha_maxima_emision,
-           rango_autorizado_inicial=pI_rango_autorizado_incial,
-           rango_autorizado_final=pI_rango_autorizado_final
+           rango_autorizado_inicial=rangoInicial,
+           rango_autorizado_final=rangoFinal
         WHERE
            id_farmacia= pI_id_farmacia;
     COMMIT;
