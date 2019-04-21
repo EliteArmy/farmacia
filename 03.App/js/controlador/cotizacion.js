@@ -266,7 +266,7 @@ function insertarCotizacion(){
       "id_cliente": "",
       "id_farmacia": "",
       "id_forma_pago": "",
-      "id_empleado": $("#id-empleado").val(),
+  
       "nombre_cliente": $("#txt_nombre").val(),
       "email": $("#txt-email").val(),
 
@@ -391,26 +391,3 @@ $("#guardar-factura-pdf").click(function(){
 });
 
 
-
-function enviarEmail(){
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "./services/cotizacion.php",
-    "method": "POST",
-    "dataType": "JSON",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "enviar-correo",
-      "id_empleado": $("#id-empleado").val(),
-      "nombre_cliente": $("#txt_nombre").val(),
-      "email": $("#txt-email").val(),
-
-    }
-  }
-
-  
-
-  }
