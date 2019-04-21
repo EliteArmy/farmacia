@@ -16,7 +16,7 @@ if(isset($_POST['accion'])){
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $cantidad = ValidarPost::unsigned('cantidad');
       $idLote = ValidarPost::unsigned('id_lote');
-
+      
       $cot = new Cotizacion();
 
       $cot->setIdEmpleado($idEmpleado);
@@ -39,9 +39,42 @@ if(isset($_POST['accion'])){
 
     case 'insertar-cotizacion':
       // header('Content-type: application/force-download');
+
+      if(isset($_POST['email'])){
+        $con1 = new Conexion();
+        $con2 = new Conexion();
+        $idEmpleado = ValidarPost::unsigned('id_empleado');
+        $email = ValidarPost::varchar('email');
+        $nombre = ValidarPost::varchar('nombre_cliente');
+        $cot = new Cotizacion();
+  
+        $cot->setIdEmpleado($idEmpleado);
+        $cot->setIdCliente('');
+        $cot->setIdFarmacia('');
+  
+        $res['data'] = $cot->insertarCotizacion($con1);
+  
+        if($res['data'][0]['error']==0){
+          $idCotizacion = $res['data'][0]['idCotizacion'];
+          $nombreEmpleado = $res['data'][0]['nombreEmpleado'];
+          $nombreCliente = $res['data'][0]['nombreCliente'];
+          $fechaHora = $res['data'][0]['fechaHora'];
+          $res['pdf'] = $cot->imprimirPDF($con2, $idCotizacion, $nombreEmpleado, $nombreCliente, $fechaHora);
+        }
+      
+        $con1->cerrar();
+        $con2->cerrar();
+        $con1 = null;
+        $con2 = null;
+  
+        echo json_encode($res);}
+    
+      
+      else
+      {
       $con1 = new Conexion();
       $con2 = new Conexion();
-      
+      echo "hola";
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $cot = new Cotizacion();
 
@@ -64,7 +97,7 @@ if(isset($_POST['accion'])){
       $con1 = null;
       $con2 = null;
 
-      echo json_encode($res);
+      echo json_encode($res);}
     break;
 
     case 'cancelar-cotizacion':

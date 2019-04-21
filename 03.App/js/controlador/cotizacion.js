@@ -265,7 +265,11 @@ function insertarCotizacion(){
       "id_empleado": $("#id-empleado").val(),
       "id_cliente": "",
       "id_farmacia": "",
-      "id_forma_pago": ""
+      "id_forma_pago": "",
+      "id_empleado": $("#id-empleado").val(),
+      "nombre_cliente": $("#txt_nombre").val(),
+      "email": $("#txt-email").val(),
+
     }
   }
 
