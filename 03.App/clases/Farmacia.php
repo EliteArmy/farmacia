@@ -7,7 +7,7 @@ class Farmacia{
 	private $fundada;
 	private $estado;
 	private $direccion;
-	private $correo_electronico;
+	private $correoElectronico;
 	private $telefono;
 	private $cai;
 	private $fechaMaximaEmision;
@@ -22,7 +22,7 @@ class Farmacia{
 		$fundada = null,
 		$estado = null,
 		$direccion = null,
-		$correo_electronico = null,
+		$correoElectronico = null,
 		$telefono = null,
 		$cai = null,
 		$fechaMaximaEmision = null,
@@ -36,7 +36,7 @@ class Farmacia{
 		$this->fundada = $fundada;
 		$this->estado = $estado;
 		$this->direccion = $direccion;
-		$this->correo_electronico = $correo_electronico;
+		$this->correoElectronico = $correoElectronico;
 		$this->telefono = $telefono;
 		$this->cai = $cai;
 		$this->fechaMaximaEmision = $fechaMaximaEmision;
@@ -53,7 +53,7 @@ class Farmacia{
 		."fundada: ".$this->fundada." , "
 		."estado: ".$this->estado." , "
 		."direccion: ".$this->direccion." , "
-		."correo_electronico: ".$this->correo_electronico." , "
+		."correoElectronico: ".$this->correoElectronico." , "
 		."telefono: ".$this->telefono." , "
 		."cai: ".$this->cai." , "
 		."fechaMaximaEmision: ".$this->fechaMaximaEmision." , "
@@ -118,12 +118,12 @@ class Farmacia{
 		$this->direccion = $direccion;
 	}
 
-	public function getcorreo_electronico(){
-		return $this->correo_electronico;
+	public function getcorreoElectronico(){
+		return $this->correoElectronico;
 	}
 
-	public function setcorreo_electronico($correo_electronico){
-		$this->correo_electronico = $correo_electronico;
+	public function setcorreoElectronico($correoElectronico){
+		$this->correoElectronico = $correoElectronico;
 	}
 
 	public function getTelefono(){
@@ -173,8 +173,25 @@ class Farmacia{
 	}
 
 	public function actualizar($conexion){
+		$sql = 'CALL SP_Actualizar_Perfil_Farmacia(%d, '%d', '%d', '%d','%d','%d',
+					 																		 '%d','%d',DATE('%d'),'%d','%d', @mensaje, @error)';
+    $valores = [
+			$this->getIdFarmacia(),
+			$this->getNombreFarmacia(),
+      $this->getPropietario(),
+			$this->getRtn(),
+			$this->getDireccion(),
+			$this->getcorreoElectronico(),
+			$this->getTelefono(),
+			$this->getCai(),
+			$this->getFechaMaximaEmision(),
+			$this->getRangoAutorizadoInicial(),
+			$this->getRangoAutorizadoFinal()
 
+    ];
 
+		$rows = $conexion->query($sql, $valores);
+    return $rows;
 	}
 
 	public function leer($conexion){

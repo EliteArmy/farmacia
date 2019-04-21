@@ -24,11 +24,12 @@ if(isset($_POST['accion'])){
 
       $farmacia = new Farmacia();
 
+      $farmacia->setIdFarmacia(1);
       $farmacia->setNombreFarmacia($nombreFarmacia);
       $farmacia->setPropietario($propietario);
       $farmacia->setDireccion($direccion);
       $farmacia->setTelefono($telefono);
-      $farmacia->setcorreo_electronico($correo_electronico);
+      $farmacia->setcorreoElectronico($correo_electronico);
       $farmacia->setRtn($rtn);
       $farmacia->setCai($cai);
       $farmacia->setFechaMaximaEmision($fechaMaximaEmision);

@@ -5,7 +5,7 @@ CREATE PROCEDURE SP_Actualizar_Perfil_Farmacia(
     IN pI_nombre_farmacia VARCHAR(100),
     IN pI_propietario VARCHAR(100),
     IN pI_rtn VARCHAR(14),
-    IN pI_fecha_fundacion DATE,
+    -- IN pI_fecha_fundacion DATE,
     IN pI_direccion VARCHAR(300),
     IN pI_correo_electronico VARCHAR(100),
     IN pI_telefono VARCHAR(50),
@@ -61,9 +61,9 @@ SP:BEGIN
     END IF; 
 
     
-    IF pI_fecha_fundacion='' OR pI_fecha_fundacion IS NULL THEN
-      SET mensaje=CONCAT(mensaje,'Fecha de fundacion vacia, ');
-    END IF;
+    -- IF pI_fecha_fundacion='' OR pI_fecha_fundacion IS NULL THEN
+    --   SET mensaje=CONCAT(mensaje,'Fecha de fundacion vacia, ');
+    -- END IF;
 
     IF pI_direccion='' OR pI_direccion IS NULL THEN
       SET mensaje=CONCAT(mensaje,'Direccion vacia, ');
@@ -190,7 +190,7 @@ SP:BEGIN
            nombre_farmacia=pI_nombre_farmacia,
            propietario=pI_propietario, 
            rtn=pI_rtn, 
-           fecha_fundacion=pI_fecha_fundacion,
+           -- fecha_fundacion=pI_fecha_fundacion,
            direccion=pI_direccion, 
            correo_electronico=pI_correo_electronico,
            telefono=pI_telefono, 
@@ -211,6 +211,6 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Actualizar_Perfil_Farmacia(1,'Farmacia Esperanza','Juan Pérez','08011970123456',DATE('2018-09-18'),
+CALL SP_Actualizar_Perfil_Farmacia(1,'Farmacia Esperanza','Juan Pérez','08011970123456',
   'Col. Villa Olímpica Tegucigalpa, M.D.C, Honduras','farmacia_esperanza@gmail.com','2222-0000',
   '000000-000000-000000-000000-000000-00',DATE('2019-12-12'),'15000','25000',@mensaje,@error);
