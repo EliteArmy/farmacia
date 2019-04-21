@@ -75,7 +75,7 @@
             <?php if(show_menu_if(["descartar-productos","gestionar-laboratorios", "alerta-productos"])):?>
               <p class="dropdown-header">Gestiones</p>
               <?php if(show_item_if("descartar-productos")):?>
-                <a class="dropdown-item" href="descartar-productos.php">Descartar Productos</a>
+                <!-- <a class="dropdown-item" href="descartar-productos.php">Descartar Productos</a> -->
               <?php endif;?>
               <?php if(show_item_if("alerta-productos")):?>
                 <a class="dropdown-item" href="alerta-productos.php">Alerta Productos</a>
@@ -156,6 +156,8 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Información</p>
             <a class="dropdown-item" href="ver-perfil.php">Perfil</a>
+            <p class="dropdown-header">Información de Farmacia</p>
+            <a class="dropdown-item" href="editar-farmacia.php">Configuración</a>
             <p class="dropdown-header">Ayuda</p>
             <a class="dropdown-item" href="#">Manual de Usuario</a>
             <a class="dropdown-item" href="#">Acerca de</a>
