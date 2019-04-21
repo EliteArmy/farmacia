@@ -3,7 +3,7 @@
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
 include_once('../clases/Cotizacion.php');
-
+include_once('../../Mail.php');
 // Clases Usadas
 if(isset($_POST['accion'])){
 
@@ -47,6 +47,7 @@ if(isset($_POST['accion'])){
         $email = ValidarPost::varchar('email');
         $nombre = ValidarPost::varchar('nombre_cliente');
         $cot = new Cotizacion();
+        $correo = new Mail();
   
         $cot->setIdEmpleado($idEmpleado);
         $cot->setIdCliente('');
@@ -61,7 +62,14 @@ if(isset($_POST['accion'])){
           $fechaHora = $res['data'][0]['fechaHora'];
           $res['pdf'] = $cot->imprimirPDF($con2, $idCotizacion, $nombreEmpleado, $nombreCliente, $fechaHora);
         }
-      
+        $correo->setDireccion($email);
+        $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
+        $correo->setCuerpo('Buenas Tardes Estimado(a), Adjuntamos Cotizaciones.');
+        $correo->setAdjunto('Buenas Tardes Estimado(a), Adjuntamos Cotizaciones.');
+        $correo->enviar();
+        
+        
+       
         $con1->cerrar();
         $con2->cerrar();
         $con1 = null;
