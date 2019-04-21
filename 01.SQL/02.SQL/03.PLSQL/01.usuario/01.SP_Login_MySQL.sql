@@ -34,11 +34,10 @@ Login:BEGIN
   AND contrasena = par_contrasena;
 
   IF contador = 1 THEN
-
     SELECT COUNT(*) INTO activo FROM empleado
     WHERE usuario = par_usuario
     AND contrasena = par_contrasena
-    AND TIMESTAMPDIFF(SECOND, sesion, CURRENT_TIMESTAMP) <= 3600;
+    AND TIMESTAMPDIFF(SECOND, sesion, CURRENT_TIMESTAMP) <= (20 * 60);
 
     IF activo = 1 THEN
       SET mensaje = 'El usuario actual tiene una sesión abierta';
@@ -48,8 +47,8 @@ Login:BEGIN
       SET mensaje = 'Autenticado exitosamente';
       SET resultado = TRUE;
 
-    UPDATE empleado SET sesion = CURRENT_TIMESTAMP
-    WHERE usuario = par_usuario;
+      UPDATE empleado SET sesion = CURRENT_TIMESTAMP
+      WHERE usuario = par_usuario;
 
     SELECT
       ve.*, mensaje, resultado

@@ -11,7 +11,7 @@
     $sql = "
       SELECT COUNT(*) as activo FROM empleado
       WHERE id_empleado = %s
-      AND TIMESTAMPDIFF(SECOND, sesion, CURRENT_TIMESTAMP) <= 3600;
+      AND TIMESTAMPDIFF(SECOND, sesion, CURRENT_TIMESTAMP) <= (20 * 60);
     ";
     $valores = [$id_empleado];
 
