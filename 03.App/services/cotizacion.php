@@ -3,7 +3,7 @@
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
 include_once('../clases/Cotizacion.php');
-include_once('../../../Mail.php');
+//include_once('../../../Mail.php');
  //Clases Usadas
 if(isset($_POST['accion'])){
 
@@ -39,7 +39,7 @@ if(isset($_POST['accion'])){
 
     case 'insertar-cotizacion':
       // header('Content-type: application/force-download');
-
+/*
     if(isset($_POST['email'])){
         $con1 = new Conexion();
         $con2 = new Conexion();
@@ -79,7 +79,7 @@ if(isset($_POST['accion'])){
     
       
       else
-      {
+      {*/
       $con1 = new Conexion();
       $con2 = new Conexion();
       $idEmpleado = ValidarPost::unsigned('id_empleado');
@@ -105,7 +105,7 @@ if(isset($_POST['accion'])){
       $con2 = null;
 
       
-        }
+        
         echo json_encode($res);
     break;
 
