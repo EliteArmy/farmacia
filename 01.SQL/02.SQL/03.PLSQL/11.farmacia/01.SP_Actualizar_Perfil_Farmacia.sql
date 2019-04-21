@@ -176,7 +176,7 @@ SP:BEGIN
     END IF;    
    
     IF rangoInicial>=rangoFinal THEN
-        SET mensaje='eL Rango autorizado inicial no puede ser mayor que el final';
+        SET mensaje='El Rango autorizado inicial no puede ser mayor o igual que el rango final';
         SET error = TRUE;
         SET pO_mensaje=mensaje;
         SET pO_error=error;
@@ -207,6 +207,10 @@ SP:BEGIN
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT mensaje,error;
+    SELECT *,mensaje,error FROM farmacia WHERE id_farmacia=pI_id_farmacia;
 
 END$$
+
+CALL SP_Actualizar_Perfil_Farmacia(1,'Farmacia Esperanza','Juan Pérez','08011970123456',DATE('2018-09-18'),
+  'Col. Villa Olímpica Tegucigalpa, M.D.C, Honduras','farmacia_esperanza@gmail.com','2222-0000',
+  '000000-000000-000000-000000-000000-00',DATE('2019-12-12'),'15000','25000',@mensaje,@error);
