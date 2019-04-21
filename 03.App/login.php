@@ -65,7 +65,7 @@
               <div class="alert alert-danger" style="display: none;" id="div-error-login" role="alert">
                 <!--<span class="fas fa-exclamation" aria-hidden="true"></span>-->
                 <span class="sr-only">Error:</span>
-                Introduzca un Usuario y Contraseña validos 
+                <span id="mensaje"></span>
               </div>
 
               <div >

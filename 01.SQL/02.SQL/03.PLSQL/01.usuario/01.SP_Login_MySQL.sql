@@ -9,6 +9,7 @@ Login:BEGIN
   DECLARE mensaje VARCHAR(255);
   DECLARE contador INT;
   DECLARE resultado BOOLEAN;
+  DECLARE activo BOOLEAN;
 
 -- Inicializaciones
   SET mensaje='';
@@ -33,8 +34,23 @@ Login:BEGIN
   AND contrasena = par_contrasena;
 
   IF contador = 1 THEN
-    SET mensaje = 'Autenticado exitosamente';
-    SET resultado = TRUE;
+
+    SELECT COUNT(*) INTO activo FROM empleado
+    WHERE usuario = par_usuario
+    AND contrasena = par_contrasena
+    AND TIMESTAMPDIFF(SECOND, sesion, CURRENT_TIMESTAMP) <= 3600;
+
+    IF activo = 1 THEN
+      SET mensaje = 'El usuario actual tiene una sesión abierta';
+      SELECT mensaje, resultado;
+      LEAVE Login;
+    ELSE
+      SET mensaje = 'Autenticado exitosamente';
+      SET resultado = TRUE;
+
+    UPDATE empleado SET sesion = CURRENT_TIMESTAMP
+    WHERE usuario = par_usuario;
+
     SELECT
       ve.*, mensaje, resultado
     FROM VistaEmpleado ve
@@ -44,14 +60,14 @@ Login:BEGIN
     AND   e.contrasena = par_contrasena
     AND e.estado = 'A';
     LEAVE Login;
+    END IF;
   ELSE
     SET mensaje = 'Contraseña o usuario incorrecto';
     SET resultado = FALSE;
     SELECT mensaje, resultado;
     LEAVE Login;
-  end if;
-
+  END IF;
 END $$
 
 # DELIMITER ;
-# CALL SP_Login('mmarousek0', SHA2('1234', '512'));
+CALL SP_Login('mmarousek0', SHA2('1234', '512'));

@@ -46,6 +46,7 @@ $(document).ready(function() {
         window.location.href = "index.php";
       } else {
         console.log(response.data);
+        $("#mensaje").html(response.data.mensaje);
         $("#div-error-login").show();
         $("#div-error-login").fadeOut(5500);
       }
