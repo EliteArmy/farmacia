@@ -173,8 +173,7 @@ class Farmacia{
 	}
 
 	public function actualizar($conexion){
-		$sql = 'CALL SP_Actualizar_Perfil_Farmacia(%d, '%d', '%d', '%d','%d','%d',
-					 																		 '%d','%d',DATE('%d'),'%d','%d', @mensaje, @error)';
+		$sql = "CALL SP_Actualizar_Perfil_Farmacia(%s,'%s','%s','%s','%s','%s','%s','%s',DATE('%s'),'%s','%s',@mensaje,@error);";
     $valores = [
 			$this->getIdFarmacia(),
 			$this->getNombreFarmacia(),

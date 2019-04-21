@@ -13,10 +13,10 @@ if(isset($_POST['accion'])){
     case 'actualizar-farmacia':
       $nombreFarmacia = ValidarPost::varchar('nombre_farmacia');
       $propietario = ValidarPost::varchar('propietario');
-      $direccion = ValidarPost::varchar('direccion');
-      $telefono = ValidarPost::varchar('telefono');
-      $correo_electronico = ValidarPost::varchar('correo_electronico');
       $rtn = ValidarPost::varchar('rtn');
+      $direccion = ValidarPost::varchar('direccion');
+      $correo_electronico = ValidarPost::varchar('correo_electronico');
+      $telefono = ValidarPost::varchar('telefono');
       $cai = ValidarPost::varchar('cai');
       $fechaMaximaEmision = ValidarPost::varchar('fecha_maxima_emision');
       $rangoAutorizadoInicial = ValidarPost::varchar('rango_autorizado_inicial');
