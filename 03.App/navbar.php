@@ -33,7 +33,7 @@
         <?php endif;?>
 
         <!--Item Inventarios-->
-        <?php if(show_menu_if(["catalogo-inventario","ver-inventario"])):?>
+<!--         <?php if(show_menu_if(["catalogo-inventario","ver-inventario"])):?>
         <li class="nav-item dropdown" id="nav-inventario">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Inventarios
@@ -48,7 +48,7 @@
             <?php endif;?>
           </div>
         </li>
-        <?php endif;?>
+        <?php endif;?> -->
 
         <!--Item Productos-->
         <?php if(show_menu_if(["gestionar-info-producto","nuevo-producto","registro-lote-producto","registro-lote-medicamento","descartar-productos","gestionar-laboratorios"])):?>
