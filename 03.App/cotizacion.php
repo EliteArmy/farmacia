@@ -76,6 +76,12 @@
             </div>
           </div>
 
+          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
+            <label for="enviar-email">Enviar Cotizacion por Correo:</label>
+            <button type="button" id="enviar-email" onclick="insertarCotizacion()" class="form-control btn btn-primary">
+              Enviar Cotizacion
+            </button>
+          </div>
 
           <div class="form-group col-12 col-sm-6 col-lg-4 texto">
             <label for="crear-cotizacion">Cerrar Cotización:</label>
@@ -98,13 +104,7 @@
           </div>
           
           
-          <div class="form-group col-12 col-sm-6 col-lg-4 texto">
-            <label for="enviar-email">Enviar Cotizacion por Correo:</label>
-            <button type="button" id="enviar-email" onclick="insertarCotizacion()" class="form-control btn btn-primary">
-              Enviar Cotizacion
-            </button>
-          </div>
-
+         
           <div class="form-group col-12 col-sm-6 col-lg-4 texto">
             <label for="cancelar-cotizacion">Cancelar Cotización:</label>
             <button type="button" id="cancelar-cotizacion" onclick="cancelarCotizacion()" class="form-control btn btn-primary">
