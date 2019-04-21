@@ -16,10 +16,10 @@
     $valores = [$id_empleado];
 
     $rows = $conexion->query($sql, $valores);
-
+    $conexion->cerrar();
+    $conexion = null;
     if($rows[0]['activo'] == '0'){
       header("Location: cerrar_session.php");
-    }else{
     }
   }
   if (!in_array($idPagina , $_SESSION["permisos"])){
