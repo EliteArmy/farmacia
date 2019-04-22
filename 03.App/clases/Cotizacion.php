@@ -120,7 +120,18 @@ class Cotizacion {
     return $rows;
 	}
 
-  public function imprimirPDF($conexion, $idCotizacion, $nombreEmpleado, $nombreCliente, $fechaHora){
+  public function imprimirPDF($conexion, 
+                              $idCotizacion,
+                              $nombreEmpleado, 
+                              $nombreCliente, 
+                              $fechaHora,
+                              $nombreFarmacia, 
+                              $propietario, 
+                              $rtn,
+                              $direccion, 
+                              $correoElectronico,
+                              $telefono
+                              ){
     $sql = 'CALL SP_Obtener_Detalle_Cotizacion(%s, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
     $rows = $conexion->query($sql, $valores);
@@ -150,16 +161,16 @@ class Cotizacion {
 
     $pdf->SetFont('helvetica','B', 18);
     $pdf->SetTextColor(31, 154, 215); // Color Azul
-    $pdf->Cell(0, 8, 'Farmacia Esperanza', 0, 1, 'C'); //cell(width, height, txt, border, ln, align)
+    $pdf->Cell(0, 8, ''.$nombreFarmacia.'', 0, 1, 'C'); //cell(width, height, txt, border, ln, align)
 
     $pdf->SetFont('helvetica','B', 12);
     $pdf->SetTextColor(135, 138, 134);
-    $pdf->Cell(0, 5, 'Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras', 0, 1, 'C');
-    $pdf->Cell(0, 5, 'RTN: 08011980123456', 0, 1, 'C');
+    $pdf->Cell(0, 5, ''.$direccion.'', 0, 1, 'C');
+    $pdf->Cell(0, 5, 'RTN: '.$rtn.'', 0, 1, 'C');
     $pdf->Cell(0, 5, 'Factura No Valida, Solo Cotización', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'Fecha Limite Emisión: '.$date.'', 0, 1 , 'C');
-    $pdf->Cell(0, 5, 'Teléfono: (+504) 2222-0000', 0, 1 , 'C');
-    $pdf->Cell(0, 5, 'Correo: farmacia_esperanza@gmail.com', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Teléfono: (+504) '.$telefono.'', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Correo: '.$correoElectronico.'', 0, 1 , 'C');
 
     $pdf->Ln(); //Salto de Linea
 

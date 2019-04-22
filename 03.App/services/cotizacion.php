@@ -59,16 +59,35 @@ if(isset($_POST['accion'])){
           $nombreEmpleado = $res['data'][0]['nombreEmpleado'];
           $nombreCliente = $res['data'][0]['nombreCliente'];
           $fechaHora = $res['data'][0]['fechaHora'];
-          $res['pdf'] = $cot->imprimirPDF($con2, $idCotizacion, $nombreEmpleado, $nombreCliente, $fechaHora);
-        }
-       
-        $correo = new Mail();
+          $nombreFarmacia = $res['data'][0]['nombre_farmacia']; 
+          $propietario = $res['data'][0]['propietario'];
+          $rtn = $res['data'][0]['rtn'];
+          $direccion = $res['data'][0]['direccion']; 
+          $correoElectronico = $res['data'][0]['correo_electronico']; 
+          $telefono = $res['data'][0]['telefono'];
+          $res['pdf'] = $cot->imprimirPDF($con2, 
+                                          $idCotizacion, 
+                                          $nombreEmpleado, 
+                                          $nombreCliente, 
+                                          $fechaHora,
+                                          $nombreFarmacia, 
+                                          $propietario, 
+                                          $rtn,
+                                          $direccion, 
+                                          $correoElectronico,
+                                          $telefono
+                                        );
 
-       $correo->setDireccion($email);
-       $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
-       $correo->setCuerpo('Saludos Estimado(a), Adjuntamos Cotizaciones.');        
-       $correo->setAdjunto('../'.$res['pdf']);    
-       $correo->enviar();
+          //Si no hay error al generar le pdf, enviar correo
+          $correo = new Mail();
+          $correo->setDireccion($email);
+          $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
+          $correo->setCuerpo('Saludos Estimado(a), Adjuntamos Cotizaciones.');        
+          $correo->setAdjunto('../'.$res['pdf']);    
+          $correo->enviar();
+
+        }
+   
     
         $con1->cerrar();
         $con2->cerrar();

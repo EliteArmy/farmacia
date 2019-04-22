@@ -319,11 +319,11 @@ class Factura {
 
     $pdf->SetFont('helvetica','B', 18);
     $pdf->SetTextColor(31, 154, 215); // Color Azul
-    $pdf->Cell(0, 8, 'Farmacia Esperanza', 0, 1, 'C'); //cell(width, height, txt, border, ln, align)
+    $pdf->Cell(0, 8, ''.$nombreFarmacia.'', 0, 1, 'C'); //cell(width, height, txt, border, ln, align)
 
     $pdf->SetFont('helvetica','B', 12);
     $pdf->SetTextColor(135, 138, 134);
-    $pdf->Cell(0, 5, 'Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras', 0, 1, 'C');
+    $pdf->Cell(0, 5, ''.$direccion.'', 0, 1, 'C');
     $pdf->Cell(0, 5, 'RTN: '.$rtn.'', 0, 1, 'C');
     $pdf->Cell(0, 5, 'Factura Original: 000-000-00-'.$idFactura.'', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'C.A.I.: '.$cai.'', 0, 1 , 'C');

@@ -119,7 +119,9 @@ SP:BEGIN
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
-   SELECT idCotizacion,nombreEmpleado,nombreCliente,fechaHora,mensaje,error;
+   SELECT *,idCotizacion,nombreEmpleado,nombreCliente,fechaHora,mensaje,error
+   FROM farmacia 
+   WHERE id_farmacia=1;
    COMMIT;
 
 END$$
