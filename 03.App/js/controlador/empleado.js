@@ -286,6 +286,29 @@ function funcionBorrar(nomb){
 }
 
 function imprimirMensaje(response){
+
+  //$.alert();
+
+  $.alert({
+    title: '',
+    content: response.data.mensaje,
+    type: 'green',
+    typeAnimated: true,
+    icon: 'fas fa-check',
+    closeIcon: true,
+    closeIconClass: 'fas fa-times',
+    columnClass: 'col-10 col-md-6 col-lg-5',
+    autoClose: 'cerrar|5000',
+    theme: 'my-theme',
+    buttons: {
+      cerrar: {
+        text: 'Cerrar',
+        btnClass: 'btn-success',
+        keys: ['enter', 'shift']
+      }
+  }
+  });
+
   if (response.data.error == 0) {
     console.log(response.data);
     $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas

@@ -293,3 +293,30 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
   font-weight: 900; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+
+
+.jconfirm.jconfirm-my-theme .jconfirm-bg{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box{
+  text-align: center;
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box.loading{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box.loading:before{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box.loading:after{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box .jconfirm-closeIcon{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box .jconfirm-title-c{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box .jconfirm-content-pane{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box .jconfirm-content{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box .jconfirm-buttons{
+}
+.jconfirm.jconfirm-my-theme .jconfirm-box .jconfirm-buttons button{
+}
