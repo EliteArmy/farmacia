@@ -45,7 +45,7 @@ if(isset($_POST['accion'])){
         $con2 = new Conexion();
         $idEmpleado = ValidarPost::unsigned('id_empleado');
         $email = ValidarPost::varchar('email');
-        $nombre = ValidarPost::varchar('nombre_cliente');
+       // $nombre = ValidarPost::varchar('nombre_cliente');
         $cot = new Cotizacion();
   
         $cot->setIdEmpleado($idEmpleado);
@@ -66,9 +66,9 @@ if(isset($_POST['accion'])){
 
        $correo->setDireccion($email);
        $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
-        $correo->setCuerpo('Saludos Estimado(a), Adjuntamos Cotizaciones.');
-        $correo->setAdjunto('../'.$res['pdf']);
-        $correo->enviar();
+       $correo->setCuerpo('Saludos Estimado(a), Adjuntamos Cotizaciones.');        
+       $correo->setAdjunto('../'.$res['pdf']);    
+       $correo->enviar();
     
         $con1->cerrar();
         $con2->cerrar();
