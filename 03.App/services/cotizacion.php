@@ -61,7 +61,7 @@ if(isset($_POST['accion'])){
           $fechaHora = $res['data'][0]['fechaHora'];
           $res['pdf'] = $cot->imprimirPDF($con2, $idCotizacion, $nombreEmpleado, $nombreCliente, $fechaHora);
         }
-        echo json_encode($res);
+       
         $correo = new Mail();
 
        $correo->setDireccion($email);
@@ -74,7 +74,7 @@ if(isset($_POST['accion'])){
         $con2->cerrar();
         $con1 = null;
         $con2 = null;
-  
+        echo json_encode($res);
         
     break;
 
