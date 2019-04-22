@@ -111,7 +111,6 @@ $(document).ready(function() {
       $('#info-fecha-emision').html(response.data.fecha_maxima_emision);
       $('#info-rango-inicial').html(response.data.rango_autorizado_inicial);
       $('#info-rango-final').html(response.data.rango_autorizado_final);
-  
     });
 
 });

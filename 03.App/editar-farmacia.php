@@ -40,11 +40,18 @@
         <input type="hidden" id = "id_empleado" value="<?php echo $_SESSION['id_empleado']; ?>">
 
         <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
+            </div>
+            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
+            </div>
+          </div>
+
           <div class="col-12 col-md-6 col-lg-6">
             <table class="table">
               <tr>
                 <td>Nombre Farmacia:</td>
-                <td id="info-nombre_farmacia"></td>
+                <td id="info-nombre-farmacia"></td>
               </tr>
 
               <tr>
@@ -104,7 +111,7 @@
             <table class="table">
               <tr>
                 <td colspan="1">
-                  <button type="button" data-toggle="modal" data-target="#editarPerfil" class="btn btn-primary btn-block" id="editar-farmacia">Editar Datos Farmacia</button>
+                  <button type="button" data-toggle="modal" data-target="#editar-perfil" class="btn btn-primary btn-block" id="editar-farmacia">Editar Datos Farmacia</button>
                 </td>
               </tr>
             </table>
@@ -117,7 +124,7 @@
   <!-- FIN Contenido -->
 
   <!-- Modal Perfil -->
-  <div class="modal fade" id="editarPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editar-perfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
 

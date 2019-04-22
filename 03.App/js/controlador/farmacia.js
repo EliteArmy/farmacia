@@ -15,6 +15,11 @@ $(document).ajaxStop(function() {
 // ======= Carga los Datos al cargar todo el html =======
 $(document).ready(function() {
 
+  mostrarDatos();
+
+});
+
+function mostrarDatos(){
   // Buscar los datos de la Farmacia
   var settings = {
     "async": true,
@@ -34,7 +39,7 @@ $(document).ready(function() {
   $.ajax(settings).done(function (response) {
     console.log(response.data);
 
-    $('#info-nombre_farmacia').html(response.data.nombre_farmacia);
+    $('#info-nombre-farmacia').html(response.data.nombre_farmacia);
     $('#info-propietario').html(response.data.propietario);
     $('#info-direccion').html(response.data.direccion);
     $('#info-telefono-farmacia').html(response.data.telefono);
@@ -46,23 +51,7 @@ $(document).ready(function() {
     $('#info-rango-final').html(response.data.rango_autorizado_final);
 
   });
-
-});
-
-/*
-
-    $('#nombre_farmacia').val(response.data.nombre_farmacia);
-    $('#propietario').val(response.data.propietario);
-    $('#direccion').val(response.data.direccion);
-    $('#telefono-farmacia').val(response.data.telefono);
-    $('#correo-farmacia').val(response.data.email);
-    $('#rtn-farmacia').val(response.data.rtn);
-    $("#cai-farmacia").val(response.data.cai);
-    $('#fecha-emision').val(response.data.fecha_maxima_emision);
-    $('#rango-inicial').val(response.data.rango_autorizado_inicial);
-    $('#rango-final').val(response.data.rango_autorizado_final);
-
-*/
+}
 
 $("#actualizar-farmacia").click(function(){
   console.log("cambiar farmacia");
@@ -93,26 +82,60 @@ $("#actualizar-farmacia").click(function(){
   }
 
   $.ajax(settings).done(function (response) {
-    if (response.data.error == '0') {
-      $("#div-exito").html(response.data.mensaje);
+    if (response.data[0].error == '0') {
+      $("#div-exito").html(response.data[0].mensaje);
       $("#div-exito").removeClass('d-none');
-      $("#div-exito").hide(8000, function(){
-            $('#div-exito').addClass("d-none");
-            $("#div-exito").show();
-            $("#div-exito").html("");
-        $("#editarPerfil").modal("toggle");
-        window.location.reload()
+      $('#editar-perfil').modal('hide');
+      mostrarDatos();
+
+      $("#div-exito").hide(5000, function(){
+        $("#div-exito").addClass("d-none");
+        $("#div-exito").show();
+        $("#div-exito").html("");
       });
-    }else{
-      $("#div-error").html(response.data.mensaje);
+    } else {
+      $("#div-error").html(response.data[0].mensaje);
       $("#div-error").removeClass('d-none');
-      $("#div-error").hide(8000, function(){
-            $('#div-error').addClass("d-none");
-            $("#div-error").show();
-            $("#div-error").html("");
+      $("#div-error").hide(5000, function(){
+        $('#div-error').addClass("d-none");
+        $("#div-error").show();
+        $("#div-error").html("");
       });
     }
   });
 
 });
 
+$("#editar-farmacia").click(function() {
+  console.log("Jalar datos");
+  
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/farmacia.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "mostrar-datos",
+      "id_farmacia": 1
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    console.log(response.data);
+
+    $('#nombre-farmacia').val(response.data.nombre_farmacia);
+    $('#propietario').val(response.data.propietario);
+    $('#direccion').val(response.data.direccion);
+    $('#telefono-farmacia').val(response.data.telefono);
+    $('#correo-farmacia').val(response.data.correo_electronico);
+    $('#rtn-farmacia').val(response.data.rtn);
+    $('#cai-farmacia').val(response.data.cai);
+    $('#fecha-emision').val(response.data.fecha_maxima_emision);
+    $('#rango-inicial').val(response.data.rango_autorizado_inicial);
+    $('#rango-final').val(response.data.rango_autorizado_final);
+  });
+});
