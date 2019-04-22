@@ -5,6 +5,8 @@ CREATE PROCEDURE SP_Insertar_Factura(
    pI_id_cliente INT(11),
    pI_id_farmacia INT(11),
    pI_id_forma_pago INT(11),
+   pI_nombre_cliente VARCHAR(200),
+   pI_rtn_cliente VARCHAR(14),
 
    pO_mensaje VARCHAR(1000),
    pO_error BOOLEAN
@@ -25,6 +27,8 @@ SP:BEGIN
     DECLARE nombreCliente VARCHAR(100);
     DECLARE fechaHora DATETIME;
     DECLARE formaPago VARCHAR(45);
+    DECLARE rtnCliente VARCHAR(14);
+    DECLARE isCliente BOOLEAN;
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
@@ -34,6 +38,8 @@ SP:BEGIN
     SET contador=0;
     SET error=FALSE;
     SET idFarmacia=1; -- Farmacia por defecto
+    SET rtnCliente=NULL;
+    SET isCliente=FALSE;
 
     -- _______________Validaciones__________________
 
@@ -68,6 +74,16 @@ SP:BEGIN
       SET idFormaPago=1; -- Forma de pago por defecto (Efectivo)
     END IF;
 
+    IF NOT(pI_nombre_cliente='' OR pI_nombre_cliente IS NULL) THEN
+      IF NOT(pI_rtn_cliente='' OR pI_rtn_cliente IS NULL) THEN
+        IF (pI_rtn_cliente REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{6}$' ) = 0 THEN
+            SET mensaje=CONCAT(mensaje,'RTN del cliente invalido, ');
+        ELSE
+          SET isCliente=TRUE;
+        END IF;
+      END IF;
+    END IF;
+
     -- ____________Mensaje de resultado____________
     IF mensaje <> '' THEN
       SET error=TRUE;
@@ -77,6 +93,19 @@ SP:BEGIN
       LEAVE SP;
     END IF;
 
+    IF NOT(pI_rtn_cliente='' OR pI_rtn_cliente IS NULL) AND isCliente=FALSE THEN
+        IF (pI_rtn_cliente REGEXP '^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{6}$' ) = 0 THEN
+            SET mensaje=CONCAT(mensaje,'RTN del cliente invalido, ');
+        END IF;
+    END IF;
+
+    IF mensaje <> '' THEN
+      SET error=TRUE;
+      SET pO_mensaje=mensaje;
+      SET pO_error=error;
+      SELECT mensaje,error;
+      LEAVE SP;
+    END IF;
    -- _______________SQL Statements_______________
    -- Consultas para insetar en las tablas de facturacion
    -- > Sintaxis: INSERT INTO Table1 SELECT * FROM Table2
@@ -154,21 +183,46 @@ SP:BEGIN
 
     SELECT primer_nombre INTO nombreEmpleado FROM persona WHERE id_persona IN (SELECT id_persona FROM empleado WHERE id_empleado=pI_id_empleado);
     SELECT NOW() INTO fechaHora;
-    SELECT CONCAT(primer_nombre, " ",primer_apellido) INTO nombreCliente FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=idCliente);
+
+    -- Si el isCliente --> el cliente no esta registrado en la base de datos
+    IF isCliente=FALSE THEN
+      IF idCliente=471 THEN -- > Consumidor Final
+        SELECT CONCAT(primer_nombre, " ",primer_apellido) INTO nombreCliente FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=idCliente);
+        UPDATE factura SET nombre_cliente=nombreCliente,rtn_cliente='' WHERE id_factura=idFactura;
+        SET rtnCliente='';
+      ELSE
+        SELECT CONCAT(primer_nombre, " ",primer_apellido) INTO nombreCliente FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=idCliente);
+        SET rtnCliente=pI_rtn_cliente;
+        UPDATE factura SET nombre_cliente=nombreCliente, rtn_cliente=rtnCliente WHERE id_factura=idFactura;
+      END IF;
+    ELSE
+      IF idCliente<>471 THEN
+          SELECT CONCAT(primer_nombre, " ",primer_apellido) INTO nombreCliente FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=idCliente);
+          SET rtnCliente=pI_rtn_cliente;
+          UPDATE factura SET nombre_cliente=nombreCliente, rtn_cliente=rtnCliente WHERE id_factura=idFactura;
+      ELSE
+        SET nombreCliente=pI_nombre_cliente;
+        SET rtnCliente=pI_rtn_cliente;
+        UPDATE factura SET nombre_cliente=nombreCliente, rtn_cliente=rtnCliente WHERE id_factura=idFactura;
+      END IF;
+  
+    END IF;
+   
     SELECT descripcion INTO formaPago FROM forma_pago WHERE id_forma_pago=idFormaPago;
 
     COMMIT;
+
     SET mensaje= 'Facturación exitosa';
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT *,idFactura,nombreEmpleado,nombreCliente,formaPago,fechaHora,mensaje,error
+    SELECT *,idFactura,nombreEmpleado,nombreCliente,rtnCliente,formaPago,fechaHora,mensaje,error
     FROM farmacia
     WHERE id_farmacia=idFarmacia;
 
 END$$
 
-CALL SP_Insertar_Factura(81,'','','',@mesaje,@error);
+CALL SP_Insertar_Factura(81,1,'','','cliente','',@mesaje,@error);
 -- SELECT @mesaje, @error
 
 -- CAMBIOS DE ZONA HORARIA

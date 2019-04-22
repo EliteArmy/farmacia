@@ -68,13 +68,17 @@ if(isset($_POST['accion'])){
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $idCliente = ValidarPost::unsigned('id_cliente');
       $idFormaPago = ValidarPost::unsigned('id_forma_pago');
+      $nombreCliente = ValidarPost::varchar('nombre_cliente');
+      $rtnCliente = ValidarPost::varchar('rtn_cliente');
 
       $fact = new Factura();
 
       $fact->setIdEmpleado($idEmpleado);
       $fact->setIdCliente($idCliente);
-      $fact->setIdFarmacia('');
+      $fact->setIdFarmacia(1);
       $fact->setIdFormaPago($idFormaPago);
+      $fact->setNombreCliente($nombreCliente);
+      $fact->setRtnCliente($rtnCliente);
 
       $res['data'] = $fact->insertarFactura($con1);
       $error = $res['data'][0]['error'];

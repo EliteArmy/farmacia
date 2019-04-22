@@ -12,7 +12,9 @@ class Factura {
 	private $fechaInicio;
   private $fechaFin;
   private $idLote;
-  private $cantidad;
+	private $cantidad;
+	private $nombreCliente;
+	private $rtnCliente;
 
 	public function __construct(
 		$idFactura = null,
@@ -141,6 +143,22 @@ class Factura {
 		$this->idLote = $idLote;
 	}
 
+	public function getNombreCliente(){
+		return $this->nombreCliente;
+	}
+
+	public function setNombreCliente($nombreCliente){
+		$this->nombreCliente = $nombreCliente;
+	}
+
+	public function getRtnCliente(){
+		return $this->rtnCliente;
+	}
+
+	public function setRtnCliente($rtnCliente){
+		$this->rtnCliente = $rtnCliente;
+	}
+
   public function leerPorFecha($conexion){
       $sql = "
         CALL SP_Obtener_Factura_Fecha(DATE('%s'), DATE('%s'), @mensaje, @error);
@@ -233,13 +251,23 @@ class Factura {
   }
 
   public function insertarFactura($conexion){
-    $sql = 'CALL SP_Insertar_Factura(%d, %d, %d, %d, @mensaje, @error)';
+    $sql = "CALL SP_Insertar_Factura(%s, %s, %s, %s, '%s', '%s', @mensaje, @error)";
     $valores = [
-			$this->getIdEmpleado(),
-			$this->getIdCliente(),
-      $this->getIdFarmacia(),
-      $this->getIdFormaPago()
+				$this->getIdEmpleado(),
+				$this->getIdCliente(),
+				$this->getIdFarmacia(),
+				$this->getIdFormaPago(),
+				$this->getNombreCliente(),
+				$this->getRtnCliente()
     ];
+
+		$rows = $conexion->query($sql, $valores);
+    return $rows;
+	}
+
+	public function test($conexion){
+    $sql = "CALL SP_Test1('%s')";
+    $valores = [$this->getRtnCliente()];
 
 		$rows = $conexion->query($sql, $valores);
     return $rows;
