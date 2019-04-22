@@ -297,7 +297,7 @@ class Factura {
     $pdf->SetTextColor(135, 138, 134);
     $pdf->Cell(0, 5, 'Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras', 0, 1, 'C');
     $pdf->Cell(0, 5, 'RTN: '.$rtn.'', 0, 1, 'C');
-    $pdf->Cell(0, 5, 'Factura Original: 000-000-00-'.$rangoAutorizadoActual.'', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Factura Original: 000-000-00-'.$idFactura.'', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'C.A.I.: '.$cai.'', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'Rango Autorizado: '.$rangoAutorizadoInicial. ' a '.$rangoAutorizadoFinal.'', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'Fecha Limite Emisión: '.$date.'', 0, 1 , 'C');
