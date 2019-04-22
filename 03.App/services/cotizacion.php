@@ -64,7 +64,7 @@ if(isset($_POST['accion'])){
         }
        $correo->setDireccion($email);
        $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
-        $correo->setCuerpo('Buenas Tardes Estimado(a), Adjuntamos Cotizaciones.');
+        $correo->setCuerpo('Saludos Estimado(a), Adjuntamos Cotizaciones.');
         $correo->setAdjunto('../'.$res['pdf']);
         $correo->enviar();
         
