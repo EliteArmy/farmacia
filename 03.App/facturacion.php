@@ -34,14 +34,14 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-11 well card">
         <div id="titulo-factura" class="text-center">
-          <h4>Farmacia Esperanza</h4>
-          <h4>Col. Villa Olímpica</h4>
-          <h4>Tegucigalpa, M.D.C, Honduras</h4>
-          <h4>RTN: 08011980123456</h4>
-          <h4>Factura Original: 000-000-00-00000001</h4>
-          <h4>C.A.I.: 000000-000000-000000-000000-000000-00</h4>
-          <h4>Rango Autorizado: 00000000 a 00000000</h4>
-          <h4>Fecha Limite Emisión: 12/12/2019</h4>
+          <h4 id="info-propietario">Grupo Farmacias S. de R.L.</h4>
+          <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
+          <h4 id="info-direccion">Col. Villa Olímpica</h4>
+          <h4>RTN: <div id="info-rtn-farmacia" class="d-inline-block">08011970123456</div></h4>
+          <!--<h4 id="">Factura Original: 000-000-00-00000001</h4>-->
+          <h4 id="">C.A.I.: <div class="d-inline-block" id="info-cai-farmacia">000000-000000-000000-000000-000000-00</div></h4>
+          <h4 id="">Rango Autorizado: <div class="d-inline-block" id="info-rango-inicial"></div> a <div class="d-inline-block" id="info-rango-final"></div></h4>
+          <h4>Fecha Limite Emisión: <div class="d-inline-block" id="info-fecha-emision"></div></h4>
         </div>
         
         <div class="mt-2">
@@ -59,27 +59,17 @@
 
         <div class="row mt-2 mb-1" id="content">
 
-          <div class="col-12 col-sm-6 col-lg-4 texto" >
-            <label for="identidad-cliente">Cliente:</label>
+          <div class="col-12 col-sm-6 col-lg-4 texto">
+            <label for="cliente-no-registrado">Cliente No Registrado:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="identidad-cliente" value="0801199707186" placeholder="# Identidad del Cliente">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button" onclick="buscarCliente()">Buscar</button>
-              </div>
+              <input type="text" class="form-control" id="cliente-no-registrado" placeholder="Nombre del Cliente">
             </div>
           </div>
-          <!--
+
           <div class="col-12 col-sm-6 col-lg-4 texto">
-            <label for="teléfono">Teléfono:</label>
+            <label for="RTN">RTN del Cliente:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="teléfono" placeholder="Teléfono">
-            </div>
-          </div>
-          -->
-          <div class="col-12 col-sm-6 col-lg-4 texto">
-            <label for="RTN">RTN:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="RTN" placeholder="RTN">
+              <input type="text" class="form-control" id="RTN" placeholder="RTN del Cliente">
             </div>
           </div>
 
@@ -117,6 +107,16 @@
             <button type="button" id="cancelar-factura" onclick="cancelarFactura()" class="form-control btn btn-primary">
               Cancelar Factura
             </button>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4 texto" >
+            <label for="identidad-cliente">Buscar Cliente Registrado:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="identidad-cliente" value="0801199707186" placeholder="# Identidad del Cliente">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" onclick="buscarCliente()">Buscar</button>
+              </div>
+            </div>
           </div>
 
           <div class="form-group col-12 col-sm-6 col-lg-4 texto d-none">
@@ -165,11 +165,11 @@
 
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
             <div id="pie-factura" class="text-center">
-              <h4>Gracias por su visita</h4>
-              <h4>Correo: farmacia_esperanza@gmail.com</h4>
-              <h4>Teléfono: (+504) 2222-0000</h4>
-              <h4>Original: Cliente</h4>
-              <h4>--- Cuenta Cerrada ---</h4>
+              <h4 id="">¡Gracias por su visita!</h4>
+              <h4 >Correo: <div id="info-correo-farmacia" class="d-inline-block">farmacia_esperanza@gmail.com</div></h4>
+              <h4 >Teléfono: <div id="info-telefono-farmacia" class="d-inline-block">(+504) 2222-0000</div></h4>
+              <h4 id="">Original: Cliente</h4>
+              <h4 id="">--- Cuenta Cerrada ---</h4>
             </div>
           </div>
         </div>
