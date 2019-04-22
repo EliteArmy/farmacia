@@ -245,7 +245,24 @@ class Factura {
     return $rows;
 	}
 
-  public function imprimirPDF($conexion, $idFactura, $nombreEmpleado, $nombreCliente, $formaPago, $fechaHora){
+	public function imprimirPDF($conexion,
+															$idFactura, 
+															$nombreEmpleado, 
+															$nombreCliente, 
+															$formaPago,
+															$fechaHora,
+															$nombreFarmacia, 
+															$propietario, 
+															$rtn,
+															$direccion, 
+															$correoElectronico,
+															$fundada,
+															$telefono,
+															$cai,
+															$fechaMaximaEmision,
+															$rangoAutorizadoInicial,
+															$rangoAutorizadoFinal,
+															$rangoAutorizadoActual){
     $sql = 'CALL SP_Obtener_Detalle_Factura(%s, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
 		// $resultado = $conexion->getResultadoQuery($sql, $valores);
@@ -279,13 +296,13 @@ class Factura {
     $pdf->SetFont('helvetica','B', 12);
     $pdf->SetTextColor(135, 138, 134);
     $pdf->Cell(0, 5, 'Col. Villa Olímpica, Tegucigalpa, M.D.C, Honduras', 0, 1, 'C');
-    $pdf->Cell(0, 5, 'RTN: 08011980123456', 0, 1, 'C');
-    $pdf->Cell(0, 5, 'Factura Original: 000-000-00-00000'.$idFactura.'', 0, 1 , 'C');
-    $pdf->Cell(0, 5, 'C.A.I.: 000000-000000-000000-000000-000000-00', 0, 1 , 'C');
-    $pdf->Cell(0, 5, 'Rango Autorizado: 00000000 a 00009000', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'RTN: '.$rtn.'', 0, 1, 'C');
+    $pdf->Cell(0, 5, 'Factura Original: 000-000-00-'.$rangoAutorizadoActual.'', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'C.A.I.: '.$cai.'', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Rango Autorizado: '.$rangoAutorizadoInicial. ' a '.$rangoAutorizadoFinal.'', 0, 1 , 'C');
     $pdf->Cell(0, 5, 'Fecha Limite Emisión: '.$date.'', 0, 1 , 'C');
-    $pdf->Cell(0, 5, 'Teléfono: (+504) 2222-0000', 0, 1 , 'C');
-    $pdf->Cell(0, 5, 'Correo: farmacia_esperanza@gmail.com', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Teléfono: (+504) '.$telefono.'', 0, 1 , 'C');
+    $pdf->Cell(0, 5, 'Correo: '.$correoElectronico.'', 0, 1 , 'C');
 
     $pdf->Ln(); //Salto de Linea
 

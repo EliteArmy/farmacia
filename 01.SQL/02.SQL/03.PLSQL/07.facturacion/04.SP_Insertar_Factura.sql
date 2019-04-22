@@ -150,6 +150,7 @@ SP:BEGIN
     -- END IF;
 
     UPDATE detalle_factura_temp SET id_factura=idFactura WHERE id_empleado=pI_id_empleado;
+    UPDATE farmacia SET rango_autorizado_actual=rango_autorizado_actual+1 WHERE id_farmacia=idFarmacia;
 
     SELECT primer_nombre INTO nombreEmpleado FROM persona WHERE id_persona IN (SELECT id_persona FROM empleado WHERE id_empleado=pI_id_empleado);
     SELECT NOW() INTO fechaHora;
@@ -161,7 +162,9 @@ SP:BEGIN
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
-    SELECT idFactura,nombreEmpleado,nombreCliente,formaPago,fechaHora,mensaje,error;
+    SELECT *,idFactura,nombreEmpleado,nombreCliente,formaPago,fechaHora,mensaje,error
+    FROM farmacia
+    WHERE id_farmacia=idFarmacia;
 
 END$$
 

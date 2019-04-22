@@ -23,6 +23,7 @@ SP:BEGIN
     DECLARE error BOOLEAN;
     DECLARE contador INT;
     DECLARE rangoInicial VARCHAR(100);
+    DECLARE rangoInicialDB VARCHAR(100);
     DECLARE rangoFinal VARCHAR(100);
     DECLARE iterador INT;
 
@@ -184,6 +185,11 @@ SP:BEGIN
         LEAVE SP;
     END IF;
 
+    
+    SELECT rango_autorizado_inicial INTO rangoInicialDB FROM farmacia WHERE id_farmacia=pI_id_farmacia;
+    IF rangoInicial<>rangoInicialDB THEN 
+      UPDATE farmacia SET rango_autorizado_actual=rangoInicial WHERE id_farmacia=pI_id_farmacia;
+    END IF;
 
      UPDATE farmacia 
         SET
@@ -211,6 +217,6 @@ SP:BEGIN
 
 END$$
 
-CALL SP_Actualizar_Perfil_Farmacia(1,'Farmacia Esperanza','Juan Pérez','08011970123456',
+CALL SP_Actualizar_Perfil_Farmacia(1,'Farmacia Esperanza','Grupo Farmacias S. de R.L.','08011970123456',
   'Col. Villa Olímpica Tegucigalpa, M.D.C, Honduras','farmacia_esperanza@gmail.com','2222-0000',
-  '000000-000000-000000-000000-000000-00',DATE('2019-12-12'),'15000','25000',@mensaje,@error);
+  '000000-000000-000000-000000-000000-00',DATE('2019-12-12'),'15000','26000',@mensaje,@error);

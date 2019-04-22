@@ -86,10 +86,41 @@ if(isset($_POST['accion'])){
         $nombreCliente = $res['data'][0]['nombreCliente'];
         $formaPago = $res['data'][0]['formaPago'];
         $fechaHora = $res['data'][0]['fechaHora'];
+        $nombreFarmacia = $res['data'][0]['nombre_farmacia']; 
+        $propietario = $res['data'][0]['propietario'];
+        $rtn = $res['data'][0]['rtn'];
+        $direccion = $res['data'][0]['direccion']; 
+        $correoElectronico = $res['data'][0]['correo_electronico']; 
+        $fundada = $res['data'][0]['fecha_fundacion']; 
+        $telefono = $res['data'][0]['telefono']; 
+        $cai = $res['data'][0]['cai']; 
+        $fechaMaximaEmision = $res['data'][0]['fecha_maxima_emision']; 
+        $rangoAutorizadoInicial = $res['data'][0]['rango_autorizado_inicial']; 
+        $rangoAutorizadoFinal = $res['data'][0]['rango_autorizado_final']; 
+        $rangoAutorizadoActual = $res['data'][0]['rango_autorizado_actual'];
 
-        $res['pdf'] = $fact->imprimirPDF($con2, $idFactura, $nombreEmpleado, $nombreCliente, $formaPago, $fechaHora);
+
+        $res['pdf'] = $fact->imprimirPDF($con2,
+                                         $idFactura, 
+                                         $nombreEmpleado, 
+                                         $nombreCliente, 
+                                         $formaPago,
+                                         $fechaHora,
+                                         $nombreFarmacia, 
+                                         $propietario, 
+                                         $rtn,
+                                         $direccion, 
+                                         $correoElectronico,
+                                         $fundada,
+                                         $telefono,
+                                         $cai,
+                                         $fechaMaximaEmision,
+                                         $rangoAutorizadoInicial,
+                                         $rangoAutorizadoFinal,
+                                         $rangoAutorizadoActual
+                                        );
       }
-      
+   
       //var_dump($res);
 
       $con1->cerrar();
