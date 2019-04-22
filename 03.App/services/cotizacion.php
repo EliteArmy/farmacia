@@ -40,7 +40,7 @@ if(isset($_POST['accion'])){
     case 'insertar-cotizacion':
       // header('Content-type: application/force-download');
 
-    if(isset($_POST['email'])){
+    //if(isset($_POST['email'])){
         $con1 = new Conexion();
         $con2 = new Conexion();
         $idEmpleado = ValidarPost::unsigned('id_empleado');
@@ -75,10 +75,10 @@ if(isset($_POST['accion'])){
         $con1 = null;
         $con2 = null;
   
-      }
+      //}
     
       
-      else
+      /*else
       {
       $con1 = new Conexion();
       $con2 = new Conexion();
@@ -105,7 +105,7 @@ if(isset($_POST['accion'])){
       $con2 = null;
 
       
-    } 
+      } */
         echo json_encode($res);
     break;
 
