@@ -126,6 +126,7 @@ $('#guard-empleado').click(function(){
 /* Buscar un Empleado */
 function funcionBuscar(nomb){
   $("#inputGroupFile").removeClass('is-valid');
+  
   // Se hace el cambio del footer en el Modal
   $("#footer-guardar").hide();
   $("#footer-actualizar").removeClass("d-none");
@@ -150,7 +151,7 @@ function funcionBuscar(nomb){
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
+    //console.log(response.data);
 
     //$('#telefono-nuevo').val("");
     //$('#telefono').prop('readonly', true);
@@ -174,6 +175,7 @@ function funcionBuscar(nomb){
     $(".foto-empleado").attr('src', 'img/' + response.data.foto_url);
     $('#slc-estado').selectpicker('val', response.data.estado);
     $('#slc-tipo-usuario').selectpicker('val', response.data.id_tipo_usuario);
+    
     formaEmpleado.validateAll();
   });
 }
@@ -237,104 +239,106 @@ function funcionBorrar(nomb){
   }
 
   $.ajax(settings).done(function (response) {
-      $.confirm({
-       icon: 'fa fa-trash',
-       theme: 'modern',
-       closeIcon: true,
-       type: 'blue',
-       title:'Alerta!',
-       content:'¿Esta seguro de eliminar a ' + response.data.nombre_completo + ' ?',
-       buttons:{
-         Eliminar:{
-            text:"Si, seguro!",
-            btnClass:"btn-blue",
-            action:function(){
-              var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "./services/empleado.php",
-                "method": "POST",
-                "dataType": "json",
-                "headers": {
-                  "content-type": "application/x-www-form-urlencoded"
-                },
-                "data": {
-                  "accion": "eliminar-empleado",
-                  "id_empleado": nomb
-                }
+    $.confirm({
+      title: '',
+      content: '¿Esta seguro de eliminar a ' + response.data.nombre_completo + ' ?',
+      type: 'orange',
+      typeAnimated: true,
+      icon: 'fa fa-trash',
+      theme: 'modern',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      buttons: {
+        Eliminar: {
+          text: "¡Si, Seguro!",
+          btnClass: "btn-warning",
+          action: function(){
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "./services/empleado.php",
+              "method": "POST",
+              "dataType": "json",
+              "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+              },
+              "data": {
+                "accion": "eliminar-empleado",
+                "id_empleado": nomb
               }
-
-              $.ajax(settings).done(function (response) {
-                $.alert({
-                  title: response.data.mensaje,
-                  icon: 'fa fa-check',
-                  type: 'blue',
-                  content: '',
-                });
-
-              $('#table-info').DataTable().ajax.reload();
-              })
             }
 
-         },
-         Cancelar:function(){
-
-         }
-       }
-     })
+            $.ajax(settings).done(function (response) {
+              imprimirMensaje(response);
+            })
+          }
+        },
+        Cancelar: function(){
+          // --
+        }
+      }
+    })
   });
 }
 
-function imprimirMensaje(response){
-
-  //$.alert();
-
-  $.alert({
-    title: '',
-    content: response.data.mensaje,
-    type: 'green',
-    typeAnimated: true,
-    icon: 'fas fa-check',
-    closeIcon: true,
-    closeIconClass: 'fas fa-times',
-    columnClass: 'col-10 col-md-6 col-lg-5',
-    autoClose: 'cerrar|5000',
-    theme: 'my-theme',
-    buttons: {
-      cerrar: {
-        text: 'Cerrar',
-        btnClass: 'btn-success',
-        keys: ['enter', 'shift']
-      }
-  }
-  });
+function imprimirMensaje(response) {
 
   if (response.data.error == 0) {
-    console.log(response.data);
-    $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    limpiarFormulario()
-    $("#div-exito").html(response.data.mensaje);
-    $("#div-exito").removeClass("d-none");
+    //console.log(response.data);
 
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("");
-    });
+    // Se encarga de refrescar las tablas
+    $('#table-info').DataTable().ajax.reload(function (){
+      
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data.mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+
+    }); 
+    limpiarFormulario();
+
   } else {
-    console.log(response);
-    $("#div-error").html(response.data.mensaje);
-    $("#div-error").removeClass("d-none");
+    //console.log(response);
 
-    $("#div-error").hide(8000, function(){
-      $('#div-error').show();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html("");
+    // Mensajes Invalidos
+    $.alert({
+      title: '',
+      content: response.data.mensaje,
+      type: 'red',
+      typeAnimated: true,
+      icon: 'fas fa-exclamation-triangle',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+      theme: 'modern', // Acepta propiedades CSS
+      buttons: {
+        cerrar: {
+          text: 'Cerrar',
+          btnClass: 'btn-danger',
+          keys: ['enter', 'shift']
+        }
+      }
     });
   }
 }
 
 function limpiarFormulario(){
+
   $("#footer-actualizar").addClass("d-none");
   $("#footer-guardar").show();
 
@@ -369,7 +373,6 @@ function limpiarFormulario(){
 $(".reset").click(function(){
   limpiarFormulario()
 });
-
 
 // Subir imagen de usuario
 $("#inputGroupFile").on("change", function(){
