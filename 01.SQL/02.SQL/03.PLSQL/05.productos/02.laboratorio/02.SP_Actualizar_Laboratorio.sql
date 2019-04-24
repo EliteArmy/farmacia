@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Actualizar_Laboratorio$$
 CREATE PROCEDURE SP_Actualizar_Laboratorio(
-   pI_id_laboratorio INTEGER(11),
+   pI_id_laboratorio INT(11),
    pI_nombre_laboratorio VARCHAR(45),
    pI_estado VARCHAR(1),
    pI_direccion VARCHAR(200),
@@ -126,7 +126,7 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
          id_laboratorio=pI_id_laboratorio;
    COMMIT;
 
-   SET mensaje= 'Actualización exitosa';
+   SET mensaje= CONCAT('El laboratorio ',pI_nombre_laboratorio,' se actualizó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

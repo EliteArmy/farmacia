@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Eliminar_Laboratorio$$
 CREATE PROCEDURE SP_Eliminar_Laboratorio(
-   pI_id_laboratorio INTEGER(11),
+   pI_id_laboratorio INT(11),
 
    pO_mensaje VARCHAR(1000),
    pO_error BOOLEAN
@@ -13,6 +13,7 @@ CREATE PROCEDURE SP_Eliminar_Laboratorio(
    DECLARE mensaje VARCHAR(1000);
    DECLARE error BOOLEAN;
    DECLARE contador INT;
+   DECLARE nombreLaboratorio VARCHAR(100);
 
    -- Inicializaciones
    SET AUTOCOMMIT=0;
@@ -52,7 +53,9 @@ CREATE PROCEDURE SP_Eliminar_Laboratorio(
          id_laboratorio=pI_id_laboratorio;
    COMMIT;
 
-   SET mensaje= 'Eliminación exitosa';
+   SELECT nombre_laboratorio INTO nombreLaboratorio FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
+
+   SET mensaje= CONCAT('El laboratorio ',nombreLaboratorio,' se eliminó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

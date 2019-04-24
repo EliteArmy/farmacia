@@ -56,7 +56,7 @@ InsertarLaboratorio:BEGIN
   VALUES (pI_nombre_laboratorio, 'A', pI_direccion, pI_telefono_laboratorio);
   COMMIT;
 
-  SET mensaje = 'Inserción exitosa';
+  SET mensaje = CONCAT('El laboratorio ',pI_nombre_laboratorio,' se ha registrado con exito!');
   SET error = FALSE;
   SELECT mensaje, error;
 END $$
