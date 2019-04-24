@@ -202,7 +202,7 @@ SP:BEGIN
     COMMIT;
 
     
-    SET mensaje=CONCAT('El empleado ',pI_primer_nombre,' ',pI_primer_apellido,' se actualizo con exito!');
+    SET mensaje=CONCAT('El empleado ',pI_primer_nombre,' ',pI_primer_apellido,' se actualizó con exito!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

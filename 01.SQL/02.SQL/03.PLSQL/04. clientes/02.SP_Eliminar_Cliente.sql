@@ -52,7 +52,7 @@ SP:BEGIN
 
     SELECT primer_nombre,primer_apellido INTO primerNombre,primerApellido FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=pI_id_cliente);
 
-    SET mensaje=CONCAT('El cliente ',primerNombre,' ',primerApellido,' se elimino exitosamente!');
+    SET mensaje=CONCAT('El cliente ',primerNombre,' ',primerApellido,' se eliminó con exito!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
