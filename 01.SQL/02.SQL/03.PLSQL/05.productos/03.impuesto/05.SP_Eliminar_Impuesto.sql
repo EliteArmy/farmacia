@@ -13,6 +13,7 @@ SP:BEGIN
    DECLARE mensaje VARCHAR(1000);
    DECLARE error BOOLEAN;
    DECLARE contador INT;
+   DECLARE nombreImpuesto VARCHAR(100);
 
    -- Inicializaciones
    SET AUTOCOMMIT=0;
@@ -48,8 +49,9 @@ SP:BEGIN
       WHERE
          id_impuesto=pI_id_impuesto;
    COMMIT;
+   SELECT descripcion INTO nombreImpuesto FROM impuesto WHERE id_impuesto=pI_id_impuesto;
 
-   SET mensaje= 'Eliminación exitosa';
+   SET mensaje= CONCAT('El impuesto ',nombreImpuesto,' se eliminó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

@@ -13,6 +13,7 @@ CREATE PROCEDURE SP_Eliminar_Presentacion(
    DECLARE mensaje VARCHAR(1000);
    DECLARE error BOOLEAN;
    DECLARE contador INT;
+   DECLARE nombrePresentacion VARCHAR(100);
 
    -- Inicializaciones
    SET AUTOCOMMIT=0;
@@ -52,8 +53,10 @@ CREATE PROCEDURE SP_Eliminar_Presentacion(
       WHERE
          id_presentacion=pI_id_presentacion;
    COMMIT;
+   
+   SELECT presentacion INTO nombrePresentacion FROM presentacion WHERE id_presentacion=pI_id_presentacion;
 
-   SET mensaje= 'Eliminación exitosa';
+   SET mensaje= CONCAT('La presentación ',nombrePresentacion,' se eliminó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

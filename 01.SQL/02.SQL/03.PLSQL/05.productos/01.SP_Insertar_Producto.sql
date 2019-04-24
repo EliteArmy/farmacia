@@ -27,7 +27,6 @@ CREATE PROCEDURE SP_Insertar_Producto(
   DECLARE idCategoria VARCHAR(100);
   DECLARE contadorDigitos INT;
   DECLARE ultimoId INT;
-  DECLARE id INT(11);
   
 
   -- Inicializaciones
@@ -242,7 +241,7 @@ CREATE PROCEDURE SP_Insertar_Producto(
 
    COMMIT;
   -- Mensaje de salida, proceso exitoso
-   SET mensaje='Inserción exitosa';
+   SET mensaje=CONCAT('El producto ',pI_nombre,' se ha registrado con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

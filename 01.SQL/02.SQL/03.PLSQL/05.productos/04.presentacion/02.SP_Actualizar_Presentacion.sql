@@ -94,7 +94,7 @@ CREATE PROCEDURE SP_Actualizar_Presentacion(
          id_presentacion = pI_id_presentacion ;
    COMMIT;
 
-   SET mensaje= 'Actualización exitosa';
+   SET mensaje=CONCAT('La presentación ',pI_presentacion,' se actualizó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

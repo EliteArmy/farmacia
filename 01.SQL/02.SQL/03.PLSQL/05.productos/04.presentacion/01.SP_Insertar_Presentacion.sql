@@ -42,7 +42,7 @@ InsertarImpuesto:BEGIN
   (pI_presentacion,'A');
   COMMIT;
 
-  SET mensaje = 'Inserción exitosa';
+  SET mensaje = CONCAT('La presentación ',pI_presentacion,' se ha registrado con exito!');
   SET error = FALSE;
   SELECT mensaje, error;
 

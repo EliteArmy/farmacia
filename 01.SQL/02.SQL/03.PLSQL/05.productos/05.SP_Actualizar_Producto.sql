@@ -1,8 +1,8 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Actualizar_Producto$$
 CREATE PROCEDURE SP_Actualizar_Producto(
-        IN pI_id_producto INTEGER(11),
-        IN pI_id_presentacion INTEGER(11),
+        IN pI_id_producto INT(11),
+        IN pI_id_presentacion INT(11),
         IN pI_nombre VARCHAR(100),
         IN pI_codigo_barra VARCHAR(45),
         IN pI_url_foto VARCHAR(500),
@@ -21,7 +21,7 @@ CREATE PROCEDURE SP_Actualizar_Producto(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(1000);
-  DECLARE contador INTEGER;
+  DECLARE contador INT;
   DECLARE error BOOLEAN;
   DECLARE uEstado VARCHAR(1);
   DECLARE isMedicamento BOOLEAN;
@@ -245,7 +245,7 @@ CREATE PROCEDURE SP_Actualizar_Producto(
     END IF;
    COMMIT;
 
-   SET mensaje='Actualización exitosa';
+   SET mensaje=CONCAT('El producto ',pI_nombre,' se actualizó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

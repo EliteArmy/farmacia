@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Eliminar_Producto$$
 CREATE PROCEDURE SP_Eliminar_Producto(
-        IN pI_id_producto INTEGER(11),
+        IN pI_id_producto INT(11),
   
         OUT pO_mensaje VARCHAR(1000),
         OUT pO_error BOOLEAN
@@ -10,8 +10,10 @@ CREATE PROCEDURE SP_Eliminar_Producto(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
-  DECLARE contador INTEGER;
+  DECLARE contador INT;
   DECLARE error BOOLEAN;
+  DECLARE nombreProducto VARCHAR(100);
+
 -- Inicializaciones
   SET mensaje='';
   SET contador = 0;
@@ -50,7 +52,6 @@ CREATE PROCEDURE SP_Eliminar_Producto(
              estado = "I"
          WHERE
              producto.id_producto= pI_id_producto;
-   
      COMMIT;
 
      SELECT COUNT(*) INTO contador FROM producto p 
@@ -69,11 +70,15 @@ CREATE PROCEDURE SP_Eliminar_Producto(
              medicamentos.id_medicamento= contador;
        COMMIT;
     END IF;
-     SET mensaje= 'Eliminación exitosa';
-     SET error=FALSE;
-     SET pO_mensaje=mensaje;
-     SET pO_error=error;
-     SELECT mensaje,error;
+
+    SELECT nombre INTO nombreProducto FROM producto WHERE id_producto=pI_id_producto;
+
+    SET mensaje= CONCAT('El producto ',nombreProducto,' se eliminó con exito!');
+    SET error=FALSE;
+    SET pO_mensaje=mensaje;
+    SET pO_error=error;
+    SELECT mensaje,error;
+
 END $$
 
 
