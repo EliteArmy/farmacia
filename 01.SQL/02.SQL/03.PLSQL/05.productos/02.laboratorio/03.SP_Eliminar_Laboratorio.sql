@@ -55,7 +55,7 @@ CREATE PROCEDURE SP_Eliminar_Laboratorio(
 
    SELECT nombre_laboratorio INTO nombreLaboratorio FROM laboratorio WHERE id_laboratorio=pI_id_laboratorio;
 
-   SET mensaje= CONCAT('El laboratorio ',nombreLaboratorio,' se eliminó con exito!');
+   SET mensaje= CONCAT('El laboratorio(',nombreLaboratorio,') se eliminó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

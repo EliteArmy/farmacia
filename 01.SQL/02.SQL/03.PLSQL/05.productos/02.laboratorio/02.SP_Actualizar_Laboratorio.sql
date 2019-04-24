@@ -126,7 +126,7 @@ CREATE PROCEDURE SP_Actualizar_Laboratorio(
          id_laboratorio=pI_id_laboratorio;
    COMMIT;
 
-   SET mensaje= CONCAT('El laboratorio ',pI_nombre_laboratorio,' se actualizó con exito!');
+   SET mensaje= CONCAT('El laboratorio(',pI_nombre_laboratorio,') se actualizó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

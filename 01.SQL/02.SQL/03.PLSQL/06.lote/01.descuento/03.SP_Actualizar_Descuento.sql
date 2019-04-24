@@ -121,7 +121,7 @@ CREATE PROCEDURE SP_Actualizar_Descuento(
          id_descuento=pI_id_descuento;
    COMMIT;
 
-   SET mensaje= CONCAT('El descuento ',pI_descripcion,' se actualizó con exito!');
+   SET mensaje= CONCAT('El descuento(',pI_descripcion,') se actualizó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
