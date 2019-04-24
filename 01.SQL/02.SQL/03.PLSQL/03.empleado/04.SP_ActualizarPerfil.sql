@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Actualizar_Perfil$$
 CREATE PROCEDURE `SP_Actualizar_Perfil`(
-    IN pI_id_empleado INTEGER(11)
+     IN pI_id_empleado INTEGER(11)
     ,IN pI_correo_electronico VARCHAR(100)
     ,IN pI_cambiar_contrasena BOOLEAN
     ,IN pI_contrasena VARCHAR(128)

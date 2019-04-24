@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Eliminar_Empleado$$
-CREATE PROCEDURE `SP_Eliminar_Empleado`(
-    IN pI_id_empleado INTEGER(11),
+CREATE PROCEDURE SP_Eliminar_Empleado(
+    IN pI_id_empleado INT(11),
 
     OUT pO_mensaje VARCHAR(1000),
     OUT pO_error BOOLEAN
@@ -9,8 +9,10 @@ CREATE PROCEDURE `SP_Eliminar_Empleado`(
 SP:BEGIN
     -- DECLARE
     DECLARE mensaje VARCHAR(1000);
-    DECLARE contador INTEGER(20);
+    DECLARE contador INT;
     DECLARE error BOOLEAN;
+    DECLARE primerNombre VARCHAR(100);
+    DECLARE primerApellido VARCHAR(100);
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
@@ -48,7 +50,9 @@ SP:BEGIN
             empleado.id_empleado = pI_id_empleado ;
     COMMIT;
 
-    SET mensaje='Eliminación exitosa';
+    SELECT primer_nombre,primer_apellido INTO primerNombre,primerApellido FROM persona WHERE id_persona IN (SELECT id_persona FROM empleado WHERE id_empleado=pI_id_empleado);
+
+    SET mensaje=CONCAT('El empleado ',primerNombre,' ',primerApellido,' se elimino exitosamente!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
@@ -56,7 +60,7 @@ SP:BEGIN
 END$$
 
 -- ________________________LLAMADO DEL PL_____________________________
-CALL SP_Eliminar_Empleado(68,@mensaje, @error);
+CALL SP_Eliminar_Empleado(115,@mensaje, @error);
 
 SELECT * FROM empleado
 
