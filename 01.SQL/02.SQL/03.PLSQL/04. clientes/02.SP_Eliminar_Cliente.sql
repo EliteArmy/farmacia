@@ -11,6 +11,8 @@ SP:BEGIN
     DECLARE mensaje VARCHAR(1000);
     DECLARE contador INTEGER(20);
     DECLARE error BOOLEAN;
+    DECLARE primerNombre VARCHAR(100);
+    DECLARE primerApellido VARCHAR(100);
 
     -- Inicializaciones
     SET AUTOCOMMIT=0;
@@ -48,7 +50,9 @@ SP:BEGIN
             cliente.id_cliente = pI_id_cliente ;
     COMMIT;
 
-    SET mensaje='Eliminación exitosa';
+    SELECT primer_nombre,primer_apellido INTO primerNombre,primerApellido FROM persona WHERE id_persona IN (SELECT id_persona FROM cliente WHERE id_cliente=pI_id_cliente);
+
+    SET mensaje=CONCAT('El cliente ',primerNombre,' ',primerApellido,' se elimino exitosamente!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

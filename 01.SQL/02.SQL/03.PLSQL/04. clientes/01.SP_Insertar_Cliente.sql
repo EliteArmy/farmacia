@@ -20,8 +20,8 @@ CREATE PROCEDURE SP_Insertar_Cliente(
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
   DECLARE error BOOLEAN;
-  DECLARE contador INTEGER;
-  DECLARE ultimoId INTEGER;
+  DECLARE contador INT;
+  DECLARE ultimoId INT;
 
 -- Inicializaciones
   SET AUTOCOMMIT=0;
@@ -69,7 +69,7 @@ CREATE PROCEDURE SP_Insertar_Cliente(
                          );
     COMMIT;
 
-    SET mensaje='Inserción exitosa';
+    SET mensaje=CONCAT('El cliente ',pI_primer_nombre,' ',pI_primer_apellido,' se ha registrado con exito!');
     SET error = FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
