@@ -73,12 +73,23 @@ $(document).ready(function() {
       { data: "nombres", title: "Nombre"},
       { data: "apellidos", title: "Apellido"},
       { data: "fecha_ingreso", title: "Fecha Ingreso"},
-      { data: "estado", title: "Estado"},
+      { data: "estado", title: "Estado", 
+      render: function ( data, type, row, meta ) {
+        if(row.estado == 'A'){
+            return `<span class="badge badge-info"> Activo </span>`
+        } else {
+            return `<span class="badge badge-secondary"> Inactivo </span>`
+        }
+      }},
       { data: "sexo", title: "Sexo"},
       { data: null, title: "Opción",
       render: function (data, type, row, meta) {
-        return '<button type="button" onclick="funcionBuscar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarempleado"><span class="far fa-edit edit"></span></button>'+
-              '<button type="button" onclick="funcionBorrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        if(row.estado=='A'){
+          return '<button type="button" onclick="funcionBuscar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarempleado"><span class="far fa-edit edit"></span></button>'+
+          '<button type="button" onclick="funcionBorrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        } else {
+          return '<button type="button" onclick="funcionBuscar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarempleado"><span class="far fa-edit edit"></span></button>'
+        }
       }}
     ]
   });

@@ -16,14 +16,9 @@ formaLab.addInput('txt-nombre-laboratorio',true);
 formaLab.addInput('txt-direccion',true);
 formaLab.addInput('txt-telefono-lab',/^[1-9][0-9]{3}\-[0-9]{4}$/,true );
 
-
 formaLab.setButtonEnvio('guard-producto');
 formaLab.setButtonUpdate('act-lab');
 Forma.addTrigger(formaLab);
-
-
-
-
 
 $(document).ready(function() {
 
@@ -62,7 +57,7 @@ $(document).ready(function() {
           if(row.estado=='I'){
               return '<button type="button" onclick="funcionBuscarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
                     '<button type="button" disabled class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>'
-          }else{
+          } else {
               return '<button type="button" onclick="funcionBuscarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
                      '<button type="button" onclick="funcionBorrarLab('+ row.id_laboratorio +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>'
           }
