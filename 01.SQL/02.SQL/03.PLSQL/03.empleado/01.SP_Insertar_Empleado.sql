@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Insertar_Empleado$$
 CREATE PROCEDURE SP_Insertar_Empleado(
-  IN pI_primer_nombre VARCHAR(50),
+    IN pI_primer_nombre VARCHAR(50),
     IN pI_segundo_nombre VARCHAR(50),
     IN pI_primer_apellido VARCHAR(50),
     IN pI_segundo_apellido VARCHAR(50),
@@ -25,8 +25,8 @@ CREATE PROCEDURE SP_Insertar_Empleado(
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
   DECLARE error BOOLEAN;
-  DECLARE contador INTEGER;
-  DECLARE ultimoId INTEGER;
+  DECLARE contador INT;
+  DECLARE ultimoId INT;
 
 -- Inicializaciones
   SET AUTOCOMMIT=0;
@@ -135,7 +135,7 @@ CREATE PROCEDURE SP_Insertar_Empleado(
                          );
     COMMIT;
 
-    SET mensaje='Inserción exitosa';
+    SET mensaje=CONCAT('El emplado ',pI_primer_nombre,' ',pI_primer_apellido,' se ha registrado con exito!');
     SET error = FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

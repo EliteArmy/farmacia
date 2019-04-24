@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Actualizar_Empleado$$
-CREATE PROCEDURE `SP_Actualizar_Empleado`(
-    IN pI_id_empleado INTEGER(11),
+CREATE PROCEDURE SP_Actualizar_Empleado(
+    IN pI_id_empleado INT(11),
     IN pI_primer_nombre VARCHAR(50),
     IN pI_segundo_nombre VARCHAR(50),
     IN pI_primer_apellido VARCHAR(50),
@@ -28,9 +28,9 @@ SP:BEGIN
 
     -- Declaraciones
     DECLARE mensaje VARCHAR(1000);
-    DECLARE contador INTEGER(20);
+    DECLARE contador INT;
     DECLARE error BOOLEAN;
-    DECLARE idPersona INT(11);
+    DECLARE idPersona INT;
     DECLARE uEstado VARCHAR(1);
 
     -- Inicializaciones
@@ -202,7 +202,7 @@ SP:BEGIN
     COMMIT;
 
     
-    SET mensaje='Actualización exitosa';
+    SET mensaje=CONCAT('El empleado ',pI_primer_nombre,' ',pI_primer_apellido,' se actualizo con exito!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
