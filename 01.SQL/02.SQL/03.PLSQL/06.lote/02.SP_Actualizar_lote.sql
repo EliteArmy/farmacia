@@ -1,9 +1,9 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Actualizar_Lote$$
 CREATE PROCEDURE SP_Actualizar_Lote(
-        IN pI_id_lote INTEGER(11),
-        IN pI_id_producto INTEGER(11),
-        IN pI_id_empleado INTEGER(11),
+        IN pI_id_lote INT(11),
+        IN pI_id_producto INT(11),
+        IN pI_id_empleado INT(11),
         IN pI_lote VARCHAR(100),
         IN pI_precio_costo_unidad DOUBLE,
         IN pI_precio_venta_unidad DOUBLE,
@@ -21,12 +21,13 @@ CREATE PROCEDURE SP_Actualizar_Lote(
 -- Declaraciones
   DECLARE mensaje VARCHAR(1000);
   DECLARE error BOOLEAN;
-  DECLARE contador INTEGER;
+  DECLARE contador INT;
   DECLARE uEstado VARCHAR(1);
   DECLARE fechaFin DATE;
-  DECLARE diferencia INTEGER;
-  DECLARE ultimoIdMovimiento INTEGER;
+  DECLARE diferencia INT;
+  DECLARE ultimoIdMovimiento INT;
   DECLARE isDescuento BOOLEAN;
+  DECLARE nombreProducto VARCHAR(100);
 
   SET AUTOCOMMIT=0;
   START TRANSACTION;
@@ -231,7 +232,9 @@ CREATE PROCEDURE SP_Actualizar_Lote(
   END IF;
 
   COMMIT; 
-  SET mensaje= 'Actualización exitosa';
+
+  SELECT nombre INTO nombreProducto FROM producto WHERE id_producto=pI_id_producto;
+  SET mensaje =CONCAT('EL lote ',pI_lote,'(',nombreProducto,')',' se ha registrado con exito!');
   SET error=FALSE;
   SET pO_mensaje=mensaje;
   SET pO_error=error;

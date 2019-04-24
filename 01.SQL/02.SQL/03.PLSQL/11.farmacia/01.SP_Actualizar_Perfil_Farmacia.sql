@@ -209,7 +209,7 @@ SP:BEGIN
     COMMIT;
 
 
-    SET mensaje='Actualización exitosa';
+    SET mensaje=CONCAT('Los datos de la farmacia se actualizaron con exito!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

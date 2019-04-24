@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Actualizar_Descuento$$
 CREATE PROCEDURE SP_Actualizar_Descuento(
-   pI_id_descuento INTEGER(11),
+   pI_id_descuento INT(11),
    pI_descripcion VARCHAR(45),
    pI_porcentaje INTEGER(11),
    pI_estado VARCHAR(1),
@@ -121,7 +121,7 @@ CREATE PROCEDURE SP_Actualizar_Descuento(
          id_descuento=pI_id_descuento;
    COMMIT;
 
-   SET mensaje= 'Actualización exitosa';
+   SET mensaje= CONCAT('El descuento ',pI_descripcion,' se actualizó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

@@ -54,7 +54,7 @@ InsertarImpuesto:BEGIN
   (pI_descripcion, pI_porcentaje, 'A', CURDATE(), pI_fecha_fin);
   COMMIT;
 
-  SET mensaje = 'Inserción exitosa';
+  SET mensaje = CONCAT('El descuento ' , pI_descripcion , ' se ha registrado con exito!');
   SET error = FALSE;
   SELECT mensaje, error;
 

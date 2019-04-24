@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Eliminar_Descuento$$
 CREATE PROCEDURE SP_Eliminar_Descuento(
-   pI_id_descuento INTEGER(11),
+   pI_id_descuento INT(11),
 
    pO_mensaje VARCHAR(1000),
    pO_error BOOLEAN
@@ -12,6 +12,7 @@ SP:BEGIN
    DECLARE mensaje VARCHAR(1000);
    DECLARE error BOOLEAN;
    DECLARE contador INT;
+   DECLARE nombreDescuento VARCHAR(100);
 
    -- Inicializaciones
    SET AUTOCOMMIT=0;
@@ -49,7 +50,9 @@ SP:BEGIN
          id_descuento=pI_id_descuento;
    COMMIT;
 
-   SET mensaje= 'Eliminación Exitosa';
+   SELECT descripcion INTO nombreDescuento FROM descuento WHERE id_descuento=pI_id_descuento;
+
+   SET mensaje= CONCAT('El descuento ',nombreDescuento,' se eliminó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

@@ -24,6 +24,7 @@ CREATE PROCEDURE SP_Insertar_Lote(
   DECLARE ultimoIdMovimiento INTEGER;
   DECLARE fechaFin DATE;
   DECLARE isDescuento BOOLEAN;
+  DECLARE nombreProducto VARCHAR(100);
 
   SET AUTOCOMMIT=0;
   START TRANSACTION;
@@ -180,9 +181,10 @@ CREATE PROCEDURE SP_Insertar_Lote(
     INSERT INTO movimiento_producto(fecha,id_empleado,tipo_movimiento) VALUES (CURDATE(),pI_id_empleado,'A'); -- A-->Adquisicion.
     SET ultimoIdMovimiento=LAST_INSERT_ID();
     INSERT INTO detalle_movimiento (id_movimiento, cantidad, id_lote) VALUES (ultimoIdMovimiento, pI_existencia, ultimoIdLote);
-
     COMMIT;
-    SET mensaje = 'Inserción exitosa';
+
+    SELECT nombre FROM producto WHERE id_producto=pI_id_producto;
+    SET mensaje =CONCAT('EL lote ',pI_lote,'(',nombreProducto,')',' se ha registrado con exito!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;

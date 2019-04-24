@@ -1,8 +1,8 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Eliminar_Lote$$
 CREATE PROCEDURE SP_Eliminar_Lote(
-        IN pI_id_lote INTEGER(11),
-        IN pI_id_empleado INTEGER(11),
+        IN pI_id_lote INT(11),
+        IN pI_id_empleado INT(11),
   
         OUT pO_mensaje VARCHAR(1000),
         OUT pO_error BOOLEAN
@@ -11,10 +11,13 @@ CREATE PROCEDURE SP_Eliminar_Lote(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
-  DECLARE contador INTEGER;
+  DECLARE contador INT;
   DECLARE error BOOLEAN;
-  DECLARE ultimoIdMovimiento INTEGER;
+  DECLARE ultimoIdMovimiento INT;
   DECLARE uEstado VARCHAR(1);
+  DECLARE nombreLote VARCHAR(100);
+  DECLARE nombreProducto VARCHAR(100);
+
 -- Inicializaciones
   SET mensaje='';
   SET contador = 0;
@@ -78,8 +81,11 @@ CREATE PROCEDURE SP_Eliminar_Lote(
         
           COMMIT;
     END IF;
- 
-    SET mensaje= 'Eliminación exitosa';
+
+    SELECT lote INTO nombreLote FROM lote WHERE id_lote=pI_id_lote;
+    SELECT nombre INTO nombreProducto FROM producto WHERE id_producto IN (SELECT id_producto FROM lote WHERE id_lote=pI_id_lote);
+
+    SET mensaje= CONCAT('El lote ',nombreLote,'(' ,nombreProducto, ')',' se eliminó con exito!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
