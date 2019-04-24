@@ -1,7 +1,7 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS SP_Eliminar_Categoria$$
 CREATE PROCEDURE SP_Eliminar_Categoria(
-        IN pI_id_categoria INTEGER(11),
+        IN pI_id_categoria INT(11),
   
         OUT pO_mensaje VARCHAR(1000),
         OUT pO_error BOOLEAN
@@ -10,8 +10,10 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
   SP:BEGIN
 -- Declaraciones
   DECLARE mensaje VARCHAR(255);
-  DECLARE contador INTEGER;
+  DECLARE contador INT;
   DECLARE error BOOLEAN;
+  DECLARE nombreCategoria VARCHAR(100);
+
 -- Inicializaciones
   SET mensaje='';
   SET contador = 0;
@@ -61,16 +63,16 @@ CREATE PROCEDURE SP_Eliminar_Categoria(
        LEAVE SP;
    END IF;
 
-  UPDATE categoria 
+   UPDATE categoria 
       SET
           categoria.estado = "I"
       WHERE
           categoria.id_categoria= pI_id_categoria;
-   
-  
- 
      COMMIT;
-     SET mensaje= 'Eliminación exitosa';
+
+     SELECT categoria INTO nombreCategoria FROM categoria WHERE id_categoria=pI_id_categoria;
+     
+     SET mensaje= CONCAT('La categoria ',nombreCategoria,' se eliminó con exito!');
      SET error=FALSE;
      SET pO_mensaje=mensaje;
      SELECT mensaje,error;

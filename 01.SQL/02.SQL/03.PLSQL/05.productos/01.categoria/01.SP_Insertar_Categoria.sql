@@ -37,7 +37,7 @@ InsertarCategoria:BEGIN
   # SELECT LAST_INSERT_ID() INTO ultimoId;
   COMMIT;
 
-  SET mensaje = 'Inserción exitosa';
+  SET mensaje = CONCAT('La categoria ',pI_categoria, ' se ha registrado con exito!');
   SET error = FALSE;
   
   SELECT mensaje, error;

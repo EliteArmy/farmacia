@@ -84,7 +84,7 @@ SP:BEGIN
 
     UPDATE categoria_producto SET estado=uEstado WHERE id_categoria=pI_id_categoria;
     COMMIT;
-    SET mensaje= 'Actualización exitosa';
+    SET mensaje= CONCAT('La categoria ',pI_categoria,' se actualizó con exito!');
     SET error=FALSE;
     SET pO_mensaje=mensaje;
     SET pO_error=error;
