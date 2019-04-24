@@ -34,10 +34,10 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-11 well card">
         <div class="text-center">
-          <h4>Farmacia Esperanza</h4>
-          <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
-          <h4>RTN: 08011980123456</h4>
-          <h4>Registro de Empleados</h4>
+          <h4 id="info-propietario">Grupo Farmacias S. de R.L.</h4>
+          <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
+          <h4 id="info-direccion">Col. Villa Olímpica</h4>
+          <h4>Registro de Clientes</h4>
         </div>
 
         <div class="row mt-3 mb-3">
@@ -48,12 +48,6 @@
             </button>
           </div>
 
-          <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
-            </div>
-            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
-            </div>
-          </div> -->
         </div>
 
         <!-- Tabla de Clientes-->
@@ -187,7 +181,6 @@
               </select>
             </div>
             
-
           </div>
         </div>
 
@@ -211,7 +204,7 @@
       </div>
     </div>
   </div>
-  <!-- FIN Modal Empleado -->
+  <!-- FIN Modal Cliente -->
 
   <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/popper.min.js"></script>

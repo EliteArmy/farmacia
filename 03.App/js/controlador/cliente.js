@@ -36,53 +36,88 @@ Forma.addTrigger(formaCliente);
 
 $(document).ready(function() {
 
-    /* CRUD cliente: Read */
-    $('#table-info').DataTable({
-      pageLength: 10,
-      searching: true,
-      ordering: true,
-      paging: true,
-      responsive: true,
-      ajax: {
-        "async": true,
-        "crossDomain": true,
-        "url": "./services/cliente.php",
-        "method": "POST",
-        "dataType": "json",
-        "headers": {
-          "content-type": "application/x-www-form-urlencoded"
-        },
-        "data": {
-          "accion": "leer-cliente"
-        }
+  /* CRUD cliente: Read */
+  $('#table-info').DataTable({
+    pageLength: 10,
+    searching: true,
+    ordering: true,
+    paging: true,
+    responsive: true,
+    ajax: {
+      "async": true,
+      "crossDomain": true,
+      "url": "./services/cliente.php",
+      "method": "POST",
+      "dataType": "json",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
       },
-      language: {
-        oPaginate: {
-            sNext: '<i class="fas fa-forward"></i>',
-            sPrevious: '<i class="fas fa-backward"></i>'
+      "data": {
+        "accion": "leer-cliente"
+      }
+    },
+    language: {
+      oPaginate: {
+          sNext: '<i class="fas fa-forward"></i>',
+          sPrevious: '<i class="fas fa-backward"></i>'
+      }
+    },
+    columns: [
+      { data: "nombres", title: "Nombre"},
+      { data: "apellidos", title: "Apellido"},
+      { data: "correo_electronico", title: "Correo"},
+      { data: "fecha_registro", title: "Fecha Registro"},
+      { data: "estado", title: "Estado",
+      render: function ( data, type, row, meta ) {
+        if(row.estado == 'A'){
+            return `<span class="badge badge-info"> Activo </span>`
+        } else {
+            return `<span class="badge badge-secondary"> Inactivo </span>`
         }
-      },
-      columns: [
-        { data: "nombres", title: "Nombre"},
-        { data: "apellidos", title: "Apellido"},
-        { data: "correo_electronico", title: "Correo"},
-        { data: "fecha_registro", title: "Fecha Registro"},
-        { data: "estado", title: "Estado"},
-        { data: "sexo", title: "Sexo"},
-        { data: null, title: "Opción",
-        render: function (data, type, row, meta) {
-            if (row.estado=='I'){
-                return '<button type="button" disabled class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarcliente"><span class="far fa-edit edit"></span></button>'+
-                '<button type="button" disabled class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
-            }else{
-                return '<button type="button" disabled class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarcliente"><span class="far fa-edit edit"></span></button>'+
-                '<button type="button" onclick="funcionBorrar(\''+row.id_cliente+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
-            }
-        }}
-      ]
-    });
-  
+      }},
+      { data: "sexo", title: "Sexo"},
+      { data: null, title: "Opción",
+      render: function (data, type, row, meta) {
+          if (row.estado == 'I'){
+              return '<button type="button" disabled class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarcliente"><span class="far fa-edit edit"></span></button>'
+          } else {
+              return '<button type="button" disabled class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarcliente"><span class="far fa-edit edit"></span></button>'+
+              '<button type="button" onclick="funcionBorrar(\''+row.id_cliente+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+          }
+      }}
+    ]
   });
+
+  // Buscar los datos de la Farmacia
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/farmacia.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "mostrar-datos",
+      "id_farmacia": 1
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    //console.log(response.data);
+
+    $('#info-nombre_farmacia').html(response.data.nombre_farmacia);
+    $('#info-propietario').html(response.data.propietario);
+    $('#info-direccion').html(response.data.direccion);
+    $('#info-telefono-farmacia').html(response.data.telefono);
+    $('#info-correo-farmacia').html(response.data.correo_electronico);
+    $('#info-rtn-farmacia').html(response.data.rtn);
+    $("#info-cai-farmacia").html(response.data.cai);
+
+  });
+  
+});
 
   /* CRUD cliente: Delete */
 function funcionBorrar(nomb){
@@ -102,51 +137,45 @@ function funcionBorrar(nomb){
     }
   
     $.ajax(settings).done(function (response) {
-        $.confirm({
-         icon: 'fa fa-trash',
-         theme: 'modern',
-         closeIcon: true,
-         type: 'blue',
-         title:'Alerta!',
-         content:'¿Esta seguro de eliminar a ' + response.data.nombres + ' ' + response.data.apellidos + ' ?',
-         buttons:{
-           Eliminar:{
-              text:"Si, seguro!",
-              btnClass:"btn-blue",
-              action:function(){
-                var settings = {
-                  "async": true,
-                  "crossDomain": true,
-                  "url": "./services/cliente.php",
-                  "method": "POST",
-                  "dataType": "json",
-                  "headers": {
-                    "content-type": "application/x-www-form-urlencoded"
-                  },
-                  "data": {
-                    "accion": "eliminar-cliente",
-                    "id_cliente": nomb
-                  }
+      $.confirm({
+        icon: 'fa fa-trash',
+        theme: 'modern',
+        closeIcon: true,
+        type: 'orange',
+        title:'',
+        content:'¿Esta seguro de eliminar a ' + response.data.nombres + ' ' + response.data.apellidos + ' ?',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        buttons:{
+          Eliminar:{
+            text:"¡Si, seguro!",
+            btnClass:"btn-warning",
+            action:function(){
+              var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "./services/cliente.php",
+                "method": "POST",
+                "dataType": "json",
+                "headers": {
+                  "content-type": "application/x-www-form-urlencoded"
+                },
+                "data": {
+                  "accion": "eliminar-cliente",
+                  "id_cliente": nomb
                 }
-  
-                $.ajax(settings).done(function (response) {
-                  $.alert({
-                    title: response.data.mensaje,
-                    icon: 'fa fa-check',
-                    type: 'blue',
-                    content: '',
-                  });
-  
-                $('#table-info').DataTable().ajax.reload();
-                })
               }
-  
-           },
-           Cancelar:function(){
-  
-           }
-         }
-       })
+
+              $.ajax(settings).done(function (response) {
+                imprimirMensaje(response);
+              })
+            }
+          },
+          Cancelar:function(){
+          // --
+          }
+        }
+      })
     });
   }
 
@@ -215,26 +244,54 @@ $(".reset").click(function(){
 
 function imprimirMensaje(response){
   if (response.data.error == 0) {
-    console.log(response.data);
-    $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    limpiarFormulario()
-    $("#div-exito").html(response.data.mensaje);
-    $("#div-exito").removeClass("d-none");
+    //console.log(response.data);
 
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("");
-    });
+    // Se encarga de refrescar las tablas
+    $('#table-info').DataTable().ajax.reload(function (){
+      
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data.mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+
+    }); 
+    limpiarFormulario();
+
   } else {
-    console.log(response);
-    $("#div-error").html(response.data.mensaje);
-    $("#div-error").removeClass("d-none");
-
-    $("#div-error").hide(8000, function(){
-      $('#div-error').show();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html("");
+    //console.log(response.data);
+    // Mensajes Invalidos
+    $.alert({
+      title: '',
+      content: response.data.mensaje,
+      type: 'red',
+      typeAnimated: true,
+      icon: 'fas fa-exclamation-triangle',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+      theme: 'modern', // Acepta propiedades CSS
+      buttons: {
+        cerrar: {
+          text: 'Cerrar',
+          btnClass: 'btn-danger',
+          keys: ['enter', 'shift']
+        }
+      }
     });
   }
 }

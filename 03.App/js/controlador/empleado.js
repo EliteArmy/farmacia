@@ -94,6 +94,35 @@ $(document).ready(function() {
     ]
   });
 
+  // Buscar los datos de la Farmacia
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/farmacia.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "mostrar-datos",
+      "id_farmacia": 1
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    //console.log(response.data);
+
+    $('#info-nombre_farmacia').html(response.data.nombre_farmacia);
+    $('#info-propietario').html(response.data.propietario);
+    $('#info-direccion').html(response.data.direccion);
+    $('#info-telefono-farmacia').html(response.data.telefono);
+    $('#info-correo-farmacia').html(response.data.correo_electronico);
+    $('#info-rtn-farmacia').html(response.data.rtn);
+    $("#info-cai-farmacia").html(response.data.cai);
+
+  });
+
 });
 
 /* CRUD Empleado: Create */
