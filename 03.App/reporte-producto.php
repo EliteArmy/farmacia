@@ -42,13 +42,12 @@
           <h4>Reporte de ventas por productos</h4>
         </div>
 
-
         <div class="well card">
           <div class="row">
             <div class="col-12 col-md-12">
               <h4>Reporte de Ventas Hoy</h4>
               <div class="row">
-                <div class="col-11">
+                <div class="col-12">
                   <canvas id="chart1"></canvas>
                 </div>
               </div>
@@ -61,7 +60,7 @@
             <div class="col-12 col-md-12">
               <h4>Reporte de Ventas: Semana</h4>
               <div class="row">
-                <div class="col-11">
+                <div class="col-12">
                   <canvas id="chart2"></canvas>
                 </div>
               </div>
@@ -74,7 +73,7 @@
             <div class="col-12 col-md-12">
               <h4>Reporte de Ventas Mensual</h4>
               <div class="row">
-                <div class="col-11">
+                <div class="col-12">
                   <canvas id="chart3"></canvas>
                 </div>
               </div>
@@ -87,7 +86,7 @@
             <div class="col-12 col-md-12">
               <h4>Reporte de Ventas este año</h4>
               <div class="row">
-                <div class="col-11">
+                <div class="col-12">
                   <canvas id="chart4"></canvas>
                 </div>
               </div>

@@ -112,7 +112,7 @@
           <div class="col-12 col-sm-6 col-lg-4 texto" >
             <label for="identidad-cliente">Buscar Cliente Registrado:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="identidad-cliente" value="0801199707186" placeholder="# Identidad del Cliente">
+              <input type="number" class="form-control" id="identidad-cliente" value="0801199707186" placeholder="# Identidad del Cliente">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button" onclick="buscarCliente()">Buscar</button>
               </div>
@@ -147,13 +147,6 @@
           <div class="col-12 col-sm-6 col-md-6 col-lg-6 texto">
             <label class="h5 font-weight-bold" for="div-total">Total:</label>
             <div class="h5 font-weight-bold d-inline" id="div-total">
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
-            </div>
-            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
             </div>
           </div>
 

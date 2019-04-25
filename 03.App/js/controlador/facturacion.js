@@ -149,7 +149,7 @@ function buscarCliente(){
   $.ajax(settings).done(function (response) {
     console.log(response.data);
 
-    if(response.data){
+    if(response.data.error == 0){
       console.log(response.data);
       $("#cliente").html(`Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}`);
       $("#id-cliente").val(response.data.id_persona);
@@ -193,7 +193,6 @@ function buscarCliente(){
         }
       });
     }
-
   });
 }
 
@@ -425,6 +424,9 @@ function insertarFactura(){
   //console.log("Empleado: " + $("#id-empleado").val());
   //console.log("Forma Pago: " + $('#slc-pago').val());
 
+  //console.log("Cliente: " + $("#id-cliente").val());
+  //console.log("RTN: " + $('#RTN').val());
+
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -436,10 +438,13 @@ function insertarFactura(){
     },
     "data": {
       "accion": "insertar-factura",
+
       "id_empleado": $("#id-empleado").val(),
       "id_cliente": $("#id-cliente").val(),
       "id_farmacia": "",
-      "id_forma_pago": $('#slc-pago').val()
+      "id_forma_pago": $('#slc-pago').val(),
+      "nombreCliente": $("#cliente-no-registrado").val(),
+      "rtnCliente": $("#RTN").val()
     }
   }
 

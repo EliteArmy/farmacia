@@ -82,11 +82,42 @@ $(document).ready(function() {
     ]
   });
 
+    // Buscar los datos de la Farmacia
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "./services/farmacia.php",
+      "method": "POST",
+      "dataType": "json",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "data": {
+        "accion": "mostrar-datos",
+        "id_farmacia": 1
+      }
+    }
+  
+    $.ajax(settings).done(function (response) {
+      console.log(response.data);
+  
+      $('#info-nombre_farmacia').html(response.data.nombre_farmacia);
+      $('#info-propietario').html(response.data.propietario);
+      $('#info-direccion').html(response.data.direccion);
+      $('#info-telefono-farmacia').html(response.data.telefono);
+      $('#info-correo-farmacia').html(response.data.correo_electronico);
+      $('#info-rtn-farmacia').html(response.data.rtn);
+      $("#info-cai-farmacia").html(response.data.cai);
+      $('#info-fecha-emision').html(response.data.fecha_maxima_emision);
+      $('#info-rango-inicial').html(response.data.rango_autorizado_inicial);
+      $('#info-rango-final').html(response.data.rango_autorizado_final);
+    });
+
 });
 
 // ======= Buscar un Producto =======
 function BuscarProducto(){
-  console.log("Codigo: " + $("#codigo-producto").val());
+  //console.log("Codigo: " + $("#codigo-producto").val());
   var codigoBarra = $("#codigo-producto").val();
 
   var settings = {
@@ -113,13 +144,24 @@ function BuscarProducto(){
       $('#table-info-producto').DataTable().rows.add(response.data);
       $('#table-info-producto').DataTable().draw();
     } else {
-      $("#div-error").html("No se encontro un Producto");
-      $("#div-error").removeClass("d-none");
-  
-      $("#div-error").fadeOut(3000, function(){
-        $('#div-error').addClass("d-none");
-        $("#div-error").fadeIn();
-        $("#div-error").html("");
+      // Mensajes Error
+      $.alert({
+        title: '',
+        content: 'No se encontro un Producto',
+        type: 'red',
+        typeAnimated: true,
+        icon: 'fas fa-exclamation-triangle',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-danger',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     }
 
@@ -167,17 +209,27 @@ function funcionAgregarProducto(id_lote){
     } else {
       //$("#div-sub-total").html("");
       //$("#div-total").html("");
-      
-      $("#div-error").html(response.data[0].mensaje);
-      $("#div-error").removeClass("d-none");
-  
-      $("#div-error").fadeOut(5000, function(){
-        $('#div-error').addClass("d-none");
-        $('#div-error').fadeIn();
-        $("#div-error").html("");
+
+      // Mensajes Error
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'red',
+        typeAnimated: true,
+        icon: 'fas fa-exclamation-triangle',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-danger',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     }
-
   });
 }
 
@@ -209,41 +261,74 @@ function borrarProducto(id_temporal){
       $("#div-sub-total").html(response.data[0].subTotalCotizacion);
       $("#div-total").html(response.data[0].totalCotizacion);
 
-      $("#div-exito").html(response.data[0].mensaje);
-      $("#div-exito").removeClass("d-none");
-  
-      $("#div-exito").fadeOut(5000, function(){
-        $('#div-exito').addClass("d-none");
-        $("#div-exito").fadeIn();
-        $("#div-exito").html("");
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     } else if (response.data[0].error == 2) {
       // Caso especifico (error == 2) donde la tabla temporal se quede sin datos
       $('#table-info').DataTable().clear();
       $('#table-info').DataTable().draw();
 
-      $("#div-sub-total").html("");
-      $("#div-total").html("");
+      $("#div-sub-total").html("0.0");
+      $("#div-total").html("0.0");
 
-      $("#div-error").html("No hay datos");
-      $("#div-error").removeClass("d-none");
-  
-      $("#div-error").fadeOut(5000, function(){
-        $('#div-error').fadeIn();
-        $('#div-error').addClass("d-none");
-        $("#div-error").html("");
+      // Mensajes Error
+      $.alert({
+        title: '',
+        content: 'No hay Datos',
+        type: 'red',
+        typeAnimated: true,
+        icon: 'fas fa-exclamation-triangle',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|2000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-danger',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     } else {
-      $("#div-sub-total").html("");
-      $("#div-total").html("");
+      $("#div-sub-total").html("0.0");
+      $("#div-total").html("0.0");
 
-      $("#div-error").html(response.data[0].mensaje);
-      $("#div-error").removeClass("d-none");
-  
-      $("#div-error").fadeOut(5000, function(){
-      $('#div-error').fadeIn();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html(""); 
+      // Mensajes Error
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'red',
+        typeAnimated: true,
+        icon: 'fas fa-exclamation-triangle',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|2000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-danger',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     }
   });
@@ -263,49 +348,69 @@ function insertarCotizacion(){
     "data": {
       "accion": "insertar-cotizacion",
       "id_empleado": $("#id-empleado").val(),
-      "id_cliente": "",
+      "id_cliente": $("#id-cliente").val(),
       "id_farmacia": "",
       "id_forma_pago": "",
   
       "nombre_cliente": $("#txt_nombre").val(),
       "email": $("#txt-email").val(),
-      
-     
-      }
+    }
   }
 
- console.log($("#txt-email").val())
   $.ajax(settings).done(function (response) {
-   
-
+    //console.log(response.data);
+    
     if (response.data[0].error == 0) {
+      
       // Se Limpia la tabla
-  
       $('#table-info').DataTable().clear();
       $('#table-info').DataTable().draw();
   
-      $("#div-sub-total").html("");
-      $("#div-total").html("");
+      $("#div-sub-total").html("0.0");
+      $("#div-total").html("0.0");
 
-      $("#div-exito").html(response.data[0].mensaje);
-      $("#div-exito").removeClass("d-none");
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
   
       // Se encarga de abrir el pdf en una nueva ventana
       window.open(response.pdf, '_blank');
 
-      $("#div-exito").fadeOut(8000, function(){
-        $("#div-exito").fadeIn();
-        $('#div-exito').addClass("d-none");
-        $("#div-exito").html("");
-      });
     } else {
-      $("#div-error").html(response.data[0].mensaje);
-      $("#div-error").removeClass("d-none");
-  
-      $("#div-error").fadeOut(8000, function(){
-        $('#div-error').addClass("d-none");
-        $('#div-error').fadeIn();
-        $("#div-error").html("");
+      // Mensajes Error
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'red',
+        typeAnimated: true,
+        icon: 'fas fa-exclamation-triangle',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-danger',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     }
 
@@ -338,29 +443,51 @@ function cancelarCotizacion(){
       $('#table-info').DataTable().clear();
       $('#table-info').DataTable().draw();
   
-      $("#div-sub-total").html("");
-      $("#div-total").html("");
-
-      $("#div-exito").html(response.data[0].mensaje);
-      $("#div-exito").removeClass("d-none");
+      $("#div-sub-total").html("0.0");
+      $("#div-total").html("0.0");
 
       $("#codigo-producto").val('');
       $("#codigo-producto").focus();
 
-      $("#div-exito").fadeOut(5000, function(){
-        $('#div-exito').addClass("d-none");
-        $("#div-exito").fadeIn();
-        $("#div-exito").html("");
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
       });
 
     } else {      
-      $("#div-error").html(response.data[0].mensaje);
-      $("#div-error").removeClass("d-none");
-  
-      $("#div-error").fadeOut(5000, function(){
-        $('#div-error').addClass("d-none");
-        $('#div-error').fadeIn();
-        $("#div-error").html("");
+      // Mensajes Error
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'red',
+        typeAnimated: true,
+        icon: 'fas fa-exclamation-triangle',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-danger',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     }
 

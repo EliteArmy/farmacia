@@ -31,24 +31,20 @@
   </div>
 
   <!-- Contenido -->
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-11 well card">
-        <div class="text-center">
-          <h4>Farmacia Esperanza</h4>
-          <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
-          <h4>RTN: 08011980123456</h4>
+      <div class="col-12 col-md-11">
+        <div class="text-center well card">
+          <h4 id="info-propietario">Grupo Farmacias S. de R.L.</h4>
+          <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
+          <h4 id="info-direccion">Col. Villa Olímpica</h4>
           <hr>
           <h4>Reporte de ventas por empleados</h4>
-          <hr>
         </div>
-      </div>
-    </div>
 
-      <div class="row">
-        <div class="col-12 col-lg-12">
-          <div class="well card">
-            <div class="col-12 col-md-12 col-lg-12">
+        <div class="well card">
+          <div class="row">
+            <div class="col-12 col-md-12">
               <h4>Reporte de Ventas Hoy</h4>
               <div class="row">
                 <div class="col-lg-12">
@@ -56,9 +52,12 @@
                 </div>
               </div>
             </div>
-            </div>
-            <div class="well card">
-            <div class="col-12 col-md-12 col-lg-12">
+          </div>
+        </div>
+
+        <div class="well card">
+          <div class="row">
+            <div class="col-12 col-md-12">
               <h4>Reporte de Ventas: Semana</h4>
               <div class="row">
                 <div class="col-lg-12">
@@ -68,9 +67,10 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-lg-12">
-          <div class="well card">
-            <div class="col-12 col-md-12 col-lg-12">
+
+        <div class="well card">
+          <div class="row">
+            <div class="col-12 col-md-12">
               <h4>Reporte de Ventas Mensual</h4>
               <div class="row">
                 <div class="col-lg-12">
@@ -78,9 +78,12 @@
                 </div>
               </div>
             </div>
-            </div>
-            <div class="well card">
-            <div class="col-12 col-md-12 col-lg-12">
+          </div>
+        </div>
+            
+        <div class="well card">
+          <div class="row">
+            <div class="col-12 col-md-12">
               <h4>Reporte de Ventas este año</h4>
               <div class="row">
                 <div class="col-lg-12">
@@ -90,7 +93,8 @@
             </div>
           </div>
         </div>
-      </div>
+
+    </div>
   </div>
   <!-- FIN Contenido -->
 

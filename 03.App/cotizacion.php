@@ -14,6 +14,7 @@
 
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/jquery-confirm//css/jquery-confirm.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>  
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
@@ -33,12 +34,10 @@
     
     <div class="row justify-content-center">
       <div class="col-12 col-md-11 well card">
-        <div id="titulo-factura" class="text-center">
-          <h4>Farmacia Esperanza</h4>
-          <h4>Col. Villa Olímpica</h4>
-          <h4>Tegucigalpa, M.D.C, Honduras</h4>
-          <h4>RTN: 08011980123456</h4>
-         
+        <div id="titulo-factura" class="text-center"><h4 id="info-propietario">Grupo Farmacias S. de R.L.</h4>
+          <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
+          <h4 id="info-direccion">Col. Villa Olímpica</h4>
+          <h4>RTN: <div id="info-rtn-farmacia" class="d-inline-block">08011970123456</div></h4>
         </div>
         
         <div class="mt-2">
@@ -56,29 +55,19 @@
         <div class="row mt-2 mb-1" id="content">
 
           <div class="col-12 col-sm-6 col-lg-4 texto">
-            <label for="txt-nombre">Nombre:</label>
+            <label for="txt-nombre">Nombre del Cliente:</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="txt-nombre" value="Cliente" 
-              <div class="input-group-append">
-              <!-- Button trigger para el modal -->
-              <!--data-toggle="modal"-->
-             
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-4 texto">
-            <label for="txt-email">Correo Electrico:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="txt-email" placeholder="alguien@correo.com" 
-              <div class="input-group-append">
-              <!-- Button trigger para el modal -->
-              <!--data-toggle="modal"-->
-             
+              <input type="text" class="form-control" id="txt-nombre" value="" placeholder="Nombre del Cliente">
             </div>
           </div>
 
-     
-       
-          
+          <div class="col-12 col-sm-6 col-lg-4 texto">
+            <label for="txt-email">Correo Electrico:</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="txt-email" placeholder="correo@gmail.com">
+            </div>
+          </div>
+
           <div class="col-12 col-sm-6 col-lg-4 texto">
             <label for="codigo-producto">Producto:</label>
             <div class="input-group mb-3">
@@ -126,13 +115,6 @@
             </div>
           </div>
 
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
-            </div>
-            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
-            </div>
-          </div>
-
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
             <table id="table-info" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->
@@ -141,11 +123,11 @@
 
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
             <div id="pie-factura" class="text-center">
-              <h4>Gracias por su visita</h4>
-              <h4>Correo: farmacia_esperanza@gmail.com<</h4>
-              <h4>Teléfono: (+504) 2222-0000</h4>
-              <h4>Original: Cliente</h4>
-              <h4>--- Cuenta Cerrada ---</h4>
+              <h4 id="">¡Gracias por su visita!</h4>
+              <h4 >Correo: <div id="info-correo-farmacia" class="d-inline-block">farmacia_esperanza@gmail.com</div></h4>
+              <h4 >Teléfono: <div id="info-telefono-farmacia" class="d-inline-block">(+504) 2222-0000</div></h4>
+              <h4 id="">Original: Cliente</h4>
+              <h4 id="">--- Cuenta Cerrada ---</h4>
             </div>
           </div>
         </div>
@@ -187,6 +169,7 @@
   <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
   
+  <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
 

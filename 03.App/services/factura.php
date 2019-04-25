@@ -68,8 +68,9 @@ if(isset($_POST['accion'])){
       $idEmpleado = ValidarPost::unsigned('id_empleado');
       $idCliente = ValidarPost::unsigned('id_cliente');
       $idFormaPago = ValidarPost::unsigned('id_forma_pago');
-      $nombreCliente = ValidarPost::varchar('nombre_cliente');
-      $rtnCliente = ValidarPost::varchar('rtn_cliente');
+      
+      $nombreCliente = ValidarPost::varchar('nombreCliente');
+      $rtnCliente = ValidarPost::varchar('rtnCliente');
 
       $fact = new Factura();
 
@@ -88,6 +89,7 @@ if(isset($_POST['accion'])){
         $idFactura = $res['data'][0]['idFactura'];
         $nombreEmpleado = $res['data'][0]['nombreEmpleado'];
         $nombreCliente = $res['data'][0]['nombreCliente'];
+        $rtnCliente = $res['data'][0]['rtnCliente'];
         $formaPago = $res['data'][0]['formaPago'];
         $fechaHora = $res['data'][0]['fechaHora'];
         $nombreFarmacia = $res['data'][0]['nombre_farmacia']; 
@@ -103,25 +105,25 @@ if(isset($_POST['accion'])){
         $rangoAutorizadoFinal = $res['data'][0]['rango_autorizado_final']; 
         $rangoAutorizadoActual = $res['data'][0]['rango_autorizado_actual'];
 
-
-        $res['pdf'] = $fact->imprimirPDF($con2,
-                                         $idFactura, 
-                                         $nombreEmpleado, 
-                                         $nombreCliente, 
-                                         $formaPago,
-                                         $fechaHora,
-                                         $nombreFarmacia, 
-                                         $propietario, 
-                                         $rtn,
-                                         $direccion, 
-                                         $correoElectronico,
-                                         $fundada,
-                                         $telefono,
-                                         $cai,
-                                         $fechaMaximaEmision,
-                                         $rangoAutorizadoInicial,
-                                         $rangoAutorizadoFinal,
-                                         $rangoAutorizadoActual
+        $res['pdf'] = $fact->imprimirPDF( $con2,
+                                          $idFactura, 
+                                          $nombreEmpleado, 
+                                          $nombreCliente,
+                                          $rtnCliente,
+                                          $formaPago,
+                                          $fechaHora,
+                                          $nombreFarmacia, 
+                                          $propietario, 
+                                          $rtn,
+                                          $direccion, 
+                                          $correoElectronico,
+                                          $fundada,
+                                          $telefono,
+                                          $cai,
+                                          $fechaMaximaEmision,
+                                          $rangoAutorizadoInicial,
+                                          $rangoAutorizadoFinal,
+                                          $rangoAutorizadoActual
                                         );
       }
    
@@ -156,12 +158,18 @@ if(isset($_POST['accion'])){
 
     case 'buscar-cliente':
       $identidad = ValidarPost::unsigned('numero_identidad');
-
-      $fact = new Factura();
-      $fact->setIdCliente($identidad);
-
-      $res['data'] = $fact->leerClientePorId($conexion);
-      echo json_encode($res);
+      
+      if (preg_match("/^(0[1-9]|1[0-8])(0[1-9]|1[0-9]|2[1-8])(19|2[0-9])[0-9]{2}[0-9]{5}$/", $identidad, $match)) {
+        $fact = new Factura();
+        $fact->setIdCliente($identidad);
+  
+        $res['data'] = $fact->leerClientePorId($conexion);
+        echo json_encode($res);
+      } else {
+        $res["data"]['mensaje']='Accion no especificada';
+        $res["data"]['resultado']=false;
+        echo json_encode($res);
+      }
     break;
 
     case 'buscar-producto-lote':

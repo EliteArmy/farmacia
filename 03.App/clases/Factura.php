@@ -252,6 +252,7 @@ class Factura {
 
   public function insertarFactura($conexion){
     $sql = "CALL SP_Insertar_Factura(%s, %s, %s, %s, '%s', '%s', @mensaje, @error)";
+  
     $valores = [
 				$this->getIdEmpleado(),
 				$this->getIdCliente(),
@@ -276,7 +277,8 @@ class Factura {
 	public function imprimirPDF($conexion,
 															$idFactura, 
 															$nombreEmpleado, 
-															$nombreCliente, 
+                              $nombreCliente,
+                              $rtnCliente, 
 															$formaPago,
 															$fechaHora,
 															$nombreFarmacia, 
@@ -293,6 +295,7 @@ class Factura {
 															$rangoAutorizadoActual){
     $sql = 'CALL SP_Obtener_Detalle_Factura(%s, @mensaje, @error)';
     $valores = [$this->getIdEmpleado()];
+
 		// $resultado = $conexion->getResultadoQuery($sql, $valores);
     $rows = $conexion->query($sql, $valores);
 
@@ -305,7 +308,7 @@ class Factura {
     // Date and time after subtraction
 		// $datetime = date("d-m-Y H:i:s", $time);
 
-		$date = date('d-m-Y',strtotime($fechaHora));
+		$date = date('d-m-Y', strtotime($fechaHora));
 		$datetime = date("d-m-Y H:i:s", strtotime($fechaHora));
 
     include_once('../plugin/fpdf/fpdf.php');
@@ -365,6 +368,15 @@ class Factura {
 
     $pdf->SetFont('Arial', '', 12);
     $pdf->Cell(52, 5, $formaPago, 0, 1, 'L');
+
+    $pdf->SetX(18, 48);
+
+    // ======= Imprime el RTN del cliente en la factura
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(12, 5, "RTN: ", 0, 0, 'L');
+
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->Cell(42, 5, $rtnCliente, 0, 1, 'L');
 
     // ======= Cuerpo del PDF =======
     $pdf->SetFont('Arial','B', 16);
