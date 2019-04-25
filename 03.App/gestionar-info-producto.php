@@ -34,9 +34,9 @@
   <!-- Contenido -->
   <div class="container">
     <div class="text-center well card">
-      <h4>Farmacia Esperanza</h4>
-      <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
-      <h4>RTN: 08011980123456</h4>
+      <h4 id="info-propietario">Grupo Farmacias S. de R.L.</h4>
+      <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
+      <h4 id="info-direccion">Col. Villa Olímpica</h4>
       <h4>Gestión de Productos</h4>
     </div>
   

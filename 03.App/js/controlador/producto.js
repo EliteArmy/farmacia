@@ -24,7 +24,7 @@ formaProducto.addInput('slc-tipo');
 formaProducto.setButtonEnvio('btn-guard-producto');
 formaProducto.setButtonUpdate('actualizar-producto');
 
-formaProducto.addTrigger(formaProducto);
+Forma.addTrigger(formaProducto);
 
 $(document).ready(function() {
 
