@@ -147,29 +147,53 @@ function buscarCliente(){
   }
 
   $.ajax(settings).done(function (response) {
-    //console.log(response.data);
-    $("#cliente").html(`Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}`);
-    $("#id-cliente").val(response.data.id_persona);
+    console.log(response.data);
 
-    // Mensajes Validos
-    $.alert({
-      title: '',
-      content: `Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}, encontrado.`,
-      type: 'green',
-      typeAnimated: true,
-      icon: 'fas fa-check',
-      closeIcon: true,
-      closeIconClass: 'fas fa-times',
-      autoClose: 'cerrar|2000', // Tiempo para cerrar el mensaje
-      theme: 'modern', // Acepta propiedades CSS
-      buttons: {
-        cerrar: {
-          text: 'Cerrar',
-          btnClass: 'btn-success',
-          keys: ['enter', 'shift']
+    if(response.data){
+      console.log(response.data);
+      $("#cliente").html(`Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}`);
+      $("#id-cliente").val(response.data.id_persona);
+  
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: `Cliente: ${response.data.primer_nombre} ${response.data.primer_apellido}, encontrado.`,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|2000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
         }
-      }
-    });
+      });
+    } else {
+      $.alert({
+        title: '',
+        content: 'No se encontró ningún cliente',
+        type: 'red',
+        typeAnimated: true,
+        icon: 'fas fa-exclamation-triangle',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-danger',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+    }
+
   });
 }
 
@@ -499,7 +523,7 @@ function cancelarFactura(){
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    //console.log(response);
 
     if (response.data[0].error == 0) {
       // Se Limpia la tabla
