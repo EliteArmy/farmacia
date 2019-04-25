@@ -40,12 +40,6 @@
         <input type="hidden" id = "id_empleado" value="<?php echo $_SESSION['id_empleado']; ?>">
 
         <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
-            </div>
-            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
-            </div>
-          </div>
 
           <div class="col-12 col-md-6 col-lg-6">
             <table class="table">

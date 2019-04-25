@@ -83,23 +83,48 @@ $("#actualizar-farmacia").click(function(){
 
   $.ajax(settings).done(function (response) {
     if (response.data[0].error == '0') {
-      $("#div-exito").html(response.data[0].mensaje);
-      $("#div-exito").removeClass('d-none');
       $('#editar-perfil').modal('hide');
       mostrarDatos();
 
-      $("#div-exito").hide(5000, function(){
-        $("#div-exito").addClass("d-none");
-        $("#div-exito").show();
-        $("#div-exito").html("");
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     } else {
-      $("#div-error").html(response.data[0].mensaje);
-      $("#div-error").removeClass('d-none');
-      $("#div-error").hide(5000, function(){
-        $('#div-error').addClass("d-none");
-        $("#div-error").show();
-        $("#div-error").html("");
+
+      // Mensajes Error
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'red',
+        typeAnimated: true,
+        icon: 'fas fa-exclamation-triangle',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-danger',
+            keys: ['enter', 'shift']
+          }
+        }
       });
     }
   });
