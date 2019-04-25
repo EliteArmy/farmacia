@@ -347,12 +347,13 @@ function insertarCotizacion(){
     },
     "data": {
       "accion": "insertar-cotizacion",
+     
       "id_empleado": $("#id-empleado").val(),
       "id_cliente": $("#id-cliente").val(),
       "id_farmacia": "",
       "id_forma_pago": "",
   
-      "nombre_cliente": $("#txt_nombre").val(),
+      "nombre_cliente": $("#txt-nombre").val(),
       "email": $("#txt-email").val(),
     }
   }
@@ -413,7 +414,6 @@ function insertarCotizacion(){
         }
       });
     }
-
   });
 }
 

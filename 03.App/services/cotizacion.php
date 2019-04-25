@@ -8,7 +8,7 @@ if($_SERVER['SERVER_NAME'] != 'farma'){
   include_once('../../Mail.php');
 }
 
- //Clases Usadas
+//Clases Usadas
 if(isset($_POST['accion'])){
 
   $conexion = new Conexion();
@@ -42,62 +42,60 @@ if(isset($_POST['accion'])){
 
 
     case 'insertar-cotizacion':
-      // header('Content-type: application/force-download');
+      $con1 = new Conexion();
+      $con2 = new Conexion();
+      
+      $idEmpleado = ValidarPost::unsigned('id_empleado');
+      //$idCliente = ValidarPost::unsigned('id_cliente');
+      $nombreCliente = ValidarPost::varchar('nombre_cliente');
+      $email = ValidarPost::varchar('email');
+      
+      $cot = new Cotizacion();
 
-    //if(isset($_POST['email'])){
-        $con1 = new Conexion();
-        $con2 = new Conexion();
-        $idEmpleado = ValidarPost::unsigned('id_empleado');
-        $email = ValidarPost::varchar('email');
-       // $nombre = ValidarPost::varchar('nombre_cliente');
-        $cot = new Cotizacion();
-  
-        $cot->setIdEmpleado($idEmpleado);
-        $cot->setIdCliente('');
-        $cot->setIdFarmacia('');
-  
-        $res['data'] = $cot->insertarCotizacion($con1);
-  
-        if($res['data'][0]['error']==0){
-          $idCotizacion = $res['data'][0]['idCotizacion'];
-          $nombreEmpleado = $res['data'][0]['nombreEmpleado'];
-          $nombreCliente = $res['data'][0]['nombreCliente'];
-          $fechaHora = $res['data'][0]['fechaHora'];
-          $nombreFarmacia = $res['data'][0]['nombre_farmacia']; 
-          $propietario = $res['data'][0]['propietario'];
-          $rtn = $res['data'][0]['rtn'];
-          $direccion = $res['data'][0]['direccion']; 
-          $correoElectronico = $res['data'][0]['correo_electronico']; 
-          $telefono = $res['data'][0]['telefono'];
-          $res['pdf'] = $cot->imprimirPDF($con2, 
-                                          $idCotizacion, 
-                                          $nombreEmpleado, 
-                                          $nombreCliente, 
-                                          $fechaHora,
-                                          $nombreFarmacia, 
-                                          $propietario, 
-                                          $rtn,
-                                          $direccion, 
-                                          $correoElectronico,
-                                          $telefono
-                                        );
+      $cot->setIdEmpleado($idEmpleado);
+      $cot->setIdCliente('');
+      $cot->setIdFarmacia('');
 
-          //Si no hay error al generar le pdf, enviar correo
-          $correo = new Mail();
-          $correo->setDireccion($email);
-          $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
-          $correo->setCuerpo('Saludos Estimado(a), Adjuntamos Cotizaciones.');        
-          $correo->setAdjunto('../'.$res['pdf']);    
-          $correo->enviar();
+      $res['data'] = $cot->insertarCotizacion($con1);
 
-        }
-   
-    
-        $con1->cerrar();
-        $con2->cerrar();
-        $con1 = null;
-        $con2 = null;
-        echo json_encode($res);
+      if($res['data'][0]['error']==0){
+        $idCotizacion = $res['data'][0]['idCotizacion'];
+        $nombreEmpleado = $res['data'][0]['nombreEmpleado'];
+        $nombreCliente = $res['data'][0]['nombreCliente'];
+        $fechaHora = $res['data'][0]['fechaHora'];
+        $nombreFarmacia = $res['data'][0]['nombre_farmacia']; 
+        $propietario = $res['data'][0]['propietario'];
+        $rtn = $res['data'][0]['rtn'];
+        $direccion = $res['data'][0]['direccion']; 
+        $correoElectronico = $res['data'][0]['correo_electronico']; 
+        $telefono = $res['data'][0]['telefono'];
+        $res['pdf'] = $cot->imprimirPDF($con2, 
+                                        $idCotizacion, 
+                                        $nombreEmpleado, 
+                                        $nombreCliente, 
+                                        $fechaHora,
+                                        $nombreFarmacia, 
+                                        $propietario, 
+                                        $rtn,
+                                        $direccion, 
+                                        $correoElectronico,
+                                        $telefono
+                                      );
+
+        //Si no hay error al generar le pdf, enviar correo
+        $correo = new Mail();
+        $correo->setDireccion($email);
+        $correo->setAsunto('Farmacia Esperanza :: Cotizaciones');
+        $correo->setCuerpo('Saludos Estimado(a), Adjuntamos Cotizaciones.');        
+        $correo->setAdjunto('../'.$res['pdf']);    
+        $correo->enviar();
+      }
+  
+      $con1->cerrar();
+      $con2->cerrar();
+      $con1 = null;
+      $con2 = null;
+      echo json_encode($res);
         
     break;
 

@@ -61,7 +61,6 @@ if(isset($_POST['accion'])){
     break;
 
     case 'insertar-factura':
-      // header('Content-type: application/force-download');
       $con1 = new Conexion();
       $con2 = new Conexion();
       
