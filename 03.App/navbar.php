@@ -1,3 +1,7 @@
+<?php 
+
+
+ ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -158,9 +162,9 @@
             <a class="dropdown-item" href="ver-perfil.php">Perfil</a>
             <p class="dropdown-header">Información de Farmacia</p>
             <a class="dropdown-item" href="editar-farmacia.php">Configuración</a>
-            <p class="dropdown-header">Ayuda</p>
+            <!-- <p class="dropdown-header">Ayuda</p>
             <a class="dropdown-item" href="#">Manual de Usuario</a>
-            <a class="dropdown-item" href="#">Acerca de</a>
+            <a class="dropdown-item" href="#">Acerca de</a> -->
             <a class="dropdown-item text-danger" href="cerrar_session.php">Cerrar sesion</a>
           </div>
         </li>

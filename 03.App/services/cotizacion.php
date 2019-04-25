@@ -3,7 +3,11 @@
 include_once('../clases/Utils.php'); # ValidarPOST
 include_once('../database/Conexion.php');
 include_once('../clases/Cotizacion.php');
-include_once('../../Mail.php');
+
+if($_SERVER['SERVER_NAME'] != 'farma'){
+  include_once('../../Mail.php');
+}
+
  //Clases Usadas
 if(isset($_POST['accion'])){
 

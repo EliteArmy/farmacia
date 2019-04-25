@@ -87,7 +87,7 @@
 
             <div class="form-group col-12 col-12 col-sm-6 col-md-6">
               <div class="row">
-                <img src="" alt="Foto" class="img rounded foto-empleado mx-auto d-block" align="middle">
+                <img src = './img/img360x360_1b969f.png' alt="Foto" class="img rounded foto-empleado mx-auto d-block" align="middle">
               </div>
             </div>
 
