@@ -18,45 +18,75 @@ var chart4 = document.getElementById("chart4").getContext('2d');
 
 // Año
 $(document).ready(function(){
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "./services/reporte.php",
-      "dataType": "JSON",
-      "method": "POST",
-      "headers": {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "accion": "ventas-anio"
-      }
-    };
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/reporte.php",
+    "dataType": "JSON",
+    "method": "POST",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "ventas-anio"
+    }
+  };
 
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-      var labels = response.data.map(function(a){
-        return a.nombre + " " + a.presentacion;
-      });
-
-      var values = response.data.map(function(a){
-        return a.total;
-      });
-
-      var myChart1 = new Chart(chart4, {
-          type: 'bar',
-          data: {
-              labels: labels,
-              datasets: [{
-                  label: 'Ventas de este año',
-                  data: values,
-                  backgroundColor: '#00D8FF',
-                  borderColor: '#00D8FF',
-                  borderWidth: 1
-              }]
-          },
-          options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
-      });
+  $.ajax(settings).done(function (response) {
+      console.log(response);
+    var labels = response.data.map(function(a){
+      return a.nombre + " " + a.presentacion;
     });
+
+    var values = response.data.map(function(a){
+      return a.total;
+    });
+
+    var myChart1 = new Chart(chart4, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Ventas de este año',
+                data: values,
+                backgroundColor: '#00D8FF',
+                borderColor: '#00D8FF',
+                borderWidth: 1
+            }]
+        },
+        options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
+    });
+  });
+
+      // Buscar los datos de la Farmacia
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/farmacia.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "mostrar-datos",
+      "id_farmacia": 1
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    //console.log(response.data);
+
+    $('#info-nombre_farmacia').html(response.data.nombre_farmacia);
+    $('#info-propietario').html(response.data.propietario);
+    $('#info-direccion').html(response.data.direccion);
+    $('#info-telefono-farmacia').html(response.data.telefono);
+    $('#info-correo-farmacia').html(response.data.correo_electronico);
+    $('#info-rtn-farmacia').html(response.data.rtn);
+    $("#info-cai-farmacia").html(response.data.cai);
+
+  });
+
 });
 
 // Mes
