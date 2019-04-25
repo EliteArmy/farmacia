@@ -14,6 +14,7 @@
 
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
+  <link rel="stylesheet" href="./plugin/jquery-confirm//css/jquery-confirm.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>  
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
   <link rel="stylesheet" href="./css/style.css" type="text/css">
@@ -30,7 +31,6 @@
 
   <!-- Contenido -->
   <div class="container-fluid">
-    
     <div class="row justify-content-center">
       <div class="col-12 col-md-11 well card">
         <div id="titulo-factura" class="text-center">
@@ -38,7 +38,7 @@
           <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
           <h4 id="info-direccion">Col. Villa Olímpica</h4>
           <h4>RTN: <div id="info-rtn-farmacia" class="d-inline-block">08011970123456</div></h4>
-          <!--<h4 id="">Factura Original: 000-000-00-00000001</h4>-->
+          <!--<h4 id="">Factura Original: 000-000-00-00000000</h4>-->
           <h4 id="">C.A.I.: <div class="d-inline-block" id="info-cai-farmacia">000000-000000-000000-000000-000000-00</div></h4>
           <h4 id="">Rango Autorizado: <div class="d-inline-block" id="info-rango-inicial"></div> a <div class="d-inline-block" id="info-rango-final"></div></h4>
           <h4>Fecha Limite Emisión: <div class="d-inline-block" id="info-fecha-emision"></div></h4>
@@ -216,7 +216,8 @@
 
   <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
-  
+
+  <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
 
