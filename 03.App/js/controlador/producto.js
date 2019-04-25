@@ -24,7 +24,7 @@ formaProducto.addInput('slc-tipo');
 formaProducto.setButtonEnvio('btn-guard-producto');
 formaProducto.setButtonUpdate('actualizar-producto');
 
-Forma.addTrigger(formaProducto);
+formaProducto.addTrigger(formaProducto);
 
 $(document).ready(function() {
 
@@ -44,7 +44,7 @@ $(document).ready(function() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    //console.log(response);
     imprimirCategoria(response.data);
   });
 
@@ -76,7 +76,7 @@ $(document).ready(function() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    //console.log(response);
     imprimirImpuesto(response.data);
   });
 
@@ -107,7 +107,7 @@ $(document).ready(function() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    //console.log(response);
     imprimirPresentacion(response.data);
   });
 
@@ -138,7 +138,7 @@ $(document).ready(function() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    //console.log(response);
     imprimirLaboratorio(response.data);
   });
 
@@ -160,6 +160,16 @@ $(document).ready(function() {
     ordering: true,
     paging: true,
     responsive: true,
+    columnDefs: [
+      {
+        "targets": 4, // columna (Estado)
+        "className": "text-center",
+        //"width": "4%"
+      },
+      {
+        "targets": 5, // columna (Opción)
+        "className": "text-center",
+    }],
     ajax: {
       "async": true,
       "crossDomain": true,
@@ -182,31 +192,61 @@ $(document).ready(function() {
     columns: [
       { data: "nombre", title:"Nombre"},
       { data: "codigo_barra", title:"Código Barra"},
-      { data: "estado", title:"Estado"},
       { data: "presentacion", title:"Presentación"},
       { data: "laboratorio", title:"Laboratorio"},
+      { data: "estado", title:"Estado", 
+      render: function ( data, type, row, meta ) {
+        if(row.estado == 'A'){
+            return `<span class="badge badge-info"> Activo </span>`
+        } else {
+            return `<span class="badge badge-secondary"> Inactivo </span>`
+        }
+      }},
       { data: null, title: "Opción",
       render: function ( data, type, row, meta ) {
-        return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
-               '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        if(row.estado == 'A'){
+          return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'+
+          '<button type="button" onclick="funcionBorrar('+ row.id_producto +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        } else {
+          return '<button type="button" onclick="funcionBuscar('+ row.id_producto +')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregar-producto"><span class="far fa-edit edit"></span></button>'
+        }
       }}
     ]
+  });
+
+  // Buscar los datos de la Farmacia
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/farmacia.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "mostrar-datos",
+      "id_farmacia": 1
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    //console.log(response.data);
+
+    $('#info-nombre_farmacia').html(response.data.nombre_farmacia);
+    $('#info-propietario').html(response.data.propietario);
+    $('#info-direccion').html(response.data.direccion);
+    $('#info-telefono-farmacia').html(response.data.telefono);
+    $('#info-correo-farmacia').html(response.data.correo_electronico);
+    $('#info-rtn-farmacia').html(response.data.rtn);
+    $("#info-cai-farmacia").html(response.data.cai);
+
   });
 
 });
 
 // ======= CRUD Producto: Create =======
-$("#btn-guard-producto").click(function(){
-  /*console.log(
-  " id-presentacion: ",$("#slc-presentacion").val(),
-  " nombre-producto: ",$("#nombre-producto").val(),
-  " codigo-barra: ",$("#codigo-barra").val(),
-  " foto: ",$("#foto-inputGroupFile").val(),
-  " categorias: ",$("#slc-categoria").val().join(),
-  " id_impuesto: ",$("#slc-impuesto").val(),
-  " id_lab: ",$("#slc-laboratorio").val(),
-  " opcion: ",$("#slc-tipo").val())*/
-  
+$("#btn-guard-producto").click(function(){  
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -265,7 +305,7 @@ function funcionBuscar(nomb){
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
+    //console.log(response.data);
     var categorias = response.data[0].categoria || '';
     var separador = categorias.split(",");
     
@@ -320,18 +360,36 @@ $("#actualizar-producto").click(function(){
 
 // ======= CRUD Producto: Delete =======
 function funcionBorrar(nomb){
-  $.confirm({
-    icon: 'fa fa-trash',
-    theme: 'modern',
-    closeIcon: true,
-    type: 'blue',
-    title:'Alerta!',
-    content:'¿Esta seguro de eliminar este producto?',
-    buttons:{
-      Eliminar:{
-         text:"Si, seguro!",
-         btnClass:"btn-blue",
-         action:function(){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "leer-producto-id",
+      "id_producto": nomb
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    $.confirm({
+      icon: 'fa fa-trash',
+      theme: 'modern',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      type: 'orange',
+      title:'',
+      typeAnimated: true,
+      content:'¿Esta seguro de eliminar '+ response.data[0].nombre +'?',
+      buttons: {
+        Eliminar: {
+          text:"¡Si, seguro!",
+          btnClass:"btn-warning",
+          action: function(){
             var settings = {
               "async": true,
               "crossDomain": true,
@@ -346,77 +404,71 @@ function funcionBorrar(nomb){
                 "id_producto": nomb
               }
             }
-           
-           $.ajax(settings).done(function (response) {
-             $.alert({
-               title: response.data[0].mensaje,
-               icon: 'fa fa-check',
-               type: 'blue',
-               content: '',
-           });
-           $('#table-info').DataTable().ajax.reload();
-           })
-         }
-      },
-      Cancelar:function(){
-
+            
+            $.ajax(settings).done(function (response) {
+              imprimirMensajeArray(response);
+            })
+          }
+        },
+        Cancelar: function(){
+          // --
+        }
       }
-    }
-  })
+    });
+  });
+
 }
 
 // ======= Impresión de mensajes por Array =======
 function imprimirMensajeArray(response){
   if (response.data[0].error == 0) {
     
-    console.log(response.data);
+    //console.log(response.data[0]);
     
-    $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    $('#table-info').DataTable().ajax.reload(function (){
+      
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+    }); // Se encarga de refrescar las tablas
     
-    $("#div-exito").html(response.data[0].mensaje);
-    $("#div-exito").removeClass("d-none");
-    
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("");
-    });
   } else {
-    console.log(response);
-    $("#div-error").html(response.data[0].mensaje);
-    $("#div-error").removeClass("d-none");
-   
-    $("#div-error").hide(8000, function(){
-      $('#div-error').show();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html("");
-    });
-  }
-}
-
-// ======= Impresión de mensajes =======
-function imprimirMensaje(response){
-  if (response.data.error == 0) {
-    console.log(response.data);
-    $('#table-info').DataTable().ajax.reload(); // Se encarga de refrescar las tablas
+    //console.log(response);
     
-    $("#div-exito").html(response.data.mensaje);
-    $("#div-exito").removeClass("d-none");
-    
-    $("#div-exito").hide(8000, function(){
-      $('#div-exito').addClass("d-none");
-      $("#div-exito").show();
-      $("#div-exito").html("");
-    });
-  } else {
-    console.log(response);
-    $("#div-error").html(response.data.mensaje);
-    $("#div-error").removeClass("d-none");
-   
-    $("#div-error").hide(8000, function(){
-      $('#div-error').show();
-      $('#div-error').addClass("d-none");
-      $("#div-error").html("");
+    // Mensajes Error
+    $.alert({
+      title: '',
+      content: response.data[0].mensaje,
+      type: 'red',
+      typeAnimated: true,
+      icon: 'fas fa-exclamation-triangle',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+      theme: 'modern', // Acepta propiedades CSS
+      buttons: {
+        cerrar: {
+          text: 'Cerrar',
+          btnClass: 'btn-danger',
+          keys: ['enter', 'shift']
+        }
+      }
     });
   }
 }
@@ -469,7 +521,7 @@ function resetCampos(){
 // ======= Subir imagen de producto =======
 $("#inputGroupFile").on("change", function(){
   $("#inputGroupFile").removeClass('is-valid');
-  //var form = new FormData($("#forma-empleado")[0]);
+
   var form = new FormData();
   form.append("file", $("#inputGroupFile")[0].files[0]);
   console.log($("#inputGroupFile")[0].files);
@@ -482,7 +534,6 @@ $("#inputGroupFile").on("change", function(){
     "dataType": "JSON",
     "processData": false,
     "contentType": false,
-    //"mimeType": "multipart/form-data",
     "data": form
   }
 
@@ -491,14 +542,27 @@ $("#inputGroupFile").on("change", function(){
       $("#foto-inputGroupFile").val(response.ruta);
       $("#inputGroupFile").removeClass('is-invalid');
       $("#inputGroupFile").addClass('is-valid');
-    }else{
+    } else {
       $("#inputGroupFile").addClass('is-invalid');
     }
     $.alert({
-        title: response.mensaje,
-        icon: 'fa fa-check',
-        type: 'blue',
-        content: '',
+      title: '',
+      content: response.mensaje,
+      type: 'green',
+      typeAnimated: true,
+      icon: 'fas fa-check',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+      theme: 'my-theme', // Acepta propiedades CSS
+      buttons: {
+        cerrar: {
+          text: 'Cerrar',
+          btnClass: 'btn-success',
+          keys: ['enter', 'shift']
+        }
+      }
     });
   });
 });
+

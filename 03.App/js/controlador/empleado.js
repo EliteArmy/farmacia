@@ -48,6 +48,16 @@ $(document).ready(function() {
     ordering: true,
     paging: true,
     responsive: true,
+    columnDefs: [
+      {
+        "targets": 6, // columna (Estado)
+        "className": "text-center",
+        //"width": "4%"
+      },
+      {
+        "targets": 7, // columna (Opción)
+        "className": "text-center",
+    }],
     ajax: {
       "async": true,
       "crossDomain": true,
@@ -73,6 +83,7 @@ $(document).ready(function() {
       { data: "nombres", title: "Nombre"},
       { data: "apellidos", title: "Apellido"},
       { data: "fecha_ingreso", title: "Fecha Ingreso"},
+      { data: "sexo", title: "Sexo"},
       { data: "estado", title: "Estado", 
       render: function ( data, type, row, meta ) {
         if(row.estado == 'A'){
@@ -81,10 +92,9 @@ $(document).ready(function() {
             return `<span class="badge badge-secondary"> Inactivo </span>`
         }
       }},
-      { data: "sexo", title: "Sexo"},
       { data: null, title: "Opción",
       render: function (data, type, row, meta) {
-        if(row.estado=='A'){
+        if(row.estado == 'A'){
           return '<button type="button" onclick="funcionBuscar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm" data-toggle="modal" data-target="#agregarempleado"><span class="far fa-edit edit"></span></button>'+
           '<button type="button" onclick="funcionBorrar(\''+row.id_empleado+'\')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
         } else {
@@ -125,7 +135,7 @@ $(document).ready(function() {
 
 });
 
-/* CRUD Empleado: Create */
+// ======= CRUD Empleado: Create =======
 $('#guard-empleado').click(function(){
   var settings = {
     "async": true,
@@ -163,7 +173,7 @@ $('#guard-empleado').click(function(){
 
 });
 
-/* Buscar un Empleado */
+// ======= Buscar un Empleado =======
 function funcionBuscar(nomb){
   $("#inputGroupFile").removeClass('is-valid');
   
@@ -322,7 +332,6 @@ function funcionBorrar(nomb){
 }
 
 function imprimirMensaje(response) {
-
   if (response.data.error == 0) {
     //console.log(response.data);
 
@@ -348,14 +357,13 @@ function imprimirMensaje(response) {
           }
         }
       });
-
     }); 
     limpiarFormulario();
 
   } else {
     //console.log(response);
 
-    // Mensajes Invalidos
+    // Mensajes Error
     $.alert({
       title: '',
       content: response.data.mensaje,
@@ -430,7 +438,6 @@ $("#inputGroupFile").on("change", function(){
     "dataType": "JSON",
     "processData": false,
     "contentType": false,
-    //"mimeType": "multipart/form-data",
     "data": form
   }
 
@@ -440,14 +447,26 @@ $("#inputGroupFile").on("change", function(){
       $(".foto-empleado").attr('src', 'img/' + response.ruta);
       $("#inputGroupFile").removeClass('is-invalid');
       $("#inputGroupFile").addClass('is-valid');
-    }else{
+    } else {
       $("#inputGroupFile").addClass('is-invalid');
     }
     $.alert({
-        title: response.mensaje,
-        icon: 'fa fa-check',
-        type: 'blue',
-        content: '',
+      title: '',
+      content: response.mensaje,
+      type: 'green',
+      typeAnimated: true,
+      icon: 'fas fa-check',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+      theme: 'my-theme', // Acepta propiedades CSS
+      buttons: {
+        cerrar: {
+          text: 'Cerrar',
+          btnClass: 'btn-success',
+          keys: ['enter', 'shift']
+        }
+      }
     });
   });
 });
