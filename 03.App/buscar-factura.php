@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="./plugin/bootstrap-select/css/bootstrap-select.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/data-tables/css/datatables.css" type="text/css"/>
   <link rel="stylesheet" href="./plugin/font-awesome/css/all.css" type="text/css">
+  <link rel="stylesheet" href="./plugin/jquery-confirm//css/jquery-confirm.css" type="text/css"/>
   <link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
 <body>
@@ -31,10 +32,9 @@
     <div class="row justify-content-md-center">
       <div class="col-xs-12 col-md-11 well card">
         <div class="text-center">
-          <h4>Farmacia Esperanza</h4>
-          <h4>Col. Villa Olímpica, Tegucigalpa M.D.C, Honduras</h4>
-          <h4>RTN: 08011980123456</h4>
-
+          <h4 id="info-propietario">Grupo Farmacias S. de R.L.</h4>
+          <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
+          <h4 id="info-direccion">Col. Villa Olímpica</h4>
         </div>
 
         <div class="row mt-3 mb-3">
@@ -47,14 +47,6 @@
         </div>
 
         <div class="row mt-3 mb-3">
-
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div id="div-exito" class="alert alert-success nuevo-alert d-none" role="alert">
-            </div>
-            <div id="div-error" class="alert alert-danger nuevo-alert d-none" role="alert">
-            </div>
-          </div>
-
           <div class="col-12 col-sm-4 col-md-4 col-lg-5">
             Fecha Inicio:
             <input type="date" name="" value="" placeholder="" class="form-control" id="fecha-inicio">
@@ -163,6 +155,7 @@
   <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
 
+  <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
   
