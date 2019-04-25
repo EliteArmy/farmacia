@@ -43,66 +43,74 @@ formaPre.setButtonEnvio('guard-presentacion');
 formaPre.setButtonUpdate('act-Pre');
 Forma.addTrigger(formaPre);
 
-
-
 $(document).ready(function() {
 
   // Leer Descuento
   $('#table-info-descuento').DataTable({
-      pageLength: 10,
-      searching: true,
-      ordering: true,
-      paging: true,
-      responsive: true,
-      ajax: {
-        "async": true,
-        "crossDomain": true,
-        "url": "./services/producto.php",
-        "method": "POST",
-        "dataType": "json",
-        "headers": {
-          "content-type": "application/x-www-form-urlencoded"
-        },
-        "data": {
-          "accion": "leer-descuento-todo"
-        }
+    pageLength: 10,
+    searching: true,
+    ordering: true,
+    paging: true,
+    responsive: true,
+    columnDefs: [
+      {
+        "targets": 4, // columna (Estado)
+        "className": "text-center",
+        //"width": "4%"
       },
-      language: {
-        oPaginate: {
-            sNext: '<i class="fas fa-forward"></i>',
-            sPrevious: '<i class="fas fa-backward"></i>'
-        }
+      {
+        "targets": 5, // columna (Opción)
+        "className": "text-center",
+    }],
+    ajax: {
+      "async": true,
+      "crossDomain": true,
+      "url": "./services/producto.php",
+      "method": "POST",
+      "dataType": "json",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
       },
-      columns: [
-        { data: "descripcion", title:"Descripcion"},
-        { data: "porcentaje", title:"Porcentaje"},
-        { data: "fecha_inicio", title:"Fecha inicio"},
-        { data: "fecha_fin", title:"Fecha Fin"},
-        { data: "estado", title:"Estado", 
-        render: function ( data, type, row, meta ) {
-          if(row.estado == 'A'){
-              return `<span class="badge badge-info"> Activo </span>`
-          } else {
-              return `<span class="badge badge-secondary"> Inactivo </span>`
-          }
-        }},
-        { data: null, title: "Opción",
-        render: function ( data, type, row, meta ) {
-          if(row.porcentaje!=0){
-            if(row.estado=='I'){
-              return '<button type="button" onclick="funcionBuscarDesc('+ row.id_descuento +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-              '<button type="button" disabled class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
-            }else{
-              return '<button type="button" onclick="funcionBuscarDesc('+ row.id_descuento +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
-              '<button type="button" onclick="funcionBorrarDesc('+ row.id_descuento +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>'
-            }
-          }else{
-            return '<button type="button" disabled class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+      "data": {
+        "accion": "leer-descuento-todo"
+      }
+    },
+    language: {
+      oPaginate: {
+          sNext: '<i class="fas fa-forward"></i>',
+          sPrevious: '<i class="fas fa-backward"></i>'
+      }
+    },
+    columns: [
+      { data: "descripcion", title:"Descripcion"},
+      { data: "porcentaje", title:"Porcentaje"},
+      { data: "fecha_inicio", title:"Fecha inicio"},
+      { data: "fecha_fin", title:"Fecha Fin"},
+      { data: "estado", title:"Estado", 
+      render: function ( data, type, row, meta ) {
+        if(row.estado == 'A'){
+            return `<span class="badge badge-info"> Activo </span>`
+        } else {
+            return `<span class="badge badge-secondary"> Inactivo </span>`
+        }
+      }},
+      { data: null, title: "Opción",
+      render: function ( data, type, row, meta ) {
+        if(row.porcentaje!=0){
+          if(row.estado=='I'){
+            return '<button type="button" onclick="funcionBuscarDesc('+ row.id_descuento +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
             '<button type="button" disabled class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+          }else{
+            return '<button type="button" onclick="funcionBuscarDesc('+ row.id_descuento +')" class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+            '<button type="button" onclick="funcionBorrarDesc('+ row.id_descuento +')" class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>'
           }
-        }}
-      ]
-    });
+        }else{
+          return '<button type="button" disabled class="btn btn-default btn-sm"><span class="far fa-edit edit"></span></button>'+
+          '<button type="button" disabled class="btn btn-default btn-sm"><span class="far fa-trash-alt trash"></span></button>';
+        }
+      }}
+    ]
+  });
     
   // Leer Categoria
   $('#table-info-categoria').DataTable({
@@ -111,6 +119,16 @@ $(document).ready(function() {
     ordering: true,
     paging: true,
     responsive: true,
+    columnDefs: [
+      {
+        "targets": 1, // columna (Estado)
+        "className": "text-center",
+        //"width": "4%"
+      },
+      {
+        "targets": 2, // columna (Opción)
+        "className": "text-center",
+    }],
     ajax: {
       "async": true,
       "crossDomain": true,
@@ -161,6 +179,16 @@ $(document).ready(function() {
     ordering: true,
     paging: true,
     responsive: true,
+    columnDefs: [
+      {
+        "targets": 3, // columna (Estado)
+        "className": "text-center",
+        //"width": "4%"
+      },
+      {
+        "targets": 4, // columna (Opción)
+        "className": "text-center",
+    }],
     ajax: {
       "async": true,
       "crossDomain": true,
@@ -211,14 +239,23 @@ $(document).ready(function() {
     ]
   });
 
- 
- //Leer Presentación
+  //Leer Presentación
   $('#table-info-presentacion').DataTable({
     pageLength: 6 ,
     searching: true,
     ordering: true,
     paging: true,
     responsive: true,
+    columnDefs: [
+      {
+        "targets": 1, // columna (Estado)
+        "className": "text-center",
+        //"width": "4%"
+      },
+      {
+        "targets": 2, // columna (Opción)
+        "className": "text-center",
+    }],
     ajax: {
       "async": true,
       "crossDomain": true,
@@ -296,32 +333,32 @@ $(document).ready(function() {
 
 // Guardar Impuesto
 $("#guard-impuesto").click(function(){
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "./services/producto.php",
-      "method": "POST",
-      "dataType": "JSON",
-      "headers": {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "accion": "crear-impuesto",
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/producto.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "crear-impuesto",
 
-        "impuesto": $("#txt-descripcion-imp").val(),
-        "valor": $("#in-impuesto").val()
-        
-      }
+      "impuesto": $("#txt-descripcion-imp").val(),
+      "valor": $("#in-impuesto").val()
+      
     }
-    
-    $.ajax(settings).done(function (response) {
-      formaImp.validateAll()
-      imprimirMensajeSinCorchete(response,"-impuesto");
-    });
+  }
+  
+  $.ajax(settings).done(function (response) {
+    formaImp.validateAll()
+    imprimirMensajeSinCorchete(response,"-impuesto");
+  });
+});
 
- });
- //BuscarIMPUESTO
- function funcionBuscarImp(nomb){
+//BuscarIMPUESTO
+function funcionBuscarImp(nomb){
   //$("#inputGroupFile").removeClass('is-valid');
   // Se hace el cambio del footer en el Modal
   $("#guard-impuesto").hide();
@@ -348,7 +385,7 @@ $("#guard-impuesto").click(function(){
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
+    //console.log(response.data);
     $('#txt-id-imp').val(response.data.id_impuesto);
     $('#slc-estado-imp').selectpicker('val',response.data.estado);
 
@@ -358,6 +395,7 @@ $("#guard-impuesto").click(function(){
     
   });
 }
+
 //ELIMINAR IMPUESTO
 function funcionBorrarImp(nomb){
   $.confirm({
@@ -407,7 +445,6 @@ function funcionBorrarImp(nomb){
 
 //actualizar impuesto
 $("#act-imp").click(function(){
-  console.log("aqui dentro");
 
   var settings = {
     "async": true,
@@ -429,47 +466,43 @@ $("#act-imp").click(function(){
     }
     
   }
-   console.log($("#txt-id-imp").val());
+  //console.log($("#txt-id-imp").val());
   $.ajax(settings).done(function (response) {
     imprimirMensaje(response,"-impuesto");
   });
   
 });
 
-
 //Guardar Descuento
 $("#guard-descuento").click(function(){
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "./services/producto.php",
-      "method": "POST",
-      "dataType": "JSON",
-      "headers": {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      "data": {
-        "accion": "crear-descuento",
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/producto.php",
+    "method": "POST",
+    "dataType": "JSON",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "crear-descuento",
 
-        "descripcion": $("#txt-descripcion").val(),
-        "porcentaje": $("#txt-porcentaje-desc").val(),
-       // "fecha_inicio": $("#fecha-inicio-desc").val(),
-        "fecha_fin": $("#fecha-final-desc").val()
-      }
+      "descripcion": $("#txt-descripcion").val(),
+      "porcentaje": $("#txt-porcentaje-desc").val(),
+      // "fecha_inicio": $("#fecha-inicio-desc").val(),
+      "fecha_fin": $("#fecha-final-desc").val()
     }
-    
-    $.ajax(settings).done(function (response) {
-      formaDes.validateAll()
-      imprimirMensaje(response, "-descuento");
-    });
-
+  }
+  
+  $.ajax(settings).done(function (response) {
+    formaDes.validateAll()
+    imprimirMensaje(response, "-descuento");
+  });
  });
 
 
- //buscarDescuento
-
-
- function funcionBuscarDesc(nomb){
+//buscarDescuento
+function funcionBuscarDesc(nomb){
   //$("#inputGroupFile").removeClass('is-valid');
   // Se hace el cambio del footer en el Modal
   $("#guard-descuento").hide();
@@ -497,7 +530,7 @@ $("#guard-descuento").click(function(){
   }
   
   var z =  $.ajax(settings).done(function (response) {
-    console.log(response.data);
+    //console.log(response.data);
     $('#txt-id-desc').val(response.data.id_descuento);
     $('#slc-estado-desc').selectpicker('val',response.data.estado);
 
@@ -510,8 +543,8 @@ $("#guard-descuento").click(function(){
 }
 
 
- //Eliminar Descuento
- function funcionBorrarDesc(nomb){
+//Eliminar Descuento
+function funcionBorrarDesc(nomb){
   $.confirm({
     icon: 'fa fa-trash',
     theme: 'modern',
@@ -555,12 +588,11 @@ $("#guard-descuento").click(function(){
       }
     }
   })
-  console.log(nomb)
+  //console.log(nomb)
 }
 
 //ACtualizarDescuento
 $("#act-desc").click(function(){
-  console.log("aqui dentro");
 
   var settings = {
     "async": true,
@@ -582,13 +614,12 @@ $("#act-desc").click(function(){
     }
     
   }
-   console.log($("#txt-id-desc").val());
+  //console.log($("#txt-id-desc").val());
   $.ajax(settings).done(function (response) {
     imprimirMensaje(response,"-descuento");
   });
   
 });
-
 
 //Guardar CATEGORIA
 $("#guard-categoria").click(function(){
@@ -612,6 +643,7 @@ $("#guard-categoria").click(function(){
     });
 
  });
+
 //ELiminarCategoria
 function funcionBorrarCat(nomb){
   $.confirm({
@@ -659,7 +691,6 @@ function funcionBorrarCat(nomb){
   })
 }
 
-
 //Buscar cATEGORIa
 function funcionBuscarCat(nomb){
   //$("#inputGroupFile").removeClass('is-valid');
@@ -671,7 +702,6 @@ function funcionBuscarCat(nomb){
   //$('#laboratorio').show();
   
   //resetCampos();
-  console.log("Hola")
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -688,21 +718,17 @@ function funcionBuscarCat(nomb){
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
+    //console.log(response.data);
     $('#txt-nombre-categoria').val(response.data.categoria);
     $('#slc-estado-cat').selectpicker('val',response.data.estado);
 
     $('#txt-id-cat').val(response.data.id_categoria);
-   
-    
-  
 
   });
 }
 
 //ACtualizar Categoria
 $("#act-cat").click(function(){
-  console.log("aqui dentro");
 
   var settings = {
     "async": true,
@@ -719,26 +745,16 @@ $("#act-cat").click(function(){
        "categoria": $("#txt-nombre-categoria").val(),
      
       "estado": $("#slc-estado-cat").val(),
-     
-
     }
     
   }
-  console.log($("#slc-estado-cat").val()),
-   console.log($("#txt-nombre-categoria").val()),
+  //console.log($("#slc-estado-cat").val()),
+  //console.log($("#txt-nombre-categoria").val()),
   $.ajax(settings).done(function (response) {
   imprimirMensaje(response,"-categoria");
   });
   
 });
-
-
-
-
-
-
-
-
 
 //Guardar PResentacion
 $("#guard-presentacion").click(function(){
@@ -812,16 +828,11 @@ function funcionBorrarPre(nomb){
   })
 }
 
-
 function funcionBuscarPre(nomb){
-
   $("#guard-presentacion").hide();
   $("#act-pre").removeClass("d-none");
   $("#seleccion-estado-pre").removeClass("d-none");
   
-  
- 
-  console.log("Hola")
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -838,21 +849,18 @@ function funcionBuscarPre(nomb){
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
+    //console.log(response.data);
     $('#txt-nombre-presentacion').val(response.data.presentacion);
     $('#slc-estado-pre').selectpicker('val',response.data.estado);
 
     $('#txt-id-pre').val(response.data.id_presentacion);
-   
-    
-  
 
   });
 }
 
 //ACtualizar Presentacion
 $("#act-pre").click(function(){
-  console.log("aqui dentro");
+  //console.log("aqui dentro");
 
   var settings = {
     "async": true,
@@ -869,22 +877,19 @@ $("#act-pre").click(function(){
        "presentacion": $("#txt-nombre-presentacion").val(),
      
       "estado": $("#slc-estado-pre").val(),
-   
-
     }
     
   }
-   console.log($("#txt-nombre-presentacion").val()),
+  //console.log($("#txt-nombre-presentacion").val()),
   $.ajax(settings).done(function (response) {
   imprimirMensaje(response,"-presentacion");
   });
   
 });
 
-
 function imprimirMensaje(response,tbl2){
   if (response.data[0].error == 0) {
-    console.log(response.data);
+    //console.log(response.data);
     $('#table-info'+tbl2).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
     
     $("#div-exito"+tbl2).html(response.data[0].mensaje);
@@ -924,12 +929,12 @@ function imprimirMensaje(response,tbl2){
     $("#guard-presentacion").show()
     $("#act-pre").addClass("d-none")
     $("#seleccion-estado-pre").addClass("d-none")
-    console.log("presentaciones")
+    //console.log("presentaciones")
    
     break; 
     }
   } else {
-    console.log(response);
+    //console.log(response);
     $("#div-error"+tbl2).html(response.data[0].mensaje);
     $("#div-error"+tbl2).s("d-none");
    
@@ -943,7 +948,7 @@ function imprimirMensaje(response,tbl2){
 
 function imprimirMensajeSinCorchete(response,tbl){
   if (response.data.error == 0) {
-    console.log(response.data);
+    //console.log(response.data);
     $('#table-info'+tbl).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
     
     $("#div-exito"+tbl).html(response.data.mensaje);
@@ -954,11 +959,8 @@ function imprimirMensajeSinCorchete(response,tbl){
       $("#div-exito"+tbl).show();
       $("#div-exito"+tbl).html("");
     
-
-    }
+    });
     
-    
-    );
     switch(tbl){
         case "-categoria":
            $("#txt-nombre-categoria").val("")
@@ -972,7 +974,7 @@ function imprimirMensajeSinCorchete(response,tbl){
 
     }
   } else {
-    console.log(response);
+    //console.log(response);
     $("#div-error"+tbl).html(response.data.mensaje);
     $("#div-error"+tbl).removeClass("d-none");
    
@@ -983,4 +985,3 @@ function imprimirMensajeSinCorchete(response,tbl){
     });
   }
 }
-
