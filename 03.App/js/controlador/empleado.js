@@ -37,7 +37,7 @@ formaEmpleado.addInput('slc-sexo');
 formaEmpleado.setButtonEnvio('guard-empleado');
 formaEmpleado.setButtonUpdate('actualizar-empleado');
 
-formaEmpleado.addTrigger();
+Forma.addTrigger(formaEmpleado);
 
 $(document).ready(function() {
 

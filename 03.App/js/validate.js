@@ -41,8 +41,8 @@ class Forma {
         this.inputs[id].ready = true;
       }
     }
-    // this.updateButton(this.btnEnvio);
-    // this.updateButton(this.btnUpdate);
+    this.updateButton(this.btnEnvio);
+    this.updateButton(this.btnUpdate);
   }
 
   setButtonEnvio(btnId){
@@ -66,25 +66,21 @@ class Forma {
     }
   }
 
-  addTrigger(){
+  static addTrigger(form){
 
-    var that = this;
-    $(`#${this.id} .form-control`).on('input',function(){
-      that.validate(this.id);
+    $(`#${form.id} .form-control`).on('input',function(){
+      let id = this.id;
+      form.validate(id);
     });
 
-    var that = this;
-    $(`#${this.id} .selectpicker`).on('change',function(){
-      that.validate(this.id);
+    $(`#${form.id} .selectpicker`).on('change',function(){
+      let id = this.id;
+      form.validate(id);
     });
 
     $('button[data-toggle="modal"].btn-primary').click(function(event) {
       $("input.form-control").removeClass('is-valid');
       $("input.form-control").removeClass('is-invalid');
-    });
-
-    $("#"+this.btnEnvio).click(function(e){
-      that.validateAll();
     });
 
   }
