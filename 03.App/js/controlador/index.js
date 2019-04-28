@@ -33,6 +33,7 @@ $(document).ready(function() {
       }
     },
     language: {
+      url: "./plugin/data-tables/spanish.json",
       oPaginate: {
           sNext: '<i class="fas fa-forward"></i>',
           sPrevious: '<i class="fas fa-backward"></i>'
@@ -64,7 +65,7 @@ $(document).ready(function() {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(response.data);
+    //console.log(response.data);
 
     $('#factura').html(response.data.total_facturas);
     $('#empleado').html(response.data.total_empleados);

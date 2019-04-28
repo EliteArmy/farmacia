@@ -164,7 +164,7 @@
             </div>
           </div>
 
-          <h3>Ventas Diarias Por cada Empleado</h3>
+          <h3>Ventas Diarias por cada Empleado</h3>
           <div class="col-12">
             <table id="table-info-ventas" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->

@@ -70,6 +70,7 @@ $(document).ready(function() {
       }
     },
     language: {
+      url: "./plugin/data-tables/spanish.json",
       oPaginate: {
           sNext: '<i class="fas fa-forward"></i>',
           sPrevious: '<i class="fas fa-backward"></i>'

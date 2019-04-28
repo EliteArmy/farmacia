@@ -76,13 +76,14 @@ $(document).ready(function() {
       }
     },
     language: {
+      url: "./plugin/data-tables/spanish.json",
       oPaginate: {
           sNext: '<i class="fas fa-forward"></i>',
           sPrevious: '<i class="fas fa-backward"></i>'
       }
     },
     columns: [
-      { data: "descripcion", title:"Descripcion"},
+      { data: "descripcion", title:"Descripción"},
       { data: "porcentaje", title:"Porcentaje"},
       { data: "fecha_inicio", title:"Fecha inicio"},
       { data: "fecha_fin", title:"Fecha Fin"},
@@ -143,6 +144,7 @@ $(document).ready(function() {
       }
     },
     language: {
+      url: "./plugin/data-tables/spanish.json",
       oPaginate: {
           sNext: '<i class="fas fa-forward"></i>',
           sPrevious: '<i class="fas fa-backward"></i>'
@@ -203,13 +205,14 @@ $(document).ready(function() {
       }
     },
     language: {
+      url: "./plugin/data-tables/spanish.json",
       oPaginate: {
           sNext: '<i class="fas fa-forward"></i>',
           sPrevious: '<i class="fas fa-backward"></i>'
       }
     },
     columns: [
-      { data: "descripcion", title:"Descripcion"},
+      { data: "descripcion", title:"Descripción"},
       { data: "porcentaje", title:"Porcentaje"},
       { data: "fecha_inicio", title:"Fecha Inicio"},
       { data: "estado", title:"Estado", 
@@ -270,6 +273,7 @@ $(document).ready(function() {
       }
     },
     language: {
+      url: "./plugin/data-tables/spanish.json",
       oPaginate: {
           sNext: '<i class="fas fa-forward"></i>',
           sPrevious: '<i class="fas fa-backward"></i>'
