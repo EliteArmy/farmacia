@@ -34,6 +34,10 @@ InsertarImpuesto:BEGIN
     SET mensaje = CONCAT(mensaje, 'El descuento debe ser mayor que cero, ');
   END IF;
 
+  IF pI_porcentaje>100 THEN
+    SET mensaje = CONCAT(mensaje,'El descuento no puede ser mayor que 100, ');
+  END IF;
+
 
   IF pI_fecha_fin IS NULL OR pI_fecha_fin <= CURDATE() THEN
     SET mensaje = 'Fecha de culminación es menor que la fecha actual';
