@@ -65,7 +65,8 @@
 
               <div>
                 <div class="text-left" style="display:inline-block;">
-                  <input class="text-left" type="checkbox" name="" onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'"> Mostrar Contraseña
+                  <input id="mostrar" class="text-left" type="checkbox" name="" onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'">
+                  <label for="mostrar">Mostrar Contraseña</label>
                 </div>
                             
                 <div class="text-right" style="float:right">
