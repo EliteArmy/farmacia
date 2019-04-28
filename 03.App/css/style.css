@@ -26,9 +26,22 @@
   background: url("../img/wallpaper.jpg") no-repeat center center fixed;
   background-size: cover; }
   #login .jumbotron {
-    background: none; }
+    background: none; 
+    margin-bottom: 0px !important}
   #login h4 {
     color: #9ba5b0; }
+
+.login-awes:hover svg{ 
+  color:#1f9ad7 !important;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, .25);
+}
 
 .card {
   background-color: white;

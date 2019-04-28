@@ -42,13 +42,30 @@ $(document).ready(function() {
 
     $.ajax(settings).done(function (response) {
       if (response.data.resultado == 1) {
-        console.log(response.data);
+        //console.log(response.data);
         window.location.href = "index.php";
       } else {
-        console.log(response.data);
-        $("#mensaje").html(response.data.mensaje);
-        $("#div-error-login").show();
-        $("#div-error-login").fadeOut(5500);
+        //console.log(response.data);
+
+        // Mensajes Error
+        $.alert({
+          title: '',
+          content: response.data.mensaje,
+          type: 'red',
+          typeAnimated: true,
+          icon: 'fas fa-exclamation-triangle',
+          closeIcon: true,
+          closeIconClass: 'fas fa-times',
+          autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+          theme: 'modern', // Acepta propiedades CSS
+          buttons: {
+            cerrar: {
+              text: 'Cerrar',
+              btnClass: 'btn-danger',
+              keys: ['enter', 'shift']
+            }
+          }
+        });
       }
     });
   });  
