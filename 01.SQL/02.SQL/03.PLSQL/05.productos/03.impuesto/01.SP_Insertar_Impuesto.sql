@@ -33,6 +33,10 @@ InsertarImpuesto:BEGIN
     SET mensaje = CONCAT(mensaje, 'El impuesto debe ser mayor que cero, ');
   END IF;
 
+  IF par_valor>100 THEN
+    SET mensaje = CONCAT(mensaje,'El impuesto no puede ser mayor que 100');
+  END IF;
+
   IF mensaje != '' THEN
     SELECT mensaje, error;
     LEAVE InsertarImpuesto;
