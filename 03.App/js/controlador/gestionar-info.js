@@ -940,7 +940,7 @@ function imprimirMensaje(response,tbl2){
   } else {
     //console.log(response);
     $("#div-error"+tbl2).html(response.data[0].mensaje);
-    $("#div-error"+tbl2).s("d-none");
+    $("#div-error"+tbl2).addClass("d-none");
    
     $("#div-error"+tbl2).hide(8000, function(){
       $('#div-error'+tbl2).show();
