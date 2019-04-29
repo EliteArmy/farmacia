@@ -86,6 +86,7 @@
                 <button type="button" class="btn btn-info" id="">Reset</button>
                 <button type="button" class="btn btn-primary d-none" id="act-desc">Actualizar Cambios</button>   
                 <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
+                <button type="button" class="btn btn-primary" id="reset-descuento" onclick="resetCampos('-descuento')">Reset</button>
               </div>
             </div>
 
@@ -137,6 +138,7 @@
                 <button type="button" class="btn btn-info" id="">Reset</button>
                 <button type="button" class="btn btn-primary d-none" id="act-imp">Actualizar Cambios</button>   
                 <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
+                <button type="button" class="btn btn-primary" id="reset-impuesto" onclick="resetCampos('-impuesto')">Reset</button>
               </div>
             </div>
         
@@ -177,6 +179,7 @@
                 <button type="button" class="btn btn-info" id="" align="left">Reset</button>
                 <button type="button" class="btn btn-primary d-none" id="act-pre">Actualizar Cambios</button>  
                 <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
+                <button type="button" class="btn btn-primary" id="reset-presentacion" onclick="resetCampos('-presentacion')">Reset</button>
               </div>
             </div>
           
@@ -217,6 +220,7 @@
                 <button type="button" class="btn btn-info" id="">Reset</button>
                 <button type="button" class="btn btn-primary d-none" id="act-cat">Actualizar Cambios</button>
                 <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
+                <button type="button" class="btn btn-primary" id="reset-categoria" onclick="resetCampos('-categoria')">Reset</button>
               </div>
             </div>
             
