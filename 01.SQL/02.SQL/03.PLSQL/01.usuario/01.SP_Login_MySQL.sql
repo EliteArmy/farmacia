@@ -31,7 +31,9 @@ Login:BEGIN
 
   SELECT count(*) into contador FROM empleado
   WHERE usuario = par_usuario
-  AND contrasena = par_contrasena;
+  AND contrasena = par_contrasena
+  AND estado = 'A'
+  ;
 
   IF contador = 1 THEN
     SELECT COUNT(*) INTO activo FROM empleado
