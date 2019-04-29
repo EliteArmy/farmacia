@@ -242,7 +242,7 @@ $(document).ready(function() {
     ]
   });
 
-  //Leer Presentación
+  // Leer Presentación
   $('#table-info-presentacion').DataTable({
     pageLength: 6 ,
     searching: true,
@@ -333,8 +333,9 @@ $(document).ready(function() {
 
   });
 
-});
+}); /* ============== Fin $(document).ready ============== */
 
+// ============== Impuesto ==============
 // Guardar Impuesto
 $("#guard-impuesto").click(function(){
   var settings = {
@@ -351,27 +352,95 @@ $("#guard-impuesto").click(function(){
 
       "impuesto": $("#txt-descripcion-imp").val(),
       "valor": $("#in-impuesto").val()
-      
     }
   }
   
   $.ajax(settings).done(function (response) {
-    formaImp.validateAll()
-    imprimirMensajeSinCorchete(response,"-impuesto");
+    formaImp.validateAll();
+    imprimirMensajeSinCorchete(response, "-impuesto");
   });
 });
 
-//BuscarIMPUESTO
+
+
+// Eliminar Impuesto
+function funcionBorrarImp(nomb){
+  $.confirm({
+    title: '',
+    content:'¿Esta seguro de eliminar este elemento?',
+    type: 'orange',
+    typeAnimated: true,
+    icon: 'fa fa-trash',
+    theme: 'modern',
+    closeIcon: true,
+    closeIconClass: 'fas fa-times',
+    buttons:{
+      Eliminar: {
+        text: "¡Si, Seguro!",
+        btnClass: "btn-warning",
+         action:function(){
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "./services/producto.php",
+              "method": "POST",
+              "dataType": "json",
+              "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+              },
+              "data": {
+                "accion": "eliminar-impuesto",
+                "id_impuesto": nomb
+              }
+            }
+           
+            $.ajax(settings).done(function (response) {
+              imprimirMensaje(response, "-impuesto");
+            })
+         }
+      },
+      Cancelar:function(){
+        // --
+      }
+    }
+  })
+}
+
+// Actualizar Impuesto
+$("#act-imp").click(function(){
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-impuesto",
+      
+      "id_impuesto": $("#txt-id-imp").val(),
+      "descripcion": $("#txt-descripcion-imp").val(),
+      "porcentaje": $("#in-impuesto").val(),
+      "estado": $("#slc-estado-imp").val(),
+      "fecha_fin": $("#fecha-final-imp").val()
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response, "-impuesto");
+  });
+  
+});
+
+// Buscar Impuesto
 function funcionBuscarImp(nomb){
-  //$("#inputGroupFile").removeClass('is-valid');
   // Se hace el cambio del footer en el Modal
   $("#guard-impuesto").hide();
   $("#act-imp").removeClass("d-none");
   $("#seleccion-estado-imp").removeClass("d-none");
-  //$("#seleccion-estado").removeClass("d-none");
-  //$('#laboratorio').show();
-  
-  //resetCampos();
 
   var settings = {
     "async": true,
@@ -396,88 +465,11 @@ function funcionBuscarImp(nomb){
     $('#txt-descripcion-imp').val(response.data.descripcion);
     $('#in-impuesto').val(response.data.porcentaje);
     $('#fecha-final-imp').val(response.data.fecha_fin);
-    
   });
 }
 
-//ELIMINAR IMPUESTO
-function funcionBorrarImp(nomb){
-  $.confirm({
-    icon: 'fa fa-trash',
-    theme: 'modern',
-    closeIcon: true,
-    type: 'blue',
-    title:'Alerta!',
-    content:'¿Esta seguro de eliminar este elemento?',
-    buttons:{
-      Eliminar:{
-         text:"Si, seguro!",
-         btnClass:"btn-blue",
-         action:function(){
-            var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "./services/producto.php",
-              "method": "POST",
-              "dataType": "json",
-              "headers": {
-                "content-type": "application/x-www-form-urlencoded"
-              },
-              "data": {
-                "accion": "eliminar-impuesto",
-                "id_impuesto": nomb
-              }
-            }
-           
-           $.ajax(settings).done(function (response) {
-             $.alert({
-               title: response.data[0].mensaje,
-               icon: 'fa fa-check',
-               type: 'blue',
-               content: '',
-           });
-           $('#table-info-impuesto').DataTable().ajax.reload();
-           })
-         }
-      },
-      Cancelar:function(){
-
-      }
-    }
-  })
-}
-
-//actualizar impuesto
-$("#act-imp").click(function(){
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "./services/producto.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "actualizar-impuesto",
-      "id_impuesto": $("#txt-id-imp").val(),
-      "descripcion": $("#txt-descripcion-imp").val(),
-      "porcentaje": $("#in-impuesto").val(),
-      "estado": $("#slc-estado-imp").val(),
-      "fecha_fin": $("#fecha-final-imp").val()
-
-    }
-    
-  }
-  //console.log($("#txt-id-imp").val());
-  $.ajax(settings).done(function (response) {
-    imprimirMensaje(response,"-impuesto");
-  });
-  
-});
-
-//Guardar Descuento
+// ============== Descuento ==============
+// Guardar Descuento
 $("#guard-descuento").click(function(){
   var settings = {
     "async": true,
@@ -504,19 +496,87 @@ $("#guard-descuento").click(function(){
   });
  });
 
+//Eliminar Descuento
+function funcionBorrarDesc (nomb){
+  $.confirm({
+    title: '',
+    content:'¿Esta seguro de eliminar este elemento?',
+    type: 'orange',
+    typeAnimated: true,
+    icon: 'fa fa-trash',
+    theme: 'modern',
+    closeIcon: true,
+    closeIconClass: 'fas fa-times',
+    buttons: {
+      Eliminar: {
+        text: "¡Si, Seguro!",
+        btnClass: "btn-warning",
+         action: function(){
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "./services/producto.php",
+              "method": "POST",
+              "dataType": "json",
+              "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+              },
+              "data": {
+                "accion": "eliminar-descuento",
+                "id_descuento": nomb
+              }
+            }
+           
+            $.ajax(settings).done(function (response) {
+              imprimirMensaje(response, "-descuento");
+            })
+         }
+      },
+      Cancelar:function(){
 
-//buscarDescuento
-function funcionBuscarDesc(nomb){
-  //$("#inputGroupFile").removeClass('is-valid');
+      }
+    }
+  })
+}
+
+// Actualizar Descuento
+$("#act-desc").click(function(){
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-descuento",
+      
+      "id_descuento": $("#txt-id-desc").val(),
+      "descripcion": $("#txt-descripcion").val(),
+      "porcentaje": $("#txt-porcentaje-desc").val(),
+      "estado": $("#slc-estado-desc").val(),
+      "fecha_fin": $("#fecha-final-desc").val()
+    }
+    
+  }
+
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response, "-descuento");
+    
+  });
+  
+});
+
+//Buscar Descuento
+function funcionBuscarDesc (nomb){
+
   // Se hace el cambio del footer en el Modal
   $("#guard-descuento").hide();
   $("#act-desc").removeClass("d-none");
   $("#seleccion-estado-desc").removeClass("d-none");
-  
-  //$("#seleccion-estado").removeClass("d-none");
-  //$('#laboratorio').show();
-  
-  //resetCampos();
 
   var settings = {
     "async": true,
@@ -533,7 +593,7 @@ function funcionBuscarDesc(nomb){
     }
   }
   
-  var z =  $.ajax(settings).done(function (response) {
+  $.ajax(settings).done(function (response) {
     //console.log(response.data);
     $('#txt-id-desc').val(response.data.id_descuento);
     $('#slc-estado-desc').selectpicker('val',response.data.estado);
@@ -541,91 +601,11 @@ function funcionBuscarDesc(nomb){
     $('#txt-descripcion').val(response.data.descripcion);
     $('#txt-porcentaje-desc').val(response.data.porcentaje);
     $('#fecha-final-desc').val(response.data.fecha_fin);
-    
-  
   });
 }
 
-
-//Eliminar Descuento
-function funcionBorrarDesc(nomb){
-  $.confirm({
-    icon: 'fa fa-trash',
-    theme: 'modern',
-    closeIcon: true,
-    type: 'blue',
-    title:'Alerta!',
-    content:'¿Esta seguro de eliminar este elemento?',
-    buttons:{
-      Eliminar:{
-         text:"Si, seguro!",
-         btnClass:"btn-blue",
-         action:function(){
-            var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "./services/producto.php",
-              "method": "POST",
-              "dataType": "json",
-              "headers": {
-                "content-type": "application/x-www-form-urlencoded"
-              },
-              "data": {
-                "accion": "eliminar-descuento",
-                "id_descuento": nomb
-              }
-            }
-           
-           $.ajax(settings).done(function (response) {
-             $.alert({
-               title: response.data[0].mensaje,
-               icon: 'fa fa-check',
-               type: 'blue',
-               content: '',
-           });
-           $('#table-info-descuento').DataTable().ajax.reload();
-           })
-         }
-      },
-      Cancelar:function(){
-
-      }
-    }
-  })
-  //console.log(nomb)
-}
-
-//ACtualizarDescuento
-$("#act-desc").click(function(){
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "./services/producto.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "actualizar-descuento",
-      "id_descuento": $("#txt-id-desc").val(),
-      "descripcion": $("#txt-descripcion").val(),
-      "porcentaje": $("#txt-porcentaje-desc").val(),
-      "estado": $("#slc-estado-desc").val(),
-      "fecha_fin": $("#fecha-final-desc").val()
-
-    }
-    
-  }
-  //console.log($("#txt-id-desc").val());
-  $.ajax(settings).done(function (response) {
-    imprimirMensaje(response,"-descuento");
-  });
-  
-});
-
-//Guardar CATEGORIA
+ // ============== Categoria ==============
+// Guardar Categoria
 $("#guard-categoria").click(function(){
     var settings = {
       "async": true,
@@ -643,50 +623,46 @@ $("#guard-categoria").click(function(){
     }
      $.ajax(settings).done(function (response) {
       formaCat.validateAll()
-      imprimirMensajeSinCorchete(response,"-categoria")
+      imprimirMensajeSinCorchete(response, "-categoria")
     });
 
  });
 
-//ELiminarCategoria
+// ELiminar Categoria
 function funcionBorrarCat(nomb){
   $.confirm({
+    title: '',
+    content:'¿Esta seguro de eliminar este elemento?',
+    type: 'orange',
+    typeAnimated: true,
     icon: 'fa fa-trash',
     theme: 'modern',
     closeIcon: true,
-    type: 'blue',
-    title:'Alerta!',
-    content:'¿Esta seguro de eliminar este elemento?',
+    closeIconClass: 'fas fa-times',
     buttons:{
       Eliminar:{
-         text:"Si, seguro!",
-         btnClass:"btn-blue",
-         action:function(){
-            var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "./services/producto.php",
-              "method": "POST",
-              "dataType": "json",
-              "headers": {
-                "content-type": "application/x-www-form-urlencoded"
-              },
-              "data": {
-                "accion": "eliminar-categoria",
-                "id_categoria": nomb
-              }
+        text: "¡Si, Seguro!",
+        btnClass: "btn-warning",
+        action:function(){
+          var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "./services/producto.php",
+            "method": "POST",
+            "dataType": "json",
+            "headers": {
+              "content-type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+              "accion": "eliminar-categoria",
+              "id_categoria": nomb
             }
-           
-           $.ajax(settings).done(function (response) {
-             $.alert({
-               title: response.data[0].mensaje,
-               icon: 'fa fa-check',
-               type: 'blue',
-               content: '',
-           });
-           $('#table-info-categoria').DataTable().ajax.reload();
-           })
-         }
+          }
+          
+          $.ajax(settings).done(function (response) {
+            imprimirMensaje(response, "-categoria");
+          })
+        }
       },
       Cancelar:function(){
 
@@ -695,17 +671,40 @@ function funcionBorrarCat(nomb){
   })
 }
 
-//Buscar cATEGORIa
+// Actualizar Categoria
+$("#act-cat").click(function(){
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-categoria",
+      
+      "id_categoria": $("#txt-id-cat").val(),
+      "categoria": $("#txt-nombre-categoria").val(),
+      "estado": $("#slc-estado-cat").val(),
+    }
+  }
+
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response, "-categoria");
+  });
+  
+});
+
+// Buscar Categoria
 function funcionBuscarCat(nomb){
-  //$("#inputGroupFile").removeClass('is-valid');
-  // Se hace el cambio del footer en el Modal
+
   $("#guard-categoria").hide();
   $("#act-cat").removeClass("d-none");
   $("#seleccion-estado-cat").removeClass("d-none"); 
-  //$("#seleccion-estado").removeClass("d-none");
-  //$('#laboratorio').show();
-  
-  //resetCampos();
+
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -725,42 +724,12 @@ function funcionBuscarCat(nomb){
     //console.log(response.data);
     $('#txt-nombre-categoria').val(response.data.categoria);
     $('#slc-estado-cat').selectpicker('val',response.data.estado);
-
     $('#txt-id-cat').val(response.data.id_categoria);
-
   });
 }
 
-//ACtualizar Categoria
-$("#act-cat").click(function(){
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "./services/producto.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "actualizar-categoria",
-      "id_categoria": $("#txt-id-cat").val(),
-       "categoria": $("#txt-nombre-categoria").val(),
-     
-      "estado": $("#slc-estado-cat").val(),
-    }
-    
-  }
-  //console.log($("#slc-estado-cat").val()),
-  //console.log($("#txt-nombre-categoria").val()),
-  $.ajax(settings).done(function (response) {
-  imprimirMensaje(response,"-categoria");
-  });
-  
-});
-
-//Guardar PResentacion
+// ============== Presentación ==============
+// Guardar Presentación
 $("#guard-presentacion").click(function(){
     var settings = {
       "async": true,
@@ -780,20 +749,22 @@ $("#guard-presentacion").click(function(){
     $.ajax(settings).done(function (response) {
       $('#table-info-presentacion').DataTable().ajax.reload(); 
       formaPre.validateAll()
-      imprimirMensaje(response,"-presentacion")
+      imprimirMensaje(response, "-presentacion")
     });
 
  });
 
-//Eliminar Presentacion
+// Eliminar Presentación
 function funcionBorrarPre(nomb){
   $.confirm({
+    title: '',
+    content:'¿Esta seguro de eliminar este elemento?',
+    type: 'orange',
+    typeAnimated: true,
     icon: 'fa fa-trash',
     theme: 'modern',
     closeIcon: true,
-    type: 'blue',
-    title:'Alerta!',
-    content:'¿Esta seguro de eliminar este elemento?',
+    closeIconClass: 'fas fa-times',
     buttons:{
       Eliminar:{
          text:"Si, seguro!",
@@ -814,15 +785,9 @@ function funcionBorrarPre(nomb){
               }
             }
            
-           $.ajax(settings).done(function (response) {
-             $.alert({
-               title: response.data[0].mensaje,
-               icon: 'fa fa-check',
-               type: 'blue',
-               content: '',
-           });
-           $('#table-info-presentacion').DataTable().ajax.reload();
-           })
+            $.ajax(settings).done(function (response) {
+              imprimirMensaje(response, "-presentacion");
+            })
          }
       },
       Cancelar:function(){
@@ -832,7 +797,35 @@ function funcionBorrarPre(nomb){
   })
 }
 
-function funcionBuscarPre(nomb){
+// Actualizar Presentación
+$("#act-pre").click(function(){
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "./services/producto.php",
+    "method": "POST",
+    "dataType": "json",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    "data": {
+      "accion": "actualizar-presentacion",
+      "id_presentacion": $("#txt-id-pre").val(),
+       "presentacion": $("#txt-nombre-presentacion").val(),
+     
+      "estado": $("#slc-estado-pre").val(),
+    }
+    
+  }
+  
+  $.ajax(settings).done(function (response) {
+    imprimirMensaje(response, "-presentacion");
+  });
+  
+});
+
+function funcionBuscarPre (nomb) {
   $("#guard-presentacion").hide();
   $("#act-pre").removeClass("d-none");
   $("#seleccion-estado-pre").removeClass("d-none");
@@ -858,134 +851,156 @@ function funcionBuscarPre(nomb){
     $('#slc-estado-pre').selectpicker('val',response.data.estado);
 
     $('#txt-id-pre').val(response.data.id_presentacion);
-
   });
 }
 
-//ACtualizar Presentacion
-$("#act-pre").click(function(){
-  //console.log("aqui dentro");
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "./services/producto.php",
-    "method": "POST",
-    "dataType": "json",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    "data": {
-      "accion": "actualizar-presentacion",
-      "id_presentacion": $("#txt-id-pre").val(),
-       "presentacion": $("#txt-nombre-presentacion").val(),
-     
-      "estado": $("#slc-estado-pre").val(),
-    }
-    
-  }
-  //console.log($("#txt-nombre-presentacion").val()),
-  $.ajax(settings).done(function (response) {
-  imprimirMensaje(response,"-presentacion");
-  });
+function imprimirMensaje (response, tabla){
+  console.log(response.data);
+  console.log(tabla);
   
-});
-
-function imprimirMensaje(response,tbl2){
   if (response.data[0].error == 0) {
-    //console.log(response.data);
-    $('#table-info'+tbl2).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    
-    $("#div-exito"+tbl2).html(response.data[0].mensaje);
-    $("#div-exito"+tbl2).removeClass("d-none");
-    
-    $("#div-exito"+tbl2).hide(8000, function(){
-      $('#div-exito'+tbl2).addClass("d-none");
-      $("#div-exito"+tbl2).show();
-      $("#div-exito"+tbl2).html("");
-    });
-    switch (tbl2){
-      case "-categoria":
-      $("#txt-nombre-categoria").val("")
-      $("#seleccion-estado-cat").addClass("d-none")
-      $("#guard-categoria").show()
-      $("#act-cat").addClass("d-none");
-      
-      break;
-   case "-impuesto":
-      $("#txt-descripcion-imp").val("")
-      $("#in-impuesto").val("")
-      $("#guard-impuesto").show()
-      $("#act-imp").addClass("d-none")
-      $("#seleccion-estado-imp").addClass("d-none")
-      
-      break;
-   case "-descuento":  
-    $("#txt-descripcion").val("")
-    $("#txt-porcentaje-desc").val("")
-    $("#fecha-final-desc").val("")
-    $("#guard-descuento").show()
-    $("#act-desc").addClass("d-none")
-    $("#seleccion-estado-desc").addClass("d-none")
-    break;
-   case "-presentacion":  
-    $("#txt-nombre-presentacion").val("")
-    $("#guard-presentacion").show()
-    $("#act-pre").addClass("d-none")
-    $("#seleccion-estado-pre").addClass("d-none")
-    //console.log("presentaciones")
-   
-    break; 
-    }
+    $('#table-info'+tabla).DataTable().ajax.reload(function(){
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data[0].mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+    }); // Se encarga de refrescar las tablas
+    resetCampos(tabla);
+
   } else {
-    //console.log(response);
-    $("#div-error"+tbl2).html(response.data[0].mensaje);
-    $("#div-error"+tbl2).addClass("d-none");
-   
-    $("#div-error"+tbl2).hide(8000, function(){
-      $('#div-error'+tbl2).show();
-      $('#div-error'+tbl2).addClass("d-none");
-      $("#div-error"+tbl2).html("");
+
+    // Mensajes Error
+    $.alert({
+      title: '',
+      content: response.data[0].mensaje,
+      type: 'red',
+      typeAnimated: true,
+      icon: 'fas fa-exclamation-triangle',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+      theme: 'modern', // Acepta propiedades CSS
+      buttons: {
+        cerrar: {
+          text: 'Cerrar',
+          btnClass: 'btn-danger',
+          keys: ['enter', 'shift']
+        }
+      }
     });
   }
 }
 
-function imprimirMensajeSinCorchete(response,tbl){
-  if (response.data.error == 0) {
-    //console.log(response.data);
-    $('#table-info'+tbl).DataTable().ajax.reload(); // Se encarga de refrescar las tablas
-    
-    $("#div-exito"+tbl).html(response.data.mensaje);
-    $("#div-exito"+tbl).removeClass("d-none");
-    
-    $("#div-exito"+tbl).hide(8000, function(){
-      $('#div-exito'+tbl).addClass("d-none");
-      $("#div-exito"+tbl).show();
-      $("#div-exito"+tbl).html("");
-    
-    });
-    
-    switch(tbl){
-        case "-categoria":
-           $("#txt-nombre-categoria").val("")
-           
-           break;
-        case "-impuesto":
-           $("#txt-descripcion-imp").val("")
-           $("#in-impuesto").val("")
-           break;
-       
+function imprimirMensajeSinCorchete(response, tabla){
+  console.log(response.data);
+  console.log(tabla);
 
-    }
+  if (response.data.error == 0) {
+    
+    $('#table-info'+tabla).DataTable().ajax.reload(function(){
+      // Mensajes Validos
+      $.alert({
+        title: '',
+        content: response.data.mensaje,
+        type: 'green',
+        typeAnimated: true,
+        icon: 'fas fa-check',
+        closeIcon: true,
+        closeIconClass: 'fas fa-times',
+        autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+        theme: 'modern', // Acepta propiedades CSS
+        buttons: {
+          cerrar: {
+            text: 'Cerrar',
+            btnClass: 'btn-success',
+            keys: ['enter', 'shift']
+          }
+        }
+      });
+    }); // Se encarga de refrescar las tablas
+
+    resetCampos(tabla);
+
   } else {
-    //console.log(response);
-    $("#div-error"+tbl).html(response.data.mensaje);
-    $("#div-error"+tbl).removeClass("d-none");
-   
-    $("#div-error"+tbl).hide(8000, function(){
-      $('#div-error'+tbl).show();
-      $('#div-error'+tbl).addClass("d-none");
-      $("#div-error"+tbl).html("");
+    
+    // Mensajes Error
+    $.alert({
+      title: '',
+      content: response.data.mensaje,
+      type: 'red',
+      typeAnimated: true,
+      icon: 'fas fa-exclamation-triangle',
+      closeIcon: true,
+      closeIconClass: 'fas fa-times',
+      autoClose: 'cerrar|5000', // Tiempo para cerrar el mensaje
+      theme: 'modern', // Acepta propiedades CSS
+      buttons: {
+        cerrar: {
+          text: 'Cerrar',
+          btnClass: 'btn-danger',
+          keys: ['enter', 'shift']
+        }
+      }
     });
+  }
+}
+
+function resetCampos(campos){
+  console.log("---- Campos:");
+  console.log(campos);
+
+  if (campos == "-descuento"){
+    console.log("if descuento");
+
+    $("#guard-descuento").show();
+    $("#act-desc").addClass("d-none");
+    $("#seleccion-estado-desc").addClass("d-none");
+    
+    $("#txt-descripcion").val("");
+    $("#txt-porcentaje-desc").val("");
+    $("#fecha-final-desc").val("");
+
+  } else if (campos == "-categoria"){
+    console.log("if categoria");
+
+    $("#guard-categoria").show();
+    $("#act-cat").addClass("d-none");
+    $("#seleccion-estado-cat").addClass("d-none");
+    
+    $("#txt-nombre-categoria").val("");
+
+  } else if (campos == "-impuesto"){
+    console.log("if impuesto");
+
+    $("#guard-impuesto").show();
+    $("#act-imp").addClass("d-none");
+    $("#seleccion-estado-imp").addClass("d-none");
+
+    $("#txt-descripcion-imp").val("");
+    $("#in-impuesto").val("");
+
+  } else if (campos == "-presentacion"){
+    console.log("if presentación");
+
+    $("#guard-presentacion").show();
+    $("#act-pre").addClass("d-none");
+    $("#seleccion-estado-pre").addClass("d-none");
+    
+    $("#txt-nombre-presentacion").val("");
   }
 }

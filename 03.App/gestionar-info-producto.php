@@ -36,9 +36,9 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-11">
         <div class="text-center well card">
-          <h4 id="info-propietario">Grupo Farmacias S. de R.L.</h4>
-          <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
-          <h4 id="info-direccion">Col. Villa Olímpica</h4>
+          <h4 id="info-propietario"></h4>
+          <h4 id="info-nombre_farmacia"></h4>
+          <h4 id="info-direccion"></h4>
           <h4>Gestión de Productos</h4>
         </div>
       
@@ -67,15 +67,14 @@
                   </div>
                   <input type="number" id="txt-porcentaje-desc" class="form-control" min="1" max="100" id="in-descuento" name="in-descuento">
                 </div>
-
               </div>
 
               <div id="seleccion-estado-desc" class="col-md-11 form-group d-none">
-                  <label for="slc-estado-desc">Estado:</label>
-                  <select id="slc-estado-desc" class="selectpicker form-control" title="Estado" data-style="btn-primary">
-                    <option value="A">Activo</option>  
-                    <option value="I">Inactivo</option>
-                  </select>
+                <label for="slc-estado-desc">Estado:</label>
+                <select id="slc-estado-desc" class="selectpicker form-control" title="Estado" data-style="btn-primary">
+                  <option value="A">Activo</option>  
+                  <option value="I">Inactivo</option>
+                </select>
               </div>
 
               <div class="col-md-11 form-group">
@@ -87,11 +86,6 @@
                 <button type="button" class="btn btn-info" id="">Reset</button>
                 <button type="button" class="btn btn-primary d-none" id="act-desc">Actualizar Cambios</button>   
                 <button type="button" class="btn btn-primary" id="guard-descuento">Guardar</button>
-              </div>
-              
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <div id="div-exito-descuento" class="alert alert-success nuevo-alert d-none" role="alert"></div>
-                <div id="div-error-descuento" class="alert alert-danger nuevo-alert d-none" role="alert"></div>            
               </div>
             </div>
 
@@ -144,11 +138,6 @@
                 <button type="button" class="btn btn-primary d-none" id="act-imp">Actualizar Cambios</button>   
                 <button type="button" class="btn btn-primary" id="guard-impuesto">Guardar</button>
               </div>
-
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <div id="div-exito-impuesto" class="alert alert-success nuevo-alert d-none" role="alert"></div>
-                <div id="div-error-impuesto" class="alert alert-danger nuevo-alert d-none" role="alert"></div>            
-              </div>
             </div>
         
             <div class="mt-4 col-12 col-md-7">
@@ -188,11 +177,6 @@
                 <button type="button" class="btn btn-info" id="" align="left">Reset</button>
                 <button type="button" class="btn btn-primary d-none" id="act-pre">Actualizar Cambios</button>  
                 <button type="button" class="btn btn-primary" id="guard-presentacion">Guardar</button>
-              </div>
-              
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <div id="div-exito-presentacion" class="alert alert-success nuevo-alert d-none" role="alert"></div>
-                <div id="div-error-presentacion" class="alert alert-danger nuevo-alert d-none" role="alert"></div>            
               </div>
             </div>
           
@@ -234,11 +218,6 @@
                 <button type="button" class="btn btn-primary d-none" id="act-cat">Actualizar Cambios</button>
                 <button type="button" class="btn btn-primary" id="guard-categoria">Guardar</button>
               </div>
-            
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <div id="div-exito-categoria" class="alert alert-success nuevo-alert d-none" role="alert"></div>
-                <div id="div-error-categoria" class="alert alert-danger nuevo-alert d-none" role="alert"></div>            
-              </div>
             </div>
             
             <div class="mt-4 col-12 col-md-7">
@@ -258,13 +237,14 @@
   <script type="text/javascript" src="./js/jquery.min.js"></script>
   <script type="text/javascript" src="./js/popper.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
 
   <script type="text/javascript" src="./plugin/bootstrap-select/js/bootstrap-select.js"></script>
   <script type="text/javascript" src="./plugin/bootstrap-select/js/lang/defaults-es_ES.js"></script>
 
+  <script type="text/javascript" src="./plugin/jquery-confirm/js/jquery-confirm.js"></script>
   <script type="text/javascript" src="./plugin/font-awesome/js/all.js" data-auto-replace-svg="nest"></script>
   <script type="text/javascript" src="./plugin/data-tables/js/datatables.js"></script>
+  
   <script type="text/javascript" src="./js/validate.js"></script>
   <script type="text/javascript" src="./js/controlador/gestionar-info.js"></script>
  
