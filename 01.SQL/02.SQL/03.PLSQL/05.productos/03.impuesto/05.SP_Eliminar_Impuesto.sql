@@ -51,7 +51,7 @@ SP:BEGIN
    COMMIT;
    SELECT descripcion INTO nombreImpuesto FROM impuesto WHERE id_impuesto=pI_id_impuesto;
 
-   SET mensaje= CONCAT('El impuesto(',nombreImpuesto,') se eliminó con exito!');
+   SET mensaje= CONCAT('El impuesto (',nombreImpuesto,') se eliminó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

@@ -52,7 +52,7 @@ InsertarImpuesto:BEGIN
   # SELECT LAST_INSERT_ID() INTO ultimoID;
   COMMIT;
 
-  SET mensaje = CONCAT('El impuesto(',par_impuesto,') se ha registrado con exito!');
+  SET mensaje = CONCAT('El impuesto (',par_impuesto,') se ha registrado con exito!');
   SET error = FALSE;
   SELECT mensaje, error;
 

@@ -52,7 +52,7 @@ SP:BEGIN
 
    SELECT descripcion INTO nombreDescuento FROM descuento WHERE id_descuento=pI_id_descuento;
 
-   SET mensaje= CONCAT('El descuento(',nombreDescuento,') se eliminó con exito!');
+   SET mensaje= CONCAT('El descuento (',nombreDescuento,') se eliminó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;

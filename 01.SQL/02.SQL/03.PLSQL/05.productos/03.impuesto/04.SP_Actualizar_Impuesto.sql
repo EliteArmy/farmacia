@@ -126,7 +126,7 @@ SP:BEGIN
 
    COMMIT;
 
-   SET mensaje= CONCAT('El impuesto(',pI_descripcion,') se actualizó con exito!');
+   SET mensaje= CONCAT('El impuesto (',pI_descripcion,') se actualizó con exito!');
    SET error=FALSE;
    SET pO_mensaje=mensaje;
    SET pO_error=error;
