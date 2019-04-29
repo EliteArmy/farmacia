@@ -55,7 +55,7 @@
         <?php endif;?> -->
 
         <!--Item Productos-->
-        <?php if(show_menu_if(["gestionar-info-producto","nuevo-producto","registro-lote-producto","registro-lote-medicamento","descartar-productos","gestionar-laboratorios"])):?>
+        <?php if(show_menu_if(["gestionar-info-producto","nuevo-producto","registro-lote-producto","registro-lote-medicamento","gestionar-laboratorios", "alerta-productos"])):?>
         <li class="nav-item dropdown" id="nav-producto">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Productos
@@ -160,8 +160,10 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <p class="dropdown-header">Información</p>
             <a class="dropdown-item" href="ver-perfil.php">Perfil</a>
+            <?php if(show_item_if("editar-farmacia")):?>
             <p class="dropdown-header">Información de Farmacia</p>
             <a class="dropdown-item" href="editar-farmacia.php">Configuración</a>
+            <?php endif;?>
             <p class="dropdown-header">Ayuda</p>
             <a class="dropdown-item" href="./docs/manaul.pdf" target="blank">Manual de Usuario</a>
             <!-- <a class="dropdown-item" href="#">Acerca de</a> -->
