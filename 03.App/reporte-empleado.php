@@ -39,13 +39,13 @@
           <h4 id="info-nombre_farmacia">Farmacia Esperanza</h4>
           <h4 id="info-direccion">Col. Villa Olímpica</h4>
           <hr>
-          <h4>Reporte de ventas por empleados</h4>
+          <h4>Reporte de ventas por empleados (En Lempiras)</h4>
         </div>
 
         <div class="well card">
           <div class="row">
             <div class="col-12 col-md-12">
-              <h4>Reporte de Ventas Hoy</h4>
+              <h4>Reporte de Ventas Hoy (En Lempiras)</h4>
               <div class="row">
                 <div class="col-lg-12">
                   <canvas id="chart1"></canvas>
@@ -58,7 +58,7 @@
         <div class="well card">
           <div class="row">
             <div class="col-12 col-md-12">
-              <h4>Reporte de Ventas: Semana</h4>
+              <h4>Reporte de Ventas: Semana (En Lempiras)</h4>
               <div class="row">
                 <div class="col-lg-12">
                   <canvas id="chart2"></canvas>
@@ -71,7 +71,7 @@
         <div class="well card">
           <div class="row">
             <div class="col-12 col-md-12">
-              <h4>Reporte de Ventas Mensual</h4>
+              <h4>Reporte de Ventas Mensual (En Lempiras)</h4>
               <div class="row">
                 <div class="col-lg-12">
                   <canvas id="chart3"></canvas>
@@ -84,7 +84,7 @@
         <div class="well card">
           <div class="row">
             <div class="col-12 col-md-12">
-              <h4>Reporte de Ventas este año</h4>
+              <h4>Reporte de Ventas este año (En Lempiras)</h4>
               <div class="row">
                 <div class="col-lg-12">
                   <canvas id="chart4"></canvas>
