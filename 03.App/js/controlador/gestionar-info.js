@@ -961,11 +961,11 @@ function imprimirMensajeSinCorchete(response, tabla){
 }
 
 function resetCampos(campos){
-  console.log("---- Campos:");
-  console.log(campos);
+  //console.log("---- Campos:");
+  //console.log(campos);
 
   if (campos == "-descuento"){
-    console.log("if descuento");
+    //console.log("if descuento");
 
     $("#guard-descuento").show();
     $("#act-desc").addClass("d-none");
@@ -976,7 +976,7 @@ function resetCampos(campos){
     $("#fecha-final-desc").val("");
 
   } else if (campos == "-categoria"){
-    console.log("if categoria");
+    //console.log("if categoria");
 
     $("#guard-categoria").show();
     $("#act-cat").addClass("d-none");
@@ -985,7 +985,7 @@ function resetCampos(campos){
     $("#txt-nombre-categoria").val("");
 
   } else if (campos == "-impuesto"){
-    console.log("if impuesto");
+    //console.log("if impuesto");
 
     $("#guard-impuesto").show();
     $("#act-imp").addClass("d-none");
@@ -995,7 +995,7 @@ function resetCampos(campos){
     $("#in-impuesto").val("");
 
   } else if (campos == "-presentacion"){
-    console.log("if presentación");
+    //console.log("if presentación");
 
     $("#guard-presentacion").show();
     $("#act-pre").addClass("d-none");
