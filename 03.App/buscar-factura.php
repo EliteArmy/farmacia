@@ -63,6 +63,12 @@
 
         <!-- Tabla de Facturas -->
         <div class="row">
+          <div class="col-12 col-sm-12 col-lg-12 mb-2 texto">
+            <div class="text-center h5 font-weight-bold">
+              Facturas Encontradas
+            </div>
+          </div>
+
           <div class="col-11 col-sm-12 col-md-12 col-lg-12">
             <table id="table-info" class="display table-striped table-bordered w-100">
               <!-- Informacion generada -->
