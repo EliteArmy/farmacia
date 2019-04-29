@@ -165,7 +165,7 @@
             <a class="dropdown-item" href="editar-farmacia.php">Configuración</a>
             <?php endif;?>
             <p class="dropdown-header">Ayuda</p>
-            <a class="dropdown-item" href="./docs/manaul.pdf" target="blank">Manual de Usuario</a>
+            <a class="dropdown-item" href="./docs/manual.pdf" target="blank">Manual de Usuario</a>
             <!-- <a class="dropdown-item" href="#">Acerca de</a> -->
             <a class="dropdown-item text-danger" href="cerrar_session.php">Cerrar sesion</a>
           </div>
